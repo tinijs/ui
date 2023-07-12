@@ -1,0 +1,30 @@
+export const enum Colors {
+  'Dynamic' = 'dynamic',
+  'Primary' = 'primary',
+  'Secondary' = 'secondary',
+  'Tertiary' = 'tertiary',
+  'Success' = 'success',
+  'Danger' = 'danger',
+  'Warning' = 'warning',
+  'Light' = 'light',
+  'Medium' = 'medium',
+  'Dark' = 'dark',
+  'GradientPrimary' = 'gradient-primary',
+  'GradientSecondary' = 'gradient-secondary',
+  'GradientTertiary' = 'gradient-tertiary',
+  'GradientSuccess' = 'gradient-success',
+  'GradientDanger' = 'gradient-danger',
+  'GradientWarning' = 'gradient-warning',
+  'GradientLight' = 'gradient-light',
+  'GradientMedium' = 'gradient-medium',
+  'GradientDark' = 'gradient-dark',
+}
+
+export const enum Sizes {
+  'XS' = 'xs',
+  'SM' = 'sm',
+  'MD' = 'md',
+  'LG' = 'lg',
+  'XL' = 'xl',
+  'XXL' = 'xxl',
+}

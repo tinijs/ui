@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=IBM+Plex+Mono&family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
+[data-theme="material/light"] {
+  // fonts
+  --font-body: 'Roboto', sans-serif;
+  --font-head: 'Montserrat', sans-serif;
+  --font-quote: 'Dancing Script', cursive;
+  --font-code: 'IBM Plex Mono', monospace;
+  // sizes
+  --size-text: 16px;
+  --size-radius: 3px;
+  --size-border: 1px;
+  --size-border-2nd: var(--size-border);
+  --size-space: var(--size-text);
+  // size steps
+  --size-xs: 4px;
+  --size-sm: 8px;
+  --size-md: 16px;
+  --size-lg: 20px;
+  --size-xl: 24px;
+  --size-xxl: 28px;
+  // wides
+  --wide-xs: 320px;
+  --wide-sm: 425px;
+  --wide-md: 768px;
+  --wide-lg: 1024px;
+  --wide-xl: 1440px;
+  --wide-xxl: 2560px;
+  // colors -> https://ionicframework.com/docs/theming/color-generator
+  --color-primary: #3830ff;
+	--color-primary-rgb: 56,48,255;
+	--color-primary-contrast: #ffffff;
+	--color-primary-contrast-rgb: 255,255,255;
+	--color-primary-shade: #312ae0;
+	--color-primary-tint: #4c45ff;
+	--color-secondary: #5200ff;
+	--color-secondary-rgb: 82,0,255;
+	--color-secondary-contrast: #ffffff;
+	--color-secondary-contrast-rgb: 255,255,255;
+	--color-secondary-shade: #4800e0;
+	--color-secondary-tint: #631aff;
+	--color-tertiary: #5230af;
+	--color-tertiary-rgb: 82,48,175;
+	--color-tertiary-contrast: #ffffff;
+	--color-tertiary-contrast-rgb: 255,255,255;
+	--color-tertiary-shade: #482a9a;
+	--color-tertiary-tint: #6345b7;
+	--color-success: #2da33f;
+	--color-success-rgb: 45,163,63;
+	--color-success-contrast: #ffffff;
+	--color-success-contrast-rgb: 255,255,255;
+	--color-success-shade: #288f37;
+	--color-success-tint: #42ac52;
+	--color-warning: #fac90f;
+	--color-warning-rgb: 250,201,15;
+	--color-warning-contrast: #000000;
+	--color-warning-contrast-rgb: 0,0,0;
+	--color-warning-shade: #dcb10d;
+	--color-warning-tint: #fbce27;
+	--color-danger: #ea045f;
+	--color-danger-rgb: 234,4,95;
+	--color-danger-contrast: #ffffff;
+	--color-danger-contrast-rgb: 255,255,255;
+	--color-danger-shade: #ce0454;
+	--color-danger-tint: #ec1d6f;
+  --color-dark: #222428;
+  --color-dark-rgb: 34,36,40;
+  --color-dark-contrast: #ffffff;
+  --color-dark-contrast-rgb: 255,255,255;
+  --color-dark-shade: #1e2023;
+  --color-dark-tint: #383a3e;
+	--color-medium: #92949c;
+	--color-medium-rgb: 146,148,156;
+	--color-medium-contrast: #000000;
+	--color-medium-contrast-rgb: 0,0,0;
+	--color-medium-shade: #808289;
+	--color-medium-tint: #9d9fa6;
+	--color-light: #fff9fc;
+	--color-light-rgb: 255,249,252;
+	--color-light-contrast: #000000;
+	--color-light-contrast-rgb: 0,0,0;
+	--color-light-shade: #e0dbde;
+	--color-light-tint: #fffafc;
+  --color-background: var(--color-light);
+  --color-background-rgb: var(--color-light-rgb);
+  --color-background-contrast: var(--color-light-contrast);
+  --color-background-contrast-rgb: var(--color-light-contrast-rgb);
+  --color-background-shade: var(--color-light-shade);
+  --color-background-tint: var(--color-light-tint);
+  --color-foreground: var(--color-dark);
+  --color-foreground-rgb: var(--color-dark-rgb);
+  --color-foreground-contrast: var(--color-dark-contrast);
+  --color-foreground-contrast-rgb: var(--color-dark-contrast-rgb);
+  --color-foreground-shade: var(--color-dark-shade);
+  --color-foreground-tint: var(--color-dark-tint);
+  // gradients
+  --gradient-primary: linear-gradient(180deg, var(--color-primary-tint) 0%, var(--color-primary-shade) 100%);
+  --gradient-secondary: linear-gradient(180deg, var(--color-secondary-tint) 0%, var(--color-secondary-shade) 100%);
+  --gradient-tertiary: linear-gradient(180deg, var(--color-tertiary-tint) 0%, var(--color-tertiary-shade) 100%);
+  --gradient-success: linear-gradient(180deg, var(--color-success-tint) 0%, var(--color-success-shade) 100%);
+  --gradient-warning: linear-gradient(180deg, var(--color-warning-tint) 0%, var(--color-warning-shade) 100%);
+  --gradient-danger: linear-gradient(180deg, var(--color-danger-tint) 0%, var(--color-danger-shade) 100%);
+  --gradient-dark: linear-gradient(180deg, var(--color-dark-tint) 0%, var(--color-dark-shade) 100%);
+  --gradient-medium: linear-gradient(180deg, var(--color-medium-tint) 0%, var(--color-medium-shade) 100%);
+  --gradient-light: linear-gradient(180deg, var(--color-light-tint) 0%, var(--color-light-shade) 100%);
+  // others
+  --box-shadow: 0 0 0 0 var(--color-background-contrast);
+  --box-shadow-2nd: var(--box-shadow);
+}

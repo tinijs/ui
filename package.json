@@ -1,0 +1,45 @@
+{
+  "name": "@tinijs/ui",
+  "version": "0.0.1",
+  "description": "The UI system of the TiniJS Framework.",
+  "author": "Lam Nhan",
+  "homepage": "https://tinijs.dev",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "dev": "tini ui dev && parcel app/app.html --dist-dir docs",
+    "build:app": "parcel build app/app.html --dist-dir docs && cp docs/app.html docs/index.html",
+    "build:1:ui": "tini ui build",
+    "build:2:components": "tini ui build @tinijs/ui",
+    "build:3:bootstrap-main": "tini ui build @tinijs/ui bootstrap",
+    "build:3:bootstrap-standalone": "parcel build build/@tinijs/ui-bootstrap/components/*.bundle.ts --dist-dir build/@tinijs/ui-bootstrap/components --no-cache --log-level warn",
+    "build:3:bootstrap": "npm run build:3:bootstrap-main && npm run build:3:bootstrap-standalone",
+    "lint": "gts lint",
+    "fix": "gts fix"
+  },
+  "keywords": [
+    "TiniJS",
+    "Web Components",
+    "UI Library"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinijs/ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tinijs/ui/issues"
+  },
+  "dependencies": {
+    "highlight.js": "^11.8.0",
+    "lit": "^3.0.0-pre.0"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.3",
+    "@types/node": "^20.4.2",
+    "gts": "^4.0.1",
+    "parcel": "^2.9.3",
+    "typescript": "~5.1.6"
+  }
+}
