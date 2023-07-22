@@ -1,7 +1,6 @@
+import {Theming, Components} from '@tinijs/core';
 import {LitElement, css, html} from 'lit';
 import {customElement} from 'lit/decorators.js';
-import {UseComponents} from '../../vendors/components';
-import {Theming} from '../../vendors/theming';
 
 import coreStyle from '../../../styles/bootstrap/base/core';
 import headingsStyle from '../../../styles/bootstrap/base/headings';
@@ -16,7 +15,7 @@ import {APP_PAGE, AppPage} from '../../components/page';
 import {APP_SECTION, AppSection} from '../../components/section';
 
 @customElement('app-page-components-button')
-@UseComponents({
+@Components({
   [TINI_BUTTON]: TiniButtonComponent,
   [APP_PAGE]: AppPage,
   [APP_SECTION]: AppSection,

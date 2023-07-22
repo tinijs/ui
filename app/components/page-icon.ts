@@ -1,9 +1,8 @@
+import {Theming, Components} from '@tinijs/core';
 import {LitElement, html, css, render, nothing} from 'lit';
 import {property, state} from 'lit/decorators.js';
 import {ref, createRef, Ref} from 'lit/directives/ref.js';
 import {repeat} from 'lit/directives/repeat';
-import {UseComponents} from '../vendors/components';
-import {Theming} from '../vendors/theming';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';
@@ -12,7 +11,7 @@ import textStyle from '../../styles/bootstrap/base/text';
 import codeStyle from '../../styles/bootstrap/base/code';
 
 import {GITHUB_ICONS_REPO_URL} from '../configs/development';
-import {get} from '../services/http';
+import {get} from '../helpers/http';
 import {ConsumerPlatforms, IconsImportMethods} from '../stores/consts';
 import mainStore from '../stores/main';
 
@@ -27,7 +26,7 @@ type IconDef = [string, string];
 
 export const APP_PAGE_ICON = 'app-page-icon';
 
-@UseComponents({
+@Components({
   [TINI_BUTTON]: TiniButtonComponent,
   [TINI_ICON]: TiniIconComponent,
   [APP_SECTION]: AppSection,

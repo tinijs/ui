@@ -1,7 +1,6 @@
+import {Theming, Components} from '@tinijs/core';
 import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
-import {UseComponents} from '../vendors/components';
-import {Theming} from '../vendors/theming';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';
@@ -11,7 +10,7 @@ import textStyle from '../../styles/bootstrap/base/text';
 import {TINI_LINK, TiniLinkComponent} from '../../dev/link';
 
 @customElement('app-page-404')
-@UseComponents({
+@Components({
   [TINI_LINK]: TiniLinkComponent,
 })
 @Theming({

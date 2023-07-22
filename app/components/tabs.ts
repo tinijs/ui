@@ -1,8 +1,8 @@
+import {Theming} from '@tinijs/core';
 import {LitElement, html, css, nothing} from 'lit';
 import {property} from 'lit/decorators.js';
 import {unsafeHTML} from 'lit/directives/unsafe-html.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {Theming} from '../vendors/theming';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 

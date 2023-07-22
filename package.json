@@ -9,8 +9,9 @@
     "access": "public"
   },
   "scripts": {
-    "dev": "tini ui dev && parcel app/app.html --dist-dir docs",
-    "build:app": "parcel build app/app.html --dist-dir docs && cp docs/app.html docs/index.html",
+    "dev": "tini ui dev && tini dev",
+    "build:app": "tini build",
+    "preview:app": "tini preview",
     "build:1:ui": "tini ui build",
     "build:2:components": "tini ui build @tinijs/ui",
     "build:3:bootstrap-main": "tini ui build @tinijs/ui bootstrap",
@@ -32,11 +33,15 @@
     "url": "https://github.com/tinijs/ui/issues"
   },
   "dependencies": {
+    "@tinijs/core": "file:../core/tinijs-core-0.1.0.tgz",
+    "@tinijs/router": "file:../router/tinijs-router-0.1.0.tgz",
+    "@tinijs/store": "file:../store/tinijs-store-0.1.0.tgz",
     "highlight.js": "^11.8.0",
     "lit": "^3.0.0-pre.0"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.9.3",
+    "@tinijs/cli": "file:../cli/tinijs-cli-0.1.0.tgz",
     "@types/node": "^20.4.2",
     "gts": "^4.0.1",
     "parcel": "^2.9.3",

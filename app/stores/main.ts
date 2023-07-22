@@ -1,4 +1,4 @@
-import {createStore} from '../vendors/store';
+import {createStore} from '@tinijs/store';
 
 import {
   OfficialSoulNames,

@@ -1,7 +1,7 @@
+import {createRouter} from '@tinijs/router';
 import {LitElement, html} from 'lit';
 import {customElement} from 'lit/decorators.js';
 
-import {createRouter} from './vendors/router';
 import {routes} from './routes';
 
 import coreStyle from '../styles/bootstrap/base/core';

@@ -1,9 +1,8 @@
+import {Theming, Components} from '@tinijs/core';
+import {Subscribe} from '@tinijs/store';
 import {LitElement, html, css, nothing} from 'lit';
 import {property, state} from 'lit/decorators.js';
 import {repeat} from 'lit/directives/repeat.js';
-import {Subscribe} from '../vendors/store';
-import {UseComponents} from '../vendors/components';
-import {Theming} from '../vendors/theming';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 
@@ -18,7 +17,7 @@ type CodeBuilder = (code?: string, context?: any) => string;
 
 export const APP_SECTION = 'app-section';
 
-@UseComponents({
+@Components({
   [APP_TABS]: AppTabs,
   [APP_CODE]: AppCode,
 })

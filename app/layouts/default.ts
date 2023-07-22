@@ -1,7 +1,6 @@
+import {Theming, Components} from '@tinijs/core';
 import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
-import {UseComponents} from '../vendors/components';
-import {Theming} from '../vendors/theming';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 
@@ -9,7 +8,7 @@ import {APP_HEADER, AppHeader} from '../components/header';
 import {APP_MENU, AppMenu} from '../components/menu';
 
 @customElement('app-layout-default')
-@UseComponents({
+@Components({
   [APP_HEADER]: AppHeader,
   [APP_MENU]: AppMenu,
 })

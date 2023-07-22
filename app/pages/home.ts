@@ -1,6 +1,6 @@
+import {Theming} from '@tinijs/core';
 import {LitElement, html} from 'lit';
 import {customElement} from 'lit/decorators.js';
-import {Theming} from '../vendors/theming';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';

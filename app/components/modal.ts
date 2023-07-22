@@ -1,9 +1,8 @@
+import {Theming, Components} from '@tinijs/core';
 import {LitElement, html, css, nothing} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {ref, createRef, Ref} from 'lit/directives/ref.js';
-import {UseComponents} from '../vendors/components';
-import {Theming} from '../vendors/theming';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';
@@ -35,7 +34,7 @@ export interface ModalResult<Context> {
 
 export const APP_MODAL = 'app-modal';
 
-@UseComponents({
+@Components({
   [TINI_BUTTON]: TiniButtonComponent,
 })
 @Theming({

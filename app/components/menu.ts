@@ -1,20 +1,19 @@
+import {Theming, Components} from '@tinijs/core';
+import {Route} from '@tinijs/router';
 import {LitElement, html, css, nothing} from 'lit';
-import {Theming} from '../vendors/theming';
-import {UseComponents} from '../vendors/components';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';
 import linkStyle from '../../styles/bootstrap/base/link';
 import textStyle from '../../styles/bootstrap/base/text';
 
-import {Route} from '../vendors/router';
 import {routes} from '../routes';
 
 import {TINI_LINK, TiniLinkComponent} from '../../dev/link';
 
 export const APP_MENU = 'app-menu';
 
-@UseComponents({
+@Components({
   [TINI_LINK]: TiniLinkComponent,
 })
 @Theming({

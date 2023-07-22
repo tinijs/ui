@@ -1,7 +1,6 @@
+import {Theming, Components} from '@tinijs/core';
 import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
-import {UseComponents} from '../../vendors/components';
-import {Theming} from '../../vendors/theming';
 
 import coreStyle from '../../../styles/bootstrap/base/core';
 import headingsStyle from '../../../styles/bootstrap/base/headings';
@@ -11,7 +10,7 @@ import textStyle from '../../../styles/bootstrap/base/text';
 import {APP_PAGE_ICON, AppPageIcon} from '../../components/page-icon';
 
 @customElement('app-page-icons-ant-twotone')
-@UseComponents({
+@Components({
   [APP_PAGE_ICON]: AppPageIcon,
 })
 @Theming({

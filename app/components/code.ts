@@ -1,11 +1,11 @@
+import {Theming} from '@tinijs/core';
 import {LitElement, html, css} from 'lit';
 import {property} from 'lit/decorators.js';
 import {ref, createRef, Ref} from 'lit/directives/ref.js';
-import {Theming} from '../vendors/theming';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 
-import hljs from '../services/highlight';
+import hljs from '../helpers/highlight';
 
 export const APP_CODE = 'app-code';
 

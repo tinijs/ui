@@ -1,7 +1,6 @@
+import {Theming, Components, changeTheme} from '@tinijs/core';
 import {LitElement, html, css} from 'lit';
 import {customElement} from 'lit/decorators.js';
-import {UseComponents} from '../vendors/components';
-import {Theming, changeTheme} from '../vendors/theming';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';
@@ -12,7 +11,7 @@ import {TINI_BUTTON, TiniButtonComponent} from '../../dev/button';
 import {APP_TEST, AppTest} from '../components/test-theming';
 
 @customElement('app-page-get-started')
-@UseComponents({
+@Components({
   [TINI_BUTTON]: TiniButtonComponent,
   [APP_TEST]: AppTest,
 })

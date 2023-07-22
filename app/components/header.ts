@@ -1,5 +1,5 @@
+import {Theming} from '@tinijs/core';
 import {LitElement, html, css} from 'lit';
-import {Theming} from '../vendors/theming';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import linkStyle from '../../styles/bootstrap/base/link';

@@ -1,4 +1,4 @@
-import {Route} from './vendors/router';
+import {Route} from '@tinijs/router';
 
 export const routes: Route[] = [
   {

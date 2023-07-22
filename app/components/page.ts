@@ -1,9 +1,8 @@
+import {Theming, Components} from '@tinijs/core';
+import {Subscribe} from '@tinijs/store';
 import {LitElement, html, css, nothing} from 'lit';
 import {property, state} from 'lit/decorators.js';
 import {cache} from 'lit/directives/cache.js';
-import {Subscribe} from '../vendors/store';
-import {UseComponents} from '../vendors/components';
-import {Theming} from '../vendors/theming';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';
@@ -16,12 +15,12 @@ import {
   GITHUB_REPO_URL,
   GITHUB_RAW_URL,
 } from '../configs/development';
-import {getText} from '../services/http';
+import {getText} from '../helpers/http';
 import {
   extractCSSVariables,
   SoulVariable,
   extractComponentProperties,
-} from '../services/source';
+} from '../helpers/source';
 import {ImportMethods} from '../stores/consts';
 import mainStore from '../stores/main';
 
@@ -36,7 +35,7 @@ interface Quicklink {
 
 export const APP_PAGE = 'app-page';
 
-@UseComponents({
+@Components({
   [APP_SECTION]: AppSection,
   [APP_TABS]: AppTabs,
   [APP_CODE]: AppCode,
