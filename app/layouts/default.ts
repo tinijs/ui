@@ -1,23 +1,23 @@
-import {Theming, Components} from '@tinijs/core';
-import {LitElement, html, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {Layout, TiniComponent, html, css} from '@tinijs/core';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 
-import {APP_HEADER, AppHeader} from '../components/header';
-import {APP_MENU, AppMenu} from '../components/menu';
+import {APP_HEADER, AppHeaderComponent} from '../components/header';
+import {APP_MENU, AppMenuComponent} from '../components/menu';
 
-@customElement('app-layout-default')
-@Components({
-  [APP_HEADER]: AppHeader,
-  [APP_MENU]: AppMenu,
-})
-@Theming({
-  styling: {
-    bootstrap: [coreStyle],
+@Layout({
+  name: 'app-layout-default',
+  components: {
+    [APP_HEADER]: AppHeaderComponent,
+    [APP_MENU]: AppMenuComponent,
+  },
+  theming: {
+    styling: {
+      bootstrap: [coreStyle],
+    },
   },
 })
-export class AppLayoutDefault extends LitElement {
+export class AppLayoutDefault extends TiniComponent {
   static styles = css`
     :host {
       --header-height: 60px;

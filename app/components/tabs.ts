@@ -1,8 +1,13 @@
-import {Theming} from '@tinijs/core';
-import {LitElement, html, css, nothing} from 'lit';
-import {property} from 'lit/decorators.js';
-import {unsafeHTML} from 'lit/directives/unsafe-html.js';
-import {classMap} from 'lit/directives/class-map.js';
+import {
+  Component,
+  TiniComponent,
+  Input,
+  classMap,
+  unsafeHTML,
+  html,
+  css,
+  nothing,
+} from '@tinijs/core';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 
@@ -15,12 +20,14 @@ export interface TabItem {
 
 export const APP_TABS = 'app-tabs';
 
-@Theming({
-  styling: {
-    bootstrap: [coreStyle],
+@Component({
+  theming: {
+    styling: {
+      bootstrap: [coreStyle],
+    },
   },
 })
-export class AppTabs extends LitElement {
+export class AppTabsComponent extends TiniComponent {
   static styles = css`
     .head {
       transform: translateY(1px);
@@ -47,8 +54,8 @@ export class AppTabs extends LitElement {
     }
   `;
 
-  @property({type: Array}) declare readonly tabItems?: TabItem[];
-  @property({type: String}) declare activeName?: string;
+  @Input({type: Array}) declare readonly tabItems?: TabItem[];
+  @Input({type: String}) declare activeName?: string;
 
   private containerRegistry: Record<string, HTMLElement> = {};
 

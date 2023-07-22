@@ -1,19 +1,19 @@
-import {Theming} from '@tinijs/core';
-import {LitElement, html} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {Page, TiniComponent, html} from '@tinijs/core';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';
 import linkStyle from '../../styles/bootstrap/base/link';
 import textStyle from '../../styles/bootstrap/base/text';
 
-@customElement('app-page-home')
-@Theming({
-  styling: {
-    bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle],
+@Page({
+  name: 'app-page-home',
+  theming: {
+    styling: {
+      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle],
+    },
   },
 })
-export class AppPageHome extends LitElement {
+export class AppPageHome extends TiniComponent {
   protected render() {
     return html`
       <h1>Tini UI</h1>

@@ -1,32 +1,39 @@
-import {Theming, Components} from '@tinijs/core';
+import {
+  Component,
+  TiniComponent,
+  Input,
+  Reactive,
+  html,
+  css,
+  nothing,
+  repeat,
+} from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
-import {LitElement, html, css, nothing} from 'lit';
-import {property, state} from 'lit/decorators.js';
-import {repeat} from 'lit/directives/repeat.js';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 
-import mainStore from '../stores/main';
-import {ConsumerPlatforms} from '../stores/consts';
+import {ConsumerPlatforms} from '../consts/main';
 import {TabItem} from '../components/tabs';
+import mainStore from '../stores/main';
 
-import {APP_TABS, AppTabs} from '../components/tabs';
-import {APP_CODE, AppCode} from '../components/code';
+import {APP_TABS, AppTabsComponent} from '../components/tabs';
+import {APP_CODE, AppCodeComponent} from '../components/code';
 
 type CodeBuilder = (code?: string, context?: any) => string;
 
 export const APP_SECTION = 'app-section';
-
-@Components({
-  [APP_TABS]: AppTabs,
-  [APP_CODE]: AppCode,
-})
-@Theming({
-  styling: {
-    bootstrap: [coreStyle],
+@Component({
+  components: {
+    [APP_TABS]: AppTabsComponent,
+    [APP_CODE]: AppCodeComponent,
+  },
+  theming: {
+    styling: {
+      bootstrap: [coreStyle],
+    },
   },
 })
-export class AppSection extends LitElement {
+export class AppSectionComponent extends TiniComponent {
   static styles = css`
     :host {
       margin-top: 3rem;
@@ -51,15 +58,15 @@ export class AppSection extends LitElement {
     {name: ConsumerPlatforms.Angular, icon: 'angular'},
   ];
 
-  @property({type: Boolean}) declare readonly noUsageTabs?: boolean;
-  @property({type: Array}) declare readonly codeBuilders?: Record<
+  @Input({type: Boolean}) declare readonly noUsageTabs?: boolean;
+  @Input({type: Array}) declare readonly codeBuilders?: Record<
     string,
     CodeBuilder
   >;
-  @property({type: Object}) declare readonly preprocessCode?: CodeBuilder;
-  @property({type: Object}) declare readonly codeBuildContext?: unknown;
+  @Input({type: Object}) declare readonly preprocessCode?: CodeBuilder;
+  @Input({type: Object}) declare readonly codeBuildContext?: unknown;
 
-  @Subscribe(mainStore) @state() private readonly referPlatform =
+  @Subscribe(mainStore) @Reactive() private readonly referPlatform =
     mainStore.referPlatform;
 
   private originalCode?: string;

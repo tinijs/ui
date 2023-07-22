@@ -1,6 +1,4 @@
-import {Theming, Components} from '@tinijs/core';
-import {LitElement, html, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {Page, TiniComponent, html, css} from '@tinijs/core';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';
@@ -9,16 +7,18 @@ import textStyle from '../../styles/bootstrap/base/text';
 
 import {TINI_LINK, TiniLinkComponent} from '../../dev/link';
 
-@customElement('app-page-404')
-@Components({
-  [TINI_LINK]: TiniLinkComponent,
-})
-@Theming({
-  styling: {
-    bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle],
+@Page({
+  name: 'app-page-404',
+  components: {
+    [TINI_LINK]: TiniLinkComponent,
+  },
+  theming: {
+    styling: {
+      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle],
+    },
   },
 })
-export class AppPage404 extends LitElement {
+export class AppPage404 extends TiniComponent {
   static styles = css`
     :host {
       display: flex;

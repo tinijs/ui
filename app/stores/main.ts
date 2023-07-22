@@ -5,7 +5,7 @@ import {
   ConsumerPlatforms,
   ImportMethods,
   IconsImportMethods,
-} from './consts';
+} from '../consts/main';
 
 export default createStore({
   soulName: OfficialSoulNames.Bootstrap,

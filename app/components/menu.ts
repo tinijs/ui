@@ -1,27 +1,27 @@
-import {Theming, Components} from '@tinijs/core';
+import {Component, TiniComponent, html, css, nothing} from '@tinijs/core';
 import {Route} from '@tinijs/router';
-import {LitElement, html, css, nothing} from 'lit';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';
 import linkStyle from '../../styles/bootstrap/base/link';
 import textStyle from '../../styles/bootstrap/base/text';
 
-import {routes} from '../routes';
+import routes from '../routes';
 
 import {TINI_LINK, TiniLinkComponent} from '../../dev/link';
 
 export const APP_MENU = 'app-menu';
-
-@Components({
-  [TINI_LINK]: TiniLinkComponent,
-})
-@Theming({
-  styling: {
-    bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle],
+@Component({
+  components: {
+    [TINI_LINK]: TiniLinkComponent,
+  },
+  theming: {
+    styling: {
+      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle],
+    },
   },
 })
-export class AppMenu extends LitElement {
+export class AppMenuComponent extends TiniComponent {
   static styles = css`
     :host {
       padding: 1rem;

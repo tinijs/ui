@@ -1,6 +1,4 @@
-import {Theming, Components} from '@tinijs/core';
-import {LitElement, css, html} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {Page, TiniComponent, html, css} from '@tinijs/core';
 
 import coreStyle from '../../../styles/bootstrap/base/core';
 import headingsStyle from '../../../styles/bootstrap/base/headings';
@@ -8,24 +6,26 @@ import linkStyle from '../../../styles/bootstrap/base/link';
 import textStyle from '../../../styles/bootstrap/base/text';
 import codeStyle from '../../../styles/bootstrap/base/code';
 
-import {ConsumerPlatforms} from '../../stores/consts';
+import {ConsumerPlatforms} from '../../consts/main';
 
 import {TINI_BUTTON, TiniButtonComponent} from '../../../dev/button';
-import {APP_PAGE, AppPage} from '../../components/page';
-import {APP_SECTION, AppSection} from '../../components/section';
+import {APP_PAGE, AppPageComponent} from '../../components/page';
+import {APP_SECTION, AppSectionComponent} from '../../components/section';
 
-@customElement('app-page-components-button')
-@Components({
-  [TINI_BUTTON]: TiniButtonComponent,
-  [APP_PAGE]: AppPage,
-  [APP_SECTION]: AppSection,
-})
-@Theming({
-  styling: {
-    bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle, codeStyle],
+@Page({
+  name: 'app-page-components-button',
+  components: {
+    [TINI_BUTTON]: TiniButtonComponent,
+    [APP_PAGE]: AppPageComponent,
+    [APP_SECTION]: AppSectionComponent,
+  },
+  theming: {
+    styling: {
+      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle, codeStyle],
+    },
   },
 })
-export class AppPageComponentsButton extends LitElement {
+export class AppPageComponentsButton extends TiniComponent {
   static styles = css`
     .colors [slot='code'],
     .disabled-colors [slot='code'],

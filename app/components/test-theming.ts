@@ -25,7 +25,7 @@ export const APP_TEST = 'app-test';
     ],
   },
 })
-export class AppTest extends LitElement {
+export class AppTestComponent extends LitElement {
   protected render() {
     return html` <h1>Test theming</h1> `;
   }

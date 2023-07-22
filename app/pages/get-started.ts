@@ -1,6 +1,4 @@
-import {Theming, Components, changeTheme} from '@tinijs/core';
-import {LitElement, html, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {Page, TiniComponent, changeTheme, html, css} from '@tinijs/core';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';
@@ -8,19 +6,21 @@ import linkStyle from '../../styles/bootstrap/base/link';
 import textStyle from '../../styles/bootstrap/base/text';
 
 import {TINI_BUTTON, TiniButtonComponent} from '../../dev/button';
-import {APP_TEST, AppTest} from '../components/test-theming';
+import {APP_TEST, AppTestComponent} from '../components/test-theming';
 
-@customElement('app-page-get-started')
-@Components({
-  [TINI_BUTTON]: TiniButtonComponent,
-  [APP_TEST]: AppTest,
-})
-@Theming({
-  styling: {
-    bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle],
+@Page({
+  name: 'app-page-get-started',
+  components: {
+    [TINI_BUTTON]: TiniButtonComponent,
+    [APP_TEST]: AppTestComponent,
+  },
+  theming: {
+    styling: {
+      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle],
+    },
   },
 })
-export class AppPageGetStarted extends LitElement {
+export class AppPageGetStarted extends TiniComponent {
   static styles = css`
     tini-button {
       margin-top: 1rem;

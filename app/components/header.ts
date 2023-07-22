@@ -1,19 +1,19 @@
-import {Theming} from '@tinijs/core';
-import {LitElement, html, css} from 'lit';
+import {Component, TiniComponent, html, css} from '@tinijs/core';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import linkStyle from '../../styles/bootstrap/base/link';
 
-import {GITHUB_REPO_URL} from '../configs/development';
+import {GITHUB_REPO_URL} from '../consts/main';
 
 export const APP_HEADER = 'app-header';
-
-@Theming({
-  styling: {
-    bootstrap: [coreStyle, linkStyle],
+@Component({
+  theming: {
+    styling: {
+      bootstrap: [coreStyle, linkStyle],
+    },
   },
 })
-export class AppHeader extends LitElement {
+export class AppHeaderComponent extends TiniComponent {
   static styles = css`
     header {
       display: flex;

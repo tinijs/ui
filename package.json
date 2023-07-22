@@ -5,6 +5,7 @@
   "author": "Lam Nhan",
   "homepage": "https://tinijs.dev",
   "license": "MIT",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "publishConfig": {
     "access": "public"
   },
@@ -40,7 +41,6 @@
     "lit": "^3.0.0-pre.0"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "^2.9.3",
     "@tinijs/cli": "file:../cli/tinijs-cli-0.1.0.tgz",
     "@types/node": "^20.4.2",
     "gts": "^4.0.1",

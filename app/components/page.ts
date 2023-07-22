@@ -1,8 +1,14 @@
-import {Theming, Components} from '@tinijs/core';
+import {
+  Component,
+  TiniComponent,
+  Input,
+  Reactive,
+  html,
+  css,
+  nothing,
+  cache,
+} from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
-import {LitElement, html, css, nothing} from 'lit';
-import {property, state} from 'lit/decorators.js';
-import {cache} from 'lit/directives/cache.js';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';
@@ -14,19 +20,19 @@ import {
   LIB_VERSION,
   GITHUB_REPO_URL,
   GITHUB_RAW_URL,
-} from '../configs/development';
-import {getText} from '../helpers/http';
+  ImportMethods,
+} from '../consts/main';
 import {
   extractCSSVariables,
   SoulVariable,
   extractComponentProperties,
 } from '../helpers/source';
-import {ImportMethods} from '../stores/consts';
+import {getText} from '../helpers/http';
 import mainStore from '../stores/main';
 
-import {APP_SECTION, AppSection} from '../components/section';
-import {APP_TABS, AppTabs, TabItem} from '../components/tabs';
-import {APP_CODE, AppCode} from '../components/code';
+import {APP_SECTION, AppSectionComponent} from '../components/section';
+import {APP_TABS, AppTabsComponent, TabItem} from '../components/tabs';
+import {APP_CODE, AppCodeComponent} from '../components/code';
 
 interface Quicklink {
   href: string;
@@ -35,17 +41,19 @@ interface Quicklink {
 
 export const APP_PAGE = 'app-page';
 
-@Components({
-  [APP_SECTION]: AppSection,
-  [APP_TABS]: AppTabs,
-  [APP_CODE]: AppCode,
-})
-@Theming({
-  styling: {
-    bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle, codeStyle],
+@Component({
+  components: {
+    [APP_SECTION]: AppSectionComponent,
+    [APP_TABS]: AppTabsComponent,
+    [APP_CODE]: AppCodeComponent,
+  },
+  theming: {
+    styling: {
+      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle, codeStyle],
+    },
   },
 })
-export class AppPage extends LitElement {
+export class AppPageComponent extends TiniComponent {
   static styles = css`
     table {
       width: 100%;
@@ -75,19 +83,20 @@ export class AppPage extends LitElement {
     {name: ImportMethods.Standalone},
   ];
 
-  @property({type: String}) declare readonly name: string;
-  @property({type: String}) declare readonly titleText?: string;
-  @property({type: Object}) declare readonly prevPage?: Quicklink;
-  @property({type: Object}) declare readonly nextPage?: Quicklink;
+  @Input({type: String}) declare readonly name: string;
+  @Input({type: String}) declare readonly titleText?: string;
+  @Input({type: Object}) declare readonly prevPage?: Quicklink;
+  @Input({type: Object}) declare readonly nextPage?: Quicklink;
 
-  @state() private declare contentMode?: 'article' | 'code';
-  @state() private declare pageSourceCode?: string;
-  @state() private declare soulVariables?: SoulVariable[];
-  @state() private declare componentProperties?: any[];
+  @Reactive() private declare contentMode?: 'article' | 'code';
+  @Reactive() private declare pageSourceCode?: string;
+  @Reactive() private declare soulVariables?: SoulVariable[];
+  @Reactive() private declare componentProperties?: any[];
 
-  @Subscribe(mainStore) @state() private readonly soulName = mainStore.soulName;
+  @Subscribe(mainStore) @Reactive() private readonly soulName =
+    mainStore.soulName;
 
-  @Subscribe(mainStore) @state() private readonly referImport =
+  @Subscribe(mainStore) @Reactive() private readonly referImport =
     mainStore.referImport;
 
   constructor() {
@@ -113,7 +122,7 @@ export class AppPage extends LitElement {
 import {${nameConst}, ${nameClass}} from '@tinijs/ui/${this.name}.js';
 
 @Page({
-  useComponents: {
+  components: {
     [${nameConst}]: ${nameClass}
   }
 });
@@ -173,7 +182,7 @@ useComponents({
     );
   }
 
-  protected async switchMode(mode: AppPage['contentMode']) {
+  protected async switchMode(mode: AppPageComponent['contentMode']) {
     // set mode
     this.contentMode = mode;
     // load source code

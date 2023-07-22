@@ -1,8 +1,17 @@
-import {Theming, Components} from '@tinijs/core';
-import {LitElement, html, css, render, nothing} from 'lit';
-import {property, state} from 'lit/decorators.js';
-import {ref, createRef, Ref} from 'lit/directives/ref.js';
-import {repeat} from 'lit/directives/repeat';
+import {
+  Component,
+  TiniComponent,
+  Input,
+  Reactive,
+  html,
+  css,
+  render,
+  nothing,
+  repeat,
+  ref,
+  createRef,
+  Ref,
+} from '@tinijs/core';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';
@@ -10,36 +19,36 @@ import linkStyle from '../../styles/bootstrap/base/link';
 import textStyle from '../../styles/bootstrap/base/text';
 import codeStyle from '../../styles/bootstrap/base/code';
 
-import {GITHUB_ICONS_REPO_URL} from '../configs/development';
+import {GITHUB_ICONS_REPO_URL, IconsImportMethods} from '../consts/main';
 import {get} from '../helpers/http';
-import {ConsumerPlatforms, IconsImportMethods} from '../stores/consts';
 import mainStore from '../stores/main';
 
 import {TINI_BUTTON, TiniButtonComponent} from '../../dev/button';
 import {TINI_ICON, TiniIconComponent} from '../../dev/icon';
-import {APP_SECTION, AppSection} from '../components/section';
-import {APP_TABS, AppTabs, TabItem} from '../components/tabs';
-import {APP_CODE, AppCode} from '../components/code';
-import {APP_MODAL, AppModal} from '../components/modal';
+import {APP_SECTION, AppSectionComponent} from '../components/section';
+import {APP_TABS, AppTabsComponent, TabItem} from '../components/tabs';
+import {APP_CODE, AppCodeComponent} from '../components/code';
+import {APP_MODAL, AppModalComponent} from '../components/modal';
 
 type IconDef = [string, string];
 
 export const APP_PAGE_ICON = 'app-page-icon';
-
-@Components({
-  [TINI_BUTTON]: TiniButtonComponent,
-  [TINI_ICON]: TiniIconComponent,
-  [APP_SECTION]: AppSection,
-  [APP_TABS]: AppTabs,
-  [APP_CODE]: AppCode,
-  [APP_MODAL]: AppModal,
-})
-@Theming({
-  styling: {
-    bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle, codeStyle],
+@Component({
+  components: {
+    [TINI_BUTTON]: TiniButtonComponent,
+    [TINI_ICON]: TiniIconComponent,
+    [APP_SECTION]: AppSectionComponent,
+    [APP_TABS]: AppTabsComponent,
+    [APP_CODE]: AppCodeComponent,
+    [APP_MODAL]: AppModalComponent,
+  },
+  theming: {
+    styling: {
+      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle, codeStyle],
+    },
   },
 })
-export class AppPageIcon extends LitElement {
+export class AppPageIconComponent extends TiniComponent {
   static styles = css`
     :host {
       --icon-size: 3.5rem;
@@ -107,14 +116,14 @@ export class AppPageIcon extends LitElement {
     code.replace(/tini-icon/g, nameTag);
   private readonly CODE_BUILDERS = {};
 
-  @property({type: String}) declare readonly name: string;
-  @property({type: Boolean}) declare readonly noVariants?: boolean;
-  @property({type: String}) declare readonly titleText?: string;
+  @Input({type: String}) declare readonly name: string;
+  @Input({type: Boolean}) declare readonly noVariants?: boolean;
+  @Input({type: String}) declare readonly titleText?: string;
 
-  @state() private currentPage = 1;
-  @state() private filterQuery?: string;
+  @Reactive() private currentPage = 1;
+  @Reactive() private filterQuery?: string;
 
-  private modalRef: Ref<AppModal> = createRef();
+  private modalRef: Ref<AppModalComponent> = createRef();
   private modalContentRef: Ref<HTMLDivElement> = createRef();
 
   private get installCode() {
@@ -140,7 +149,7 @@ export class AppPageIcon extends LitElement {
     return `data:${mimeType};base64,${base64Content}`;
   }
 
-  @state() private data?: {version: string; items: Array<IconDef>};
+  @Reactive() private data?: {version: string; items: Array<IconDef>};
   private totalPages?: number;
   async connectedCallback() {
     super.connectedCallback();
@@ -205,7 +214,7 @@ export class AppPageIcon extends LitElement {
 import {${nameConst}, ${nameClass}} from '${packageName}/${iconName}.js';
 
 @Component({
-  useComponents: {
+  components: {
     [${nameConst}]: ${nameClass}
   }
 });
@@ -232,7 +241,7 @@ useComponents({
 
     const dataURICode = `import {html} from 'lit';
 
-import {dataURI as ${nameVar}URI} from '${packageName}/${iconName}.source.js'
+import {dataURI as ${nameVar}URI} from '${packageName}/${iconName}.source.js';
 
 html\`
   <i style="background-image: url(\$\{${nameVar}URI\})"></i>
@@ -243,7 +252,7 @@ html\`
     const svgCode = `import {html} from 'lit';
 import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
   
-import {code as ${nameVar}Code} from '${packageName}/${iconName}.source.js'
+import {code as ${nameVar}Code} from '${packageName}/${iconName}.source.js';
 
 // render
 html\`<div class="container">\$\{unsafeSVG(${nameVar}Code)\}</div>\`;

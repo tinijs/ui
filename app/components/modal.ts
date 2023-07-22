@@ -1,8 +1,19 @@
-import {Theming, Components} from '@tinijs/core';
-import {LitElement, html, css, nothing} from 'lit';
-import {property} from 'lit/decorators.js';
-import {classMap} from 'lit/directives/class-map.js';
-import {ref, createRef, Ref} from 'lit/directives/ref.js';
+import {
+  Component,
+  TiniComponent,
+  Input,
+  html,
+  css,
+  nothing,
+  classMap,
+  ref,
+  createRef,
+  Ref,
+} from '@tinijs/core';
+// import {LitElement, html, css, nothing} from 'lit';
+// import {property} from 'lit/decorators.js';
+// import {classMap} from 'lit/directives/class-map.js';
+// import {ref, createRef, Ref} from 'lit/directives/ref.js';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 import headingsStyle from '../../styles/bootstrap/base/headings';
@@ -33,16 +44,17 @@ export interface ModalResult<Context> {
 }
 
 export const APP_MODAL = 'app-modal';
-
-@Components({
-  [TINI_BUTTON]: TiniButtonComponent,
-})
-@Theming({
-  styling: {
-    bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle, codeStyle],
+@Component({
+  components: {
+    [TINI_BUTTON]: TiniButtonComponent,
+  },
+  theming: {
+    styling: {
+      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle, codeStyle],
+    },
   },
 })
-export class AppModal extends LitElement {
+export class AppModalComponent extends TiniComponent {
   static styles = css`
     dialog {
       position: fixed;
@@ -120,11 +132,11 @@ export class AppModal extends LitElement {
     }
   `;
 
-  @property({type: String}) declare kind: ModalKinds;
-  @property({type: String}) declare titleText?: string;
-  @property({type: Boolean}) declare backdropClosed?: boolean;
-  @property({type: Object}) declare noButton?: ModalButton;
-  @property({type: Object}) declare yesButton?: ModalButton;
+  @Input({type: String}) declare kind: ModalKinds;
+  @Input({type: String}) declare titleText?: string;
+  @Input({type: Boolean}) declare backdropClosed?: boolean;
+  @Input({type: Object}) declare noButton?: ModalButton;
+  @Input({type: Object}) declare yesButton?: ModalButton;
 
   private dialogRef: Ref<HTMLDialogElement> = createRef();
   private context?: unknown;

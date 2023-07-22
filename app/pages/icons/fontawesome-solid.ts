@@ -1,24 +1,24 @@
-import {Theming, Components} from '@tinijs/core';
-import {LitElement, html, css} from 'lit';
-import {customElement} from 'lit/decorators.js';
+import {Page, TiniComponent, html, css} from '@tinijs/core';
 
 import coreStyle from '../../../styles/bootstrap/base/core';
 import headingsStyle from '../../../styles/bootstrap/base/headings';
 import linkStyle from '../../../styles/bootstrap/base/link';
 import textStyle from '../../../styles/bootstrap/base/text';
 
-import {APP_PAGE_ICON, AppPageIcon} from '../../components/page-icon';
+import {APP_PAGE_ICON, AppPageIconComponent} from '../../components/page-icon';
 
-@customElement('app-page-icons-fontawesome-solid')
-@Components({
-  [APP_PAGE_ICON]: AppPageIcon,
-})
-@Theming({
-  styling: {
-    bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle],
+@Page({
+  name: 'app-page-icons-fontawesome-solid',
+  components: {
+    [APP_PAGE_ICON]: AppPageIconComponent,
+  },
+  theming: {
+    styling: {
+      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle],
+    },
   },
 })
-export class AppPageIconsFontawesomeSolid extends LitElement {
+export class AppPageIconsFontawesomeSolid extends TiniComponent {
   static styles = css``;
 
   protected render() {

@@ -1,20 +1,27 @@
-import {Theming} from '@tinijs/core';
-import {LitElement, html, css} from 'lit';
-import {property} from 'lit/decorators.js';
-import {ref, createRef, Ref} from 'lit/directives/ref.js';
+import {
+  Component,
+  TiniComponent,
+  Input,
+  html,
+  css,
+  ref,
+  createRef,
+  Ref,
+} from '@tinijs/core';
 
 import coreStyle from '../../styles/bootstrap/base/core';
 
 import hljs from '../helpers/highlight';
 
 export const APP_CODE = 'app-code';
-
-@Theming({
-  styling: {
-    bootstrap: [coreStyle],
+@Component({
+  theming: {
+    styling: {
+      bootstrap: [coreStyle],
+    },
   },
 })
-export class AppCode extends LitElement {
+export class AppCodeComponent extends TiniComponent {
   static styles = css`
     pre code.hljs {
       display: block;
@@ -111,7 +118,7 @@ export class AppCode extends LitElement {
   `;
 
   private readonly codeRef: Ref<HTMLElement> = createRef();
-  @property({type: String}) declare readonly code?: string;
+  @Input({type: String}) declare readonly code?: string;
 
   protected updated() {
     hljs.highlightElement(this.codeRef.value!);

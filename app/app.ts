@@ -1,20 +1,18 @@
+import {App, TiniComponent, html} from '@tinijs/core';
 import {createRouter} from '@tinijs/router';
-import {LitElement, html} from 'lit';
-import {customElement} from 'lit/decorators.js';
 
-import {routes} from './routes';
-
-import coreStyle from '../styles/bootstrap/base/core';
+import configs from './configs/development';
+import routes from './routes';
+import providers from './providers';
 
 import './layouts/default';
 
-@customElement('app-root')
-export class AppRoot extends LitElement {
-  static styles = [coreStyle];
-
-  public readonly router = createRouter(routes, {linkTrigger: true});
+@App({providers})
+export class AppRoot extends TiniComponent {
+  public readonly $configs = configs;
+  public readonly $router = createRouter(routes, {linkTrigger: true});
 
   protected render() {
-    return html`<router-outlet .router=${this.router}></router-outlet>`;
+    return html`<router-outlet .router=${this.$router}></router-outlet>`;
   }
 }
