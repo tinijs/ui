@@ -41,7 +41,7 @@ export class AppPageComponentsButton extends LitElement {
     }
   `;
 
-  private readonly codeBuilders = {
+  private readonly CODE_BUILDERS = {
     [ConsumerPlatforms.HTML]: (code?: string) => '<h1>HTML</h1>',
     [ConsumerPlatforms.Vue]: (code?: string) => '<h1>Vue</h1>',
     [ConsumerPlatforms.React]: (code?: string) => '<h1>React</h1>',
@@ -55,7 +55,7 @@ export class AppPageComponentsButton extends LitElement {
           Use <strong>buttons</strong> to trigger actions.
         </div>
 
-        <app-section class="default" .codeBuilders=${this.codeBuilders}>
+        <app-section class="default" .codeBuilders=${this.CODE_BUILDERS}>
           <div slot="content">
             <h2>Default</h2>
             <p>
@@ -68,7 +68,7 @@ export class AppPageComponentsButton extends LitElement {
           </div>
         </app-section>
 
-        <app-section class="dynamic" .codeBuilders=${this.codeBuilders}>
+        <app-section class="dynamic" .codeBuilders=${this.CODE_BUILDERS}>
           <div slot="content">
             <h2>Dynamic</h2>
             <p>
@@ -81,7 +81,7 @@ export class AppPageComponentsButton extends LitElement {
           </div>
         </app-section>
 
-        <app-section class="colors" .codeBuilders=${this.codeBuilders}>
+        <app-section class="colors" .codeBuilders=${this.CODE_BUILDERS}>
           <div slot="content"><h2>Colors</h2></div>
           <div slot="code">
             <tini-button color="primary">Primary</tini-button>
@@ -96,7 +96,10 @@ export class AppPageComponentsButton extends LitElement {
           </div>
         </app-section>
 
-        <app-section class="disabled-colors" .codeBuilders=${this.codeBuilders}>
+        <app-section
+          class="disabled-colors"
+          .codeBuilders=${this.CODE_BUILDERS}
+        >
           <div slot="content"><h2>Disabled colors</h2></div>
           <div slot="code">
             <tini-button color="primary" disabled>Primary</tini-button>
@@ -111,7 +114,7 @@ export class AppPageComponentsButton extends LitElement {
           </div>
         </app-section>
 
-        <app-section class="gradients" .codeBuilders=${this.codeBuilders}>
+        <app-section class="gradients" .codeBuilders=${this.CODE_BUILDERS}>
           <div slot="content"><h2>Gradients</h2></div>
           <div slot="code">
             <tini-button color="gradient-primary">Gradient Primary</tini-button>
@@ -130,7 +133,7 @@ export class AppPageComponentsButton extends LitElement {
           </div>
         </app-section>
 
-        <app-section class="sizes" .codeBuilders=${this.codeBuilders}>
+        <app-section class="sizes" .codeBuilders=${this.CODE_BUILDERS}>
           <div slot="content"><h2>Sizes</h2></div>
           <div slot="code">
             <tini-button size="xs" color="primary">XS</tini-button>

@@ -24,7 +24,7 @@ export class AppPageIconsBootstrap extends LitElement {
 
   protected render() {
     return html`
-      <app-page-icon titleText="Bootstrap Icons" name="bootstrap"></app-page-icon>
+      <app-page-icon titleText="Bootstrap" name="bootstrap"></app-page-icon>
     `;
   }
 }

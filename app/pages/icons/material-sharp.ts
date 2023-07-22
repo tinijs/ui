@@ -24,7 +24,10 @@ export class AppPageIconsMaterialSharp extends LitElement {
 
   protected render() {
     return html`
-      <app-page-icon titleText="MaterialSharp Icons" name="material-sharp"></app-page-icon>
+      <app-page-icon
+        titleText="Material Sharp"
+        name="material-sharp"
+      ></app-page-icon>
     `;
   }
 }

@@ -24,7 +24,11 @@ export class AppPageIconsAntTwotone extends LitElement {
 
   protected render() {
     return html`
-      <app-page-icon titleText="Ant Twotone Icons" name="ant-twotone"></app-page-icon>
+      <app-page-icon
+        titleText="Ant Twotone"
+        name="ant-twotone"
+        .noVariants=${true}
+      ></app-page-icon>
     `;
   }
 }

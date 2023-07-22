@@ -70,6 +70,12 @@ export class AppPage extends LitElement {
     }
   `;
 
+  private readonly IMPORT_TAB_ITEMS: TabItem[] = [
+    {name: ImportMethods.TiniJS},
+    {name: ImportMethods.Others},
+    {name: ImportMethods.Standalone},
+  ];
+
   @property({type: String}) declare readonly name: string;
   @property({type: String}) declare readonly titleText?: string;
   @property({type: Object}) declare readonly prevPage?: Quicklink;
@@ -81,13 +87,9 @@ export class AppPage extends LitElement {
   @state() private declare componentProperties?: any[];
 
   @Subscribe(mainStore) @state() private readonly soulName = mainStore.soulName;
-  
-  @Subscribe(mainStore) @state() private readonly referImport = mainStore.referImport;
-  private importTabItems: TabItem[] = [
-    { name: ImportMethods.TiniJS },
-    { name: ImportMethods.Others },
-    { name: ImportMethods.Standalone },
-  ];
+
+  @Subscribe(mainStore) @state() private readonly referImport =
+    mainStore.referImport;
 
   constructor() {
     super();
@@ -97,48 +99,49 @@ export class AppPage extends LitElement {
   private get nameVariants() {
     const nameCapitalized = this.name
       .split('-')
-      .map(item => item.charAt(0).toUpperCase() + item.slice(1));
-    const nameConst = this.name.replace(/-/g, '_').toUpperCase();
-    const tagName = `TINI_${nameConst}`;
-    const className = `Tini${nameCapitalized}Component`;
-    return {nameCapitalized, nameConst, tagName, className};
+      .map(item => item.charAt(0).toUpperCase() + item.slice(1))
+      .join('');
+    const nameConst = `TINI_${this.name.replace(/-/g, '_').toUpperCase()}`;
+    const nameTag = `tini-${this.name}`;
+    const nameClass = `Tini${nameCapitalized}Component`;
+    return {nameCapitalized, nameConst, nameTag, nameClass};
   }
 
   private get importTiniJSCode() {
-    const {tagName, className} = this.nameVariants;
+    const {nameConst, nameClass} = this.nameVariants;
     return `import {Page} from '@tinijs/core';
 
-import {${tagName}, ${className}} from '@tinijs/ui/components/${this.name}.js';
+import {${nameConst}, ${nameClass}} from '@tinijs/ui/${this.name}.js';
 
 @Page({
-  components: {
-    [${tagName}]: ${className}
+  useComponents: {
+    [${nameConst}]: ${nameClass}
   }
 });
 export class MyPage extends TiniComponent {}`;
   }
 
   private get importOthersCode() {
-    const {tagName, className} = this.nameVariants;
+    const {nameConst, nameClass} = this.nameVariants;
     return `/*
  * Option 1: include in your component
  */
-import '@tinijs/ui-${this.soulName}/components/${this.name}.import.js';
+import '@tinijs/ui-${this.soulName}/components/${this.name}.include.js';
 
 /*
  * Option 2: import as a shared bundle (if your bundler supports it)
  */
 import {useComponents} from '@tinijs/core';
 
-import {${tagName}, ${className}} from '@tinijs/ui-${this.soulName}/components/${this.name}.js';
+import {${nameConst}, ${nameClass}} from '@tinijs/ui-${this.soulName}/components/${this.name}.js';
 
 useComponents({
-  [${tagName}]: ${className}
+  [${nameConst}]: ${nameClass}
 });
 `;
   }
 
-  private get cdnCode() {
+  private get standaloneCode() {
     return `<script src="https://cdn.jsdelivr.net/npm/@tinijs/ui-${this.soulName}@${LIB_VERSION}/components/${this.name}.bundle.js"></script>`;
   }
 
@@ -194,14 +197,11 @@ useComponents({
             </p>
 
             <app-tabs
-              .tabItems=${this.importTabItems}
+              .tabItems=${this.IMPORT_TAB_ITEMS}
               .activeName=${this.referImport}
-              @change=${
-                ({detail}: CustomEvent<{name: string}>) =>
-                  mainStore.commit('referImport', detail.name)
-              }
+              @change=${({detail}: CustomEvent<{name: string}>) =>
+                mainStore.commit('referImport', detail.name)}
             >
-
               <div data-tab=${ImportMethods.TiniJS}>
                 <p><strong>Use with TiniJS framework</strong></p>
                 <p>
@@ -216,7 +216,7 @@ useComponents({
               </div>
 
               <div data-tab=${ImportMethods.Others}>
-                <p><strong>Use with Vue, React, Angualr, ...</strong></p>
+                <p><strong>Use with Vue, React, Angular, ...</strong></p>
                 <p>The specific package only supports one soul at a time.</p>
                 <app-code .code=${this.importOthersCode}></app-code>
               </div>
@@ -225,15 +225,14 @@ useComponents({
                 <p><strong>Use the standalone package</strong></p>
                 <p>
                   Include the standalone version in any HTML page from a public
-                  CDN, but this method is <strong>not recommended</strong> because
-                  the standalone component has the soul baked in and is usually
-                  bigger in size compares to the TS/ESM version.
+                  CDN, but this method is
+                  <strong>not recommended</strong> because the standalone
+                  component has the soul baked in and is usually bigger in size
+                  compares to the TS/ESM version.
                 </p>
-                <app-code .code=${this.cdnCode}></app-code>
+                <app-code .code=${this.standaloneCode}></app-code>
               </div>
-
             </app-tabs>
-
           </div>
         </app-section>
 

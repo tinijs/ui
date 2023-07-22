@@ -66,7 +66,8 @@ export class AppMenu extends LitElement {
         if (~path.indexOf(`${groupName}/`)) {
           const pageName = path.split('/').pop() as string;
           (this as any)[groupName]?.push({
-            title: pageName[0].toUpperCase() + pageName.slice(1).replace(/-/g, ' '),
+            title:
+              pageName[0].toUpperCase() + pageName.slice(1).replace(/-/g, ' '),
             href: path,
           });
           break;

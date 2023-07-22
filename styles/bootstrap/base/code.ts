@@ -25,7 +25,7 @@ export default css`
   }
 
   code {
-    padding: .15rem .35rem;
+    padding: 0.15rem 0.35rem;
     font-size: 0.875em;
     color: var(--color-tertiary);
     background: rgba(var(--color-tertiary-rgb), 0.1);

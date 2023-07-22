@@ -77,7 +77,6 @@ export class AppTabs extends LitElement {
       node => (node.style.display = 'none')
     );
     container.style.display = 'block';
-    console.log('changeTabContent: ', name);
   }
 
   private changeTab(name: string) {

@@ -24,7 +24,10 @@ export class AppPageIconsAntOutlined extends LitElement {
 
   protected render() {
     return html`
-      <app-page-icon titleText="Ant Outlined Icons" name="ant-outlined"></app-page-icon>
+      <app-page-icon
+        titleText="Ant Outlined"
+        name="ant-outlined"
+      ></app-page-icon>
     `;
   }
 }

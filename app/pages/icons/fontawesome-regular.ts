@@ -24,7 +24,10 @@ export class AppPageIconsFontawesomeRegular extends LitElement {
 
   protected render() {
     return html`
-      <app-page-icon titleText="FontawesomeRegular Icons" name="fontawesome-regular"></app-page-icon>
+      <app-page-icon
+        titleText="Font Awesome Regular"
+        name="fontawesome-regular"
+      ></app-page-icon>
     `;
   }
 }

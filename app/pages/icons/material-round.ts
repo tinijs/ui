@@ -24,7 +24,10 @@ export class AppPageIconsMaterialRound extends LitElement {
 
   protected render() {
     return html`
-      <app-page-icon titleText="MaterialRound Icons" name="material-round"></app-page-icon>
+      <app-page-icon
+        titleText="Material Round"
+        name="material-round"
+      ></app-page-icon>
     `;
   }
 }

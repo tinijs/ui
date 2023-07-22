@@ -24,7 +24,10 @@ export class AppPageIconsMaterialFilled extends LitElement {
 
   protected render() {
     return html`
-      <app-page-icon titleText="MaterialFilled Icons" name="material-filled"></app-page-icon>
+      <app-page-icon
+        titleText="Material Filled"
+        name="material-filled"
+      ></app-page-icon>
     `;
   }
 }

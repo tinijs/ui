@@ -2,6 +2,7 @@ import {LitElement, html, css} from 'lit';
 import {Theming} from '../vendors/theming';
 
 import coreStyle from '../../styles/bootstrap/base/core';
+import linkStyle from '../../styles/bootstrap/base/link';
 
 import {GITHUB_REPO_URL} from '../configs/development';
 
@@ -9,7 +10,7 @@ export const APP_HEADER = 'app-header';
 
 @Theming({
   styling: {
-    bootstrap: [coreStyle],
+    bootstrap: [coreStyle, linkStyle],
   },
 })
 export class AppHeader extends LitElement {

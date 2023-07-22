@@ -35,43 +35,43 @@ export const iconStyle = css`
   }
 
   .${unsafeCSS(Colors.Dynamic)} {
-    --icon-color: var(--recolor-foreground);
+    --icon-color: var(--color-foreground);
   }
 
   .${unsafeCSS(Colors.Primary)} {
-    --icon-color: var(--recolor-primary);
+    --icon-color: var(--color-primary);
   }
 
   .${unsafeCSS(Colors.Secondary)} {
-    --icon-color: var(--recolor-secondary);
+    --icon-color: var(--color-secondary);
   }
 
   .${unsafeCSS(Colors.Tertiary)} {
-    --icon-color: var(--recolor-tertiary);
+    --icon-color: var(--color-tertiary);
   }
 
   .${unsafeCSS(Colors.Success)} {
-    --icon-color: var(--recolor-success);
+    --icon-color: var(--color-success);
   }
 
   .${unsafeCSS(Colors.Warning)} {
-    --icon-color: var(--recolor-warning);
+    --icon-color: var(--color-warning);
   }
 
   .${unsafeCSS(Colors.Danger)} {
-    --icon-color: var(--recolor-danger);
+    --icon-color: var(--color-danger);
   }
 
   .${unsafeCSS(Colors.Light)} {
-    --icon-color: var(--recolor-light);
+    --icon-color: var(--color-light);
   }
 
   .${unsafeCSS(Colors.Medium)} {
-    --icon-color: var(--recolor-medium);
+    --icon-color: var(--color-medium);
   }
 
   .${unsafeCSS(Colors.Dark)} {
-    --icon-color: var(--recolor-dark);
+    --icon-color: var(--color-dark);
   }
 
   .${unsafeCSS(Colors.GradientPrimary)} {
@@ -111,28 +111,28 @@ export const iconStyle = css`
   }
 
   .${unsafeCSS(Sizes.XS)} {
-    --icon-width: calc(var(--size-xs) * 2);
-    --icon-height: calc(var(--size-xs) * 2);
+    --icon-width: calc(var(--size-xs) * 3);
+    --icon-height: calc(var(--size-xs) * 3);
   }
 
   .${unsafeCSS(Sizes.SM)} {
-    --icon-width: var(--size-sm);
-    --icon-height: var(--size-sm);
+    --icon-width: calc(var(--size-sm) * 3);
+    --icon-height: calc(var(--size-sm) * 3);
   }
 
   .${unsafeCSS(Sizes.LG)} {
-    --icon-width: var(--size-lg);
-    --icon-height: var(--size-lg);
+    --icon-width: calc(var(--size-lg) * 2);
+    --icon-height: calc(var(--size-lg) * 2);
   }
 
   .${unsafeCSS(Sizes.XL)} {
-    --icon-width: calc(var(--size-xl) * 1.25);
-    --icon-height: calc(var(--size-xl) * 1.25);
+    --icon-width: calc(var(--size-xl) * 2);
+    --icon-height: calc(var(--size-xl) * 2);
   }
 
   .${unsafeCSS(Sizes.XXL)} {
-    --icon-width: calc(var(--size-xxl) * 1.5);
-    --icon-height: calc(var(--size-xxl) * 1.5);
+    --icon-width: calc(var(--size-xxl) * 2);
+    --icon-height: calc(var(--size-xxl) * 2);
   }
 `;
 

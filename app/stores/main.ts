@@ -1,6 +1,11 @@
 import {createStore} from '../vendors/store';
 
-import {OfficialSoulNames, ConsumerPlatforms, ImportMethods, IconsImportMethods} from './consts';
+import {
+  OfficialSoulNames,
+  ConsumerPlatforms,
+  ImportMethods,
+  IconsImportMethods,
+} from './consts';
 
 export default createStore({
   soulName: OfficialSoulNames.Bootstrap,

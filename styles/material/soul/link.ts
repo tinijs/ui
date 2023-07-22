@@ -14,6 +14,10 @@ export const linkStyle = css`
     text-decoration: none;
   }
 
+  a[target='_blank'] {
+    cursor: alias;
+  }
+
   a:hover,
   a:focus,
   a:active {

@@ -23,5 +23,6 @@ export const enum IconsImportMethods {
   Others = ImportMethods.Others,
   Standalone = ImportMethods.Standalone,
   DataURI = 'Base64 URI',
-  Code = 'SVG Code',
+  SVG = 'SVG Code',
+  URL = 'Direct URL',
 }

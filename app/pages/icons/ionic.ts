@@ -24,7 +24,7 @@ export class AppPageIconsIonic extends LitElement {
 
   protected render() {
     return html`
-      <app-page-icon titleText="Ionic Icons" name="ionic"></app-page-icon>
+      <app-page-icon titleText="Ionic" name="ionic"></app-page-icon>
     `;
   }
 }

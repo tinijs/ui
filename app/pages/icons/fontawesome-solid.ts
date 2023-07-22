@@ -24,7 +24,10 @@ export class AppPageIconsFontawesomeSolid extends LitElement {
 
   protected render() {
     return html`
-      <app-page-icon titleText="FontawesomeSolid Icons" name="fontawesome-solid"></app-page-icon>
+      <app-page-icon
+        titleText="Font Awesome Solid"
+        name="fontawesome-solid"
+      ></app-page-icon>
     `;
   }
 }

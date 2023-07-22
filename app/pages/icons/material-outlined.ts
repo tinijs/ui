@@ -24,7 +24,10 @@ export class AppPageIconsMaterialOutlined extends LitElement {
 
   protected render() {
     return html`
-      <app-page-icon titleText="MaterialOutlined Icons" name="material-outlined"></app-page-icon>
+      <app-page-icon
+        titleText="Material Outlined"
+        name="material-outlined"
+      ></app-page-icon>
     `;
   }
 }

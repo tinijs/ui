@@ -24,7 +24,10 @@ export class AppPageIconsMaterialTwoTone extends LitElement {
 
   protected render() {
     return html`
-      <app-page-icon titleText="MaterialTwoTone Icons" name="material-two-tone"></app-page-icon>
+      <app-page-icon
+        titleText="Material Two Tone"
+        name="material-two-tone"
+      ></app-page-icon>
     `;
   }
 }

@@ -24,7 +24,7 @@ export class AppPageIconsAntFilled extends LitElement {
 
   protected render() {
     return html`
-      <app-page-icon titleText="Ant Filled Icons" name="ant-filled"></app-page-icon>
+      <app-page-icon titleText="Ant Filled" name="ant-filled"></app-page-icon>
     `;
   }
 }

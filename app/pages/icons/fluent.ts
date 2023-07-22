@@ -24,7 +24,7 @@ export class AppPageIconsFluent extends LitElement {
 
   protected render() {
     return html`
-      <app-page-icon titleText="Fluent Icons" name="fluent"></app-page-icon>
+      <app-page-icon titleText="Fluent" name="fluent"></app-page-icon>
     `;
   }
 }
