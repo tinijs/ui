@@ -111,8 +111,8 @@ export const iconStyle = css`
   }
 
   .${unsafeCSS(Sizes.XS)} {
-    --icon-width: calc(var(--size-xs) * 3);
-    --icon-height: calc(var(--size-xs) * 3);
+    --icon-width: calc(var(--size-xs) * 4);
+    --icon-height: calc(var(--size-xs) * 4);
   }
 
   .${unsafeCSS(Sizes.SM)} {
