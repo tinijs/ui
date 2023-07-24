@@ -7,14 +7,16 @@ import {
   css,
   nothing,
   cache,
+  stylingWithBaseStyles,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
-
-import coreStyle from '../../styles/bootstrap/base/core';
-import headingsStyle from '../../styles/bootstrap/base/headings';
-import linkStyle from '../../styles/bootstrap/base/link';
-import textStyle from '../../styles/bootstrap/base/text';
-import codeStyle from '../../styles/bootstrap/base/code';
+import {
+  commonStyles,
+  headingsStyles,
+  linkStyles,
+  textStyles,
+  codeStyles,
+} from '../../dev/styles';
 
 import {
   LIB_VERSION,
@@ -28,7 +30,7 @@ import {
   extractComponentProperties,
 } from '../helpers/source';
 import {getText} from '../helpers/http';
-import mainStore from '../stores/main';
+import {mainStore} from '../stores/main';
 
 import {APP_SECTION, AppSectionComponent} from '../components/section';
 import {APP_TABS, AppTabsComponent, TabItem} from '../components/tabs';
@@ -40,7 +42,6 @@ interface Quicklink {
 }
 
 export const APP_PAGE = 'app-page';
-
 @Component({
   components: {
     [APP_SECTION]: AppSectionComponent,
@@ -48,9 +49,13 @@ export const APP_PAGE = 'app-page';
     [APP_CODE]: AppCodeComponent,
   },
   theming: {
-    styling: {
-      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle, codeStyle],
-    },
+    styling: stylingWithBaseStyles([
+      codeStyles,
+      headingsStyles,
+      linkStyles,
+      textStyles,
+      commonStyles,
+    ]),
   },
 })
 export class AppPageComponent extends TiniComponent {

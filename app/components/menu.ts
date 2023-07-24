@@ -1,14 +1,21 @@
-import {Component, TiniComponent, html, css, nothing} from '@tinijs/core';
+import {
+  Component,
+  TiniComponent,
+  html,
+  css,
+  nothing,
+  stylingWithBaseStyles,
+} from '@tinijs/core';
 import {Route} from '@tinijs/router';
-
-import coreStyle from '../../styles/bootstrap/base/core';
-import headingsStyle from '../../styles/bootstrap/base/headings';
-import linkStyle from '../../styles/bootstrap/base/link';
-import textStyle from '../../styles/bootstrap/base/text';
+import {
+  commonStyles,
+  headingsStyles,
+  linkStyles,
+  textStyles,
+} from '../../dev/styles';
+import {TINI_LINK, TiniLinkComponent} from '../../dev/link';
 
 import routes from '../routes';
-
-import {TINI_LINK, TiniLinkComponent} from '../../dev/link';
 
 export const APP_MENU = 'app-menu';
 @Component({
@@ -16,9 +23,12 @@ export const APP_MENU = 'app-menu';
     [TINI_LINK]: TiniLinkComponent,
   },
   theming: {
-    styling: {
-      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle],
-    },
+    styling: stylingWithBaseStyles([
+      commonStyles,
+      headingsStyles,
+      linkStyles,
+      textStyles,
+    ]),
   },
 })
 export class AppMenuComponent extends TiniComponent {

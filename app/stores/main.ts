@@ -7,7 +7,7 @@ import {
   IconsImportMethods,
 } from '../consts/main';
 
-export default createStore({
+export const mainStore = createStore({
   soulName: OfficialSoulNames.Bootstrap,
   referImport: ImportMethods.TiniJS,
   referPlatform: ConsumerPlatforms.Lit,

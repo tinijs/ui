@@ -6,11 +6,11 @@ import {Colors, Sizes} from '../styles/bootstrap/types';
 
 export const TINI_BUTTON = 'tini-button';
 
-/* UseBase(core) */
+/* UseBases(common) */
 export class TiniButtonComponent extends LitElement {
-  @property({type: String}) declare readonly color?: Colors;
-  @property({type: String}) declare readonly size?: Sizes;
-  @property({type: Boolean, reflect: true}) declare readonly disabled?: boolean;
+  @property({type: String}) declare color?: Colors;
+  @property({type: String}) declare size?: Sizes;
+  @property({type: Boolean, reflect: true}) declare disabled?: boolean;
 
   constructor() {
     super();

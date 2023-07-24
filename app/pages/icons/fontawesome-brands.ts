@@ -1,9 +1,10 @@
-import {Page, TiniComponent, html, css} from '@tinijs/core';
-
-import coreStyle from '../../../styles/bootstrap/base/core';
-import headingsStyle from '../../../styles/bootstrap/base/headings';
-import linkStyle from '../../../styles/bootstrap/base/link';
-import textStyle from '../../../styles/bootstrap/base/text';
+import {Page, TiniComponent, html, stylingWithBaseStyles} from '@tinijs/core';
+import {
+  commonStyles,
+  headingsStyles,
+  linkStyles,
+  textStyles,
+} from '../../../dev/styles';
 
 import {APP_PAGE_ICON, AppPageIconComponent} from '../../components/page-icon';
 
@@ -13,14 +14,15 @@ import {APP_PAGE_ICON, AppPageIconComponent} from '../../components/page-icon';
     [APP_PAGE_ICON]: AppPageIconComponent,
   },
   theming: {
-    styling: {
-      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle],
-    },
+    styling: stylingWithBaseStyles([
+      commonStyles,
+      headingsStyles,
+      linkStyles,
+      textStyles,
+    ]),
   },
 })
 export class AppPageIconsFontawesomeBrands extends TiniComponent {
-  static styles = css``;
-
   protected render() {
     return html`
       <app-page-icon

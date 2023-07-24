@@ -1,16 +1,18 @@
-import {Component, TiniComponent, html, css} from '@tinijs/core';
-
-import coreStyle from '../../styles/bootstrap/base/core';
-import linkStyle from '../../styles/bootstrap/base/link';
+import {
+  Component,
+  TiniComponent,
+  html,
+  css,
+  stylingWithBaseStyles,
+} from '@tinijs/core';
+import {commonStyles, linkStyles} from '../../dev/styles';
 
 import {GITHUB_REPO_URL} from '../consts/main';
 
 export const APP_HEADER = 'app-header';
 @Component({
   theming: {
-    styling: {
-      bootstrap: [coreStyle, linkStyle],
-    },
+    styling: stylingWithBaseStyles([commonStyles, linkStyles]),
   },
 })
 export class AppHeaderComponent extends TiniComponent {

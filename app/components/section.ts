@@ -9,14 +9,12 @@ import {
   repeat,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
-
-import coreStyle from '../../styles/bootstrap/base/core';
+import {commonStyles} from '../../dev/styles';
 
 import {ConsumerPlatforms} from '../consts/main';
-import {TabItem} from '../components/tabs';
-import mainStore from '../stores/main';
+import {mainStore} from '../stores/main';
 
-import {APP_TABS, AppTabsComponent} from '../components/tabs';
+import {APP_TABS, AppTabsComponent, TabItem} from '../components/tabs';
 import {APP_CODE, AppCodeComponent} from '../components/code';
 
 type CodeBuilder = (code?: string, context?: any) => string;
@@ -29,7 +27,8 @@ export const APP_SECTION = 'app-section';
   },
   theming: {
     styling: {
-      bootstrap: [coreStyle],
+      bootstrap: [commonStyles.bootstrap],
+      material: [commonStyles.material],
     },
   },
 })

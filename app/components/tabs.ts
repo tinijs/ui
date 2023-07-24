@@ -8,8 +8,7 @@ import {
   css,
   nothing,
 } from '@tinijs/core';
-
-import coreStyle from '../../styles/bootstrap/base/core';
+import {commonStyles} from '../../dev/styles';
 
 export interface TabItem {
   name: string;
@@ -19,11 +18,11 @@ export interface TabItem {
 }
 
 export const APP_TABS = 'app-tabs';
-
 @Component({
   theming: {
     styling: {
-      bootstrap: [coreStyle],
+      bootstrap: [commonStyles.bootstrap],
+      material: [commonStyles.material],
     },
   },
 })

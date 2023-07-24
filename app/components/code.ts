@@ -8,8 +8,7 @@ import {
   createRef,
   Ref,
 } from '@tinijs/core';
-
-import coreStyle from '../../styles/bootstrap/base/core';
+import {commonStyles} from '../../dev/styles';
 
 import hljs from '../helpers/highlight';
 
@@ -17,7 +16,8 @@ export const APP_CODE = 'app-code';
 @Component({
   theming: {
     styling: {
-      bootstrap: [coreStyle],
+      bootstrap: [commonStyles.bootstrap],
+      material: [commonStyles.material],
     },
   },
 })

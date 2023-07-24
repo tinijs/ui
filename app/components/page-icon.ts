@@ -9,13 +9,15 @@ import {
   ref,
   createRef,
   Ref,
+  stylingWithBaseStyles,
 } from '@tinijs/core';
-
-import coreStyle from '../../styles/bootstrap/base/core';
-import headingsStyle from '../../styles/bootstrap/base/headings';
-import linkStyle from '../../styles/bootstrap/base/link';
-import textStyle from '../../styles/bootstrap/base/text';
-import codeStyle from '../../styles/bootstrap/base/code';
+import {
+  commonStyles,
+  headingsStyles,
+  linkStyles,
+  textStyles,
+  codeStyles,
+} from '../../dev/styles';
 
 import {GITHUB_ICONS_REPO_URL} from '../consts/main';
 import {get} from '../helpers/http';
@@ -34,15 +36,76 @@ export const APP_PAGE_ICON = 'app-page-icon';
     [APP_PAGE_ICON_MODAL]: AppPageIconModalComponent,
   },
   theming: {
-    styling: {
-      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle, codeStyle],
-    },
+    styling: stylingWithBaseStyles([
+      commonStyles,
+      headingsStyles,
+      linkStyles,
+      textStyles,
+      codeStyles,
+    ]),
   },
 })
 export class AppPageIconComponent extends TiniComponent {
   static styles = css`
     :host {
       --icon-size: 3.5rem;
+    }
+
+    .head ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .body {
+      margin-top: 2rem;
+      padding: 2rem 0;
+      border-top: var(--size-border) solid var(--color-background-shade);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+    }
+
+    .filter,
+    .pagination input,
+    .pagination button {
+      padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+      border: var(--size-border) solid var(--color-background-shade);
+      border-radius: var(--size-radius);
+      background: var(--color-background);
+      color: var(--color-foreground);
+    }
+
+    .pagination button {
+      cursor: pointer;
+      border-color: var(--color-medium);
+      padding: 0.5rem;
+    }
+    .pagination button:disabled {
+      cursor: not-allowed;
+      opacity: 0.3;
+    }
+
+    .pagination .page-no {
+      margin: 0 0.75rem;
+    }
+
+    .filter {
+      width: 30%;
+    }
+
+    .content {
+      margin-top: 2rem;
     }
 
     .icons {
@@ -71,6 +134,13 @@ export class AppPageIconComponent extends TiniComponent {
     .icon img {
       width: calc(var(--icon-size) - 1.5rem);
       height: calc(var(--icon-size) - 1.5rem);
+    }
+
+    .loading,
+    .empty {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--color-medium);
     }
   `;
 
@@ -148,8 +218,9 @@ export class AppPageIconComponent extends TiniComponent {
         <h1 class="title">${this.titleText || 'Icons'}</h1>
         <ul>
           <li>
-            Version: <code><strong>${this.data?.version || '?'}</strong></code>
+            Install: <code><strong>${this.installCode}</strong></code>
           </li>
+          <li>Version: <code>${this.data?.version || '?'}</code></li>
           <li>
             <a href=${this.changelogsUrl} target="_blank">Changelogs</a>
           </li>
@@ -160,15 +231,10 @@ export class AppPageIconComponent extends TiniComponent {
       </div>
 
       <div class="body">
-        <div class="install">
-          <h2>Install</h2>
-          <app-code .code=${this.installCode}></app-code>
-        </div>
-
         <div class="nav">
           <div class="summary">
             Display <strong>${this.displayedItems?.length}</strong> /
-            ${this.data?.items.length || '?'} icons.
+            ${this.data?.items.length || '-'} icons.
           </div>
           <div class="pagination">
             <button
@@ -177,7 +243,7 @@ export class AppPageIconComponent extends TiniComponent {
             >
               Prev
             </button>
-            <div>
+            <div class="page-no">
               <input
                 type="number"
                 .value=${'' + this.currentPage}
@@ -188,7 +254,7 @@ export class AppPageIconComponent extends TiniComponent {
                 min="1"
                 max=${this.totalPages || 1}
               />
-              <span>/ ${this.totalPages || '?'}</span>
+              <span>/ ${this.totalPages || '-'}</span>
             </div>
             <button
               ?disabled=${this.currentPage === this.totalPages}
@@ -211,8 +277,8 @@ export class AppPageIconComponent extends TiniComponent {
         <div class="content">
           ${!this.displayedItems?.length
             ? !this.filterQuery
-              ? html`<div>Fetching icons ...</div>`
-              : html`<div>No icons found!</div>`
+              ? html`<div class="loading">Fetching icons list ...</div>`
+              : html`<div class="empty">No icon found!</div>`
             : html`
                 <div class="icons">
                   ${repeat(

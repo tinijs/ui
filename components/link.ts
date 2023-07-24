@@ -4,11 +4,11 @@ import {ifDefined} from 'lit/directives/if-defined';
 
 export const TINI_LINK = 'tini-link';
 
-/* UseBase(core) */
+/* UseBases(common) */
 export class TiniLinkComponent extends LitElement {
-  @property({type: String}) readonly href = '#';
-  @property({type: String}) readonly rel?: string;
-  @property({type: String}) readonly target?:
+  @property({type: String}) declare href?: string;
+  @property({type: String}) declare rel?: string;
+  @property({type: String}) declare target?:
     | '_blank'
     | '_self'
     | '_parent'
@@ -18,7 +18,7 @@ export class TiniLinkComponent extends LitElement {
     return html`
       <a
         part="link"
-        href=${this.href}
+        href=${this.href || '#'}
         target=${ifDefined(this.target)}
         rel=${ifDefined(this.rel)}
       >

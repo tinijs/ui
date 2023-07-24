@@ -1,14 +1,21 @@
-import {Page, TiniComponent, html, css} from '@tinijs/core';
-
-import coreStyle from '../../../styles/bootstrap/base/core';
-import headingsStyle from '../../../styles/bootstrap/base/headings';
-import linkStyle from '../../../styles/bootstrap/base/link';
-import textStyle from '../../../styles/bootstrap/base/text';
-import codeStyle from '../../../styles/bootstrap/base/code';
+import {
+  Page,
+  TiniComponent,
+  html,
+  css,
+  stylingWithBaseStyles,
+} from '@tinijs/core';
+import {
+  commonStyles,
+  headingsStyles,
+  linkStyles,
+  textStyles,
+  codeStyles,
+} from '../../../dev/styles';
+import {TINI_BUTTON, TiniButtonComponent} from '../../../dev/button';
 
 import {ConsumerPlatforms} from '../../consts/main';
 
-import {TINI_BUTTON, TiniButtonComponent} from '../../../dev/button';
 import {APP_PAGE, AppPageComponent} from '../../components/page';
 import {APP_SECTION, AppSectionComponent} from '../../components/section';
 
@@ -20,9 +27,13 @@ import {APP_SECTION, AppSectionComponent} from '../../components/section';
     [APP_SECTION]: AppSectionComponent,
   },
   theming: {
-    styling: {
-      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle, codeStyle],
-    },
+    styling: stylingWithBaseStyles([
+      commonStyles,
+      headingsStyles,
+      linkStyles,
+      textStyles,
+      codeStyles,
+    ]),
   },
 })
 export class AppPageComponentsButton extends TiniComponent {

@@ -9,18 +9,15 @@ import {
   ref,
   createRef,
   Ref,
+  stylingWithBaseStyles,
 } from '@tinijs/core';
-// import {LitElement, html, css, nothing} from 'lit';
-// import {property} from 'lit/decorators.js';
-// import {classMap} from 'lit/directives/class-map.js';
-// import {ref, createRef, Ref} from 'lit/directives/ref.js';
-
-import coreStyle from '../../styles/bootstrap/base/core';
-import headingsStyle from '../../styles/bootstrap/base/headings';
-import linkStyle from '../../styles/bootstrap/base/link';
-import textStyle from '../../styles/bootstrap/base/text';
-import codeStyle from '../../styles/bootstrap/base/code';
-
+import {
+  commonStyles,
+  headingsStyles,
+  linkStyles,
+  textStyles,
+  codeStyles,
+} from '../../dev/styles';
 import {TINI_BUTTON, TiniButtonComponent} from '../../dev/button';
 
 import {Colors} from '../../dev/types';
@@ -49,9 +46,13 @@ export const APP_MODAL = 'app-modal';
     [TINI_BUTTON]: TiniButtonComponent,
   },
   theming: {
-    styling: {
-      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle, codeStyle],
-    },
+    styling: stylingWithBaseStyles([
+      commonStyles,
+      headingsStyles,
+      linkStyles,
+      textStyles,
+      codeStyles,
+    ]),
   },
 })
 export class AppModalComponent extends TiniComponent {

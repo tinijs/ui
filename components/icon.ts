@@ -7,11 +7,11 @@ import {Colors, Sizes} from '../styles/bootstrap/types';
 
 export const TINI_ICON = 'tini-icon';
 
-/* UseBase(core) */
+/* UseBases(common) */
 export class TiniIconComponent extends LitElement {
-  @property({type: String}) declare readonly src?: string;
-  @property({type: String}) declare readonly size?: Sizes;
-  @property({type: String}) declare readonly color?: Colors;
+  @property({type: String}) declare src?: string;
+  @property({type: String}) declare size?: Sizes;
+  @property({type: String}) declare color?: Colors;
 
   protected render() {
     return html`

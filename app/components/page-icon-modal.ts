@@ -8,18 +8,20 @@ import {
   ref,
   createRef,
   Ref,
+  stylingWithBaseStyles,
 } from '@tinijs/core';
-
-import coreStyle from '../../styles/bootstrap/base/core';
-import headingsStyle from '../../styles/bootstrap/base/headings';
-import linkStyle from '../../styles/bootstrap/base/link';
-import textStyle from '../../styles/bootstrap/base/text';
-import codeStyle from '../../styles/bootstrap/base/code';
+import {
+  commonStyles,
+  headingsStyles,
+  linkStyles,
+  textStyles,
+  codeStyles,
+} from '../../dev/styles';
+import {TINI_ICON, TiniIconComponent} from '../../dev/icon';
 
 import {IconsImportMethods} from '../consts/main';
-import mainStore from '../stores/main';
+import {mainStore} from '../stores/main';
 
-import {TINI_ICON, TiniIconComponent} from '../../dev/icon';
 import {APP_SECTION, AppSectionComponent} from '../components/section';
 import {APP_TABS, AppTabsComponent, TabItem} from '../components/tabs';
 import {APP_CODE, AppCodeComponent} from '../components/code';
@@ -37,9 +39,13 @@ export const APP_PAGE_ICON_MODAL = 'app-page-icon-modal';
     [APP_MODAL]: AppModalComponent,
   },
   theming: {
-    styling: {
-      bootstrap: [coreStyle, headingsStyle, linkStyle, textStyle, codeStyle],
-    },
+    styling: stylingWithBaseStyles([
+      commonStyles,
+      headingsStyles,
+      linkStyles,
+      textStyles,
+      codeStyles,
+    ]),
   },
 })
 export class AppPageIconModalComponent extends TiniComponent {
@@ -179,7 +185,9 @@ containerEl.innerHTML = ${nameVar}Code;
   }
 
   onChanges() {
-    this.contentValues = !this.iconDef ? {} : this.extractContentValues(this.iconDef);
+    this.contentValues = !this.iconDef
+      ? {}
+      : this.extractContentValues(this.iconDef);
   }
 
   show() {
@@ -206,194 +214,229 @@ containerEl.innerHTML = ${nameVar}Code;
     return html`
       <app-modal
         ${ref(this.modalRef)}
+        .titleText=${this.iconDef?.[0]}
         .backdropClosed=${true}
         @no=${this.hideModal}
       >
-        ${!this.iconDef ? nothing : html`
-          <div class="modal-body">
-            <app-section .noUsageTabs=${true} style="margin-top: 0;">
-              <div slot="content" class="imports">
-                <h2 style="margin-top: 0;">Imports</h2>
-                <p>
-                  After installing the respective icons pack, you can import and use
-                  the component, data URI, SVG code or URL anywhere in your project:
-                </p>
-    
-                <app-tabs
-                  .tabItems=${this.ICONS_IMPORT_TAB_ITEMS}
-                  .activeName=${mainStore.referIconsImport}
-                  @change=${({detail}: CustomEvent<{name: string}>) =>
-                    mainStore.commit('referIconsImport', detail.name)}
+        ${!this.iconDef
+          ? nothing
+          : html`
+              <div class="modal-body">
+                <app-section .noUsageTabs=${true} style="margin-top: 0;">
+                  <div slot="content" class="imports">
+                    <h2 style="margin-top: 0;">Imports</h2>
+                    <p>
+                      After installing the respective icons pack, you can import
+                      and use the component, data URI, SVG code or URL anywhere
+                      in your project:
+                    </p>
+
+                    <app-tabs
+                      .tabItems=${this.ICONS_IMPORT_TAB_ITEMS}
+                      .activeName=${mainStore.referIconsImport}
+                      @change=${({detail}: CustomEvent<{name: string}>) =>
+                        mainStore.commit('referIconsImport', detail.name)}
+                    >
+                      <div data-tab=${IconsImportMethods.TiniJS}>
+                        <p><strong>Use with TiniJS framework</strong></p>
+                        <app-code .code=${tiniJSCode}></app-code>
+                      </div>
+
+                      <div data-tab=${IconsImportMethods.Others}>
+                        <p>
+                          <strong>Use with Vue, React, Angular, ...</strong>
+                        </p>
+                        <app-code .code=${othersCode}></app-code>
+                      </div>
+
+                      <div data-tab=${IconsImportMethods.Standalone}>
+                        <p><strong>Use the standalone package</strong></p>
+                        <app-code .code=${standaloneCode}></app-code>
+                        <p>
+                          Include the standalone version in any HTML page from a
+                          public CDN, but this method is
+                          <strong>not recommended</strong> because the
+                          standalone component has the soul baked in and is
+                          usually bigger in size compares to the TS/ESM version.
+                        </p>
+                      </div>
+
+                      <div data-tab=${IconsImportMethods.DataURI}>
+                        <p><strong>Use the data URI</strong></p>
+                        <app-code .code=${dataURICode}></app-code>
+                      </div>
+
+                      <div data-tab=${IconsImportMethods.SVG}>
+                        <p><strong>Use the code</strong> (SVG icons only)</p>
+                        <p>
+                          SVG codes built using the
+                          <a href="#">@tinijs/cli</a> are
+                          <strong>sanitized</strong> and
+                          <strong>optimized</strong>, please always review the
+                          code before inject into your HTML.
+                        </p>
+                        <app-code .code=${svgCode}></app-code>
+                        <p>For security review and direct copy.</p>
+                        <app-code .code=${svgPreviewCode}></app-code>
+                      </div>
+
+                      <div data-tab=${IconsImportMethods.URL}>
+                        <p><strong>Use the direct link</strong></p>
+                        <app-code .code=${urlCode}></app-code>
+                      </div>
+                    </app-tabs>
+                  </div>
+                </app-section>
+
+                <app-section
+                  class="default"
+                  .codeBuilders=${this.CODE_BUILDERS}
+                  .preprocessCode=${this.PREPROCESS_CODE}
+                  .codeBuildContext=${names}
                 >
-                  <div data-tab=${IconsImportMethods.TiniJS}>
-                    <p><strong>Use with TiniJS framework</strong></p>
-                    <app-code .code=${tiniJSCode}></app-code>
-                  </div>
-    
-                  <div data-tab=${IconsImportMethods.Others}>
-                    <p><strong>Use with Vue, React, Angular, ...</strong></p>
-                    <app-code .code=${othersCode}></app-code>
-                  </div>
-    
-                  <div data-tab=${IconsImportMethods.Standalone}>
-                    <p><strong>Use the standalone package</strong></p>
-                    <app-code .code=${standaloneCode}></app-code>
+                  <div slot="content">
+                    <h2>Default</h2>
                     <p>
-                      Include the standalone version in any HTML page from a public
-                      CDN, but this method is
-                      <strong>not recommended</strong> because the standalone
-                      component has the soul baked in and is usually bigger in size
-                      compares to the TS/ESM version.
+                      Default color is the <strong>original</strong> color, and
+                      default size is <code>md</code>.
                     </p>
                   </div>
-    
-                  <div data-tab=${IconsImportMethods.DataURI}>
-                    <p><strong>Use the data URI</strong></p>
-                    <app-code .code=${dataURICode}></app-code>
+                  <div slot="code">
+                    <tini-icon .src=${iconSRC}></tini-icon>
                   </div>
-    
-                  <div data-tab=${IconsImportMethods.SVG}>
-                    <p><strong>Use the code</strong> (SVG icons only)</p>
-                    <p>
-                      SVG codes built using the <a href="#">@tinijs/cli</a> are
-                      <strong>sanitized</strong> and <strong>optimized</strong>,
-                      please always review the code before inject into your HTML.
-                    </p>
-                    <app-code .code=${svgCode}></app-code>
-                    <p>For security review and direct copy.</p>
-                    <app-code .code=${svgPreviewCode}></app-code>
+                </app-section>
+
+                ${this.noVariants
+                  ? nothing
+                  : html`
+                      <app-section
+                        class="dynamic"
+                        .codeBuilders=${this.CODE_BUILDERS}
+                        .preprocessCode=${this.PREPROCESS_CODE}
+                        .codeBuildContext=${names}
+                      >
+                        <div slot="content">
+                          <h2>Dynamic</h2>
+                          <p>
+                            The color is the current
+                            <code>foreground</code> color.
+                          </p>
+                        </div>
+                        <div slot="code">
+                          <tini-icon
+                            color="dynamic"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                        </div>
+                      </app-section>
+
+                      <app-section
+                        class="colors"
+                        .codeBuilders=${this.CODE_BUILDERS}
+                        .preprocessCode=${this.PREPROCESS_CODE}
+                        .codeBuildContext=${names}
+                      >
+                        <div slot="content">
+                          <h2>Colors</h2>
+                        </div>
+                        <div slot="code">
+                          <tini-icon
+                            color="primary"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="secondary"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="tertiary"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="success"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="warning"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon color="danger" .src=${iconSRC}></tini-icon>
+                          <tini-icon color="light" .src=${iconSRC}></tini-icon>
+                          <tini-icon color="medium" .src=${iconSRC}></tini-icon>
+                          <tini-icon color="dark" .src=${iconSRC}></tini-icon>
+                        </div>
+                      </app-section>
+
+                      <app-section
+                        class="gradients"
+                        .codeBuilders=${this.CODE_BUILDERS}
+                        .preprocessCode=${this.PREPROCESS_CODE}
+                        .codeBuildContext=${names}
+                      >
+                        <div slot="content">
+                          <h2>Gradients</h2>
+                        </div>
+                        <div slot="code">
+                          <tini-icon
+                            color="gradient-primary"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="gradient-secondary"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="gradient-tertiary"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="gradient-success"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="gradient-warning"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="gradient-danger"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="gradient-light"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="gradient-medium"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="gradient-dark"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                        </div>
+                      </app-section>
+                    `}
+
+                <app-section
+                  class="sizes"
+                  .codeBuilders=${this.CODE_BUILDERS}
+                  .preprocessCode=${this.PREPROCESS_CODE}
+                  .codeBuildContext=${names}
+                >
+                  <div slot="content">
+                    <h2>Sizes</h2>
                   </div>
-    
-                  <div data-tab=${IconsImportMethods.URL}>
-                    <p><strong>Use the direct link</strong></p>
-                    <app-code .code=${urlCode}></app-code>
+                  <div slot="code">
+                    <tini-icon size="xs" .src=${iconSRC}></tini-icon>
+                    <tini-icon size="sm" .src=${iconSRC}></tini-icon>
+                    <tini-icon size="md" .src=${iconSRC}></tini-icon>
+                    <tini-icon size="lg" .src=${iconSRC}></tini-icon>
+                    <tini-icon size="xl" .src=${iconSRC}></tini-icon>
+                    <tini-icon size="xxl" .src=${iconSRC}></tini-icon>
                   </div>
-                </app-tabs>
+                </app-section>
               </div>
-            </app-section>
-    
-            <app-section
-              class="default"
-              .codeBuilders=${this.CODE_BUILDERS}
-              .preprocessCode=${this.PREPROCESS_CODE}
-              .codeBuildContext=${names}
-            >
-              <div slot="content">
-                <h2>Default</h2>
-                <p>
-                  Default color is the <strong>original</strong> color, and default
-                  size is <code>md</code>.
-                </p>
-              </div>
-              <div slot="code">
-                <tini-icon .src=${iconSRC}></tini-icon>
-              </div>
-            </app-section>
-    
-            ${this.noVariants
-              ? nothing
-              : html`
-                  <app-section
-                    class="dynamic"
-                    .codeBuilders=${this.CODE_BUILDERS}
-                    .preprocessCode=${this.PREPROCESS_CODE}
-                    .codeBuildContext=${names}
-                  >
-                    <div slot="content">
-                      <h2>Dynamic</h2>
-                      <p>The color is the current <code>foreground</code> color.</p>
-                    </div>
-                    <div slot="code">
-                      <tini-icon color="dynamic" .src=${iconSRC}></tini-icon>
-                    </div>
-                  </app-section>
-    
-                  <app-section
-                    class="colors"
-                    .codeBuilders=${this.CODE_BUILDERS}
-                    .preprocessCode=${this.PREPROCESS_CODE}
-                    .codeBuildContext=${names}
-                  >
-                    <div slot="content">
-                      <h2>Colors</h2>
-                    </div>
-                    <div slot="code">
-                      <tini-icon color="primary" .src=${iconSRC}></tini-icon>
-                      <tini-icon color="secondary" .src=${iconSRC}></tini-icon>
-                      <tini-icon color="tertiary" .src=${iconSRC}></tini-icon>
-                      <tini-icon color="success" .src=${iconSRC}></tini-icon>
-                      <tini-icon color="warning" .src=${iconSRC}></tini-icon>
-                      <tini-icon color="danger" .src=${iconSRC}></tini-icon>
-                      <tini-icon color="light" .src=${iconSRC}></tini-icon>
-                      <tini-icon color="medium" .src=${iconSRC}></tini-icon>
-                      <tini-icon color="dark" .src=${iconSRC}></tini-icon>
-                    </div>
-                  </app-section>
-    
-                  <app-section
-                    class="gradients"
-                    .codeBuilders=${this.CODE_BUILDERS}
-                    .preprocessCode=${this.PREPROCESS_CODE}
-                    .codeBuildContext=${names}
-                  >
-                    <div slot="content">
-                      <h2>Gradients</h2>
-                    </div>
-                    <div slot="code">
-                      <tini-icon
-                        color="gradient-primary"
-                        .src=${iconSRC}
-                      ></tini-icon>
-                      <tini-icon
-                        color="gradient-secondary"
-                        .src=${iconSRC}
-                      ></tini-icon>
-                      <tini-icon
-                        color="gradient-tertiary"
-                        .src=${iconSRC}
-                      ></tini-icon>
-                      <tini-icon
-                        color="gradient-success"
-                        .src=${iconSRC}
-                      ></tini-icon>
-                      <tini-icon
-                        color="gradient-warning"
-                        .src=${iconSRC}
-                      ></tini-icon>
-                      <tini-icon
-                        color="gradient-danger"
-                        .src=${iconSRC}
-                      ></tini-icon>
-                      <tini-icon color="gradient-light" .src=${iconSRC}></tini-icon>
-                      <tini-icon
-                        color="gradient-medium"
-                        .src=${iconSRC}
-                      ></tini-icon>
-                      <tini-icon color="gradient-dark" .src=${iconSRC}></tini-icon>
-                    </div>
-                  </app-section>
-                `}
-    
-            <app-section
-              class="sizes"
-              .codeBuilders=${this.CODE_BUILDERS}
-              .preprocessCode=${this.PREPROCESS_CODE}
-              .codeBuildContext=${names}
-            >
-              <div slot="content">
-                <h2>Sizes</h2>
-              </div>
-              <div slot="code">
-                <tini-icon size="xs" .src=${iconSRC}></tini-icon>
-                <tini-icon size="sm" .src=${iconSRC}></tini-icon>
-                <tini-icon size="md" .src=${iconSRC}></tini-icon>
-                <tini-icon size="lg" .src=${iconSRC}></tini-icon>
-                <tini-icon size="xl" .src=${iconSRC}></tini-icon>
-                <tini-icon size="xxl" .src=${iconSRC}></tini-icon>
-              </div>
-            </app-section>
-          </div>
-        `}
+            `}
       </app-modal>
     `;
   }
