@@ -64,6 +64,9 @@ export class AppPageIconModalComponent extends TiniComponent {
       justify-content: space-between;
     }
 
+    .sizes {
+      padding-bottom: 2rem;
+    }
     .sizes [slot='code'] {
       align-items: flex-end;
     }
@@ -222,7 +225,7 @@ containerEl.innerHTML = ${nameVar}Code;
           ? nothing
           : html`
               <div class="modal-body">
-                <app-section .noUsageTabs=${true} style="margin-top: 0;">
+                <app-section .noUsageTabs=${true} style="margin-top: 1rem;">
                   <div slot="content" class="imports">
                     <h2 style="margin-top: 0;">Imports</h2>
                     <p>

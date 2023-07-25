@@ -12,7 +12,6 @@ import {commonStyles} from '../../dev/styles';
 
 export interface TabItem {
   name: string;
-  active?: boolean;
   icon?: string;
   iconOnly?: boolean;
 }
@@ -65,7 +64,7 @@ export class AppTabsComponent extends TiniComponent {
       const tabItem = this.tabItems?.[i];
       const container = node as HTMLElement;
       if (!tabItem || !container.style) return;
-      container.style.display = tabItem.active ? 'block' : 'none';
+      container.style.display = tabItem.name === this.activeName ? 'block' : 'none';
       this.containerRegistry[tabItem.name] = container;
     });
   }

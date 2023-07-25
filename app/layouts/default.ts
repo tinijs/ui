@@ -43,6 +43,14 @@ export class AppLayoutDefault extends TiniComponent {
     .page {
       height: calc(100vh - var(--header-height));
       height: calc(100dvh - var(--header-height));
+      overflow-x: hidden;
+      overflow-y: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .menu::-webkit-scrollbar,
+    .page::-webkit-scrollbar {
+      display: none;
     }
 
     .menu {
@@ -53,14 +61,6 @@ export class AppLayoutDefault extends TiniComponent {
     .page {
       grid-area: page;
       padding: 1rem 5rem;
-      overflow-x: hidden;
-      overflow-y: scroll;
-
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-      &::-webkit-scrollbar {
-        display: none;
-      }
     }
   `;
 

@@ -60,7 +60,7 @@ export class AppPageComponentsButton extends TiniComponent {
 
   protected render() {
     return html`
-      <app-page titleText="Buttons" name="button">
+      <app-page titleText="Buttons" name="button" path="components/button">
         <div slot="description">
           Use <strong>buttons</strong> to trigger actions.
         </div>

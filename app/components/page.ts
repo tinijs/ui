@@ -7,6 +7,7 @@ import {
   css,
   nothing,
   cache,
+  classMap,
   stylingWithBaseStyles,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
@@ -41,6 +42,13 @@ interface Quicklink {
   title: string;
 }
 
+const enum Modes {
+  Doc = 'doc',
+  DocSrc = 'doc-src',
+  ComponentSrc = 'component-src',
+  SoulSrc = 'soul-src',
+}
+
 export const APP_PAGE = 'app-page';
 @Component({
   components: {
@@ -60,6 +68,37 @@ export const APP_PAGE = 'app-page';
 })
 export class AppPageComponent extends TiniComponent {
   static styles = css`
+    .switch-mode {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .switch-mode button {
+      cursor: pointer;
+      padding: .5rem 1rem;
+      font-size: 1rem;
+      border: var(--size-border) solid var(--color-background-shade);
+      border-right: none;
+      background: var(--color-background);
+      color: var(--color-foreground);
+    }
+    .switch-mode button:first-child {
+      border-radius: var(--size-radius) 0 0 var(--size-radius);
+    }
+    .switch-mode button:last-child {
+      border-radius: 0 var(--size-radius) var(--size-radius) 0;
+      border-right: var(--size-border) solid var(--color-background-shade);
+    }
+    .switch-mode button.active {
+      background: var(--color-background-shade);
+    }
+
+    .body {
+      padding-bottom: 2rem;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -89,14 +128,17 @@ export class AppPageComponent extends TiniComponent {
   ];
 
   @Input({type: String}) declare readonly name: string;
+  @Input({type: String}) declare readonly path: string;
   @Input({type: String}) declare readonly titleText?: string;
   @Input({type: Object}) declare readonly prevPage?: Quicklink;
   @Input({type: Object}) declare readonly nextPage?: Quicklink;
 
-  @Reactive() private declare contentMode?: 'article' | 'code';
-  @Reactive() private declare pageSourceCode?: string;
-  @Reactive() private declare soulVariables?: SoulVariable[];
-  @Reactive() private declare componentProperties?: any[];
+  @Reactive() private contentMode: Modes = Modes.Doc;
+  @Reactive() private docSourceCode?: string;
+  @Reactive() private componentSourceCode?: string;
+  @Reactive() private soulSourceCode?: string;
+  @Reactive() private soulVariables?: SoulVariable[];
+  @Reactive() private componentProperties?: any[];
 
   @Subscribe(mainStore) @Reactive() private readonly soulName =
     mainStore.soulName;
@@ -158,32 +200,40 @@ useComponents({
     return `<script src="https://cdn.jsdelivr.net/npm/@tinijs/ui-${this.soulName}@${LIB_VERSION}/components/${this.name}.bundle.js"></script>`;
   }
 
-  private get githubPageLink() {
-    return `${GITHUB_REPO_URL}/blob/main/app/pages/${this.name}.ts`;
+  private get docLink() {
+    return `${GITHUB_REPO_URL}/blob/main/app/pages/${this.path}.ts`;
   }
 
-  private get githubPageUrl() {
-    return `${GITHUB_RAW_URL}/main/app/pages/${this.name}.ts`;
+  private get docUrl() {
+    return `${GITHUB_RAW_URL}/main/app/pages/${this.path}.ts`;
   }
 
-  private get githubComponentUrl() {
+  private get componentLink() {
+    return `${GITHUB_REPO_URL}/blob/main/components/${this.name}.ts`;
+  }
+
+  private get componentUrl() {
     return `${GITHUB_RAW_URL}/main/components/${this.name}.ts`;
   }
 
-  private get githubSoulUrl() {
+  private get soulLink() {
+    return `${GITHUB_REPO_URL}/blob/main/styles/${this.soulName}/soul/${this.name}.ts`;
+  }
+
+  private get soulUrl() {
     return `${GITHUB_RAW_URL}/main/styles/${this.soulName}/soul/${this.name}.ts`;
   }
 
   async connectedCallback() {
     super.connectedCallback();
     // extract soul variables
-    this.soulVariables = await extractCSSVariables(this.githubSoulUrl, [
+    this.soulVariables = await extractCSSVariables(this.soulUrl, [
       ':host {',
       '}',
     ]);
     // extract component properties
     this.componentProperties = await extractComponentProperties(
-      this.githubComponentUrl
+      this.componentUrl
     );
   }
 
@@ -191,15 +241,56 @@ useComponents({
     // set mode
     this.contentMode = mode;
     // load source code
-    if (this.contentMode === 'code' && !this.pageSourceCode) {
-      this.pageSourceCode = await getText(this.githubPageUrl);
+    if (this.contentMode === Modes.DocSrc && !this.docSourceCode) {
+      this.docSourceCode = await getText(this.docUrl);
+    } else if (this.contentMode === Modes.ComponentSrc && !this.componentSourceCode) {
+      this.componentSourceCode = await getText(this.componentUrl);
+    } else if (this.contentMode === Modes.SoulSrc && !this.soulSourceCode) {
+      this.soulSourceCode = await getText(this.soulUrl);
     }
   }
 
-  private renderArticle() {
+  protected render() {
     return html`
-      <div class="body article">
-        <app-section .noUsageTabs=${true}>
+      <div class="head">
+        <h1 class="title">${this.titleText || 'Page'}</h1>
+        <slot name="description"></slot>
+        <div class="switch-mode">
+          <button
+            class=${classMap({active: this.contentMode === Modes.Doc})}
+            @click=${() => this.switchMode(Modes.Doc)}
+          >Documentation</button>
+          <button
+            class=${classMap({active: this.contentMode === Modes.DocSrc})}
+            @click=${() => this.switchMode(Modes.DocSrc)
+          }>Doc source</button>
+          <button
+            class=${classMap({active: this.contentMode === Modes.ComponentSrc})}
+            @click=${() => this.switchMode(Modes.ComponentSrc)}
+          >Component source</button>
+          <button
+            class=${classMap({active: this.contentMode === Modes.SoulSrc})}
+            @click=${() => this.switchMode(Modes.SoulSrc)}
+          >Soul source</button>
+        </div>
+      </div>
+
+      ${cache(
+        this.contentMode === Modes.DocSrc
+          ? this.renderDocSource()
+          : this.contentMode === Modes.ComponentSrc
+            ? this.renderComponentSource()
+            : this.contentMode === Modes.SoulSrc
+              ? this.renderSoulSource()
+              : this.renderDoc()
+      )}
+    `;
+  }
+
+  private renderDoc() {
+    return html`
+      <div class="body doc">
+        <app-section .noUsageTabs=${true} style="margin-top: 0;">
           <div slot="content" class="imports">
             <h2>Imports</h2>
             <p>
@@ -334,37 +425,42 @@ useComponents({
     `;
   }
 
-  private renderCode() {
+  private renderDocSource() {
     return html`
-      <div class="body code">
-        ${!this.pageSourceCode
+      <div class="body doc-src">
+        ${!this.docSourceCode
           ? nothing
-          : html`<app-code .code=${this.pageSourceCode}></app-code>`}
+          : html`
+              <p>View on Github: <a href=${this.docLink} target="_blank">${this.docLink}</a></p>
+              <app-code .code=${this.docSourceCode}></app-code>
+            `}
       </div>
     `;
   }
 
-  protected render() {
+  private renderComponentSource() {
     return html`
-      <div class="head">
-        <h1 class="title">${this.titleText || 'Page'}</h1>
-        <ul class="links">
-          <li>
-            <tini-link href=${this.githubPageLink} target="_blank"
-              >Icon</tini-link
-            >
-          </li>
-        </ul>
-        <div class="switch-mode">
-          <button @click=${() => this.switchMode('article')}>Article</button>
-          <button @click=${() => this.switchMode('code')}>Source</button>
-        </div>
-        <slot name="description"></slot>
+      <div class="body component-src">
+        ${!this.componentSourceCode
+          ? nothing
+          : html`
+              <p>View on Github: <a href=${this.componentLink} target="_blank">${this.componentLink}</a></p>
+              <app-code .code=${this.componentSourceCode}></app-code>
+            `}
       </div>
+    `;
+  }
 
-      ${cache(
-        this.contentMode === 'code' ? this.renderCode() : this.renderArticle()
-      )}
+  private renderSoulSource() {
+    return html`
+      <div class="body soul-src">
+        ${!this.soulSourceCode
+          ? nothing
+          : html`
+              <p>View on Github: <a href=${this.soulLink} target="_blank">${this.soulLink}</a></p>
+              <app-code .code=${this.soulSourceCode}></app-code>
+            `}
+      </div>
     `;
   }
 }

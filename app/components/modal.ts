@@ -90,13 +90,13 @@ export class AppModalComponent extends TiniComponent {
       display: flex;
       box-sizing: border-box;
       width: 100%;
-      padding: 1rem;
     }
 
     .head {
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px solid var(--color-background-shade);
+      padding: 1rem;
     }
 
     .head em {
@@ -125,6 +125,14 @@ export class AppModalComponent extends TiniComponent {
 
     .head button:hover {
       opacity: 1;
+    }
+
+    .body {
+      padding: 1rem;
+      overflow-x: hidden;
+      overflow-y: auto;
+      max-height: 75vh;
+      max-height: 75dvh;
     }
 
     .foot {
