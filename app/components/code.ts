@@ -118,9 +118,9 @@ export class AppCodeComponent extends TiniComponent {
   `;
 
   private readonly codeRef: Ref<HTMLElement> = createRef();
-  @Input({type: String}) declare readonly code?: string;
+  @Input({type: String}) declare code?: string;
 
-  protected updated() {
+  onRenders() {
     hljs.highlightElement(this.codeRef.value!);
   }
 

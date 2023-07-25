@@ -52,24 +52,23 @@ export class AppTabsComponent extends TiniComponent {
     }
   `;
 
-  @Input({type: Array}) declare readonly tabItems?: TabItem[];
+  @Input({type: Array}) declare tabItems?: TabItem[];
   @Input({type: String}) declare activeName?: string;
 
   private containerRegistry: Record<string, HTMLElement> = {};
 
-  connectedCallback() {
-    super.connectedCallback();
-    // containers
+  onCreate() {
     this.querySelectorAll('[data-tab]').forEach((node, i) => {
       const tabItem = this.tabItems?.[i];
       const container = node as HTMLElement;
       if (!tabItem || !container.style) return;
-      container.style.display = tabItem.name === this.activeName ? 'block' : 'none';
+      container.style.display =
+        tabItem.name === this.activeName ? 'block' : 'none';
       this.containerRegistry[tabItem.name] = container;
     });
   }
 
-  protected willUpdate() {
+  onChanges() {
     if (this.activeName) {
       this.changeTabContent(this.activeName);
     }

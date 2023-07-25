@@ -57,21 +57,17 @@ export class AppSectionComponent extends TiniComponent {
     {name: ConsumerPlatforms.Angular, icon: 'angular'},
   ];
 
-  @Input({type: Boolean}) declare readonly noUsageTabs?: boolean;
-  @Input({type: Array}) declare readonly codeBuilders?: Record<
-    string,
-    CodeBuilder
-  >;
-  @Input({type: Object}) declare readonly preprocessCode?: CodeBuilder;
-  @Input({type: Object}) declare readonly codeBuildContext?: unknown;
+  @Input({type: Boolean}) declare noUsageTabs?: boolean;
+  @Input({type: Array}) declare codeBuilders?: Record<string, CodeBuilder>;
+  @Input({type: Object}) declare preprocessCode?: CodeBuilder;
+  @Input({type: Object}) declare codeBuildContext?: unknown;
 
   @Subscribe(mainStore) @Reactive() private readonly referPlatform =
     mainStore.referPlatform;
 
   private originalCode?: string;
 
-  connectedCallback() {
-    super.connectedCallback();
+  onCreate() {
     let content = this.querySelector('[slot="code"]')
       ?.innerHTML.split('\n')
       .map(item => item.replace(/\s\s+/g, ''))

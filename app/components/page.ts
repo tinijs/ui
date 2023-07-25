@@ -77,7 +77,7 @@ export class AppPageComponent extends TiniComponent {
 
     .switch-mode button {
       cursor: pointer;
-      padding: .5rem 1rem;
+      padding: 0.5rem 1rem;
       font-size: 1rem;
       border: var(--size-border) solid var(--color-background-shade);
       border-right: none;
@@ -127,11 +127,11 @@ export class AppPageComponent extends TiniComponent {
     {name: ImportMethods.Standalone},
   ];
 
-  @Input({type: String}) declare readonly name: string;
-  @Input({type: String}) declare readonly path: string;
-  @Input({type: String}) declare readonly titleText?: string;
-  @Input({type: Object}) declare readonly prevPage?: Quicklink;
-  @Input({type: Object}) declare readonly nextPage?: Quicklink;
+  @Input({type: String}) declare name: string;
+  @Input({type: String}) declare path: string;
+  @Input({type: String}) declare titleText?: string;
+  @Input({type: Object}) declare prevPage?: Quicklink;
+  @Input({type: Object}) declare nextPage?: Quicklink;
 
   @Reactive() private contentMode: Modes = Modes.Doc;
   @Reactive() private docSourceCode?: string;
@@ -142,7 +142,6 @@ export class AppPageComponent extends TiniComponent {
 
   @Subscribe(mainStore) @Reactive() private readonly soulName =
     mainStore.soulName;
-
   @Subscribe(mainStore) @Reactive() private readonly referImport =
     mainStore.referImport;
 
@@ -224,8 +223,7 @@ useComponents({
     return `${GITHUB_RAW_URL}/main/styles/${this.soulName}/soul/${this.name}.ts`;
   }
 
-  async connectedCallback() {
-    super.connectedCallback();
+  async onCreate() {
     // extract soul variables
     this.soulVariables = await extractCSSVariables(this.soulUrl, [
       ':host {',
@@ -243,7 +241,10 @@ useComponents({
     // load source code
     if (this.contentMode === Modes.DocSrc && !this.docSourceCode) {
       this.docSourceCode = await getText(this.docUrl);
-    } else if (this.contentMode === Modes.ComponentSrc && !this.componentSourceCode) {
+    } else if (
+      this.contentMode === Modes.ComponentSrc &&
+      !this.componentSourceCode
+    ) {
       this.componentSourceCode = await getText(this.componentUrl);
     } else if (this.contentMode === Modes.SoulSrc && !this.soulSourceCode) {
       this.soulSourceCode = await getText(this.soulUrl);
@@ -259,19 +260,27 @@ useComponents({
           <button
             class=${classMap({active: this.contentMode === Modes.Doc})}
             @click=${() => this.switchMode(Modes.Doc)}
-          >Documentation</button>
+          >
+            Documentation
+          </button>
           <button
             class=${classMap({active: this.contentMode === Modes.DocSrc})}
-            @click=${() => this.switchMode(Modes.DocSrc)
-          }>Doc source</button>
+            @click=${() => this.switchMode(Modes.DocSrc)}
+          >
+            Doc source
+          </button>
           <button
             class=${classMap({active: this.contentMode === Modes.ComponentSrc})}
             @click=${() => this.switchMode(Modes.ComponentSrc)}
-          >Component source</button>
+          >
+            Component source
+          </button>
           <button
             class=${classMap({active: this.contentMode === Modes.SoulSrc})}
             @click=${() => this.switchMode(Modes.SoulSrc)}
-          >Soul source</button>
+          >
+            Soul source
+          </button>
         </div>
       </div>
 
@@ -279,10 +288,10 @@ useComponents({
         this.contentMode === Modes.DocSrc
           ? this.renderDocSource()
           : this.contentMode === Modes.ComponentSrc
-            ? this.renderComponentSource()
-            : this.contentMode === Modes.SoulSrc
-              ? this.renderSoulSource()
-              : this.renderDoc()
+          ? this.renderComponentSource()
+          : this.contentMode === Modes.SoulSrc
+          ? this.renderSoulSource()
+          : this.renderDoc()
       )}
     `;
   }
@@ -431,7 +440,10 @@ useComponents({
         ${!this.docSourceCode
           ? nothing
           : html`
-              <p>View on Github: <a href=${this.docLink} target="_blank">${this.docLink}</a></p>
+              <p>
+                View on Github:
+                <a href=${this.docLink} target="_blank">${this.docLink}</a>
+              </p>
               <app-code .code=${this.docSourceCode}></app-code>
             `}
       </div>
@@ -444,7 +456,12 @@ useComponents({
         ${!this.componentSourceCode
           ? nothing
           : html`
-              <p>View on Github: <a href=${this.componentLink} target="_blank">${this.componentLink}</a></p>
+              <p>
+                View on Github:
+                <a href=${this.componentLink} target="_blank"
+                  >${this.componentLink}</a
+                >
+              </p>
               <app-code .code=${this.componentSourceCode}></app-code>
             `}
       </div>
@@ -457,7 +474,10 @@ useComponents({
         ${!this.soulSourceCode
           ? nothing
           : html`
-              <p>View on Github: <a href=${this.soulLink} target="_blank">${this.soulLink}</a></p>
+              <p>
+                View on Github:
+                <a href=${this.soulLink} target="_blank">${this.soulLink}</a>
+              </p>
               <app-code .code=${this.soulSourceCode}></app-code>
             `}
       </div>

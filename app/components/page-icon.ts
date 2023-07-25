@@ -146,9 +146,9 @@ export class AppPageIconComponent extends TiniComponent {
 
   private readonly SIZE = 200;
 
-  @Input({type: String}) declare readonly name: string;
-  @Input({type: String}) declare readonly titleText?: string;
-  @Input({type: Boolean}) declare readonly noVariants?: boolean;
+  @Input({type: String}) declare name: string;
+  @Input({type: String}) declare titleText?: string;
+  @Input({type: Boolean}) declare noVariants?: boolean;
 
   @Reactive() private currentPage = 1;
   @Reactive() private filterQuery?: string;
@@ -180,15 +180,15 @@ export class AppPageIconComponent extends TiniComponent {
 
   @Reactive() private data?: {version: string; items: Array<IconDef>};
   private totalPages?: number;
-  async connectedCallback() {
-    super.connectedCallback();
-    // fetch data
+
+  async onCreate() {
     this.data = await get(this.indexJsonPath);
     this.totalPages = Math.ceil(this.data.items.length / this.SIZE);
   }
 
   private displayedItems?: Array<IconDef>;
-  protected willUpdate() {
+
+  onChanges() {
     if (
       !this.data ||
       !this.totalPages ||

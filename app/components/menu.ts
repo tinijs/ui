@@ -92,9 +92,7 @@ export class AppMenuComponent extends TiniComponent {
     });
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    // build menu
+  onCreate() {
     this.buildMenu();
   }
 

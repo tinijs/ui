@@ -85,9 +85,9 @@ export class AppPageIconModalComponent extends TiniComponent {
     !context ? code : code.replace(/tini-icon/g, context.nameTag);
   private readonly CODE_BUILDERS = {};
 
-  @Input({type: String}) declare readonly packName?: string;
-  @Input({type: String}) declare readonly packVersion?: string;
-  @Input({type: Boolean}) declare readonly noVariants?: boolean;
+  @Input({type: String}) declare packName?: string;
+  @Input({type: String}) declare packVersion?: string;
+  @Input({type: Boolean}) declare noVariants?: boolean;
   @Input({type: Object}) declare iconDef?: IconDef;
 
   private modalRef: Ref<AppModalComponent> = createRef();
