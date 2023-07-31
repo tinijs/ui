@@ -1,8 +1,10 @@
 import {getText} from './http';
 
-export interface SoulVariable {
+export interface VariableDef {
   key: string;
   value: string;
+  prefix: string;
+  title: string;
   description: string;
   category?: string;
 }
@@ -34,9 +36,14 @@ export async function extractCSSVariables(
       .split(':')
       .map(item => item.trim());
     const [category] = description?.match(/\[[a-zA-Z0-9_]+\]/) || [];
+    const keyArr = key.split('-').filter(item => item);
+    const prefix = keyArr.shift() as string;
+    const title = keyArr.map(item => item[0].toUpperCase() + item.slice(1)).join(' ');
     return {
       key,
       value,
+      prefix,
+      title,
       description: (
         (!category ? description : description?.replace(category, '')) || ''
       ).trim(),

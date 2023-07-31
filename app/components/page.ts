@@ -27,7 +27,7 @@ import {
 } from '../consts/main';
 import {
   extractCSSVariables,
-  SoulVariable,
+  VariableDef,
   extractComponentProperties,
 } from '../helpers/source';
 import {getText} from '../helpers/http';
@@ -137,7 +137,7 @@ export class AppPageComponent extends TiniComponent {
   @Reactive() private docSourceCode?: string;
   @Reactive() private componentSourceCode?: string;
   @Reactive() private soulSourceCode?: string;
-  @Reactive() private soulVariables?: SoulVariable[];
+  @Reactive() private soulVariables?: VariableDef[];
   @Reactive() private componentProperties?: any[];
 
   @Subscribe(mainStore) @Reactive() private readonly soulName =

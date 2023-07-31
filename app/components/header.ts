@@ -1,27 +1,40 @@
 import {
   Component,
   TiniComponent,
+  Reactive,
   html,
   css,
+  classMap,
   stylingWithBaseStyles,
 } from '@tinijs/core';
+import {Subscribe} from '@tinijs/store';
 import {commonStyles, linkStyles} from '../../dev/styles';
 
+import {APP_SKIN_EDITOR, AppSkinEditorComponent} from './skin-editor';
+
 import {GITHUB_REPO_URL} from '../consts/main';
+import {mainStore} from '../stores/main';
 
 export const APP_HEADER = 'app-header';
 @Component({
+  components: {
+    [APP_SKIN_EDITOR]: AppSkinEditorComponent,
+  },
   theming: {
     styling: stylingWithBaseStyles([commonStyles, linkStyles]),
   },
 })
 export class AppHeaderComponent extends TiniComponent {
   static styles = css`
+    :host {
+      --header-height: 60px;      
+    }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 60px;
+      height: var(--header-height);
       padding: var(--size-space);
       background-color: var(--color-primary);
       color: var(--color-light);
@@ -54,9 +67,39 @@ export class AppHeaderComponent extends TiniComponent {
     .menu a:hover {
       text-decoration: underline;
     }
+
+    .skin-editor-toggler {
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: var(--color-primary-contrast);
+    }
+
+    .skin-editor-container {
+      display: none;
+      box-sizing: border-box;
+      position: fixed;
+      top: var(--header-height);
+      right: 0;
+      width: 310px;
+      height: calc(100vh - var(--header-height));
+      height: calc(100dvh - var(--header-height));
+      background: var(--color-background);
+      border-left: var(--size-border) solid var(--color-background-shade);
+    }
+
+    .skin-editor-container.showed {
+      display: block;
+    }
   `;
 
   private LOGO_URL = new URL('../assets/logo.svg', import.meta.url).toString();
+
+  @Subscribe(mainStore) @Reactive() private skinEditorShown = mainStore.skinEditorShown;
+
+  private toggleSkinEditor() {
+    return mainStore.commit('skinEditorShown', !mainStore.skinEditorShown);
+  }
 
   protected render() {
     return html`
@@ -68,9 +111,14 @@ export class AppHeaderComponent extends TiniComponent {
           </a>
         </div>
         <div class="menu">
+          <button class="skin-editor-toggler" @click=${this.toggleSkinEditor}>Skin Editor</button>
           <a href=${GITHUB_REPO_URL} target="_blank">Source code</a>
         </div>
       </header>
+
+      <div class=${classMap({ 'skin-editor-container': true, showed: this.skinEditorShown })}>
+        <app-skin-editor></app-skin-editor>
+      </div>
     `;
   }
 }

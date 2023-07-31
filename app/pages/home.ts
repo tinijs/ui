@@ -35,9 +35,12 @@ export class AppPageHome extends TiniComponent {
 
       <h2>Styles</h2>
       <p>
-        Tini UI supports many interface flavors: Twitter Bootstrap, Google
-        Material, Microsoft Fluent, ... and more to come.
+        Tini UI supports many interface flavors: Bootstrap,
+        Material, Fluent, ... and more to come.
       </p>
+
+      <h2>Icons</h2>
+      <p>There are over 25,000 icons to choose from, new packs will be added all the time. Your project can have one icon or thousands, the experience will remain the same, just install the package and use any icon you like.</p>
     `;
   }
 }
