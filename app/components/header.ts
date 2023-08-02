@@ -12,7 +12,7 @@ import {commonStyles, linkStyles} from '../../dev/styles';
 import {
   ICON_PALETTE,
   IconPaletteComponent,
-} from '@tinijs/bootstrap-icons/palette.js';
+} from '@tinijs/bootstrap-icons/palette';
 
 import {APP_SKIN_EDITOR, AppSkinEditorComponent} from './skin-editor';
 
@@ -84,16 +84,14 @@ export class AppHeaderComponent extends TiniComponent {
       display: none;
       box-sizing: border-box;
       position: fixed;
-      /* top: var(--header-height);
-      right: 0; */
-      top: 0;
-      left: 100px;
+      top: var(--header-height);
+      right: 0;
       width: 310px;
       height: calc(100vh - var(--header-height));
       height: calc(100dvh - var(--header-height));
       background: var(--color-background);
       border-left: var(--size-border) solid var(--color-background-shade);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+      box-shadow: var(--box-shadow);
     }
 
     .skin-editor-container.showed {

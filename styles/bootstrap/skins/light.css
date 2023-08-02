@@ -1,12 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=IBM+Plex+Mono&family=Montserrat:wght@400;700&family=Roboto:wght@400;700&display=swap');
-
-[data-theme="material/dark"] {
-  // fonts
-  --font-body: 'Roboto', sans-serif;
-  --font-head: 'Montserrat', sans-serif;
-  --font-quote: 'Dancing Script', cursive;
-  --font-code: 'IBM Plex Mono', monospace;
-  // sizes
+[data-theme="bootstrap/light"] {
+  /* fonts */
+  --font-body: 'Arial', sans-serif;
+  --font-head: 'Arial', sans-serif;
+  --font-quote: 'Times New Roman', serif;
+  --font-code: 'Courier', monospace;
+  /* sizes */
   --size-text: 16px;
   --size-radius: 3px;
   --size-radius-2nd: 3px;
@@ -14,21 +12,21 @@
   --size-border-2nd: 1px;
   --size-space: 1rem;
   --size-space-2nd: 1rem;
-  // size steps
+  /* size steps */
   --size-xs: 4px;
   --size-sm: 8px;
   --size-md: 16px;
   --size-lg: 20px;
   --size-xl: 24px;
   --size-xxl: 28px;
-  // wides
+  /* wides */
   --wide-xs: 320px;
   --wide-sm: 425px;
   --wide-md: 768px;
   --wide-lg: 1024px;
   --wide-xl: 1440px;
   --wide-xxl: 2560px;
-  // colors
+  /* colors */
   --color-primary: #3880ff;
   --color-primary-rgb: 56,128,255;
   --color-primary-contrast: #ffffff;
@@ -82,20 +80,20 @@
   --color-light-contrast: #000000;
   --color-light-contrast-rgb: 0,0,0;
   --color-light-shade: #d7d8da;
-  --color-light-tint: #ffffff;  
-  --color-background: #222428;
-  --color-background-rgb: 34,36,40;
-  --color-background-contrast: #ffffff;
-  --color-background-contrast-rgb: 255,255,255;
-  --color-background-shade: #1e2023;
-  --color-background-tint: #383a3e;
-  --color-foreground: #f4f5f8;
-  --color-foreground-rgb: 244,245,248;
-  --color-foreground-contrast: #000000;
-  --color-foreground-contrast-rgb: 0,0,0;
-  --color-foreground-shade: #d7d8da;
-  --color-foreground-tint: #ffffff;
-  // gradients
+  --color-light-tint: #ffffff;
+  --color-background: #f4f5f8;
+  --color-background-rgb: 244,245,248;
+  --color-background-contrast: #000000;
+  --color-background-contrast-rgb: 0,0,0;
+  --color-background-shade: #d7d8da;
+  --color-background-tint: #ffffff;
+  --color-foreground: #222428;
+  --color-foreground-rgb: 34,36,40;
+  --color-foreground-contrast: #ffffff;
+  --color-foreground-contrast-rgb: 255,255,255;
+  --color-foreground-shade: #1e2023;
+  --color-foreground-tint: #383a3e;
+  /* gradients */
   --gradient-primary: linear-gradient(180deg, #4c8dff 0%, #3171e0 100%);
   --gradient-secondary: linear-gradient(180deg, #50c8ff 0%, #36abe0 100%);
   --gradient-tertiary: linear-gradient(180deg, #6370ff 0%, #4854e0 100%);
@@ -105,7 +103,7 @@
   --gradient-dark: linear-gradient(180deg, #383a3e 0%, #1e2023 100%);
   --gradient-medium: linear-gradient(180deg, #9d9fa6 0%, #808289 100%);
   --gradient-light: linear-gradient(180deg, #ffffff 0%, #d7d8da 100%);
-  // others
-  --box-shadow: 0 0 10px rgba(244,245,248,0.25);
-  --box-shadow-2nd: 0 0 10px rgba(244,245,248,0.25);
+  /* others */
+  --box-shadow: 0 0 0 0 rgba(34,36,40,0.25);
+  --box-shadow-2nd: 0 0 0 0 rgba(34,36,40,0.25);
 }

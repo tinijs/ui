@@ -175,11 +175,11 @@ export class AppSkinEditorComponent extends TiniComponent {
   private async fetchSkinVariables() {
     const {soul, skin} = this.currentTheme;
     this.variablesMap = await extractCSSVariables(
-      `${GITHUB_RAW_URL}/main/styles/${soul}/skins/${skin}.scss`
+      `${GITHUB_RAW_URL}/main/styles/${soul}/skins/${skin}.css`
     );
   }
 
-  private changeTheme(e: InputEvent) {
+  private async changeTheme(e: InputEvent) {
     const soul = SOULS.find(
       soul => soul.id === (e.target as HTMLSelectElement).value
     );
@@ -187,18 +187,23 @@ export class AppSkinEditorComponent extends TiniComponent {
       document.body.style.cssText = '';
       mainStore.commit('soulName', soul.id);
       changeTheme({soul: soul.id, skin: soul.skins[0].id});
-      this.fetchSkinVariables();
+      await this.fetchSkinVariables();
+      this.resetSkin();
     }
   }
 
   private resetSkin() {
-    if (!confirm('All values will be reset?')) return;
     document.body.style.cssText = '';
     this.allInputs.forEach(item => {
       const input = item as HTMLInputElement;
       input.value = this.variablesMap.get(input.name)?.valueDirect || '';
     });
     this.changedVariablesMap.clear();
+  }
+
+  private resetSkinWithConfirmation() {
+    if (!confirm('All values will be reset?')) return;
+    return this.resetSkin();
   }
 
   private showModal() {
@@ -427,7 +432,7 @@ export class AppSkinEditorComponent extends TiniComponent {
       </div>
 
       <div class="foot">
-        <button @click=${this.resetSkin}>
+        <button @click=${this.resetSkinWithConfirmation}>
           <icon-arrow-clockwise
             color="dynamic"
             size="sm"
