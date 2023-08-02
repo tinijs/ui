@@ -119,7 +119,7 @@ export class AppPageIconModalComponent extends TiniComponent {
 
     const tiniJSCode = `import {Component} from '@tinijs/core';
 
-import {${nameConst}, ${nameClass}} from '${packName}/${iconName}.js';
+import {${nameConst}, ${nameClass}} from '${packName}/${iconName}';
 
 @Component({
   components: {
@@ -131,14 +131,14 @@ export class MyComponent extends TiniComponent {}`;
     const othersCode = `/*
  * Option 1: include in your component
  */
-import '${packName}/${iconName}.include.js';
+import '${packName}/${iconName}.include';
 
 /*
  * Option 2: import as a shared bundle (if your bundler supports it)
  */
 import {useComponents} from '@tinijs/core';
 
-import {${nameConst}, ${nameClass}} from '${packName}/${iconName}.js';
+import {${nameConst}, ${nameClass}} from '${packName}/${iconName}';
 
 useComponents({
   [${nameConst}]: ${nameClass}
@@ -149,7 +149,7 @@ useComponents({
 
     const dataURICode = `import {html} from 'lit';
 
-import {dataURI as ${nameVar}URI} from '${packName}/${iconName}.source.js';
+import {dataURI as ${nameVar}URI} from '${packName}/${iconName}.source';
 
 html\`
   <i style="background-image: url(\$\{${nameVar}URI\})"></i>
@@ -160,7 +160,7 @@ html\`
     const svgCode = `import {html} from 'lit';
 import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
   
-import {code as ${nameVar}Code} from '${packName}/${iconName}.source.js';
+import {code as ${nameVar}Code} from '${packName}/${iconName}.source';
 
 // render
 html\`<div class="container">\$\{unsafeSVG(${nameVar}Code)\}</div>\`;

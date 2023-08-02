@@ -19,16 +19,16 @@ export interface ComponentProperty {
 export async function extractCSSVariables(
   src: string,
   scope?: [string, string]
-) {
+): Promise<Map<string, VariableDef>> {
   const code = await getText<string>(src);
   const processedCode = !scope
     ? ['', code]
     : code.match(new RegExp(`${scope[0]}\([\\\s\\\S]*?\)${scope[1]}`));
-  if (!processedCode) return [];
+  if (!processedCode) return new Map();
   const variableMatchingArr = processedCode[1]
     .replace(/(?:\r\n|\r|\n)/g, '\n')
     .match(/--([\s\S]*?);/g);
-  return (variableMatchingArr || []).map(line => {
+  const mapItems = (variableMatchingArr || []).map(line => {
     const [key, value, description] = line
       .replace(/\n/g, '')
       .replace(/(;$)|(\*\/)/g, '')
@@ -38,18 +38,25 @@ export async function extractCSSVariables(
     const [category] = description?.match(/\[[a-zA-Z0-9_]+\]/) || [];
     const keyArr = key.split('-').filter(item => item);
     const prefix = keyArr.shift() as string;
-    const title = keyArr.map(item => item[0].toUpperCase() + item.slice(1)).join(' ');
-    return {
+    const title = keyArr
+      .map(item => item[0].toUpperCase() + item.slice(1))
+      .join(' ');
+    return [
       key,
-      value,
-      prefix,
-      title,
-      description: (
-        (!category ? description : description?.replace(category, '')) || ''
-      ).trim(),
-      category: category?.replace(/\[|\]/g, ''),
-    };
+      {
+        key,
+        value,
+        prefix,
+        title,
+        description: (
+          (!category ? description : description?.replace(category, '')) || ''
+        ).trim(),
+        category: category?.replace(/\[|\]/g, ''),
+      },
+    ] as [string, VariableDef];
   });
+  // result
+  return new Map(mapItems);
 }
 
 export async function extractComponentProperties(src: string) {

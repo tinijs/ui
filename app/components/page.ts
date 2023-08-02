@@ -9,6 +9,7 @@ import {
   cache,
   classMap,
   stylingWithBaseStyles,
+  repeat,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
 import {
@@ -137,7 +138,7 @@ export class AppPageComponent extends TiniComponent {
   @Reactive() private docSourceCode?: string;
   @Reactive() private componentSourceCode?: string;
   @Reactive() private soulSourceCode?: string;
-  @Reactive() private soulVariables?: VariableDef[];
+  @Reactive() private soulVariablesMap?: Map<string, VariableDef>;
   @Reactive() private componentProperties?: any[];
 
   @Subscribe(mainStore) @Reactive() private readonly soulName =
@@ -165,7 +166,7 @@ export class AppPageComponent extends TiniComponent {
     const {nameConst, nameClass} = this.nameVariants;
     return `import {Page} from '@tinijs/core';
 
-import {${nameConst}, ${nameClass}} from '@tinijs/ui/${this.name}.js';
+import {${nameConst}, ${nameClass}} from '@tinijs/ui/${this.name}';
 
 @Page({
   components: {
@@ -180,14 +181,14 @@ export class MyPage extends TiniComponent {}`;
     return `/*
  * Option 1: include in your component
  */
-import '@tinijs/ui-${this.soulName}/components/${this.name}.include.js';
+import '@tinijs/ui-${this.soulName}/components/${this.name}.include';
 
 /*
  * Option 2: import as a shared bundle (if your bundler supports it)
  */
 import {useComponents} from '@tinijs/core';
 
-import {${nameConst}, ${nameClass}} from '@tinijs/ui-${this.soulName}/components/${this.name}.js';
+import {${nameConst}, ${nameClass}} from '@tinijs/ui-${this.soulName}/components/${this.name}';
 
 useComponents({
   [${nameConst}]: ${nameClass}
@@ -225,7 +226,7 @@ useComponents({
 
   async onCreate() {
     // extract soul variables
-    this.soulVariables = await extractCSSVariables(this.soulUrl, [
+    this.soulVariablesMap = await extractCSSVariables(this.soulUrl, [
       ':host {',
       '}',
     ]);
@@ -394,10 +395,12 @@ useComponents({
                 </tr>
               </thead>
               <tbody>
-                ${!this.soulVariables?.length
+                ${!this.soulVariablesMap?.size
                   ? nothing
-                  : this.soulVariables.map(
-                      variable => html`
+                  : repeat(
+                      this.soulVariablesMap,
+                      ([key]) => key,
+                      ([, variable]) => html`
                         <tr>
                           <td><code>${variable.key}</code></td>
                           <td>${variable.description}</td>
