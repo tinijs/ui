@@ -9,9 +9,11 @@
   // sizes
   --size-text: 16px;
   --size-radius: 3px;
+  --size-radius-2nd: var(--size-radius);
   --size-border: 1px;
   --size-border-2nd: var(--size-border);
-  --size-space: var(--size-text);
+  --size-space: 1rem;
+  --size-space-2nd: var(--size-space);
   // size steps
   --size-xs: 4px;
   --size-sm: 8px;
