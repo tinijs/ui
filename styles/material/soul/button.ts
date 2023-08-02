@@ -43,6 +43,7 @@ export const buttonStyle = css`
     background: var(--button-background);
     color: var(--button-color);
     padding: calc(var(--button-padding) / 2) var(--button-padding);
+    font-family: var(--font-body);
   }
 
   button:active,

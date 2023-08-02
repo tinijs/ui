@@ -1,19 +1,34 @@
-import {Component, TiniComponent, Reactive, html, css, ref, Ref, createRef, classMap} from '@tinijs/core';
+import {
+  Component,
+  TiniComponent,
+  Input,
+  Output,
+  EventEmitter,
+  Reactive,
+  html,
+  css,
+  ref,
+  Ref,
+  createRef,
+  classMap,
+  styleMap,
+} from '@tinijs/core';
 // @ts-ignore
 import * as Grapick from 'grapick';
+
+import {parseGradient} from '../helpers/gradient';
 
 export const APP_GRADIENT_PICKER = 'app-gradient-picker';
 
 @Component()
 export class AppGradientPickerComponent extends TiniComponent {
   static styles = css`
-
     /*
      * Grapick
      */
 
     .grp-wrapper {
-      background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==");
+      background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAIAAADZF8uwAAAAGUlEQVQYV2M4gwH+YwCGIasIUwhT25BVBADtzYNYrHvv4gAAAABJRU5ErkJggg==');
     }
     .grp-preview {
       position: absolute;
@@ -49,13 +64,13 @@ export class AppGradientPickerComponent extends TiniComponent {
       top: -17px;
     }
     .grp-handler-drag {
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(255, 255, 255, 0.35);
       cursor: col-resize;
       width: 100%;
       height: 100%;
     }
     .grp-handler-selected .grp-handler-drag {
-      background-color: rgba(255, 255, 255, 0.5);
+      background-color: rgba(255, 255, 255, 0.7);
     }
     .grp-handler-cp-c {
       display: none;
@@ -73,7 +88,7 @@ export class AppGradientPickerComponent extends TiniComponent {
       border-radius: 100%;
       cursor: pointer;
     }
-    .grp-handler-cp-wrap input[type="color"] {
+    .grp-handler-cp-wrap input[type='color'] {
       opacity: 0;
       cursor: pointer;
     }
@@ -86,75 +101,152 @@ export class AppGradientPickerComponent extends TiniComponent {
       position: relative;
     }
 
-    .preview {
-      width: 16px;
-      height: 16px;
-      background: red;
+    .toggler {
+      width: 50px;
+      height: 25px;
     }
 
     .picker-container {
       box-sizing: border-box;
       display: none;
       position: absolute;
-      top: 20px;
-      right: 0;
-      background: var(--color-background);
-      padding: 2rem 1rem 1rem;
-      width: 300px;
-      height: 140px;
-      border: 1px solid red;
+      top: 30px;
+      left: 0;
+      background: var(--color-foreground-tint);
+      width: 230px;
+      height: 150px;
+      border: 1px solid var(--color-background-tint);
       border-radius: var(--size-border);
-      z-index: 3;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      z-index: 101;
     }
 
     .picker-container.showed {
       display: block;
     }
 
-    .picker-container .foot {
-      margin-top: 2rem;
-      display: flex;
-      justify-content: space-between;
+    .picker-container .grapick {
+      padding: 2rem 1.5rem;
     }
 
-    .picker-container .foot .options {}
-
-    .picker-container .foot .actions {}
+    .picker-container .options {
+      display: flex;
+      padding: 1rem;
+      background: var(--color-background-tint);
+    }
   `;
 
+  @Input() name!: string;
+  @Input() value = 'none';
+
+  @Output() change!: EventEmitter<string>;
+
   @Reactive() private showed = false;
-  private pickerRef: Ref<HTMLDivElement> = createRef();
+  private togglerRef: Ref<HTMLButtonElement> = createRef();
+  private containerRef: Ref<HTMLDivElement> = createRef();
+  private grapickRef: Ref<HTMLDivElement> = createRef();
+  private typeSelectRef: Ref<HTMLSelectElement> = createRef();
+  private directionSelectRef: Ref<HTMLSelectElement> = createRef();
   private grapickInstance: any;
 
+  private onGlobalClicked = (e: MouseEvent) => {
+    const togglerNode = this.togglerRef.value;
+    const containerNode = this.containerRef.value;
+    if (!this.showed || !togglerNode || !containerNode) return;
+    const togglerRange = togglerNode.getBoundingClientRect();
+    const menuContainerRange = containerNode.getBoundingClientRect();
+    const isInsideToggler =
+      togglerRange.left <= e.clientX &&
+      togglerRange.right >= e.clientX &&
+      togglerRange.top <= e.clientY &&
+      togglerRange.bottom >= e.clientY;
+    const isInsideMenu =
+      menuContainerRange.left <= e.clientX &&
+      menuContainerRange.right >= e.clientX &&
+      menuContainerRange.top <= e.clientY &&
+      menuContainerRange.bottom >= e.clientY;
+    this.showed = isInsideToggler || isInsideMenu;
+  };
+
+  onCreate() {
+    addEventListener('click', this.onGlobalClicked);
+  }
+
+  onDestroy() {
+    removeEventListener('click', this.onGlobalClicked);
+  }
+
   onReady() {
-    if (!this.pickerRef.value) return;
+    if (!this.grapickRef.value) return;
     this.grapickInstance = new Grapick({
-      el: this.pickerRef.value,
+      el: this.grapickRef.value,
     });
-    this.grapickInstance.addHandler(0, 'red');
-    this.grapickInstance.addHandler(100, 'blue');
+    const initial = parseGradient(this.value);
+    if (initial) {
+      const {type, direction, handlers} = initial;
+      this.grapickInstance.setType(type);
+      this.typeSelectRef.value!.value = type;
+      this.grapickInstance.setDirection(direction);
+      this.directionSelectRef.value!.value = direction;
+      handlers.forEach(({color, position}) => {
+        this.grapickInstance.addHandler(position, color);
+      });
+    }
+    this.grapickInstance.on('change', () =>
+      this.valueChanged(this.grapickInstance.getSafeValue())
+    );
+  }
+
+  private valueChanged(value: string) {
+    this.value = value;
+    this.change.emit(value);
+  }
+
+  private changeType(e: InputEvent) {
+    const value = (e.target as HTMLSelectElement).value;
+    this.grapickInstance.setType(value);
+  }
+
+  private changeDirection(e: InputEvent) {
+    const value = (e.target as HTMLSelectElement).value;
+    this.grapickInstance.setDirection(value);
   }
 
   protected render() {
     return html`
       <div class="host">
-        <button class="preview" @click=${() => this.showed = !this.showed}></button>
-        <div class=${classMap({ 'picker-container': true, showed: this.showed })}>
-          <div ${ref(this.pickerRef)}></div>
-          <div class="foot">
-            <div class="options">
-              <select>
+        <button
+          ${ref(this.togglerRef)}
+          class="toggler"
+          @click=${() => (this.showed = !this.showed)}
+          style=${styleMap({background: this.value})}
+        ></button>
+        <div
+          ${ref(this.containerRef)}
+          class=${classMap({'picker-container': true, showed: this.showed})}
+        >
+          <div class="grapick">
+            <div ${ref(this.grapickRef)}></div>
+          </div>
+          <div class="options">
+            <select ${ref(this.typeSelectRef)} @change=${this.changeType}>
+              <optgroup label="Type">
                 <option value="linear">Linear</option>
                 <option value="radial">Radial</option>
-              </select>
-              <select>
+              </optgroup>
+            </select>
+            <select
+              ${ref(this.directionSelectRef)}
+              @change=${this.changeDirection}
+            >
+              <optgroup label="Direction">
                 <option value="top">Top</option>
                 <option value="right">Right</option>
-              </select>
-            </div>
-            <div class="actions">
-              <button @click=${() => this.showed = false}>Close</button>
-            </div>
+                <option value="center">Center</option>
+                <option value="bottom">Bottom</option>
+                <option value="left">Left</option>
+              </optgroup>
+            </select>
           </div>
         </div>
       </div>

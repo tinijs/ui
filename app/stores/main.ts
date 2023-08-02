@@ -12,5 +12,5 @@ export const mainStore = createStore({
   referImport: ImportMethods.TiniJS,
   referPlatform: ConsumerPlatforms.Lit,
   referIconsImport: IconsImportMethods.TiniJS,
-  skinEditorShown: false,
+  skinEditorShown: true,
 });

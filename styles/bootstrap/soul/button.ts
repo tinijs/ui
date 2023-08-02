@@ -24,6 +24,7 @@ export const buttonStyle = css`
     align-items: center;
     justify-content: center;
     padding: calc(var(--button-padding) / 2) var(--button-padding);
+    font-family: var(--font-body);
     font-size: var(--button-font-size);
     line-height: 1.5;
     border: none;

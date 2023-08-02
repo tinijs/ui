@@ -7,18 +7,16 @@ import {
   ref,
   createRef,
   Ref,
+  stylingWithBaseStyles,
 } from '@tinijs/core';
-import {commonStyles} from '../../dev/styles';
+import {commonStyles, codeStyles} from '../../dev/styles';
 
 import hljs from '../helpers/highlight';
 
 export const APP_CODE = 'app-code';
 @Component({
   theming: {
-    styling: {
-      bootstrap: [commonStyles.bootstrap],
-      material: [commonStyles.material],
-    },
+    styling: stylingWithBaseStyles([commonStyles, codeStyles]),
   },
 })
 export class AppCodeComponent extends TiniComponent {

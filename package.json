@@ -38,12 +38,16 @@
     "@tinijs/core": "file:../core/tinijs-core-0.1.0.tgz",
     "@tinijs/router": "file:../router/tinijs-router-0.1.0.tgz",
     "@tinijs/store": "file:../store/tinijs-store-0.1.0.tgz",
+    "chroma-js": "^2.4.2",
+    "gradient-parser": "^1.0.2",
     "grapick": "^0.1.13",
     "highlight.js": "^11.8.0",
     "lit": "^3.0.0-pre.0"
   },
   "devDependencies": {
     "@tinijs/cli": "file:../cli/tinijs-cli-0.1.0.tgz",
+    "@types/chroma-js": "^2.4.0",
+    "@types/gradient-parser": "^0.1.2",
     "@types/node": "^20.4.2",
     "gts": "^4.0.1",
     "parcel": "^2.9.3",

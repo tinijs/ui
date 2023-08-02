@@ -80,6 +80,7 @@ export class AppPageComponent extends TiniComponent {
       cursor: pointer;
       padding: 0.5rem 1rem;
       font-size: 1rem;
+      font-family: var(--font-body);
       border: var(--size-border) solid var(--color-background-shade);
       border-right: none;
       background: var(--color-background);

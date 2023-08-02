@@ -3,15 +3,15 @@
   --font-body: 'Arial', sans-serif;
   --font-head: 'Arial', sans-serif;
   --font-quote: 'Times New Roman', serif;
-  --font-code: 'Courier New', monospace;
+  --font-code: 'Courier', monospace;
   // sizes
   --size-text: 16px;
   --size-radius: 3px;
-  --size-radius-2nd: var(--size-radius);
+  --size-radius-2nd: 3px;
   --size-border: 1px;
-  --size-border-2nd: var(--size-border);
+  --size-border-2nd: 1px;
   --size-space: 1rem;
-  --size-space-2nd: var(--size-space);
+  --size-space-2nd: 1rem;
   // size steps
   --size-xs: 4px;
   --size-sm: 8px;
@@ -26,7 +26,7 @@
   --wide-lg: 1024px;
   --wide-xl: 1440px;
   --wide-xxl: 2560px;
-  // colors -> https://ionicframework.com/docs/theming/color-generator
+  // colors
   --color-primary: #3880ff;
   --color-primary-rgb: 56,128,255;
   --color-primary-contrast: #ffffff;
@@ -81,29 +81,29 @@
   --color-light-contrast-rgb: 0,0,0;
   --color-light-shade: #d7d8da;
   --color-light-tint: #ffffff;
-  --color-background: var(--color-light);
-  --color-background-rgb: var(--color-light-rgb);
-  --color-background-contrast: var(--color-light-contrast);
-  --color-background-contrast-rgb: var(--color-light-contrast-rgb);
-  --color-background-shade: var(--color-light-shade);
-  --color-background-tint: var(--color-light-tint);
-  --color-foreground: var(--color-dark);
-  --color-foreground-rgb: var(--color-dark-rgb);
-  --color-foreground-contrast: var(--color-dark-contrast);
-  --color-foreground-contrast-rgb: var(--color-dark-contrast-rgb);
-  --color-foreground-shade: var(--color-dark-shade);
-  --color-foreground-tint: var(--color-dark-tint);
+  --color-background: #f4f5f8;
+  --color-background-rgb: 244,245,248;
+  --color-background-contrast: #000000;
+  --color-background-contrast-rgb: 0,0,0;
+  --color-background-shade: #d7d8da;
+  --color-background-tint: #ffffff;
+  --color-foreground: #222428;
+  --color-foreground-rgb: 34,36,40;
+  --color-foreground-contrast: #ffffff;
+  --color-foreground-contrast-rgb: 255,255,255;
+  --color-foreground-shade: #1e2023;
+  --color-foreground-tint: #383a3e;
   // gradients
-  --gradient-primary: linear-gradient(180deg, var(--color-primary-tint) 0%, var(--color-primary-shade) 100%);
-  --gradient-secondary: linear-gradient(180deg, var(--color-secondary-tint) 0%, var(--color-secondary-shade) 100%);
-  --gradient-tertiary: linear-gradient(180deg, var(--color-tertiary-tint) 0%, var(--color-tertiary-shade) 100%);
-  --gradient-success: linear-gradient(180deg, var(--color-success-tint) 0%, var(--color-success-shade) 100%);
-  --gradient-warning: linear-gradient(180deg, var(--color-warning-tint) 0%, var(--color-warning-shade) 100%);
-  --gradient-danger: linear-gradient(180deg, var(--color-danger-tint) 0%, var(--color-danger-shade) 100%);
-  --gradient-dark: linear-gradient(180deg, var(--color-dark-tint) 0%, var(--color-dark-shade) 100%);
-  --gradient-medium: linear-gradient(180deg, var(--color-medium-tint) 0%, var(--color-medium-shade) 100%);
-  --gradient-light: linear-gradient(180deg, var(--color-light-tint) 0%, var(--color-light-shade) 100%);
+  --gradient-primary: linear-gradient(180deg, #4c8dff 0%, #3171e0 100%);
+  --gradient-secondary: linear-gradient(180deg, #50c8ff 0%, #36abe0 100%);
+  --gradient-tertiary: linear-gradient(180deg, #6370ff 0%, #4854e0 100%);
+  --gradient-success: linear-gradient(180deg, #42d77d 0%, #28ba62 100%);
+  --gradient-warning: linear-gradient(180deg, #ffca22 0%, #e0ac08 100%);
+  --gradient-danger: linear-gradient(180deg, #ed576b 0%, #cf3c4f 100%);
+  --gradient-dark: linear-gradient(180deg, #383a3e 0%, #1e2023 100%);
+  --gradient-medium: linear-gradient(180deg, #9d9fa6 0%, #808289 100%);
+  --gradient-light: linear-gradient(180deg, #ffffff 0%, #d7d8da 100%);
   // others
-  --box-shadow: 0 0 0 0 var(--color-background-contrast);
-  --box-shadow-2nd: var(--box-shadow);
+  --box-shadow: 0 0 0 0 rgba(34,36,40,0.25);
+  --box-shadow-2nd: 0 0 0 0 rgba(34,36,40,0.25);
 }

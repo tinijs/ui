@@ -9,6 +9,10 @@ import {
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
 import {commonStyles, linkStyles} from '../../dev/styles';
+import {
+  ICON_PALETTE,
+  IconPaletteComponent,
+} from '@tinijs/bootstrap-icons/palette.js';
 
 import {APP_SKIN_EDITOR, AppSkinEditorComponent} from './skin-editor';
 
@@ -18,6 +22,7 @@ import {mainStore} from '../stores/main';
 export const APP_HEADER = 'app-header';
 @Component({
   components: {
+    [ICON_PALETTE]: IconPaletteComponent,
     [APP_SKIN_EDITOR]: AppSkinEditorComponent,
   },
   theming: {
@@ -27,7 +32,7 @@ export const APP_HEADER = 'app-header';
 export class AppHeaderComponent extends TiniComponent {
   static styles = css`
     :host {
-      --header-height: 60px;      
+      --header-height: 60px;
     }
 
     header {
@@ -79,13 +84,16 @@ export class AppHeaderComponent extends TiniComponent {
       display: none;
       box-sizing: border-box;
       position: fixed;
-      top: var(--header-height);
-      right: 0;
+      /* top: var(--header-height);
+      right: 0; */
+      top: 0;
+      left: 100px;
       width: 310px;
       height: calc(100vh - var(--header-height));
       height: calc(100dvh - var(--header-height));
       background: var(--color-background);
       border-left: var(--size-border) solid var(--color-background-shade);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
     }
 
     .skin-editor-container.showed {
@@ -95,7 +103,8 @@ export class AppHeaderComponent extends TiniComponent {
 
   private LOGO_URL = new URL('../assets/logo.svg', import.meta.url).toString();
 
-  @Subscribe(mainStore) @Reactive() private skinEditorShown = mainStore.skinEditorShown;
+  @Subscribe(mainStore) @Reactive() private skinEditorShown =
+    mainStore.skinEditorShown;
 
   private toggleSkinEditor() {
     return mainStore.commit('skinEditorShown', !mainStore.skinEditorShown);
@@ -111,12 +120,20 @@ export class AppHeaderComponent extends TiniComponent {
           </a>
         </div>
         <div class="menu">
-          <button class="skin-editor-toggler" @click=${this.toggleSkinEditor}>Skin Editor</button>
+          <button class="skin-editor-toggler" @click=${this.toggleSkinEditor}>
+            <icon-palette color="light"></icon-palette>
+            <span>Skin Editor</span>
+          </button>
           <a href=${GITHUB_REPO_URL} target="_blank">Source code</a>
         </div>
       </header>
 
-      <div class=${classMap({ 'skin-editor-container': true, showed: this.skinEditorShown })}>
+      <div
+        class=${classMap({
+          'skin-editor-container': true,
+          showed: this.skinEditorShown,
+        })}
+      >
         <app-skin-editor></app-skin-editor>
       </div>
     `;
