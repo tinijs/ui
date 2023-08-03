@@ -7,11 +7,8 @@
   /* sizes */
   --size-text: 16px;
   --size-radius: 3px;
-  --size-radius-2nd: 3px;
   --size-border: 1px;
-  --size-border-2nd: 1px;
   --size-space: 1rem;
-  --size-space-2nd: 1rem;
   /* size steps */
   --size-xs: 4px;
   --size-sm: 8px;
@@ -105,5 +102,4 @@
   --gradient-light: linear-gradient(180deg, #ffffff 0%, #d7d8da 100%);
   /* others */
   --box-shadow: 0 0 0 0 rgba(244,245,248,0.25);
-  --box-shadow-2nd: 0 0 0 0 rgba(244,245,248,0.25);
 }
