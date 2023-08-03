@@ -2,29 +2,10 @@
 
 [data-theme="material/light"] {
   /* fonts */
-  --font-body: 'Roboto', sans-serif;
   --font-head: 'Montserrat', sans-serif;
+  --font-body: 'Roboto', sans-serif;
   --font-quote: 'Dancing Script', cursive;
   --font-code: 'IBM Plex Mono', monospace;
-  /* sizes */
-  --size-text: 16px;
-  --size-radius: 3px;
-  --size-border: 1px;
-  --size-space: 1rem;
-  /* size steps */
-  --size-xs: 4px;
-  --size-sm: 8px;
-  --size-md: 16px;
-  --size-lg: 20px;
-  --size-xl: 24px;
-  --size-xxl: 28px;
-  /* wides */
-  --wide-xs: 320px;
-  --wide-sm: 425px;
-  --wide-md: 768px;
-  --wide-lg: 1024px;
-  --wide-xl: 1440px;
-  --wide-xxl: 2560px;
   /* colors */
   --color-primary: #3880ff;
   --color-primary-rgb: 56,128,255;
@@ -102,6 +83,39 @@
   --gradient-dark: linear-gradient(180deg, #383a3e 0%, #1e2023 100%);
   --gradient-medium: linear-gradient(180deg, #9d9fa6 0%, #808289 100%);
   --gradient-light: linear-gradient(180deg, #ffffff 0%, #d7d8da 100%);
+  /* sizes */
+  --size-text: 16px;
+  --size-radius: 3px;
+  --size-border: 1px;
+  --size-space: 1rem;
+  /* size steps */
+  --size-xxxs: 2px;
+  --size-xxs: 4px;
+  --size-xs: 6px;
+  --size-sm: 8px;
+  --size-ms: 12px;
+  --size-md: 15px;
+  --size-ml: 18px;
+  --size-lg: 22px;
+  --size-sl: 24px;
+  --size-xl: 26px;
+  --size-xxl: 28px;
+  --size-xxxl: 30px;
+  /* wides */
+  --wide-xxxs: 150px;
+  --wide-xxs: 240px;
+  --wide-xs: 320px;
+  --wide-sm: 425px;
+  --wide-ms: 576px;
+  --wide-md: 768px;
+  --wide-ml: 992px;
+  --wide-lg: 1024px;
+  --wide-sl: 1200px;
+  --wide-xl: 1440px;
+  --wide-xxl: 2560px;
+  --wide-xxxl: 3840px;
   /* others */
-  --box-shadow: 0 0 10px rgba(34,36,40,0.25);
+  --box-shadow: 0 0 10px rgba(34, 36, 40, 0.25);
+  --box-shadow-lesser: 0 0 7px rgba(34, 36, 40, 0.15);
+  --box-shadow-greater: 0 0 15px rgba(34, 36, 40, 0.35);
 }
