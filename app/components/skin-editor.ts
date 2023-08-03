@@ -276,7 +276,13 @@ export class AppSkinEditorComponent extends TiniComponent {
           result[1].items.push(def);
         }
       } else if (key.startsWith('--gradient-')) {
-        result[2].items.push(def);
+        if (
+          !~key.indexOf('-contrast') &&
+          !~key.indexOf('-shade') &&
+          !~key.indexOf('-tint')
+        ) {
+          result[2].items.push(def);
+        }
       } else if (key.startsWith('--size-')) {
         result[3].items.push(def);
       } else if (key.startsWith('--wide-')) {

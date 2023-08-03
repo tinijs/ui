@@ -9,6 +9,7 @@ export const enum Colors {
   'Light' = 'light',
   'Medium' = 'medium',
   'Dark' = 'dark',
+  'GradientDynamic' = 'gradient-dynamic',
   'GradientPrimary' = 'gradient-primary',
   'GradientSecondary' = 'gradient-secondary',
   'GradientTertiary' = 'gradient-tertiary',
@@ -21,10 +22,16 @@ export const enum Colors {
 }
 
 export const enum Sizes {
+  'XXXS' = 'xxxs',
+  'XXS' = 'xxs',
   'XS' = 'xs',
   'SM' = 'sm',
+  'MS' = 'ms',
   'MD' = 'md',
+  'ML' = 'ml',
   'LG' = 'lg',
+  'SL' = 'sl',
   'XL' = 'xl',
   'XXL' = 'xxl',
+  'XXXL' = 'xxxl',
 }

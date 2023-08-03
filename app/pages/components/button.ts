@@ -128,6 +128,7 @@ export class AppPageComponentsButton extends TiniComponent {
         <app-section class="gradients" .codeBuilders=${this.CODE_BUILDERS}>
           <div slot="content"><h2>Gradients</h2></div>
           <div slot="code">
+            <tini-button color="gradient-dynamic">Gradient Dynamic</tini-button>
             <tini-button color="gradient-primary">Gradient Primary</tini-button>
             <tini-button color="gradient-secondary"
               >Gradient Secondary</tini-button
@@ -147,12 +148,18 @@ export class AppPageComponentsButton extends TiniComponent {
         <app-section class="sizes" .codeBuilders=${this.CODE_BUILDERS}>
           <div slot="content"><h2>Sizes</h2></div>
           <div slot="code">
+            <tini-button size="xxxs" color="primary">XXXS</tini-button>
+            <tini-button size="xxs" color="primary">XXS</tini-button>
             <tini-button size="xs" color="primary">XS</tini-button>
             <tini-button size="sm" color="primary">SM</tini-button>
+            <tini-button size="ms" color="primary">MS</tini-button>
             <tini-button size="md" color="primary">MD</tini-button>
+            <tini-button size="ml" color="primary">ML</tini-button>
             <tini-button size="lg" color="primary">LG</tini-button>
+            <tini-button size="sl" color="primary">SL</tini-button>
             <tini-button size="xl" color="primary">XL</tini-button>
             <tini-button size="xxl" color="primary">XXL</tini-button>
+            <tini-button size="xxxl" color="primary">XXXL</tini-button>
           </div>
         </app-section>
       </app-page>

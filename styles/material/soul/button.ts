@@ -11,7 +11,7 @@ export const buttonStyle = css`
     --button-padding: calc(var(--size-md) * 0.75) /* Base padding */;
     --button-font-size: var(--size-md);
     --button-hover-background: var(--color-foreground-shade);
-    --button-ripple-color: rgba(var(--color-background-rgb), 0.3) /* [MINOR] */;
+    --button-ripple-color: rgba(var(--color-background-rgb), 0.3) /* [B] Ripple effect color */;
   }
 
   *,
