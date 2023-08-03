@@ -38,16 +38,23 @@ import {APP_SECTION, AppSectionComponent} from '../../components/section';
 })
 export class AppPageComponentsButton extends TiniComponent {
   static styles = css`
+    .default [slot='code'] tini-button,
+    .dynamic [slot='code'] tini-button {
+      width: 150px;
+    }
+
     .colors [slot='code'],
     .disabled-colors [slot='code'],
     .gradients [slot='code'] {
       display: flex;
       align-items: center;
+      gap: 1rem;
     }
 
     .sizes [slot='code'] {
       display: flex;
       align-items: flex-end;
+      gap: 1rem;
     }
   `;
 

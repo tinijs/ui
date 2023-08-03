@@ -12,15 +12,21 @@ import {
   createRef,
   classMap,
   styleMap,
+  stylingWithBaseStyles,
 } from '@tinijs/core';
 // @ts-ignore
 import * as Grapick from 'grapick';
+import {commonStyles} from '../../dev/styles';
 
 import {parseGradient} from '../helpers/gradient';
 
 export const APP_GRADIENT_PICKER = 'app-gradient-picker';
 
-@Component()
+@Component({
+  theming: {
+    styling: stylingWithBaseStyles([commonStyles]),
+  },
+})
 export class AppGradientPickerComponent extends TiniComponent {
   static styles = css`
     /*
@@ -79,6 +85,7 @@ export class AppGradientPickerComponent extends TiniComponent {
       display: block;
     }
     .grp-handler-cp-wrap {
+      box-sizing: content-box;
       width: 15px;
       height: 15px;
       margin-left: -8px;
@@ -97,13 +104,18 @@ export class AppGradientPickerComponent extends TiniComponent {
      * Main
      */
 
-    .host {
+    :host {
+      display: inline;
       position: relative;
     }
 
     .toggler {
+      cursor: pointer;
       width: 50px;
-      height: 25px;
+      height: 27px;
+      outline: var(--size-border) solid var(--color-medium);
+      border: 4px solid #ffffff;
+      border-radius: var(--size-radius);
     }
 
     .picker-container {
@@ -111,28 +123,38 @@ export class AppGradientPickerComponent extends TiniComponent {
       display: none;
       position: absolute;
       top: 30px;
-      left: 0;
-      background: var(--color-foreground-tint);
+      right: 0;
+      background: var(--color-dark-tint);
       width: 230px;
-      height: 150px;
-      border: 1px solid var(--color-background-tint);
+      height: 155px;
+      border: 1px solid var(--color-light-tint);
       border-radius: var(--size-border);
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
       z-index: 101;
-    }
 
-    .picker-container.showed {
-      display: block;
-    }
+      &.showed {
+        display: block;
+      }
 
-    .picker-container .grapick {
-      padding: 2rem 1.5rem;
-    }
+      .grapick {
+        padding: 2rem 1.5rem;
+      }
 
-    .picker-container .options {
-      display: flex;
-      padding: 1rem;
-      background: var(--color-background-tint);
+      .options {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 1rem;
+        background: var(--color-background-tint);
+
+        select {
+          max-width: calc(50% - 0.5rem);
+          background: var(--color-background-tint);
+          border: var(--size-border) solid var(--color-medium);
+          border-radius: var(--size-radius);
+          padding: calc(var(--size-space) * 0.25) calc(var(--size-space) * 0.5);
+        }
+      }
     }
   `;
 
@@ -214,40 +236,38 @@ export class AppGradientPickerComponent extends TiniComponent {
 
   protected render() {
     return html`
-      <div class="host">
-        <button
-          ${ref(this.togglerRef)}
-          class="toggler"
-          @click=${() => (this.showed = !this.showed)}
-          style=${styleMap({background: this.value})}
-        ></button>
-        <div
-          ${ref(this.containerRef)}
-          class=${classMap({'picker-container': true, showed: this.showed})}
-        >
-          <div class="grapick">
-            <div ${ref(this.grapickRef)}></div>
-          </div>
-          <div class="options">
-            <select ${ref(this.typeSelectRef)} @change=${this.changeType}>
-              <optgroup label="Type">
-                <option value="linear">Linear</option>
-                <option value="radial">Radial</option>
-              </optgroup>
-            </select>
-            <select
-              ${ref(this.directionSelectRef)}
-              @change=${this.changeDirection}
-            >
-              <optgroup label="Direction">
-                <option value="top">Top</option>
-                <option value="right">Right</option>
-                <option value="center">Center</option>
-                <option value="bottom">Bottom</option>
-                <option value="left">Left</option>
-              </optgroup>
-            </select>
-          </div>
+      <button
+        ${ref(this.togglerRef)}
+        class="toggler"
+        @click=${() => (this.showed = !this.showed)}
+        style=${styleMap({background: this.value})}
+      ></button>
+      <div
+        ${ref(this.containerRef)}
+        class=${classMap({'picker-container': true, showed: this.showed})}
+      >
+        <div class="grapick">
+          <div ${ref(this.grapickRef)}></div>
+        </div>
+        <div class="options">
+          <select ${ref(this.typeSelectRef)} @change=${this.changeType}>
+            <optgroup label="Type">
+              <option value="linear">Linear</option>
+              <option value="radial">Radial</option>
+            </optgroup>
+          </select>
+          <select
+            ${ref(this.directionSelectRef)}
+            @change=${this.changeDirection}
+          >
+            <optgroup label="Direction">
+              <option value="top">Top</option>
+              <option value="right">Right</option>
+              <option value="center">Center</option>
+              <option value="bottom">Bottom</option>
+              <option value="left">Left</option>
+            </optgroup>
+          </select>
         </div>
       </div>
     `;

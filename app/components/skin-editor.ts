@@ -14,12 +14,9 @@ import {
   render,
   nothing,
 } from '@tinijs/core';
-import {
-  ICON_ARROW_CLOCKWISE,
-  IconArrowClockwiseComponent,
-} from '@tinijs/bootstrap-icons/arrow-clockwise';
 import {ICON_CODE, IconCodeComponent} from '@tinijs/bootstrap-icons/code';
 import {commonStyles, codeStyles} from '../../dev/styles';
+import {TINI_BUTTON, TiniButtonComponent} from '../../dev/button';
 
 import {APP_CODE, AppCodeComponent} from './code';
 import {APP_MODAL, AppModalComponent} from './modal';
@@ -44,8 +41,8 @@ export const APP_SKIN_EDITOR = 'app-skin-editor';
 
 @Component({
   components: {
-    [ICON_ARROW_CLOCKWISE]: IconArrowClockwiseComponent,
     [ICON_CODE]: IconCodeComponent,
+    [TINI_BUTTON]: TiniButtonComponent,
     [APP_CODE]: AppCodeComponent,
     [APP_MODAL]: AppModalComponent,
     [APP_GRADIENT_PICKER]: AppGradientPickerComponent,
@@ -65,20 +62,45 @@ export class AppSkinEditorComponent extends TiniComponent {
     .head {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       height: var(--head-height);
       padding: calc(var(--size-space) * 0.75);
       border-bottom: var(--size-border) solid var(--color-background-shade);
-    }
 
-    .head button {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--color-background);
-      border: none;
-      font-size: var(--size-text);
+      .title {
+        flex: 1;
+      }
+
+      .reset {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: calc(var(--size-space) * 0.35) calc(var(--size-space) * 0.75);
+        margin-right: calc(var(--size-space) * 2);
+        background: var(--color-background);
+        color: var(--color-foreground);
+        border: var(--size-border) solid var(--color-foreground);
+        border-radius: var(--size-radius);
+        font-size: calc(var(--size-text) * 0.9);
+        line-height: 1;
+
+        &:hover {
+          background: var(--color-background-shade);
+        }
+      }
+
+      .close {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--color-background);
+        border: none;
+        opacity: 0.5;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
 
     .body {
@@ -86,28 +108,127 @@ export class AppSkinEditorComponent extends TiniComponent {
       height: calc(100% - var(--head-height) - var(--foot-height));
       overflow-x: hidden;
       overflow-y: scroll;
-    }
 
-    section > strong {
-      display: block;
-      padding: calc(var(--size-space) * 0.5);
-      border: var(--size-border) solid var(--color-background-shade);
-      border-left: none;
-      border-right: none;
-      text-align: center;
-    }
+      section {
+        & > strong {
+          display: block;
+          padding: calc(var(--size-space) * 0.5);
+          border: var(--size-border) solid var(--color-background-shade);
+          border-left: none;
+          border-right: none;
+          text-align: center;
+        }
 
-    section .content {
-      padding: calc(var(--size-space) * 0.5);
+        .content {
+          padding: calc(var(--size-space) * 0.5);
+        }
+      }
+
+      .naming {
+        padding: calc(var(--size-space) * 0.5);
+        padding-bottom: 0;
+
+        label {
+          display: block;
+          margin-bottom: var(--size-space);
+
+          span {
+            color: var(--color-medium);
+          }
+
+          input,
+          select {
+            width: 100%;
+            margin-top: calc(var(--size-space) * 0.25);
+            background: var(--color-background-tint);
+            border: var(--size-border) solid var(--color-medium);
+            border-radius: var(--size-radius);
+            padding: calc(var(--size-space) * 0.25)
+              calc(var(--size-space) * 0.5);
+          }
+        }
+      }
+
+      .properties {
+        .group {
+          padding: calc(var(--size-space) * 0.5);
+          margin-bottom: var(--size-space);
+
+          .group-title {
+            color: var(--color-medium);
+            text-transform: uppercase;
+          }
+
+          ul {
+            list-style: none;
+            padding: 0;
+            margin: var(--size-space) 0 0;
+
+            li {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-left: var(--size-space);
+              margin-right: calc(var(--size-space) * 0.5);
+              margin-bottom: calc(var(--size-space) * 0.5);
+              padding: calc(var(--size-space) * 0.25) 0
+                calc(var(--size-space) * 0.75);
+              border-bottom: var(--size-border) solid
+                var(--color-background-shade);
+
+              .value {
+                input,
+                select {
+                  background: var(--color-background-tint);
+                  border: var(--size-border) solid var(--color-medium);
+                  border-radius: var(--size-radius);
+                  padding: calc(var(--size-space) * 0.25)
+                    calc(var(--size-space) * 0.5);
+                }
+
+                input {
+                  max-width: 100px;
+                }
+
+                select {
+                  max-width: 150px;
+                }
+
+                input[type='color'] {
+                  padding: 0 2px;
+                }
+
+                select,
+                input[type='color'] {
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+      }
     }
 
     .foot {
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       width: 100%;
       height: var(--foot-height);
       position: absolute;
       bottom: 0;
       left: 0;
       border-top: var(--size-border) solid var(--color-background-shade);
+      padding: calc(var(--size-space) * 0.5);
+
+      .show-code {
+        width: 100%;
+
+        span {
+          margin-left: calc(var(--size-space) * 0.5);
+        }
+      }
     }
 
     .modal-body {
@@ -179,13 +300,12 @@ export class AppSkinEditorComponent extends TiniComponent {
     );
   }
 
-  private async changeTheme(e: InputEvent) {
+  private async changeSoul(e: InputEvent) {
     const soul = SOULS.find(
       soul => soul.id === (e.target as HTMLSelectElement).value
     );
     if (soul) {
       document.body.style.cssText = '';
-      mainStore.commit('soulName', soul.id);
       changeTheme({soul: soul.id, skin: soul.skins[0].id});
       await this.fetchSkinVariables();
       this.resetSkin();
@@ -234,12 +354,14 @@ export class AppSkinEditorComponent extends TiniComponent {
               <p>Include Google Font stylesheet globally:</p>
               <app-code .code=${googleFontCode}></app-code>
             `}
-        <p>Copy the code below and save as <code>${skinName}.css</code>.</p>
+        <p>
+          Copy the code below and save as <code>${skinName}.css</code>. You can
+          edit the values further if you wish.
+        </p>
         <p>
           To make it the default theme, set the body:
           <code>&lt;body data-theme=&quot;${themeId}&quot;&gt;</code>
         </p>
-        <p>You can also edit the values further if you wish.</p>
         <app-code .code=${skinCode}></app-code>
       `,
       this.modalContentRef.value!
@@ -307,8 +429,14 @@ export class AppSkinEditorComponent extends TiniComponent {
   protected render() {
     return html`
       <div class="head">
-        <strong>Skin Editor</strong>
-        <button @click=${() => mainStore.commit('skinEditorShown', false)}>
+        <strong class="title">Skin Editor</strong>
+        <button class="reset" @click=${this.resetSkinWithConfirmation}>
+          Reset
+        </button>
+        <button
+          class="close"
+          @click=${() => mainStore.commit('skinEditorShown', false)}
+        >
           ✕
         </button>
       </div>
@@ -318,7 +446,7 @@ export class AppSkinEditorComponent extends TiniComponent {
           <div class="content">
             <label>
               <span>Custom skin for soul:</span>
-              <select @change=${this.changeTheme}>
+              <select @change=${this.changeSoul}>
                 ${SOULS.map(
                   soul => html`<option value=${soul.id}>${soul.name}</option>`
                 )}
@@ -343,8 +471,8 @@ export class AppSkinEditorComponent extends TiniComponent {
               this.groupedSkinVariables,
               item => item.name,
               group => html`
-                <li>
-                  <strong>${group.name}</strong>
+                <li class="group">
+                  <strong class="group-title">${group.name}</strong>
                   <ul>
                     ${repeat(
                       group.items,
@@ -352,10 +480,7 @@ export class AppSkinEditorComponent extends TiniComponent {
                       item => {
                         return html`
                           <li>
-                            <div class="key">
-                              <em>${item.title}</em>
-                              <span>${item.key}</span>
-                            </div>
+                            <div class="key">${item.title}</div>
                             <div class="value">
                               ${group.name === 'Fonts'
                                 ? html`
@@ -432,17 +557,10 @@ export class AppSkinEditorComponent extends TiniComponent {
       </div>
 
       <div class="foot">
-        <button @click=${this.resetSkinWithConfirmation}>
-          <icon-arrow-clockwise
-            color="dynamic"
-            size="sm"
-          ></icon-arrow-clockwise>
-          <span>Reset</span>
-        </button>
-        <button @click=${this.showModal}>
-          <icon-code color="dynamic"></icon-code>
+        <tini-button class="show-code" color="primary" @click=${this.showModal}>
+          <icon-code color="light" size="sm"></icon-code>
           <span>Show code</span>
-        </button>
+        </tini-button>
       </div>
 
       <app-modal

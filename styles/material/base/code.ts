@@ -5,10 +5,18 @@ export default css`
   code,
   kbd,
   samp {
-    font-family: var(--font-code);
-    font-size: 1em;
+    font-family: var(--font-code) !important;
+    font-size: 0.9rem !important;
     direction: ltr /* rtl:ignore */;
     unicode-bidi: bidi-override;
+  }
+
+  pre *,
+  code *,
+  kbd *,
+  samp * {
+    font-family: var(--font-code) !important;
+    font-size: 0.9rem !important;
   }
 
   pre {

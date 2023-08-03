@@ -1,7 +1,6 @@
 import {
   Page,
   TiniComponent,
-  changeTheme,
   html,
   css,
   stylingWithBaseStyles,
@@ -12,16 +11,9 @@ import {
   linkStyles,
   textStyles,
 } from '../../dev/styles';
-import {TINI_BUTTON, TiniButtonComponent} from '../../dev/button';
-
-import {APP_TEST, AppTestComponent} from '../components/test-theming';
 
 @Page({
   name: 'app-page-get-started',
-  components: {
-    [TINI_BUTTON]: TiniButtonComponent,
-    [APP_TEST]: AppTestComponent,
-  },
   theming: {
     styling: stylingWithBaseStyles([
       commonStyles,
@@ -32,42 +24,9 @@ import {APP_TEST, AppTestComponent} from '../components/test-theming';
   },
 })
 export class AppPageGetStarted extends TiniComponent {
-  static styles = css`
-    tini-button {
-      margin-top: 1rem;
-    }
-  `;
-
-  private switchTheme(data: any) {
-    changeTheme(data);
-  }
+  static styles = css``;
 
   protected render() {
-    return html`
-      <h1>Get started</h1>
-      <p>...</p>
-
-      <tini-button
-        @click=${() => this.switchTheme({soul: 'bootstrap', skin: 'light'})}
-        >Bootstrap (light)</tini-button
-      >
-      <tini-button
-        @click=${() => this.switchTheme({soul: 'bootstrap', skin: 'dark'})}
-        >Bootstrap (dark)</tini-button
-      >
-
-      <tini-button
-        @click=${() => this.switchTheme({soul: 'material', skin: 'light'})}
-        size="xxl"
-        >Material (light)</tini-button
-      >
-      <tini-button
-        @click=${() => this.switchTheme({soul: 'material', skin: 'dark'})}
-        size="xxl"
-        >Material (dark)</tini-button
-      >
-
-      <app-test></app-test>
-    `;
+    return html`<h1>Get started</h1>`;
   }
 }

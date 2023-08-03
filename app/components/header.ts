@@ -9,6 +9,7 @@ import {
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
 import {commonStyles, linkStyles} from '../../dev/styles';
+import {ICON_GITHUB, IconGithubComponent} from '@tinijs/bootstrap-icons/github';
 import {
   ICON_PALETTE,
   IconPaletteComponent,
@@ -22,6 +23,7 @@ import {mainStore} from '../stores/main';
 export const APP_HEADER = 'app-header';
 @Component({
   components: {
+    [ICON_GITHUB]: IconGithubComponent,
     [ICON_PALETTE]: IconPaletteComponent,
     [APP_SKIN_EDITOR]: AppSkinEditorComponent,
   },
@@ -52,6 +54,7 @@ export class AppHeaderComponent extends TiniComponent {
       align-items: center;
       color: var(--color-light);
       text-decoration: none;
+      font-family: var(--font-head);
     }
 
     .brand a img {
@@ -64,20 +67,36 @@ export class AppHeaderComponent extends TiniComponent {
       font-size: 1.25rem;
     }
 
-    .menu a {
-      color: var(--color-light);
-      text-decoration: none;
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: calc(var(--size-space) * 1.5);
     }
 
-    .menu a:hover {
-      text-decoration: underline;
+    .menu > * {
+      color: var(--color-light);
+      text-decoration: none;
+      background: none;
+      padding: calc(var(--size-space) / 2);
+      border-radius: var(--size-radius);
+    }
+
+    .menu > *:hover {
+      background: var(--color-primary-shade);
     }
 
     .skin-editor-toggler {
+      display: flex;
+      align-items: center;
       cursor: pointer;
       background: none;
       border: none;
       color: var(--color-primary-contrast);
+      font-size: 1rem;
+
+      span {
+        margin-left: calc(var(--size-space) / 2);
+      }
     }
 
     .skin-editor-container {
@@ -90,7 +109,7 @@ export class AppHeaderComponent extends TiniComponent {
       height: calc(100vh - var(--header-height));
       height: calc(100dvh - var(--header-height));
       background: var(--color-background);
-      border-left: var(--size-border) solid var(--color-background-shade);
+      border: var(--size-border) solid var(--color-background-shade);
       box-shadow: var(--box-shadow);
     }
 
@@ -119,10 +138,12 @@ export class AppHeaderComponent extends TiniComponent {
         </div>
         <div class="menu">
           <button class="skin-editor-toggler" @click=${this.toggleSkinEditor}>
-            <icon-palette color="light"></icon-palette>
+            <icon-palette color="light" size="sm"></icon-palette>
             <span>Skin Editor</span>
           </button>
-          <a href=${GITHUB_REPO_URL} target="_blank">Source code</a>
+          <a href=${GITHUB_REPO_URL} target="_blank">
+            <icon-github color="light" size="sm"></icon-github>
+          </a>
         </div>
       </header>
 

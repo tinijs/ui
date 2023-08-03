@@ -33,18 +33,22 @@ export class AppTabsComponent extends TiniComponent {
 
     .tablink {
       cursor: pointer;
-      font-family: var(--font-body);
       display: inline-block;
       border: var(--size-border) solid var(--color-medium-tint);
       border-radius: var(--size-radius) var(--size-radius) 0 0;
       padding: 0.5rem 1rem;
       background-color: var(--color-background-shade);
+
+      &.active {
+        background-color: var(--color-background);
+        border-bottom-color: var(--color-background);
+      }
+
+      strong {
+        font-size: 0.9rem;
+      }
     }
 
-    .tablink.active {
-      background-color: var(--color-background);
-      border-bottom-color: var(--color-background);
-    }
 
     .body {
       border: var(--size-border) solid var(--color-medium-tint);

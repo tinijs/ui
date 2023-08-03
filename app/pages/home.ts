@@ -29,14 +29,17 @@ export class AppPageHome extends TiniComponent {
 
       <h2>Components</h2>
       <p>
-        Tini UI components are web components. Please see detail page of each
+        Tini UI components are web custom elements, each component is built with
+        rich functionality and accessibility. Please see detail page of each
         component for detail usage.
       </p>
 
       <h2>Styles</h2>
       <p>
-        Tini UI supports many interface flavors: Bootstrap, Material, Fluent,
-        ... and more to come.
+        Tini UI supports many interface flavors (aka. souls): Bootstrap, ... and
+        more to come (Material, iOS, Fluent, Ant, Spectrum, Shoelace, PrimeNG,
+        Element Plus, ...). Each soul can be used with one or multiple skins.
+        You can create your own skin using the <strong>Skin Editor</strong>.
       </p>
 
       <h2>Icons</h2>

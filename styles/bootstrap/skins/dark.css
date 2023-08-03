@@ -101,5 +101,5 @@
   --gradient-medium: linear-gradient(180deg, #9d9fa6 0%, #808289 100%);
   --gradient-light: linear-gradient(180deg, #ffffff 0%, #d7d8da 100%);
   /* others */
-  --box-shadow: 0 0 0 0 rgba(244,245,248,0.25);
+  --box-shadow: 0 0 0 #00000000;
 }

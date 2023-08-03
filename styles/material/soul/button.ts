@@ -9,9 +9,16 @@ export const buttonStyle = css`
     --button-color-disabled: rgba(var(--color-medium-contrast-rgb), 0.5);
     --button-radius: var(--size-radius);
     --button-padding: calc(var(--size-md) * 0.75) /* Base padding */;
-    --button-font-size: calc(var(--size-md) * 1);
+    --button-font-size: var(--size-md);
     --button-hover-background: var(--color-foreground-shade);
     --button-ripple-color: rgba(var(--color-background-rgb), 0.3) /* [MINOR] */;
+  }
+
+  *,
+  *::before,
+  *::after,
+  :host {
+    font-size: inherit;
   }
 
   button {
@@ -19,31 +26,24 @@ export const buttonStyle = css`
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
     cursor: pointer;
     outline: none;
     border: none;
-    -webkit-tap-highlight-color: transparent;
-    display: inline-block;
     white-space: nowrap;
     text-decoration: none;
     vertical-align: baseline;
     text-align: center;
     margin: 0;
-    min-width: 64px;
+    width: 100%;
     border-radius: var(--button-radius);
-    box-shadow: 0 3px 1px -2px rgba(var(--button-color), 0.2),
-      0 2px 2px 0 rgba(var(--button-color), 0.14),
-      0 1px 5px 0 rgba(var(--button-color), 0.12);
+    box-shadow: var(--box-shadow);
     position: relative;
     overflow: hidden;
     background: var(--button-background);
     color: var(--button-color);
     padding: calc(var(--button-padding) / 2) var(--button-padding);
     font-family: var(--font-body);
+    font-size: var(--button-font-size);
   }
 
   button:active,
