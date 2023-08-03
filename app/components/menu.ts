@@ -4,16 +4,16 @@ import {
   html,
   css,
   nothing,
-  stylingWithBaseStyles,
+  stylingWithBases,
 } from '@tinijs/core';
 import {Route} from '@tinijs/router';
 import {
-  commonStyles,
-  headingsStyles,
-  linkStyles,
-  textStyles,
-} from '../../dev/styles';
-import {TINI_LINK, TiniLinkComponent} from '../../dev/link';
+  commonBases,
+  headingsBases,
+  linkBases,
+  textBases,
+} from '../../dev/bases';
+import {TINI_LINK, TiniLinkComponent} from '../../dev/components/link';
 
 import routes from '../routes';
 
@@ -23,11 +23,11 @@ export const APP_MENU = 'app-menu';
     [TINI_LINK]: TiniLinkComponent,
   },
   theming: {
-    styling: stylingWithBaseStyles([
-      commonStyles,
-      headingsStyles,
-      linkStyles,
-      textStyles,
+    styling: stylingWithBases([
+      commonBases,
+      headingsBases,
+      linkBases,
+      textBases,
     ]),
   },
 })

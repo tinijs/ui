@@ -1,18 +1,12 @@
+import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
 import {
-  Page,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBaseStyles,
-} from '@tinijs/core';
-import {
-  commonStyles,
-  headingsStyles,
-  linkStyles,
-  textStyles,
-  codeStyles,
-} from '../../../dev/styles';
-import {TINI_BUTTON, TiniButtonComponent} from '../../../dev/button';
+  commonBases,
+  headingsBases,
+  linkBases,
+  textBases,
+  codeBases,
+} from '../../../dev/bases';
+import {TINI_BUTTON, TiniButtonComponent} from '../../../dev/components/button';
 
 import {ConsumerPlatforms} from '../../consts/main';
 
@@ -27,12 +21,12 @@ import {APP_SECTION, AppSectionComponent} from '../../components/section';
     [APP_SECTION]: AppSectionComponent,
   },
   theming: {
-    styling: stylingWithBaseStyles([
-      commonStyles,
-      headingsStyles,
-      linkStyles,
-      textStyles,
-      codeStyles,
+    styling: stylingWithBases([
+      commonBases,
+      headingsBases,
+      linkBases,
+      textBases,
+      codeBases,
     ]),
   },
 })

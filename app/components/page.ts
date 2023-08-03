@@ -8,17 +8,17 @@ import {
   nothing,
   cache,
   classMap,
-  stylingWithBaseStyles,
+  stylingWithBases,
   repeat,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
 import {
-  commonStyles,
-  headingsStyles,
-  linkStyles,
-  textStyles,
-  codeStyles,
-} from '../../dev/styles';
+  commonBases,
+  headingsBases,
+  linkBases,
+  textBases,
+  codeBases,
+} from '../../dev/bases';
 
 import {
   LIB_VERSION,
@@ -58,12 +58,12 @@ export const APP_PAGE = 'app-page';
     [APP_CODE]: AppCodeComponent,
   },
   theming: {
-    styling: stylingWithBaseStyles([
-      codeStyles,
-      headingsStyles,
-      linkStyles,
-      textStyles,
-      commonStyles,
+    styling: stylingWithBases([
+      codeBases,
+      headingsBases,
+      linkBases,
+      textBases,
+      commonBases,
     ]),
   },
 })

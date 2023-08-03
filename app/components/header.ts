@@ -5,10 +5,10 @@ import {
   html,
   css,
   classMap,
-  stylingWithBaseStyles,
+  stylingWithBases,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
-import {commonStyles, linkStyles} from '../../dev/styles';
+import {commonBases, linkBases} from '../../dev/bases';
 import {ICON_GITHUB, IconGithubComponent} from '@tinijs/bootstrap-icons/github';
 import {
   ICON_PALETTE,
@@ -28,7 +28,7 @@ export const APP_HEADER = 'app-header';
     [APP_SKIN_EDITOR]: AppSkinEditorComponent,
   },
   theming: {
-    styling: stylingWithBaseStyles([commonStyles, linkStyles]),
+    styling: stylingWithBases([commonBases, linkBases]),
   },
 })
 export class AppHeaderComponent extends TiniComponent {

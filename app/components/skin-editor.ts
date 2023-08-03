@@ -4,7 +4,7 @@ import {
   Reactive,
   html,
   css,
-  stylingWithBaseStyles,
+  stylingWithBases,
   changeTheme,
   repeat,
   QueryAll,
@@ -15,8 +15,8 @@ import {
   nothing,
 } from '@tinijs/core';
 import {ICON_CODE, IconCodeComponent} from '@tinijs/bootstrap-icons/code';
-import {commonStyles, codeStyles} from '../../dev/styles';
-import {TINI_BUTTON, TiniButtonComponent} from '../../dev/button';
+import {commonBases, codeBases} from '../../dev/bases';
+import {TINI_BUTTON, TiniButtonComponent} from '../../dev/components/button';
 
 import {APP_CODE, AppCodeComponent} from './code';
 import {APP_MODAL, AppModalComponent} from './modal';
@@ -48,7 +48,7 @@ export const APP_SKIN_EDITOR = 'app-skin-editor';
     [APP_GRADIENT_PICKER]: AppGradientPickerComponent,
   },
   theming: {
-    styling: stylingWithBaseStyles([commonStyles, codeStyles]),
+    styling: stylingWithBases([commonBases, codeBases]),
   },
 })
 export class AppSkinEditorComponent extends TiniComponent {

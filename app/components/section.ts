@@ -9,7 +9,7 @@ import {
   repeat,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
-import {commonStyles} from '../../dev/styles';
+import {commonBases} from '../../dev/bases';
 
 import {ConsumerPlatforms} from '../consts/main';
 import {mainStore} from '../stores/main';
@@ -27,8 +27,8 @@ export const APP_SECTION = 'app-section';
   },
   theming: {
     styling: {
-      bootstrap: [commonStyles.bootstrap],
-      material: [commonStyles.material],
+      bootstrap: [commonBases.bootstrap],
+      material: [commonBases.material],
     },
   },
 })

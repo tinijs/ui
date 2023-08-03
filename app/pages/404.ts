@@ -1,17 +1,6 @@
-import {
-  Page,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBaseStyles,
-} from '@tinijs/core';
-import {
-  codeStyles,
-  headingsStyles,
-  linkStyles,
-  textStyles,
-} from '../../dev/styles';
-import {TINI_LINK, TiniLinkComponent} from '../../dev/link';
+import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
+import {codeBases, headingsBases, linkBases, textBases} from '../../dev/bases';
+import {TINI_LINK, TiniLinkComponent} from '../../dev/components/link';
 
 @Page({
   name: 'app-page-404',
@@ -19,12 +8,7 @@ import {TINI_LINK, TiniLinkComponent} from '../../dev/link';
     [TINI_LINK]: TiniLinkComponent,
   },
   theming: {
-    styling: stylingWithBaseStyles([
-      codeStyles,
-      headingsStyles,
-      linkStyles,
-      textStyles,
-    ]),
+    styling: stylingWithBases([codeBases, headingsBases, linkBases, textBases]),
   },
 })
 export class AppPage404 extends TiniComponent {

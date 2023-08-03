@@ -8,7 +8,7 @@ import {
   css,
   nothing,
 } from '@tinijs/core';
-import {commonStyles} from '../../dev/styles';
+import {commonBases} from '../../dev/bases';
 
 export interface TabItem {
   name: string;
@@ -20,8 +20,8 @@ export const APP_TABS = 'app-tabs';
 @Component({
   theming: {
     styling: {
-      bootstrap: [commonStyles.bootstrap],
-      material: [commonStyles.material],
+      bootstrap: [commonBases.bootstrap],
+      material: [commonBases.material],
     },
   },
 })
@@ -48,7 +48,6 @@ export class AppTabsComponent extends TiniComponent {
         font-size: 0.9rem;
       }
     }
-
 
     .body {
       border: var(--size-border) solid var(--color-medium-tint);

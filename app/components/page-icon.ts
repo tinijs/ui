@@ -9,15 +9,15 @@ import {
   ref,
   createRef,
   Ref,
-  stylingWithBaseStyles,
+  stylingWithBases,
 } from '@tinijs/core';
 import {
-  commonStyles,
-  headingsStyles,
-  linkStyles,
-  textStyles,
-  codeStyles,
-} from '../../dev/styles';
+  commonBases,
+  headingsBases,
+  linkBases,
+  textBases,
+  codeBases,
+} from '../../dev/bases';
 
 import {GITHUB_ICONS_REPO_URL} from '../consts/main';
 import {get} from '../helpers/http';
@@ -36,12 +36,12 @@ export const APP_PAGE_ICON = 'app-page-icon';
     [APP_PAGE_ICON_MODAL]: AppPageIconModalComponent,
   },
   theming: {
-    styling: stylingWithBaseStyles([
-      commonStyles,
-      headingsStyles,
-      linkStyles,
-      textStyles,
-      codeStyles,
+    styling: stylingWithBases([
+      commonBases,
+      headingsBases,
+      linkBases,
+      textBases,
+      codeBases,
     ]),
   },
 })

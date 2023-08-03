@@ -8,16 +8,16 @@ import {
   ref,
   createRef,
   Ref,
-  stylingWithBaseStyles,
+  stylingWithBases,
 } from '@tinijs/core';
 import {
-  commonStyles,
-  headingsStyles,
-  linkStyles,
-  textStyles,
-  codeStyles,
-} from '../../dev/styles';
-import {TINI_ICON, TiniIconComponent} from '../../dev/icon';
+  commonBases,
+  headingsBases,
+  linkBases,
+  textBases,
+  codeBases,
+} from '../../dev/bases';
+import {TINI_ICON, TiniIconComponent} from '../../dev/components/icon';
 
 import {IconsImportMethods} from '../consts/main';
 import {mainStore} from '../stores/main';
@@ -39,12 +39,12 @@ export const APP_PAGE_ICON_MODAL = 'app-page-icon-modal';
     [APP_MODAL]: AppModalComponent,
   },
   theming: {
-    styling: stylingWithBaseStyles([
-      commonStyles,
-      headingsStyles,
-      linkStyles,
-      textStyles,
-      codeStyles,
+    styling: stylingWithBases([
+      commonBases,
+      headingsBases,
+      linkBases,
+      textBases,
+      codeBases,
     ]),
   },
 })
@@ -91,7 +91,7 @@ export class AppPageIconModalComponent extends TiniComponent {
   @Input({type: Object}) declare iconDef?: IconDef;
 
   private modalRef: Ref<AppModalComponent> = createRef();
-  private contentValues: Record<string, unknown> = {};
+  private contentValues: Record<string, string> = {};
 
   private extractContentValues(def: IconDef) {
     const [fileName, base64Content] = def;
@@ -189,7 +189,7 @@ containerEl.innerHTML = ${nameVar}Code;
 
   onChanges() {
     this.contentValues = !this.iconDef
-      ? {}
+      ? ({} as any)
       : this.extractContentValues(this.iconDef);
   }
 

@@ -1,6 +1,6 @@
 import {Layout, TiniComponent, html, css} from '@tinijs/core';
 
-import {commonStyles} from '../../dev/styles';
+import {commonBases} from '../../dev/bases';
 
 import {APP_HEADER, AppHeaderComponent} from '../components/header';
 import {APP_MENU, AppMenuComponent} from '../components/menu';
@@ -13,8 +13,8 @@ import {APP_MENU, AppMenuComponent} from '../components/menu';
   },
   theming: {
     styling: {
-      bootstrap: [commonStyles.bootstrap],
-      material: [commonStyles.material],
+      bootstrap: [commonBases.bootstrap],
+      material: [commonBases.material],
     },
   },
 })

@@ -1,25 +1,19 @@
+import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
 import {
-  Page,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBaseStyles,
-} from '@tinijs/core';
-import {
-  commonStyles,
-  headingsStyles,
-  linkStyles,
-  textStyles,
-} from '../../../dev/styles';
+  commonBases,
+  headingsBases,
+  linkBases,
+  textBases,
+} from '../../../dev/bases';
 
 @Page({
   name: 'app-page-components-base',
   theming: {
-    styling: stylingWithBaseStyles([
-      commonStyles,
-      headingsStyles,
-      linkStyles,
-      textStyles,
+    styling: stylingWithBases([
+      commonBases,
+      headingsBases,
+      linkBases,
+      textBases,
     ]),
   },
 })

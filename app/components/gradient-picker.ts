@@ -12,11 +12,11 @@ import {
   createRef,
   classMap,
   styleMap,
-  stylingWithBaseStyles,
+  stylingWithBases,
 } from '@tinijs/core';
 // @ts-ignore
 import * as Grapick from 'grapick';
-import {commonStyles} from '../../dev/styles';
+import {commonBases} from '../../dev/bases';
 
 import {parseGradient} from '../helpers/gradient';
 
@@ -24,7 +24,7 @@ export const APP_GRADIENT_PICKER = 'app-gradient-picker';
 
 @Component({
   theming: {
-    styling: stylingWithBaseStyles([commonStyles]),
+    styling: stylingWithBases([commonBases]),
   },
 })
 export class AppGradientPickerComponent extends TiniComponent {
