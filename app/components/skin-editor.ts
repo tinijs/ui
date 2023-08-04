@@ -260,14 +260,14 @@ export class AppSkinEditorComponent extends TiniComponent {
       {name: 'Gradients', items: []},
       {name: 'Sizes', items: []},
       {name: 'Wides', items: []},
-      {name: 'Miscs', items: []},
+      {name: 'Shadows', items: []},
     ] as Array<{name: string; items: VariableDef[]}>;
     // group variables
     for (const item of this.variablesMap) {
       const [key, def] = item;
-      if (key.startsWith('--font-')) {
+      if (key.startsWith('--font')) {
         result[0].items.push(def);
-      } else if (key.startsWith('--color-')) {
+      } else if (key.startsWith('--color')) {
         if (
           !~key.indexOf('-contrast') &&
           !~key.indexOf('-rgb') &&
@@ -276,7 +276,7 @@ export class AppSkinEditorComponent extends TiniComponent {
         ) {
           result[1].items.push(def);
         }
-      } else if (key.startsWith('--gradient-')) {
+      } else if (key.startsWith('--gradient')) {
         if (
           !~key.indexOf('-contrast') &&
           !~key.indexOf('-shade') &&
@@ -284,11 +284,11 @@ export class AppSkinEditorComponent extends TiniComponent {
         ) {
           result[2].items.push(def);
         }
-      } else if (key.startsWith('--size-')) {
+      } else if (key.startsWith('--size')) {
         result[3].items.push(def);
-      } else if (key.startsWith('--wide-')) {
+      } else if (key.startsWith('--wide')) {
         result[4].items.push(def);
-      } else {
+      } else if (key.startsWith('--shadow')) {
         result[5].items.push(def);
       }
     }

@@ -87,6 +87,7 @@
   --size-text: 16px;
   --size-radius: 3px;
   --size-border: 1px;
+  --size-outline: 1px;
   --size-space: 1rem;
   /* size steps */
   --size-xxxs: 2px;
@@ -114,8 +115,8 @@
   --wide-xl: 1440px;
   --wide-xxl: 2560px;
   --wide-xxxl: 3840px;
-  /* others */
-  --box-shadow: 0 0 10px rgba(244, 245, 248, 0.25);
-  --box-shadow-lesser: 0 0 7px rgba(244, 245, 248, 0.15);
-  --box-shadow-greater: 0 0 15px rgba(244, 245, 248, 0.35);
+  /* shadows */
+  --shadow: 0 0 10px rgba(244, 245, 248, 0.25);
+  --shadow-lesser: 0 0 7px rgba(244, 245, 248, 0.15);
+  --shadow-greater: 0 0 15px rgba(244, 245, 248, 0.35);
 }
