@@ -123,18 +123,18 @@
   --size-outline: 1px;
   --size-space: 1rem;
   /* size steps */
-  --size-xxxs: 2px;
-  --size-xxs: 4px;
-  --size-xs: 6px;
-  --size-ss: 8px;
+  --size-xxxs: 3px;
+  --size-xxs: 5px;
+  --size-xs: 7px;
+  --size-ss: 9px;
   --size-sm: 12px;
   --size-md: 15px;
   --size-ml: 18px;
-  --size-lg: 22px;
+  --size-lg: 21px;
   --size-sl: 24px;
-  --size-xl: 26px;
-  --size-xxl: 28px;
-  --size-xxxl: 30px;
+  --size-xl: 27px;
+  --size-xxl: 30px;
+  --size-xxxl: 34px;
   /* wides */
   --wide-xxxs: 150px;
   --wide-xxs: 240px;
@@ -149,7 +149,8 @@
   --wide-xxl: 2560px;
   --wide-xxxl: 3840px;
   /* shadows */
-  --shadow: 0 0 0 #00000000;
-  --shadow-lesser: 0 0 0 #00000000;
-  --shadow-greater: 0 0 0 #00000000;
+  --shadow-box: none;
+  --shadow-lesser: none;
+  --shadow-greater: none;
+  --shadow-text: none;
 }

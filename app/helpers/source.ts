@@ -41,7 +41,7 @@ export async function extractCSSVariables(
       const [category] = description?.match(/\[[a-zA-Z0-9_]+\]/) || [];
       const keyArr = key.split('-').filter(item => item);
       const prefix = keyArr.shift() as string;
-      const title = keyArr
+      const title = !keyArr.length ? '-' : keyArr
         .map(item => item[0].toUpperCase() + item.slice(1))
         .join(' ');
       result[key] = {
