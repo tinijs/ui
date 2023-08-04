@@ -20,7 +20,7 @@ import {
 } from '@tinijs/ui/bases';
 import {TINI_BUTTON, TiniButtonComponent} from '@tinijs/ui/components/button';
 
-import {Colors} from '@tinijs/ui/types';
+import {Colors} from '../tokens';
 
 export const enum ModalKinds {
   Bare = 'bare',

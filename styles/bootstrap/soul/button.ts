@@ -1,5 +1,4 @@
-import {css, unsafeCSS} from 'lit';
-import {Colors, Sizes} from '../types';
+import {css} from 'lit';
 
 export const buttonStyle = css`
   :host {
@@ -69,70 +68,70 @@ export const buttonStyle = css`
     opacity: var(--button-disabled-opacity);
   }
 
-  .${unsafeCSS(Colors.Dynamic)} {
+  .dynamic {
     --button-background: var(--color-foreground);
-    --button-color: var(--color-foreground-contrast);
+    --button-color: var(--color-background);
     --button-hover-background: var(--color-foreground-shade);
     --button-focus-visible-shadow-color: var(--color-foreground-rgba-30);
   }
 
-  .${unsafeCSS(Colors.Primary)} {
+  .primary {
     --button-background: var(--color-primary);
     --button-color: var(--color-primary-contrast);
     --button-hover-background: var(--color-primary-shade);
     --button-focus-visible-shadow-color: var(--color-primary-rgba-30);
   }
 
-  .${unsafeCSS(Colors.Secondary)} {
+  .secondary {
     --button-background: var(--color-secondary);
     --button-color: var(--color-secondary-contrast);
     --button-hover-background: var(--color-secondary-shade);
     --button-focus-visible-shadow-color: var(--color-secondary-rgba-30);
   }
 
-  .${unsafeCSS(Colors.Tertiary)} {
+  .tertiary {
     --button-background: var(--color-tertiary);
     --button-color: var(--color-tertiary-contrast);
     --button-hover-background: var(--color-tertiary-shade);
     --button-focus-visible-shadow-color: var(--color-tertiary-rgba-30);
   }
 
-  .${unsafeCSS(Colors.Success)} {
+  .success {
     --button-background: var(--color-success);
     --button-color: var(--color-success-contrast);
     --button-hover-background: var(--color-success-shade);
     --button-focus-visible-shadow-color: var(--color-success-rgba-30);
   }
 
-  .${unsafeCSS(Colors.Warning)} {
+  .warning {
     --button-background: var(--color-warning);
     --button-color: var(--color-warning-contrast);
     --button-hover-background: var(--color-warning-shade);
     --button-focus-visible-shadow-color: var(--color-warning-rgba-30);
   }
 
-  .${unsafeCSS(Colors.Danger)} {
+  .danger {
     --button-background: var(--color-danger);
     --button-color: var(--color-danger-contrast);
     --button-hover-background: var(--color-danger-shade);
     --button-focus-visible-shadow-color: var(--color-danger-rgba-30);
   }
 
-  .${unsafeCSS(Colors.Light)} {
+  .light {
     --button-background: var(--color-light);
     --button-color: var(--color-light-contrast);
     --button-hover-background: var(--color-light-shade);
     --button-focus-visible-shadow-color: var(--color-light-rgba-30);
   }
 
-  .${unsafeCSS(Colors.Medium)} {
+  .medium {
     --button-background: var(--color-medium);
     --button-color: var(--color-medium-contrast);
     --button-hover-background: var(--color-medium-shade);
     --button-focus-visible-shadow-color: var(--color-medium-rgba-30);
   }
 
-  .${unsafeCSS(Colors.Dark)} {
+  .dark {
     --button-background: var(--color-dark);
     --button-color: var(--color-dark-contrast);
     --button-hover-background: var(--color-dark-tint);
@@ -140,137 +139,137 @@ export const buttonStyle = css`
     --button-focus-visible-shadow-color: var(--color-dark-rgba-30);
   }
 
-  .${unsafeCSS(Colors.GradientDynamic)} {
+  .gradient-dynamic {
     --button-background: var(--gradient-foreground);
-    --button-color: var(--color-foreground-contrast);
+    --button-color: var(--color-background);
     --button-hover-background: var(--gradient-foreground-shade);
     --button-focus-visible-shadow-color: var(--color-foreground-rgba-30);
   }
 
-  .${unsafeCSS(Colors.GradientPrimary)} {
+  .gradient-primary {
     --button-background: var(--gradient-primary);
     --button-color: var(--color-primary-contrast);
     --button-hover-background: var(--gradient-primary-shade);
     --button-focus-visible-shadow-color: var(--color-primary-rgba-30);
   }
 
-  .${unsafeCSS(Colors.GradientSecondary)} {
+  .gradient-secondary {
     --button-background: var(--gradient-secondary);
     --button-color: var(--color-secondary-contrast);
     --button-hover-background: var(--gradient-secondary-shade);
     --button-focus-visible-shadow-color: var(--color-secondary-rgba-30);
   }
 
-  .${unsafeCSS(Colors.GradientTertiary)} {
+  .gradient-tertiary {
     --button-background: var(--gradient-tertiary);
     --button-color: var(--color-tertiary-contrast);
     --button-hover-background: var(--gradient-tertiary-shade);
     --button-focus-visible-shadow-color: var(--color-tertiary-rgba-30);
   }
 
-  .${unsafeCSS(Colors.GradientSuccess)} {
+  .gradient-success {
     --button-background: var(--gradient-success);
     --button-color: var(--color-success-contrast);
     --button-hover-background: var(--gradient-success-shade);
     --button-focus-visible-shadow-color: var(--color-success-rgba-30);
   }
 
-  .${unsafeCSS(Colors.GradientWarning)} {
+  .gradient-warning {
     --button-background: var(--gradient-warning);
     --button-color: var(--color-warning-contrast);
     --button-hover-background: var(--gradient-warning-shade);
     --button-focus-visible-shadow-color: var(--color-warning-rgba-30);
   }
 
-  .${unsafeCSS(Colors.GradientDanger)} {
+  .gradient-danger {
     --button-background: var(--gradient-danger);
     --button-color: var(--color-danger-contrast);
     --button-hover-background: var(--gradient-danger-shade);
     --button-focus-visible-shadow-color: var(--color-danger-rgba-30);
   }
 
-  .${unsafeCSS(Colors.GradientDark)} {
+  .gradient-dark {
     --button-background: var(--gradient-dark);
     --button-color: var(--color-dark-contrast);
     --button-hover-background: var(--gradient-dark-shade);
     --button-focus-visible-shadow-color: var(--color-dark-rgba-30);
   }
 
-  .${unsafeCSS(Colors.GradientMedium)} {
+  .gradient-medium {
     --button-background: var(--gradient-medium);
     --button-color: var(--color-medium-contrast);
     --button-hover-background: var(--gradient-medium-shade);
     --button-focus-visible-shadow-color: var(--color-medium-rgba-30);
   }
 
-  .${unsafeCSS(Colors.GradientLight)} {
+  .gradient-light {
     --button-background: var(--gradient-light);
     --button-color: var(--color-light-contrast);
     --button-hover-background: var(--gradient-light-shade);
     --button-focus-visible-shadow-color: var(--color-light-rgba-30);
   }
 
-  .${unsafeCSS(Sizes.XXXS)} {
+  .xxxs {
     --button-font-size: var(--size-xxxs);
     --button-padding: var(--size-xxxs);
     --button-focus-visible-shadow-size: var(--size-xxxs-0_3x);
   }
 
-  .${unsafeCSS(Sizes.XXS)} {
+  .xxs {
     --button-font-size: var(--size-xxs);
     --button-padding: var(--size-xxs);
     --button-focus-visible-shadow-size: var(--size-xxs-0_3x);
   }
 
-  .${unsafeCSS(Sizes.XS)} {
+  .xs {
     --button-font-size: var(--size-xs);
     --button-padding: var(--size-xs);
     --button-focus-visible-shadow-size: var(--size-xs-0_3x);
   }
 
-  .${unsafeCSS(Sizes.SS)} {
+  .ss {
     --button-font-size: var(--size-ss);
     --button-padding: var(--size-ss);
     --button-focus-visible-shadow-size: var(--size-ss-0_3x);
   }
 
-  .${unsafeCSS(Sizes.SM)} {
+  .sm {
     --button-font-size: var(--size-sm);
     --button-padding: var(--size-sm);
     --button-focus-visible-shadow-size: var(--size-sm-0_3x);
   }
 
-  .${unsafeCSS(Sizes.ML)} {
+  .ml {
     --button-font-size: var(--size-ml);
     --button-padding: var(--size-ml);
     --button-focus-visible-shadow-size: var(--size-ml-0_3x);
   }
 
-  .${unsafeCSS(Sizes.LG)} {
+  .lg {
     --button-font-size: var(--size-lg);
     --button-padding: var(--size-lg);
     --button-focus-visible-shadow-size: var(--size-lg-0_3x);
   }
 
-  .${unsafeCSS(Sizes.SL)} {
+  .sl {
     --button-font-size: var(--size-sl);
     --button-padding: var(--size-sl);
     --button-focus-visible-shadow-size: var(--size-sl-0_3x);
   }
 
-  .${unsafeCSS(Sizes.XL)} {
+  .xl {
     --button-font-size: var(--size-xl);
     --button-padding: var(--size-xl);
     --button-focus-visible-shadow-size: var(--size-xl-0_3x);
   }
 
-  .${unsafeCSS(Sizes.XXL)} {
+  .xxl {
     --button-font-size: var(--size-xxl);
     --button-padding: var(--size-xxl);
     --button-focus-visible-shadow-size: var(--size-xxl-0_3x);
   }
 
-  .${unsafeCSS(Sizes.XXXL)} {
+  .xxxl {
     --button-font-size: var(--size-xxxl);
     --button-padding: var(--size-xxxl);
     --button-focus-visible-shadow-size: var(--size-xxxl-0_3x);

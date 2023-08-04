@@ -106,8 +106,11 @@ export class AppSectionComponent extends TiniComponent {
                     item => item.name,
                     ({name}) => html`
                       <div data-tab=${name}>
-                        ${name === ConsumerPlatforms.Tini || !this.codeBuilders?.[name]
-                          ? html`<app-code .code=${this.originalCode}></app-code>`
+                        ${name === ConsumerPlatforms.Tini ||
+                        !this.codeBuilders?.[name]
+                          ? html`<app-code
+                              .code=${this.originalCode}
+                            ></app-code>`
                           : html`<app-code
                               .code=${this.codeBuilders[name](
                                 this.originalCode,

@@ -1,5 +1,4 @@
-import {css, unsafeCSS} from 'lit';
-import {Colors, Sizes} from '../types';
+import {css} from 'lit';
 
 export const buttonStyle = css`
   :host {
@@ -76,16 +75,16 @@ export const buttonStyle = css`
     }
   }
 
-  .${unsafeCSS(Colors.Dynamic)} {
+  .dynamic {
     --button-background: var(--color-foreground);
     --button-background-disabled: rgba(var(--color-foreground-rgb), 0.5);
-    --button-color: var(--color-foreground-contrast);
-    --button-color-disabled: rgba(var(--color-foreground-contrast-rgb), 0.5);
+    --button-color: var(--color-background);
+    --button-color-disabled: rgba(var(--color-background-rgb), 0.5);
     --button-hover-background: var(--color-foreground-shade);
-    --button-ripple-color: rgba(var(--color-foreground-contrast-rgb), 0.3);
+    --button-ripple-color: rgba(var(--color-background-rgb), 0.3);
   }
 
-  .${unsafeCSS(Colors.Primary)} {
+  .primary {
     --button-background: var(--color-primary);
     --button-background-disabled: rgba(var(--color-primary-rgb), 0.5);
     --button-color: var(--color-primary-contrast);
@@ -94,7 +93,7 @@ export const buttonStyle = css`
     --button-ripple-color: rgba(var(--color-primary-contrast-rgb), 0.3);
   }
 
-  .${unsafeCSS(Colors.Secondary)} {
+  .secondary {
     --button-background: var(--color-secondary);
     --button-background-disabled: rgba(var(--color-secondary-rgb), 0.5);
     --button-color: var(--color-secondary-contrast);
@@ -103,7 +102,7 @@ export const buttonStyle = css`
     --button-ripple-color: rgba(var(--color-secondary-contrast-rgb), 0.3);
   }
 
-  .${unsafeCSS(Colors.Tertiary)} {
+  .tertiary {
     --button-background: var(--color-tertiary);
     --button-background-disabled: rgba(var(--color-tertiary-rgb), 0.5);
     --button-color: var(--color-tertiary-contrast);
@@ -112,7 +111,7 @@ export const buttonStyle = css`
     --button-ripple-color: rgba(var(--color-tertiary-contrast-rgb), 0.3);
   }
 
-  .${unsafeCSS(Colors.Success)} {
+  .success {
     --button-background: var(--color-success);
     --button-background-disabled: rgba(var(--color-success-rgb), 0.5);
     --button-color: var(--color-success-contrast);
@@ -121,7 +120,7 @@ export const buttonStyle = css`
     --button-ripple-color: rgba(var(--color-success-contrast-rgb), 0.3);
   }
 
-  .${unsafeCSS(Colors.Warning)} {
+  .warning {
     --button-background: var(--color-warning);
     --button-background-disabled: rgba(var(--color-warning-rgb), 0.5);
     --button-color: var(--color-warning-contrast);
@@ -130,7 +129,7 @@ export const buttonStyle = css`
     --button-ripple-color: rgba(var(--color-warning-contrast-rgb), 0.3);
   }
 
-  .${unsafeCSS(Colors.Danger)} {
+  .danger {
     --button-background: var(--color-danger);
     --button-background-disabled: rgba(var(--color-danger-rgb), 0.5);
     --button-color: var(--color-danger-contrast);
@@ -139,7 +138,7 @@ export const buttonStyle = css`
     --button-ripple-color: rgba(var(--color-danger-contrast-rgb), 0.3);
   }
 
-  .${unsafeCSS(Colors.Light)} {
+  .light {
     --button-background: var(--color-light);
     --button-background-disabled: rgba(var(--color-light-rgb), 0.5);
     --button-color: var(--color-light-contrast);
@@ -148,7 +147,7 @@ export const buttonStyle = css`
     --button-ripple-color: rgba(var(--color-light-contrast-rgb), 0.3);
   }
 
-  .${unsafeCSS(Colors.Medium)} {
+  .medium {
     --button-background: var(--color-medium);
     --button-background-disabled: rgba(var(--color-medium-rgb), 0.5);
     --button-color: var(--color-medium-contrast);
@@ -157,7 +156,7 @@ export const buttonStyle = css`
     --button-ripple-color: rgba(var(--color-medium-contrast-rgb), 0.3);
   }
 
-  .${unsafeCSS(Colors.Dark)} {
+  .dark {
     --button-background: var(--color-dark);
     --button-background-disabled: rgba(var(--color-dark-rgb), 0.5);
     --button-color: var(--color-dark-contrast);
@@ -166,27 +165,27 @@ export const buttonStyle = css`
     --button-ripple-color: rgba(var(--color-dark-contrast-rgb), 0.3);
   }
 
-  .${unsafeCSS(Sizes.XS)} {
+  .xs {
     --button-font-size: calc(var(--size-xs) * 2);
     --button-padding: calc(var(--size-xs) * 1);
   }
 
-  .${unsafeCSS(Sizes.SM)} {
+  .sm {
     --button-font-size: calc(var(--size-sm) * 1.5);
     --button-padding: calc(var(--size-sm) * 1);
   }
 
-  .${unsafeCSS(Sizes.LG)} {
+  .lg {
     --button-font-size: calc(var(--size-lg) * 1);
     --button-padding: calc(var(--size-lg) * 1);
   }
 
-  .${unsafeCSS(Sizes.XL)} {
+  .xl {
     --button-font-size: calc(var(--size-xl) * 1);
     --button-padding: calc(var(--size-xl) * 1);
   }
 
-  .${unsafeCSS(Sizes.XXL)} {
+  .xxl {
     --button-font-size: calc(var(--size-xxl) * 1);
     --button-padding: calc(var(--size-xxl) * 1);
   }

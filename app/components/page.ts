@@ -331,7 +331,9 @@ useComponents({
               </div>
 
               <div data-tab=${ImportMethods.Others}>
-                <p><strong>Use with Vue, React, Angular, Svelte, ...</strong></p>
+                <p>
+                  <strong>Use with Vue, React, Angular, Svelte, ...</strong>
+                </p>
                 <p>The specific package only supports one soul at a time.</p>
                 <app-code .code=${this.importOthersCode}></app-code>
               </div>

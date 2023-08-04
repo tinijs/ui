@@ -246,7 +246,9 @@ containerEl.innerHTML = ${nameVar}Code;
 
                       <div data-tab=${IconsImportMethods.Others}>
                         <p>
-                          <strong>Use with Vue, React, Angular, Svelte, ...</strong>
+                          <strong
+                            >Use with Vue, React, Angular, Svelte, ...</strong
+                          >
                         </p>
                         <app-code .code=${othersCode}></app-code>
                       </div>

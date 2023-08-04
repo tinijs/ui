@@ -1,5 +1,4 @@
-import {css, unsafeCSS} from 'lit';
-import {Colors, Sizes} from '../types';
+import {css} from 'lit';
 
 export const iconStyle = css`
   :host {
@@ -34,137 +33,137 @@ export const iconStyle = css`
     mask-position: center;
   }
 
-  .${unsafeCSS(Colors.Dynamic)} {
+  .dynamic {
     --icon-color: var(--color-foreground);
   }
 
-  .${unsafeCSS(Colors.Primary)} {
+  .primary {
     --icon-color: var(--color-primary);
   }
 
-  .${unsafeCSS(Colors.Secondary)} {
+  .secondary {
     --icon-color: var(--color-secondary);
   }
 
-  .${unsafeCSS(Colors.Tertiary)} {
+  .tertiary {
     --icon-color: var(--color-tertiary);
   }
 
-  .${unsafeCSS(Colors.Success)} {
+  .success {
     --icon-color: var(--color-success);
   }
 
-  .${unsafeCSS(Colors.Warning)} {
+  .warning {
     --icon-color: var(--color-warning);
   }
 
-  .${unsafeCSS(Colors.Danger)} {
+  .danger {
     --icon-color: var(--color-danger);
   }
 
-  .${unsafeCSS(Colors.Light)} {
+  .light {
     --icon-color: var(--color-light);
   }
 
-  .${unsafeCSS(Colors.Medium)} {
+  .medium {
     --icon-color: var(--color-medium);
   }
 
-  .${unsafeCSS(Colors.Dark)} {
+  .dark {
     --icon-color: var(--color-dark);
   }
 
-  .${unsafeCSS(Colors.GradientDynamic)} {
+  .gradient-dynamic {
     --icon-color: var(--gradient-foreground);
   }
 
-  .${unsafeCSS(Colors.GradientPrimary)} {
+  .gradient-primary {
     --icon-color: var(--gradient-primary);
   }
 
-  .${unsafeCSS(Colors.GradientSecondary)} {
+  .gradient-secondary {
     --icon-color: var(--gradient-secondary);
   }
 
-  .${unsafeCSS(Colors.GradientTertiary)} {
+  .gradient-tertiary {
     --icon-color: var(--gradient-tertiary);
   }
 
-  .${unsafeCSS(Colors.GradientSuccess)} {
+  .gradient-success {
     --icon-color: var(--gradient-success);
   }
 
-  .${unsafeCSS(Colors.GradientWarning)} {
+  .gradient-warning {
     --icon-color: var(--gradient-warning);
   }
 
-  .${unsafeCSS(Colors.GradientDanger)} {
+  .gradient-danger {
     --icon-color: var(--gradient-danger);
   }
 
-  .${unsafeCSS(Colors.GradientLight)} {
+  .gradient-light {
     --icon-color: var(--gradient-light);
   }
 
-  .${unsafeCSS(Colors.GradientMedium)} {
+  .gradient-medium {
     --icon-color: var(--gradient-medium);
   }
 
-  .${unsafeCSS(Colors.GradientDark)} {
+  .gradient-dark {
     --icon-color: var(--gradient-dark);
   }
 
-  .${unsafeCSS(Sizes.XXXS)} {
+  .xxxs {
     --icon-width: var(--size-xxxs-2x);
     --icon-height: var(--size-xxxs-2x);
   }
 
-  .${unsafeCSS(Sizes.XXS)} {
+  .xxs {
     --icon-width: var(--size-xxs-2x);
     --icon-height: var(--size-xxs-2x);
   }
 
-  .${unsafeCSS(Sizes.XS)} {
+  .xs {
     --icon-width: var(--size-xs-2x);
     --icon-height: var(--size-xs-2x);
   }
 
-  .${unsafeCSS(Sizes.SS)} {
+  .ss {
     --icon-width: var(--size-ss-2x);
     --icon-height: var(--size-ss-2x);
   }
 
-  .${unsafeCSS(Sizes.SM)} {
+  .sm {
     --icon-width: var(--size-sm-2x);
     --icon-height: var(--size-sm-2x);
   }
 
-  .${unsafeCSS(Sizes.ML)} {
+  .ml {
     --icon-width: var(--size-ml-2x);
     --icon-height: var(--size-ml-2x);
   }
 
-  .${unsafeCSS(Sizes.LG)} {
+  .lg {
     --icon-width: var(--size-lg-2x);
     --icon-height: var(--size-lg-2x);
   }
 
-  .${unsafeCSS(Sizes.SL)} {
+  .sl {
     --icon-width: var(--size-sl-2x);
     --icon-height: var(--size-sl-2x);
   }
 
-  .${unsafeCSS(Sizes.XL)} {
+  .xl {
     --icon-width: var(--size-xl-2x);
     --icon-height: var(--size-xl-2x);
   }
 
-  .${unsafeCSS(Sizes.XXL)} {
+  .xxl {
     --icon-width: var(--size-xxl-2x);
     --icon-height: var(--size-xxl-2x);
   }
 
-  .${unsafeCSS(Sizes.XXXL)} {
+  .xxxl {
     --icon-width: var(--size-xxxl-2x);
     --icon-height: var(--size-xxxl-2x);
   }

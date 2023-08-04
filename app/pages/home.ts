@@ -23,8 +23,8 @@ export class AppPageHome extends TiniComponent {
       <h1>Tini UI</h1>
       <p>
         The UI system of the TiniJS Framework. All components can be used inside
-        a TiniJS app or with other frameworks like Vue, React, Angular, Svelte, ... or
-        without any framework at all.
+        a TiniJS app or with other frameworks like Vue, React, Angular, Svelte,
+        ... or without any framework at all.
       </p>
 
       <h2>Components</h2>
