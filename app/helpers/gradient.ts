@@ -40,7 +40,9 @@ export function parseGradient(value: string) {
   return {type, direction, radialDirection, colors};
 }
 
-export function constructGradient(parsedResult: ReturnType<typeof parseGradient>) {
+export function constructGradient(
+  parsedResult: ReturnType<typeof parseGradient>
+) {
   const {type, direction, radialDirection, colors} = parsedResult;
   const linearDirectionMap: Record<string, string> = {
     top: 'to top',

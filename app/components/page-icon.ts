@@ -17,7 +17,7 @@ import {
   linkBases,
   textBases,
   codeBases,
-} from '../../dev/bases';
+} from '@tinijs/ui/bases';
 
 import {GITHUB_ICONS_REPO_URL} from '../consts/main';
 import {get} from '../helpers/http';

@@ -4,7 +4,7 @@ import {
   headingsBases,
   linkBases,
   textBases,
-} from '../../../dev/bases';
+} from '@tinijs/ui/bases';
 
 import {APP_PAGE_ICON, AppPageIconComponent} from '../../components/page-icon';
 

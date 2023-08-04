@@ -16,8 +16,8 @@ import {
   linkBases,
   textBases,
   codeBases,
-} from '../../dev/bases';
-import {TINI_ICON, TiniIconComponent} from '../../dev/components/icon';
+} from '@tinijs/ui/bases';
+import {TINI_ICON, TiniIconComponent} from '@tinijs/ui/components/icon';
 
 import {IconsImportMethods} from '../consts/main';
 import {mainStore} from '../stores/main';
@@ -83,7 +83,6 @@ export class AppPageIconModalComponent extends TiniComponent {
 
   private readonly PREPROCESS_CODE = (code: string, context: any) =>
     !context ? code : code.replace(/tini-icon/g, context.nameTag);
-  private readonly CODE_BUILDERS = {};
 
   @Input({type: String}) declare packName?: string;
   @Input({type: String}) declare packVersion?: string;
@@ -247,7 +246,7 @@ containerEl.innerHTML = ${nameVar}Code;
 
                       <div data-tab=${IconsImportMethods.Others}>
                         <p>
-                          <strong>Use with Vue, React, Angular, ...</strong>
+                          <strong>Use with Vue, React, Angular, Svelte, ...</strong>
                         </p>
                         <app-code .code=${othersCode}></app-code>
                       </div>
@@ -293,7 +292,6 @@ containerEl.innerHTML = ${nameVar}Code;
 
                 <app-section
                   class="default"
-                  .codeBuilders=${this.CODE_BUILDERS}
                   .preprocessCode=${this.PREPROCESS_CODE}
                   .codeBuildContext=${names}
                 >
@@ -314,7 +312,6 @@ containerEl.innerHTML = ${nameVar}Code;
                   : html`
                       <app-section
                         class="dynamic"
-                        .codeBuilders=${this.CODE_BUILDERS}
                         .preprocessCode=${this.PREPROCESS_CODE}
                         .codeBuildContext=${names}
                       >
@@ -335,7 +332,6 @@ containerEl.innerHTML = ${nameVar}Code;
 
                       <app-section
                         class="colors"
-                        .codeBuilders=${this.CODE_BUILDERS}
                         .preprocessCode=${this.PREPROCESS_CODE}
                         .codeBuildContext=${names}
                       >
@@ -372,7 +368,6 @@ containerEl.innerHTML = ${nameVar}Code;
 
                       <app-section
                         class="gradients"
-                        .codeBuilders=${this.CODE_BUILDERS}
                         .preprocessCode=${this.PREPROCESS_CODE}
                         .codeBuildContext=${names}
                       >
@@ -422,7 +417,6 @@ containerEl.innerHTML = ${nameVar}Code;
 
                 <app-section
                   class="sizes"
-                  .codeBuilders=${this.CODE_BUILDERS}
                   .preprocessCode=${this.PREPROCESS_CODE}
                   .codeBuildContext=${names}
                 >

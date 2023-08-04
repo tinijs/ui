@@ -11,13 +11,12 @@
   },
   "scripts": {
     "dev": "tini ui dev && tini dev",
-    "build:app": "tini build",
-    "preview:app": "tini preview",
-    "build:1:ui": "tini ui build",
+    "preview": "tini preview",
+    "build": "npm run build:0:app && npm run build:1:core && npm run build:2:components && npm run build:3:bootstrap",
+    "build:0:app": "tini build",
+    "build:1:core": "tini ui build",
     "build:2:components": "tini ui build @tinijs/ui",
-    "build:3:bootstrap-main": "tini ui build @tinijs/ui bootstrap",
-    "build:3:bootstrap-standalone": "parcel build build/@tinijs/ui-bootstrap/components/*.bundle.ts --dist-dir build/@tinijs/ui-bootstrap/components --no-cache --log-level warn",
-    "build:3:bootstrap": "npm run build:3:bootstrap-main && npm run build:3:bootstrap-standalone",
+    "build:3:bootstrap": "tini ui build @tinijs/ui bootstrap && parcel build build/@tinijs/ui-bootstrap/components/*.bundle.ts --dist-dir build/@tinijs/ui-bootstrap/components --no-cache --log-level warn",
     "lint": "gts lint",
     "fix": "gts fix"
   },

@@ -6,7 +6,11 @@
     "lib": ["ESNext", "DOM"],
     "moduleResolution": "Node",
     "experimentalDecorators": true,
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths": {
+      "@tinijs/ui": ["./.tini-ui"],
+      "@tinijs/ui/*": ["./.tini-ui/*"]
+    }
   },
   "include": ["**/*.ts"]
 }

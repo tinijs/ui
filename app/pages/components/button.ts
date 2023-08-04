@@ -5,8 +5,8 @@ import {
   linkBases,
   textBases,
   codeBases,
-} from '../../../dev/bases';
-import {TINI_BUTTON, TiniButtonComponent} from '../../../dev/components/button';
+} from '@tinijs/ui/bases';
+import {TINI_BUTTON, TiniButtonComponent} from '@tinijs/ui/components/button';
 
 import {ConsumerPlatforms} from '../../consts/main';
 
@@ -52,13 +52,6 @@ export class AppPageComponentsButton extends TiniComponent {
     }
   `;
 
-  private readonly CODE_BUILDERS = {
-    [ConsumerPlatforms.HTML]: (code?: string) => '<h1>HTML</h1>',
-    [ConsumerPlatforms.Vue]: (code?: string) => '<h1>Vue</h1>',
-    [ConsumerPlatforms.React]: (code?: string) => '<h1>React</h1>',
-    [ConsumerPlatforms.Angular]: (code?: string) => '<h1>Angular</h1>',
-  };
-
   protected render() {
     return html`
       <app-page titleText="Buttons" name="button" path="components/button">
@@ -66,7 +59,7 @@ export class AppPageComponentsButton extends TiniComponent {
           Use <strong>buttons</strong> to trigger actions.
         </div>
 
-        <app-section class="default" .codeBuilders=${this.CODE_BUILDERS}>
+        <app-section class="default">
           <div slot="content">
             <h2>Default</h2>
             <p>
@@ -79,7 +72,7 @@ export class AppPageComponentsButton extends TiniComponent {
           </div>
         </app-section>
 
-        <app-section class="dynamic" .codeBuilders=${this.CODE_BUILDERS}>
+        <app-section class="dynamic">
           <div slot="content">
             <h2>Dynamic</h2>
             <p>
@@ -92,7 +85,7 @@ export class AppPageComponentsButton extends TiniComponent {
           </div>
         </app-section>
 
-        <app-section class="colors" .codeBuilders=${this.CODE_BUILDERS}>
+        <app-section class="colors">
           <div slot="content"><h2>Colors</h2></div>
           <div slot="code">
             <tini-button color="primary">Primary</tini-button>
@@ -107,10 +100,7 @@ export class AppPageComponentsButton extends TiniComponent {
           </div>
         </app-section>
 
-        <app-section
-          class="disabled-colors"
-          .codeBuilders=${this.CODE_BUILDERS}
-        >
+        <app-section class="disabled-colors">
           <div slot="content"><h2>Disabled colors</h2></div>
           <div slot="code">
             <tini-button color="primary" disabled>Primary</tini-button>
@@ -125,7 +115,7 @@ export class AppPageComponentsButton extends TiniComponent {
           </div>
         </app-section>
 
-        <app-section class="gradients" .codeBuilders=${this.CODE_BUILDERS}>
+        <app-section class="gradients">
           <div slot="content"><h2>Gradients</h2></div>
           <div slot="code">
             <tini-button color="gradient-dynamic">Gradient Dynamic</tini-button>
@@ -145,7 +135,7 @@ export class AppPageComponentsButton extends TiniComponent {
           </div>
         </app-section>
 
-        <app-section class="sizes" .codeBuilders=${this.CODE_BUILDERS}>
+        <app-section class="sizes">
           <div slot="content"><h2>Sizes</h2></div>
           <div slot="code">
             <tini-button size="xxxs" color="primary">XXXS</tini-button>

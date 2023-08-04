@@ -19,11 +19,12 @@ export const enum OfficialSoulNames {
 }
 
 export const enum ConsumerPlatforms {
-  Lit = 'Lit',
-  HTML = 'HTML',
+  Tini = 'Tini',
   Vue = 'Vue',
   React = 'React',
   Angular = 'Angular',
+  Svelte = 'Svelte',
+  HTML = 'HTML',
 }
 
 export const enum ImportMethods {

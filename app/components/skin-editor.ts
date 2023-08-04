@@ -15,8 +15,8 @@ import {
   nothing,
 } from '@tinijs/core';
 import {ICON_CODE, IconCodeComponent} from '@tinijs/bootstrap-icons/code';
-import {commonBases, codeBases} from '../../dev/bases';
-import {TINI_BUTTON, TiniButtonComponent} from '../../dev/components/button';
+import {commonBases, codeBases} from '@tinijs/ui/bases';
+import {TINI_BUTTON, TiniButtonComponent} from '@tinijs/ui/components/button';
 
 import {APP_CODE, AppCodeComponent} from './code';
 import {APP_MODAL, AppModalComponent} from './modal';

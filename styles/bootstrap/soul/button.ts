@@ -14,7 +14,8 @@ export const buttonStyle = css`
     /* [B] Dimmer or brighter to indicate the click action */
     --button-focus-visible-shadow-size: var(--size-md-0_3x)
       /* [B] Size of the shadow while focusing */;
-    --button-focus-visible-shadow-color: var(--color-foreground-rgba-30) /* [B] */;
+    --button-focus-visible-shadow-color: var(--color-foreground-rgba-30)
+      /* [B] */;
   }
 
   *,

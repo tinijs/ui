@@ -4,7 +4,7 @@ import {
   headingsBases,
   linkBases,
   textBases,
-} from '../../dev/bases';
+} from '@tinijs/ui/bases';
 
 @Page({
   name: 'app-page-home',
@@ -23,7 +23,7 @@ export class AppPageHome extends TiniComponent {
       <h1>Tini UI</h1>
       <p>
         The UI system of the TiniJS Framework. All components can be used inside
-        a TiniJS app or with other frameworks like Vue, React, Angular, ... or
+        a TiniJS app or with other frameworks like Vue, React, Angular, Svelte, ... or
         without any framework at all.
       </p>
 

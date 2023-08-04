@@ -8,7 +8,7 @@ import {
   css,
   nothing,
 } from '@tinijs/core';
-import {commonBases} from '../../dev/bases';
+import {commonBases} from '@tinijs/ui/bases';
 
 export interface TabItem {
   name: string;

@@ -9,7 +9,7 @@ import {
   repeat,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
-import {commonBases} from '../../dev/bases';
+import {commonBases} from '@tinijs/ui/bases';
 
 import {ConsumerPlatforms} from '../consts/main';
 import {mainStore} from '../stores/main';
@@ -50,16 +50,17 @@ export class AppSectionComponent extends TiniComponent {
   `;
 
   private readonly USAGE_TAB_ITEMS: TabItem[] = [
-    {name: ConsumerPlatforms.Lit, icon: 'lit'},
-    {name: ConsumerPlatforms.HTML, icon: 'html'},
+    {name: ConsumerPlatforms.Tini, icon: 'tini'},
     {name: ConsumerPlatforms.Vue, icon: 'vue'},
     {name: ConsumerPlatforms.React, icon: 'react'},
     {name: ConsumerPlatforms.Angular, icon: 'angular'},
+    {name: ConsumerPlatforms.Svelte, icon: 'svelte'},
+    {name: ConsumerPlatforms.HTML, icon: 'html'},
   ];
 
   @Input({type: Boolean}) declare noUsageTabs?: boolean;
-  @Input({type: Array}) declare codeBuilders?: Record<string, CodeBuilder>;
   @Input({type: Object}) declare preprocessCode?: CodeBuilder;
+  @Input({type: Object}) declare codeBuilders?: Record<string, CodeBuilder>;
   @Input({type: Object}) declare codeBuildContext?: unknown;
 
   @Subscribe(mainStore) @Reactive() private readonly referPlatform =
@@ -105,23 +106,14 @@ export class AppSectionComponent extends TiniComponent {
                     item => item.name,
                     ({name}) => html`
                       <div data-tab=${name}>
-                        ${name === ConsumerPlatforms.Lit
-                          ? html`<app-code
-                              .code=${!this.codeBuilders?.[name]
-                                ? this.originalCode
-                                : this.codeBuilders[name](
-                                    this.originalCode,
-                                    this.codeBuildContext
-                                  )}
-                            ></app-code>`
-                          : this.codeBuilders?.[name]
-                          ? html`<app-code
+                        ${name === ConsumerPlatforms.Tini || !this.codeBuilders?.[name]
+                          ? html`<app-code .code=${this.originalCode}></app-code>`
+                          : html`<app-code
                               .code=${this.codeBuilders[name](
                                 this.originalCode,
                                 this.codeBuildContext
                               )}
-                            ></app-code>`
-                          : html`No support for <strong>${name}</strong> yet!`}
+                            ></app-code>`}
                       </div>
                     `
                   )}

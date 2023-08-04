@@ -17,10 +17,10 @@ import {
   linkBases,
   textBases,
   codeBases,
-} from '../../dev/bases';
-import {TINI_BUTTON, TiniButtonComponent} from '../../dev/components/button';
+} from '@tinijs/ui/bases';
+import {TINI_BUTTON, TiniButtonComponent} from '@tinijs/ui/components/button';
 
-import {Colors} from '../../dev/types';
+import {Colors} from '@tinijs/ui/types';
 
 export const enum ModalKinds {
   Bare = 'bare',

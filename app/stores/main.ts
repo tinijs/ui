@@ -10,7 +10,7 @@ import {
 export const mainStore = createStore({
   soulName: OfficialSoulNames.Bootstrap,
   referImport: ImportMethods.TiniJS,
-  referPlatform: ConsumerPlatforms.Lit,
+  referPlatform: ConsumerPlatforms.Tini,
   referIconsImport: IconsImportMethods.TiniJS,
   skinEditorShown: false,
 });

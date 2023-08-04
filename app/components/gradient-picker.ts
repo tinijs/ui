@@ -16,7 +16,7 @@ import {
 } from '@tinijs/core';
 // @ts-ignore
 import * as Grapick from 'grapick';
-import {commonBases} from '../../dev/bases';
+import {commonBases} from '@tinijs/ui/bases';
 
 import {parseGradient} from '../helpers/gradient';
 
