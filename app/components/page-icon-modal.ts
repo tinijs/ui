@@ -430,12 +430,18 @@ containerEl.innerHTML = ${nameVar}Code;
                     <h2>Sizes</h2>
                   </div>
                   <div slot="code">
+                    <tini-icon size="xxxs" .src=${iconSRC}></tini-icon>
+                    <tini-icon size="xxs" .src=${iconSRC}></tini-icon>
                     <tini-icon size="xs" .src=${iconSRC}></tini-icon>
+                    <tini-icon size="ss" .src=${iconSRC}></tini-icon>
                     <tini-icon size="sm" .src=${iconSRC}></tini-icon>
                     <tini-icon size="md" .src=${iconSRC}></tini-icon>
+                    <tini-icon size="ml" .src=${iconSRC}></tini-icon>
                     <tini-icon size="lg" .src=${iconSRC}></tini-icon>
+                    <tini-icon size="sl" .src=${iconSRC}></tini-icon>
                     <tini-icon size="xl" .src=${iconSRC}></tini-icon>
                     <tini-icon size="xxl" .src=${iconSRC}></tini-icon>
+                    <tini-icon size="xxxl" .src=${iconSRC}></tini-icon>
                   </div>
                 </app-section>
               </div>

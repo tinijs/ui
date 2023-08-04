@@ -233,7 +233,7 @@ export class AppPageIconComponent extends TiniComponent {
       <div class="body">
         <div class="nav">
           <div class="summary">
-            Display <strong>${this.displayedItems?.length}</strong> /
+            Display <strong>${this.displayedItems?.length || '-'}</strong> /
             ${this.data?.items.length || '-'} icons.
           </div>
           <div class="pagination">
@@ -254,7 +254,7 @@ export class AppPageIconComponent extends TiniComponent {
                 min="1"
                 max=${this.totalPages || 1}
               />
-              <span>/ ${this.totalPages || '-'}</span>
+              <span>/ ${this.totalPages || '?'}</span>
             </div>
             <button
               ?disabled=${this.currentPage === this.totalPages}

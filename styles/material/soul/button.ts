@@ -37,7 +37,7 @@ export const buttonStyle = css`
     margin: 0;
     width: 100%;
     border-radius: var(--button-radius);
-    box-shadow: var(--box-shadow);
+    box-shadow: var(--shadow-box);
     position: relative;
     overflow: hidden;
     background: var(--button-background);

@@ -45,7 +45,7 @@ export class AppHeaderComponent extends TiniComponent {
       padding: var(--size-space);
       background-color: var(--color-primary);
       color: var(--color-light);
-      box-shadow: var(--box-shadow);
+      box-shadow: var(--shadow-box);
     }
 
     .brand a {
@@ -110,7 +110,7 @@ export class AppHeaderComponent extends TiniComponent {
       height: calc(100dvh - var(--header-height));
       background: var(--color-background);
       border: var(--size-border) solid var(--color-background-shade);
-      box-shadow: var(--box-shadow);
+      box-shadow: var(--shadow-box);
     }
 
     .skin-editor-container.showed {
