@@ -125,8 +125,8 @@
   --size-xxxs: 2px;
   --size-xxs: 4px;
   --size-xs: 6px;
-  --size-sm: 8px;
-  --size-ms: 12px;
+  --size-ss: 8px;
+  --size-sm: 12px;
   --size-md: 15px;
   --size-ml: 18px;
   --size-lg: 22px;
@@ -138,8 +138,8 @@
   --wide-xxxs: 150px;
   --wide-xxs: 240px;
   --wide-xs: 320px;
-  --wide-sm: 425px;
-  --wide-ms: 576px;
+  --wide-ss: 425px;
+  --wide-sm: 576px;
   --wide-md: 768px;
   --wide-ml: 992px;
   --wide-lg: 1024px;

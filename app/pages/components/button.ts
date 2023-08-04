@@ -151,8 +151,8 @@ export class AppPageComponentsButton extends TiniComponent {
             <tini-button size="xxxs" color="primary">XXXS</tini-button>
             <tini-button size="xxs" color="primary">XXS</tini-button>
             <tini-button size="xs" color="primary">XS</tini-button>
+            <tini-button size="ss" color="primary">SS</tini-button>
             <tini-button size="sm" color="primary">SM</tini-button>
-            <tini-button size="ms" color="primary">MS</tini-button>
             <tini-button size="md" color="primary">MD</tini-button>
             <tini-button size="ml" color="primary">ML</tini-button>
             <tini-button size="lg" color="primary">LG</tini-button>

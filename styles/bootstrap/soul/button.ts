@@ -227,16 +227,16 @@ export const buttonStyle = css`
     --button-focus-visible-shadow-size: calc(var(--size-xs) * 0.3);
   }
 
+  .${unsafeCSS(Sizes.SS)} {
+    --button-font-size: var(--size-ss);
+    --button-padding: var(--size-ss);
+    --button-focus-visible-shadow-size: calc(var(--size-ss) * 0.3);
+  }
+
   .${unsafeCSS(Sizes.SM)} {
     --button-font-size: var(--size-sm);
     --button-padding: var(--size-sm);
     --button-focus-visible-shadow-size: calc(var(--size-sm) * 0.3);
-  }
-
-  .${unsafeCSS(Sizes.MS)} {
-    --button-font-size: var(--size-ms);
-    --button-padding: var(--size-ms);
-    --button-focus-visible-shadow-size: calc(var(--size-ms) * 0.3);
   }
 
   .${unsafeCSS(Sizes.ML)} {
