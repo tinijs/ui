@@ -1,16 +1,13 @@
 import {parse, GradientNode} from 'gradient-parser';
+import * as chroma from 'chroma-js';
 
 export function parseGradient(value: string) {
-  let gradientNodes: undefined | GradientNode[];
   // parse
-  try {
-    gradientNodes = parse(value);
-  } catch (error) {}
-  if (!gradientNodes) return;
-  const gradientNode = gradientNodes[0];
+  const [gradientNode] = parse(value);
   // process
   const type = ~gradientNode.type.indexOf('radial') ? 'radial' : 'linear';
-  let direction = 'center';
+  let direction = 'bottom';
+  let radialDirection = 'center center';
   if (gradientNode.orientation) {
     const orientation = gradientNode.orientation as any;
     if (orientation.type === 'angular') {
@@ -28,12 +25,67 @@ export function parseGradient(value: string) {
       }
     } else if (orientation.type === 'directional') {
       direction = orientation.value;
+    } else if (orientation[0].type === 'shape') {
+      const x = orientation[0].at?.value?.x?.value || 'center';
+      const y = orientation[0].at?.value?.y?.value || 'center';
+      direction = y;
+      radialDirection = `${x} ${y}`;
     }
   }
-  const handlers = gradientNode.colorStops.map(({type, value, length}) => {
+  const colors = gradientNode.colorStops.map(({type, value, length}) => {
     const color = type === 'hex' ? `#${value}` : value;
     return {color, position: +(length?.value || 0)};
   });
   // result
-  return {type, direction, handlers};
+  return {type, direction, radialDirection, colors};
+}
+
+export function constructGradient(parsedResult: ReturnType<typeof parseGradient>) {
+  const {type, direction, radialDirection, colors} = parsedResult;
+  const linearDirectionMap: Record<string, string> = {
+    top: 'to top',
+    right: 'to right',
+    center: 'to right',
+    bottom: 'to bottom',
+    left: 'to left',
+  };
+  return `${type}-gradient(${
+    type === 'radial'
+      ? `circle at ${radialDirection}`
+      : linearDirectionMap[direction]
+  }, ${colors.map(({color, position}) => `${color} ${position}%`).join(', ')})`;
+}
+
+export function buildGradientVariants(baseGradient: string) {
+  const parsedResult = parseGradient(baseGradient);
+  // base
+  const baseColors = parsedResult.colors.map(({color, position}) => ({
+    color: chroma(color as string).hex(),
+    position,
+  }));
+  const base = constructGradient({...parsedResult, colors: baseColors});
+  // contrast
+  const contrastColors = parsedResult.colors.map(({color, position}) => ({
+    color: chroma(color as string).luminance() > 0.5 ? '#000000' : '#ffffff',
+    position,
+  }));
+  const contrast = constructGradient({...parsedResult, colors: contrastColors});
+  // shade
+  const shadeColors = parsedResult.colors.map(({color, position}) => ({
+    color: chroma(color as string)
+      .darken(1)
+      .hex(),
+    position,
+  }));
+  const shade = constructGradient({...parsedResult, colors: shadeColors});
+  // tint
+  const tintColors = parsedResult.colors.map(({color, position}) => ({
+    color: chroma(color as string)
+      .brighten(1)
+      .hex(),
+    position,
+  }));
+  const tint = constructGradient({...parsedResult, colors: tintColors});
+  // result
+  return {base, contrast, shade, tint};
 }

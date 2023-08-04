@@ -203,17 +203,16 @@ export class AppGradientPickerComponent extends TiniComponent {
     this.grapickInstance = new Grapick({
       el: this.grapickRef.value,
     });
-    const initial = parseGradient(this.value);
-    if (initial) {
-      const {type, direction, handlers} = initial;
+    try {
+      const {type, direction, colors} = parseGradient(this.value);
       this.grapickInstance.setType(type);
       this.typeSelectRef.value!.value = type;
       this.grapickInstance.setDirection(direction);
       this.directionSelectRef.value!.value = direction;
-      handlers.forEach(({color, position}) => {
+      colors.forEach(({color, position}) => {
         this.grapickInstance.addHandler(position, color);
       });
-    }
+    } catch (err) {}
     this.grapickInstance.on('change', () =>
       this.valueChanged(this.grapickInstance.getSafeValue())
     );

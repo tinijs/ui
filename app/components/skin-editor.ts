@@ -30,6 +30,7 @@ import {SOULS, FONTS} from '../consts/theme';
 import {debouncer} from '../helpers/debouncer';
 import {extractCSSVariables, VariableDef} from '../helpers/source';
 import {buildColorVariants} from '../helpers/color';
+import {buildGradientVariants} from '../helpers/gradient';
 import {
   isGoogleFont,
   buildGoogleFontUrl,
@@ -313,6 +314,7 @@ export class AppSkinEditorComponent extends TiniComponent {
     if (soul) {
       document.body.style.cssText = '';
       changeTheme({soul: soul.id, skin: soul.skins[0].id});
+      mainStore.commit('soulName', soul.id);
       await this.fetchSkinVariables();
       this.resetSkin();
     }
@@ -418,9 +420,15 @@ export class AppSkinEditorComponent extends TiniComponent {
     const input = e.target as AppGradientPickerComponent;
     const key = input.name;
     const value = e.detail;
-    return debouncer('AppSkinEditorComponent:change_gradient', 100, () =>
-      this.updateVariables([[key, value]])
-    );
+    return debouncer('AppSkinEditorComponent:change_gradient', 100, () => {
+      const {base, contrast, shade, tint} = buildGradientVariants(value);
+      this.updateVariables([
+        [key, base],
+        [`${key}-contrast`, contrast],
+        [`${key}-shade`, shade],
+        [`${key}-tint`, tint],
+      ]);
+    });
   }
 
   private changeValue(e: InputEvent) {
