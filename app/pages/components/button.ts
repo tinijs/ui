@@ -6,9 +6,8 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
+import {TINI_BOX, TiniBoxComponent} from '@tinijs/ui/components/box';
 import {TINI_BUTTON, TiniButtonComponent} from '@tinijs/ui/components/button';
-
-import {ConsumerPlatforms} from '../../consts/main';
 
 import {APP_PAGE, AppPageComponent} from '../../components/page';
 import {APP_SECTION, AppSectionComponent} from '../../components/section';
@@ -16,6 +15,7 @@ import {APP_SECTION, AppSectionComponent} from '../../components/section';
 @Page({
   name: 'app-page-components-button',
   components: {
+    [TINI_BOX]: TiniBoxComponent,
     [TINI_BUTTON]: TiniButtonComponent,
     [APP_PAGE]: AppPageComponent,
     [APP_SECTION]: AppSectionComponent,
@@ -82,11 +82,11 @@ export class AppPageComponentsButton extends TiniComponent {
           </div>
           <div slot="code">
             <tini-button color="dynamic">Dynamic</tini-button>
-            <div style="padding: 1rem; background: var(--color-foreground);">
+            <tini-box background="dynamic">
               <tini-button color="dynamic-contrast"
                 >Dynamic Contrast</tini-button
               >
-            </div>
+            </tini-box>
             <tini-button color="dynamic-shade">Dynamic Shade</tini-button>
             <tini-button color="dynamic-shade-2">Dynamic Shade 2</tini-button>
             <tini-button color="dynamic-shade-3">Dynamic Shade 3</tini-button>
@@ -104,11 +104,11 @@ export class AppPageComponentsButton extends TiniComponent {
           <div slot="content"><h2>Color Primary</h2></div>
           <div slot="code">
             <tini-button color="primary">Primary</tini-button>
-            <div style="padding: 1rem; background: var(--color-primary);">
+            <tini-box background="primary">
               <tini-button color="primary-contrast"
                 >Primary Contrast</tini-button
               >
-            </div>
+            </tini-box>
             <tini-button color="primary-shade">Primary Shade</tini-button>
             <tini-button color="primary-shade-2">Primary Shade 2</tini-button>
             <tini-button color="primary-shade-3">Primary Shade 3</tini-button>
@@ -155,13 +155,11 @@ export class AppPageComponentsButton extends TiniComponent {
           <div slot="content"><h2>Gradient Dynamic</h2></div>
           <div slot="code">
             <tini-button color="gradient-dynamic">Gradient Dynamic</tini-button>
-            <div
-              style="padding: 1rem; width: 300px; background: var(--color-foreground);"
-            >
+            <tini-box background="dynamic">
               <tini-button color="gradient-dynamic-contrast"
                 >Gradient Dynamic Contrast</tini-button
               >
-            </div>
+            </tini-box>
             <tini-button color="gradient-dynamic-shade"
               >Gradient Dynamic Shade</tini-button
             >
@@ -175,13 +173,11 @@ export class AppPageComponentsButton extends TiniComponent {
           <div slot="content"><h2>Gradient Primary</h2></div>
           <div slot="code">
             <tini-button color="gradient-primary">Gradient Primary</tini-button>
-            <div
-              style="padding: 1rem; width: 300px; background: var(--color-primary);"
-            >
+            <tini-box background="primary">
               <tini-button color="gradient-primary-contrast"
                 >Gradient Primary Contrast</tini-button
               >
-            </div>
+            </tini-box>
             <tini-button color="gradient-primary-shade"
               >Gradient Primary Shade</tini-button
             >

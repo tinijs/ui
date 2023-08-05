@@ -126,7 +126,6 @@ export class AppGradientPickerComponent extends TiniComponent {
       right: 0;
       background: var(--color-dark-tint);
       width: 230px;
-      height: 155px;
       border: 1px solid var(--color-light-tint);
       border-radius: var(--size-border);
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);

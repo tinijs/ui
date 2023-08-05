@@ -572,7 +572,7 @@ export class AppSkinEditorComponent extends TiniComponent {
 
       <div class="foot">
         <tini-button class="show-code" color="primary" @click=${this.showModal}>
-          <icon-code color="light" size="sm"></icon-code>
+          <icon-code color="primary-contrast" size="sm"></icon-code>
           <span>Show code</span>
         </tini-button>
       </div>

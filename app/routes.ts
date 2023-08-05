@@ -22,6 +22,16 @@ export default [
         action: () => import('./pages/components/base'),
       },
       {
+        path: 'components/text',
+        component: 'app-page-components-text',
+        action: () => import('./pages/components/text'),
+      },
+      {
+        path: 'components/box',
+        component: 'app-page-components-box',
+        action: () => import('./pages/components/box'),
+      },
+      {
         path: 'components/button',
         component: 'app-page-components-button',
         action: () => import('./pages/components/button'),
