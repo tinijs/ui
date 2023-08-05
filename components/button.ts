@@ -1,8 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-
-import {Colors, Sizes} from '../app/tokens';
+import {Colors, Sizes} from '@tinijs/core';
 
 export const TINI_BUTTON = 'tini-button';
 

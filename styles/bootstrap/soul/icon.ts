@@ -1,12 +1,11 @@
 import {css} from 'lit';
-
 import {
   generateColorDynamic,
   generateColorVaries,
   generateGradientDynamic,
   generateGradientVaries,
   generateSizeVaries,
-} from '../../../app/tokens';
+} from '@tinijs/core';
 
 export const iconStyle = css`
   :host {

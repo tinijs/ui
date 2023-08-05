@@ -10,6 +10,7 @@ import {
   createRef,
   Ref,
   stylingWithBases,
+  Colors,
 } from '@tinijs/core';
 import {
   commonBases,
@@ -19,8 +20,6 @@ import {
   codeBases,
 } from '@tinijs/ui/bases';
 import {TINI_BUTTON, TiniButtonComponent} from '@tinijs/ui/components/button';
-
-import {Colors} from '../tokens';
 
 export const enum ModalKinds {
   Bare = 'bare',
