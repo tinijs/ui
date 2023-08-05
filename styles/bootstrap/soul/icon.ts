@@ -1,9 +1,7 @@
 import {css} from 'lit';
 import {
-  generateColorDynamic,
-  generateColorVaries,
-  generateGradientDynamic,
-  generateGradientVaries,
+  generateColorDynamicAndVaries,
+  generateGradientDynamicAndVaries,
   generateSizeVaries,
 } from '@tinijs/core';
 
@@ -40,46 +38,24 @@ export const iconStyle = css`
     mask-position: center;
   }
 
-  ${generateColorDynamic(
-    ({name, colorA}) => `
-      .${name} {
-        --icon-color: ${colorA};
-      }
-    `
-  )}
+  ${generateColorDynamicAndVaries(({name, color}) => `
+    .${name} {
+      --icon-color: ${color};
+    }
+  `)}
 
-  ${generateColorVaries(
-    ({name, colorA}) => `
-      .${name} {
-        --icon-color: ${colorA};
-      }
-    `
-  )}
+  ${generateGradientDynamicAndVaries(({name, gradient}) => `
+    .gradient-${name} {
+      --icon-color: ${gradient};
+    }
+  `)}
 
-  ${generateGradientDynamic(
-    ({name, gradientA}) => `
-      .gradient-${name} {
-        --icon-color: ${gradientA};
-      }
-    `
-  )}
-
-  ${generateGradientVaries(
-    ({name, gradientA}) => `
-      .gradient-${name} {
-        --icon-color: ${gradientA};
-      }
-    `
-  )}
-
-  ${generateSizeVaries(
-    size => `
-      .${size} {
-        --icon-width: var(--size-${size}-2x);
-        --icon-height: var(--size-${size}-2x);
-      }
-    `
-  )}
+  ${generateSizeVaries(size => `
+    .${size} {
+      --icon-width: var(--size-${size}-2x);
+      --icon-height: var(--size-${size}-2x);
+    }
+  `)}
 `;
 
 export function iconScript(host: HTMLElement) {}

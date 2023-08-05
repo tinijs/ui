@@ -114,7 +114,7 @@ export class AppGradientPickerComponent extends TiniComponent {
       width: 50px;
       height: 27px;
       outline: var(--size-border) solid var(--color-medium);
-      border: 4px solid #ffffff;
+      border: 4px solid var(--color-background-tint);
       border-radius: var(--size-radius);
     }
 

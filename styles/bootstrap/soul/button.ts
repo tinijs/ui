@@ -1,9 +1,7 @@
 import {css} from 'lit';
 import {
-  generateColorDynamic,
-  generateColorVaries,
-  generateGradientDynamic,
-  generateGradientVaries,
+  generateColorDynamicAndVaries,
+  generateGradientDynamicAndVaries,
   generateSizeVaries,
 } from '@tinijs/core';
 
@@ -11,6 +9,7 @@ export const buttonStyle = css`
   :host {
     --button-background: var(--color-medium) /* Background color */;
     --button-color: var(--color-medium-contrast) /* Text color */;
+    --button-border: none;
     --button-radius: var(--size-radius);
     --button-padding: var(--size-md) /* Base padding */;
     --button-font-size: var(--size-md);
@@ -41,15 +40,14 @@ export const buttonStyle = css`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: calc(var(--button-padding) / 2) var(--button-padding);
+    padding: calc(var(--button-padding) * 0.5) var(--button-padding);
     font-family: var(--font-body);
     font-size: var(--button-font-size);
     line-height: 1.5;
-    border: none;
+    border: var(--button-border);
     border-radius: var(--button-radius);
     background: var(--button-background);
     color: var(--button-color);
-    text-decoration: none !important;
     outline: 0 !important;
     transition: background-color 0.15s ease-in-out;
   }
@@ -71,65 +69,38 @@ export const buttonStyle = css`
   button:disabled:hover,
   button:disabled:active,
   button:disabled:focus-visible {
-    pointer-events: none;
     cursor: not-allowed;
     filter: none;
+    pointer-events: none;
     box-shadow: none;
     background: var(--button-background);
     opacity: var(--button-disabled-opacity);
   }
 
-  ${generateColorDynamic(
-    ({name, colorA, colorB}) => `
-      .${name} {
-        --button-background: ${colorA};
-        --button-color: ${colorB};
-        --button-focus-visible-shadow-color: color-mix(in oklab, ${colorA}, transparent 70%);
-      }
-    `
-  )}
+  ${generateColorDynamicAndVaries(({name, color, contrast}) => `
+    .${name} {
+      --button-background: ${color};
+      --button-color: ${contrast};
+      --button-focus-visible-shadow-color: color-mix(in oklab, ${color}, transparent 70%);
+    }
+  `)}
 
-  ${generateColorVaries(
-    ({name, colorA, colorB}) => `
-      .${name} {
-        --button-background: ${colorA};
-        --button-color: ${colorB};
-        --button-focus-visible-shadow-color: color-mix(in oklab, ${colorA}, transparent 70%);
-      }
-    `
-  )}
+  ${generateGradientDynamicAndVaries(({name, gradient, color, contrast}) => `
+    .gradient-${name} {
+      --button-background: ${gradient};
+      --button-color: ${contrast};
+      --button-hover-background: ${gradient};
+      --button-focus-visible-shadow-color: color-mix(in oklab, ${color}, transparent 70%);
+    }
+  `)}
 
-  ${generateGradientDynamic(
-    ({name, colorA, gradientA, colorB}) => `
-      .gradient-${name} {
-        --button-background: ${gradientA};
-        --button-color: ${colorB};
-        --button-hover-background: ${gradientA};
-        --button-focus-visible-shadow-color: color-mix(in oklab, ${colorA}, transparent 70%);
-      }
-    `
-  )}
-
-  ${generateGradientVaries(
-    ({name, colorA, gradientA, colorB}) => `
-      .gradient-${name} {
-        --button-background: ${gradientA};
-        --button-color: ${colorB};
-        --button-hover-background: ${gradientA};
-        --button-focus-visible-shadow-color: color-mix(in oklab, ${colorA}, transparent 70%);
-      }
-    `
-  )}
-
-  ${generateSizeVaries(
-    size => `
-      .${size} {
-        --button-font-size: var(--size-${size});
-        --button-padding: var(--size-${size});
-        --button-focus-visible-shadow-size: var(--size-${size}-0_3x);
-      }
-    `
-  )}
+  ${generateSizeVaries(size => `
+    .${size} {
+      --button-font-size: var(--size-${size});
+      --button-padding: var(--size-${size});
+      --button-focus-visible-shadow-size: var(--size-${size}-0_3x);
+    }
+  `)}
 `;
 
 export function buttonScript(host: HTMLElement) {}

@@ -23,8 +23,8 @@ export const linkStyle = css`
   a:active {
     color: var(--link-hover-color);
     text-decoration: underline;
-    border: none;
     background: none;
+    border: none;
     outline: 0;
   }
 
@@ -35,8 +35,8 @@ export const linkStyle = css`
   a.muted:hover,
   a.muted:focus,
   a.muted:active {
-    color: var(--link-hover-color-muted);
     text-decoration: none;
+    color: var(--link-hover-color-muted);
   }
 `;
 

@@ -67,10 +67,23 @@ export function buildGradientVariants(baseGradient: string) {
   }));
   const base = constructGradient({...parsedResult, colors: baseColors});
   // contrast
-  const contrastColors = parsedResult.colors.map(({color, position}) => ({
+  const allContrastColors = parsedResult.colors.map(({color, position}) => ({
     color: chroma(color as string).luminance() > 0.5 ? '#000000' : '#ffffff',
     position,
   }));
+  const contrastColors = allContrastColors.map(({position}, i) => {
+    const base = allContrastColors[0];
+    if (i === 0) {
+      return base;
+    } else {
+      const color = base.color;
+      const chromeColor = chroma(color);
+      const offsetColor = color === '#000000'
+        ? chromeColor.brighten(i + 1).hex()
+        : chromeColor.darken(i + 1).hex();
+      return {color: offsetColor, position};
+    }
+  })
   const contrast = constructGradient({...parsedResult, colors: contrastColors});
   // shade
   const shadeColors = parsedResult.colors.map(({color, position}) => ({
