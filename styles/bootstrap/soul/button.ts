@@ -1,5 +1,13 @@
 import {css} from 'lit';
 
+import {
+  generateColorDynamic,
+  generateColorVaries,
+  generateGradientDynamic,
+  generateGradientVaries,
+  generateSizeVaries,
+} from '../../../app/tokens';
+
 export const buttonStyle = css`
   :host {
     --button-background: var(--color-medium) /* Background color */;
@@ -7,13 +15,17 @@ export const buttonStyle = css`
     --button-radius: var(--size-radius);
     --button-padding: var(--size-md) /* Base padding */;
     --button-font-size: var(--size-md);
-    --button-hover-background: var(--color-medium-shade);
+    --button-hover-brightness: 1.1;
     --button-active-brightness: 0.95;
-    --button-disabled-opacity: 0.5;
-    /* [B] Dimmer or brighter to indicate the click action */
+    --button-disabled-opacity: 0.5
+      /* [B] Dimmer or brighter to indicate the click action */;
     --button-focus-visible-shadow-size: var(--size-md-0_3x)
       /* [B] Size of the shadow while focusing */;
-    --button-focus-visible-shadow-color: var(--color-foreground-rgba-30)
+    --button-focus-visible-shadow-color: color-mix(
+        in oklab,
+        var(--color-foreground),
+        transparent 70%
+      )
       /* [B] */;
   }
 
@@ -44,7 +56,7 @@ export const buttonStyle = css`
   }
 
   button:hover {
-    background: var(--button-hover-background);
+    filter: brightness(var(--button-hover-brightness));
   }
 
   button:active {
@@ -68,212 +80,57 @@ export const buttonStyle = css`
     opacity: var(--button-disabled-opacity);
   }
 
-  .dynamic {
-    --button-background: var(--color-foreground);
-    --button-color: var(--color-background);
-    --button-hover-background: var(--color-foreground-shade);
-    --button-focus-visible-shadow-color: var(--color-foreground-rgba-30);
-  }
+  ${generateColorDynamic(
+    ({name, colorA, colorB}) => `
+      .${name} {
+        --button-background: ${colorA};
+        --button-color: ${colorB};
+        --button-focus-visible-shadow-color: color-mix(in oklab, ${colorA}, transparent 70%);
+      }
+    `
+  )}
 
-  .primary {
-    --button-background: var(--color-primary);
-    --button-color: var(--color-primary-contrast);
-    --button-hover-background: var(--color-primary-shade);
-    --button-focus-visible-shadow-color: var(--color-primary-rgba-30);
-  }
+  ${generateColorVaries(
+    ({name, colorA, colorB}) => `
+      .${name} {
+        --button-background: ${colorA};
+        --button-color: ${colorB};
+        --button-focus-visible-shadow-color: color-mix(in oklab, ${colorA}, transparent 70%);
+      }
+    `
+  )}
 
-  .secondary {
-    --button-background: var(--color-secondary);
-    --button-color: var(--color-secondary-contrast);
-    --button-hover-background: var(--color-secondary-shade);
-    --button-focus-visible-shadow-color: var(--color-secondary-rgba-30);
-  }
+  ${generateGradientDynamic(
+    ({name, colorA, gradientA, colorB}) => `
+      .gradient-${name} {
+        --button-background: ${gradientA};
+        --button-color: ${colorB};
+        --button-hover-background: ${gradientA};
+        --button-focus-visible-shadow-color: color-mix(in oklab, ${colorA}, transparent 70%);
+      }
+    `
+  )}
 
-  .tertiary {
-    --button-background: var(--color-tertiary);
-    --button-color: var(--color-tertiary-contrast);
-    --button-hover-background: var(--color-tertiary-shade);
-    --button-focus-visible-shadow-color: var(--color-tertiary-rgba-30);
-  }
+  ${generateGradientVaries(
+    ({name, colorA, gradientA, colorB}) => `
+      .gradient-${name} {
+        --button-background: ${gradientA};
+        --button-color: ${colorB};
+        --button-hover-background: ${gradientA};
+        --button-focus-visible-shadow-color: color-mix(in oklab, ${colorA}, transparent 70%);
+      }
+    `
+  )}
 
-  .success {
-    --button-background: var(--color-success);
-    --button-color: var(--color-success-contrast);
-    --button-hover-background: var(--color-success-shade);
-    --button-focus-visible-shadow-color: var(--color-success-rgba-30);
-  }
-
-  .warning {
-    --button-background: var(--color-warning);
-    --button-color: var(--color-warning-contrast);
-    --button-hover-background: var(--color-warning-shade);
-    --button-focus-visible-shadow-color: var(--color-warning-rgba-30);
-  }
-
-  .danger {
-    --button-background: var(--color-danger);
-    --button-color: var(--color-danger-contrast);
-    --button-hover-background: var(--color-danger-shade);
-    --button-focus-visible-shadow-color: var(--color-danger-rgba-30);
-  }
-
-  .light {
-    --button-background: var(--color-light);
-    --button-color: var(--color-light-contrast);
-    --button-hover-background: var(--color-light-shade);
-    --button-focus-visible-shadow-color: var(--color-light-rgba-30);
-  }
-
-  .medium {
-    --button-background: var(--color-medium);
-    --button-color: var(--color-medium-contrast);
-    --button-hover-background: var(--color-medium-shade);
-    --button-focus-visible-shadow-color: var(--color-medium-rgba-30);
-  }
-
-  .dark {
-    --button-background: var(--color-dark);
-    --button-color: var(--color-dark-contrast);
-    --button-hover-background: var(--color-dark-tint);
-    --button-active-brightness: 1.05;
-    --button-focus-visible-shadow-color: var(--color-dark-rgba-30);
-  }
-
-  .gradient-dynamic {
-    --button-background: var(--gradient-foreground);
-    --button-color: var(--color-background);
-    --button-hover-background: var(--gradient-foreground-shade);
-    --button-focus-visible-shadow-color: var(--color-foreground-rgba-30);
-  }
-
-  .gradient-primary {
-    --button-background: var(--gradient-primary);
-    --button-color: var(--color-primary-contrast);
-    --button-hover-background: var(--gradient-primary-shade);
-    --button-focus-visible-shadow-color: var(--color-primary-rgba-30);
-  }
-
-  .gradient-secondary {
-    --button-background: var(--gradient-secondary);
-    --button-color: var(--color-secondary-contrast);
-    --button-hover-background: var(--gradient-secondary-shade);
-    --button-focus-visible-shadow-color: var(--color-secondary-rgba-30);
-  }
-
-  .gradient-tertiary {
-    --button-background: var(--gradient-tertiary);
-    --button-color: var(--color-tertiary-contrast);
-    --button-hover-background: var(--gradient-tertiary-shade);
-    --button-focus-visible-shadow-color: var(--color-tertiary-rgba-30);
-  }
-
-  .gradient-success {
-    --button-background: var(--gradient-success);
-    --button-color: var(--color-success-contrast);
-    --button-hover-background: var(--gradient-success-shade);
-    --button-focus-visible-shadow-color: var(--color-success-rgba-30);
-  }
-
-  .gradient-warning {
-    --button-background: var(--gradient-warning);
-    --button-color: var(--color-warning-contrast);
-    --button-hover-background: var(--gradient-warning-shade);
-    --button-focus-visible-shadow-color: var(--color-warning-rgba-30);
-  }
-
-  .gradient-danger {
-    --button-background: var(--gradient-danger);
-    --button-color: var(--color-danger-contrast);
-    --button-hover-background: var(--gradient-danger-shade);
-    --button-focus-visible-shadow-color: var(--color-danger-rgba-30);
-  }
-
-  .gradient-dark {
-    --button-background: var(--gradient-dark);
-    --button-color: var(--color-dark-contrast);
-    --button-hover-background: var(--gradient-dark-shade);
-    --button-focus-visible-shadow-color: var(--color-dark-rgba-30);
-  }
-
-  .gradient-medium {
-    --button-background: var(--gradient-medium);
-    --button-color: var(--color-medium-contrast);
-    --button-hover-background: var(--gradient-medium-shade);
-    --button-focus-visible-shadow-color: var(--color-medium-rgba-30);
-  }
-
-  .gradient-light {
-    --button-background: var(--gradient-light);
-    --button-color: var(--color-light-contrast);
-    --button-hover-background: var(--gradient-light-shade);
-    --button-focus-visible-shadow-color: var(--color-light-rgba-30);
-  }
-
-  .xxxs {
-    --button-font-size: var(--size-xxxs);
-    --button-padding: var(--size-xxxs);
-    --button-focus-visible-shadow-size: var(--size-xxxs-0_3x);
-  }
-
-  .xxs {
-    --button-font-size: var(--size-xxs);
-    --button-padding: var(--size-xxs);
-    --button-focus-visible-shadow-size: var(--size-xxs-0_3x);
-  }
-
-  .xs {
-    --button-font-size: var(--size-xs);
-    --button-padding: var(--size-xs);
-    --button-focus-visible-shadow-size: var(--size-xs-0_3x);
-  }
-
-  .ss {
-    --button-font-size: var(--size-ss);
-    --button-padding: var(--size-ss);
-    --button-focus-visible-shadow-size: var(--size-ss-0_3x);
-  }
-
-  .sm {
-    --button-font-size: var(--size-sm);
-    --button-padding: var(--size-sm);
-    --button-focus-visible-shadow-size: var(--size-sm-0_3x);
-  }
-
-  .ml {
-    --button-font-size: var(--size-ml);
-    --button-padding: var(--size-ml);
-    --button-focus-visible-shadow-size: var(--size-ml-0_3x);
-  }
-
-  .lg {
-    --button-font-size: var(--size-lg);
-    --button-padding: var(--size-lg);
-    --button-focus-visible-shadow-size: var(--size-lg-0_3x);
-  }
-
-  .sl {
-    --button-font-size: var(--size-sl);
-    --button-padding: var(--size-sl);
-    --button-focus-visible-shadow-size: var(--size-sl-0_3x);
-  }
-
-  .xl {
-    --button-font-size: var(--size-xl);
-    --button-padding: var(--size-xl);
-    --button-focus-visible-shadow-size: var(--size-xl-0_3x);
-  }
-
-  .xxl {
-    --button-font-size: var(--size-xxl);
-    --button-padding: var(--size-xxl);
-    --button-focus-visible-shadow-size: var(--size-xxl-0_3x);
-  }
-
-  .xxxl {
-    --button-font-size: var(--size-xxxl);
-    --button-padding: var(--size-xxxl);
-    --button-focus-visible-shadow-size: var(--size-xxxl-0_3x);
-  }
+  ${generateSizeVaries(
+    size => `
+      .${size} {
+        --button-font-size: var(--size-${size});
+        --button-padding: var(--size-${size});
+        --button-focus-visible-shadow-size: var(--size-${size}-0_3x);
+      }
+    `
+  )}
 `;
 
 export function buttonScript(host: HTMLElement) {}

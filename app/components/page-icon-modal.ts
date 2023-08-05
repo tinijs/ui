@@ -329,6 +329,78 @@ containerEl.innerHTML = ${nameVar}Code;
                             color="dynamic"
                             .src=${iconSRC}
                           ></tini-icon>
+                          <div style="padding: 1rem; background: var(--color-foreground);">
+                            <tini-icon
+                              color="dynamic-contrast"
+                              .src=${iconSRC}
+                            ></tini-icon>
+                          </div>
+                          <tini-icon
+                            color="dynamic-shade"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="dynamic-shade-2"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="dynamic-shade-3"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="dynamic-shade-4"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="dynamic-shade-5"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="dynamic-tint"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="dynamic-tint-2"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="dynamic-tint-3"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="dynamic-tint-4"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="dynamic-tint-5"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                        </div>
+                      </app-section>
+
+                      <app-section
+                        class="colors"
+                        .preprocessCode=${this.PREPROCESS_CODE}
+                        .codeBuildContext=${names}
+                      >
+                        <div slot="content">
+                          <h2>Color Primary</h2>
+                        </div>
+                        <div slot="code">
+                          <tini-icon color="primary" .src=${iconSRC}></tini-icon>
+                          <div style="padding: 1rem; background: var(--color-primary);">
+                            <tini-icon color="primary-contrast" .src=${iconSRC}></tini-icon>
+                          </div>
+                          <tini-icon color="primary-shade" .src=${iconSRC}></tini-icon>
+                          <tini-icon color="primary-shade-2" .src=${iconSRC}></tini-icon>
+                          <tini-icon color="primary-shade-3" .src=${iconSRC}></tini-icon>
+                          <tini-icon color="primary-shade-4" .src=${iconSRC}></tini-icon>
+                          <tini-icon color="primary-shade-5" .src=${iconSRC}></tini-icon>
+                          <tini-icon color="primary-tint" .src=${iconSRC}></tini-icon>
+                          <tini-icon color="primary-tint-2" .src=${iconSRC}></tini-icon>
+                          <tini-icon color="primary-tint-3" .src=${iconSRC}></tini-icon>
+                          <tini-icon color="primary-tint-4" .src=${iconSRC}></tini-icon>
+                          <tini-icon color="primary-tint-5" .src=${iconSRC}></tini-icon>
                         </div>
                       </app-section>
 
@@ -341,10 +413,6 @@ containerEl.innerHTML = ${nameVar}Code;
                           <h2>Colors</h2>
                         </div>
                         <div slot="code">
-                          <tini-icon
-                            color="primary"
-                            .src=${iconSRC}
-                          ></tini-icon>
                           <tini-icon
                             color="secondary"
                             .src=${iconSRC}
@@ -374,13 +442,69 @@ containerEl.innerHTML = ${nameVar}Code;
                         .codeBuildContext=${names}
                       >
                         <div slot="content">
-                          <h2>Gradients</h2>
+                          <h2>Gradient Dynamic</h2>
+                        </div>
+                        <div slot="code">
+                          <tini-icon
+                            color="gradient-dynamic"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <div style="padding: 1rem; background: var(--color-foreground);">
+                            <tini-icon
+                              color="gradient-dynamic-contrast"
+                              .src=${iconSRC}
+                            ></tini-icon>
+                          </div>
+                          <tini-icon
+                            color="gradient-dynamic-shade"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="gradient-dynamic-tint"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                        </div>
+                      </app-section>
+
+                      <app-section
+                        class="gradients"
+                        .preprocessCode=${this.PREPROCESS_CODE}
+                        .codeBuildContext=${names}
+                      >
+                        <div slot="content">
+                          <h2>Gradient Primary</h2>
                         </div>
                         <div slot="code">
                           <tini-icon
                             color="gradient-primary"
                             .src=${iconSRC}
                           ></tini-icon>
+                          <div style="padding: 1rem; background: var(--color-primary);">
+                            <tini-icon
+                              color="gradient-primary-contrast"
+                              .src=${iconSRC}
+                            ></tini-icon>
+                          </div>
+                          <tini-icon
+                            color="gradient-primary-shade"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="gradient-primary-tint"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                        </div>
+                      </app-section>
+
+                      <app-section
+                        class="gradients"
+                        .preprocessCode=${this.PREPROCESS_CODE}
+                        .codeBuildContext=${names}
+                      >
+                        <div slot="content">
+                          <h2>Gradients</h2>
+                        </div>
+                        <div slot="code">
                           <tini-icon
                             color="gradient-secondary"
                             .src=${iconSRC}

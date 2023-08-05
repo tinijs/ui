@@ -75,7 +75,7 @@
   --color-foreground-tint: #383a3e;
   /* gradients */
   --gradient-primary: linear-gradient(180deg, #4c8dff 0%, #3171e0 100%);
-  --grafient-primary-contrast: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
+  --gradient-primary-contrast: linear-gradient(180deg, #ffffff 0%, #ffffff 100%);
   --gradient-primary-shade: linear-gradient(180deg, #367df8 0%, #1c63de 100%);
   --gradient-primary-tint: linear-gradient(180deg, #5d9eff 0%, #4c8dff 100%);
   --gradient-secondary: linear-gradient(180deg, #50c8ff 0%, #36abe0 100%);

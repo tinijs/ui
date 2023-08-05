@@ -1,5 +1,13 @@
 import {css} from 'lit';
 
+import {
+  generateColorDynamic,
+  generateColorVaries,
+  generateGradientDynamic,
+  generateGradientVaries,
+  generateSizeVaries,
+} from '../../../app/tokens';
+
 export const iconStyle = css`
   :host {
     --icon-width: var(--size-md-2x);
@@ -33,140 +41,46 @@ export const iconStyle = css`
     mask-position: center;
   }
 
-  .dynamic {
-    --icon-color: var(--color-foreground);
-  }
+  ${generateColorDynamic(
+    ({name, colorA}) => `
+      .${name} {
+        --icon-color: ${colorA};
+      }
+    `
+  )}
 
-  .primary {
-    --icon-color: var(--color-primary);
-  }
+  ${generateColorVaries(
+    ({name, colorA}) => `
+      .${name} {
+        --icon-color: ${colorA};
+      }
+    `
+  )}
 
-  .secondary {
-    --icon-color: var(--color-secondary);
-  }
+  ${generateGradientDynamic(
+    ({name, gradientA}) => `
+      .gradient-${name} {
+        --icon-color: ${gradientA};
+      }
+    `
+  )}
 
-  .tertiary {
-    --icon-color: var(--color-tertiary);
-  }
+  ${generateGradientVaries(
+    ({name, gradientA}) => `
+      .gradient-${name} {
+        --icon-color: ${gradientA};
+      }
+    `
+  )}
 
-  .success {
-    --icon-color: var(--color-success);
-  }
-
-  .warning {
-    --icon-color: var(--color-warning);
-  }
-
-  .danger {
-    --icon-color: var(--color-danger);
-  }
-
-  .light {
-    --icon-color: var(--color-light);
-  }
-
-  .medium {
-    --icon-color: var(--color-medium);
-  }
-
-  .dark {
-    --icon-color: var(--color-dark);
-  }
-
-  .gradient-dynamic {
-    --icon-color: var(--gradient-foreground);
-  }
-
-  .gradient-primary {
-    --icon-color: var(--gradient-primary);
-  }
-
-  .gradient-secondary {
-    --icon-color: var(--gradient-secondary);
-  }
-
-  .gradient-tertiary {
-    --icon-color: var(--gradient-tertiary);
-  }
-
-  .gradient-success {
-    --icon-color: var(--gradient-success);
-  }
-
-  .gradient-warning {
-    --icon-color: var(--gradient-warning);
-  }
-
-  .gradient-danger {
-    --icon-color: var(--gradient-danger);
-  }
-
-  .gradient-light {
-    --icon-color: var(--gradient-light);
-  }
-
-  .gradient-medium {
-    --icon-color: var(--gradient-medium);
-  }
-
-  .gradient-dark {
-    --icon-color: var(--gradient-dark);
-  }
-
-  .xxxs {
-    --icon-width: var(--size-xxxs-2x);
-    --icon-height: var(--size-xxxs-2x);
-  }
-
-  .xxs {
-    --icon-width: var(--size-xxs-2x);
-    --icon-height: var(--size-xxs-2x);
-  }
-
-  .xs {
-    --icon-width: var(--size-xs-2x);
-    --icon-height: var(--size-xs-2x);
-  }
-
-  .ss {
-    --icon-width: var(--size-ss-2x);
-    --icon-height: var(--size-ss-2x);
-  }
-
-  .sm {
-    --icon-width: var(--size-sm-2x);
-    --icon-height: var(--size-sm-2x);
-  }
-
-  .ml {
-    --icon-width: var(--size-ml-2x);
-    --icon-height: var(--size-ml-2x);
-  }
-
-  .lg {
-    --icon-width: var(--size-lg-2x);
-    --icon-height: var(--size-lg-2x);
-  }
-
-  .sl {
-    --icon-width: var(--size-sl-2x);
-    --icon-height: var(--size-sl-2x);
-  }
-
-  .xl {
-    --icon-width: var(--size-xl-2x);
-    --icon-height: var(--size-xl-2x);
-  }
-
-  .xxl {
-    --icon-width: var(--size-xxl-2x);
-    --icon-height: var(--size-xxl-2x);
-  }
-
-  .xxxl {
-    --icon-width: var(--size-xxxl-2x);
-    --icon-height: var(--size-xxxl-2x);
-  }
+  ${generateSizeVaries(
+    size => `
+      .${size} {
+        --icon-width: var(--size-${size}-2x);
+        --icon-height: var(--size-${size}-2x);
+      }
+    `
+  )}
 `;
 
 export function iconScript(host: HTMLElement) {}
