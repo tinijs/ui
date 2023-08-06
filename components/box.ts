@@ -2,18 +2,18 @@ import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 
-import {Colors, Multipliers} from '@tinijs/core';
+import {ColorsAndGradientsWithDynamics} from '@tinijs/core';
 
 export const TINI_BOX = 'tini-box';
 
 /* UseBases(common) */
 export class TiniBoxComponent extends LitElement {
-  @property({type: String}) declare background?: Colors;
-  // @property({type: String}) declare color?: Colors;
+  @property({type: String}) declare background?: ColorsAndGradientsWithDynamics;
+  // @property({type: String}) declare textColor?: Colors;
   // @property({type: String}) declare padding?: Multipliers;
   // @property({type: String}) declare margin?: Multipliers;
-  private mainClasses = {};
 
+  private mainClasses = {};
   protected willUpdate() {
     this.mainClasses = {
       [`bg-${this.background}`]: !!this.background,

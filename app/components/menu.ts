@@ -65,13 +65,15 @@ export class AppMenuComponent extends TiniComponent {
     }
   `;
 
+  private GROUP_NAMES = ['guides', 'components', 'icons'];
+
+  private guides: Array<{title: string; href: string}> = [];
   private components: Array<{title: string; href: string}> = [];
   private icons: Array<{title: string; href: string}> = [];
 
   private buildMenu() {
-    const groupNames = ['components', 'icons'];
     const handleRoute = ({path}: Route) => {
-      for (const groupName of groupNames) {
+      for (const groupName of this.GROUP_NAMES) {
         if (~path.indexOf(`${groupName}/`)) {
           const pageName = path.split('/').pop() as string;
           (this as any)[groupName]?.push({
@@ -102,6 +104,20 @@ export class AppMenuComponent extends TiniComponent {
       <ul>
         <li><tini-link href="/">Introduction</tini-link></li>
         <li><tini-link href="/get-started">Get started</tini-link></li>
+        ${!this.guides.length
+          ? nothing
+          : html`
+              <li>
+                <strong class="title">Guides</strong>
+                <ul>
+                  ${this.guides.map(
+                    ({title, href}) => html`
+                      <li><tini-link href=${href}>${title}</tini-link></li>
+                    `
+                  )}
+                </ul>
+              </li>
+            `}
         ${!this.components.length
           ? nothing
           : html`

@@ -7,23 +7,27 @@ export const textStyle = css`
     display: inline;
   }
 
-  [part="text"] {
+  [part='text'] {
     color: var(--box-color);
   }
 
-  ${generateColorVaries(({name, color}) => `
+  ${generateColorVaries(
+    ({name, color}) => `
     .${name} {
       --box-color: ${color};
     }
-  `)}
+  `
+  )}
 
-  ${generateGradientVaries(({name, gradient}) => `
+  ${generateGradientVaries(
+    ({name, gradient}) => `
     .gradient-${name} {
       background: ${gradient};
       -webkit-background-clip: text;
 	    -webkit-text-fill-color: transparent;
     }
-  `)}
+  `
+  )}
 `;
 
 export function textScript(host: HTMLElement) {}

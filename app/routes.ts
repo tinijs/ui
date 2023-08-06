@@ -15,6 +15,12 @@ export default [
         component: 'app-page-get-started',
         action: () => import('./pages/get-started'),
       },
+      // guides
+      {
+        path: 'guides/customization',
+        component: 'app-page-guides-customization',
+        action: () => import('./pages/guides/customization'),
+      },
       // components
       {
         path: 'components/base',

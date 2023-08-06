@@ -17,6 +17,7 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
+import {TINI_BOX, TiniBoxComponent} from '@tinijs/ui/components/box';
 import {TINI_ICON, TiniIconComponent} from '@tinijs/ui/components/icon';
 
 import {IconsImportMethods} from '../consts/main';
@@ -32,6 +33,7 @@ export type IconDef = [string, string];
 export const APP_PAGE_ICON_MODAL = 'app-page-icon-modal';
 @Component({
   components: {
+    [TINI_BOX]: TiniBoxComponent,
     [TINI_ICON]: TiniIconComponent,
     [APP_SECTION]: AppSectionComponent,
     [APP_TABS]: AppTabsComponent,
@@ -329,12 +331,12 @@ containerEl.innerHTML = ${nameVar}Code;
                             color="dynamic"
                             .src=${iconSRC}
                           ></tini-icon>
-                          <div style="padding: 1rem; background: var(--color-foreground);">
+                          <tini-box background="dynamic">
                             <tini-icon
                               color="dynamic-contrast"
                               .src=${iconSRC}
                             ></tini-icon>
-                          </div>
+                          </tini-box>
                           <tini-icon
                             color="dynamic-shade"
                             .src=${iconSRC}
@@ -387,20 +389,56 @@ containerEl.innerHTML = ${nameVar}Code;
                           <h2>Color Primary</h2>
                         </div>
                         <div slot="code">
-                          <tini-icon color="primary" .src=${iconSRC}></tini-icon>
-                          <div style="padding: 1rem; background: var(--color-primary);">
-                            <tini-icon color="primary-contrast" .src=${iconSRC}></tini-icon>
-                          </div>
-                          <tini-icon color="primary-shade" .src=${iconSRC}></tini-icon>
-                          <tini-icon color="primary-shade-2" .src=${iconSRC}></tini-icon>
-                          <tini-icon color="primary-shade-3" .src=${iconSRC}></tini-icon>
-                          <tini-icon color="primary-shade-4" .src=${iconSRC}></tini-icon>
-                          <tini-icon color="primary-shade-5" .src=${iconSRC}></tini-icon>
-                          <tini-icon color="primary-tint" .src=${iconSRC}></tini-icon>
-                          <tini-icon color="primary-tint-2" .src=${iconSRC}></tini-icon>
-                          <tini-icon color="primary-tint-3" .src=${iconSRC}></tini-icon>
-                          <tini-icon color="primary-tint-4" .src=${iconSRC}></tini-icon>
-                          <tini-icon color="primary-tint-5" .src=${iconSRC}></tini-icon>
+                          <tini-icon
+                            color="primary"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-box background="primary">
+                            <tini-icon
+                              color="primary-contrast"
+                              .src=${iconSRC}
+                            ></tini-icon>
+                          </tini-box>
+                          <tini-icon
+                            color="primary-shade"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="primary-shade-2"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="primary-shade-3"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="primary-shade-4"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="primary-shade-5"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="primary-tint"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="primary-tint-2"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="primary-tint-3"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="primary-tint-4"
+                            .src=${iconSRC}
+                          ></tini-icon>
+                          <tini-icon
+                            color="primary-tint-5"
+                            .src=${iconSRC}
+                          ></tini-icon>
                         </div>
                       </app-section>
 
@@ -449,12 +487,12 @@ containerEl.innerHTML = ${nameVar}Code;
                             color="gradient-dynamic"
                             .src=${iconSRC}
                           ></tini-icon>
-                          <div style="padding: 1rem; background: var(--color-foreground);">
+                          <tini-box background="dynamic">
                             <tini-icon
                               color="gradient-dynamic-contrast"
                               .src=${iconSRC}
                             ></tini-icon>
-                          </div>
+                          </tini-box>
                           <tini-icon
                             color="gradient-dynamic-shade"
                             .src=${iconSRC}
@@ -479,12 +517,12 @@ containerEl.innerHTML = ${nameVar}Code;
                             color="gradient-primary"
                             .src=${iconSRC}
                           ></tini-icon>
-                          <div style="padding: 1rem; background: var(--color-primary);">
+                          <tini-box background="primary">
                             <tini-icon
                               color="gradient-primary-contrast"
                               .src=${iconSRC}
                             ></tini-icon>
-                          </div>
+                          </tini-box>
                           <tini-icon
                             color="gradient-primary-shade"
                             .src=${iconSRC}

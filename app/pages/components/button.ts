@@ -205,6 +205,28 @@ export class AppPageComponentsButton extends TiniComponent {
           </div>
         </app-section>
 
+        <app-section class="text-colors">
+          <div slot="content">
+            <h2>Text colors</h2>
+            <p>Forced text colors.</p>
+          </div>
+          <div slot="code">
+            <tini-button textColor="primary">Default / Primary</tini-button>
+            <tini-button color="dynamic" textColor="warning"
+              >Dynamic / Warning</tini-button
+            >
+            <tini-button color="warning" textColor="danger"
+              >Warning / Danger</tini-button
+            >
+            <tini-button color="gradient-dynamic" textColor="success"
+              >Gradient Dynamic / Success</tini-button
+            >
+            <tini-button color="gradient-success" textColor="light"
+              >Gradient Success / Light</tini-button
+            >
+          </div>
+        </app-section>
+
         <app-section class="sizes">
           <div slot="content"><h2>Sizes</h2></div>
           <div slot="code">

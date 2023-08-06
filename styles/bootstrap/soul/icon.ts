@@ -38,24 +38,30 @@ export const iconStyle = css`
     mask-position: center;
   }
 
-  ${generateColorDynamicAndVaries(({name, color}) => `
-    .${name} {
+  ${generateColorDynamicAndVaries(
+    ({name, color}) => `
+    .color-${name} {
       --icon-color: ${color};
     }
-  `)}
+  `
+  )}
 
-  ${generateGradientDynamicAndVaries(({name, gradient}) => `
-    .gradient-${name} {
+  ${generateGradientDynamicAndVaries(
+    ({name, gradient}) => `
+    .color-gradient-${name} {
       --icon-color: ${gradient};
     }
-  `)}
+  `
+  )}
 
-  ${generateSizeVaries(size => `
-    .${size} {
+  ${generateSizeVaries(
+    size => `
+    .size-${size} {
       --icon-width: var(--size-${size}-2x);
       --icon-height: var(--size-${size}-2x);
     }
-  `)}
+  `
+  )}
 `;
 
 export function iconScript(host: HTMLElement) {}

@@ -3,27 +3,31 @@ import {generateColorVaries, generateGradientVaries} from '@tinijs/core';
 
 export const textStyle = css`
   :host {
-    --box-color: var(--color-foreground);
+    --text-color: var(--color-foreground);
     display: inline;
   }
 
-  [part="text"] {
-    color: var(--box-color);
+  [part='text'] {
+    color: var(--text-color);
   }
 
-  ${generateColorVaries(({name, color}) => `
-    .${name} {
-      --box-color: ${color};
+  ${generateColorVaries(
+    ({name, color}) => `
+    .color-${name} {
+      --text-color: ${color};
     }
-  `)}
+  `
+  )}
 
-  ${generateGradientVaries(({name, gradient}) => `
-    .gradient-${name} {
+  ${generateGradientVaries(
+    ({name, gradient}) => `
+    .color-gradient-${name} {
       background: ${gradient};
       -webkit-background-clip: text;
 	    -webkit-text-fill-color: transparent;
     }
-  `)}
+  `
+  )}
 `;
 
 export function textScript(host: HTMLElement) {}

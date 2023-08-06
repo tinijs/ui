@@ -34,16 +34,12 @@ export class AppPageComponentsText extends TiniComponent {
   protected render() {
     return html`
       <app-page titleText="Texts" name="text" path="components/text">
-        <div slot="description">
-          Text text text.
-        </div>
+        <div slot="description">Text text text.</div>
 
         <app-section class="default">
           <div slot="content">
             <h2>Default</h2>
-            <p>
-              Default color is <code>foreground</code>.
-            </p>
+            <p>Default color is <code>foreground</code>.</p>
           </div>
           <div slot="code">
             <tini-text>This is a text.</tini-text>
@@ -95,9 +91,13 @@ export class AppPageComponentsText extends TiniComponent {
           <div slot="code">
             <tini-text color="gradient-primary">This is a text.</tini-text>
             <tini-box background="primary">
-              <tini-text color="gradient-primary-contrast">This is a text.</tini-text>
+              <tini-text color="gradient-primary-contrast"
+                >This is a text.</tini-text
+              >
             </tini-box>
-            <tini-text color="gradient-primary-shade">This is a text.</tini-text>
+            <tini-text color="gradient-primary-shade"
+              >This is a text.</tini-text
+            >
             <tini-text color="gradient-primary-tint">This is a text.</tini-text>
           </div>
         </app-section>

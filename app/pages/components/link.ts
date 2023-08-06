@@ -32,9 +32,7 @@ export class AppPageComponentsLink extends TiniComponent {
   protected render() {
     return html`
       <app-page titleText="Links" name="link" path="components/link">
-        <div slot="description">
-          Link.
-        </div>
+        <div slot="description">Link.</div>
 
         <app-section class="default">
           <div slot="content">

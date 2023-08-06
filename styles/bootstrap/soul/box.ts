@@ -1,5 +1,8 @@
 import {css} from 'lit';
-import {generateColorDynamicAndVaries, generateGradientDynamicAndVaries} from '@tinijs/core';
+import {
+  generateColorDynamicAndVaries,
+  generateGradientDynamicAndVaries,
+} from '@tinijs/core';
 
 export const boxStyle = css`
   :host {
@@ -17,7 +20,7 @@ export const boxStyle = css`
     --box-margin-left: 0;
   }
 
-  [part="box"] {
+  [part='box'] {
     width: 100%;
     background: var(--box-background);
     color: var(--box-color);
@@ -33,19 +36,23 @@ export const boxStyle = css`
     margin-left: var(--box-margin-left);
   }
 
-  ${generateColorDynamicAndVaries(({name, color, contrast}) => `
+  ${generateColorDynamicAndVaries(
+    ({name, color, contrast}) => `
     .bg-${name} {
       --box-background: ${color};
       --box-color: ${contrast};
     }
-  `)}
+  `
+  )}
 
-  ${generateGradientDynamicAndVaries(({name, gradient, contrast}) => `
+  ${generateGradientDynamicAndVaries(
+    ({name, gradient, contrast}) => `
     .bg-gradient-${name} {
       --box-background: ${gradient};
       --box-color: ${contrast};
     }
-  `)}
+  `
+  )}
 `;
 
 export function boxScript(host: HTMLElement) {}

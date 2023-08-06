@@ -17,7 +17,7 @@ export const boxStyle = css`
     --box-margin-left: 0;
   }
 
-  [part="box"] {
+  [part='box'] {
     width: 100%;
     background: var(--box-background);
     color: var(--box-color);
@@ -33,19 +33,23 @@ export const boxStyle = css`
     margin-left: var(--box-margin-left);
   }
 
-  ${generateColorVaries(({name, color, contrast}) => `
+  ${generateColorVaries(
+    ({name, color, contrast}) => `
     .bg-${name} {
       --box-background: ${color};
       --box-color: ${contrast};
     }
-  `)}
+  `
+  )}
 
-  ${generateGradientVaries(({name, gradient, contrast}) => `
+  ${generateGradientVaries(
+    ({name, gradient, contrast}) => `
     .gradient-${name} {
       --box-background: ${gradient};
       --box-color: ${contrast};
     }
-  `)}
+  `
+  )}
 `;
 
 export function boxScript(host: HTMLElement) {}

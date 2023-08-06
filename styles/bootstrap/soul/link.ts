@@ -1,11 +1,15 @@
 import {css} from 'lit';
+import {
+  generateColorDynamicAndVaries,
+  generateGradientDynamicAndVaries,
+} from '@tinijs/core';
 
 export const linkStyle = css`
   :host {
     --link-color: var(--color-primary);
     --link-color-muted: var(--color-foreground);
-    --link-hover-color: var(--color-primary-shade);
-    --link-hover-color-muted: var(--color-foreground-shade);
+    --link-hover-brightness: 1.1;
+    --link-disabled-opacity: 0.5;
     display: inline;
   }
 
@@ -21,7 +25,7 @@ export const linkStyle = css`
   a:hover,
   a:focus,
   a:active {
-    color: var(--link-hover-color);
+    filter: brightness(var(--link-hover-brightness));
     text-decoration: underline;
     background: none;
     border: none;
@@ -29,15 +33,33 @@ export const linkStyle = css`
   }
 
   a.muted {
-    color: var(--link-color-muted);
+    opacity: var(--link-disabled-opacity);
   }
 
   a.muted:hover,
   a.muted:focus,
   a.muted:active {
     text-decoration: none;
-    color: var(--link-hover-color-muted);
+    filter: none;
   }
+
+  ${generateColorDynamicAndVaries(
+    ({name, color}) => `
+    .color-${name} {
+      --link-color: ${color};
+    }
+  `
+  )}
+
+  ${generateGradientDynamicAndVaries(
+    ({name, gradient}) => `
+    .color-gradient-${name} {
+      background: ${gradient};
+      -webkit-background-clip: text;
+	    -webkit-text-fill-color: transparent;
+    }
+  `
+  )}
 `;
 
 export function linkScript(host: HTMLElement) {}

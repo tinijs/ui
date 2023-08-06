@@ -1,11 +1,14 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
+import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined';
+import {ColorsAndGradientsWithDynamics} from '@tinijs/core';
 
 export const TINI_LINK = 'tini-link';
 
 /* UseBases(common) */
 export class TiniLinkComponent extends LitElement {
+  @property({type: String}) declare color?: ColorsAndGradientsWithDynamics;
   @property({type: String}) declare href?: string;
   @property({type: String}) declare rel?: string;
   @property({type: String}) declare target?:
@@ -14,10 +17,18 @@ export class TiniLinkComponent extends LitElement {
     | '_parent'
     | '_top';
 
+  private mainClasses: ClassInfo = {};
+  protected willUpdate() {
+    this.mainClasses = {
+      [`color-${this.color}`]: !!this.color,
+    };
+  }
+
   protected render() {
     return html`
       <a
         part="link"
+        class=${classMap(this.mainClasses)}
         href=${this.href || '#'}
         target=${ifDefined(this.target)}
         rel=${ifDefined(this.rel)}

@@ -45,6 +45,10 @@
   --color-background-contrast: #ffffff;
   --color-background-shade: #1e2023;
   --color-background-tint: #383a3e;
+  --color-middleground: #92949c;
+  --color-middleground-contrast: #ffffff;
+  --color-middleground-shade: #808289;
+  --color-middleground-tint: #9d9fa6;
   --color-foreground: #f4f5f8;
   --color-foreground-contrast: #000000;
   --color-foreground-shade: #d7d8da;
@@ -90,6 +94,10 @@
   --gradient-background-contrast: linear-gradient(180deg, #ffffff 0%, #bbbaba 100%);
   --gradient-background-shade: linear-gradient(180deg, #404040 0%, #000000 100%);
   --gradient-background-tint: linear-gradient(180deg, #999999 0%, #2c2c2c 100%);
+  --gradient-middleground: linear-gradient(180deg, #c8c9cb 0%, #575960 100%);
+  --gradient-middleground-contrast: linear-gradient(180deg, #000000 0%, #ffffff 100%);
+  --gradient-middleground-shade: linear-gradient(180deg, #97989a 0%, #2e3036 100%);
+  --gradient-middleground-tint: linear-gradient(180deg, #fbfcfe 0%, #84868d 100%);
   --gradient-foreground: linear-gradient(180deg, #ffffff 0%, #ababab 100%);
   --gradient-foreground-contrast: linear-gradient(180deg, #000000 0%, #ffffff 100%);
   --gradient-foreground-shade: linear-gradient(180deg, #cccccc 0%, #7c7c7c 100%);

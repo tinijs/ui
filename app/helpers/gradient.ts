@@ -78,12 +78,13 @@ export function buildGradientVariants(baseGradient: string) {
     } else {
       const color = base.color;
       const chromeColor = chroma(color);
-      const offsetColor = color === '#000000'
-        ? chromeColor.brighten(i + 1).hex()
-        : chromeColor.darken(i + 1).hex();
+      const offsetColor =
+        color === '#000000'
+          ? chromeColor.brighten(i + 1).hex()
+          : chromeColor.darken(i + 1).hex();
       return {color: offsetColor, position};
     }
-  })
+  });
   const contrast = constructGradient({...parsedResult, colors: contrastColors});
   // shade
   const shadeColors = parsedResult.colors.map(({color, position}) => ({
