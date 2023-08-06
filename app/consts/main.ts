@@ -12,12 +12,6 @@ export const GITHUB_ICONS_RAW_URL = GITHUB_RAW_URL.replace(
   'tinijs/icons'
 );
 
-export const enum OfficialSoulNames {
-  Bootstrap = 'bootstrap',
-  Material = 'material',
-  Fluent = 'fluent',
-}
-
 export const enum ConsumerPlatforms {
   Tini = 'Tini',
   Vue = 'Vue',

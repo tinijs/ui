@@ -13,5 +13,6 @@ export default css`
   textarea {
     font-family: var(--font-body);
     font-size: var(--size-text);
+    color: var(--color-foreground);
   }
 `;

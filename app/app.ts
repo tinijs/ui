@@ -4,6 +4,7 @@ import {createRouter} from '@tinijs/router';
 import configs from './configs/development';
 import routes from './routes';
 import providers from './providers';
+import {initTheme} from './helpers/theme';
 
 import './layouts/default';
 
@@ -11,6 +12,10 @@ import './layouts/default';
 export class AppRoot extends TiniComponent {
   public readonly $configs = configs;
   public readonly $router = createRouter(routes, {linkTrigger: true});
+
+  onCreate() {
+    initTheme();
+  }
 
   protected render() {
     return html`<router-outlet .router=${this.$router}></router-outlet>`;

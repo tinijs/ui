@@ -8,7 +8,7 @@ import {
   stylingWithBases,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
-import {commonBases, linkBases, buttonBases} from '@tinijs/ui/bases';
+import {commonBases, linkBases, buttonBases, formBases} from '@tinijs/ui/bases';
 import {ICON_GITHUB, IconGithubComponent} from '@tinijs/bootstrap-icons/github';
 import {
   ICON_PALETTE,
@@ -18,6 +18,7 @@ import {
 import {APP_SKIN_EDITOR, AppSkinEditorComponent} from './skin-editor';
 
 import {GITHUB_REPO_URL} from '../consts/main';
+import {changeTheme} from '../helpers/theme';
 import {mainStore} from '../stores/main';
 
 export const APP_HEADER = 'app-header';
@@ -28,7 +29,7 @@ export const APP_HEADER = 'app-header';
     [APP_SKIN_EDITOR]: AppSkinEditorComponent,
   },
   theming: {
-    styling: stylingWithBases([commonBases, linkBases, buttonBases]),
+    styling: stylingWithBases([commonBases, linkBases, buttonBases, formBases]),
   },
 })
 export class AppHeaderComponent extends TiniComponent {
@@ -85,10 +86,15 @@ export class AppHeaderComponent extends TiniComponent {
       background: var(--color-primary-shade);
     }
 
+    .theme-select {
+      cursor: pointer;
+      border: var(--size-border) solid var(--color-primary-contrast);
+    }
+
     .skin-editor-toggler {
+      cursor: pointer;
       display: flex;
       align-items: center;
-      cursor: pointer;
       background: none;
       border: none;
       color: var(--color-primary-contrast);
@@ -122,6 +128,10 @@ export class AppHeaderComponent extends TiniComponent {
   @Subscribe(mainStore) @Reactive() private skinEditorShown =
     mainStore.skinEditorShown;
 
+  private switchTheme(e: Event) {
+    return changeTheme((e.target as HTMLSelectElement).value);
+  }
+
   private toggleSkinEditor() {
     return mainStore.commit('skinEditorShown', !mainStore.skinEditorShown);
   }
@@ -136,6 +146,12 @@ export class AppHeaderComponent extends TiniComponent {
           </a>
         </div>
         <div class="menu">
+          <select class="theme-select" @change=${this.switchTheme}>
+            <optgroup label="Bootstrap">
+              <option value="bootstrap/light">Light</option>
+              <option value="bootstrap/dark">Dark</option>
+            </optgroup>
+          </select>
           <button class="skin-editor-toggler" @click=${this.toggleSkinEditor}>
             <icon-palette color="primary-contrast" size="sm"></icon-palette>
             <span>Skin Editor</span>

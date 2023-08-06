@@ -5,7 +5,6 @@ import {
   html,
   css,
   stylingWithBases,
-  changeTheme,
   repeat,
   QueryAll,
   ref,
@@ -27,6 +26,7 @@ import {
 
 import {GITHUB_RAW_URL} from '../consts/main';
 import {SOULS, FONTS} from '../consts/theme';
+import {changeTheme} from '../helpers/theme';
 import {debouncer} from '../helpers/debouncer';
 import {extractCSSVariables, VariableDef} from '../helpers/source';
 import {buildColorVariants} from '../helpers/color';
@@ -309,21 +309,19 @@ export class AppSkinEditorComponent extends TiniComponent {
       soul => soul.id === (e.target as HTMLSelectElement).value
     );
     if (soul) {
-      document.body.style.cssText = '';
-      changeTheme({soul: soul.id, skin: soul.skins[0].id});
-      mainStore.commit('soulName', soul.id);
       await this.fetchSkinVariables();
+      changeTheme(`${soul.id}/${soul.skins[0].id}`);
       this.resetSkin();
     }
   }
 
   private resetSkin() {
     document.body.style.cssText = '';
+    this.changedVariablesMap.clear();
     this.allInputs.forEach(item => {
       const input = item as HTMLInputElement;
       input.value = this.variablesMap.get(input.name)?.valueDirect || '';
     });
-    this.changedVariablesMap.clear();
   }
 
   private resetSkinWithConfirmation() {

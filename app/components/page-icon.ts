@@ -125,12 +125,12 @@ export class AppPageIconComponent extends TiniComponent {
       height: var(--icon-size);
       border: 1px solid var(--color-background-shade);
       border-radius: 5px;
-      background: none;
+      background: var(--color-background-tint);
     }
 
     .icon:hover {
-      border-color: var(--color-medium-tint);
-      background-color: var(--color-background-shade);
+      border-color: var(--color-medium);
+      background-color: var(--color-background-tint-2);
     }
 
     .icon img {
