@@ -151,7 +151,7 @@ export class AppGradientPickerComponent extends TiniComponent {
           background: var(--color-background-tint);
           border: var(--size-border) solid var(--color-medium);
           border-radius: var(--size-radius);
-          padding: calc(var(--size-space) * 0.25) calc(var(--size-space) * 0.5);
+          padding: var(--size-space-0_25x) var(--size-space-0_5x);
         }
       }
     }

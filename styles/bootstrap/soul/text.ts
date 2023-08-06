@@ -1,5 +1,10 @@
 import {css} from 'lit';
-import {generateColorVaries, generateGradientVaries, generateFontTypeVaries, generateFontSizeVaries} from '@tinijs/core';
+import {
+  generateColorVaries,
+  generateGradientVaries,
+  generateFontTypeVaries,
+  generateFontSizeVaries,
+} from '@tinijs/core';
 
 export const textStyle = css`
   :host {
@@ -34,7 +39,7 @@ export const textStyle = css`
   )}
 
   ${generateFontTypeVaries(
-    (fontType) => `
+    fontType => `
     :host([font="${fontType}"]),
     .font-${fontType} {
       --text-font: var(--font-${fontType});
@@ -43,7 +48,7 @@ export const textStyle = css`
   )}
 
   ${generateFontSizeVaries(
-    (sizeFactor) => `
+    sizeFactor => `
     .size-${sizeFactor} {
       --text-size: var(--size-text-${sizeFactor});
     }

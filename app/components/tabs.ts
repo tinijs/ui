@@ -7,7 +7,7 @@ import {
   html,
   css,
   nothing,
-  stylingWithBases
+  stylingWithBases,
 } from '@tinijs/core';
 import {commonBases, buttonBases} from '@tinijs/ui/bases';
 
@@ -20,7 +20,7 @@ export interface TabItem {
 export const APP_TABS = 'app-tabs';
 @Component({
   theming: {
-    styling: stylingWithBases([commonBases, buttonBases])
+    styling: stylingWithBases([commonBases, buttonBases]),
   },
 })
 export class AppTabsComponent extends TiniComponent {

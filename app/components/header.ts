@@ -70,14 +70,14 @@ export class AppHeaderComponent extends TiniComponent {
     .menu {
       display: flex;
       align-items: center;
-      gap: calc(var(--size-space) * 1.5);
+      gap: var(--size-space-1_5x);
     }
 
     .menu > * {
       color: var(--color-light);
       text-decoration: none;
       background: none;
-      padding: calc(var(--size-space) / 2);
+      padding: var(--size-space-0_5x);
       border-radius: var(--size-radius);
     }
 
@@ -94,7 +94,7 @@ export class AppHeaderComponent extends TiniComponent {
       color: var(--color-primary-contrast);
 
       span {
-        margin-left: calc(var(--size-space) / 2);
+        margin-left: var(--size-space-0_5x);
       }
     }
 

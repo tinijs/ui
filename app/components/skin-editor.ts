@@ -64,7 +64,7 @@ export class AppSkinEditorComponent extends TiniComponent {
       display: flex;
       align-items: center;
       height: var(--head-height);
-      padding: calc(var(--size-space) * 0.75);
+      padding: var(--size-space-0_75x);
       border-bottom: var(--size-border) solid var(--color-background-shade);
 
       .title {
@@ -75,13 +75,13 @@ export class AppSkinEditorComponent extends TiniComponent {
         cursor: pointer;
         display: flex;
         align-items: center;
-        padding: calc(var(--size-space) * 0.35) calc(var(--size-space) * 0.75);
-        margin-right: calc(var(--size-space) * 2);
+        padding: var(--size-space-0_4x) var(--size-space-0_8x);
+        margin-right: var(--size-space-2x);
         background: var(--color-background);
         color: var(--color-foreground);
         border: var(--size-border) solid var(--color-foreground);
         border-radius: var(--size-radius);
-        font-size: calc(var(--size-text) * 0.9);
+        font-size: var(--size-text-0_9x);
         line-height: 1;
 
         &:hover {
@@ -113,7 +113,7 @@ export class AppSkinEditorComponent extends TiniComponent {
       section {
         & > strong {
           display: block;
-          padding: calc(var(--size-space) * 0.5);
+          padding: var(--size-space-0_5x);
           border: var(--size-border) solid var(--color-background-shade);
           border-left: none;
           border-right: none;
@@ -121,12 +121,12 @@ export class AppSkinEditorComponent extends TiniComponent {
         }
 
         .content {
-          padding: calc(var(--size-space) * 0.5);
+          padding: var(--size-space-0_5x);
         }
       }
 
       .naming {
-        padding: calc(var(--size-space) * 0.5);
+        padding: var(--size-space-0_5x);
         padding-bottom: 0;
 
         label {
@@ -140,19 +140,18 @@ export class AppSkinEditorComponent extends TiniComponent {
           input,
           select {
             width: 100%;
-            margin-top: calc(var(--size-space) * 0.25);
+            margin-top: var(--size-space-0_25x);
             background: var(--color-background-tint);
             border: var(--size-border) solid var(--color-medium);
             border-radius: var(--size-radius);
-            padding: calc(var(--size-space) * 0.25)
-              calc(var(--size-space) * 0.5);
+            padding: var(--size-space-0_25x) var(--size-space-0_5x);
           }
         }
       }
 
       .properties {
         .group {
-          padding: calc(var(--size-space) * 0.5);
+          padding: var(--size-space-0_5x);
           margin-bottom: var(--size-space);
 
           .group-title {
@@ -170,10 +169,9 @@ export class AppSkinEditorComponent extends TiniComponent {
               align-items: center;
               justify-content: space-between;
               margin-left: var(--size-space);
-              margin-right: calc(var(--size-space) * 0.5);
-              margin-bottom: calc(var(--size-space) * 0.5);
-              padding: calc(var(--size-space) * 0.25) 0
-                calc(var(--size-space) * 0.75);
+              margin-right: var(--size-space-0_5x);
+              margin-bottom: var(--size-space-0_5x);
+              padding: var(--size-space-0_25x) 0 var(--size-space-0_75x);
               border-bottom: var(--size-border) solid
                 var(--color-background-shade);
 
@@ -183,8 +181,7 @@ export class AppSkinEditorComponent extends TiniComponent {
                   background: var(--color-background-tint);
                   border: var(--size-border) solid var(--color-medium);
                   border-radius: var(--size-radius);
-                  padding: calc(var(--size-space) * 0.25)
-                    calc(var(--size-space) * 0.5);
+                  padding: var(--size-space-0_25x) var(--size-space-0_5x);
                 }
 
                 input {
@@ -221,13 +218,13 @@ export class AppSkinEditorComponent extends TiniComponent {
       bottom: 0;
       left: 0;
       border-top: var(--size-border) solid var(--color-background-shade);
-      padding: calc(var(--size-space) * 0.5);
+      padding: var(--size-space-0_5x);
 
       .show-code {
         width: 100%;
 
         span {
-          margin-left: calc(var(--size-space) * 0.5);
+          margin-left: var(--size-space-0_5x);
         }
       }
     }

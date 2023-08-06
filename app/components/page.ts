@@ -110,8 +110,7 @@ export class AppPageComponent extends TiniComponent {
     }
 
     table thead tr th {
-      border-bottom: calc(var(--size-border) + 1px) solid
-        var(--color-background-shade);
+      border-bottom: var(--size-border-2x) solid var(--color-background-shade);
     }
 
     table tbody tr td {
@@ -120,7 +119,7 @@ export class AppPageComponent extends TiniComponent {
 
     table th,
     table td {
-      padding: calc(var(--size-space) / 2);
+      padding: var(--size-space-0_5x);
       text-align: left;
     }
   `;
