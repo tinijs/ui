@@ -14,13 +14,6 @@ export const buttonStyle = css`
       /* [B] Ripple effect color */;
   }
 
-  *,
-  *::before,
-  *::after,
-  :host {
-    font-size: inherit;
-  }
-
   button {
     display: flex;
     align-items: center;

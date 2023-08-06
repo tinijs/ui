@@ -16,6 +16,7 @@ import {
   headingsBases,
   linkBases,
   textBases,
+  buttonBases,
   codeBases,
 } from '@tinijs/ui/bases';
 
@@ -41,6 +42,7 @@ export const APP_PAGE_ICON = 'app-page-icon';
       headingsBases,
       linkBases,
       textBases,
+      buttonBases,
       codeBases,
     ]),
   },

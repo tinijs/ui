@@ -12,7 +12,5 @@ export default css`
   *::after,
   :host {
     box-sizing: border-box;
-    font-size: var(--size-text);
-    font-family: var(--font-body);
   }
 `;

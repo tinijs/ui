@@ -15,7 +15,7 @@ import {
   nothing,
 } from '@tinijs/core';
 import {ICON_CODE, IconCodeComponent} from '@tinijs/bootstrap-icons/code';
-import {commonBases, codeBases} from '@tinijs/ui/bases';
+import {commonBases, buttonBases, codeBases, formBases} from '@tinijs/ui/bases';
 import {TINI_BUTTON, TiniButtonComponent} from '@tinijs/ui/components/button';
 
 import {APP_CODE, AppCodeComponent} from './code';
@@ -49,7 +49,7 @@ export const APP_SKIN_EDITOR = 'app-skin-editor';
     [APP_GRADIENT_PICKER]: AppGradientPickerComponent,
   },
   theming: {
-    styling: stylingWithBases([commonBases, codeBases]),
+    styling: stylingWithBases([commonBases, buttonBases, codeBases, formBases]),
   },
 })
 export class AppSkinEditorComponent extends TiniComponent {

@@ -29,13 +29,6 @@ export const buttonStyle = css`
     display: inline-block;
   }
 
-  *,
-  *::before,
-  *::after,
-  :host {
-    font-size: inherit;
-  }
-
   button {
     cursor: pointer;
     width: 100%;

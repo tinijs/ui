@@ -8,7 +8,7 @@ import {
   stylingWithBases,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
-import {commonBases, linkBases} from '@tinijs/ui/bases';
+import {commonBases, linkBases, buttonBases} from '@tinijs/ui/bases';
 import {ICON_GITHUB, IconGithubComponent} from '@tinijs/bootstrap-icons/github';
 import {
   ICON_PALETTE,
@@ -28,7 +28,7 @@ export const APP_HEADER = 'app-header';
     [APP_SKIN_EDITOR]: AppSkinEditorComponent,
   },
   theming: {
-    styling: stylingWithBases([commonBases, linkBases]),
+    styling: stylingWithBases([commonBases, linkBases, buttonBases]),
   },
 })
 export class AppHeaderComponent extends TiniComponent {
@@ -92,7 +92,6 @@ export class AppHeaderComponent extends TiniComponent {
       background: none;
       border: none;
       color: var(--color-primary-contrast);
-      font-size: 1rem;
 
       span {
         margin-left: calc(var(--size-space) / 2);

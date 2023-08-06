@@ -17,6 +17,7 @@ import {
   headingsBases,
   linkBases,
   textBases,
+  buttonBases,
   codeBases,
 } from '@tinijs/ui/bases';
 
@@ -63,6 +64,7 @@ export const APP_PAGE = 'app-page';
       headingsBases,
       linkBases,
       textBases,
+      buttonBases,
       commonBases,
     ]),
   },
