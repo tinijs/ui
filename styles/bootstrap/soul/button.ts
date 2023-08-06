@@ -95,6 +95,7 @@ export const buttonStyle = css`
 
   ${generateColorVaries(
     ({name, color}) => `
+    :host([textColor="${name}"]),
     .color-${name} {
       --button-color: ${color};
     }

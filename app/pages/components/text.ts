@@ -117,6 +117,50 @@ export class AppPageComponentsText extends TiniComponent {
             <tini-text color="gradient-dark">This is a text.</tini-text>
           </div>
         </app-section>
+
+        <app-section class="fonts">
+          <div slot="content">
+            <h2>Fonts</h2>
+          </div>
+          <div slot="code">
+            <tini-text font="head">Head</tini-text>
+            <tini-text font="body">Body</tini-text>
+            <tini-text font="quote">Quote</tini-text>
+            <tini-text font="code">Code</tini-text>
+          </div>
+        </app-section>
+
+        <app-section class="sizes">
+          <div slot="content">
+            <h2>Sizes</h2>
+          </div>
+          <div slot="code">
+            <tini-text size="0_1x">0.1x</tini-text>
+            <tini-text size="0_2x">0.2x</tini-text>
+            <tini-text size="0_25x">0.25x</tini-text>
+            <tini-text size="0_3x">0.3x</tini-text>
+            <tini-text size="0_4x">0.4x</tini-text>
+            <tini-text size="0_5x">0.5x</tini-text>
+            <tini-text size="0_6x">0.6x</tini-text>
+            <tini-text size="0_7x">0.7x</tini-text>
+            <tini-text size="0_75x">0.75x</tini-text>
+            <tini-text size="0_8x">0.8x</tini-text>
+            <tini-text size="0_9x">0.9x</tini-text>
+            <tini-text size="1x">1x</tini-text>
+            <tini-text size="1_25x">1.25x</tini-text>
+            <tini-text size="1_5x">1.5x</tini-text>
+            <tini-text size="1_75x">1.75x</tini-text>
+            <tini-text size="2x">2x</tini-text>
+            <tini-text size="3x">3x</tini-text>
+            <tini-text size="4x">4x</tini-text>
+            <tini-text size="5x">5x</tini-text>
+            <tini-text size="6x">6x</tini-text>
+            <tini-text size="7x">7x</tini-text>
+            <tini-text size="8x">8x</tini-text>
+            <tini-text size="9x">9x</tini-text>
+            <tini-text size="10x">10x</tini-text>
+          </div>
+        </app-section>
       </app-page>
     `;
   }

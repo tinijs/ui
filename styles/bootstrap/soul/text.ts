@@ -1,14 +1,18 @@
 import {css} from 'lit';
-import {generateColorVaries, generateGradientVaries} from '@tinijs/core';
+import {generateColorVaries, generateGradientVaries, generateFontTypeVaries, generateFontSizeVaries} from '@tinijs/core';
 
 export const textStyle = css`
   :host {
     --text-color: var(--color-foreground);
+    --text-font: var(--font-body);
+    --text-size: var(--size-text);
     display: inline;
   }
 
   [part='text'] {
+    font-family: var(--text-font);
     color: var(--text-color);
+    font-size: var(--text-size);
   }
 
   ${generateColorVaries(
@@ -25,6 +29,23 @@ export const textStyle = css`
       background: ${gradient};
       -webkit-background-clip: text;
 	    -webkit-text-fill-color: transparent;
+    }
+  `
+  )}
+
+  ${generateFontTypeVaries(
+    (fontType) => `
+    :host([font="${fontType}"]),
+    .font-${fontType} {
+      --text-font: var(--font-${fontType});
+    }
+  `
+  )}
+
+  ${generateFontSizeVaries(
+    (sizeFactor) => `
+    .size-${sizeFactor} {
+      --text-size: var(--size-text-${sizeFactor});
     }
   `
   )}
