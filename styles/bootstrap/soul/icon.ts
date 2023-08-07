@@ -11,11 +11,11 @@ export const iconStyle = css`
     --icon-height: var(--size-md-2x);
     --icon-color: none;
     --icon-image: url();
-    display: inline-block;
+    display: inline;
   }
 
   i {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     background-image: var(--icon-image);

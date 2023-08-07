@@ -6,15 +6,9 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
-import {
-  IconChevronLeftComponent,
-} from '@tinijs/bootstrap-icons/chevron-left';
-import {
-  IconChevronRightComponent,
-} from '@tinijs/bootstrap-icons/chevron-right';
-import {
-  IconHeartFillComponent,
-} from '@tinijs/bootstrap-icons/heart-fill';
+import {IconChevronLeftComponent} from '@tinijs/bootstrap-icons/chevron-left';
+import {IconChevronRightComponent} from '@tinijs/bootstrap-icons/chevron-right';
+import {IconHeartFillComponent} from '@tinijs/bootstrap-icons/heart-fill';
 import {TiniBoxComponent} from '@tinijs/ui/components/box';
 import {TiniButtonComponent} from '@tinijs/ui/components/button';
 
@@ -43,25 +37,7 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsButton extends TiniComponent {
-  static styles = css`
-    .default [slot='code'] tini-button {
-      width: 150px;
-    }
-
-    .colors [slot='code'],
-    .disabled-colors [slot='code'],
-    .gradients [slot='code'] {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .sizes [slot='code'] {
-      display: flex;
-      align-items: flex-end;
-      gap: 1rem;
-    }
-  `;
+  static styles = css``;
 
   protected render() {
     return html`
@@ -352,6 +328,7 @@ export class AppPageComponentsButton extends TiniComponent {
               ></icon-heart-fill>
               <span>Left</span>
             </tini-button>
+            <!--  -->
             <tini-button color="primary">
               <span>Right</span>
               <icon-heart-fill
@@ -359,6 +336,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 color="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
+            <!--  -->
             <tini-button color="primary">
               <icon-heart-fill
                 size="ss"
@@ -370,6 +348,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 color="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
+            <!--  -->
             <tini-button justify="space-between" color="primary">
               <icon-heart-fill
                 size="ss"
@@ -377,6 +356,7 @@ export class AppPageComponentsButton extends TiniComponent {
               ></icon-heart-fill>
               <span>Far Left</span>
             </tini-button>
+            <!--  -->
             <tini-button justify="space-between" color="primary">
               <span>Far Right</span>
               <icon-heart-fill
@@ -384,6 +364,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 color="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
+            <!--  -->
             <tini-button justify="space-between" color="primary">
               <icon-chevron-left
                 size="ss"
@@ -395,6 +376,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 color="primary-contrast"
               ></icon-chevron-right>
             </tini-button>
+            <!--  -->
             <tini-button justify="space-between" color="primary">
               <span class="content-group">
                 <icon-heart-fill

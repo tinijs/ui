@@ -26,7 +26,7 @@ export const buttonStyle = css`
         transparent 70%
       )
       /* [B] */;
-    display: inline-block;
+    display: inline;
   }
 
   /*
@@ -35,7 +35,6 @@ export const buttonStyle = css`
 
   button {
     cursor: pointer;
-    width: 100%;
     display: inline-flex;
     align-items: center;
     justify-content: center;

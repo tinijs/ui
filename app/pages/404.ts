@@ -4,9 +4,7 @@ import {TiniLinkComponent} from '@tinijs/ui/components/link';
 
 @Page({
   name: 'app-page-404',
-  components: [
-    TiniLinkComponent,
-  ],
+  components: [TiniLinkComponent],
   theming: {
     styling: stylingWithBases([codeBases, headingsBases, linkBases, textBases]),
   },

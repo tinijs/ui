@@ -53,11 +53,7 @@ const enum Modes {
 
 export const APP_PAGE = 'app-page';
 @Component({
-  components: [
-    AppSectionComponent,
-    AppTabsComponent,
-    AppCodeComponent,
-  ],
+  components: [AppSectionComponent, AppTabsComponent, AppCodeComponent],
   theming: {
     styling: stylingWithBases([
       codeBases,
@@ -73,36 +69,44 @@ export class AppPageComponent extends TiniComponent {
   static readonly defaultTagName = APP_PAGE;
 
   static styles = css`
-    .switch-mode {
+    .title-bar {
       display: flex;
       align-items: center;
-      justify-content: center;
-      margin: 2rem 0;
-    }
+      justify-content: space-between;
 
-    .switch-mode button {
-      cursor: pointer;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      font-family: var(--font-body);
-      border: var(--size-border) solid var(--color-background-shade);
-      border-right: none;
-      background: var(--color-background);
-      color: var(--color-foreground);
-    }
-    .switch-mode button:first-child {
-      border-radius: var(--size-radius) 0 0 var(--size-radius);
-    }
-    .switch-mode button:last-child {
-      border-radius: 0 var(--size-radius) var(--size-radius) 0;
-      border-right: var(--size-border) solid var(--color-background-shade);
-    }
-    .switch-mode button.active {
-      background: var(--color-background-shade);
+      .switch-mode {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .switch-mode button {
+        cursor: pointer;
+        padding: var(--size-space-0_4x) var(--size-space-0_8x);
+        font-size: var(--size-text-0_9x);
+        border: var(--size-border) solid var(--color-medium-tint);
+        border-right: none;
+      }
+      .switch-mode button:first-child {
+        border-radius: var(--size-radius) 0 0 var(--size-radius);
+      }
+      .switch-mode button:last-child {
+        border-radius: 0 var(--size-radius) var(--size-radius) 0;
+        border-right: var(--size-border) solid var(--color-medium-tint);
+      }
+      .switch-mode button.active {
+        background: var(--color-background-shade);
+      }
     }
 
     .body {
       padding-bottom: 2rem;
+    }
+
+    .doc-src,
+    .component-src,
+    .soul-src {
+      margin-top: var(--size-space-4x);
     }
 
     table {
@@ -132,11 +136,11 @@ export class AppPageComponent extends TiniComponent {
     {name: ImportMethods.Standalone},
   ];
 
-  @Input({type: String}) declare name: string;
-  @Input({type: String}) declare path: string;
-  @Input({type: String}) declare titleText?: string;
-  @Input({type: Object}) declare prevPage?: Quicklink;
-  @Input({type: Object}) declare nextPage?: Quicklink;
+  @Input({type: String}) name!: string;
+  @Input({type: String}) path!: string;
+  @Input({type: String}) titleText?: string;
+  @Input({type: Object}) prevPage?: Quicklink;
+  @Input({type: Object}) nextPage?: Quicklink;
 
   @Reactive() private contentMode: Modes = Modes.Doc;
   @Reactive() private docSourceCode?: string;
@@ -149,11 +153,6 @@ export class AppPageComponent extends TiniComponent {
     mainStore.soulName;
   @Subscribe(mainStore) @Reactive() private readonly referImport =
     mainStore.referImport;
-
-  constructor() {
-    super();
-    this.name = 'unknown';
-  }
 
   private get nameVariants() {
     const nameCapitalized = this.name
@@ -259,34 +258,38 @@ useComponents([
   protected render() {
     return html`
       <div class="head">
-        <h1 class="title">${this.titleText || 'Page'}</h1>
-        <slot name="description"></slot>
-        <div class="switch-mode">
-          <button
-            class=${classMap({active: this.contentMode === Modes.Doc})}
-            @click=${() => this.switchMode(Modes.Doc)}
-          >
-            Documentation
-          </button>
-          <button
-            class=${classMap({active: this.contentMode === Modes.DocSrc})}
-            @click=${() => this.switchMode(Modes.DocSrc)}
-          >
-            Doc source
-          </button>
-          <button
-            class=${classMap({active: this.contentMode === Modes.ComponentSrc})}
-            @click=${() => this.switchMode(Modes.ComponentSrc)}
-          >
-            Component source
-          </button>
-          <button
-            class=${classMap({active: this.contentMode === Modes.SoulSrc})}
-            @click=${() => this.switchMode(Modes.SoulSrc)}
-          >
-            Soul source
-          </button>
+        <div class="title-bar">
+          <h1 class="title">${this.titleText || 'Page'}</h1>
+          <div class="switch-mode">
+            <button
+              class=${classMap({active: this.contentMode === Modes.Doc})}
+              @click=${() => this.switchMode(Modes.Doc)}
+            >
+              Documentation
+            </button>
+            <button
+              class=${classMap({active: this.contentMode === Modes.DocSrc})}
+              @click=${() => this.switchMode(Modes.DocSrc)}
+            >
+              Doc source
+            </button>
+            <button
+              class=${classMap({
+                active: this.contentMode === Modes.ComponentSrc,
+              })}
+              @click=${() => this.switchMode(Modes.ComponentSrc)}
+            >
+              Component source
+            </button>
+            <button
+              class=${classMap({active: this.contentMode === Modes.SoulSrc})}
+              @click=${() => this.switchMode(Modes.SoulSrc)}
+            >
+              Soul source
+            </button>
+          </div>
         </div>
+        <slot name="description"></slot>
       </div>
 
       ${cache(
@@ -304,7 +307,7 @@ useComponents([
   private renderDoc() {
     return html`
       <div class="body doc">
-        <app-section .noUsageTabs=${true} style="margin-top: 0;">
+        <app-section .noUsageTabs=${true}>
           <div slot="content" class="imports">
             <h2>Imports</h2>
             <p>
@@ -343,6 +346,7 @@ useComponents([
 
               <div data-tab=${ImportMethods.Standalone}>
                 <p><strong>Use the standalone package</strong></p>
+                <app-code .code=${this.standaloneCode}></app-code>
                 <p>
                   Include the standalone version in any HTML page from a public
                   CDN, but this method is
@@ -350,7 +354,6 @@ useComponents([
                   component has the soul baked in and is usually bigger in size
                   compares to the TS/ESM version.
                 </p>
-                <app-code .code=${this.standaloneCode}></app-code>
               </div>
             </app-tabs>
           </div>
@@ -391,7 +394,11 @@ useComponents([
         <app-section .noUsageTabs=${true}>
           <div slot="content" class="styles">
             <h2>Variables</h2>
-            <p>Please see the Customization guide for more info.</p>
+            <p>
+              Please see the
+              <a href="/guides/customization">Customization</a> guide for more
+              info.
+            </p>
             <table>
               <thead>
                 <tr>

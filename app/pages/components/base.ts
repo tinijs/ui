@@ -21,6 +21,9 @@ export class AppPageComponentsBase extends TiniComponent {
   static styles = css``;
 
   protected render() {
-    return html` <h1>Base</h1> `;
+    return html`
+      <h1>Bases</h1>
+      <p>// TODO</p>
+    `;
   }
 }

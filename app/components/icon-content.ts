@@ -19,10 +19,7 @@ import {TiniIconComponent} from '@tinijs/ui/components/icon';
 
 export const APP_ICON_CONTENT = 'app-icon-content';
 @Component({
-  components: [
-    TiniBoxComponent,
-    TiniIconComponent,
-  ],
+  components: [TiniBoxComponent, TiniIconComponent],
   theming: {
     styling: stylingWithBases([
       commonBases,

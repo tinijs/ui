@@ -21,6 +21,9 @@ export class AppPageGuidesCustomization extends TiniComponent {
   static styles = css``;
 
   protected render() {
-    return html`<h1>Customization</h1>`;
+    return html`
+      <h1>Customization</h1>
+      <p>// TODO</p>
+    `;
   }
 }

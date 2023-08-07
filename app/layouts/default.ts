@@ -7,10 +7,7 @@ import {AppMenuComponent} from '../components/menu';
 
 @Layout({
   name: 'app-layout-default',
-  components: [
-    AppHeaderComponent,
-    AppMenuComponent,
-  ],
+  components: [AppHeaderComponent, AppMenuComponent],
   theming: {
     styling: {
       bootstrap: [commonBases.bootstrap],

@@ -12,11 +12,7 @@ import {AppSectionComponent} from '../../components/section';
 
 @Page({
   name: 'app-page-components-link',
-  components: [
-    TiniLinkComponent,
-    AppPageComponent,
-    AppSectionComponent,
-  ],
+  components: [TiniLinkComponent, AppPageComponent, AppSectionComponent],
   theming: {
     styling: stylingWithBases([
       commonBases,

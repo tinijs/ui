@@ -52,7 +52,7 @@ export class AppHeaderComponent extends TiniComponent {
       display: flex;
       flex-wrap: nowrap;
       align-items: center;
-      color: var(--color-light);
+      color: var(--color-primary-contrast);
       text-decoration: none;
       font-family: var(--font-head);
     }
@@ -88,6 +88,7 @@ export class AppHeaderComponent extends TiniComponent {
     .theme-select {
       cursor: pointer;
       border: var(--size-border) solid var(--color-primary-contrast);
+      color: var(--color-primary-contrast);
     }
 
     .skin-editor-toggler {

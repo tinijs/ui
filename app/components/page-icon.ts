@@ -29,10 +29,7 @@ import {AppPageIconModalComponent, IconDef} from './page-icon-modal';
 
 export const APP_PAGE_ICON = 'app-page-icon';
 @Component({
-  components: [
-    AppCodeComponent,
-    AppPageIconModalComponent,
-  ],
+  components: [AppCodeComponent, AppPageIconModalComponent],
   theming: {
     styling: stylingWithBases([
       commonBases,

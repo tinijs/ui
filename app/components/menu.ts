@@ -19,9 +19,7 @@ import routes from '../routes';
 
 export const APP_MENU = 'app-menu';
 @Component({
-  components: [
-    TiniLinkComponent,
-  ],
+  components: [TiniLinkComponent],
   theming: {
     styling: stylingWithBases([
       commonBases,

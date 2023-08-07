@@ -6,7 +6,6 @@ export default css`
   legend,
   label,
   input,
-  button,
   select,
   option,
   optgroup,
@@ -14,5 +13,11 @@ export default css`
     font-family: var(--font-body);
     font-size: var(--size-text);
     color: var(--color-foreground);
+  }
+
+  input,
+  select,
+  textarea {
+    background: var(--color-background-tint);
   }
 `;

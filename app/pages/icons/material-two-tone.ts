@@ -10,9 +10,7 @@ import {AppPageIconComponent} from '../../components/page-icon';
 
 @Page({
   name: 'app-page-icons-material-two-tone',
-  components: [
-    AppPageIconComponent,
-  ],
+  components: [AppPageIconComponent],
   theming: {
     styling: stylingWithBases([
       commonBases,

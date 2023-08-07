@@ -41,9 +41,7 @@ export interface ModalResult<Context> {
 
 export const APP_MODAL = 'app-modal';
 @Component({
-  components: [
-    TiniButtonComponent,
-  ],
+  components: [TiniButtonComponent],
   theming: {
     styling: stylingWithBases([
       commonBases,

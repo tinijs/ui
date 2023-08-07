@@ -10,6 +10,7 @@ import {
   stylingWithBases,
 } from '@tinijs/core';
 import {commonBases, buttonBases} from '@tinijs/ui/bases';
+import {TiniIconComponent} from '@tinijs/ui/components/icon';
 
 export interface TabItem {
   name: string;
@@ -19,6 +20,7 @@ export interface TabItem {
 
 export const APP_TABS = 'app-tabs';
 @Component({
+  components: [TiniIconComponent],
   theming: {
     styling: stylingWithBases([commonBases, buttonBases]),
   },
@@ -29,33 +31,57 @@ export class AppTabsComponent extends TiniComponent {
   static styles = css`
     .head {
       transform: translateY(1px);
-    }
+      justify-content: space-between;
 
-    .tablink {
-      cursor: pointer;
-      display: inline-block;
-      border: var(--size-border) solid var(--color-medium-tint);
-      border-radius: var(--size-radius) var(--size-radius) 0 0;
-      padding: 0.5rem 1rem;
-      background-color: var(--color-background-shade);
-
-      &.active {
-        background-color: var(--color-background);
-        border-bottom-color: var(--color-background);
+      &,
+      .tablinks {
+        display: flex;
+        align-items: stretch;
+        gap: var(--size-space-0_5x);
       }
 
-      strong {
-        font-size: 0.9rem;
+      .title {
+        font-weight: bold;
+        padding: var(--size-space-0_5x) var(--size-space);
+      }
+
+      .tablink {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        border: var(--size-border) solid var(--color-medium-tint);
+        border-radius: var(--size-radius) var(--size-radius) 0 0;
+        padding: var(--size-space-0_5x) var(--size-space);
+        background: var(--color-background);
+        font-size: var(--size-text-0_9x);
+
+        &.active {
+          background: var(--color-background-tint);
+          border-bottom-color: var(--color-background-tint);
+        }
+
+        tini-icon {
+          width: var(--size-xs-2x);
+          height: var(--size-xs-2x);
+          margin-right: var(--size-space-0_25x);
+        }
       }
     }
 
     .body {
+      display: none;
       border: var(--size-border) solid var(--color-medium-tint);
       border-radius: 0 0 var(--size-radius) var(--size-radius);
-      padding: 1rem;
+      padding: var(--size-space);
+      background: var(--color-background-tint);
+
+      &.expanded {
+        display: block;
+      }
     }
   `;
 
+  @Input({type: String}) declare titleText?: string;
   @Input({type: Array}) declare tabItems?: TabItem[];
   @Input({type: String}) declare activeName?: string;
 
@@ -94,25 +120,36 @@ export class AppTabsComponent extends TiniComponent {
 
   protected render() {
     return html`
-      <div class="head">
-        ${this.tabItems?.map(
-          ({name, icon, iconOnly}) => html`
-            <button
-              class=${classMap({
-                tablink: true,
-                active: name === this.activeName,
-              })}
-              @click=${() => this.changeTab(name)}
-            >
-              ${!icon
-                ? nothing
-                : unsafeHTML(`<app-icon-${icon}></app-icon-${icon}>`)}
-              ${iconOnly ? nothing : html`<strong>${name}</strong>`}
-            </button>
-          `
-        )}
+      <div part="head${!this.activeName ? '' : ' head-expanded'}" class="head">
+        ${!this.titleText
+          ? nothing
+          : html`<div part="title" class="title">${this.titleText}</div>`}
+        <div part="tablinks" class="tablinks">
+          ${this.tabItems?.map(
+            ({name, icon, iconOnly}) => html`
+              <button
+                part="tablink${name !== this.activeName
+                  ? ''
+                  : ' tablink-active'}"
+                class=${classMap({
+                  tablink: true,
+                  active: name === this.activeName,
+                })}
+                @click=${() => this.changeTab(name)}
+              >
+                ${!icon
+                  ? nothing
+                  : html`<tini-icon src=${icon} size="xs"></tini-icon>`}
+                ${iconOnly ? nothing : html`<span>${name}</span>`}
+              </button>
+            `
+          )}
+        </div>
       </div>
-      <div class="body">
+      <div
+        part="body"
+        class="${classMap({body: true, expanded: !!this.activeName})}"
+      >
         <slot></slot>
       </div>
     `;

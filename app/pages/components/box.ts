@@ -13,11 +13,7 @@ import {AppSectionComponent} from '../../components/section';
 
 @Page({
   name: 'app-page-components-box',
-  components: [
-    TiniBoxComponent,
-    AppPageComponent,
-    AppSectionComponent,
-  ],
+  components: [TiniBoxComponent, AppPageComponent, AppSectionComponent],
   theming: {
     styling: stylingWithBases([
       commonBases,
