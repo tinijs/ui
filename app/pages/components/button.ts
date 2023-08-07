@@ -32,8 +32,7 @@ import {APP_SECTION, AppSectionComponent} from '../../components/section';
 })
 export class AppPageComponentsButton extends TiniComponent {
   static styles = css`
-    .default [slot='code'] tini-button,
-    .dynamic [slot='code'] tini-button {
+    .default [slot='code'] tini-button {
       width: 150px;
     }
 
@@ -72,31 +71,51 @@ export class AppPageComponentsButton extends TiniComponent {
           </div>
         </app-section>
 
-        <app-section class="dynamic">
+        <app-section class="colors">
           <div slot="content">
-            <h2>Dynamic</h2>
-            <p>
-              Text color is the current <code>background</code> color and
-              background color is the current <code>foreground</code> color.
-            </p>
+            <h2>Background</h2>
           </div>
           <div slot="code">
-            <tini-button color="dynamic">Dynamic</tini-button>
-            <tini-box background="dynamic">
-              <tini-button color="dynamic-contrast"
-                >Dynamic Contrast</tini-button
-              >
+            <tini-box background="foreground">
+              <tini-button color="background">Background</tini-button>
+              <tini-box background="background">
+                <tini-button color="background-contrast"
+                  >Background Contrast</tini-button
+                >
+              </tini-box>
+              <tini-button color="background-shade">Background Shade</tini-button>
+              <tini-button color="background-shade-2">Background Shade 2</tini-button>
+              <tini-button color="background-shade-3">Background Shade 3</tini-button>
+              <tini-button color="background-shade-4">Background Shade 4</tini-button>
+              <tini-button color="background-shade-5">Background Shade 5</tini-button>
+              <tini-button color="background-tint">Background Tint</tini-button>
+              <tini-button color="background-tint-2">Background Tint 2</tini-button>
+              <tini-button color="background-tint-3">Background Tint 3</tini-button>
+              <tini-button color="background-tint-4">Background Tint 4</tini-button>
+              <tini-button color="background-tint-5">Background Tint 5</tini-button>
             </tini-box>
-            <tini-button color="dynamic-shade">Dynamic Shade</tini-button>
-            <tini-button color="dynamic-shade-2">Dynamic Shade 2</tini-button>
-            <tini-button color="dynamic-shade-3">Dynamic Shade 3</tini-button>
-            <tini-button color="dynamic-shade-4">Dynamic Shade 4</tini-button>
-            <tini-button color="dynamic-shade-5">Dynamic Shade 5</tini-button>
-            <tini-button color="dynamic-tint">Dynamic Tint</tini-button>
-            <tini-button color="dynamic-tint-2">Dynamic Tint 2</tini-button>
-            <tini-button color="dynamic-tint-3">Dynamic Tint 3</tini-button>
-            <tini-button color="dynamic-tint-4">Dynamic Tint 4</tini-button>
-            <tini-button color="dynamic-tint-5">Dynamic Tint 5</tini-button>
+          </div>
+        </app-section>
+
+        <app-section class="colors">
+          <div slot="content">
+            <h2>Foreground</h2>
+          </div>
+          <div slot="code">
+            <tini-button color="foreground">Foreground</tini-button>
+            <tini-box background="foreground">
+              <tini-button color="foreground-contrast">Foreground Contrast</tini-button>
+            </tini-box>
+            <tini-button color="foreground-shade">Foreground Shade</tini-button>
+            <tini-button color="foreground-shade-2">Foreground Shade 2</tini-button>
+            <tini-button color="foreground-shade-3">Foreground Shade 3</tini-button>
+            <tini-button color="foreground-shade-4">Foreground Shade 4</tini-button>
+            <tini-button color="foreground-shade-5">Foreground Shade 5</tini-button>
+            <tini-button color="foreground-tint">Foreground Tint</tini-button>
+            <tini-button color="foreground-tint-2">Foreground Tint 2</tini-button>
+            <tini-button color="foreground-tint-3">Foreground Tint 3</tini-button>
+            <tini-button color="foreground-tint-4">Foreground Tint 4</tini-button>
+            <tini-button color="foreground-tint-5">Foreground Tint 5</tini-button>
           </div>
         </app-section>
 
@@ -152,20 +171,40 @@ export class AppPageComponentsButton extends TiniComponent {
         </app-section>
 
         <app-section class="gradients">
-          <div slot="content"><h2>Gradient Dynamic</h2></div>
+          <div slot="content"><h2>Gradient Background</h2></div>
           <div slot="code">
-            <tini-button color="gradient-dynamic">Gradient Dynamic</tini-button>
-            <tini-box background="dynamic">
-              <tini-button color="gradient-dynamic-contrast"
-                >Gradient Dynamic Contrast</tini-button
+            <tini-button color="gradient-background">Gradient Background</tini-button>
+            <tini-box background="background">
+              <tini-button color="gradient-background-contrast"
+                >Gradient Background Contrast</tini-button
               >
             </tini-box>
-            <tini-button color="gradient-dynamic-shade"
-              >Gradient Dynamic Shade</tini-button
+            <tini-button color="gradient-background-shade"
+              >Gradient Background Shade</tini-button
             >
-            <tini-button color="gradient-dynamic-tint"
-              >Gradient Dynamic Tint</tini-button
+            <tini-button color="gradient-background-tint"
+              >Gradient Background Tint</tini-button
             >
+          </div>
+        </app-section>
+
+        <app-section class="gradients">
+          <div slot="content"><h2>Gradient Foreground</h2></div>
+          <div slot="code">
+            <tini-box background="background">
+              <tini-button color="gradient-foreground">Gradient Foreground</tini-button>
+              <tini-box background="foreground">
+                <tini-button color="gradient-foreground-contrast"
+                  >Gradient Foreground Contrast</tini-button
+                >
+              </tini-box>
+              <tini-button color="gradient-foreground-shade"
+                >Gradient Foreground Shade</tini-button
+              >
+              <tini-button color="gradient-foreground-tint"
+                >Gradient Foreground Tint</tini-button
+              >
+            </tini-box>
           </div>
         </app-section>
 
@@ -212,14 +251,20 @@ export class AppPageComponentsButton extends TiniComponent {
           </div>
           <div slot="code">
             <tini-button textColor="primary">Default / Primary</tini-button>
-            <tini-button color="dynamic" textColor="warning"
-              >Dynamic / Warning</tini-button
+            <tini-button color="background" textColor="foreground"
+              >Background / Foregorund</tini-button
+            >
+            <tini-button color="foreground" textColor="background"
+              >Foregorund / Background</tini-button
             >
             <tini-button color="warning" textColor="danger"
               >Warning / Danger</tini-button
             >
-            <tini-button color="gradient-dynamic" textColor="success"
-              >Gradient Dynamic / Success</tini-button
+            <tini-button color="gradient-background" textColor="foreground"
+              >Gradient Background / Foreground</tini-button
+            >
+            <tini-button color="gradient-foreground" textColor="background"
+              >Gradient Foreground / Background</tini-button
             >
             <tini-button color="gradient-success" textColor="light"
               >Gradient Success / Light</tini-button

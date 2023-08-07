@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {
-  generateColorDynamicAndVaries,
-  generateGradientDynamicAndVaries,
+  generateColorVaries,
+  generateGradientVaries,
   generateSizeVaries,
 } from '@tinijs/core';
 
@@ -38,7 +38,7 @@ export const iconStyle = css`
     mask-position: center;
   }
 
-  ${generateColorDynamicAndVaries(
+  ${generateColorVaries(
     ({name, color}) => `
     .color-${name} {
       --icon-color: ${color};
@@ -46,7 +46,7 @@ export const iconStyle = css`
   `
   )}
 
-  ${generateGradientDynamicAndVaries(
+  ${generateGradientVaries(
     ({name, gradient}) => `
     .color-gradient-${name} {
       --icon-color: ${gradient};

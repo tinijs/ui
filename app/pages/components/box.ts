@@ -49,49 +49,89 @@ export class AppPageComponentsBox extends TiniComponent {
           </div>
         </app-section>
 
-        <app-section class="dynamic">
+        <app-section class="colors">
           <div slot="content">
-            <h2>Dynamic</h2>
-            <p>
-              Default background is the current <code>foreground</code>, default
-              color is the current <code>background</code>.
-            </p>
+            <h2>Background</h2>
           </div>
           <div slot="code">
-            <tini-box background="dynamic">Here is some content.</tini-box>
-            <tini-box background="dynamic">
-              <tini-box background="dynamic-contrast"
+            <tini-box background="background">Here is some content.</tini-box>
+            <tini-box background="background">
+              <tini-box background="background-contrast"
                 >Here is some content.</tini-box
               >
             </tini-box>
-            <tini-box background="dynamic-shade"
+            <tini-box background="background-shade"
               >Here is some content.</tini-box
             >
-            <tini-box background="dynamic-shade-2"
+            <tini-box background="background-shade-2"
               >Here is some content.</tini-box
             >
-            <tini-box background="dynamic-shade-3"
+            <tini-box background="background-shade-3"
               >Here is some content.</tini-box
             >
-            <tini-box background="dynamic-shade-4"
+            <tini-box background="background-shade-4"
               >Here is some content.</tini-box
             >
-            <tini-box background="dynamic-shade-5"
+            <tini-box background="background-shade-5"
               >Here is some content.</tini-box
             >
-            <tini-box background="dynamic-tint">Here is some content.</tini-box>
-            <tini-box background="dynamic-tint-2"
+            <tini-box background="background-tint">Here is some content.</tini-box>
+            <tini-box background="background-tint-2"
               >Here is some content.</tini-box
             >
-            <tini-box background="dynamic-tint-3"
+            <tini-box background="background-tint-3"
               >Here is some content.</tini-box
             >
-            <tini-box background="dynamic-tint-4"
+            <tini-box background="background-tint-4"
               >Here is some content.</tini-box
             >
-            <tini-box background="dynamic-tint-5"
+            <tini-box background="background-tint-5"
               >Here is some content.</tini-box
             >
+          </div>
+        </app-section>
+
+        <app-section class="colors">
+          <div slot="content">
+            <h2>Foreground</h2>
+          </div>
+          <div slot="code">
+            <tini-box background="background">
+              <tini-box background="foreground">Here is some content.</tini-box>
+              <tini-box background="foreground">
+                <tini-box background="foreground-contrast"
+                  >Here is some content.</tini-box
+                >
+              </tini-box>
+              <tini-box background="foreground-shade"
+                >Here is some content.</tini-box
+              >
+              <tini-box background="foreground-shade-2"
+                >Here is some content.</tini-box
+              >
+              <tini-box background="foreground-shade-3"
+                >Here is some content.</tini-box
+              >
+              <tini-box background="foreground-shade-4"
+                >Here is some content.</tini-box
+              >
+              <tini-box background="foreground-shade-5"
+                >Here is some content.</tini-box
+              >
+              <tini-box background="foreground-tint">Here is some content.</tini-box>
+              <tini-box background="foreground-tint-2"
+                >Here is some content.</tini-box
+              >
+              <tini-box background="foreground-tint-3"
+                >Here is some content.</tini-box
+              >
+              <tini-box background="foreground-tint-4"
+                >Here is some content.</tini-box
+              >
+              <tini-box background="foreground-tint-5"
+                >Here is some content.</tini-box
+              >
+            </tini-box>
           </div>
         </app-section>
 
@@ -155,23 +195,47 @@ export class AppPageComponentsBox extends TiniComponent {
 
         <app-section class="gradients">
           <div slot="content">
-            <h2>Gradient Dynamic</h2>
+            <h2>Gradient Background</h2>
           </div>
           <div slot="code">
-            <tini-box background="gradient-dynamic"
+            <tini-box background="gradient-background"
               >Here is some content.</tini-box
             >
-            <tini-box background="dynamic">
-              <tini-box background="gradient-dynamic-contrast"
+            <tini-box background="background">
+              <tini-box background="gradient-background-contrast"
                 >Here is some content.</tini-box
               >
             </tini-box>
-            <tini-box background="gradient-dynamic-shade"
+            <tini-box background="gradient-background-shade"
               >Here is some content.</tini-box
             >
-            <tini-box background="gradient-dynamic-tint"
+            <tini-box background="gradient-background-tint"
               >Here is some content.</tini-box
             >
+          </div>
+        </app-section>
+
+        <app-section class="gradients">
+          <div slot="content">
+            <h2>Gradient Foreground</h2>
+          </div>
+          <div slot="code">
+            <tini-box background="background">
+              <tini-box background="gradient-foreground"
+                >Here is some content.</tini-box
+              >
+              <tini-box background="foreground">
+                <tini-box background="gradient-foreground-contrast"
+                  >Here is some content.</tini-box
+                >
+              </tini-box>
+              <tini-box background="gradient-foreground-shade"
+                >Here is some content.</tini-box
+              >
+              <tini-box background="gradient-foreground-tint"
+                >Here is some content.</tini-box
+              >
+            </tini-box>
           </div>
         </app-section>
 

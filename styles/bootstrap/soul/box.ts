@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {
-  generateColorDynamicAndVaries,
-  generateGradientDynamicAndVaries,
+  generateColorVaries,
+  generateGradientVaries,
 } from '@tinijs/core';
 
 export const boxStyle = css`
@@ -36,7 +36,7 @@ export const boxStyle = css`
     margin-left: var(--box-margin-left);
   }
 
-  ${generateColorDynamicAndVaries(
+  ${generateColorVaries(
     ({name, color, contrast}) => `
     .bg-${name} {
       --box-background: ${color};
@@ -45,7 +45,7 @@ export const boxStyle = css`
   `
   )}
 
-  ${generateGradientDynamicAndVaries(
+  ${generateGradientVaries(
     ({name, gradient, contrast}) => `
     .bg-gradient-${name} {
       --box-background: ${gradient};

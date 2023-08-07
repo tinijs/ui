@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {
-  generateColorDynamicAndVaries,
-  generateGradientDynamicAndVaries,
+  generateColorVaries,
+  generateGradientVaries,
 } from '@tinijs/core';
 
 export const linkStyle = css`
@@ -43,7 +43,7 @@ export const linkStyle = css`
     filter: none;
   }
 
-  ${generateColorDynamicAndVaries(
+  ${generateColorVaries(
     ({name, color}) => `
     .color-${name} {
       --link-color: ${color};
@@ -51,7 +51,7 @@ export const linkStyle = css`
   `
   )}
 
-  ${generateGradientDynamicAndVaries(
+  ${generateGradientVaries(
     ({name, gradient}) => `
     .color-gradient-${name} {
       background: ${gradient};

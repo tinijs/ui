@@ -1,8 +1,7 @@
 import {css} from 'lit';
 import {
-  generateColorDynamicAndVaries,
-  generateGradientDynamicAndVaries,
   generateColorVaries,
+  generateGradientVaries,
   generateSizeVaries,
 } from '@tinijs/core';
 
@@ -72,32 +71,28 @@ export const buttonStyle = css`
     opacity: var(--button-disabled-opacity);
   }
 
-  ${generateColorDynamicAndVaries(
+  ${generateColorVaries(
     ({name, color, contrast}) => `
     .bg-${name} {
       --button-background: ${color};
       --button-color: ${contrast};
       --button-focus-visible-shadow-color: color-mix(in oklab, ${color}, transparent 70%);
     }
+
+    :host([textColor="${name}"]),
+    .color-${name} {
+      --button-color: ${color} !important;
+    }
   `
   )}
 
-  ${generateGradientDynamicAndVaries(
+  ${generateGradientVaries(
     ({name, gradient, color, contrast}) => `
     .bg-gradient-${name} {
       --button-background: ${gradient};
       --button-color: ${contrast};
       --button-hover-background: ${gradient};
       --button-focus-visible-shadow-color: color-mix(in oklab, ${color}, transparent 70%);
-    }
-  `
-  )}
-
-  ${generateColorVaries(
-    ({name, color}) => `
-    :host([textColor="${name}"]),
-    .color-${name} {
-      --button-color: ${color};
     }
   `
   )}
