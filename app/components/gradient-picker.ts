@@ -28,6 +28,8 @@ export const APP_GRADIENT_PICKER = 'app-gradient-picker';
   },
 })
 export class AppGradientPickerComponent extends TiniComponent {
+  static readonly defaultTagName = APP_GRADIENT_PICKER;
+
   static styles = css`
     /*
      * Grapick

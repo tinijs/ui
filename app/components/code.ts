@@ -20,6 +20,8 @@ export const APP_CODE = 'app-code';
   },
 })
 export class AppCodeComponent extends TiniComponent {
+  static readonly defaultTagName = APP_CODE;
+
   static styles = css`
     pre code.hljs {
       display: block;

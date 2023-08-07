@@ -6,18 +6,18 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
-import {TINI_BOX, TiniBoxComponent} from '@tinijs/ui/components/box';
+import {TiniBoxComponent} from '@tinijs/ui/components/box';
 
-import {APP_PAGE, AppPageComponent} from '../../components/page';
-import {APP_SECTION, AppSectionComponent} from '../../components/section';
+import {AppPageComponent} from '../../components/page';
+import {AppSectionComponent} from '../../components/section';
 
 @Page({
   name: 'app-page-components-box',
-  components: {
-    [TINI_BOX]: TiniBoxComponent,
-    [APP_PAGE]: AppPageComponent,
-    [APP_SECTION]: AppSectionComponent,
-  },
+  components: [
+    TiniBoxComponent,
+    AppPageComponent,
+    AppSectionComponent,
+  ],
   theming: {
     styling: stylingWithBases([
       commonBases,
@@ -75,7 +75,9 @@ export class AppPageComponentsBox extends TiniComponent {
             <tini-box background="background-shade-5"
               >Here is some content.</tini-box
             >
-            <tini-box background="background-tint">Here is some content.</tini-box>
+            <tini-box background="background-tint"
+              >Here is some content.</tini-box
+            >
             <tini-box background="background-tint-2"
               >Here is some content.</tini-box
             >
@@ -118,7 +120,9 @@ export class AppPageComponentsBox extends TiniComponent {
               <tini-box background="foreground-shade-5"
                 >Here is some content.</tini-box
               >
-              <tini-box background="foreground-tint">Here is some content.</tini-box>
+              <tini-box background="foreground-tint"
+                >Here is some content.</tini-box
+              >
               <tini-box background="foreground-tint-2"
                 >Here is some content.</tini-box
               >

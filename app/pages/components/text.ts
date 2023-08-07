@@ -5,20 +5,20 @@ import {
   linkBases,
   textBases,
 } from '@tinijs/ui/bases';
-import {TINI_BOX, TiniBoxComponent} from '@tinijs/ui/components/box';
-import {TINI_TEXT, TiniTextComponent} from '@tinijs/ui/components/text';
+import {TiniBoxComponent} from '@tinijs/ui/components/box';
+import {TiniTextComponent} from '@tinijs/ui/components/text';
 
-import {APP_PAGE, AppPageComponent} from '../../components/page';
-import {APP_SECTION, AppSectionComponent} from '../../components/section';
+import {AppPageComponent} from '../../components/page';
+import {AppSectionComponent} from '../../components/section';
 
 @Page({
   name: 'app-page-components-text',
-  components: {
-    [TINI_BOX]: TiniBoxComponent,
-    [TINI_TEXT]: TiniTextComponent,
-    [APP_PAGE]: AppPageComponent,
-    [APP_SECTION]: AppSectionComponent,
-  },
+  components: [
+    TiniBoxComponent,
+    TiniTextComponent,
+    AppPageComponent,
+    AppSectionComponent,
+  ],
   theming: {
     styling: stylingWithBases([
       commonBases,

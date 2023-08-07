@@ -1,15 +1,17 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {ColorsAndGradientsWithDynamics, Colors, Sizes} from '@tinijs/core';
+import {ColorsAndGradients, Colors, Sizes, JustifyContents} from '@tinijs/core';
 
 export const TINI_BUTTON = 'tini-button';
-
 /* UseBases(common) */
 export class TiniButtonComponent extends LitElement {
-  @property({type: String}) declare color?: ColorsAndGradientsWithDynamics;
+  static readonly defaultTagName = TINI_BUTTON;
+
+  @property({type: String}) declare color?: ColorsAndGradients;
   @property({type: String}) declare textColor?: Colors;
   @property({type: String}) declare size?: Sizes;
+  @property({type: String}) declare justify?: JustifyContents;
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
 
   constructor() {
@@ -23,6 +25,7 @@ export class TiniButtonComponent extends LitElement {
       [`bg-${this.color}`]: !!this.color,
       [`color-${this.textColor}`]: !!this.textColor,
       [`size-${this.size}`]: !!this.size,
+      [`justify-${this.justify}`]: !!this.justify,
     };
   }
 

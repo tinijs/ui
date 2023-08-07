@@ -24,6 +24,8 @@ export const APP_TABS = 'app-tabs';
   },
 })
 export class AppTabsComponent extends TiniComponent {
+  static readonly defaultTagName = APP_TABS;
+
   static styles = css`
     .head {
       transform: translateY(1px);

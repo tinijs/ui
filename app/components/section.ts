@@ -14,17 +14,17 @@ import {commonBases} from '@tinijs/ui/bases';
 import {ConsumerPlatforms} from '../consts/main';
 import {mainStore} from '../stores/main';
 
-import {APP_TABS, AppTabsComponent, TabItem} from '../components/tabs';
-import {APP_CODE, AppCodeComponent} from '../components/code';
+import {AppTabsComponent, TabItem} from '../components/tabs';
+import {AppCodeComponent} from '../components/code';
 
 type CodeBuilder = (code?: string, context?: any) => string;
 
 export const APP_SECTION = 'app-section';
 @Component({
-  components: {
-    [APP_TABS]: AppTabsComponent,
-    [APP_CODE]: AppCodeComponent,
-  },
+  components: [
+    AppTabsComponent,
+    AppCodeComponent,
+  ],
   theming: {
     styling: {
       bootstrap: [commonBases.bootstrap],
@@ -33,6 +33,8 @@ export const APP_SECTION = 'app-section';
   },
 })
 export class AppSectionComponent extends TiniComponent {
+  static readonly defaultTagName = APP_SECTION;
+
   static styles = css`
     :host {
       margin-top: 3rem;

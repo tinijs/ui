@@ -17,29 +17,27 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
-import {TINI_BOX, TiniBoxComponent} from '@tinijs/ui/components/box';
-import {TINI_ICON, TiniIconComponent} from '@tinijs/ui/components/icon';
 
 import {IconsImportMethods} from '../consts/main';
 import {mainStore} from '../stores/main';
 
-import {APP_SECTION, AppSectionComponent} from '../components/section';
-import {APP_TABS, AppTabsComponent, TabItem} from '../components/tabs';
-import {APP_CODE, AppCodeComponent} from '../components/code';
-import {APP_MODAL, AppModalComponent} from '../components/modal';
+import {AppSectionComponent} from '../components/section';
+import {AppTabsComponent, TabItem} from '../components/tabs';
+import {AppCodeComponent} from '../components/code';
+import {AppModalComponent} from '../components/modal';
+import {AppIconContentComponent} from '../components/icon-content';
 
 export type IconDef = [string, string];
 
 export const APP_PAGE_ICON_MODAL = 'app-page-icon-modal';
 @Component({
-  components: {
-    [TINI_BOX]: TiniBoxComponent,
-    [TINI_ICON]: TiniIconComponent,
-    [APP_SECTION]: AppSectionComponent,
-    [APP_TABS]: AppTabsComponent,
-    [APP_CODE]: AppCodeComponent,
-    [APP_MODAL]: AppModalComponent,
-  },
+  components: [
+    AppSectionComponent,
+    AppTabsComponent,
+    AppCodeComponent,
+    AppModalComponent,
+    AppIconContentComponent,
+  ],
   theming: {
     styling: stylingWithBases([
       commonBases,
@@ -51,26 +49,13 @@ export const APP_PAGE_ICON_MODAL = 'app-page-icon-modal';
   },
 })
 export class AppPageIconModalComponent extends TiniComponent {
+  static readonly defaultTagName = APP_PAGE_ICON_MODAL;
+
   static styles = css`
     .modal-body {
       display: block;
       width: 100%;
       padding: 0 2rem;
-    }
-
-    .colors [slot='code'],
-    .gradients [slot='code'],
-    .sizes [slot='code'] {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .sizes {
-      padding-bottom: 2rem;
-    }
-    .sizes [slot='code'] {
-      align-items: flex-end;
     }
   `;
 
@@ -103,7 +88,6 @@ export class AppPageIconModalComponent extends TiniComponent {
       .split('-')
       .map(item => item.charAt(0).toUpperCase() + item.slice(1))
       .join('');
-    const nameConst = `ICON_${iconName.replace(/-/g, '_').toUpperCase()}`;
     const nameVar = `icon${nameCapitalized}`;
     const nameTag = `icon-${iconName}`;
     const nameClass = `Icon${nameCapitalized}Component`;
@@ -120,12 +104,12 @@ export class AppPageIconModalComponent extends TiniComponent {
 
     const tiniJSCode = `import {Component} from '@tinijs/core';
 
-import {${nameConst}, ${nameClass}} from '${packName}/${iconName}';
+import {${nameClass}} from '${packName}/${iconName}';
 
 @Component({
-  components: {
-    [${nameConst}]: ${nameClass}
-  }
+  components: [
+    ${nameClass}
+  ]
 });
 export class MyComponent extends TiniComponent {}`;
 
@@ -139,11 +123,11 @@ import '${packName}/${iconName}.include';
  */
 import {useComponents} from '@tinijs/core';
 
-import {${nameConst}, ${nameClass}} from '${packName}/${iconName}';
+import {${nameClass}} from '${packName}/${iconName}';
 
-useComponents({
-  [${nameConst}]: ${nameClass}
-});
+useComponents([
+  ${nameClass}
+]);
 `;
 
     const standaloneCode = `<script src="https://unpkg.com/${packName}@${packVersion}/${iconName}.bundle.js"></script>`;
@@ -294,406 +278,11 @@ containerEl.innerHTML = ${nameVar}Code;
                   </div>
                 </app-section>
 
-                <app-section
-                  class="default"
+                <app-icon-content
+                  .src=${iconSRC}
                   .preprocessCode=${this.PREPROCESS_CODE}
                   .codeBuildContext=${names}
-                >
-                  <div slot="content">
-                    <h2>Default</h2>
-                    <p>
-                      Default color is the <strong>original</strong> color, and
-                      default size is <code>md</code>.
-                    </p>
-                  </div>
-                  <div slot="code">
-                    <tini-icon .src=${iconSRC}></tini-icon>
-                  </div>
-                </app-section>
-
-                ${this.noVariants
-                  ? nothing
-                  : html`
-                      <app-section
-                        class="colors"
-                        .preprocessCode=${this.PREPROCESS_CODE}
-                        .codeBuildContext=${names}
-                      >
-                        <div slot="content">
-                          <h2>Background</h2>
-                        </div>
-                        <div slot="code">
-                          <tini-box background="foreground">
-                            <tini-icon
-                              color="background"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                            <tini-box background="background">
-                              <tini-icon
-                                color="background-contrast"
-                                .src=${iconSRC}
-                              ></tini-icon>
-                            </tini-box>
-                            <tini-icon
-                              color="background-shade"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                            <tini-icon
-                              color="background-shade-2"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                            <tini-icon
-                              color="background-shade-3"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                            <tini-icon
-                              color="background-shade-4"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                            <tini-icon
-                              color="background-shade-5"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                            <tini-icon
-                              color="background-tint"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                            <tini-icon
-                              color="background-tint-2"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                            <tini-icon
-                              color="background-tint-3"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                            <tini-icon
-                              color="background-tint-4"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                            <tini-icon
-                              color="background-tint-5"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                          </tini-box>
-                        </div>
-                      </app-section>
-
-                      <app-section
-                        class="colors"
-                        .preprocessCode=${this.PREPROCESS_CODE}
-                        .codeBuildContext=${names}
-                      >
-                        <div slot="content">
-                          <h2>Foreground</h2>
-                        </div>
-                        <div slot="code">
-                          <tini-icon
-                            color="foreground"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-box background="foreground">
-                            <tini-icon
-                              color="foreground-contrast"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                          </tini-box>
-                          <tini-icon
-                            color="foreground-shade"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="foreground-shade-2"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="foreground-shade-3"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="foreground-shade-4"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="foreground-shade-5"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="foreground-tint"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="foreground-tint-2"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="foreground-tint-3"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="foreground-tint-4"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="foreground-tint-5"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                        </div>
-                      </app-section>
-
-                      <app-section
-                        class="colors"
-                        .preprocessCode=${this.PREPROCESS_CODE}
-                        .codeBuildContext=${names}
-                      >
-                        <div slot="content">
-                          <h2>Color Primary</h2>
-                        </div>
-                        <div slot="code">
-                          <tini-icon
-                            color="primary"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-box background="primary">
-                            <tini-icon
-                              color="primary-contrast"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                          </tini-box>
-                          <tini-icon
-                            color="primary-shade"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="primary-shade-2"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="primary-shade-3"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="primary-shade-4"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="primary-shade-5"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="primary-tint"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="primary-tint-2"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="primary-tint-3"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="primary-tint-4"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="primary-tint-5"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                        </div>
-                      </app-section>
-
-                      <app-section
-                        class="colors"
-                        .preprocessCode=${this.PREPROCESS_CODE}
-                        .codeBuildContext=${names}
-                      >
-                        <div slot="content">
-                          <h2>Colors</h2>
-                        </div>
-                        <div slot="code">
-                          <tini-icon
-                            color="secondary"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="tertiary"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="success"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="warning"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon color="danger" .src=${iconSRC}></tini-icon>
-                          <tini-icon color="light" .src=${iconSRC}></tini-icon>
-                          <tini-icon color="medium" .src=${iconSRC}></tini-icon>
-                          <tini-icon color="dark" .src=${iconSRC}></tini-icon>
-                        </div>
-                      </app-section>
-
-                      <app-section
-                        class="gradients"
-                        .preprocessCode=${this.PREPROCESS_CODE}
-                        .codeBuildContext=${names}
-                      >
-                        <div slot="content">
-                          <h2>Gradient Background</h2>
-                        </div>
-                        <div slot="code">
-                          <tini-box background="foreground">
-                            <tini-icon
-                              color="gradient-background"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                            <tini-box background="background">
-                              <tini-icon
-                                color="gradient-background-contrast"
-                                .src=${iconSRC}
-                              ></tini-icon>
-                            </tini-box>
-                            <tini-icon
-                              color="gradient-background-shade"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                            <tini-icon
-                              color="gradient-background-tint"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                          </tini-box>
-                        </div>
-                      </app-section>
-
-                      <app-section
-                        class="gradients"
-                        .preprocessCode=${this.PREPROCESS_CODE}
-                        .codeBuildContext=${names}
-                      >
-                        <div slot="content">
-                          <h2>Gradient Foreground</h2>
-                        </div>
-                        <div slot="code">
-                          <tini-icon
-                            color="gradient-foreground"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-box background="foreground">
-                            <tini-icon
-                              color="gradient-foreground-contrast"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                          </tini-box>
-                          <tini-icon
-                            color="gradient-foreground-shade"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="gradient-foreground-tint"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                        </div>
-                      </app-section>
-
-                      <app-section
-                        class="gradients"
-                        .preprocessCode=${this.PREPROCESS_CODE}
-                        .codeBuildContext=${names}
-                      >
-                        <div slot="content">
-                          <h2>Gradient Primary</h2>
-                        </div>
-                        <div slot="code">
-                          <tini-icon
-                            color="gradient-primary"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-box background="primary">
-                            <tini-icon
-                              color="gradient-primary-contrast"
-                              .src=${iconSRC}
-                            ></tini-icon>
-                          </tini-box>
-                          <tini-icon
-                            color="gradient-primary-shade"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="gradient-primary-tint"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                        </div>
-                      </app-section>
-
-                      <app-section
-                        class="gradients"
-                        .preprocessCode=${this.PREPROCESS_CODE}
-                        .codeBuildContext=${names}
-                      >
-                        <div slot="content">
-                          <h2>Gradients</h2>
-                        </div>
-                        <div slot="code">
-                          <tini-icon
-                            color="gradient-secondary"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="gradient-tertiary"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="gradient-success"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="gradient-warning"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="gradient-danger"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="gradient-light"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="gradient-medium"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                          <tini-icon
-                            color="gradient-dark"
-                            .src=${iconSRC}
-                          ></tini-icon>
-                        </div>
-                      </app-section>
-                    `}
-
-                <app-section
-                  class="sizes"
-                  .preprocessCode=${this.PREPROCESS_CODE}
-                  .codeBuildContext=${names}
-                >
-                  <div slot="content">
-                    <h2>Sizes</h2>
-                  </div>
-                  <div slot="code">
-                    <tini-icon size="xxxs" .src=${iconSRC}></tini-icon>
-                    <tini-icon size="xxs" .src=${iconSRC}></tini-icon>
-                    <tini-icon size="xs" .src=${iconSRC}></tini-icon>
-                    <tini-icon size="ss" .src=${iconSRC}></tini-icon>
-                    <tini-icon size="sm" .src=${iconSRC}></tini-icon>
-                    <tini-icon size="md" .src=${iconSRC}></tini-icon>
-                    <tini-icon size="ml" .src=${iconSRC}></tini-icon>
-                    <tini-icon size="lg" .src=${iconSRC}></tini-icon>
-                    <tini-icon size="sl" .src=${iconSRC}></tini-icon>
-                    <tini-icon size="xl" .src=${iconSRC}></tini-icon>
-                    <tini-icon size="xxl" .src=${iconSRC}></tini-icon>
-                    <tini-icon size="xxxl" .src=${iconSRC}></tini-icon>
-                  </div>
-                </app-section>
+                ></app-icon-content>
               </div>
             `}
       </app-modal>

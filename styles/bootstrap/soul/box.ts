@@ -1,8 +1,5 @@
 import {css} from 'lit';
-import {
-  generateColorVaries,
-  generateGradientVaries,
-} from '@tinijs/core';
+import {generateColorVaries, generateGradientVaries} from '@tinijs/core';
 
 export const boxStyle = css`
   :host {

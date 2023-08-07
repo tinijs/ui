@@ -13,16 +13,13 @@ import {
   render,
   nothing,
 } from '@tinijs/core';
-import {ICON_CODE, IconCodeComponent} from '@tinijs/bootstrap-icons/code';
+import {IconCodeComponent} from '@tinijs/bootstrap-icons/code';
 import {commonBases, buttonBases, codeBases, formBases} from '@tinijs/ui/bases';
-import {TINI_BUTTON, TiniButtonComponent} from '@tinijs/ui/components/button';
+import {TiniButtonComponent} from '@tinijs/ui/components/button';
 
-import {APP_CODE, AppCodeComponent} from './code';
-import {APP_MODAL, AppModalComponent} from './modal';
-import {
-  APP_GRADIENT_PICKER,
-  AppGradientPickerComponent,
-} from './gradient-picker';
+import {AppCodeComponent} from './code';
+import {AppModalComponent} from './modal';
+import {AppGradientPickerComponent} from './gradient-picker';
 
 import {GITHUB_RAW_URL} from '../consts/main';
 import {SOULS, FONTS} from '../consts/theme';
@@ -41,18 +38,20 @@ import {mainStore} from '../stores/main';
 export const APP_SKIN_EDITOR = 'app-skin-editor';
 
 @Component({
-  components: {
-    [ICON_CODE]: IconCodeComponent,
-    [TINI_BUTTON]: TiniButtonComponent,
-    [APP_CODE]: AppCodeComponent,
-    [APP_MODAL]: AppModalComponent,
-    [APP_GRADIENT_PICKER]: AppGradientPickerComponent,
-  },
+  components: [
+    IconCodeComponent,
+    TiniButtonComponent,
+    AppCodeComponent,
+    AppModalComponent,
+    AppGradientPickerComponent,
+  ],
   theming: {
     styling: stylingWithBases([commonBases, buttonBases, codeBases, formBases]),
   },
 })
 export class AppSkinEditorComponent extends TiniComponent {
+  static readonly defaultTagName = APP_SKIN_EDITOR;
+
   static styles = css`
     :host {
       --head-height: 50px;

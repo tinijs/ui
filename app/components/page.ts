@@ -35,9 +35,9 @@ import {
 import {getText} from '../helpers/http';
 import {mainStore} from '../stores/main';
 
-import {APP_SECTION, AppSectionComponent} from '../components/section';
-import {APP_TABS, AppTabsComponent, TabItem} from '../components/tabs';
-import {APP_CODE, AppCodeComponent} from '../components/code';
+import {AppSectionComponent} from '../components/section';
+import {AppTabsComponent, TabItem} from '../components/tabs';
+import {AppCodeComponent} from '../components/code';
 
 interface Quicklink {
   href: string;
@@ -53,11 +53,11 @@ const enum Modes {
 
 export const APP_PAGE = 'app-page';
 @Component({
-  components: {
-    [APP_SECTION]: AppSectionComponent,
-    [APP_TABS]: AppTabsComponent,
-    [APP_CODE]: AppCodeComponent,
-  },
+  components: [
+    AppSectionComponent,
+    AppTabsComponent,
+    AppCodeComponent,
+  ],
   theming: {
     styling: stylingWithBases([
       codeBases,
@@ -70,6 +70,8 @@ export const APP_PAGE = 'app-page';
   },
 })
 export class AppPageComponent extends TiniComponent {
+  static readonly defaultTagName = APP_PAGE;
+
   static styles = css`
     .switch-mode {
       display: flex;
@@ -165,21 +167,21 @@ export class AppPageComponent extends TiniComponent {
   }
 
   private get importTiniJSCode() {
-    const {nameConst, nameClass} = this.nameVariants;
+    const {nameClass} = this.nameVariants;
     return `import {Page} from '@tinijs/core';
 
-import {${nameConst}, ${nameClass}} from '@tinijs/ui/${this.name}';
+import {${nameClass}} from '@tinijs/ui/${this.name}';
 
 @Page({
-  components: {
-    [${nameConst}]: ${nameClass}
-  }
+  components: [
+    ${nameClass}
+  ]
 });
 export class MyPage extends TiniComponent {}`;
   }
 
   private get importOthersCode() {
-    const {nameConst, nameClass} = this.nameVariants;
+    const {nameClass} = this.nameVariants;
     return `/*
  * Option 1: include in your component
  */
@@ -190,11 +192,11 @@ import '@tinijs/ui-${this.soulName}/components/${this.name}.include';
  */
 import {useComponents} from '@tinijs/core';
 
-import {${nameConst}, ${nameClass}} from '@tinijs/ui-${this.soulName}/components/${this.name}';
+import {${nameClass}} from '@tinijs/ui-${this.soulName}/components/${this.name}';
 
-useComponents({
-  [${nameConst}]: ${nameClass}
-});
+useComponents([
+  ${nameClass}
+]);
 `;
   }
 

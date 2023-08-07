@@ -6,13 +6,13 @@ import {
   textBases,
 } from '@tinijs/ui/bases';
 
-import {APP_PAGE_ICON, AppPageIconComponent} from '../../components/page-icon';
+import {AppPageIconComponent} from '../../components/page-icon';
 
 @Page({
   name: 'app-page-icons-fontawesome-brands',
-  components: {
-    [APP_PAGE_ICON]: AppPageIconComponent,
-  },
+  components: [
+    AppPageIconComponent,
+  ],
   theming: {
     styling: stylingWithBases([
       commonBases,

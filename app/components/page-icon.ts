@@ -18,24 +18,21 @@ import {
   textBases,
   buttonBases,
   codeBases,
+  formBases,
 } from '@tinijs/ui/bases';
 
 import {GITHUB_ICONS_REPO_URL} from '../consts/main';
 import {get} from '../helpers/http';
 
-import {APP_CODE, AppCodeComponent} from './code';
-import {
-  APP_PAGE_ICON_MODAL,
-  AppPageIconModalComponent,
-  IconDef,
-} from './page-icon-modal';
+import {AppCodeComponent} from './code';
+import {AppPageIconModalComponent, IconDef} from './page-icon-modal';
 
 export const APP_PAGE_ICON = 'app-page-icon';
 @Component({
-  components: {
-    [APP_CODE]: AppCodeComponent,
-    [APP_PAGE_ICON_MODAL]: AppPageIconModalComponent,
-  },
+  components: [
+    AppCodeComponent,
+    AppPageIconModalComponent,
+  ],
   theming: {
     styling: stylingWithBases([
       commonBases,
@@ -44,10 +41,13 @@ export const APP_PAGE_ICON = 'app-page-icon';
       textBases,
       buttonBases,
       codeBases,
+      formBases,
     ]),
   },
 })
 export class AppPageIconComponent extends TiniComponent {
+  static readonly defaultTagName = APP_PAGE_ICON;
+
   static styles = css`
     :host {
       --icon-size: 3.5rem;

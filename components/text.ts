@@ -4,9 +4,10 @@ import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ColorsAndGradients, FontTypes, FontSizeFactors} from '@tinijs/core';
 
 export const TINI_TEXT = 'tini-text';
-
 /* UseBases(common) */
 export class TiniTextComponent extends LitElement {
+  static readonly defaultTagName = TINI_TEXT;
+
   @property({type: String}) declare color?: ColorsAndGradients;
   @property({type: String}) declare font?: FontTypes;
   @property({type: String}) declare size?: FontSizeFactors;

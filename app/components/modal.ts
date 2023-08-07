@@ -19,7 +19,7 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
-import {TINI_BUTTON, TiniButtonComponent} from '@tinijs/ui/components/button';
+import {TiniButtonComponent} from '@tinijs/ui/components/button';
 
 export const enum ModalKinds {
   Bare = 'bare',
@@ -41,9 +41,9 @@ export interface ModalResult<Context> {
 
 export const APP_MODAL = 'app-modal';
 @Component({
-  components: {
-    [TINI_BUTTON]: TiniButtonComponent,
-  },
+  components: [
+    TiniButtonComponent,
+  ],
   theming: {
     styling: stylingWithBases([
       commonBases,
@@ -55,6 +55,8 @@ export const APP_MODAL = 'app-modal';
   },
 })
 export class AppModalComponent extends TiniComponent {
+  static readonly defaultTagName = APP_MODAL;
+
   static styles = css`
     dialog {
       position: fixed;

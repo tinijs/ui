@@ -9,13 +9,10 @@ import {
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
 import {commonBases, linkBases, buttonBases, formBases} from '@tinijs/ui/bases';
-import {ICON_GITHUB, IconGithubComponent} from '@tinijs/bootstrap-icons/github';
-import {
-  ICON_PALETTE,
-  IconPaletteComponent,
-} from '@tinijs/bootstrap-icons/palette';
+import {IconGithubComponent} from '@tinijs/bootstrap-icons/github';
+import {IconPaletteComponent} from '@tinijs/bootstrap-icons/palette';
 
-import {APP_SKIN_EDITOR, AppSkinEditorComponent} from './skin-editor';
+import {AppSkinEditorComponent} from './skin-editor';
 
 import {GITHUB_REPO_URL} from '../consts/main';
 import {changeTheme} from '../helpers/theme';
@@ -23,16 +20,18 @@ import {mainStore} from '../stores/main';
 
 export const APP_HEADER = 'app-header';
 @Component({
-  components: {
-    [ICON_GITHUB]: IconGithubComponent,
-    [ICON_PALETTE]: IconPaletteComponent,
-    [APP_SKIN_EDITOR]: AppSkinEditorComponent,
-  },
+  components: [
+    IconGithubComponent,
+    IconPaletteComponent,
+    AppSkinEditorComponent,
+  ],
   theming: {
     styling: stylingWithBases([commonBases, linkBases, buttonBases, formBases]),
   },
 })
 export class AppHeaderComponent extends TiniComponent {
+  static readonly defaultTagName = APP_HEADER;
+
   static styles = css`
     :host {
       --header-height: 60px;

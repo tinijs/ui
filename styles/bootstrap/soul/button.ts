@@ -3,6 +3,7 @@ import {
   generateColorVaries,
   generateGradientVaries,
   generateSizeVaries,
+  generateJustifyVaries,
 } from '@tinijs/core';
 
 export const buttonStyle = css`
@@ -28,12 +29,17 @@ export const buttonStyle = css`
     display: inline-block;
   }
 
+  /*
+   * Main
+   */
+
   button {
     cursor: pointer;
     width: 100%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: calc(var(--button-padding) * 0.5);
     padding: calc(var(--button-padding) * 0.5) var(--button-padding);
     font-family: var(--font-body);
     font-size: var(--button-font-size);
@@ -71,6 +77,20 @@ export const buttonStyle = css`
     opacity: var(--button-disabled-opacity);
   }
 
+  /*
+   * button > .content-group
+   */
+
+  button ::slotted(.content-group) {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--button-padding) * 0.5);
+  }
+
+  /*
+   * color="..."
+   */
+
   ${generateColorVaries(
     ({name, color, contrast}) => `
     .bg-${name} {
@@ -97,12 +117,32 @@ export const buttonStyle = css`
   `
   )}
 
+
+
+  /*
+   * size="..."
+   */
+
   ${generateSizeVaries(
     size => `
     .size-${size} {
       --button-font-size: var(--size-${size});
       --button-padding: var(--size-${size});
       --button-focus-visible-shadow-size: var(--size-${size}-0_3x);
+    }
+  `
+  )}
+
+
+
+  /*
+   * justify="..."
+   */
+
+  ${generateJustifyVaries(
+    justify => `
+    .justify-${justify} {
+      justify-content: ${justify};
     }
   `
   )}

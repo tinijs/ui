@@ -2,15 +2,15 @@ import {Layout, TiniComponent, html, css} from '@tinijs/core';
 
 import {commonBases} from '@tinijs/ui/bases';
 
-import {APP_HEADER, AppHeaderComponent} from '../components/header';
-import {APP_MENU, AppMenuComponent} from '../components/menu';
+import {AppHeaderComponent} from '../components/header';
+import {AppMenuComponent} from '../components/menu';
 
 @Layout({
   name: 'app-layout-default',
-  components: {
-    [APP_HEADER]: AppHeaderComponent,
-    [APP_MENU]: AppMenuComponent,
-  },
+  components: [
+    AppHeaderComponent,
+    AppMenuComponent,
+  ],
   theming: {
     styling: {
       bootstrap: [commonBases.bootstrap],

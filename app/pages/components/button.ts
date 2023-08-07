@@ -6,20 +6,32 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
-import {TINI_BOX, TiniBoxComponent} from '@tinijs/ui/components/box';
-import {TINI_BUTTON, TiniButtonComponent} from '@tinijs/ui/components/button';
+import {
+  IconChevronLeftComponent,
+} from '@tinijs/bootstrap-icons/chevron-left';
+import {
+  IconChevronRightComponent,
+} from '@tinijs/bootstrap-icons/chevron-right';
+import {
+  IconHeartFillComponent,
+} from '@tinijs/bootstrap-icons/heart-fill';
+import {TiniBoxComponent} from '@tinijs/ui/components/box';
+import {TiniButtonComponent} from '@tinijs/ui/components/button';
 
-import {APP_PAGE, AppPageComponent} from '../../components/page';
-import {APP_SECTION, AppSectionComponent} from '../../components/section';
+import {AppPageComponent} from '../../components/page';
+import {AppSectionComponent} from '../../components/section';
 
 @Page({
   name: 'app-page-components-button',
-  components: {
-    [TINI_BOX]: TiniBoxComponent,
-    [TINI_BUTTON]: TiniButtonComponent,
-    [APP_PAGE]: AppPageComponent,
-    [APP_SECTION]: AppSectionComponent,
-  },
+  components: [
+    IconChevronLeftComponent,
+    IconChevronRightComponent,
+    IconHeartFillComponent,
+    TiniBoxComponent,
+    TiniButtonComponent,
+    AppPageComponent,
+    AppSectionComponent,
+  ],
   theming: {
     styling: stylingWithBases([
       commonBases,
@@ -83,16 +95,34 @@ export class AppPageComponentsButton extends TiniComponent {
                   >Background Contrast</tini-button
                 >
               </tini-box>
-              <tini-button color="background-shade">Background Shade</tini-button>
-              <tini-button color="background-shade-2">Background Shade 2</tini-button>
-              <tini-button color="background-shade-3">Background Shade 3</tini-button>
-              <tini-button color="background-shade-4">Background Shade 4</tini-button>
-              <tini-button color="background-shade-5">Background Shade 5</tini-button>
+              <tini-button color="background-shade"
+                >Background Shade</tini-button
+              >
+              <tini-button color="background-shade-2"
+                >Background Shade 2</tini-button
+              >
+              <tini-button color="background-shade-3"
+                >Background Shade 3</tini-button
+              >
+              <tini-button color="background-shade-4"
+                >Background Shade 4</tini-button
+              >
+              <tini-button color="background-shade-5"
+                >Background Shade 5</tini-button
+              >
               <tini-button color="background-tint">Background Tint</tini-button>
-              <tini-button color="background-tint-2">Background Tint 2</tini-button>
-              <tini-button color="background-tint-3">Background Tint 3</tini-button>
-              <tini-button color="background-tint-4">Background Tint 4</tini-button>
-              <tini-button color="background-tint-5">Background Tint 5</tini-button>
+              <tini-button color="background-tint-2"
+                >Background Tint 2</tini-button
+              >
+              <tini-button color="background-tint-3"
+                >Background Tint 3</tini-button
+              >
+              <tini-button color="background-tint-4"
+                >Background Tint 4</tini-button
+              >
+              <tini-button color="background-tint-5"
+                >Background Tint 5</tini-button
+              >
             </tini-box>
           </div>
         </app-section>
@@ -104,18 +134,36 @@ export class AppPageComponentsButton extends TiniComponent {
           <div slot="code">
             <tini-button color="foreground">Foreground</tini-button>
             <tini-box background="foreground">
-              <tini-button color="foreground-contrast">Foreground Contrast</tini-button>
+              <tini-button color="foreground-contrast"
+                >Foreground Contrast</tini-button
+              >
             </tini-box>
             <tini-button color="foreground-shade">Foreground Shade</tini-button>
-            <tini-button color="foreground-shade-2">Foreground Shade 2</tini-button>
-            <tini-button color="foreground-shade-3">Foreground Shade 3</tini-button>
-            <tini-button color="foreground-shade-4">Foreground Shade 4</tini-button>
-            <tini-button color="foreground-shade-5">Foreground Shade 5</tini-button>
+            <tini-button color="foreground-shade-2"
+              >Foreground Shade 2</tini-button
+            >
+            <tini-button color="foreground-shade-3"
+              >Foreground Shade 3</tini-button
+            >
+            <tini-button color="foreground-shade-4"
+              >Foreground Shade 4</tini-button
+            >
+            <tini-button color="foreground-shade-5"
+              >Foreground Shade 5</tini-button
+            >
             <tini-button color="foreground-tint">Foreground Tint</tini-button>
-            <tini-button color="foreground-tint-2">Foreground Tint 2</tini-button>
-            <tini-button color="foreground-tint-3">Foreground Tint 3</tini-button>
-            <tini-button color="foreground-tint-4">Foreground Tint 4</tini-button>
-            <tini-button color="foreground-tint-5">Foreground Tint 5</tini-button>
+            <tini-button color="foreground-tint-2"
+              >Foreground Tint 2</tini-button
+            >
+            <tini-button color="foreground-tint-3"
+              >Foreground Tint 3</tini-button
+            >
+            <tini-button color="foreground-tint-4"
+              >Foreground Tint 4</tini-button
+            >
+            <tini-button color="foreground-tint-5"
+              >Foreground Tint 5</tini-button
+            >
           </div>
         </app-section>
 
@@ -173,7 +221,9 @@ export class AppPageComponentsButton extends TiniComponent {
         <app-section class="gradients">
           <div slot="content"><h2>Gradient Background</h2></div>
           <div slot="code">
-            <tini-button color="gradient-background">Gradient Background</tini-button>
+            <tini-button color="gradient-background"
+              >Gradient Background</tini-button
+            >
             <tini-box background="background">
               <tini-button color="gradient-background-contrast"
                 >Gradient Background Contrast</tini-button
@@ -192,7 +242,9 @@ export class AppPageComponentsButton extends TiniComponent {
           <div slot="content"><h2>Gradient Foreground</h2></div>
           <div slot="code">
             <tini-box background="background">
-              <tini-button color="gradient-foreground">Gradient Foreground</tini-button>
+              <tini-button color="gradient-foreground"
+                >Gradient Foreground</tini-button
+              >
               <tini-box background="foreground">
                 <tini-button color="gradient-foreground-contrast"
                   >Gradient Foreground Contrast</tini-button
@@ -287,6 +339,75 @@ export class AppPageComponentsButton extends TiniComponent {
             <tini-button size="xl" color="primary">XL</tini-button>
             <tini-button size="xxl" color="primary">XXL</tini-button>
             <tini-button size="xxxl" color="primary">XXXL</tini-button>
+          </div>
+        </app-section>
+
+        <app-section class="with-icons">
+          <div slot="content"><h2>With icons</h2></div>
+          <div slot="code">
+            <tini-button color="primary">
+              <icon-heart-fill
+                size="ss"
+                color="primary-contrast"
+              ></icon-heart-fill>
+              <span>Left</span>
+            </tini-button>
+            <tini-button color="primary">
+              <span>Right</span>
+              <icon-heart-fill
+                size="ss"
+                color="primary-contrast"
+              ></icon-heart-fill>
+            </tini-button>
+            <tini-button color="primary">
+              <icon-heart-fill
+                size="ss"
+                color="primary-contrast"
+              ></icon-heart-fill>
+              <span>Left Right</span>
+              <icon-heart-fill
+                size="ss"
+                color="primary-contrast"
+              ></icon-heart-fill>
+            </tini-button>
+            <tini-button justify="space-between" color="primary">
+              <icon-heart-fill
+                size="ss"
+                color="primary-contrast"
+              ></icon-heart-fill>
+              <span>Far Left</span>
+            </tini-button>
+            <tini-button justify="space-between" color="primary">
+              <span>Far Right</span>
+              <icon-heart-fill
+                size="ss"
+                color="primary-contrast"
+              ></icon-heart-fill>
+            </tini-button>
+            <tini-button justify="space-between" color="primary">
+              <icon-chevron-left
+                size="ss"
+                color="primary-contrast"
+              ></icon-chevron-left>
+              <span>Far Left Right</span>
+              <icon-chevron-right
+                size="ss"
+                color="primary-contrast"
+              ></icon-chevron-right>
+            </tini-button>
+            <tini-button justify="space-between" color="primary">
+              <span class="content-group">
+                <icon-heart-fill
+                  size="ss"
+                  color="primary-contrast"
+                ></icon-heart-fill>
+                <span>Content Group</span>
+              </span>
+              <icon-chevron-right
+                size="ss"
+                color="primary-contrast"
+              ></icon-chevron-right>
+            </tini-button>
           </div>
         </app-section>
       </app-page>

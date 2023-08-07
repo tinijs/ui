@@ -5,19 +5,21 @@ import {
   linkBases,
   textBases,
 } from '@tinijs/ui/bases';
-import {dataURI as iconSRC} from '@tinijs/bootstrap-icons/1-circle-fill.source';
-import {TINI_ICON, TiniIconComponent} from '@tinijs/ui/components/icon';
+import {dataURI as iconSRC} from '@tinijs/bootstrap-icons/heart-fill.source';
+import {TiniIconComponent} from '@tinijs/ui/components/icon';
 
-import {APP_PAGE, AppPageComponent} from '../../components/page';
-import {APP_SECTION, AppSectionComponent} from '../../components/section';
+import {AppPageComponent} from '../../components/page';
+import {AppSectionComponent} from '../../components/section';
+import {AppIconContentComponent} from '../../components/icon-content';
 
 @Page({
   name: 'app-page-components-icon',
-  components: {
-    [TINI_ICON]: TiniIconComponent,
-    [APP_PAGE]: AppPageComponent,
-    [APP_SECTION]: AppSectionComponent,
-  },
+  components: [
+    TiniIconComponent,
+    AppPageComponent,
+    AppSectionComponent,
+    AppIconContentComponent,
+  ],
   theming: {
     styling: stylingWithBases([
       commonBases,
@@ -30,19 +32,18 @@ import {APP_SECTION, AppSectionComponent} from '../../components/section';
 export class AppPageComponentsIcon extends TiniComponent {
   static styles = css``;
 
+  private readonly PREPROCESS_CODE = (code: string) =>
+    code.replace(/\<tini\-icon/g, '<tini-icon src="URI/URL"');
+
   protected render() {
     return html`
       <app-page titleText="Icons" name="icon" path="components/icon">
         <div slot="description">A generic icon component.</div>
 
-        <app-section class="default">
-          <div slot="content">
-            <h2>Default</h2>
-          </div>
-          <div slot="code">
-            <tini-icon src=${iconSRC}></tini-icon>
-          </div>
-        </app-section>
+        <app-icon-content
+          .src=${iconSRC}
+          .preprocessCode=${this.PREPROCESS_CODE}
+        ></app-icon-content>
       </app-page>
     `;
   }

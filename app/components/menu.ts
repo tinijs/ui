@@ -13,15 +13,15 @@ import {
   linkBases,
   textBases,
 } from '@tinijs/ui/bases';
-import {TINI_LINK, TiniLinkComponent} from '@tinijs/ui/components/link';
+import {TiniLinkComponent} from '@tinijs/ui/components/link';
 
 import routes from '../routes';
 
 export const APP_MENU = 'app-menu';
 @Component({
-  components: {
-    [TINI_LINK]: TiniLinkComponent,
-  },
+  components: [
+    TiniLinkComponent,
+  ],
   theming: {
     styling: stylingWithBases([
       commonBases,
@@ -32,6 +32,8 @@ export const APP_MENU = 'app-menu';
   },
 })
 export class AppMenuComponent extends TiniComponent {
+  static readonly defaultTagName = APP_MENU;
+
   static styles = css`
     :host {
       padding: 1rem;

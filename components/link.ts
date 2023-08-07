@@ -2,13 +2,14 @@ import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined';
-import {ColorsAndGradientsWithDynamics} from '@tinijs/core';
+import {ColorsAndGradients} from '@tinijs/core';
 
 export const TINI_LINK = 'tini-link';
-
 /* UseBases(common) */
 export class TiniLinkComponent extends LitElement {
-  @property({type: String}) declare color?: ColorsAndGradientsWithDynamics;
+  static readonly defaultTagName = TINI_LINK;
+
+  @property({type: String}) declare color?: ColorsAndGradients;
   @property({type: String}) declare href?: string;
   @property({type: String}) declare rel?: string;
   @property({type: String}) declare target?:
