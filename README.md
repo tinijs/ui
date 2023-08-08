@@ -2,47 +2,29 @@
 
 The UI system of the TiniJS Framework.
 
-## Installation
-
-// TODO
-
 ## Usage
 
-### With TiniJS Framework
+Please see: <https://ui.tinijs.dev>
 
-// TODO
+## Packages
 
-### With other frameworks
+### Bootstrap
 
-// TODO
+Install: `npm i @tinijs/ui-bootstrap`
 
-### With plain HTML
- 
-// TODO
+Official skins:
+  - `light`
+  - `dark`
 
 ## Contributing
 
-### Setup
+### Development
 
-// TODO
-
-### Folder structure
-
-// TODO
-
-### Develop Components
-
-// TODO
-
-### Develop Styles
-
-#### Skins
-
-// TODO
-
-#### Soul
-
-// TODO
+- Create a home for TiniJS: `mkdir TiniJS && cd TiniJS`
+- Fork the repo: `git clone https://github.com/tinijs/ui.git`
+- Install dependencies: `cd ui && npm i`
+- Make changes & preview locally: `npm run dev`
+- Push changes & create a PR 👌
 
 ### Build & Publish
 
@@ -52,4 +34,4 @@ The UI system of the TiniJS Framework.
 
 ## License
 
-**@tinijs/ui** is released under the [MIT](https://github.com/tinijs/ui/blob/master/LICENSE) license.
+**@tinijs/ui** and sibling packages are released under the [MIT](https://github.com/tinijs/ui/blob/master/LICENSE) license.
