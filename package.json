@@ -51,7 +51,7 @@
     "@types/chroma-js": "^2.4.0",
     "@types/gradient-parser": "^0.1.2",
     "@types/node": "^20.4.2",
-    "gts": "^4.0.1",
+    "gts": "^5.0.0",
     "parcel": "^2.9.3",
     "typescript": "~5.1.6"
   }
