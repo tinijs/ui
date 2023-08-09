@@ -28,9 +28,10 @@ Official skins:
 
 ### Build & Publish
 
-- Step 1: Bump a version `npm version <number>`.
-- Step 2: Build packages `npm run build`.
-- Step 3: Publish packages (individually) `npm run publish:<id>:<name>`.
+- Step 1: Check for the latest version of `npm i -D @tinijs/cli@latest`
+- Step 2: Bump a version `npm version <number>`
+- Step 3: Build packages `npm run build`
+- Step 4: Publish packages (individually) `npm run publish:<id>:<name>`
 
 ## License
 
