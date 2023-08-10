@@ -1,4 +1,4 @@
-import {Layout, TiniComponent, html, css} from '@tinijs/core';
+import {Layout, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
 
 import {commonBases} from '@tinijs/ui/bases';
 
@@ -9,10 +9,7 @@ import {AppMenuComponent} from '../components/menu';
   name: 'app-layout-default',
   components: [AppHeaderComponent, AppMenuComponent],
   theming: {
-    styling: {
-      bootstrap: [commonBases.bootstrap],
-      material: [commonBases.material],
-    },
+    styling: stylingWithBases([commonBases]),
   },
 })
 export class AppLayoutDefault extends TiniComponent {

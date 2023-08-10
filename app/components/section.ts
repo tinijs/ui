@@ -6,6 +6,7 @@ import {
   css,
   nothing,
   repeat,
+  stylingWithBases,
 } from '@tinijs/core';
 import {commonBases} from '@tinijs/ui/bases';
 
@@ -29,10 +30,7 @@ export const APP_SECTION = 'app-section';
 @Component({
   components: [AppTabsComponent, AppCodeComponent],
   theming: {
-    styling: {
-      bootstrap: [commonBases.bootstrap],
-      material: [commonBases.material],
-    },
+    styling: stylingWithBases([commonBases]),
   },
 })
 export class AppSectionComponent extends TiniComponent {
