@@ -1,5 +1,11 @@
 import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
-import {commonBases, headingsBases, linkBases, textBases} from '@tinijs/ui';
+import {
+  commonBases,
+  headingsBases,
+  linkBases,
+  textBases,
+  codeBases,
+} from '@tinijs/ui';
 
 @Page({
   name: 'app-page-components-base',
@@ -9,6 +15,7 @@ import {commonBases, headingsBases, linkBases, textBases} from '@tinijs/ui';
       headingsBases,
       linkBases,
       textBases,
+      codeBases,
     ]),
   },
 })

@@ -4,11 +4,12 @@ import {
   headingsBases,
   linkBases,
   textBases,
+  codeBases,
   TiniBoxComponent,
   TiniTextComponent,
 } from '@tinijs/ui';
 
-import {AppPageComponent} from '../../components/page';
+import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
 @Page({
@@ -16,7 +17,7 @@ import {AppSectionComponent} from '../../components/section';
   components: [
     TiniBoxComponent,
     TiniTextComponent,
-    AppPageComponent,
+    AppComponentPageComponent,
     AppSectionComponent,
   ],
   theming: {
@@ -25,6 +26,7 @@ import {AppSectionComponent} from '../../components/section';
       headingsBases,
       linkBases,
       textBases,
+      codeBases,
     ]),
   },
 })
@@ -33,7 +35,12 @@ export class AppPageComponentsText extends TiniComponent {
 
   protected render() {
     return html`
-      <app-page titleText="Texts" name="text" path="components/text">
+      <app-component-page
+        titleText="Texts"
+        packageName="@tinijs/ui"
+        name="text"
+        path="components/text"
+      >
         <div slot="description">Text text text.</div>
 
         <app-section class="default">
@@ -161,7 +168,7 @@ export class AppPageComponentsText extends TiniComponent {
             <tini-text size="10x">10x</tini-text>
           </div>
         </app-section>
-      </app-page>
+      </app-component-page>
     `;
   }
 }

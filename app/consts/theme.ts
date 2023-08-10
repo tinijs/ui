@@ -1,22 +1,3 @@
-export const SOULS = [
-  {
-    id: 'bootstrap',
-    name: 'Bootstrap',
-    skins: [
-      {id: 'light', name: 'Light'},
-      {id: 'dark', name: 'Dark'},
-    ],
-  },
-  {
-    id: 'material',
-    name: 'Material',
-    skins: [
-      {id: 'light', name: 'Light'},
-      {id: 'dark', name: 'Dark'},
-    ],
-  },
-];
-
 export const FONTS: Array<[string, true?]> = [
   // web safe fonts
   ["'Arial', sans-serif", true],

@@ -4,21 +4,27 @@ import {
   headingsBases,
   linkBases,
   textBases,
+  codeBases,
   TiniLinkComponent,
 } from '@tinijs/ui';
 
-import {AppPageComponent} from '../../components/page';
+import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
 @Page({
   name: 'app-page-components-link',
-  components: [TiniLinkComponent, AppPageComponent, AppSectionComponent],
+  components: [
+    TiniLinkComponent,
+    AppComponentPageComponent,
+    AppSectionComponent,
+  ],
   theming: {
     styling: stylingWithBases([
       commonBases,
       headingsBases,
       linkBases,
       textBases,
+      codeBases,
     ]),
   },
 })
@@ -27,7 +33,12 @@ export class AppPageComponentsLink extends TiniComponent {
 
   protected render() {
     return html`
-      <app-page titleText="Links" name="link" path="components/link">
+      <app-component-page
+        titleText="Links"
+        packageName="@tinijs/ui"
+        name="link"
+        path="components/link"
+      >
         <div slot="description">Link.</div>
 
         <app-section class="default">
@@ -38,7 +49,7 @@ export class AppPageComponentsLink extends TiniComponent {
             <tini-link href="#">A link!</tini-link>
           </div>
         </app-section>
-      </app-page>
+      </app-component-page>
     `;
   }
 }

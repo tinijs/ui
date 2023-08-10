@@ -26,8 +26,9 @@ import {AppCodeComponent} from './code';
 import {AppModalComponent} from './modal';
 import {AppGradientPickerComponent} from './gradient-picker';
 
-import {GITHUB_RAW_URL} from '../consts/main';
-import {SOULS, FONTS} from '../consts/theme';
+import {Configurable} from '../configurable';
+import {FONTS} from '../consts/theme';
+import {buildGithubRawUrl} from '../helpers/github';
 import {changeTheme} from '../helpers/theme';
 import {debouncer} from '../helpers/debouncer';
 import {extractCSSVariables, VariableDef} from '../helpers/source';
@@ -243,6 +244,9 @@ export class AppSkinEditorComponent extends TiniComponent {
     }
   `;
 
+  private readonly REPO_URL = Configurable.getOption('repoUrl');
+  private readonly SOUL_LIST = Configurable.getOption('soulList');
+
   private modalRef: Ref<AppModalComponent> = createRef();
   private modalContentRef: Ref<HTMLDivElement> = createRef();
   @Reactive() private variablesMap: Map<string, VariableDef> = new Map();
@@ -307,12 +311,14 @@ export class AppSkinEditorComponent extends TiniComponent {
   private async fetchSkinVariables() {
     const {soul, skin} = this.currentTheme;
     this.variablesMap = await extractCSSVariables(
-      `${GITHUB_RAW_URL}/main/styles/${soul}/skins/${skin}.css`
+      `${buildGithubRawUrl(
+        this.REPO_URL
+      )}/main/styles/${soul}/skins/${skin}.css`
     );
   }
 
   private async changeSoul(e: InputEvent) {
-    const soul = SOULS.find(
+    const soul = this.SOUL_LIST.find(
       soul => soul.id === (e.target as HTMLSelectElement).value
     );
     if (soul) {
@@ -463,7 +469,7 @@ export class AppSkinEditorComponent extends TiniComponent {
             <label>
               <span>Custom skin for soul:</span>
               <select @change=${this.changeSoul}>
-                ${SOULS.map(
+                ${this.SOUL_LIST.map(
                   soul => html`<option value=${soul.id}>${soul.name}</option>`
                 )}
               </select>

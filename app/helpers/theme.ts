@@ -4,7 +4,7 @@ import {Configurable} from '../configurable';
 import {mainStore} from '../stores/main';
 
 function getKey() {
-  return `TiniApp:${Configurable.getOptions('appId')}:theme`;
+  return `TiniApp:${Configurable.getOption('appId')}:theme`;
 }
 
 export function initTheme() {

@@ -21,22 +21,22 @@ import {
 import {IconsImportMethods} from '../consts/main';
 import {mainStore} from '../stores/main';
 
-import {AppSectionComponent} from '../components/section';
-import {AppTabsComponent, TabItem} from '../components/tabs';
-import {AppCodeComponent} from '../components/code';
-import {AppModalComponent} from '../components/modal';
-import {AppIconContentComponent} from '../components/icon-content';
+import {AppSectionComponent} from './section';
+import {AppTabsComponent, TabItem} from './tabs';
+import {AppCodeComponent} from './code';
+import {AppModalComponent} from './modal';
+import {AppIconPageContentComponent} from './icon-page-content';
 
 export type IconDef = [string, string];
 
-export const APP_PAGE_ICON_MODAL = 'app-page-icon-modal';
+export const APP_ICON_MODAL = 'app-icon-modal';
 @Component({
   components: [
     AppSectionComponent,
     AppTabsComponent,
     AppCodeComponent,
     AppModalComponent,
-    AppIconContentComponent,
+    AppIconPageContentComponent,
   ],
   theming: {
     styling: stylingWithBases([
@@ -48,8 +48,8 @@ export const APP_PAGE_ICON_MODAL = 'app-page-icon-modal';
     ]),
   },
 })
-export class AppPageIconModalComponent extends TiniComponent {
-  static readonly defaultTagName = APP_PAGE_ICON_MODAL;
+export class AppIconModalComponent extends TiniComponent {
+  static readonly defaultTagName = APP_ICON_MODAL;
 
   static styles = css`
     .modal-body {
@@ -71,8 +71,8 @@ export class AppPageIconModalComponent extends TiniComponent {
   private readonly PREPROCESS_CODE = (code: string, context: any) =>
     !context ? code : code.replace(/tini-icon/g, context.nameTag);
 
-  @Input({type: String}) declare packName?: string;
-  @Input({type: String}) declare packVersion?: string;
+  @Input({type: String}) declare packageName?: string;
+  @Input({type: String}) declare packageVersion?: string;
   @Input({type: Boolean}) declare noVariants?: boolean;
   @Input({type: Object}) declare iconDef?: IconDef;
 
@@ -91,8 +91,8 @@ export class AppPageIconModalComponent extends TiniComponent {
     const nameVar = `icon${nameCapitalized}`;
     const nameTag = `icon-${iconName}`;
     const nameClass = `Icon${nameCapitalized}Component`;
-    const packName = `@tinijs/${this.packName}-icons`;
-    const packVersion = this.packVersion || 'latest';
+    const packName = this.packageName || '@tinijs/ui-icons';
+    const packageVersion = this.packageVersion || 'latest';
     const mimeType = {
       svg: 'image/svg+xml',
       webp: 'image/webp',
@@ -130,7 +130,7 @@ useComponents([
 ]);
 `;
 
-    const standaloneCode = `<script src="https://unpkg.com/${packName}@${packVersion}/${iconName}.bundle.js"></script>`;
+    const standaloneCode = `<script src="https://unpkg.com/${packName}@${packageVersion}/${iconName}.bundle.js"></script>`;
 
     const dataURICode = `import {html} from 'lit';
 
@@ -155,7 +155,7 @@ containerEl.innerHTML = ${nameVar}Code;
 `;
     const svgPreviewCode = window.atob(base64Content);
 
-    const urlCode = `<img ${'src'}="https://unpkg.com/${packName}@${packVersion}/${iconName}.svg" />`;
+    const urlCode = `<img ${'src'}="https://unpkg.com/${packName}@${packageVersion}/${iconName}.svg" />`;
 
     return {
       iconSRC,
@@ -278,11 +278,11 @@ containerEl.innerHTML = ${nameVar}Code;
                   </div>
                 </app-section>
 
-                <app-icon-content
+                <app-icon-page-content
                   .src=${iconSRC}
                   .preprocessCode=${this.PREPROCESS_CODE}
                   .codeBuildContext=${names}
-                ></app-icon-content>
+                ></app-icon-page-content>
               </div>
             `}
       </app-modal>

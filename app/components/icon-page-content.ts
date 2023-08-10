@@ -17,7 +17,7 @@ import {
   TiniIconComponent,
 } from '@tinijs/ui';
 
-export const APP_ICON_CONTENT = 'app-icon-content';
+export const APP_ICON_PAGE_CONTENT = 'app-icon-page-content';
 @Component({
   components: [TiniBoxComponent, TiniIconComponent],
   theming: {
@@ -30,8 +30,8 @@ export const APP_ICON_CONTENT = 'app-icon-content';
     ]),
   },
 })
-export class AppIconContentComponent extends TiniComponent {
-  static readonly defaultTagName = APP_ICON_CONTENT;
+export class AppIconPageContentComponent extends TiniComponent {
+  static readonly defaultTagName = APP_ICON_PAGE_CONTENT;
 
   static styles = css`
     .colors [slot='code'],

@@ -1,11 +1,11 @@
 import {Page, TiniComponent, html, stylingWithBases} from '@tinijs/core';
 import {commonBases, headingsBases, linkBases, textBases} from '@tinijs/ui';
 
-import {AppPageIconComponent} from '../../components/page-icon';
+import {AppIconPageComponent} from '../../components/icon-page';
 
 @Page({
   name: 'app-page-icons-mdi',
-  components: [AppPageIconComponent],
+  components: [AppIconPageComponent],
   theming: {
     styling: stylingWithBases([
       commonBases,
@@ -18,7 +18,11 @@ import {AppPageIconComponent} from '../../components/page-icon';
 export class AppPageIconsMDI extends TiniComponent {
   protected render() {
     return html`
-      <app-page-icon titleText="MDI Icons" name="mdi"></app-page-icon>
+      <app-icon-page
+        titleText="MDI Icons"
+        name="mdi"
+        packageName="@tinijs/mdi-icons"
+      ></app-icon-page>
     `;
   }
 }

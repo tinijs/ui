@@ -4,21 +4,22 @@ import {
   headingsBases,
   linkBases,
   textBases,
+  codeBases,
   TiniIconComponent,
 } from '@tinijs/ui';
 import {dataURI as iconSRC} from '@tinijs/bootstrap-icons/heart-fill.source';
 
-import {AppPageComponent} from '../../components/page';
+import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
-import {AppIconContentComponent} from '../../components/icon-content';
+import {AppIconPageContentComponent} from '../../components/icon-page-content';
 
 @Page({
   name: 'app-page-components-icon',
   components: [
     TiniIconComponent,
-    AppPageComponent,
+    AppComponentPageComponent,
     AppSectionComponent,
-    AppIconContentComponent,
+    AppIconPageContentComponent,
   ],
   theming: {
     styling: stylingWithBases([
@@ -26,6 +27,7 @@ import {AppIconContentComponent} from '../../components/icon-content';
       headingsBases,
       linkBases,
       textBases,
+      codeBases,
     ]),
   },
 })
@@ -37,14 +39,19 @@ export class AppPageComponentsIcon extends TiniComponent {
 
   protected render() {
     return html`
-      <app-page titleText="Icons" name="icon" path="components/icon">
+      <app-component-page
+        titleText="Icons"
+        packageName="@tinijs/ui"
+        name="icon"
+        path="components/icon"
+      >
         <div slot="description">A generic icon component.</div>
 
-        <app-icon-content
+        <app-icon-page-content
           .src=${iconSRC}
           .preprocessCode=${this.PREPROCESS_CODE}
-        ></app-icon-content>
-      </app-page>
+        ></app-icon-page-content>
+      </app-component-page>
     `;
   }
 }

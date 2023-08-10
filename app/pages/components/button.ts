@@ -12,7 +12,7 @@ import {IconChevronLeftComponent} from '@tinijs/bootstrap-icons/chevron-left';
 import {IconChevronRightComponent} from '@tinijs/bootstrap-icons/chevron-right';
 import {IconHeartFillComponent} from '@tinijs/bootstrap-icons/heart-fill';
 
-import {AppPageComponent} from '../../components/page';
+import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
 @Page({
@@ -23,7 +23,7 @@ import {AppSectionComponent} from '../../components/section';
     IconHeartFillComponent,
     TiniBoxComponent,
     TiniButtonComponent,
-    AppPageComponent,
+    AppComponentPageComponent,
     AppSectionComponent,
   ],
   theming: {
@@ -41,7 +41,12 @@ export class AppPageComponentsButton extends TiniComponent {
 
   protected render() {
     return html`
-      <app-page titleText="Buttons" name="button" path="components/button">
+      <app-component-page
+        titleText="Buttons"
+        packageName="@tinijs/ui"
+        name="button"
+        path="components/button"
+      >
         <div slot="description">
           Use <strong>buttons</strong> to trigger actions.
         </div>
@@ -392,7 +397,7 @@ export class AppPageComponentsButton extends TiniComponent {
             </tini-button>
           </div>
         </app-section>
-      </app-page>
+      </app-component-page>
     `;
   }
 }

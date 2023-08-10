@@ -1,11 +1,11 @@
 import {Page, TiniComponent, html, stylingWithBases} from '@tinijs/core';
 import {commonBases, headingsBases, linkBases, textBases} from '@tinijs/ui';
 
-import {AppPageIconComponent} from '../../components/page-icon';
+import {AppIconPageComponent} from '../../components/icon-page';
 
 @Page({
   name: 'app-page-icons-fluent',
-  components: [AppPageIconComponent],
+  components: [AppIconPageComponent],
   theming: {
     styling: stylingWithBases([
       commonBases,
@@ -18,7 +18,11 @@ import {AppPageIconComponent} from '../../components/page-icon';
 export class AppPageIconsFluent extends TiniComponent {
   protected render() {
     return html`
-      <app-page-icon titleText="Fluent" name="fluent"></app-page-icon>
+      <app-icon-page
+        titleText="Fluent"
+        name="fluent"
+        packageName="@tinijs/fluent-icons"
+      ></app-icon-page>
     `;
   }
 }

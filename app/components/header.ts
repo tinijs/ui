@@ -13,7 +13,6 @@ import {IconGithubComponent} from '@tinijs/bootstrap-icons/github';
 import {IconPaletteComponent} from '@tinijs/bootstrap-icons/palette';
 
 import {Configurable} from '../configurable';
-import {GITHUB_REPO_URL} from '../consts/main';
 import {changeTheme} from '../helpers/theme';
 import {mainStore} from '../stores/main';
 
@@ -124,7 +123,10 @@ export class AppHeaderComponent extends TiniComponent {
     }
   `;
 
-  private readonly LOGO_URL = Configurable.getOptions('logoUrl');
+  private readonly APP_NAME = Configurable.getOption('appName');
+  private readonly LOGO_URL = Configurable.getOption('logoUrl');
+  private readonly REPO_URL = Configurable.getOption('repoUrl');
+  private readonly SOUL_LIST = Configurable.getOption('soulList');
 
   @Subscribe(mainStore) @Reactive() private skinEditorShown =
     mainStore.skinEditorShown;
@@ -142,22 +144,31 @@ export class AppHeaderComponent extends TiniComponent {
       <header>
         <div class="brand">
           <a href="/">
-            <img src=${this.LOGO_URL} alt="Tini UI" />
-            <h1>Tini UI</h1>
+            <img src=${this.LOGO_URL} alt=${this.APP_NAME} />
+            <h1>${this.APP_NAME}</h1>
           </a>
         </div>
         <div class="menu">
           <select class="theme-select" @change=${this.switchTheme}>
-            <optgroup label="Bootstrap">
-              <option value="bootstrap/light">Light</option>
-              <option value="bootstrap/dark">Dark</option>
-            </optgroup>
+            ${this.SOUL_LIST.map(
+              ({id: soulId, name: soulName, skins}) => html`
+                <optgroup label=${soulName}>
+                  ${skins.map(
+                    ({id: skinId, name: skinName}) => html`
+                      <option value=${`${soulId}/${skinId}`}>
+                        ${skinName}
+                      </option>
+                    `
+                  )}
+                </optgroup>
+              `
+            )}
           </select>
           <button class="skin-editor-toggler" @click=${this.toggleSkinEditor}>
             <icon-palette color="primary-contrast" size="sm"></icon-palette>
             <span>Skin Editor</span>
           </button>
-          <a href=${GITHUB_REPO_URL} target="_blank">
+          <a href=${this.REPO_URL} target="_blank">
             <icon-github color="primary-contrast" size="sm"></icon-github>
           </a>
         </div>

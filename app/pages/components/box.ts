@@ -8,12 +8,16 @@ import {
   TiniBoxComponent,
 } from '@tinijs/ui';
 
-import {AppPageComponent} from '../../components/page';
+import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
 @Page({
   name: 'app-page-components-box',
-  components: [TiniBoxComponent, AppPageComponent, AppSectionComponent],
+  components: [
+    TiniBoxComponent,
+    AppComponentPageComponent,
+    AppSectionComponent,
+  ],
   theming: {
     styling: stylingWithBases([
       commonBases,
@@ -29,7 +33,12 @@ export class AppPageComponentsBox extends TiniComponent {
 
   protected render() {
     return html`
-      <app-page titleText="Boxes" name="box" path="components/box">
+      <app-component-page
+        titleText="Boxes"
+        packageName="@tinijs/ui"
+        name="box"
+        path="components/box"
+      >
         <div slot="description">Boxes are containers for any content.</div>
 
         <app-section class="default">
@@ -292,7 +301,7 @@ export class AppPageComponentsBox extends TiniComponent {
             >
           </div>
         </app-section>
-      </app-page>
+      </app-component-page>
     `;
   }
 }

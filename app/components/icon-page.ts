@@ -21,15 +21,15 @@ import {
   formBases,
 } from '@tinijs/ui';
 
-import {GITHUB_ICONS_REPO_URL} from '../consts/main';
+import {Configurable} from '../configurable';
 import {get} from '../helpers/http';
 
 import {AppCodeComponent} from './code';
-import {AppPageIconModalComponent, IconDef} from './page-icon-modal';
+import {AppIconModalComponent, IconDef} from './icon-modal';
 
-export const APP_PAGE_ICON = 'app-page-icon';
+export const APP_ICON_PAGE = 'app-icon-page';
 @Component({
-  components: [AppCodeComponent, AppPageIconModalComponent],
+  components: [AppCodeComponent, AppIconModalComponent],
   theming: {
     styling: stylingWithBases([
       commonBases,
@@ -42,8 +42,8 @@ export const APP_PAGE_ICON = 'app-page-icon';
     ]),
   },
 })
-export class AppPageIconComponent extends TiniComponent {
-  static readonly defaultTagName = APP_PAGE_ICON;
+export class AppIconPageComponent extends TiniComponent {
+  static readonly defaultTagName = APP_ICON_PAGE;
 
   static styles = css`
     :host {
@@ -143,27 +143,29 @@ export class AppPageIconComponent extends TiniComponent {
     }
   `;
 
+  private readonly ICONS_REPO_URL = Configurable.getOption('iconsRepoUrl');
   private readonly SIZE = 200;
 
   @Input({type: String}) declare name: string;
+  @Input({type: String}) declare packageName: string;
   @Input({type: String}) declare titleText?: string;
   @Input({type: Boolean}) declare noVariants?: boolean;
 
   @Reactive() private currentPage = 1;
   @Reactive() private filterQuery?: string;
 
-  private modalRef: Ref<AppPageIconModalComponent> = createRef();
+  private modalRef: Ref<AppIconModalComponent> = createRef();
 
   private get installCode() {
-    return `npm i @tinijs/${this.name}-icons`;
+    return `npm i ${this.packageName}`;
   }
 
   private get indexJsonPath() {
-    return `https://unpkg.com/@tinijs/${this.name}-icons@latest/index.json`;
+    return `https://unpkg.com/${this.packageName}@latest/index.json`;
   }
 
   private get changelogsUrl() {
-    return `${GITHUB_ICONS_REPO_URL}/blob/main/changelogs/@tinijs/${this.name}-icons`;
+    return `${this.ICONS_REPO_URL}/blob/main/changelogs/${this.packageName}`;
   }
 
   private buildUrl([fileName, base64Content]: IconDef) {
@@ -224,7 +226,7 @@ export class AppPageIconComponent extends TiniComponent {
             <a href=${this.changelogsUrl} target="_blank">Changelogs</a>
           </li>
           <li>
-            <a href=${GITHUB_ICONS_REPO_URL} target="_blank">Github</a>
+            <a href=${this.ICONS_REPO_URL} target="_blank">Github</a>
           </li>
         </ul>
       </div>
@@ -298,12 +300,12 @@ export class AppPageIconComponent extends TiniComponent {
         </div>
       </div>
 
-      <app-page-icon-modal
+      <app-icon-modal
         ${ref(this.modalRef)}
-        .packName=${this.name}
-        .packVersion=${this.data?.version}
+        .packageName=${this.packageName}
+        .packageVersion=${this.data?.version}
         .noVariants=${this.noVariants}
-      ></app-page-icon-modal>
+      ></app-icon-modal>
     `;
   }
 }

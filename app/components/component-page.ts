@@ -21,12 +21,9 @@ import {
   codeBases,
 } from '@tinijs/ui';
 
-import {
-  LIB_VERSION,
-  GITHUB_REPO_URL,
-  GITHUB_RAW_URL,
-  ImportMethods,
-} from '../consts/main';
+import {Configurable} from '../configurable';
+import {OFFICIAL_REPO_URL, ImportMethods} from '../consts/main';
+import {buildGithubRawUrl} from '../helpers/github';
 import {
   extractCSSVariables,
   VariableDef,
@@ -35,9 +32,9 @@ import {
 import {getText} from '../helpers/http';
 import {mainStore} from '../stores/main';
 
-import {AppSectionComponent} from '../components/section';
-import {AppTabsComponent, TabItem} from '../components/tabs';
-import {AppCodeComponent} from '../components/code';
+import {AppSectionComponent} from './section';
+import {AppTabsComponent, TabItem} from './tabs';
+import {AppCodeComponent} from './code';
 
 interface Quicklink {
   href: string;
@@ -51,7 +48,7 @@ const enum Modes {
   SoulSrc = 'soul-src',
 }
 
-export const APP_PAGE = 'app-page';
+export const APP_COMPONENT_PAGE = 'app-component-page';
 @Component({
   components: [AppSectionComponent, AppTabsComponent, AppCodeComponent],
   theming: {
@@ -65,8 +62,8 @@ export const APP_PAGE = 'app-page';
     ]),
   },
 })
-export class AppPageComponent extends TiniComponent {
-  static readonly defaultTagName = APP_PAGE;
+export class AppComponentPageComponent extends TiniComponent {
+  static readonly defaultTagName = APP_COMPONENT_PAGE;
 
   static styles = css`
     .title-bar {
@@ -130,15 +127,20 @@ export class AppPageComponent extends TiniComponent {
     }
   `;
 
+  private readonly REPO_URL = Configurable.getOption('repoUrl');
+
   private readonly IMPORT_TAB_ITEMS: TabItem[] = [
     {name: ImportMethods.TiniJS},
     {name: ImportMethods.Others},
     {name: ImportMethods.Standalone},
   ];
 
+  @Input({type: String}) packageName!: string;
   @Input({type: String}) name!: string;
   @Input({type: String}) path!: string;
   @Input({type: String}) titleText?: string;
+  @Input({type: Boolean}) customDoc?: boolean;
+  @Input({type: Boolean}) customComponent?: boolean;
   @Input({type: Object}) prevPage?: Quicklink;
   @Input({type: Object}) nextPage?: Quicklink;
 
@@ -169,7 +171,9 @@ export class AppPageComponent extends TiniComponent {
     const {nameClass} = this.nameVariants;
     return `import {Page} from '@tinijs/core';
 
-import {${nameClass}} from '@tinijs/ui';
+import {${nameClass}} from '${
+      !this.customComponent ? '@tinijs/ui' : this.packageName
+    }';
 
 @Page({
   components: [
@@ -184,14 +188,14 @@ export class MyPage extends TiniComponent {}`;
     return `/*
  * Option 1: include in your component
  */
-import '@tinijs/ui-${this.soulName}/components/${this.name}.include';
+import '${this.packageName}-${this.soulName}/components/${this.name}.include';
 
 /*
  * Option 2: import as a shared bundle (if your bundler supports it)
  */
 import {useComponents} from '@tinijs/core';
 
-import {${nameClass}} from '@tinijs/ui-${this.soulName}';
+import {${nameClass}} from '${this.packageName}-${this.soulName}';
 
 useComponents([
   ${nameClass}
@@ -200,31 +204,41 @@ useComponents([
   }
 
   private get standaloneCode() {
-    return `<script src="https://cdn.jsdelivr.net/npm/@tinijs/ui-${this.soulName}@${LIB_VERSION}/components/${this.name}.bundle.js"></script>`;
+    return `<script src="https://cdn.jsdelivr.net/npm/${this.packageName}-${this.soulName}/components/${this.name}.bundle.js"></script>`;
   }
 
   private get docLink() {
-    return `${GITHUB_REPO_URL}/blob/main/app/pages/${this.path}.ts`;
+    return `${
+      this.customDoc ? this.REPO_URL : OFFICIAL_REPO_URL
+    }/blob/main/app/pages/${this.path}.ts`;
   }
 
   private get docUrl() {
-    return `${GITHUB_RAW_URL}/main/app/pages/${this.path}.ts`;
+    return `${buildGithubRawUrl(
+      this.customDoc ? this.REPO_URL : OFFICIAL_REPO_URL
+    )}/main/app/pages/${this.path}.ts`;
   }
 
   private get componentLink() {
-    return `${GITHUB_REPO_URL}/blob/main/components/${this.name}.ts`;
+    return `${
+      this.customComponent ? this.REPO_URL : OFFICIAL_REPO_URL
+    }/blob/main/components/${this.name}.ts`;
   }
 
   private get componentUrl() {
-    return `${GITHUB_RAW_URL}/main/components/${this.name}.ts`;
+    return `${buildGithubRawUrl(
+      this.customComponent ? this.REPO_URL : OFFICIAL_REPO_URL
+    )}/main/components/${this.name}.ts`;
   }
 
   private get soulLink() {
-    return `${GITHUB_REPO_URL}/blob/main/styles/${this.soulName}/soul/${this.name}.ts`;
+    return `${this.REPO_URL}/blob/main/styles/${this.soulName}/soul/${this.name}.ts`;
   }
 
   private get soulUrl() {
-    return `${GITHUB_RAW_URL}/main/styles/${this.soulName}/soul/${this.name}.ts`;
+    return `${buildGithubRawUrl(this.REPO_URL)}/main/styles/${
+      this.soulName
+    }/soul/${this.name}.ts`;
   }
 
   async onCreate() {
@@ -239,7 +253,7 @@ useComponents([
     );
   }
 
-  protected async switchMode(mode: AppPageComponent['contentMode']) {
+  protected async switchMode(mode: AppComponentPageComponent['contentMode']) {
     // set mode
     this.contentMode = mode;
     // load source code

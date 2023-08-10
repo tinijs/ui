@@ -1,11 +1,11 @@
 import {Page, TiniComponent, html, stylingWithBases} from '@tinijs/core';
 import {commonBases, headingsBases, linkBases, textBases} from '@tinijs/ui';
 
-import {AppPageIconComponent} from '../../components/page-icon';
+import {AppIconPageComponent} from '../../components/icon-page';
 
 @Page({
   name: 'app-page-icons-material-two-tone',
-  components: [AppPageIconComponent],
+  components: [AppIconPageComponent],
   theming: {
     styling: stylingWithBases([
       commonBases,
@@ -18,10 +18,11 @@ import {AppPageIconComponent} from '../../components/page-icon';
 export class AppPageIconsMaterialTwoTone extends TiniComponent {
   protected render() {
     return html`
-      <app-page-icon
+      <app-icon-page
         titleText="Material Two Tone"
         name="material-two-tone"
-      ></app-page-icon>
+        packageName="@tinijs/material-two-tone-icons"
+      ></app-icon-page>
     `;
   }
 }
