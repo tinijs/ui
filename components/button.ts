@@ -22,6 +22,7 @@ export class TiniButtonComponent extends LitElement {
   private mainClasses: ClassInfo = {};
   protected willUpdate() {
     this.mainClasses = {
+      button: true,
       [`bg-${this.color}`]: !!this.color,
       [`color-${this.textColor}`]: !!this.textColor,
       [`size-${this.size}`]: !!this.size,

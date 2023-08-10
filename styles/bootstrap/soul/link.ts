@@ -10,6 +10,10 @@ export const linkStyle = css`
     display: inline;
   }
 
+  /*
+   * Main
+   */
+
   a {
     color: var(--link-color);
     text-decoration: none;
@@ -39,6 +43,10 @@ export const linkStyle = css`
     text-decoration: none;
     filter: none;
   }
+
+  /*
+   * color="..."
+   */
 
   ${generateColorVaries(
     ({name, color}) => `

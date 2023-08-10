@@ -15,6 +15,7 @@ export class TiniTextComponent extends LitElement {
   private mainClasses: ClassInfo = {};
   protected willUpdate() {
     this.mainClasses = {
+      text: true,
       [`color-${this.color}`]: !!this.color,
       [`font-${this.font}`]: !!this.font,
       [`size-${this.size}`]: !!this.size,

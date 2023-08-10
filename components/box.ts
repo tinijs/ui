@@ -17,6 +17,7 @@ export class TiniBoxComponent extends LitElement {
   private mainClasses = {};
   protected willUpdate() {
     this.mainClasses = {
+      box: true,
       [`bg-${this.background}`]: !!this.background,
     };
   }

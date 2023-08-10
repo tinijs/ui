@@ -17,7 +17,11 @@ export const boxStyle = css`
     --box-margin-left: 0;
   }
 
-  [part='box'] {
+  /*
+   * Main
+   */
+
+  .box {
     width: 100%;
     background: var(--box-background);
     color: var(--box-color);
@@ -32,6 +36,10 @@ export const boxStyle = css`
     margin-bottom: var(--box-margin-bottom);
     margin-left: var(--box-margin-left);
   }
+
+  /*
+   * color="..."
+   */
 
   ${generateColorVaries(
     ({name, color, contrast}) => `

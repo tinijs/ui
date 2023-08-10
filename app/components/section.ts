@@ -113,15 +113,16 @@ export class AppSectionComponent extends TiniComponent {
       ?.innerHTML.split('\n')
       .map(item => item.trimEnd())
       .filter(item => !!item)
-      .join('\n')
+      .join('\n');
     if (content) {
       const [trimSpaces] = content.split('<');
       content = content
         .split('\n')
-        .map(line => line
-          .replace(trimSpaces, '')
-          .replace(/<!--  -->/g, '')
-          .replace(/<!--/g, '\n<!--')
+        .map(line =>
+          line
+            .replace(trimSpaces, '')
+            .replace(/<!-- {2}-->/g, '')
+            .replace(/<!--/g, '\n<!--')
         )
         .join('\n');
       this.originalCode = !this.preprocessCode

@@ -14,11 +14,19 @@ export const textStyle = css`
     display: inline;
   }
 
-  [part='text'] {
+  /*
+   * Main
+   */
+
+  .text {
     font-family: var(--text-font);
     color: var(--text-color);
     font-size: var(--text-size);
   }
+
+  /*
+   * color="..."
+   */
 
   ${generateColorVaries(
     ({name, color}) => `
@@ -38,6 +46,10 @@ export const textStyle = css`
   `
   )}
 
+  /*
+   * font="..."
+   */
+
   ${generateFontTypeVaries(
     fontType => `
     :host([font="${fontType}"]),
@@ -46,6 +58,10 @@ export const textStyle = css`
     }
   `
   )}
+
+  /*
+   * size="..."
+   */
 
   ${generateFontSizeVaries(
     sizeFactor => `

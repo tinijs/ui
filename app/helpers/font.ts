@@ -1,9 +1,12 @@
 import {FONTS} from '../consts/theme';
 
-const FONT_SUPPLIERS_RECORD = FONTS.reduce((result, [font, webSafe]) => {
-  result[font] = webSafe ? 'classic' : 'google';
-  return result;
-}, {} as Record<string, string>);
+const FONT_SUPPLIERS_RECORD = FONTS.reduce(
+  (result, [font, webSafe]) => {
+    result[font] = webSafe ? 'classic' : 'google';
+    return result;
+  },
+  {} as Record<string, string>
+);
 
 export function buildGoogleFontUrl(
   fonts: Array<{font: string; weights?: string[]}>

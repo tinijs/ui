@@ -21,6 +21,7 @@ export class TiniLinkComponent extends LitElement {
   private mainClasses: ClassInfo = {};
   protected willUpdate() {
     this.mainClasses = {
+      link: true,
       [`color-${this.color}`]: !!this.color,
     };
   }

@@ -16,6 +16,7 @@ export class TiniIconComponent extends LitElement {
   private mainClasses: ClassInfo = {};
   protected willUpdate() {
     this.mainClasses = {
+      icon: true,
       recolor: !!this.color,
       [`color-${this.color}`]: !!this.color,
       [`size-${this.size}`]: !!this.size,

@@ -14,6 +14,10 @@ export const iconStyle = css`
     display: inline;
   }
 
+  /*
+   * Main
+   */
+
   i {
     display: inline-flex;
     align-items: center;
@@ -38,6 +42,10 @@ export const iconStyle = css`
     mask-position: center;
   }
 
+  /*
+   * color="..."
+   */
+
   ${generateColorVaries(
     ({name, color}) => `
     .color-${name} {
@@ -53,6 +61,10 @@ export const iconStyle = css`
     }
   `
   )}
+
+  /*
+   * size="..."
+   */
 
   ${generateSizeVaries(
     size => `
