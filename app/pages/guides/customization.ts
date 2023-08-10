@@ -16,7 +16,7 @@ export class AppPageGuidesCustomization extends TiniComponent {
   protected render() {
     return html`
       <h1>Customization</h1>
-      <p>// TODO</p>
+      <p>// TODO: write docs ...</p>
     `;
   }
 }

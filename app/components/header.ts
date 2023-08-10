@@ -37,8 +37,16 @@ export class AppHeaderComponent extends TiniComponent {
   private readonly REPO_URL = Configurable.getOption('repoUrl');
   private readonly SOUL_LIST = Configurable.getOption('soulList');
 
+  @Subscribe(mainStore) @Reactive() private activeSoulId =
+    mainStore.activeSoulId;
+  @Subscribe(mainStore) @Reactive() private activeSkinId =
+    mainStore.activeSkinId;
   @Subscribe(mainStore) @Reactive() private skinEditorShown =
     mainStore.skinEditorShown;
+
+  private isThemeActivated(soul: string, skin: string) {
+    return `${soul}/${skin}` === `${this.activeSoulId}/${this.activeSkinId}`;
+  }
 
   private switchTheme(e: Event) {
     return changeTheme((e.target as HTMLSelectElement).value);
@@ -64,7 +72,10 @@ export class AppHeaderComponent extends TiniComponent {
                 <optgroup label=${soulName}>
                   ${skins.map(
                     ({id: skinId, name: skinName}) => html`
-                      <option value=${`${soulId}/${skinId}`}>
+                      <option
+                        value=${`${soulId}/${skinId}`}
+                        ?selected=${this.isThemeActivated(soulId, skinId)}
+                      >
                         ${skinName}
                       </option>
                     `

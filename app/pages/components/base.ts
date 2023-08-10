@@ -23,7 +23,7 @@ export class AppPageComponentsBase extends TiniComponent {
   protected render() {
     return html`
       <h1>Bases</h1>
-      <p>// TODO</p>
+      <p>// TODO: write docs ...</p>
     `;
   }
 }

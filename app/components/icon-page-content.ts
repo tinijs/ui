@@ -66,6 +66,55 @@ export class AppIconPageContentComponent extends TiniComponent {
               .codeBuildContext=${this.codeBuildContext}
             >
               <div slot="content">
+                <h2>Color Primary</h2>
+              </div>
+              <div slot="code">
+                <tini-icon color="primary" .src=${this.src}></tini-icon>
+                <tini-box background="primary">
+                  <tini-icon
+                    color="primary-contrast"
+                    .src=${this.src}
+                  ></tini-icon>
+                </tini-box>
+                <tini-icon color="primary-shade" .src=${this.src}></tini-icon>
+                <tini-icon color="primary-shade-2" .src=${this.src}></tini-icon>
+                <tini-icon color="primary-shade-3" .src=${this.src}></tini-icon>
+                <tini-icon color="primary-shade-4" .src=${this.src}></tini-icon>
+                <tini-icon color="primary-shade-5" .src=${this.src}></tini-icon>
+                <tini-icon color="primary-tint" .src=${this.src}></tini-icon>
+                <tini-icon color="primary-tint-2" .src=${this.src}></tini-icon>
+                <tini-icon color="primary-tint-3" .src=${this.src}></tini-icon>
+                <tini-icon color="primary-tint-4" .src=${this.src}></tini-icon>
+                <tini-icon color="primary-tint-5" .src=${this.src}></tini-icon>
+              </div>
+            </app-section>
+
+            <app-section
+              class="colors"
+              .preprocessCode=${this.preprocessCode}
+              .codeBuildContext=${this.codeBuildContext}
+            >
+              <div slot="content">
+                <h2>Colors</h2>
+              </div>
+              <div slot="code">
+                <tini-icon color="secondary" .src=${this.src}></tini-icon>
+                <tini-icon color="tertiary" .src=${this.src}></tini-icon>
+                <tini-icon color="success" .src=${this.src}></tini-icon>
+                <tini-icon color="warning" .src=${this.src}></tini-icon>
+                <tini-icon color="danger" .src=${this.src}></tini-icon>
+                <tini-icon color="light" .src=${this.src}></tini-icon>
+                <tini-icon color="medium" .src=${this.src}></tini-icon>
+                <tini-icon color="dark" .src=${this.src}></tini-icon>
+              </div>
+            </app-section>
+
+            <app-section
+              class="colors"
+              .preprocessCode=${this.preprocessCode}
+              .codeBuildContext=${this.codeBuildContext}
+            >
+              <div slot="content">
                 <h2>Background</h2>
               </div>
               <div slot="code">
@@ -178,51 +227,64 @@ export class AppIconPageContentComponent extends TiniComponent {
             </app-section>
 
             <app-section
-              class="colors"
+              class="gradients"
               .preprocessCode=${this.preprocessCode}
               .codeBuildContext=${this.codeBuildContext}
             >
               <div slot="content">
-                <h2>Color Primary</h2>
+                <h2>Gradient Primary</h2>
               </div>
               <div slot="code">
-                <tini-icon color="primary" .src=${this.src}></tini-icon>
+                <tini-icon
+                  color="gradient-primary"
+                  .src=${this.src}
+                ></tini-icon>
                 <tini-box background="primary">
                   <tini-icon
-                    color="primary-contrast"
+                    color="gradient-primary-contrast"
                     .src=${this.src}
                   ></tini-icon>
                 </tini-box>
-                <tini-icon color="primary-shade" .src=${this.src}></tini-icon>
-                <tini-icon color="primary-shade-2" .src=${this.src}></tini-icon>
-                <tini-icon color="primary-shade-3" .src=${this.src}></tini-icon>
-                <tini-icon color="primary-shade-4" .src=${this.src}></tini-icon>
-                <tini-icon color="primary-shade-5" .src=${this.src}></tini-icon>
-                <tini-icon color="primary-tint" .src=${this.src}></tini-icon>
-                <tini-icon color="primary-tint-2" .src=${this.src}></tini-icon>
-                <tini-icon color="primary-tint-3" .src=${this.src}></tini-icon>
-                <tini-icon color="primary-tint-4" .src=${this.src}></tini-icon>
-                <tini-icon color="primary-tint-5" .src=${this.src}></tini-icon>
+                <tini-icon
+                  color="gradient-primary-shade"
+                  .src=${this.src}
+                ></tini-icon>
+                <tini-icon
+                  color="gradient-primary-tint"
+                  .src=${this.src}
+                ></tini-icon>
               </div>
             </app-section>
 
             <app-section
-              class="colors"
+              class="gradients"
               .preprocessCode=${this.preprocessCode}
               .codeBuildContext=${this.codeBuildContext}
             >
               <div slot="content">
-                <h2>Colors</h2>
+                <h2>Gradients</h2>
               </div>
               <div slot="code">
-                <tini-icon color="secondary" .src=${this.src}></tini-icon>
-                <tini-icon color="tertiary" .src=${this.src}></tini-icon>
-                <tini-icon color="success" .src=${this.src}></tini-icon>
-                <tini-icon color="warning" .src=${this.src}></tini-icon>
-                <tini-icon color="danger" .src=${this.src}></tini-icon>
-                <tini-icon color="light" .src=${this.src}></tini-icon>
-                <tini-icon color="medium" .src=${this.src}></tini-icon>
-                <tini-icon color="dark" .src=${this.src}></tini-icon>
+                <tini-icon
+                  color="gradient-secondary"
+                  .src=${this.src}
+                ></tini-icon>
+                <tini-icon
+                  color="gradient-tertiary"
+                  .src=${this.src}
+                ></tini-icon>
+                <tini-icon
+                  color="gradient-success"
+                  .src=${this.src}
+                ></tini-icon>
+                <tini-icon
+                  color="gradient-warning"
+                  .src=${this.src}
+                ></tini-icon>
+                <tini-icon color="gradient-danger" .src=${this.src}></tini-icon>
+                <tini-icon color="gradient-light" .src=${this.src}></tini-icon>
+                <tini-icon color="gradient-medium" .src=${this.src}></tini-icon>
+                <tini-icon color="gradient-dark" .src=${this.src}></tini-icon>
               </div>
             </app-section>
 
@@ -285,68 +347,6 @@ export class AppIconPageContentComponent extends TiniComponent {
                   color="gradient-foreground-tint"
                   .src=${this.src}
                 ></tini-icon>
-              </div>
-            </app-section>
-
-            <app-section
-              class="gradients"
-              .preprocessCode=${this.preprocessCode}
-              .codeBuildContext=${this.codeBuildContext}
-            >
-              <div slot="content">
-                <h2>Gradient Primary</h2>
-              </div>
-              <div slot="code">
-                <tini-icon
-                  color="gradient-primary"
-                  .src=${this.src}
-                ></tini-icon>
-                <tini-box background="primary">
-                  <tini-icon
-                    color="gradient-primary-contrast"
-                    .src=${this.src}
-                  ></tini-icon>
-                </tini-box>
-                <tini-icon
-                  color="gradient-primary-shade"
-                  .src=${this.src}
-                ></tini-icon>
-                <tini-icon
-                  color="gradient-primary-tint"
-                  .src=${this.src}
-                ></tini-icon>
-              </div>
-            </app-section>
-
-            <app-section
-              class="gradients"
-              .preprocessCode=${this.preprocessCode}
-              .codeBuildContext=${this.codeBuildContext}
-            >
-              <div slot="content">
-                <h2>Gradients</h2>
-              </div>
-              <div slot="code">
-                <tini-icon
-                  color="gradient-secondary"
-                  .src=${this.src}
-                ></tini-icon>
-                <tini-icon
-                  color="gradient-tertiary"
-                  .src=${this.src}
-                ></tini-icon>
-                <tini-icon
-                  color="gradient-success"
-                  .src=${this.src}
-                ></tini-icon>
-                <tini-icon
-                  color="gradient-warning"
-                  .src=${this.src}
-                ></tini-icon>
-                <tini-icon color="gradient-danger" .src=${this.src}></tini-icon>
-                <tini-icon color="gradient-light" .src=${this.src}></tini-icon>
-                <tini-icon color="gradient-medium" .src=${this.src}></tini-icon>
-                <tini-icon color="gradient-dark" .src=${this.src}></tini-icon>
               </div>
             </app-section>
           `}

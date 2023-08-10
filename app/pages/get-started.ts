@@ -16,7 +16,7 @@ export class AppPageGetStarted extends TiniComponent {
   protected render() {
     return html`
       <h1>Get started</h1>
-      <p>// TODO</p>
+      <p>// TODO: write docs ...</p>
     `;
   }
 }

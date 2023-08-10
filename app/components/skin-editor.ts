@@ -157,8 +157,8 @@ export class AppSkinEditorComponent extends TiniComponent {
   }
 
   private showModal() {
-    const skinName = this.skinTitle.replace(/[\W_]+/g, '-').toLowerCase();
-    const themeId = `${mainStore.soulName}/${skinName}`;
+    const skinId = this.skinTitle.replace(/[\W_]+/g, '-').toLowerCase();
+    const themeId = `${mainStore.activeSoulId}/${skinId}`;
     // extract google fonts and code
     const googleFonts: Array<{font: string}> = [];
     const allVariables: string[] = [];
@@ -185,7 +185,7 @@ export class AppSkinEditorComponent extends TiniComponent {
               <app-code .code=${googleFontCode}></app-code>
             `}
         <p>
-          Copy the code below and save as <code>${skinName}.css</code>. You can
+          Copy the code below and save as <code>${skinId}.css</code>. You can
           edit the values further if you wish.
         </p>
         <p>

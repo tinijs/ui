@@ -7,8 +7,8 @@ import {
 } from '../consts/main';
 
 export const mainStore = createStore({
-  soulName: 'bootstrap',
-  skinName: 'light',
+  activeSoulId: 'bootstrap',
+  activeSkinId: 'light',
   referImport: ImportMethods.TiniJS,
   referPlatform: ConsumerPlatforms.Tini,
   referIconsImport: IconsImportMethods.TiniJS,

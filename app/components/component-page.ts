@@ -89,8 +89,8 @@ export class AppComponentPageComponent extends TiniComponent {
   @Reactive() private soulVariablesMap?: Map<string, VariableDef>;
   @Reactive() private componentProperties?: any[];
 
-  @Subscribe(mainStore) @Reactive() private readonly soulName =
-    mainStore.soulName;
+  @Subscribe(mainStore) @Reactive() private readonly activeSoulId =
+    mainStore.activeSoulId;
   @Subscribe(mainStore) @Reactive() private readonly referImport =
     mainStore.referImport;
 
@@ -126,14 +126,14 @@ export class MyPage extends TiniComponent {}`;
     return `/*
  * Option 1: include in your component
  */
-import '${this.packageName}-${this.soulName}/components/${this.name}.include';
+import '${this.packageName}-${this.activeSoulId}/components/${this.name}.include';
 
 /*
  * Option 2: import as a shared bundle (if your bundler supports it)
  */
 import {useComponents} from '@tinijs/core';
 
-import {${nameClass}} from '${this.packageName}-${this.soulName}';
+import {${nameClass}} from '${this.packageName}-${this.activeSoulId}';
 
 useComponents([
   ${nameClass}
@@ -142,7 +142,7 @@ useComponents([
   }
 
   private get standaloneCode() {
-    return `<script src="https://cdn.jsdelivr.net/npm/${this.packageName}-${this.soulName}/components/${this.name}.bundle.js"></script>`;
+    return `<script src="https://cdn.jsdelivr.net/npm/${this.packageName}-${this.activeSoulId}/components/${this.name}.bundle.js"></script>`;
   }
 
   private get docLink() {
@@ -170,12 +170,12 @@ useComponents([
   }
 
   private get soulLink() {
-    return `${this.REPO_URL}/blob/main/styles/${this.soulName}/soul/${this.name}.ts`;
+    return `${this.REPO_URL}/blob/main/styles/${this.activeSoulId}/soul/${this.name}.ts`;
   }
 
   private get soulUrl() {
     return `${buildGithubRawUrl(this.REPO_URL)}/main/styles/${
-      this.soulName
+      this.activeSoulId
     }/soul/${this.name}.ts`;
   }
 
