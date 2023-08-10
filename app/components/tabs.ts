@@ -26,59 +26,6 @@ export const APP_TABS = 'app-tabs';
 export class AppTabsComponent extends TiniComponent {
   static readonly defaultTagName = APP_TABS;
 
-  static styles = css`
-    .head {
-      transform: translateY(1px);
-      justify-content: space-between;
-
-      &,
-      .tablinks {
-        display: flex;
-        align-items: stretch;
-        gap: var(--size-space-0_5x);
-      }
-
-      .title {
-        font-weight: bold;
-        padding: var(--size-space-0_5x) var(--size-space);
-      }
-
-      .tablink {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        border: var(--size-border) solid var(--color-medium-tint);
-        border-radius: var(--size-radius) var(--size-radius) 0 0;
-        padding: var(--size-space-0_5x) var(--size-space);
-        background: var(--color-background);
-        font-size: var(--size-text-0_9x);
-
-        &.active {
-          background: var(--color-background-tint);
-          border-bottom-color: var(--color-background-tint);
-        }
-
-        tini-icon {
-          width: var(--size-xs-2x);
-          height: var(--size-xs-2x);
-          margin-right: var(--size-space-0_25x);
-        }
-      }
-    }
-
-    .body {
-      display: none;
-      border: var(--size-border) solid var(--color-medium-tint);
-      border-radius: 0 0 var(--size-radius) var(--size-radius);
-      padding: var(--size-space);
-      background: var(--color-background-tint);
-
-      &.expanded {
-        display: block;
-      }
-    }
-  `;
-
   @Input({type: String}) declare titleText?: string;
   @Input({type: Array}) declare tabItems?: TabItem[];
   @Input({type: String}) declare activeName?: string;
@@ -152,4 +99,57 @@ export class AppTabsComponent extends TiniComponent {
       </div>
     `;
   }
+
+  static styles = css`
+    .head {
+      transform: translateY(1px);
+      justify-content: space-between;
+
+      &,
+      .tablinks {
+        display: flex;
+        align-items: stretch;
+        gap: var(--size-space-0_5x);
+      }
+
+      .title {
+        font-weight: bold;
+        padding: var(--size-space-0_5x) var(--size-space);
+      }
+
+      .tablink {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        border: var(--size-border) solid var(--color-medium-tint);
+        border-radius: var(--size-radius) var(--size-radius) 0 0;
+        padding: var(--size-space-0_5x) var(--size-space);
+        background: var(--color-background);
+        font-size: var(--size-text-0_9x);
+
+        &.active {
+          background: var(--color-background-tint);
+          border-bottom-color: var(--color-background-tint);
+        }
+
+        tini-icon {
+          width: var(--size-xs-2x);
+          height: var(--size-xs-2x);
+          margin-right: var(--size-space-0_25x);
+        }
+      }
+    }
+
+    .body {
+      display: none;
+      border: var(--size-border) solid var(--color-medium-tint);
+      border-radius: 0 0 var(--size-radius) var(--size-radius);
+      padding: var(--size-space);
+      background: var(--color-background-tint);
+
+      &.expanded {
+        display: block;
+      }
+    }
+  `;
 }

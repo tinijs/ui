@@ -45,104 +45,6 @@ export const APP_ICON_PAGE = 'app-icon-page';
 export class AppIconPageComponent extends TiniComponent {
   static readonly defaultTagName = APP_ICON_PAGE;
 
-  static styles = css`
-    :host {
-      --icon-size: 3.5rem;
-    }
-
-    .head ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 2rem;
-    }
-
-    .body {
-      margin-top: 2rem;
-      padding: 2rem 0;
-      border-top: var(--size-border) solid var(--color-background-shade);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .pagination {
-      display: flex;
-      align-items: center;
-    }
-
-    .filter,
-    .pagination input,
-    .pagination button {
-      padding: 0.5rem 0.25rem 0.5rem 0.5rem;
-      border: var(--size-border) solid var(--color-background-shade);
-      border-radius: var(--size-radius);
-      background: var(--color-background);
-      color: var(--color-foreground);
-    }
-
-    .pagination button {
-      cursor: pointer;
-      border-color: var(--color-medium);
-      padding: 0.5rem;
-    }
-    .pagination button:disabled {
-      cursor: not-allowed;
-      opacity: 0.3;
-    }
-
-    .pagination .page-no {
-      margin: 0 0.75rem;
-    }
-
-    .filter {
-      width: 30%;
-    }
-
-    .content {
-      margin-top: 2rem;
-    }
-
-    .icons {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, var(--icon-size));
-      gap: 0.75rem;
-    }
-
-    .icon {
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: var(--icon-size);
-      height: var(--icon-size);
-      border: 1px solid var(--color-background-shade);
-      border-radius: 5px;
-      background: var(--color-background-tint);
-    }
-
-    .icon:hover {
-      border-color: var(--color-medium);
-      background-color: var(--color-background-tint-2);
-    }
-
-    .icon img {
-      width: calc(var(--icon-size) - 1.5rem);
-      height: calc(var(--icon-size) - 1.5rem);
-    }
-
-    .loading,
-    .empty {
-      text-align: center;
-      padding: 2rem 0;
-      color: var(--color-medium);
-    }
-  `;
-
   private readonly ICONS_REPO_URL = Configurable.getOption('iconsRepoUrl');
   private readonly SIZE = 200;
 
@@ -308,4 +210,102 @@ export class AppIconPageComponent extends TiniComponent {
       ></app-icon-modal>
     `;
   }
+
+  static styles = css`
+    :host {
+      --icon-size: 3.5rem;
+    }
+
+    .head ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .body {
+      margin-top: 2rem;
+      padding: 2rem 0;
+      border-top: var(--size-border) solid var(--color-background-shade);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pagination {
+      display: flex;
+      align-items: center;
+    }
+
+    .filter,
+    .pagination input,
+    .pagination button {
+      padding: 0.5rem 0.25rem 0.5rem 0.5rem;
+      border: var(--size-border) solid var(--color-background-shade);
+      border-radius: var(--size-radius);
+      background: var(--color-background);
+      color: var(--color-foreground);
+    }
+
+    .pagination button {
+      cursor: pointer;
+      border-color: var(--color-medium);
+      padding: 0.5rem;
+    }
+    .pagination button:disabled {
+      cursor: not-allowed;
+      opacity: 0.3;
+    }
+
+    .pagination .page-no {
+      margin: 0 0.75rem;
+    }
+
+    .filter {
+      width: 30%;
+    }
+
+    .content {
+      margin-top: 2rem;
+    }
+
+    .icons {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, var(--icon-size));
+      gap: 0.75rem;
+    }
+
+    .icon {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--icon-size);
+      height: var(--icon-size);
+      border: 1px solid var(--color-background-shade);
+      border-radius: 5px;
+      background: var(--color-background-tint);
+    }
+
+    .icon:hover {
+      border-color: var(--color-medium);
+      background-color: var(--color-background-tint-2);
+    }
+
+    .icon img {
+      width: calc(var(--icon-size) - 1.5rem);
+      height: calc(var(--icon-size) - 1.5rem);
+    }
+
+    .loading,
+    .empty {
+      text-align: center;
+      padding: 2rem 0;
+      color: var(--color-medium);
+    }
+  `;
 }

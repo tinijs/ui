@@ -30,6 +30,120 @@ export const APP_GRADIENT_PICKER = 'app-gradient-picker';
 export class AppGradientPickerComponent extends TiniComponent {
   static readonly defaultTagName = APP_GRADIENT_PICKER;
 
+  @Input() name!: string;
+  @Input() value = 'none';
+
+  @Output() change!: EventEmitter<string>;
+
+  @Reactive() private showed = false;
+  private togglerRef: Ref<HTMLButtonElement> = createRef();
+  private containerRef: Ref<HTMLDivElement> = createRef();
+  private grapickRef: Ref<HTMLDivElement> = createRef();
+  private typeSelectRef: Ref<HTMLSelectElement> = createRef();
+  private directionSelectRef: Ref<HTMLSelectElement> = createRef();
+  private grapickInstance: any;
+
+  private onGlobalClicked = (e: MouseEvent) => {
+    const togglerNode = this.togglerRef.value;
+    const containerNode = this.containerRef.value;
+    if (!this.showed || !togglerNode || !containerNode) return;
+    const togglerRange = togglerNode.getBoundingClientRect();
+    const menuContainerRange = containerNode.getBoundingClientRect();
+    const isInsideToggler =
+      togglerRange.left <= e.clientX &&
+      togglerRange.right >= e.clientX &&
+      togglerRange.top <= e.clientY &&
+      togglerRange.bottom >= e.clientY;
+    const isInsideMenu =
+      menuContainerRange.left <= e.clientX &&
+      menuContainerRange.right >= e.clientX &&
+      menuContainerRange.top <= e.clientY &&
+      menuContainerRange.bottom >= e.clientY;
+    this.showed = isInsideToggler || isInsideMenu;
+  };
+
+  onCreate() {
+    addEventListener('click', this.onGlobalClicked);
+  }
+
+  onDestroy() {
+    removeEventListener('click', this.onGlobalClicked);
+  }
+
+  onReady() {
+    if (!this.grapickRef.value) return;
+    this.grapickInstance = new Grapick({
+      el: this.grapickRef.value,
+    });
+    try {
+      const {type, direction, colors} = parseGradient(this.value);
+      this.grapickInstance.setType(type);
+      this.typeSelectRef.value!.value = type;
+      this.grapickInstance.setDirection(direction);
+      this.directionSelectRef.value!.value = direction;
+      colors.forEach(({color, position}) => {
+        this.grapickInstance.addHandler(position, color);
+      });
+    } catch (err) {}
+    this.grapickInstance.on('change', () =>
+      this.valueChanged(this.grapickInstance.getSafeValue())
+    );
+  }
+
+  private valueChanged(value: string) {
+    this.value = value;
+    this.change.emit(value);
+  }
+
+  private changeType(e: InputEvent) {
+    const value = (e.target as HTMLSelectElement).value;
+    this.grapickInstance.setType(value);
+  }
+
+  private changeDirection(e: InputEvent) {
+    const value = (e.target as HTMLSelectElement).value;
+    this.grapickInstance.setDirection(value);
+  }
+
+  protected render() {
+    return html`
+      <button
+        ${ref(this.togglerRef)}
+        class="toggler"
+        @click=${() => (this.showed = !this.showed)}
+        style=${styleMap({background: this.value})}
+      ></button>
+      <div
+        ${ref(this.containerRef)}
+        class=${classMap({'picker-container': true, showed: this.showed})}
+      >
+        <div class="grapick">
+          <div ${ref(this.grapickRef)}></div>
+        </div>
+        <div class="options">
+          <select ${ref(this.typeSelectRef)} @change=${this.changeType}>
+            <optgroup label="Type">
+              <option value="linear">Linear</option>
+              <option value="radial">Radial</option>
+            </optgroup>
+          </select>
+          <select
+            ${ref(this.directionSelectRef)}
+            @change=${this.changeDirection}
+          >
+            <optgroup label="Direction">
+              <option value="top">Top</option>
+              <option value="right">Right</option>
+              <option value="center">Center</option>
+              <option value="bottom">Bottom</option>
+              <option value="left">Left</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+    `;
+  }
+
   static styles = css`
     /*
      * Grapick
@@ -158,118 +272,4 @@ export class AppGradientPickerComponent extends TiniComponent {
       }
     }
   `;
-
-  @Input() name!: string;
-  @Input() value = 'none';
-
-  @Output() change!: EventEmitter<string>;
-
-  @Reactive() private showed = false;
-  private togglerRef: Ref<HTMLButtonElement> = createRef();
-  private containerRef: Ref<HTMLDivElement> = createRef();
-  private grapickRef: Ref<HTMLDivElement> = createRef();
-  private typeSelectRef: Ref<HTMLSelectElement> = createRef();
-  private directionSelectRef: Ref<HTMLSelectElement> = createRef();
-  private grapickInstance: any;
-
-  private onGlobalClicked = (e: MouseEvent) => {
-    const togglerNode = this.togglerRef.value;
-    const containerNode = this.containerRef.value;
-    if (!this.showed || !togglerNode || !containerNode) return;
-    const togglerRange = togglerNode.getBoundingClientRect();
-    const menuContainerRange = containerNode.getBoundingClientRect();
-    const isInsideToggler =
-      togglerRange.left <= e.clientX &&
-      togglerRange.right >= e.clientX &&
-      togglerRange.top <= e.clientY &&
-      togglerRange.bottom >= e.clientY;
-    const isInsideMenu =
-      menuContainerRange.left <= e.clientX &&
-      menuContainerRange.right >= e.clientX &&
-      menuContainerRange.top <= e.clientY &&
-      menuContainerRange.bottom >= e.clientY;
-    this.showed = isInsideToggler || isInsideMenu;
-  };
-
-  onCreate() {
-    addEventListener('click', this.onGlobalClicked);
-  }
-
-  onDestroy() {
-    removeEventListener('click', this.onGlobalClicked);
-  }
-
-  onReady() {
-    if (!this.grapickRef.value) return;
-    this.grapickInstance = new Grapick({
-      el: this.grapickRef.value,
-    });
-    try {
-      const {type, direction, colors} = parseGradient(this.value);
-      this.grapickInstance.setType(type);
-      this.typeSelectRef.value!.value = type;
-      this.grapickInstance.setDirection(direction);
-      this.directionSelectRef.value!.value = direction;
-      colors.forEach(({color, position}) => {
-        this.grapickInstance.addHandler(position, color);
-      });
-    } catch (err) {}
-    this.grapickInstance.on('change', () =>
-      this.valueChanged(this.grapickInstance.getSafeValue())
-    );
-  }
-
-  private valueChanged(value: string) {
-    this.value = value;
-    this.change.emit(value);
-  }
-
-  private changeType(e: InputEvent) {
-    const value = (e.target as HTMLSelectElement).value;
-    this.grapickInstance.setType(value);
-  }
-
-  private changeDirection(e: InputEvent) {
-    const value = (e.target as HTMLSelectElement).value;
-    this.grapickInstance.setDirection(value);
-  }
-
-  protected render() {
-    return html`
-      <button
-        ${ref(this.togglerRef)}
-        class="toggler"
-        @click=${() => (this.showed = !this.showed)}
-        style=${styleMap({background: this.value})}
-      ></button>
-      <div
-        ${ref(this.containerRef)}
-        class=${classMap({'picker-container': true, showed: this.showed})}
-      >
-        <div class="grapick">
-          <div ${ref(this.grapickRef)}></div>
-        </div>
-        <div class="options">
-          <select ${ref(this.typeSelectRef)} @change=${this.changeType}>
-            <optgroup label="Type">
-              <option value="linear">Linear</option>
-              <option value="radial">Radial</option>
-            </optgroup>
-          </select>
-          <select
-            ${ref(this.directionSelectRef)}
-            @change=${this.changeDirection}
-          >
-            <optgroup label="Direction">
-              <option value="top">Top</option>
-              <option value="right">Right</option>
-              <option value="center">Center</option>
-              <option value="bottom">Bottom</option>
-              <option value="left">Left</option>
-            </optgroup>
-          </select>
-        </div>
-      </div>
-    `;
-  }
 }

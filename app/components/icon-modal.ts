@@ -51,14 +51,6 @@ export const APP_ICON_MODAL = 'app-icon-modal';
 export class AppIconModalComponent extends TiniComponent {
   static readonly defaultTagName = APP_ICON_MODAL;
 
-  static styles = css`
-    .modal-body {
-      display: block;
-      width: 100%;
-      padding: 0 2rem;
-    }
-  `;
-
   private readonly ICONS_IMPORT_TAB_ITEMS: TabItem[] = [
     {name: IconsImportMethods.TiniJS},
     {name: IconsImportMethods.Others},
@@ -288,4 +280,12 @@ containerEl.innerHTML = ${nameVar}Code;
       </app-modal>
     `;
   }
+
+  static styles = css`
+    .modal-body {
+      display: block;
+      width: 100%;
+      padding: 0 2rem;
+    }
+  `;
 }

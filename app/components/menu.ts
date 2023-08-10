@@ -32,39 +32,6 @@ export const APP_MENU = 'app-menu';
 export class AppMenuComponent extends TiniComponent {
   static readonly defaultTagName = APP_MENU;
 
-  static styles = css`
-    :host {
-      padding: 1rem;
-    }
-
-    ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    ul > li > ul {
-      margin-left: 1rem;
-    }
-
-    li {
-      padding: 0.75rem 1rem;
-    }
-
-    li .title {
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    tini-link::part(link) {
-      color: var(--color-medium);
-    }
-
-    tini-link::part(link):hover {
-      color: var(--color-foreground);
-    }
-  `;
-
   private GROUP_NAMES = ['guides', 'components', 'icons'];
 
   private guides: Array<{title: string; href: string}> = [];
@@ -149,4 +116,37 @@ export class AppMenuComponent extends TiniComponent {
       </ul>
     `;
   }
+
+  static styles = css`
+    :host {
+      padding: 1rem;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    ul > li > ul {
+      margin-left: 1rem;
+    }
+
+    li {
+      padding: 0.75rem 1rem;
+    }
+
+    li .title {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    tini-link::part(link) {
+      color: var(--color-medium);
+    }
+
+    tini-link::part(link):hover {
+      color: var(--color-foreground);
+    }
+  `;
 }

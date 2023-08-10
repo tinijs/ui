@@ -58,192 +58,6 @@ export const APP_SKIN_EDITOR = 'app-skin-editor';
 export class AppSkinEditorComponent extends TiniComponent {
   static readonly defaultTagName = APP_SKIN_EDITOR;
 
-  static styles = css`
-    :host {
-      --head-height: 50px;
-      --foot-height: 50px;
-      height: 100%;
-    }
-
-    .head {
-      display: flex;
-      align-items: center;
-      height: var(--head-height);
-      padding: var(--size-space-0_75x);
-      border-bottom: var(--size-border) solid var(--color-background-shade);
-
-      .title {
-        flex: 1;
-      }
-
-      .reset {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        padding: var(--size-space-0_4x) var(--size-space-0_8x);
-        margin-right: var(--size-space-2x);
-        background: var(--color-background);
-        color: var(--color-foreground);
-        border: var(--size-border) solid var(--color-foreground);
-        border-radius: var(--size-radius);
-        font-size: var(--size-text-0_9x);
-        line-height: 1;
-
-        &:hover {
-          background: var(--color-background-shade);
-        }
-      }
-
-      .close {
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--color-background);
-        border: none;
-        opacity: 0.5;
-
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
-
-    .body {
-      height: calc(100% - var(--head-height) - var(--foot-height));
-      height: calc(100% - var(--head-height) - var(--foot-height));
-      overflow-x: hidden;
-      overflow-y: scroll;
-
-      section {
-        & > strong {
-          display: block;
-          padding: var(--size-space-0_5x);
-          border: var(--size-border) solid var(--color-background-shade);
-          border-left: none;
-          border-right: none;
-          text-align: center;
-        }
-
-        .content {
-          padding: var(--size-space-0_5x);
-        }
-      }
-
-      .naming {
-        padding: var(--size-space-0_5x);
-        padding-bottom: 0;
-
-        label {
-          display: block;
-          margin-bottom: var(--size-space);
-
-          span {
-            color: var(--color-medium);
-          }
-
-          input,
-          select {
-            width: 100%;
-            margin-top: var(--size-space-0_25x);
-            background: var(--color-background-tint);
-            border: var(--size-border) solid var(--color-medium);
-            border-radius: var(--size-radius);
-            padding: var(--size-space-0_25x) var(--size-space-0_5x);
-          }
-        }
-      }
-
-      .properties {
-        .group {
-          padding: var(--size-space-0_5x);
-          margin-bottom: var(--size-space);
-
-          .group-title {
-            color: var(--color-medium);
-            text-transform: uppercase;
-          }
-
-          ul {
-            list-style: none;
-            padding: 0;
-            margin: var(--size-space) 0 0;
-
-            li {
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-              margin-left: var(--size-space);
-              margin-right: var(--size-space-0_5x);
-              margin-bottom: var(--size-space-0_5x);
-              padding: var(--size-space-0_25x) 0 var(--size-space-0_75x);
-              border-bottom: var(--size-border) solid
-                var(--color-background-shade);
-
-              .value {
-                input,
-                select {
-                  background: var(--color-background-tint);
-                  border: var(--size-border) solid var(--color-medium);
-                  border-radius: var(--size-radius);
-                  padding: var(--size-space-0_25x) var(--size-space-0_5x);
-                }
-
-                input {
-                  max-width: 100px;
-                }
-
-                select {
-                  max-width: 150px;
-                }
-
-                input[type='color'] {
-                  padding: 0 2px;
-                }
-
-                select,
-                input[type='color'] {
-                  cursor: pointer;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    .foot {
-      box-sizing: border-box;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      height: var(--foot-height);
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      border-top: var(--size-border) solid var(--color-background-shade);
-      padding: var(--size-space-0_5x);
-
-      .show-code {
-        &,
-        &::part(button) {
-          width: 100%;
-        }
-
-        span {
-          margin-left: var(--size-space-0_5x);
-        }
-      }
-    }
-
-    .modal-body {
-      display: block;
-      width: 100%;
-      padding: 0 2rem;
-    }
-  `;
-
   private readonly REPO_URL = Configurable.getOption('repoUrl');
   private readonly SOUL_LIST = Configurable.getOption('soulList');
 
@@ -594,4 +408,190 @@ export class AppSkinEditorComponent extends TiniComponent {
       </app-modal>
     `;
   }
+
+  static styles = css`
+    :host {
+      --head-height: 50px;
+      --foot-height: 50px;
+      height: 100%;
+    }
+
+    .head {
+      display: flex;
+      align-items: center;
+      height: var(--head-height);
+      padding: var(--size-space-0_75x);
+      border-bottom: var(--size-border) solid var(--color-background-shade);
+
+      .title {
+        flex: 1;
+      }
+
+      .reset {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        padding: var(--size-space-0_4x) var(--size-space-0_8x);
+        margin-right: var(--size-space-2x);
+        background: var(--color-background);
+        color: var(--color-foreground);
+        border: var(--size-border) solid var(--color-foreground);
+        border-radius: var(--size-radius);
+        font-size: var(--size-text-0_9x);
+        line-height: 1;
+
+        &:hover {
+          background: var(--color-background-shade);
+        }
+      }
+
+      .close {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--color-background);
+        border: none;
+        opacity: 0.5;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .body {
+      height: calc(100% - var(--head-height) - var(--foot-height));
+      height: calc(100% - var(--head-height) - var(--foot-height));
+      overflow-x: hidden;
+      overflow-y: scroll;
+
+      section {
+        & > strong {
+          display: block;
+          padding: var(--size-space-0_5x);
+          border: var(--size-border) solid var(--color-background-shade);
+          border-left: none;
+          border-right: none;
+          text-align: center;
+        }
+
+        .content {
+          padding: var(--size-space-0_5x);
+        }
+      }
+
+      .naming {
+        padding: var(--size-space-0_5x);
+        padding-bottom: 0;
+
+        label {
+          display: block;
+          margin-bottom: var(--size-space);
+
+          span {
+            color: var(--color-medium);
+          }
+
+          input,
+          select {
+            width: 100%;
+            margin-top: var(--size-space-0_25x);
+            background: var(--color-background-tint);
+            border: var(--size-border) solid var(--color-medium);
+            border-radius: var(--size-radius);
+            padding: var(--size-space-0_25x) var(--size-space-0_5x);
+          }
+        }
+      }
+
+      .properties {
+        .group {
+          padding: var(--size-space-0_5x);
+          margin-bottom: var(--size-space);
+
+          .group-title {
+            color: var(--color-medium);
+            text-transform: uppercase;
+          }
+
+          ul {
+            list-style: none;
+            padding: 0;
+            margin: var(--size-space) 0 0;
+
+            li {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              margin-left: var(--size-space);
+              margin-right: var(--size-space-0_5x);
+              margin-bottom: var(--size-space-0_5x);
+              padding: var(--size-space-0_25x) 0 var(--size-space-0_75x);
+              border-bottom: var(--size-border) solid
+                var(--color-background-shade);
+
+              .value {
+                input,
+                select {
+                  background: var(--color-background-tint);
+                  border: var(--size-border) solid var(--color-medium);
+                  border-radius: var(--size-radius);
+                  padding: var(--size-space-0_25x) var(--size-space-0_5x);
+                }
+
+                input {
+                  max-width: 100px;
+                }
+
+                select {
+                  max-width: 150px;
+                }
+
+                input[type='color'] {
+                  padding: 0 2px;
+                }
+
+                select,
+                input[type='color'] {
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .foot {
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: var(--foot-height);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      border-top: var(--size-border) solid var(--color-background-shade);
+      padding: var(--size-space-0_5x);
+
+      .show-code {
+        &,
+        &::part(button) {
+          width: 100%;
+        }
+
+        span {
+          margin-left: var(--size-space-0_5x);
+        }
+      }
+    }
+
+    .modal-body {
+      display: block;
+      width: 100%;
+      padding: 0 2rem;
+    }
+  `;
 }

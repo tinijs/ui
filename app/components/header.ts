@@ -32,6 +32,68 @@ export const APP_HEADER = 'app-header';
 export class AppHeaderComponent extends TiniComponent {
   static readonly defaultTagName = APP_HEADER;
 
+  private readonly APP_NAME = Configurable.getOption('appName');
+  private readonly LOGO_URL = Configurable.getOption('logoUrl');
+  private readonly REPO_URL = Configurable.getOption('repoUrl');
+  private readonly SOUL_LIST = Configurable.getOption('soulList');
+
+  @Subscribe(mainStore) @Reactive() private skinEditorShown =
+    mainStore.skinEditorShown;
+
+  private switchTheme(e: Event) {
+    return changeTheme((e.target as HTMLSelectElement).value);
+  }
+
+  private toggleSkinEditor() {
+    return mainStore.commit('skinEditorShown', !mainStore.skinEditorShown);
+  }
+
+  protected render() {
+    return html`
+      <header>
+        <div class="brand">
+          <a href="/">
+            <img src=${this.LOGO_URL} alt=${this.APP_NAME} />
+            <h1>${this.APP_NAME}</h1>
+          </a>
+        </div>
+        <div class="menu">
+          <select class="theme-select" @change=${this.switchTheme}>
+            ${this.SOUL_LIST.map(
+              ({id: soulId, name: soulName, skins}) => html`
+                <optgroup label=${soulName}>
+                  ${skins.map(
+                    ({id: skinId, name: skinName}) => html`
+                      <option value=${`${soulId}/${skinId}`}>
+                        ${skinName}
+                      </option>
+                    `
+                  )}
+                </optgroup>
+              `
+            )}
+          </select>
+          <button class="skin-editor-toggler" @click=${this.toggleSkinEditor}>
+            <icon-palette color="primary-contrast" size="sm"></icon-palette>
+            <span>Skin Editor</span>
+          </button>
+          <a href=${this.REPO_URL} target="_blank">
+            <icon-github color="primary-contrast" size="sm"></icon-github>
+          </a>
+        </div>
+      </header>
+
+      <div
+        class=${classMap({
+          'skin-editor-container': true,
+          showed: this.skinEditorShown,
+        })}
+      >
+        <app-skin-editor></app-skin-editor>
+      </div>
+    `;
+  }
+
   static styles = css`
     :host {
       --header-height: 60px;
@@ -122,66 +184,4 @@ export class AppHeaderComponent extends TiniComponent {
       display: block;
     }
   `;
-
-  private readonly APP_NAME = Configurable.getOption('appName');
-  private readonly LOGO_URL = Configurable.getOption('logoUrl');
-  private readonly REPO_URL = Configurable.getOption('repoUrl');
-  private readonly SOUL_LIST = Configurable.getOption('soulList');
-
-  @Subscribe(mainStore) @Reactive() private skinEditorShown =
-    mainStore.skinEditorShown;
-
-  private switchTheme(e: Event) {
-    return changeTheme((e.target as HTMLSelectElement).value);
-  }
-
-  private toggleSkinEditor() {
-    return mainStore.commit('skinEditorShown', !mainStore.skinEditorShown);
-  }
-
-  protected render() {
-    return html`
-      <header>
-        <div class="brand">
-          <a href="/">
-            <img src=${this.LOGO_URL} alt=${this.APP_NAME} />
-            <h1>${this.APP_NAME}</h1>
-          </a>
-        </div>
-        <div class="menu">
-          <select class="theme-select" @change=${this.switchTheme}>
-            ${this.SOUL_LIST.map(
-              ({id: soulId, name: soulName, skins}) => html`
-                <optgroup label=${soulName}>
-                  ${skins.map(
-                    ({id: skinId, name: skinName}) => html`
-                      <option value=${`${soulId}/${skinId}`}>
-                        ${skinName}
-                      </option>
-                    `
-                  )}
-                </optgroup>
-              `
-            )}
-          </select>
-          <button class="skin-editor-toggler" @click=${this.toggleSkinEditor}>
-            <icon-palette color="primary-contrast" size="sm"></icon-palette>
-            <span>Skin Editor</span>
-          </button>
-          <a href=${this.REPO_URL} target="_blank">
-            <icon-github color="primary-contrast" size="sm"></icon-github>
-          </a>
-        </div>
-      </header>
-
-      <div
-        class=${classMap({
-          'skin-editor-container': true,
-          showed: this.skinEditorShown,
-        })}
-      >
-        <app-skin-editor></app-skin-editor>
-      </div>
-    `;
-  }
 }

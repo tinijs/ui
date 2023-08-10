@@ -1,4 +1,4 @@
-import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
+import {Page, TiniComponent, html, stylingWithBases} from '@tinijs/core';
 import {commonBases, headingsBases, linkBases, textBases} from '@tinijs/ui';
 
 @Page({
@@ -13,8 +13,6 @@ import {commonBases, headingsBases, linkBases, textBases} from '@tinijs/ui';
   },
 })
 export class AppPageGetStarted extends TiniComponent {
-  static styles = css``;
-
   protected render() {
     return html`
       <h1>Get started</h1>

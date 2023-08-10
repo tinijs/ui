@@ -1,4 +1,4 @@
-import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
+import {Page, TiniComponent, html, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -32,8 +32,6 @@ import {AppIconPageContentComponent} from '../../components/icon-page-content';
   },
 })
 export class AppPageComponentsIcon extends TiniComponent {
-  static styles = css``;
-
   private readonly PREPROCESS_CODE = (code: string) =>
     code.replace(/\<tini\-icon/g, '<tini-icon src="URI/URL"');
 

@@ -33,23 +33,6 @@ export const APP_ICON_PAGE_CONTENT = 'app-icon-page-content';
 export class AppIconPageContentComponent extends TiniComponent {
   static readonly defaultTagName = APP_ICON_PAGE_CONTENT;
 
-  static styles = css`
-    .colors [slot='code'],
-    .gradients [slot='code'],
-    .sizes [slot='code'] {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .sizes {
-      padding-bottom: 2rem;
-    }
-    .sizes [slot='code'] {
-      align-items: flex-end;
-    }
-  `;
-
   @Input() src!: string;
   @Input() noVariants = false;
   @Input({type: Object}) preprocessCode?: any;
@@ -393,4 +376,21 @@ export class AppIconPageContentComponent extends TiniComponent {
       </app-section>
     `;
   }
+
+  static styles = css`
+    .colors [slot='code'],
+    .gradients [slot='code'],
+    .sizes [slot='code'] {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sizes {
+      padding-bottom: 2rem;
+    }
+    .sizes [slot='code'] {
+      align-items: flex-end;
+    }
+  `;
 }

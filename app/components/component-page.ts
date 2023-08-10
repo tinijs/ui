@@ -65,68 +65,6 @@ export const APP_COMPONENT_PAGE = 'app-component-page';
 export class AppComponentPageComponent extends TiniComponent {
   static readonly defaultTagName = APP_COMPONENT_PAGE;
 
-  static styles = css`
-    .title-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      .switch-mode {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .switch-mode button {
-        cursor: pointer;
-        padding: var(--size-space-0_4x) var(--size-space-0_8x);
-        font-size: var(--size-text-0_9x);
-        border: var(--size-border) solid var(--color-medium-tint);
-        border-right: none;
-      }
-      .switch-mode button:first-child {
-        border-radius: var(--size-radius) 0 0 var(--size-radius);
-      }
-      .switch-mode button:last-child {
-        border-radius: 0 var(--size-radius) var(--size-radius) 0;
-        border-right: var(--size-border) solid var(--color-medium-tint);
-      }
-      .switch-mode button.active {
-        background: var(--color-background-shade);
-      }
-    }
-
-    .body {
-      padding-bottom: 2rem;
-    }
-
-    .doc-src,
-    .component-src,
-    .soul-src {
-      margin-top: var(--size-space-4x);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      border-spacing: 0;
-    }
-
-    table thead tr th {
-      border-bottom: var(--size-border-2x) solid var(--color-background-shade);
-    }
-
-    table tbody tr td {
-      border-bottom: 1px solid var(--color-background-shade);
-    }
-
-    table th,
-    table td {
-      padding: var(--size-space-0_5x);
-      text-align: left;
-    }
-  `;
-
   private readonly REPO_URL = Configurable.getOption('repoUrl');
 
   private readonly IMPORT_TAB_ITEMS: TabItem[] = [
@@ -513,4 +451,66 @@ useComponents([
       </div>
     `;
   }
+
+  static styles = css`
+    .title-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .switch-mode {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .switch-mode button {
+        cursor: pointer;
+        padding: var(--size-space-0_4x) var(--size-space-0_8x);
+        font-size: var(--size-text-0_9x);
+        border: var(--size-border) solid var(--color-medium-tint);
+        border-right: none;
+      }
+      .switch-mode button:first-child {
+        border-radius: var(--size-radius) 0 0 var(--size-radius);
+      }
+      .switch-mode button:last-child {
+        border-radius: 0 var(--size-radius) var(--size-radius) 0;
+        border-right: var(--size-border) solid var(--color-medium-tint);
+      }
+      .switch-mode button.active {
+        background: var(--color-background-shade);
+      }
+    }
+
+    .body {
+      padding-bottom: 2rem;
+    }
+
+    .doc-src,
+    .component-src,
+    .soul-src {
+      margin-top: var(--size-space-4x);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    table thead tr th {
+      border-bottom: var(--size-border-2x) solid var(--color-background-shade);
+    }
+
+    table tbody tr td {
+      border-bottom: 1px solid var(--color-background-shade);
+    }
+
+    table th,
+    table td {
+      padding: var(--size-space-0_5x);
+      text-align: left;
+    }
+  `;
 }

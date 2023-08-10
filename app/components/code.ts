@@ -22,6 +22,17 @@ export const APP_CODE = 'app-code';
 export class AppCodeComponent extends TiniComponent {
   static readonly defaultTagName = APP_CODE;
 
+  private readonly codeRef: Ref<HTMLElement> = createRef();
+  @Input({type: String}) declare code?: string;
+
+  onRenders() {
+    hljs.highlightElement(this.codeRef.value!);
+  }
+
+  protected render() {
+    return html`<pre><code ${ref(this.codeRef)}>${this.code}</code></pre>`;
+  }
+
   static styles = css`
     pre code.hljs {
       display: block;
@@ -116,15 +127,4 @@ export class AppCodeComponent extends TiniComponent {
       overflow: hidden;
     }
   `;
-
-  private readonly codeRef: Ref<HTMLElement> = createRef();
-  @Input({type: String}) declare code?: string;
-
-  onRenders() {
-    hljs.highlightElement(this.codeRef.value!);
-  }
-
-  protected render() {
-    return html`<pre><code ${ref(this.codeRef)}>${this.code}</code></pre>`;
-  }
 }

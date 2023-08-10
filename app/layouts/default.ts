@@ -12,6 +12,20 @@ import {AppMenuComponent} from '../components/menu';
   },
 })
 export class AppLayoutDefault extends TiniComponent {
+  protected render() {
+    return html`
+      <header class="header">
+        <app-header></app-header>
+      </header>
+      <nav class="menu">
+        <app-menu></app-menu>
+      </nav>
+      <main class="page">
+        <slot></slot>
+      </main>
+    `;
+  }
+
   static styles = css`
     :host {
       --header-height: 60px;
@@ -57,18 +71,4 @@ export class AppLayoutDefault extends TiniComponent {
       padding: 1rem 5rem;
     }
   `;
-
-  protected render() {
-    return html`
-      <header class="header">
-        <app-header></app-header>
-      </header>
-      <nav class="menu">
-        <app-menu></app-menu>
-      </nav>
-      <main class="page">
-        <slot></slot>
-      </main>
-    `;
-  }
 }

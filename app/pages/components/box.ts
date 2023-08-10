@@ -1,4 +1,4 @@
-import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
+import {Page, TiniComponent, html, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -29,8 +29,6 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsBox extends TiniComponent {
-  static styles = css``;
-
   protected render() {
     return html`
       <app-component-page

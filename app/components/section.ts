@@ -36,67 +36,6 @@ export const APP_SECTION = 'app-section';
 export class AppSectionComponent extends TiniComponent {
   static readonly defaultTagName = APP_SECTION;
 
-  static styles = css`
-    :host {
-      margin-top: 3rem;
-    }
-
-    ::slotted([slot='code']) {
-      padding: 1rem;
-      border-radius: var(--size-radius);
-      background: var(--color-background-tint);
-    }
-
-    .usage-tabs {
-      margin-top: 2rem;
-
-      &::part(head) {
-        background: var(--color-background);
-        border: var(--size-border) solid var(--color-background-shade);
-        border-radius: var(--size-radius);
-        padding: var(--size-space-0_3x);
-        padding-right: var(--size-space);
-      }
-
-      &::part(head-expanded) {
-        border-bottom-right-radius: none;
-        border-bottom-left-radius: none;
-      }
-
-      &::part(title) {
-        color: var(--color-medium);
-      }
-
-      &::part(tablinks) {
-        align-items: center;
-      }
-
-      &::part(tablink) {
-        font-size: var(--size-text-0_8x);
-        padding: var(--size-space-0_4x) var(--size-space-0_8x);
-        border-radius: var(--size-radius);
-        border: var(--size-border) solid transparent;
-        opacity: 0.8;
-      }
-
-      &::part(tablink):hover {
-        background: var(--color-background-tint);
-        border-color: var(--color-background-shade);
-        opacity: 1;
-      }
-
-      &::part(tablink-active) {
-        border: var(--size-border) solid var(--color-medium-tint) !important;
-        opacity: 1;
-      }
-
-      &::part(body) {
-        border-color: var(--color-background-shade);
-        background: var(--color-background);
-      }
-    }
-  `;
-
   private readonly USAGE_TAB_ITEMS: TabItem[] = [
     {name: ConsumerPlatforms.Tini, icon: TINI_ICON},
     {name: ConsumerPlatforms.Vue, icon: VUE_ICON},
@@ -173,4 +112,65 @@ export class AppSectionComponent extends TiniComponent {
       </section>
     `;
   }
+
+  static styles = css`
+    :host {
+      margin-top: 3rem;
+    }
+
+    ::slotted([slot='code']) {
+      padding: 1rem;
+      border-radius: var(--size-radius);
+      background: var(--color-background-tint);
+    }
+
+    .usage-tabs {
+      margin-top: 2rem;
+
+      &::part(head) {
+        background: var(--color-background);
+        border: var(--size-border) solid var(--color-background-shade);
+        border-radius: var(--size-radius);
+        padding: var(--size-space-0_3x);
+        padding-right: var(--size-space);
+      }
+
+      &::part(head-expanded) {
+        border-bottom-right-radius: none;
+        border-bottom-left-radius: none;
+      }
+
+      &::part(title) {
+        color: var(--color-medium);
+      }
+
+      &::part(tablinks) {
+        align-items: center;
+      }
+
+      &::part(tablink) {
+        font-size: var(--size-text-0_8x);
+        padding: var(--size-space-0_4x) var(--size-space-0_8x);
+        border-radius: var(--size-radius);
+        border: var(--size-border) solid transparent;
+        opacity: 0.8;
+      }
+
+      &::part(tablink):hover {
+        background: var(--color-background-tint);
+        border-color: var(--color-background-shade);
+        opacity: 1;
+      }
+
+      &::part(tablink-active) {
+        border: var(--size-border) solid var(--color-medium-tint) !important;
+        opacity: 1;
+      }
+
+      &::part(body) {
+        border-color: var(--color-background-shade);
+        background: var(--color-background);
+      }
+    }
+  `;
 }
