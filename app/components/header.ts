@@ -12,11 +12,12 @@ import {commonBases, linkBases, buttonBases, formBases} from '@tinijs/ui';
 import {IconGithubComponent} from '@tinijs/bootstrap-icons/github';
 import {IconPaletteComponent} from '@tinijs/bootstrap-icons/palette';
 
-import {AppSkinEditorComponent} from './skin-editor';
-
+import {Configurable} from '../configurable';
 import {GITHUB_REPO_URL} from '../consts/main';
 import {changeTheme} from '../helpers/theme';
 import {mainStore} from '../stores/main';
+
+import {AppSkinEditorComponent} from './skin-editor';
 
 export const APP_HEADER = 'app-header';
 @Component({
@@ -123,7 +124,7 @@ export class AppHeaderComponent extends TiniComponent {
     }
   `;
 
-  private LOGO_URL = new URL('../assets/logo.svg', import.meta.url).toString();
+  private readonly LOGO_URL = Configurable.getOptions('logoUrl');
 
   @Subscribe(mainStore) @Reactive() private skinEditorShown =
     mainStore.skinEditorShown;
