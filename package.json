@@ -38,7 +38,7 @@
   "dependencies": {
     "@tinijs/bootstrap-icons": "^0.0.10",
     "@tinijs/core": "^0.1.0",
-    "@tinijs/router": "^0.1.0",
+    "@tinijs/router": "file:../router/tinijs-router-0.1.0.tgz",
     "@tinijs/store": "^0.1.0",
     "chroma-js": "^2.4.2",
     "gradient-parser": "^1.0.2",

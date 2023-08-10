@@ -1,3 +1,5 @@
+import routes from './routes';
+
 export class Configurable {
   static options = {
     appId: 'ui',
@@ -15,6 +17,7 @@ export class Configurable {
         ],
       },
     ],
+    routes,
   };
 
   static setOptions(options: Partial<typeof Configurable.options>) {

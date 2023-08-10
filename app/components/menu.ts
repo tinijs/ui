@@ -15,7 +15,9 @@ import {
   TiniLinkComponent,
 } from '@tinijs/ui';
 
-import routes from '../routes';
+import {Configurable} from '../configurable';
+
+type NavItem = {title: string; href: string};
 
 export const APP_MENU = 'app-menu';
 @Component({
@@ -32,31 +34,45 @@ export const APP_MENU = 'app-menu';
 export class AppMenuComponent extends TiniComponent {
   static readonly defaultTagName = APP_MENU;
 
-  private GROUP_NAMES = ['guides', 'components', 'icons'];
+  private readonly ROUTES = Configurable.getOption('routes');
+  private readonly GROUP_NAMES = ['top', 'guides', 'components', 'icons'];
 
-  private guides: Array<{title: string; href: string}> = [];
-  private components: Array<{title: string; href: string}> = [];
-  private icons: Array<{title: string; href: string}> = [];
+  private topGroup: NavItem[] = [];
+  private guidesGroup: NavItem[] = [];
+  private componentsGroup: NavItem[] = [];
+  private iconsGroup: NavItem[] = [];
 
   private buildMenu() {
-    const handleRoute = ({path}: Route) => {
+    const processRoute = ({path, title}: Route) => {
+      const pathSegments = path.split('/').filter(Boolean);
+      const linkTitle =
+        title ||
+        (pathSegments[pathSegments.length - 1] || 'untitled')
+          .replace(/-|_/g, ' ')
+          .split(' ')
+          .map(word => word[0].toUpperCase() + word.slice(1))
+          .join(' ');
       for (const groupName of this.GROUP_NAMES) {
-        if (~path.indexOf(`${groupName}/`)) {
-          const pageName = path.split('/').pop() as string;
-          (this as any)[groupName]?.push({
-            title:
-              pageName[0].toUpperCase() + pageName.slice(1).replace(/-/g, ' '),
+        if (
+          path !== '**' &&
+          (
+            ~path.indexOf(`${groupName}/`) ||
+            (groupName === 'top' && pathSegments.length < 2)
+          )
+        ) {
+          (this as any)[`${groupName}Group`]?.push({
+            title: linkTitle,
             href: path,
           });
           break;
         }
       }
     };
-    routes.forEach(route => {
+    this.ROUTES.forEach(route => {
       if (!route.children?.length) {
-        handleRoute(route);
+        processRoute(route);
       } else {
-        route.children.forEach(child => handleRoute(child));
+        route.children.forEach(child => processRoute(child));
       }
     });
   }
@@ -69,15 +85,22 @@ export class AppMenuComponent extends TiniComponent {
     return html`
       <h4>Documentation</h4>
       <ul>
-        <li><tini-link href="/">Introduction</tini-link></li>
-        <li><tini-link href="/get-started">Get started</tini-link></li>
-        ${!this.guides.length
+        ${!this.topGroup.length
+          ? nothing
+          : html`
+              ${this.topGroup.map(
+                ({title, href}) => html`
+                  <li><tini-link href=${href}>${title}</tini-link></li>
+                `
+              )}
+            `}
+        ${!this.guidesGroup.length
           ? nothing
           : html`
               <li>
                 <strong class="title">Guides</strong>
                 <ul>
-                  ${this.guides.map(
+                  ${this.guidesGroup.map(
                     ({title, href}) => html`
                       <li><tini-link href=${href}>${title}</tini-link></li>
                     `
@@ -85,13 +108,13 @@ export class AppMenuComponent extends TiniComponent {
                 </ul>
               </li>
             `}
-        ${!this.components.length
+        ${!this.componentsGroup.length
           ? nothing
           : html`
               <li>
                 <strong class="title">Components</strong>
                 <ul>
-                  ${this.components.map(
+                  ${this.componentsGroup.map(
                     ({title, href}) => html`
                       <li><tini-link href=${href}>${title}</tini-link></li>
                     `
@@ -99,13 +122,13 @@ export class AppMenuComponent extends TiniComponent {
                 </ul>
               </li>
             `}
-        ${!this.icons.length
+        ${!this.iconsGroup.length
           ? nothing
           : html`
               <li>
                 <strong class="title">Icons</strong>
                 <ul>
-                  ${this.icons.map(
+                  ${this.iconsGroup.map(
                     ({title, href}) => html`
                       <li><tini-link href=${href}>${title}</tini-link></li>
                     `
@@ -128,17 +151,13 @@ export class AppMenuComponent extends TiniComponent {
       list-style: none;
     }
 
-    ul > li > ul {
-      margin-left: 1rem;
-    }
-
     li {
       padding: 0.75rem 1rem;
-    }
 
-    li .title {
-      display: block;
-      margin-bottom: 0.5rem;
+      .title {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
     }
 
     tini-link::part(link) {

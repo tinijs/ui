@@ -1,13 +1,15 @@
 import {TiniComponent, html} from '@tinijs/core';
 import {createRouter} from '@tinijs/router';
 
+import {Configurable} from './configurable';
 import {initTheme} from './helpers/theme';
-import routes from './routes';
 
 import './layouts/default';
 
 export class AppRootTemplate extends TiniComponent {
-  public readonly $router = createRouter(routes, {linkTrigger: true});
+  public readonly $router = createRouter(Configurable.getOption('routes'), {
+    linkTrigger: true,
+  });
 
   onCreate() {
     initTheme();
