@@ -5,8 +5,8 @@ import {
   linkBases,
   textBases,
   codeBases,
-} from '@tinijs/ui/bases';
-import {TiniBoxComponent} from '@tinijs/ui/components/box';
+  TiniBoxComponent,
+} from '@tinijs/ui';
 
 import {AppPageComponent} from '../../components/page';
 import {AppSectionComponent} from '../../components/section';

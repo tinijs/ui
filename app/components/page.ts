@@ -19,7 +19,7 @@ import {
   textBases,
   buttonBases,
   codeBases,
-} from '@tinijs/ui/bases';
+} from '@tinijs/ui';
 
 import {
   LIB_VERSION,
@@ -169,7 +169,7 @@ export class AppPageComponent extends TiniComponent {
     const {nameClass} = this.nameVariants;
     return `import {Page} from '@tinijs/core';
 
-import {${nameClass}} from '@tinijs/ui/${this.name}';
+import {${nameClass}} from '@tinijs/ui';
 
 @Page({
   components: [
@@ -191,7 +191,7 @@ import '@tinijs/ui-${this.soulName}/components/${this.name}.include';
  */
 import {useComponents} from '@tinijs/core';
 
-import {${nameClass}} from '@tinijs/ui-${this.soulName}/components/${this.name}';
+import {${nameClass}} from '@tinijs/ui-${this.soulName}';
 
 useComponents([
   ${nameClass}

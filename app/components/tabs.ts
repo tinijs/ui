@@ -3,14 +3,12 @@ import {
   TiniComponent,
   Input,
   classMap,
-  unsafeHTML,
   html,
   css,
   nothing,
   stylingWithBases,
 } from '@tinijs/core';
-import {commonBases, buttonBases} from '@tinijs/ui/bases';
-import {TiniIconComponent} from '@tinijs/ui/components/icon';
+import {commonBases, buttonBases, TiniIconComponent} from '@tinijs/ui';
 
 export interface TabItem {
   name: string;

@@ -12,8 +12,8 @@ import {
   headingsBases,
   linkBases,
   textBases,
-} from '@tinijs/ui/bases';
-import {TiniLinkComponent} from '@tinijs/ui/components/link';
+  TiniLinkComponent,
+} from '@tinijs/ui';
 
 import routes from '../routes';
 

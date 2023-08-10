@@ -8,7 +8,7 @@ import {
   stylingWithBases,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
-import {commonBases, linkBases, buttonBases, formBases} from '@tinijs/ui/bases';
+import {commonBases, linkBases, buttonBases, formBases} from '@tinijs/ui';
 import {IconGithubComponent} from '@tinijs/bootstrap-icons/github';
 import {IconPaletteComponent} from '@tinijs/bootstrap-icons/palette';
 

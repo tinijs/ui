@@ -9,7 +9,7 @@ import {
   Ref,
   stylingWithBases,
 } from '@tinijs/core';
-import {commonBases, codeBases} from '@tinijs/ui/bases';
+import {commonBases, codeBases} from '@tinijs/ui';
 
 import hljs from '../helpers/highlight';
 

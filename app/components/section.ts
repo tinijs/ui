@@ -8,7 +8,7 @@ import {
   repeat,
   stylingWithBases,
 } from '@tinijs/core';
-import {commonBases} from '@tinijs/ui/bases';
+import {commonBases} from '@tinijs/ui';
 
 import {ConsumerPlatforms} from '../consts/main';
 import {
@@ -63,6 +63,10 @@ export class AppSectionComponent extends TiniComponent {
         border-bottom-left-radius: none;
       }
 
+      &::part(title) {
+        color: var(--color-medium);
+      }
+
       &::part(tablinks) {
         align-items: center;
       }
@@ -72,15 +76,18 @@ export class AppSectionComponent extends TiniComponent {
         padding: var(--size-space-0_4x) var(--size-space-0_8x);
         border-radius: var(--size-radius);
         border: var(--size-border) solid transparent;
+        opacity: 0.8;
       }
 
       &::part(tablink):hover {
         background: var(--color-background-tint);
         border-color: var(--color-background-shade);
+        opacity: 1;
       }
 
       &::part(tablink-active) {
         border: var(--size-border) solid var(--color-medium-tint) !important;
+        opacity: 1;
       }
 
       &::part(body) {

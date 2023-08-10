@@ -4,9 +4,9 @@ import {
   headingsBases,
   linkBases,
   textBases,
-} from '@tinijs/ui/bases';
+  TiniIconComponent,
+} from '@tinijs/ui';
 import {dataURI as iconSRC} from '@tinijs/bootstrap-icons/heart-fill.source';
-import {TiniIconComponent} from '@tinijs/ui/components/icon';
 
 import {AppPageComponent} from '../../components/page';
 import {AppSectionComponent} from '../../components/section';

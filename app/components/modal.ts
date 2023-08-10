@@ -18,8 +18,8 @@ import {
   linkBases,
   textBases,
   codeBases,
-} from '@tinijs/ui/bases';
-import {TiniButtonComponent} from '@tinijs/ui/components/button';
+  TiniButtonComponent,
+} from '@tinijs/ui';
 
 export const enum ModalKinds {
   Bare = 'bare',

@@ -13,9 +13,9 @@ import {
   linkBases,
   textBases,
   codeBases,
-} from '@tinijs/ui/bases';
-import {TiniBoxComponent} from '@tinijs/ui/components/box';
-import {TiniIconComponent} from '@tinijs/ui/components/icon';
+  TiniBoxComponent,
+  TiniIconComponent,
+} from '@tinijs/ui';
 
 export const APP_ICON_CONTENT = 'app-icon-content';
 @Component({

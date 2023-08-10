@@ -14,8 +14,13 @@ import {
   nothing,
 } from '@tinijs/core';
 import {IconCodeComponent} from '@tinijs/bootstrap-icons/code';
-import {commonBases, buttonBases, codeBases, formBases} from '@tinijs/ui/bases';
-import {TiniButtonComponent} from '@tinijs/ui/components/button';
+import {
+  commonBases,
+  buttonBases,
+  codeBases,
+  formBases,
+  TiniButtonComponent,
+} from '@tinijs/ui';
 
 import {AppCodeComponent} from './code';
 import {AppModalComponent} from './modal';
@@ -220,7 +225,10 @@ export class AppSkinEditorComponent extends TiniComponent {
       padding: var(--size-space-0_5x);
 
       .show-code {
-        width: 100%;
+        &,
+        &::part(button) {
+          width: 100%;
+        }
 
         span {
           margin-left: var(--size-space-0_5x);

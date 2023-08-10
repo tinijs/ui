@@ -1,10 +1,5 @@
 import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
-import {
-  commonBases,
-  headingsBases,
-  linkBases,
-  textBases,
-} from '@tinijs/ui/bases';
+import {commonBases, headingsBases, linkBases, textBases} from '@tinijs/ui';
 
 @Page({
   name: 'app-page-guides-customization',

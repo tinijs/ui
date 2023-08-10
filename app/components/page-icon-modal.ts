@@ -16,7 +16,7 @@ import {
   linkBases,
   textBases,
   codeBases,
-} from '@tinijs/ui/bases';
+} from '@tinijs/ui';
 
 import {IconsImportMethods} from '../consts/main';
 import {mainStore} from '../stores/main';
@@ -104,7 +104,7 @@ export class AppPageIconModalComponent extends TiniComponent {
 
     const tiniJSCode = `import {Component} from '@tinijs/core';
 
-import {${nameClass}} from '${packName}/${iconName}';
+import {${nameClass}} from '${packName}';
 
 @Component({
   components: [
@@ -123,7 +123,7 @@ import '${packName}/${iconName}.include';
  */
 import {useComponents} from '@tinijs/core';
 
-import {${nameClass}} from '${packName}/${iconName}';
+import {${nameClass}} from '${packName}';
 
 useComponents([
   ${nameClass}

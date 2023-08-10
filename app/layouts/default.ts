@@ -1,6 +1,5 @@
 import {Layout, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
-
-import {commonBases} from '@tinijs/ui/bases';
+import {commonBases} from '@tinijs/ui';
 
 import {AppHeaderComponent} from '../components/header';
 import {AppMenuComponent} from '../components/menu';

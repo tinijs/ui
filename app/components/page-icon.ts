@@ -19,7 +19,7 @@ import {
   buttonBases,
   codeBases,
   formBases,
-} from '@tinijs/ui/bases';
+} from '@tinijs/ui';
 
 import {GITHUB_ICONS_REPO_URL} from '../consts/main';
 import {get} from '../helpers/http';
