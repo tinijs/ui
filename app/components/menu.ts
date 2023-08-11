@@ -55,10 +55,8 @@ export class AppMenuComponent extends TiniComponent {
       for (const groupName of this.GROUP_NAMES) {
         if (
           path !== '**' &&
-          (
-            ~path.indexOf(`${groupName}/`) ||
-            (groupName === 'top' && pathSegments.length < 2)
-          )
+          (~path.indexOf(`${groupName}/`) ||
+            (groupName === 'top' && pathSegments.length < 2))
         ) {
           (this as any)[`${groupName}Group`]?.push({
             title: linkTitle,

@@ -1,16 +1,18 @@
 import {css} from 'lit';
 
 export default css`
-  :host {
-    display: block;
-    width: 100%;
-    container-type: inline-size;
-  }
-
   *,
   *::before,
-  *::after,
-  :host {
+  *::after {
     box-sizing: border-box;
+  }
+
+  :host {
+    display: block;
+    container-type: inline-size;
+    margin: 0;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
   }
 `;

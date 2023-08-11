@@ -63,9 +63,7 @@ export class AppPageComponentsBox extends TiniComponent {
                 >Here is some content</tini-box
               >
             </tini-box>
-            <tini-box background="primary-shade"
-              >Here is some content</tini-box
-            >
+            <tini-box background="primary-shade">Here is some content</tini-box>
             <tini-box background="primary-shade-2"
               >Here is some content</tini-box
             >
@@ -248,9 +246,7 @@ export class AppPageComponentsBox extends TiniComponent {
             <tini-box background="gradient-medium"
               >Here is some content</tini-box
             >
-            <tini-box background="gradient-dark"
-              >Here is some content</tini-box
-            >
+            <tini-box background="gradient-dark">Here is some content</tini-box>
           </div>
         </app-section>
 

@@ -103,7 +103,9 @@ export class AppPageComponentsText extends TiniComponent {
             <tini-text color="gradient-primary-shade"
               >Gradient Primary Shade</tini-text
             >
-            <tini-text color="gradient-primary-tint">Gradient Primary Tint</tini-text>
+            <tini-text color="gradient-primary-tint"
+              >Gradient Primary Tint</tini-text
+            >
           </div>
         </app-section>
 

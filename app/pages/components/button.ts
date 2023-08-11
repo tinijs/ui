@@ -281,7 +281,9 @@ export class AppPageComponentsButton extends TiniComponent {
             <p>Forced text colors.</p>
           </div>
           <div slot="code">
-            <tini-button textColor="primary">Default background / Primary text</tini-button>
+            <tini-button textColor="primary"
+              >Default background / Primary text</tini-button
+            >
             <tini-button color="background" textColor="foreground"
               >Background background / Foregorund text</tini-button
             >
