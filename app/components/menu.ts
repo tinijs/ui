@@ -60,7 +60,7 @@ export class AppMenuComponent extends TiniComponent {
         ) {
           (this as any)[`${groupName}Group`]?.push({
             title: linkTitle,
-            href: path,
+            href: path || '/',
           });
           break;
         }

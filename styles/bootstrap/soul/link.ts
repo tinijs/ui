@@ -45,7 +45,7 @@ export const linkStyle = css`
   }
 
   /*
-   * color="..."
+   * [color]
    */
 
   ${generateColorVaries(
@@ -58,7 +58,7 @@ export const linkStyle = css`
 
   ${generateGradientVaries(
     ({name, gradient}) => `
-    .color-gradient-${name} {
+    .color-${name} {
       background: ${gradient};
       -webkit-background-clip: text;
 	    -webkit-text-fill-color: transparent;
@@ -67,6 +67,5 @@ export const linkStyle = css`
   )}
 `;
 
-export function linkScript(host: HTMLElement) {}
-
-export function linkUnscript(host: HTMLElement) {}
+export const linkScript = undefined;
+export const linkUnscript = undefined;

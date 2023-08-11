@@ -4,7 +4,9 @@ import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined';
 import {ColorsAndGradients} from '@tinijs/core';
 
-export const TINI_LINK = 'tini-link';
+export const LINK = 'link';
+export const TINI_LINK = `tini-${LINK}`;
+
 /* UseBases(common) */
 export class TiniLinkComponent extends LitElement {
   static readonly defaultTagName = TINI_LINK;
@@ -21,7 +23,7 @@ export class TiniLinkComponent extends LitElement {
   private mainClasses: ClassInfo = {};
   protected willUpdate() {
     this.mainClasses = {
-      link: true,
+      [LINK]: true,
       [`color-${this.color}`]: !!this.color,
     };
   }
@@ -29,7 +31,7 @@ export class TiniLinkComponent extends LitElement {
   protected render() {
     return html`
       <a
-        part="link"
+        part=${LINK}
         class=${classMap(this.mainClasses)}
         href=${this.href || '#'}
         target=${ifDefined(this.target)}

@@ -10,14 +10,14 @@ export const enum ConsumerPlatforms {
 }
 
 export const enum ImportMethods {
-  TiniJS = 'TiniJS Framework',
-  Others = 'Other Frameworks',
+  Tini = 'Tini CLI',
+  Specific = 'Specific Package',
   Standalone = 'Standalone/CDN',
 }
 
 export const enum IconsImportMethods {
-  TiniJS = ImportMethods.TiniJS,
-  Others = ImportMethods.Others,
+  Tini = 'Tini Framework',
+  Others = 'Other Frameworks',
   Standalone = ImportMethods.Standalone,
   DataURI = 'Base64 URI',
   SVG = 'SVG Code',

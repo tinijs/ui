@@ -3,7 +3,9 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ColorsAndGradients, FontTypes, FontSizeFactors} from '@tinijs/core';
 
-export const TINI_TEXT = 'tini-text';
+export const TEXT = 'text';
+export const TINI_TEXT = `tini-${TEXT}`;
+
 /* UseBases(common) */
 export class TiniTextComponent extends LitElement {
   static readonly defaultTagName = TINI_TEXT;
@@ -15,7 +17,7 @@ export class TiniTextComponent extends LitElement {
   private mainClasses: ClassInfo = {};
   protected willUpdate() {
     this.mainClasses = {
-      text: true,
+      [TEXT]: true,
       [`color-${this.color}`]: !!this.color,
       [`font-${this.font}`]: !!this.font,
       [`size-${this.size}`]: !!this.size,
@@ -24,7 +26,7 @@ export class TiniTextComponent extends LitElement {
 
   protected render() {
     return html`
-      <span part="text" class=${classMap(this.mainClasses)}>
+      <span part=${TEXT} class=${classMap(this.mainClasses)}>
         <slot></slot>
       </span>
     `;

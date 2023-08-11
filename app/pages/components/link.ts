@@ -31,12 +31,7 @@ import {AppSectionComponent} from '../../components/section';
 export class AppPageComponentsLink extends TiniComponent {
   protected render() {
     return html`
-      <app-component-page
-        titleText="Links"
-        packageName="@tinijs/ui"
-        name="link"
-        path="components/link"
-      >
+      <app-component-page titleText="Links" name="link" path="components/link">
         <div slot="description">Link.</div>
 
         <app-section class="default">

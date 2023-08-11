@@ -52,7 +52,7 @@ export class AppIconModalComponent extends TiniComponent {
   static readonly defaultTagName = APP_ICON_MODAL;
 
   private readonly ICONS_IMPORT_TAB_ITEMS: TabItem[] = [
-    {name: IconsImportMethods.TiniJS},
+    {name: IconsImportMethods.Tini},
     {name: IconsImportMethods.Others},
     {name: IconsImportMethods.Standalone},
     {name: IconsImportMethods.DataURI},
@@ -96,29 +96,31 @@ export class AppIconModalComponent extends TiniComponent {
 
     const tiniJSCode = `import {Component} from '@tinijs/core';
 
+// 1. import the component
 import {${nameClass}} from '${packName}';
 
 @Component({
   components: [
-    ${nameClass}
+    ${nameClass}, // 2. register the component
   ]
 });
 export class MyComponent extends TiniComponent {}`;
 
     const othersCode = `/*
- * Option 1: include in your component
+ * Option I: include in your component
  */
 import '${packName}/${iconName}.include';
 
 /*
- * Option 2: import as a shared bundle (if your bundler supports it)
+ * Option II: import as a shared bundle (if your bundler supports it)
  */
 import {useComponents} from '@tinijs/core';
 
+// 1. import the component
 import {${nameClass}} from '${packName}';
 
 useComponents([
-  ${nameClass}
+  ${nameClass}, // 2. register the component
 ]);
 `;
 
@@ -126,8 +128,10 @@ useComponents([
 
     const dataURICode = `import {html} from 'lit';
 
+// 1. import the data URI
 import {dataURI as ${nameVar}URI} from '${packName}/${iconName}.source';
 
+// 2. use it as background image or image src
 html\`
   <i style="background-image: url(\$\{${nameVar}URI\})"></i>
   <img src=\$\{${nameVar}URI\} />
@@ -136,13 +140,14 @@ html\`
 
     const svgCode = `import {html} from 'lit';
 import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
-  
+
+// 1. import the code
 import {code as ${nameVar}Code} from '${packName}/${iconName}.source';
 
-// render
+// 2a. render
 html\`<div class="container">\$\{unsafeSVG(${nameVar}Code)\}</div>\`;
 
-// inject
+// 2b. or inject
 containerEl.innerHTML = ${nameVar}Code;
 `;
     const svgPreviewCode = window.atob(base64Content);
@@ -217,43 +222,45 @@ containerEl.innerHTML = ${nameVar}Code;
                       @change=${({detail}: CustomEvent<{name: string}>) =>
                         mainStore.commit('referIconsImport', detail.name)}
                     >
-                      <div data-tab=${IconsImportMethods.TiniJS}>
-                        <p><strong>Use with TiniJS framework</strong></p>
+                      <div data-tab=${IconsImportMethods.Tini}>
+                        <p>For the Tini framework.</p>
                         <app-code .code=${tiniJSCode}></app-code>
                       </div>
 
                       <div data-tab=${IconsImportMethods.Others}>
-                        <p>
-                          <strong
-                            >Use with Vue, React, Angular, Svelte, ...</strong
-                          >
-                        </p>
+                        <p>For Vue, React, Angular, Svelte, ...</p>
                         <app-code .code=${othersCode}></app-code>
                       </div>
 
                       <div data-tab=${IconsImportMethods.Standalone}>
-                        <p><strong>Use the standalone package</strong></p>
-                        <app-code .code=${standaloneCode}></app-code>
                         <p>
                           Include the standalone version in any HTML page from a
-                          public CDN, but this method is
-                          <strong>not recommended</strong> because the
-                          standalone component has the soul baked in and is
-                          usually bigger in size compares to the TS/ESM version.
+                          public CDN:
+                        </p>
+                        <app-code .code=${standaloneCode}></app-code>
+                        <p>
+                          <strong>Note that</strong>: this method is
+                          <em>not recommended</em> because the standalone
+                          component is usually bigger in size compares to the
+                          TS/ESM version.
                         </p>
                       </div>
 
                       <div data-tab=${IconsImportMethods.DataURI}>
-                        <p><strong>Use the data URI</strong></p>
+                        <p>Use the data URI</p>
                         <app-code .code=${dataURICode}></app-code>
                       </div>
 
                       <div data-tab=${IconsImportMethods.SVG}>
-                        <p><strong>Use the code</strong> (SVG icons only)</p>
+                        <p>Use the code (SVG icons only).</p>
                         <p>
                           SVG codes built using the
-                          <a href="#">@tinijs/cli</a> are
-                          <strong>sanitized</strong> and
+                          <a
+                            href="https://github.com/tinijs/cli"
+                            target="_blank"
+                            >official CLI</a
+                          >
+                          are <strong>sanitized</strong> and
                           <strong>optimized</strong>, please always review the
                           code before inject into your HTML.
                         </p>
@@ -263,7 +270,7 @@ containerEl.innerHTML = ${nameVar}Code;
                       </div>
 
                       <div data-tab=${IconsImportMethods.URL}>
-                        <p><strong>Use the direct link</strong></p>
+                        <p>Use the direct link.</p>
                         <app-code .code=${urlCode}></app-code>
                       </div>
                     </app-tabs>
@@ -274,6 +281,7 @@ containerEl.innerHTML = ${nameVar}Code;
                   .src=${iconSRC}
                   .preprocessCode=${this.PREPROCESS_CODE}
                   .codeBuildContext=${names}
+                  .noVariants=${this.noVariants}
                 ></app-icon-page-content>
               </div>
             `}

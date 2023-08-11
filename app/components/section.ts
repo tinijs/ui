@@ -65,6 +65,7 @@ export class AppSectionComponent extends TiniComponent {
         .map(line =>
           line
             .replace(trimSpaces, '')
+            .replace(/<!--\?lit\$([\s\S]*?)\$-->/g, '')
             .replace(/<!-- {2}-->/g, '')
             .replace(/<!--/g, '\n<!--')
         )
@@ -138,10 +139,6 @@ export class AppSectionComponent extends TiniComponent {
       &::part(head-expanded) {
         border-bottom-right-radius: none;
         border-bottom-left-radius: none;
-      }
-
-      &::part(title) {
-        color: var(--color-medium);
       }
 
       &::part(tablinks) {

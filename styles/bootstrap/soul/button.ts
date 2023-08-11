@@ -17,15 +17,14 @@ export const buttonStyle = css`
     --button-hover-brightness: 1.1;
     --button-active-brightness: 0.95;
     --button-disabled-opacity: 0.5
-      /* [B] Dimmer or brighter to indicate the click action */;
+      /* Dimmer or brighter to indicate the click action */;
     --button-focus-visible-shadow-size: var(--size-md-0_3x)
-      /* [B] Size of the shadow while focusing */;
+      /* Size of the shadow while focusing */;
     --button-focus-visible-shadow-color: color-mix(
-        in oklab,
-        var(--color-foreground),
-        transparent 70%
-      )
-      /* [B] */;
+      in oklab,
+      var(--color-foreground),
+      transparent 70%
+    );
     display: inline;
   }
 
@@ -87,7 +86,7 @@ export const buttonStyle = css`
   }
 
   /*
-   * color="..."
+   * [color]
    */
 
   ${generateColorVaries(
@@ -107,7 +106,7 @@ export const buttonStyle = css`
 
   ${generateGradientVaries(
     ({name, gradient, color, contrast}) => `
-    .bg-gradient-${name} {
+    .bg-${name} {
       --button-background: ${gradient};
       --button-color: ${contrast};
       --button-hover-background: ${gradient};
@@ -119,7 +118,7 @@ export const buttonStyle = css`
 
 
   /*
-   * size="..."
+   * [size]
    */
 
   ${generateSizeVaries(
@@ -135,7 +134,7 @@ export const buttonStyle = css`
 
 
   /*
-   * justify="..."
+   * [justify]
    */
 
   ${generateJustifyVaries(
@@ -147,6 +146,5 @@ export const buttonStyle = css`
   )}
 `;
 
-export function buttonScript(host: HTMLElement) {}
-
-export function buttonUnscript(host: HTMLElement) {}
+export const buttonScript = undefined;
+export const buttonUnscript = undefined;

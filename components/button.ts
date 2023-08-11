@@ -3,7 +3,9 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ColorsAndGradients, Colors, Sizes, JustifyContents} from '@tinijs/core';
 
-export const TINI_BUTTON = 'tini-button';
+export const BUTTON = 'button';
+export const TINI_BUTTON = `tini-${BUTTON}`;
+
 /* UseBases(common) */
 export class TiniButtonComponent extends LitElement {
   static readonly defaultTagName = TINI_BUTTON;
@@ -22,7 +24,7 @@ export class TiniButtonComponent extends LitElement {
   private mainClasses: ClassInfo = {};
   protected willUpdate() {
     this.mainClasses = {
-      button: true,
+      [BUTTON]: true,
       [`bg-${this.color}`]: !!this.color,
       [`color-${this.textColor}`]: !!this.textColor,
       [`size-${this.size}`]: !!this.size,
@@ -32,7 +34,7 @@ export class TiniButtonComponent extends LitElement {
 
   protected render() {
     return html`<button
-      part="button"
+      part=${BUTTON}
       class=${classMap(this.mainClasses)}
       ?disabled=${this.disabled}
     >

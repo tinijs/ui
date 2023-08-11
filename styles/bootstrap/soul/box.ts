@@ -38,7 +38,7 @@ export const boxStyle = css`
   }
 
   /*
-   * color="..."
+   * [color]
    */
 
   ${generateColorVaries(
@@ -47,12 +47,17 @@ export const boxStyle = css`
       --box-background: ${color};
       --box-color: ${contrast};
     }
+
+    :host([textColor="${name}"]),
+    .color-${name} {
+      --box-color: ${color} !important;
+    }
   `
   )}
 
   ${generateGradientVaries(
     ({name, gradient, contrast}) => `
-    .bg-gradient-${name} {
+    .bg-${name} {
       --box-background: ${gradient};
       --box-color: ${contrast};
     }
@@ -60,6 +65,5 @@ export const boxStyle = css`
   )}
 `;
 
-export function boxScript(host: HTMLElement) {}
-
-export function boxUnscript(host: HTMLElement) {}
+export const boxScript = undefined;
+export const boxUnscript = undefined;

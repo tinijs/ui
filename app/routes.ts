@@ -39,16 +39,6 @@ export const componentsRoutes: Route[] = [
     action: () => import('./pages/components/text'),
   },
   {
-    path: 'components/box',
-    component: 'app-page-components-box',
-    action: () => import('./pages/components/box'),
-  },
-  {
-    path: 'components/button',
-    component: 'app-page-components-button',
-    action: () => import('./pages/components/button'),
-  },
-  {
     path: 'components/link',
     component: 'app-page-components-link',
     action: () => import('./pages/components/link'),
@@ -57,6 +47,16 @@ export const componentsRoutes: Route[] = [
     path: 'components/icon',
     component: 'app-page-components-icon',
     action: () => import('./pages/components/icon'),
+  },
+  {
+    path: 'components/box',
+    component: 'app-page-components-box',
+    action: () => import('./pages/components/box'),
+  },
+  {
+    path: 'components/button',
+    component: 'app-page-components-button',
+    action: () => import('./pages/components/button'),
   },
 ];
 

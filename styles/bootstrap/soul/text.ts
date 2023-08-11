@@ -25,7 +25,7 @@ export const textStyle = css`
   }
 
   /*
-   * color="..."
+   * [color]
    */
 
   ${generateColorVaries(
@@ -38,7 +38,7 @@ export const textStyle = css`
 
   ${generateGradientVaries(
     ({name, gradient}) => `
-    .color-gradient-${name} {
+    .color-${name} {
       background: ${gradient};
       -webkit-background-clip: text;
 	    -webkit-text-fill-color: transparent;
@@ -47,7 +47,7 @@ export const textStyle = css`
   )}
 
   /*
-   * font="..."
+   * [font]
    */
 
   ${generateFontTypeVaries(
@@ -60,7 +60,7 @@ export const textStyle = css`
   )}
 
   /*
-   * size="..."
+   * [size]
    */
 
   ${generateFontSizeVaries(
@@ -72,6 +72,5 @@ export const textStyle = css`
   )}
 `;
 
-export function textScript(host: HTMLElement) {}
-
-export function textUnscript(host: HTMLElement) {}
+export const textScript = undefined;
+export const textUnscript = undefined;

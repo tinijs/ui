@@ -43,7 +43,7 @@ export const iconStyle = css`
   }
 
   /*
-   * color="..."
+   * [color]
    */
 
   ${generateColorVaries(
@@ -56,14 +56,14 @@ export const iconStyle = css`
 
   ${generateGradientVaries(
     ({name, gradient}) => `
-    .color-gradient-${name} {
+    .color-${name} {
       --icon-color: ${gradient};
     }
   `
   )}
 
   /*
-   * size="..."
+   * [size]
    */
 
   ${generateSizeVaries(
@@ -76,6 +76,5 @@ export const iconStyle = css`
   )}
 `;
 
-export function iconScript(host: HTMLElement) {}
-
-export function iconUnscript(host: HTMLElement) {}
+export const iconScript = undefined;
+export const iconUnscript = undefined;

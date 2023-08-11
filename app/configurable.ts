@@ -7,6 +7,7 @@ export class Configurable {
     logoUrl: new URL('./assets/logo.svg', import.meta.url).toString(),
     repoUrl: 'https://github.com/tinijs/ui',
     iconsRepoUrl: 'https://github.com/tinijs/icons',
+    packagePrefix: '@tinijs/ui',
     soulList: [
       {
         id: 'bootstrap',

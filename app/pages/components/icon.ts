@@ -37,12 +37,7 @@ export class AppPageComponentsIcon extends TiniComponent {
 
   protected render() {
     return html`
-      <app-component-page
-        titleText="Icons"
-        packageName="@tinijs/ui"
-        name="icon"
-        path="components/icon"
-      >
+      <app-component-page titleText="Icons" name="icon" path="components/icon">
         <div slot="description">A generic icon component.</div>
 
         <app-icon-page-content

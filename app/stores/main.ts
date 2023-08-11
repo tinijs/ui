@@ -7,10 +7,10 @@ import {
 } from '../consts/main';
 
 export const mainStore = createStore({
-  activeSoulId: 'bootstrap',
-  activeSkinId: 'light',
-  referImport: ImportMethods.TiniJS,
+  activeSoulId: 'unknown',
+  activeSkinId: 'unknown',
+  referImport: ImportMethods.Tini,
   referPlatform: ConsumerPlatforms.Tini,
-  referIconsImport: IconsImportMethods.TiniJS,
+  referIconsImport: IconsImportMethods.Tini,
   skinEditorShown: false,
 });

@@ -1,4 +1,12 @@
-import {Page, TiniComponent, html, stylingWithBases} from '@tinijs/core';
+import {
+  Page,
+  TiniComponent,
+  html,
+  css,
+  stylingWithBases,
+  BASE_COLORS,
+  BASE_GRADIENTS,
+} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -33,13 +41,10 @@ import {AppSectionComponent} from '../../components/section';
 export class AppPageComponentsText extends TiniComponent {
   protected render() {
     return html`
-      <app-component-page
-        titleText="Texts"
-        packageName="@tinijs/ui"
-        name="text"
-        path="components/text"
-      >
-        <div slot="description">Text text text.</div>
+      <app-component-page titleText="Texts" name="text" path="components/text">
+        <div slot="description">
+          Create texts with different colors, fonts, sizes ...
+        </div>
 
         <app-section class="default">
           <div slot="content">
@@ -47,93 +52,92 @@ export class AppPageComponentsText extends TiniComponent {
             <p>Default color is <code>foreground</code>.</p>
           </div>
           <div slot="code">
-            <tini-text>This is a text</tini-text>
+            <tini-text>This is a default text</tini-text>
           </div>
         </app-section>
 
-        <app-section class="colors">
-          <div slot="content">
-            <h2>Color Primary</h2>
-          </div>
-          <div slot="code">
-            <tini-text color="primary">Primary</tini-text>
-            <tini-box background="primary">
-              <tini-text color="primary-contrast">Primary Contrast</tini-text>
-            </tini-box>
-            <tini-text color="primary-shade">Primary Shade</tini-text>
-            <tini-text color="primary-shade-2">Primary Shade 2</tini-text>
-            <tini-text color="primary-shade-3">Primary Shade 3</tini-text>
-            <tini-text color="primary-shade-4">Primary Shade 4</tini-text>
-            <tini-text color="primary-shade-5">Primary Shade 5</tini-text>
-            <tini-text color="primary-tint">Primary Tint</tini-text>
-            <tini-text color="primary-tint-2">Primary Tint 2</tini-text>
-            <tini-text color="primary-tint-3">Primary Tint 3</tini-text>
-            <tini-text color="primary-tint-4">Primary Tint 4</tini-text>
-            <tini-text color="primary-tint-5">Primary Tint 5</tini-text>
-          </div>
-        </app-section>
-
-        <app-section class="colors">
-          <div slot="content">
-            <h2>Colors</h2>
-          </div>
-          <div slot="code">
-            <tini-text color="secondary">Secondary</tini-text>
-            <tini-text color="tertiary">Tertiary</tini-text>
-            <tini-text color="success">Success</tini-text>
-            <tini-text color="warning">Warning</tini-text>
-            <tini-text color="danger">Danger</tini-text>
-            <tini-text color="light">Light</tini-text>
-            <tini-text color="medium">Medium</tini-text>
-            <tini-text color="dark">Dark</tini-text>
-          </div>
-        </app-section>
-
-        <app-section class="gradients">
-          <div slot="content">
-            <h2>Gradient Primary</h2>
-          </div>
-          <div slot="code">
-            <tini-text color="gradient-primary">Gradient Primary</tini-text>
-            <tini-box background="primary">
-              <tini-text color="gradient-primary-contrast"
-                >Gradient Primary Contrast</tini-text
-              >
-            </tini-box>
-            <tini-text color="gradient-primary-shade"
-              >Gradient Primary Shade</tini-text
-            >
-            <tini-text color="gradient-primary-tint"
-              >Gradient Primary Tint</tini-text
-            >
-          </div>
-        </app-section>
-
-        <app-section class="gradients">
-          <div slot="content">
-            <h2>Gradients</h2>
-          </div>
-          <div slot="code">
-            <tini-text color="gradient-secondary">Gradient Secondary</tini-text>
-            <tini-text color="gradient-tertiary">Gradient Tertiary</tini-text>
-            <tini-text color="gradient-success">Gradient Success</tini-text>
-            <tini-text color="gradient-warning">Gradient Warning</tini-text>
-            <tini-text color="gradient-danger">Gradient Danger</tini-text>
-            <tini-text color="gradient-light">Gradient Light</tini-text>
-            <tini-text color="gradient-medium">Gradient Medium</tini-text>
-            <tini-text color="gradient-dark">Gradient Dark</tini-text>
-          </div>
-        </app-section>
+        ${BASE_COLORS.map(
+          color => html`
+            <app-section class="colors">
+              <div slot="content">
+                <h2>Color ${color}</h2>
+              </div>
+              <div slot="code">
+                <tini-text color=${color}>Text with ${color} color</tini-text>
+                <tini-text color=${`${color}-shade` as any}
+                  >Text with ${color}-shade color</tini-text
+                >
+                <tini-text color=${`${color}-shade-2` as any}
+                  >Text with ${color}-shade-2 color</tini-text
+                >
+                <tini-text color=${`${color}-shade-3` as any}
+                  >Text with ${color}-shade-3 color</tini-text
+                >
+                <tini-text color=${`${color}-shade-4` as any}
+                  >Text with ${color}-shade-4 color</tini-text
+                >
+                <tini-text color=${`${color}-shade-5` as any}
+                  >Text with ${color}-shade-5 color</tini-text
+                >
+                <tini-text color=${`${color}-tint` as any}
+                  >Text with ${color}-tint color</tini-text
+                >
+                <tini-text color=${`${color}-tint-2` as any}
+                  >Text with ${color}-tint-2 color</tini-text
+                >
+                <tini-text color=${`${color}-tint-3` as any}
+                  >Text with ${color}-tint-3 color</tini-text
+                >
+                <tini-text color=${`${color}-tint-4` as any}
+                  >Text with ${color}-tint-4 color</tini-text
+                >
+                <tini-text color=${`${color}-tint-5` as any}
+                  >Text with ${color}-tint-5 color</tini-text
+                >
+                <tini-box background=${color}>
+                  <tini-text color=${`${color}-contrast` as any}
+                    >Text with ${color}-contrast color</tini-text
+                  >
+                </tini-box>
+              </div>
+            </app-section>
+          `
+        )}
+        ${BASE_GRADIENTS.map(
+          gradient => html`
+            <app-section class="gradients">
+              <div slot="content">
+                <h2>${gradient.replace(/-/g, ' ')}</h2>
+              </div>
+              <div slot="code">
+                <tini-text color=${gradient}
+                  >Text with ${gradient} color</tini-text
+                >
+                <tini-text color=${`${gradient}-shade` as any}
+                  >Text with ${gradient}-shade color</tini-text
+                >
+                <tini-text color=${`${gradient}-tint` as any}
+                  >Text with ${gradient}-tint color</tini-text
+                >
+                <tini-box background=${gradient}>
+                  <tini-text color=${`${gradient}-contrast` as any}
+                    >Text with ${gradient}-contrast color</tini-text
+                  >
+                </tini-box>
+              </div>
+            </app-section>
+          `
+        )}
 
         <app-section class="fonts">
           <div slot="content">
             <h2>Fonts</h2>
           </div>
           <div slot="code">
-            <tini-text font="head">Head text</tini-text>
-            <tini-text font="body">Body text</tini-text>
-            <tini-text font="quote">Quote text</tini-text>
-            <tini-text font="code">Code text</tini-text>
+            <tini-text font="head">Text with Head font</tini-text>
+            <tini-text font="body">Text with Body font</tini-text>
+            <tini-text font="quote">Text with Quote font</tini-text>
+            <tini-text font="code">Text with Code font</tini-text>
           </div>
         </app-section>
 
@@ -171,4 +175,24 @@ export class AppPageComponentsText extends TiniComponent {
       </app-component-page>
     `;
   }
+
+  static styles = css`
+    app-section [slot='content'] h2 {
+      text-transform: capitalize;
+    }
+
+    app-section [slot='code'] {
+      display: flex;
+      flex-flow: column;
+      gap: var(--size-space-0_5x);
+
+      tini-box {
+        width: 375px;
+      }
+    }
+
+    .sizes [slot='code'] {
+      display: block;
+    }
+  `;
 }
