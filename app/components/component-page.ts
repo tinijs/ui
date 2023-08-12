@@ -117,13 +117,13 @@ export class AppComponentPageComponent extends TiniComponent {
 
   async onCreate() {
     // extract soul variables
-    this.soulVariablesMap = await extractCSSVariables(this.soulUrl, [
+    this.soulVariablesMap = await extractCSSVariables(this.buildSoulUrl(), [
       ':host {',
       '}',
     ]);
     // extract component properties
     this.componentProperties = await extractComponentProperties(
-      this.componentUrl
+      this.buildComponentUrl()
     );
   }
 
@@ -131,16 +131,12 @@ export class AppComponentPageComponent extends TiniComponent {
     this.nameVariants = this.buildNameVariants();
     this.importTiniCode = this.buildImportTiniCode();
     this.importSpecificCode = this.buildImportSpecificCode();
-    this.standaloneCode = `<script src="https://cdn.jsdelivr.net/npm/${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}.bundle.js"></script>`;
-    this.articleLink = `${this.referArticleRepoUrl}/blob/main/app/pages/${this.path}.ts`;
-    this.componentLink = `${this.referComponentRepoUrl}/blob/main/components/${this.name}.ts`;
-    this.componentUrl = `${buildGithubRawUrl(
-      this.referComponentRepoUrl
-    )}/main/components/${this.name}.ts`;
-    this.soulLink = `${this.REPO_URL}/blob/main/styles/${this.activeSoulId}/soul/${this.name}.ts`;
-    this.soulUrl = `${buildGithubRawUrl(this.REPO_URL)}/main/styles/${
-      this.activeSoulId
-    }/soul/${this.name}.ts`;
+    this.standaloneCode = this.buildStandaloneCode();
+    this.articleLink = this.buildArticleLink();
+    this.componentLink = this.buildComponentLink();
+    this.componentUrl = this.buildComponentUrl();
+    this.soulLink = this.buildSoulLink();
+    this.soulUrl = this.buildSoulUrl();
   }
 
   private buildNameVariants() {
@@ -157,6 +153,34 @@ export class AppComponentPageComponent extends TiniComponent {
     const nameTag = `${prefix}-${this.name}`;
     const nameClass = `${prefixCapitalized}${nameCapitalized}Component`;
     return {nameCapitalized, nameConst, nameTag, nameClass};
+  }
+
+  private buildStandaloneCode() {
+    return `<script src="https://cdn.jsdelivr.net/npm/${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}.bundle.js"></script>`;
+  }
+
+  private buildArticleLink() {
+    return `${this.referArticleRepoUrl}/blob/main/app/pages/${this.path}.ts`;
+  }
+
+  private buildSoulLink() {
+    return `${this.REPO_URL}/blob/main/styles/${this.activeSoulId}/soul/${this.name}.ts`;
+  }
+
+  private buildSoulUrl() {
+    return `${buildGithubRawUrl(this.REPO_URL)}/main/styles/${
+      this.activeSoulId
+    }/soul/${this.name}.ts`;
+  }
+
+  private buildComponentLink() {
+    return `${this.referComponentRepoUrl}/blob/main/components/${this.name}.ts`;
+  }
+
+  private buildComponentUrl() {
+    return `${buildGithubRawUrl(this.referComponentRepoUrl)}/main/components/${
+      this.name
+    }.ts`;
   }
 
   private buildImportTiniCode() {

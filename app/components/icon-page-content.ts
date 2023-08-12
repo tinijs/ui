@@ -64,7 +64,11 @@ export class AppIconPageContentComponent extends TiniComponent {
         : html`
             ${BASE_COLORS.map(
               color => html`
-                <app-section class="colors">
+                <app-section
+                  class="colors"
+                  .preprocessCode=${this.preprocessCode}
+                  .codeBuildContext=${this.codeBuildContext}
+                >
                   <div slot="content">
                     <h2>Color ${color}</h2>
                   </div>
@@ -124,7 +128,11 @@ export class AppIconPageContentComponent extends TiniComponent {
             )}
             ${BASE_GRADIENTS.map(
               gradient => html`
-                <app-section class="gradients">
+                <app-section
+                  class="gradients"
+                  .preprocessCode=${this.preprocessCode}
+                  .codeBuildContext=${this.codeBuildContext}
+                >
                   <div slot="content">
                     <h2>${gradient.replace(/-/g, ' ')}</h2>
                   </div>

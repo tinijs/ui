@@ -35,6 +35,7 @@ export class AppPageComponentsIcon extends TiniComponent {
   private readonly PART_LIST = [['icon', 'The root part']];
   private readonly PREPROCESS_CODE = (code: string) =>
     code.replace(/\<tini\-icon/g, '<tini-icon src="URI/URL"');
+
   protected render() {
     return html`
       <app-component-page

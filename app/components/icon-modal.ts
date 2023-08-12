@@ -294,6 +294,10 @@ containerEl.innerHTML = ${nameVar}Code;
       display: block;
       width: 100%;
       padding: 0 2rem;
+
+      app-icon-page-content {
+        padding-bottom: 3rem;
+      }
     }
   `;
 }
