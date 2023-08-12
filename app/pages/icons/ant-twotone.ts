@@ -19,10 +19,11 @@ export class AppPageIconsAntTwotone extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Ant Twotone"
+        noVariants
+        titleText="Ant Twotone Icons"
         name="ant-twotone"
         packageName="@tinijs/ant-twotone-icons"
-        .noVariants=${true}
+        homepage="https://ant.design/components/icon"
       ></app-icon-page>
     `;
   }

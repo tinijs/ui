@@ -19,9 +19,10 @@ export class AppPageIconsMaterialOutlined extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Material Outlined"
+        titleText="Material Outlined Icons"
         name="material-outlined"
         packageName="@tinijs/material-outlined-icons"
+        homepage="https://material.io/resources/icons"
       ></app-icon-page>
     `;
   }

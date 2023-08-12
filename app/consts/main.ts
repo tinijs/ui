@@ -1,6 +1,6 @@
 export const OFFICIAL_REPO_URL = 'https://github.com/tinijs/ui';
 
-export const enum ConsumerPlatforms {
+export enum ConsumerPlatforms {
   Tini = 'Tini',
   Vue = 'Vue',
   React = 'React',
@@ -9,13 +9,13 @@ export const enum ConsumerPlatforms {
   HTML = 'HTML',
 }
 
-export const enum ImportMethods {
+export enum ImportMethods {
   Tini = 'Tini CLI',
   Specific = 'Specific Package',
   Standalone = 'Standalone/CDN',
 }
 
-export const enum IconsImportMethods {
+export enum IconsImportMethods {
   Tini = 'Tini Framework',
   Others = 'Other Frameworks',
   Standalone = ImportMethods.Standalone,

@@ -19,9 +19,10 @@ export class AppPageIconsFontawesomeRegular extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Font Awesome Regular"
+        titleText="Font Awesome Regular Icons"
         name="fontawesome-regular"
         packageName="@tinijs/fontawesome-regular-icons"
+        homepage="https://fontawesome.com/icons"
       ></app-icon-page>
     `;
   }

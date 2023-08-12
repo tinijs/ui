@@ -42,7 +42,7 @@ interface Quicklink {
   title: string;
 }
 
-const enum Modes {
+enum Modes {
   Article = 'article',
   Component = 'component',
   Soul = 'soul',
@@ -82,8 +82,8 @@ export class AppComponentPageComponent extends TiniComponent {
   @Input({type: String}) name!: string;
   @Input({type: String}) path!: string;
   @Input({type: String}) titleText?: string;
-  @Input({type: Boolean}) customArticle?: boolean;
-  @Input({type: Boolean}) customComponent?: boolean;
+  @Input({type: Array}) partList?: string[][];
+  @Input({type: String}) customComponentPrefix?: string;
   @Input({type: Object}) prevPage?: Quicklink;
   @Input({type: Object}) nextPage?: Quicklink;
 
@@ -98,31 +98,74 @@ export class AppComponentPageComponent extends TiniComponent {
   @Subscribe(mainStore) @Reactive() private readonly referImport =
     mainStore.referImport;
 
-  private readonly referArticleRepoUrl = this.customArticle
+  private readonly referArticleRepoUrl = this.customComponentPrefix
     ? this.REPO_URL
     : OFFICIAL_REPO_URL;
-  private readonly referComponentRepoUrl = this.customComponent
+  private readonly referComponentRepoUrl = this.customComponentPrefix
     ? this.REPO_URL
     : OFFICIAL_REPO_URL;
 
-  private get nameVariants() {
+  private nameVariants!: ReturnType<typeof this.buildNameVariants>;
+  private importTiniCode!: ReturnType<typeof this.buildImportTiniCode>;
+  private importSpecificCode!: ReturnType<typeof this.buildImportSpecificCode>;
+  private standaloneCode!: string;
+  private articleLink!: string;
+  private componentLink!: string;
+  private componentUrl!: string;
+  private soulLink!: string;
+  private soulUrl!: string;
+
+  async onCreate() {
+    // extract soul variables
+    this.soulVariablesMap = await extractCSSVariables(this.soulUrl, [
+      ':host {',
+      '}',
+    ]);
+    // extract component properties
+    this.componentProperties = await extractComponentProperties(
+      this.componentUrl
+    );
+  }
+
+  onChanges() {
+    this.nameVariants = this.buildNameVariants();
+    this.importTiniCode = this.buildImportTiniCode();
+    this.importSpecificCode = this.buildImportSpecificCode();
+    this.standaloneCode = `<script src="https://cdn.jsdelivr.net/npm/${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}.bundle.js"></script>`;
+    this.articleLink = `${this.referArticleRepoUrl}/blob/main/app/pages/${this.path}.ts`;
+    this.componentLink = `${this.referComponentRepoUrl}/blob/main/components/${this.name}.ts`;
+    this.componentUrl = `${buildGithubRawUrl(
+      this.referComponentRepoUrl
+    )}/main/components/${this.name}.ts`;
+    this.soulLink = `${this.REPO_URL}/blob/main/styles/${this.activeSoulId}/soul/${this.name}.ts`;
+    this.soulUrl = `${buildGithubRawUrl(this.REPO_URL)}/main/styles/${
+      this.activeSoulId
+    }/soul/${this.name}.ts`;
+  }
+
+  private buildNameVariants() {
+    const prefix = (this.customComponentPrefix || 'tini').toLowerCase();
+    const prefixUppercase = prefix.toUpperCase();
+    const prefixCapitalized = prefix[0].toUpperCase() + prefix.slice(1);
     const nameCapitalized = this.name
       .split('-')
-      .map(item => item.charAt(0).toUpperCase() + item.slice(1))
+      .map(item => item[0].toUpperCase() + item.slice(1))
       .join('');
-    const nameConst = `TINI_${this.name.replace(/-/g, '_').toUpperCase()}`;
-    const nameTag = `tini-${this.name}`;
-    const nameClass = `Tini${nameCapitalized}Component`;
+    const nameConst = `${prefixUppercase}_${this.name
+      .replace(/-/g, '_')
+      .toUpperCase()}`;
+    const nameTag = `${prefix}-${this.name}`;
+    const nameClass = `${prefixCapitalized}${nameCapitalized}Component`;
     return {nameCapitalized, nameConst, nameTag, nameClass};
   }
 
-  private get importTiniJSCode() {
+  private buildImportTiniCode() {
     const {nameClass} = this.nameVariants;
     return `import {Page} from '@tinijs/core';
 
 // 1. import the component
 import {${nameClass}} from '${
-      !this.customComponent ? '@tinijs/ui' : this.PACKAGE_PREFIX
+      !this.customComponentPrefix ? '@tinijs/ui' : this.PACKAGE_PREFIX
     }';
 
 @Page({
@@ -133,7 +176,7 @@ import {${nameClass}} from '${
 export class MyPage extends TiniComponent {}`;
   }
 
-  private get importOthersCode() {
+  private buildImportSpecificCode() {
     const {nameClass} = this.nameVariants;
     return `/*
  * Option I: include in your component
@@ -152,46 +195,6 @@ useComponents([
   ${nameClass}, // 2. register the component
 ]);
 `;
-  }
-
-  private get standaloneCode() {
-    return `<script src="https://cdn.jsdelivr.net/npm/${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}.bundle.js"></script>`;
-  }
-
-  private get articleLink() {
-    return `${this.referArticleRepoUrl}/blob/main/app/pages/${this.path}.ts`;
-  }
-
-  private get componentLink() {
-    return `${this.referComponentRepoUrl}/blob/main/components/${this.name}.ts`;
-  }
-
-  private get componentUrl() {
-    return `${buildGithubRawUrl(this.referComponentRepoUrl)}/main/components/${
-      this.name
-    }.ts`;
-  }
-
-  private get soulLink() {
-    return `${this.REPO_URL}/blob/main/styles/${this.activeSoulId}/soul/${this.name}.ts`;
-  }
-
-  private get soulUrl() {
-    return `${buildGithubRawUrl(this.REPO_URL)}/main/styles/${
-      this.activeSoulId
-    }/soul/${this.name}.ts`;
-  }
-
-  async onCreate() {
-    // extract soul variables
-    this.soulVariablesMap = await extractCSSVariables(this.soulUrl, [
-      ':host {',
-      '}',
-    ]);
-    // extract component properties
-    this.componentProperties = await extractComponentProperties(
-      this.componentUrl
-    );
   }
 
   protected async switchMode(mode: AppComponentPageComponent['contentMode']) {
@@ -282,12 +285,12 @@ useComponents([
                   manage <strong>components</strong>, <strong>souls</strong> and
                   <strong>skins</strong> under a single importing endpoint.
                 </p>
-                <app-code .code=${this.importTiniJSCode}></app-code>
+                <app-code .code=${this.importTiniCode}></app-code>
               </div>
 
               <div data-tab=${ImportMethods.Specific}>
                 <p>The specific package only supports one soul at a time.</p>
-                <app-code .code=${this.importOthersCode}></app-code>
+                <app-code .code=${this.importSpecificCode}></app-code>
               </div>
 
               <div data-tab=${ImportMethods.Standalone}>
@@ -388,8 +391,36 @@ useComponents([
                     )}
               </tbody>
             </table>
-            <h3>Parts</h3>
-            <p>// TODO: add the list of parts</p>
+            ${!this.partList
+              ? nothing
+              : html`
+                  <h3>Parts</h3>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Template</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${this.partList.map(
+                        ([name, description]) => html`
+                          <tr>
+                            <td><code>${name}</code></td>
+                            <td>${description}</td>
+                            <td>
+                              <code
+                                >${this.nameVariants.nameTag}::part(${name})
+                                {}</code
+                              >
+                            </td>
+                          </tr>
+                        `
+                      )}
+                    </tbody>
+                  </table>
+                `}
           </div>
         </app-section>
       </div>

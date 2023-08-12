@@ -17,6 +17,7 @@ import {
   linkBases,
   textBases,
   codeBases,
+  TextTypes,
   TiniBoxComponent,
   TiniTextComponent,
 } from '@tinijs/ui';
@@ -43,9 +44,15 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsText extends TiniComponent {
+  private readonly PART_LIST = [['text', 'The root part']];
   protected render() {
     return html`
-      <app-component-page titleText="Texts" name="text" path="components/text">
+      <app-component-page
+        titleText="Texts"
+        name="text"
+        path="components/text"
+        .partList=${this.PART_LIST}
+      >
         <div slot="description">
           Create texts with different colors, fonts, sizes ...
         </div>
@@ -53,10 +60,28 @@ export class AppPageComponentsText extends TiniComponent {
         <app-section class="default">
           <div slot="content">
             <h2>Default</h2>
-            <p>Default color is <code>foreground</code>.</p>
+            <p>
+              The default container tag is <code>span</code>. The default color
+              is <code>foreground</code>.
+            </p>
           </div>
           <div slot="code">
             <tini-text>This is a default text</tini-text>
+          </div>
+        </app-section>
+
+        <app-section class="types">
+          <div slot="content">
+            <h2>Types</h2>
+            <p>Use different tag types.</p>
+          </div>
+          <div slot="code">
+            ${Object.values(TextTypes).map(
+              type =>
+                html`<tini-text type=${type}
+                  >Use the &lt;${type}&gt; tag</tini-text
+                >`
+            )}
           </div>
         </app-section>
 
@@ -184,6 +209,16 @@ export class AppPageComponentsText extends TiniComponent {
                   >Text with ${transform} transform</tini-text
                 >`
             )}
+          </div>
+        </app-section>
+
+        <app-section class="italic-underline">
+          <div slot="content">
+            <h2>Italic and Underline</h2>
+          </div>
+          <div slot="code">
+            <tini-text italic>Text with italic style</tini-text>
+            <tini-text underline>Text with underline decoration</tini-text>
           </div>
         </app-section>
       </app-component-page>

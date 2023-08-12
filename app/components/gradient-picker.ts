@@ -30,8 +30,8 @@ export const APP_GRADIENT_PICKER = 'app-gradient-picker';
 export class AppGradientPickerComponent extends TiniComponent {
   static readonly defaultTagName = APP_GRADIENT_PICKER;
 
-  @Input() name!: string;
-  @Input() value = 'none';
+  @Input({type: String}) name!: string;
+  @Input({type: String}) value = 'none';
 
   @Output() change!: EventEmitter<string>;
 

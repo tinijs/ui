@@ -19,9 +19,10 @@ export class AppPageIconsMaterialSharp extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Material Sharp"
+        titleText="Material Sharp Icons"
         name="material-sharp"
         packageName="@tinijs/material-sharp-icons"
+        homepage="https://material.io/resources/icons"
       ></app-icon-page>
     `;
   }

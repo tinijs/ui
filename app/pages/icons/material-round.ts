@@ -19,9 +19,10 @@ export class AppPageIconsMaterialRound extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Material Round"
+        titleText="Material Round Icons"
         name="material-round"
         packageName="@tinijs/material-round-icons"
+        homepage="https://material.io/resources/icons"
       ></app-icon-page>
     `;
   }

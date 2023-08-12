@@ -19,9 +19,10 @@ export class AppPageIconsIonic extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Ionic"
+        titleText="Ionic Icons"
         name="ionic"
         packageName="@tinijs/ionic-icons"
+        homepage="https://ionic.io/ionicons"
       ></app-icon-page>
     `;
   }

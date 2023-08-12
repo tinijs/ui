@@ -35,8 +35,8 @@ export const APP_ICON_PAGE_CONTENT = 'app-icon-page-content';
 export class AppIconPageContentComponent extends TiniComponent {
   static readonly defaultTagName = APP_ICON_PAGE_CONTENT;
 
-  @Input() src!: string;
-  @Input() noVariants = false;
+  @Input({type: String}) src!: string;
+  @Input({type: Boolean}) noVariants = false;
   @Input({type: Object}) preprocessCode?: any;
   @Input({type: Object}) codeBuildContext?: any;
 

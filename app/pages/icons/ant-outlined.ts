@@ -19,9 +19,10 @@ export class AppPageIconsAntOutlined extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Ant Outlined"
+        titleText="Ant Outlined Icons"
         name="ant-outlined"
         packageName="@tinijs/ant-outlined-icons"
+        homepage="https://ant.design/components/icon"
       ></app-icon-page>
     `;
   }

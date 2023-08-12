@@ -19,9 +19,10 @@ export class AppPageIconsFontawesomeSolid extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Font Awesome Solid"
+        titleText="Font Awesome Solid Icons"
         name="fontawesome-solid"
         packageName="@tinijs/fontawesome-solid-icons"
+        homepage="https://fontawesome.com/icons"
       ></app-icon-page>
     `;
   }

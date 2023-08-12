@@ -281,7 +281,7 @@ containerEl.innerHTML = ${nameVar}Code;
                   .src=${iconSRC}
                   .preprocessCode=${this.PREPROCESS_CODE}
                   .codeBuildContext=${names}
-                  .noVariants=${this.noVariants}
+                  ?noVariants=${this.noVariants}
                 ></app-icon-page-content>
               </div>
             `}

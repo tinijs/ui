@@ -68,14 +68,19 @@ export class AppSkinEditorComponent extends TiniComponent {
   private changedVariablesMap: Map<string, string> = new Map();
   private skinTitle = 'Untitled';
 
-  private get currentTheme() {
-    const {theme} = document.body.dataset;
-    if (!theme) throw new Error('Invalid theme setup.');
-    const [soul, skin] = theme.split('/');
-    return {soul, skin};
+  private groupedSkinVariables!: ReturnType<
+    typeof this.buildGroupedSkinVariables
+  >;
+
+  async onCreate() {
+    await this.fetchSkinVariables();
   }
 
-  private get groupedSkinVariables() {
+  onChanges() {
+    this.groupedSkinVariables = this.buildGroupedSkinVariables();
+  }
+
+  private buildGroupedSkinVariables() {
     const result = [
       {name: 'Fonts', items: []},
       {name: 'Colors', items: []},
@@ -118,12 +123,15 @@ export class AppSkinEditorComponent extends TiniComponent {
     return result;
   }
 
-  async onCreate() {
-    await this.fetchSkinVariables();
+  private getCurrentTheme() {
+    const {theme} = document.body.dataset;
+    if (!theme) throw new Error('Invalid theme setup.');
+    const [soul, skin] = theme.split('/');
+    return {soul, skin};
   }
 
   private async fetchSkinVariables() {
-    const {soul, skin} = this.currentTheme;
+    const {soul, skin} = this.getCurrentTheme();
     this.variablesMap = await extractCSSVariables(
       `${buildGithubRawUrl(
         this.REPO_URL
@@ -181,7 +189,10 @@ export class AppSkinEditorComponent extends TiniComponent {
         ${!googleFontCode
           ? nothing
           : html`
-              <p>Include Google Font stylesheet globally:</p>
+              <p>
+                Include Google Font stylesheet globally, you can add more
+                weights or include italics if needed:
+              </p>
               <app-code .code=${googleFontCode}></app-code>
             `}
         <p>

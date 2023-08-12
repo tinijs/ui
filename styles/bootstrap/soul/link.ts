@@ -54,6 +54,22 @@ export const linkStyle = css`
   }
 
   /*
+   * [?italic]
+   */
+
+  .italic {
+    font-style: italic;
+  }
+
+  /*
+   * [?underline]
+   */
+
+  .underline {
+    text-decoration: underline;
+  }
+
+  /*
    * [color]
    */
 

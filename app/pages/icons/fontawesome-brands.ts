@@ -19,9 +19,10 @@ export class AppPageIconsFontawesomeBrands extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Font Awesome Brands"
+        titleText="Font Awesome Brands Icons"
         name="fontawesome-brands"
         packageName="@tinijs/fontawesome-brands-icons"
+        homepage="https://fontawesome.com/icons"
       ></app-icon-page>
     `;
   }

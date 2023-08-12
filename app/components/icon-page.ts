@@ -6,6 +6,7 @@ import {
   html,
   css,
   repeat,
+  nothing,
   ref,
   createRef,
   Ref,
@@ -51,24 +52,13 @@ export class AppIconPageComponent extends TiniComponent {
   @Input({type: String}) declare name: string;
   @Input({type: String}) declare packageName: string;
   @Input({type: String}) declare titleText?: string;
+  @Input({type: String}) declare homepage?: string;
   @Input({type: Boolean}) declare noVariants?: boolean;
 
   @Reactive() private currentPage = 1;
   @Reactive() private filterQuery?: string;
 
   private modalRef: Ref<AppIconModalComponent> = createRef();
-
-  private get installCode() {
-    return `npm i ${this.packageName}`;
-  }
-
-  private get indexJsonPath() {
-    return `https://unpkg.com/${this.packageName}@latest/index.json`;
-  }
-
-  private get changelogsUrl() {
-    return `${this.ICONS_REPO_URL}/blob/main/changelogs/${this.packageName}`;
-  }
 
   private buildUrl([fileName, base64Content]: IconDef) {
     const fileExt = fileName.split('.').pop() as string;
@@ -82,29 +72,44 @@ export class AppIconPageComponent extends TiniComponent {
   }
 
   @Reactive() private data?: {version: string; items: Array<IconDef>};
+
   private totalPages?: number;
+  private displayedItems?: Array<IconDef>;
+
+  private installCode!: ReturnType<typeof this.buildInstallCode>;
+  private changelogsUrl!: ReturnType<typeof this.buildChangelogsUrl>;
 
   async onCreate() {
-    this.data = await get(this.indexJsonPath);
+    this.data = await get(
+      `https://unpkg.com/${this.packageName}@latest/index.json`
+    );
     this.totalPages = Math.ceil(this.data.items.length / this.SIZE);
   }
 
-  private displayedItems?: Array<IconDef>;
-
   onChanges() {
+    this.installCode = this.buildInstallCode();
+    this.changelogsUrl = this.buildChangelogsUrl();
     if (
-      !this.data ||
-      !this.totalPages ||
-      this.currentPage < 1 ||
-      this.currentPage > this.totalPages
-    )
-      return;
-    const query = this.filterQuery?.trim().toLowerCase();
-    this.displayedItems = (
-      !query
-        ? this.data.items
-        : this.data.items.filter(([name]) => name.includes(query))
-    ).slice((this.currentPage - 1) * this.SIZE, this.SIZE * this.currentPage);
+      this.data &&
+      this.totalPages &&
+      this.currentPage >= 1 &&
+      this.currentPage <= this.totalPages
+    ) {
+      const query = this.filterQuery?.trim().toLowerCase();
+      this.displayedItems = (
+        !query
+          ? this.data.items
+          : this.data.items.filter(([name]) => name.includes(query))
+      ).slice((this.currentPage - 1) * this.SIZE, this.SIZE * this.currentPage);
+    }
+  }
+
+  private buildInstallCode() {
+    return `npm i ${this.packageName}`;
+  }
+
+  private buildChangelogsUrl() {
+    return `${this.ICONS_REPO_URL}/blob/main/changelogs/${this.packageName}`;
   }
 
   private async showModal(def: IconDef) {
@@ -125,11 +130,18 @@ export class AppIconPageComponent extends TiniComponent {
           </li>
           <li>Version: <code>${this.data?.version || '?'}</code></li>
           <li>
-            <a href=${this.changelogsUrl} target="_blank">Changelogs</a>
+            <a href=${this.ICONS_REPO_URL} target="_blank">Icons Repo</a>
           </li>
           <li>
-            <a href=${this.ICONS_REPO_URL} target="_blank">Github</a>
+            <a href=${this.changelogsUrl} target="_blank">Changelogs</a>
           </li>
+          ${!this.homepage
+            ? nothing
+            : html`
+                <li>
+                  <a href=${this.homepage} target="_blank">Homepage</a>
+                </li>
+              `}
         </ul>
       </div>
 
@@ -206,7 +218,7 @@ export class AppIconPageComponent extends TiniComponent {
         ${ref(this.modalRef)}
         .packageName=${this.packageName}
         .packageVersion=${this.data?.version}
-        .noVariants=${this.noVariants}
+        ?noVariants=${this.noVariants}
       ></app-icon-modal>
     `;
   }

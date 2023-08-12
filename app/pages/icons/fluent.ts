@@ -19,9 +19,10 @@ export class AppPageIconsFluent extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Fluent"
+        titleText="Fluent Icons"
         name="fluent"
         packageName="@tinijs/fluent-icons"
+        homepage="https://aka.ms/fluentui-system-icons"
       ></app-icon-page>
     `;
   }

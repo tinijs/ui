@@ -19,9 +19,10 @@ export class AppPageIconsBootstrap extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Bootstrap"
+        titleText="Bootstrap Icons"
         name="bootstrap"
         packageName="@tinijs/bootstrap-icons"
+        homepage="https://icons.getbootstrap.com/"
       ></app-icon-page>
     `;
   }

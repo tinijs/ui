@@ -21,7 +21,7 @@ import {
   TiniButtonComponent,
 } from '@tinijs/ui';
 
-export const enum ModalKinds {
+export enum ModalKinds {
   Bare = 'bare',
   Modal = 'modal',
   Alert = 'alert',

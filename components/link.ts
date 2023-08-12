@@ -33,6 +33,8 @@ export class TiniLinkComponent extends LitElement {
   @property({type: String}) declare size?: FontSizeFactors;
   @property({type: String}) declare weight?: FontWeights;
   @property({type: String}) declare transform?: TextTransforms;
+  @property({type: Boolean}) declare italic?: boolean;
+  @property({type: Boolean}) declare underline?: boolean;
 
   private mainClasses: ClassInfo = {};
   willUpdate() {
@@ -43,6 +45,8 @@ export class TiniLinkComponent extends LitElement {
       [`size-${this.size}`]: !!this.size,
       [`weight-${this.weight}`]: !!this.weight,
       [`transform-${this.transform}`]: !!this.transform,
+      italic: !!this.italic,
+      underline: !!this.underline,
     };
   }
 

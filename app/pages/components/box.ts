@@ -37,9 +37,15 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsBox extends TiniComponent {
+  private readonly PART_LIST = [['box', 'The root part']];
   protected render() {
     return html`
-      <app-component-page titleText="Boxes" name="box" path="components/box">
+      <app-component-page
+        titleText="Boxes"
+        name="box"
+        path="components/box"
+        .partList=${this.PART_LIST}
+      >
         <div slot="description">Boxes are containers for any content.</div>
 
         <app-section class="default">

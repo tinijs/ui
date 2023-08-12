@@ -45,16 +45,16 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsButton extends TiniComponent {
+  private readonly PART_LIST = [['button', 'The root part']];
   protected render() {
     return html`
       <app-component-page
         titleText="Buttons"
         name="button"
         path="components/button"
+        .partList=${this.PART_LIST}
       >
-        <div slot="description">
-          Use buttons to trigger actions.
-        </div>
+        <div slot="description">Use buttons to trigger actions.</div>
 
         <app-section class="default">
           <div slot="content">

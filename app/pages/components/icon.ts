@@ -32,12 +32,17 @@ import {AppIconPageContentComponent} from '../../components/icon-page-content';
   },
 })
 export class AppPageComponentsIcon extends TiniComponent {
+  private readonly PART_LIST = [['icon', 'The root part']];
   private readonly PREPROCESS_CODE = (code: string) =>
     code.replace(/\<tini\-icon/g, '<tini-icon src="URI/URL"');
-
   protected render() {
     return html`
-      <app-component-page titleText="Icons" name="icon" path="components/icon">
+      <app-component-page
+        titleText="Icons"
+        name="icon"
+        path="components/icon"
+        .partList=${this.PART_LIST}
+      >
         <div slot="description">A generic icon component.</div>
 
         <app-icon-page-content

@@ -114,7 +114,7 @@ export class AppTabsComponent extends TiniComponent {
 
   static styles = css`
     .head {
-      transform: translateY(1px);
+      transform: translateY(var(--size-border));
       justify-content: space-between;
 
       &,

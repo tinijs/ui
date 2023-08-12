@@ -19,9 +19,10 @@ export class AppPageIconsMaterialFilled extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Material Filled"
+        titleText="Material Filled Icons"
         name="material-filled"
         packageName="@tinijs/material-filled-icons"
+        homepage="https://material.io/resources/icons"
       ></app-icon-page>
     `;
   }

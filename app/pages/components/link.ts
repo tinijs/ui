@@ -43,9 +43,15 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsLink extends TiniComponent {
+  private readonly PART_LIST = [['link', 'The root part']];
   protected render() {
     return html`
-      <app-component-page titleText="Links" name="link" path="components/link">
+      <app-component-page
+        titleText="Links"
+        name="link"
+        path="components/link"
+        .partList=${this.PART_LIST}
+      >
         <div slot="description">Use link to navigate around.</div>
 
         <app-section class="default">
@@ -189,6 +195,16 @@ export class AppPageComponentsLink extends TiniComponent {
                   >Text with ${transform} transform</tini-link
                 >`
             )}
+          </div>
+        </app-section>
+
+        <app-section class="italic-underline">
+          <div slot="content">
+            <h2>Italic and Underline</h2>
+          </div>
+          <div slot="code">
+            <tini-link italic>Link with italic style</tini-link>
+            <tini-link underline>Link with underline decoration</tini-link>
           </div>
         </app-section>
       </app-component-page>

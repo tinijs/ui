@@ -22,6 +22,7 @@ export class AppPageIconsMDI extends TiniComponent {
         titleText="MDI Icons"
         name="mdi"
         packageName="@tinijs/mdi-icons"
+        homepage="https://pictogrammers.com/library/mdi"
       ></app-icon-page>
     `;
   }

@@ -23,11 +23,30 @@ export const textStyle = css`
    */
 
   .text {
-    font-family: var(--text-font);
     color: var(--text-color);
+    text-transform: var(--text-transform);
+  }
+
+  span {
+    font-family: var(--text-font);
     font-size: var(--text-size);
     font-weight: var(--text-weight);
-    text-transform: var(--text-transform);
+  }
+
+  /*
+   * [?italic]
+   */
+
+  .italic {
+    font-style: italic;
+  }
+
+  /*
+   * [?underline]
+   */
+
+  .underline {
+    text-decoration: underline;
   }
 
   /*
@@ -61,6 +80,7 @@ export const textStyle = css`
     :host([font="${fontType}"]),
     .font-${fontType} {
       --text-font: var(--font-${fontType});
+      font-family: var(--text-font);
     }
   `
   )}
@@ -73,6 +93,7 @@ export const textStyle = css`
     sizeFactor => `
     .size-${sizeFactor} {
       --text-size: var(--size-text-${sizeFactor});
+      font-size: var(--text-size);
     }
   `
   )}
@@ -85,6 +106,7 @@ export const textStyle = css`
     fontWeight => `
     .weight-${fontWeight} {
       --text-weight: ${fontWeight};
+      font-weight: var(--text-weight);
     }
   `
   )}

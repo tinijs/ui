@@ -19,9 +19,10 @@ export class AppPageIconsMaterialTwoTone extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Material Two Tone"
+        titleText="Material Two Tone Icons"
         name="material-two-tone"
         packageName="@tinijs/material-two-tone-icons"
+        homepage="https://material.io/resources/icons"
       ></app-icon-page>
     `;
   }

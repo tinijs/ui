@@ -19,9 +19,10 @@ export class AppPageIconsAntFilled extends TiniComponent {
   protected render() {
     return html`
       <app-icon-page
-        titleText="Ant Filled"
+        titleText="Ant Filled Icons"
         name="ant-filled"
         packageName="@tinijs/ant-filled-icons"
+        homepage="https://ant.design/components/icon"
       ></app-icon-page>
     `;
   }
