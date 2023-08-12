@@ -6,6 +6,10 @@ import {
   stylingWithBases,
   BASE_COLORS,
   BASE_GRADIENTS,
+  FONT_TYPES,
+  SIZE_FACTORS,
+  FONT_WEIGHTS,
+  TEXT_TRANSFORMS,
 } from '@tinijs/core';
 import {
   commonBases,
@@ -134,10 +138,10 @@ export class AppPageComponentsText extends TiniComponent {
             <h2>Fonts</h2>
           </div>
           <div slot="code">
-            <tini-text font="head">Text with Head font</tini-text>
-            <tini-text font="body">Text with Body font</tini-text>
-            <tini-text font="quote">Text with Quote font</tini-text>
-            <tini-text font="code">Text with Code font</tini-text>
+            ${FONT_TYPES.map(
+              font =>
+                html`<tini-text font=${font}>Text with ${font} font</tini-text>`
+            )}
           </div>
         </app-section>
 
@@ -146,30 +150,40 @@ export class AppPageComponentsText extends TiniComponent {
             <h2>Sizes</h2>
           </div>
           <div slot="code">
-            <tini-text size="0_1x">0.1x</tini-text>
-            <tini-text size="0_2x">0.2x</tini-text>
-            <tini-text size="0_25x">0.25x</tini-text>
-            <tini-text size="0_3x">0.3x</tini-text>
-            <tini-text size="0_4x">0.4x</tini-text>
-            <tini-text size="0_5x">0.5x</tini-text>
-            <tini-text size="0_6x">0.6x</tini-text>
-            <tini-text size="0_7x">0.7x</tini-text>
-            <tini-text size="0_75x">0.75x</tini-text>
-            <tini-text size="0_8x">0.8x</tini-text>
-            <tini-text size="0_9x">0.9x</tini-text>
-            <tini-text size="1x">1x</tini-text>
-            <tini-text size="1_25x">1.25x</tini-text>
-            <tini-text size="1_5x">1.5x</tini-text>
-            <tini-text size="1_75x">1.75x</tini-text>
-            <tini-text size="2x">2x</tini-text>
-            <tini-text size="3x">3x</tini-text>
-            <tini-text size="4x">4x</tini-text>
-            <tini-text size="5x">5x</tini-text>
-            <tini-text size="6x">6x</tini-text>
-            <tini-text size="7x">7x</tini-text>
-            <tini-text size="8x">8x</tini-text>
-            <tini-text size="9x">9x</tini-text>
-            <tini-text size="10x">10x</tini-text>
+            ${SIZE_FACTORS.map(
+              size =>
+                html`<tini-text size=${size}
+                  >${size.replace('_', '.')}</tini-text
+                >`
+            )}
+          </div>
+        </app-section>
+
+        <app-section class="weights">
+          <div slot="content">
+            <h2>Weights</h2>
+          </div>
+          <div slot="code">
+            ${FONT_WEIGHTS.map(
+              weight =>
+                html`<tini-text weight=${weight}
+                  >Text with ${weight} weight</tini-text
+                >`
+            )}
+          </div>
+        </app-section>
+
+        <app-section class="transfroms">
+          <div slot="content">
+            <h2>Text transforms</h2>
+          </div>
+          <div slot="code">
+            ${TEXT_TRANSFORMS.map(
+              transform =>
+                html`<tini-text transform=${transform}
+                  >Text with ${transform} transform</tini-text
+                >`
+            )}
           </div>
         </app-section>
       </app-component-page>

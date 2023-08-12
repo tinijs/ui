@@ -3,7 +3,13 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
-import {ColorsAndGradients, FontTypes, FontSizeFactors} from '@tinijs/core';
+import {
+  ColorsAndGradients,
+  FontTypes,
+  FontSizeFactors,
+  FontWeights,
+  TextTransforms,
+} from '@tinijs/core';
 
 export const LINK = 'link';
 export const TINI_LINK = `tini-${LINK}`;
@@ -11,6 +17,8 @@ export const TINI_LINK = `tini-${LINK}`;
 /* UseBases(common) */
 export class TiniLinkComponent extends LitElement {
   static readonly defaultTagName = TINI_LINK;
+
+  private anchorRef: Ref<HTMLAnchorElement> = createRef();
 
   @property({type: String}) declare href?: string;
   @property({type: String}) declare rel?: string;
@@ -23,8 +31,8 @@ export class TiniLinkComponent extends LitElement {
   @property({type: String}) declare color?: ColorsAndGradients;
   @property({type: String}) declare font?: FontTypes;
   @property({type: String}) declare size?: FontSizeFactors;
-
-  private anchorRef: Ref<HTMLAnchorElement> = createRef();
+  @property({type: String}) declare weight?: FontWeights;
+  @property({type: String}) declare transform?: TextTransforms;
 
   private mainClasses: ClassInfo = {};
   willUpdate() {
@@ -33,6 +41,8 @@ export class TiniLinkComponent extends LitElement {
       [`color-${this.color}`]: !!this.color,
       [`font-${this.font}`]: !!this.font,
       [`size-${this.size}`]: !!this.size,
+      [`weight-${this.weight}`]: !!this.weight,
+      [`transform-${this.transform}`]: !!this.transform,
     };
   }
 

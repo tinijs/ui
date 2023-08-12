@@ -70,7 +70,7 @@ export class AppIconPageContentComponent extends TiniComponent {
                   </div>
                   <div slot="code">
                     <tini-icon .src=${this.src} color=${color}></tini-icon>
-                    <div>
+                    <div class="group">
                       <tini-icon
                         .src=${this.src}
                         color=${`${color}-shade` as any}
@@ -130,7 +130,7 @@ export class AppIconPageContentComponent extends TiniComponent {
                   </div>
                   <div slot="code">
                     <tini-icon .src=${this.src} color=${gradient}></tini-icon>
-                    <div>
+                    <div class="group">
                       <tini-icon
                         .src=${this.src}
                         color=${`${gradient}-shade` as any}

@@ -1,11 +1,20 @@
 import {css} from 'lit';
-import {generateColorVaries, generateGradientVaries, generateFontTypeVaries, generateFontSizeVaries} from '@tinijs/core';
+import {
+  generateColorVaries,
+  generateGradientVaries,
+  generateFontTypeVaries,
+  generateFontSizeVaries,
+  generateFontWeightVaries,
+  generateTextTransformVaries,
+} from '@tinijs/core';
 
 export const linkStyle = css`
   :host {
     --link-color: var(--color-primary);
     --link-font: var(--font-body);
     --link-size: var(--size-text);
+    --link-weight: normal;
+    --link-transform: none;
     --link-disabled-color: var(--color-medium);
     --link-disabled-opacity: 0.5;
     display: inline;
@@ -21,6 +30,8 @@ export const linkStyle = css`
     font-family: var(--link-font);
     color: var(--link-color);
     font-size: var(--link-size);
+    font-weight: var(--link-weight);
+    text-transform: var(--link-transform);
   }
 
   a:hover,
@@ -99,6 +110,30 @@ export const linkStyle = css`
     sizeFactor => `
     .size-${sizeFactor} {
       --link-size: var(--size-text-${sizeFactor});
+    }
+  `
+  )}
+
+  /*
+   * [weight]
+   */
+
+  ${generateFontWeightVaries(
+    fontWeight => `
+    .weight-${fontWeight} {
+      --link-weight: ${fontWeight};
+    }
+  `
+  )}
+
+  /*
+   * [transform]
+   */
+
+  ${generateTextTransformVaries(
+    transform => `
+    .transform-${transform} {
+      --link-transform: ${transform};
     }
   `
   )}

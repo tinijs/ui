@@ -53,7 +53,7 @@ export class AppPageComponentsButton extends TiniComponent {
         path="components/button"
       >
         <div slot="description">
-          Use <strong>buttons</strong> to trigger actions.
+          Use buttons to trigger actions.
         </div>
 
         <app-section class="default">
@@ -237,7 +237,7 @@ export class AppPageComponentsButton extends TiniComponent {
               ></icon-heart-fill>
               <span>Left</span>
             </tini-button>
-            <!--  -->
+            <!-- / -->
             <tini-button color="primary">
               <span>Right</span>
               <icon-heart-fill
@@ -245,7 +245,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 color="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
-            <!--  -->
+            <!-- / -->
             <tini-button color="primary">
               <icon-heart-fill
                 size="ss"
@@ -257,7 +257,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 color="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
-            <!--  -->
+            <!-- / -->
             <tini-button justify="space-between" color="primary">
               <icon-heart-fill
                 size="ss"
@@ -265,7 +265,7 @@ export class AppPageComponentsButton extends TiniComponent {
               ></icon-heart-fill>
               <span>Far Left</span>
             </tini-button>
-            <!--  -->
+            <!-- / -->
             <tini-button justify="space-between" color="primary">
               <span>Far Right</span>
               <icon-heart-fill
@@ -273,7 +273,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 color="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
-            <!--  -->
+            <!-- / -->
             <tini-button justify="space-between" color="primary">
               <icon-chevron-left
                 size="ss"
@@ -285,7 +285,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 color="primary-contrast"
               ></icon-chevron-right>
             </tini-button>
-            <!--  -->
+            <!-- / -->
             <tini-button justify="space-between" color="primary">
               <span class="content-group">
                 <icon-heart-fill

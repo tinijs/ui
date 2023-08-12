@@ -9,6 +9,7 @@ import {
   stylingWithBases,
 } from '@tinijs/core';
 import {commonBases} from '@tinijs/ui';
+import {IconCodeComponent} from '@tinijs/bootstrap-icons/code';
 
 import {ConsumerPlatforms} from '../consts/main';
 import {
@@ -28,7 +29,7 @@ type CodeBuilder = (code?: string, context?: any) => string;
 
 export const APP_SECTION = 'app-section';
 @Component({
-  components: [AppTabsComponent, AppCodeComponent],
+  components: [IconCodeComponent, AppTabsComponent, AppCodeComponent],
   theming: {
     styling: stylingWithBases([commonBases]),
   },
@@ -66,7 +67,9 @@ export class AppSectionComponent extends TiniComponent {
           line
             .replace(trimSpaces, '')
             .replace(/<!--\?lit\$([\s\S]*?)\$-->/g, '')
-            .replace(/<!-- {2}-->/g, '')
+            .replace(/(<!---->){2}/g, '\n')
+            .replace(/<!---->/g, '')
+            .replace(/<!-- \/ -->/g, '')
             .replace(/<!--/g, '\n<!--')
         )
         .join('\n');
@@ -86,11 +89,14 @@ export class AppSectionComponent extends TiniComponent {
           : html`
               <app-tabs
                 class="usage-tabs"
-                titleText="Code"
                 .tabItems=${this.USAGE_TAB_ITEMS}
                 @change=${({detail}: CustomEvent<{name: string}>) =>
                   mainStore.commit('referPlatform', detail.name)}
               >
+                <div slot="title">
+                  <icon-code size="sm"></icon-code>
+                  <span>Code</span>
+                </div>
                 ${repeat(
                   this.USAGE_TAB_ITEMS,
                   item => item.name,
@@ -127,6 +133,15 @@ export class AppSectionComponent extends TiniComponent {
 
     .usage-tabs {
       margin-top: 2rem;
+
+      [slot='title'] {
+        display: flex;
+        align-items: center;
+
+        span {
+          margin-left: var(--size-space-0_5x);
+        }
+      }
 
       &::part(head) {
         background: var(--color-background);

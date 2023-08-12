@@ -2,11 +2,13 @@ import {
   Component,
   TiniComponent,
   Input,
+  Reactive,
   classMap,
   html,
   css,
   nothing,
   stylingWithBases,
+  queryAssignedElements,
 } from '@tinijs/core';
 import {commonBases, buttonBases, TiniIconComponent} from '@tinijs/ui';
 
@@ -26,7 +28,10 @@ export const APP_TABS = 'app-tabs';
 export class AppTabsComponent extends TiniComponent {
   static readonly defaultTagName = APP_TABS;
 
-  @Input({type: String}) declare titleText?: string;
+  @queryAssignedElements({slot: 'title'})
+  private readonly titleSlotElems?: HTMLElement[];
+  @Reactive() private hasTitleContent = false;
+
   @Input({type: Array}) declare tabItems?: TabItem[];
   @Input({type: String}) declare activeName?: string;
 
@@ -66,9 +71,16 @@ export class AppTabsComponent extends TiniComponent {
   protected render() {
     return html`
       <div part="head${!this.activeName ? '' : ' head-expanded'}" class="head">
-        ${!this.titleText
-          ? nothing
-          : html`<div part="title" class="title">${this.titleText}</div>`}
+        <div
+          part="title"
+          class=${classMap({title: true, 'has-content': this.hasTitleContent})}
+        >
+          <slot
+            name="title"
+            @slotchange=${() =>
+              (this.hasTitleContent = !!this.titleSlotElems?.length)}
+          ></slot>
+        </div>
         <div part="tablinks" class="tablinks">
           ${this.tabItems?.map(
             ({name, icon, iconOnly}) => html`
@@ -113,8 +125,13 @@ export class AppTabsComponent extends TiniComponent {
       }
 
       .title {
+        display: none;
         font-weight: bold;
         padding: var(--size-space-0_5x) var(--size-space);
+
+        &.has-content {
+          display: block;
+        }
       }
 
       .tablink {

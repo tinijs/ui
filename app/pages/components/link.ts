@@ -1,4 +1,16 @@
-import {Page, TiniComponent, html, css, stylingWithBases, BASE_COLORS, BASE_GRADIENTS} from '@tinijs/core';
+import {
+  Page,
+  TiniComponent,
+  html,
+  css,
+  stylingWithBases,
+  BASE_COLORS,
+  BASE_GRADIENTS,
+  FONT_TYPES,
+  SIZE_FACTORS,
+  FONT_WEIGHTS,
+  TEXT_TRANSFORMS,
+} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -34,7 +46,7 @@ export class AppPageComponentsLink extends TiniComponent {
   protected render() {
     return html`
       <app-component-page titleText="Links" name="link" path="components/link">
-        <div slot="description">Link.</div>
+        <div slot="description">Use link to navigate around.</div>
 
         <app-section class="default">
           <div slot="content">
@@ -52,7 +64,9 @@ export class AppPageComponentsLink extends TiniComponent {
                 <h2>Color ${color}</h2>
               </div>
               <div slot="code">
-                <tini-link href="#" color=${color}>Link with ${color} color</tini-link>
+                <tini-link href="#" color=${color}
+                  >Link with ${color} color</tini-link
+                >
                 <tini-link href="#" color=${`${color}-shade` as any}
                   >Link with ${color}-shade color</tini-link
                 >
@@ -97,7 +111,10 @@ export class AppPageComponentsLink extends TiniComponent {
             <app-section class="gradients">
               <div slot="content">
                 <h2>${gradient.replace(/-/g, ' ')}</h2>
-                <p>Note that the gradient links only support underline for the last one line of text.</p>
+                <p>
+                  Note that the gradient links only support underline for the
+                  last one line of text.
+                </p>
               </div>
               <div slot="code">
                 <tini-link href="#" color=${gradient}
@@ -124,10 +141,12 @@ export class AppPageComponentsLink extends TiniComponent {
             <h2>Fonts</h2>
           </div>
           <div slot="code">
-            <tini-link href="#" font="head">Link with Head font</tini-link>
-            <tini-link href="#" font="body">Link with Body font</tini-link>
-            <tini-link href="#" font="quote">Link with Quote font</tini-link>
-            <tini-link href="#" font="code">Link with Code font</tini-link>
+            ${FONT_TYPES.map(
+              font =>
+                html`<tini-link href="#" font=${font}
+                  >Link with ${font} font</tini-link
+                >`
+            )}
           </div>
         </app-section>
 
@@ -136,30 +155,40 @@ export class AppPageComponentsLink extends TiniComponent {
             <h2>Sizes</h2>
           </div>
           <div slot="code">
-            <tini-link href="#" size="0_1x">0.1x</tini-link>
-            <tini-link href="#" size="0_2x">0.2x</tini-link>
-            <tini-link href="#" size="0_25x">0.25x</tini-link>
-            <tini-link href="#" size="0_3x">0.3x</tini-link>
-            <tini-link href="#" size="0_4x">0.4x</tini-link>
-            <tini-link href="#" size="0_5x">0.5x</tini-link>
-            <tini-link href="#" size="0_6x">0.6x</tini-link>
-            <tini-link href="#" size="0_7x">0.7x</tini-link>
-            <tini-link href="#" size="0_75x">0.75x</tini-link>
-            <tini-link href="#" size="0_8x">0.8x</tini-link>
-            <tini-link href="#" size="0_9x">0.9x</tini-link>
-            <tini-link href="#" size="1x">1x</tini-link>
-            <tini-link href="#" size="1_25x">1.25x</tini-link>
-            <tini-link href="#" size="1_5x">1.5x</tini-link>
-            <tini-link href="#" size="1_75x">1.75x</tini-link>
-            <tini-link href="#" size="2x">2x</tini-link>
-            <tini-link href="#" size="3x">3x</tini-link>
-            <tini-link href="#" size="4x">4x</tini-link>
-            <tini-link href="#" size="5x">5x</tini-link>
-            <tini-link href="#" size="6x">6x</tini-link>
-            <tini-link href="#" size="7x">7x</tini-link>
-            <tini-link href="#" size="8x">8x</tini-link>
-            <tini-link href="#" size="9x">9x</tini-link>
-            <tini-link href="#" size="10x">10x</tini-link>
+            ${SIZE_FACTORS.map(
+              size =>
+                html`<tini-link href="#" size=${size}
+                  >${size.replace('_', '.')}</tini-link
+                >`
+            )}
+          </div>
+        </app-section>
+
+        <app-section class="weights">
+          <div slot="content">
+            <h2>Weights</h2>
+          </div>
+          <div slot="code">
+            ${FONT_WEIGHTS.map(
+              weight =>
+                html`<tini-link href="#" weight=${weight}
+                  >Text with ${weight} weight</tini-link
+                >`
+            )}
+          </div>
+        </app-section>
+
+        <app-section class="transfroms">
+          <div slot="content">
+            <h2>Text transforms</h2>
+          </div>
+          <div slot="code">
+            ${TEXT_TRANSFORMS.map(
+              transform =>
+                html`<tini-link href="#" transform=${transform}
+                  >Text with ${transform} transform</tini-link
+                >`
+            )}
           </div>
         </app-section>
       </app-component-page>
