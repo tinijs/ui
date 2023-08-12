@@ -37,10 +37,7 @@ export class AppMenuComponent extends TiniComponent {
   private readonly ROUTES = Configurable.getOption('routes');
   private readonly GROUP_NAMES = ['top', 'guides', 'components', 'icons'];
 
-  private topGroup: NavItem[] = [];
-  private guidesGroup: NavItem[] = [];
-  private componentsGroup: NavItem[] = [];
-  private iconsGroup: NavItem[] = [];
+  private groups: Record<string, {title?: string; items: NavItem[]}> = {};
 
   private buildMenu() {
     const processRoute = ({path, title}: Route) => {
@@ -53,14 +50,19 @@ export class AppMenuComponent extends TiniComponent {
           .map(word => word[0].toUpperCase() + word.slice(1))
           .join(' ');
       for (const groupName of this.GROUP_NAMES) {
+        if (!this.groups[groupName])
+          this.groups[groupName] = {
+            title: groupName === 'top' ? undefined : groupName.toUpperCase(),
+            items: [],
+          };
         if (
           path !== '**' &&
           (~path.indexOf(`${groupName}/`) ||
             (groupName === 'top' && pathSegments.length < 2))
         ) {
-          (this as any)[`${groupName}Group`]?.push({
+          this.groups[groupName]?.items.push({
             title: linkTitle,
-            href: path || '/',
+            href: !path ? '/' : `/${path}`,
           });
           break;
         }
@@ -83,57 +85,37 @@ export class AppMenuComponent extends TiniComponent {
     return html`
       <h4>Documentation</h4>
       <ul>
-        ${!this.topGroup.length
-          ? nothing
-          : html`
-              ${this.topGroup.map(
-                ({title, href}) => html`
-                  <li><tini-link href=${href}>${title}</tini-link></li>
-                `
-              )}
-            `}
-        ${!this.guidesGroup.length
-          ? nothing
-          : html`
-              <li>
-                <strong class="title">Guides</strong>
-                <ul>
-                  ${this.guidesGroup.map(
-                    ({title, href}) => html`
-                      <li><tini-link href=${href}>${title}</tini-link></li>
-                    `
-                  )}
-                </ul>
-              </li>
-            `}
-        ${!this.componentsGroup.length
-          ? nothing
-          : html`
-              <li>
-                <strong class="title">Components</strong>
-                <ul>
-                  ${this.componentsGroup.map(
-                    ({title, href}) => html`
-                      <li><tini-link href=${href}>${title}</tini-link></li>
-                    `
-                  )}
-                </ul>
-              </li>
-            `}
-        ${!this.iconsGroup.length
-          ? nothing
-          : html`
-              <li>
-                <strong class="title">Icons</strong>
-                <ul>
-                  ${this.iconsGroup.map(
-                    ({title, href}) => html`
-                      <li><tini-link href=${href}>${title}</tini-link></li>
-                    `
-                  )}
-                </ul>
-              </li>
-            `}
+        ${Object.keys(this.groups).map(groupName => {
+          const {title, items} = this.groups[groupName];
+          return !title
+            ? html`
+                ${items.map(
+                  ({title, href}) => html`
+                    <li>
+                      <tini-link href=${href} active="active"
+                        >${title}</tini-link
+                      >
+                    </li>
+                  `
+                )}
+              `
+            : html`
+                <li>
+                  <strong class="title">${title}</strong>
+                  <ul>
+                    ${items.map(
+                      ({title, href}) => html`
+                        <li>
+                          <tini-link href=${href} active="active"
+                            >${title}</tini-link
+                          >
+                        </li>
+                      `
+                    )}
+                  </ul>
+                </li>
+              `;
+        })}
       </ul>
     `;
   }
@@ -155,15 +137,19 @@ export class AppMenuComponent extends TiniComponent {
       .title {
         display: block;
         margin-bottom: 0.5rem;
+        color: var(--color-medium);
       }
     }
 
-    tini-link::part(link) {
-      color: var(--color-medium);
-    }
+    tini-link {
+      &::part(link) {
+        color: var(--color-foreground);
+      }
 
-    tini-link::part(link):hover {
-      color: var(--color-foreground);
+      &.active::part(link) {
+        font-weight: bold;
+        text-decoration: underline;
+      }
     }
   `;
 }

@@ -1,11 +1,12 @@
 import {css} from 'lit';
-import {generateColorVaries, generateGradientVaries} from '@tinijs/core';
+import {generateColorVaries, generateGradientVaries, generateFontTypeVaries, generateFontSizeVaries} from '@tinijs/core';
 
 export const linkStyle = css`
   :host {
     --link-color: var(--color-primary);
-    --link-color-muted: var(--color-foreground);
-    --link-hover-brightness: 1.1;
+    --link-font: var(--font-body);
+    --link-size: var(--size-text);
+    --link-disabled-color: var(--color-medium);
     --link-disabled-opacity: 0.5;
     display: inline;
   }
@@ -15,33 +16,30 @@ export const linkStyle = css`
    */
 
   a {
-    color: var(--link-color);
+    position: relative;
     text-decoration: none;
-  }
-
-  a[target='_blank'] {
-    cursor: alias;
+    font-family: var(--link-font);
+    color: var(--link-color);
+    font-size: var(--link-size);
   }
 
   a:hover,
   a:focus,
   a:active {
-    filter: brightness(var(--link-hover-brightness));
     text-decoration: underline;
-    background: none;
-    border: none;
-    outline: 0;
   }
 
-  a.muted {
-    opacity: var(--link-disabled-opacity);
-  }
-
+  a.muted,
   a.muted:hover,
   a.muted:focus,
   a.muted:active {
     text-decoration: none;
-    filter: none;
+    color: var(--link-disabled-color);
+    opacity: var(--link-disabled-opacity);
+  }
+
+  a[target='_blank'] {
+    cursor: alias;
   }
 
   /*
@@ -62,6 +60,45 @@ export const linkStyle = css`
       background: ${gradient};
       -webkit-background-clip: text;
 	    -webkit-text-fill-color: transparent;
+    }
+    .color-${name}::after {
+      visibility: hidden;
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: calc(var(--link-size) / 12);
+      background: ${gradient};
+    }
+    .color-${name}:hover::after {
+      visibility: visible;
+    }
+  `
+  )}
+
+
+  /*
+   * [font]
+   */
+
+  ${generateFontTypeVaries(
+    fontType => `
+    :host([font="${fontType}"]),
+    .font-${fontType} {
+      --link-font: var(--font-${fontType});
+    }
+  `
+  )}
+
+  /*
+   * [size]
+   */
+
+  ${generateFontSizeVaries(
+    sizeFactor => `
+    .size-${sizeFactor} {
+      --link-size: var(--size-text-${sizeFactor});
     }
   `
   )}

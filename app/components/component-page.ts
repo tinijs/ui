@@ -315,7 +315,7 @@ useComponents([
             <p>
               For implementation detail, please see the
               <a
-                href=${location.href}
+                href="javascript:void(0)"
                 @click=${this.switchMode.bind(this, Modes.Component)}
                 >component source code</a
               >.
@@ -358,7 +358,7 @@ useComponents([
             <p>
               For implementation detail, please see the
               <a
-                href=${location.href}
+                href="javascript:void(0)"
                 @click=${this.switchMode.bind(this, Modes.Soul)}
                 >soul source code</a
               >.
