@@ -3,4 +3,5 @@ node_modules
 .parcel-cache
 .tini-*
 build
-# docs
+docs
+www
