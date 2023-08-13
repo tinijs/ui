@@ -9,8 +9,10 @@ import {
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
 import {commonBases, linkBases, buttonBases, formBases} from '@tinijs/ui';
-import {IconGithubComponent} from '@tinijs/bootstrap-icons/github';
-import {IconPaletteComponent} from '@tinijs/bootstrap-icons/palette';
+import {
+  IconGithubComponent,
+  IconPaletteComponent,
+} from '@tinijs/bootstrap-icons';
 
 import {Configurable} from '../configurable';
 import {changeTheme} from '../helpers/theme';

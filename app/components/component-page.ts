@@ -20,7 +20,7 @@ import {
   buttonBases,
   codeBases,
 } from '@tinijs/ui';
-import {IconGithubComponent} from '@tinijs/bootstrap-icons/github';
+import {IconGithubComponent} from '@tinijs/bootstrap-icons';
 
 import {Configurable} from '../configurable';
 import {OFFICIAL_REPO_URL, ImportMethods} from '../consts/main';

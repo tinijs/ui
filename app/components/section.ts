@@ -9,7 +9,7 @@ import {
   stylingWithBases,
 } from '@tinijs/core';
 import {commonBases} from '@tinijs/ui';
-import {IconCodeComponent} from '@tinijs/bootstrap-icons/code';
+import {IconCodeComponent} from '@tinijs/bootstrap-icons';
 
 import {ConsumerPlatforms} from '../consts/main';
 import {

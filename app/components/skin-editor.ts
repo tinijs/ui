@@ -13,7 +13,7 @@ import {
   render,
   nothing,
 } from '@tinijs/core';
-import {IconCodeComponent} from '@tinijs/bootstrap-icons/code';
+import {IconCodeComponent} from '@tinijs/bootstrap-icons';
 import {
   commonBases,
   buttonBases,

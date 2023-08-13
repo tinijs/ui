@@ -16,9 +16,11 @@ import {
   TiniBoxComponent,
   TiniButtonComponent,
 } from '@tinijs/ui';
-import {IconChevronLeftComponent} from '@tinijs/bootstrap-icons/chevron-left';
-import {IconChevronRightComponent} from '@tinijs/bootstrap-icons/chevron-right';
-import {IconHeartFillComponent} from '@tinijs/bootstrap-icons/heart-fill';
+import {
+  IconChevronLeftComponent,
+  IconChevronRightComponent,
+  IconHeartFillComponent,
+} from '@tinijs/bootstrap-icons';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';

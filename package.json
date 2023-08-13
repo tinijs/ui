@@ -14,7 +14,7 @@
     "preview": "tini preview",
     "build": "npm run build:0:app && npm run build:1:bare && npm run build:2:common && npm run build:3:bootstrap",
     "publish": "npm run publish:1:bare && npm run publish:2:common && npm run publish:3:bootstrap",
-    "build:0:app": "tini build",
+    "build:0:app": "tini ui dev && tini build",
     "build:1:bare": "tini ui build",
     "publish:1:bare": "cd build/@tinijs/ui && npm publish --access public",
     "build:2:common": "tini ui build @tinijs/ui",
@@ -37,7 +37,7 @@
     "url": "https://github.com/tinijs/ui/issues"
   },
   "dependencies": {
-    "@tinijs/bootstrap-icons": "^0.0.10",
+    "@tinijs/bootstrap-icons": "^0.1.1",
     "@tinijs/core": "^0.1.1",
     "@tinijs/router": "^0.1.1",
     "@tinijs/store": "^0.1.1",
