@@ -107,13 +107,6 @@ Official skins:
 - Make changes & preview locally: `npm run dev`
 - Push changes & create a PR 👌
 
-### Build & Publish
-
-- Step 1: Check for the latest version of `npm i -D @tinijs/cli@latest`
-- Step 2: Bump a version `npm version <number>`
-- Step 3: Build packages `npm run build`
-- Step 4: Publish packages (individually) `npm run publish:<id>:<name>`
-
 ## License
 
 **@tinijs/ui** and its sibling packages are released under the [MIT](https://github.com/tinijs/ui/blob/master/LICENSE) license.

@@ -13,6 +13,7 @@
     "dev": "tini ui dev && tini dev",
     "preview": "tini preview",
     "build": "npm run build:0:app && npm run build:1:bare && npm run build:2:common && npm run build:3:bootstrap",
+    "publish": "npm run publish:1:bare && npm run publish:2:common && npm run publish:3:bootstrap",
     "build:0:app": "tini build",
     "build:1:bare": "tini ui build",
     "publish:1:bare": "cd build/@tinijs/ui && npm publish --access public",
