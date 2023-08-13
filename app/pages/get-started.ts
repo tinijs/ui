@@ -40,8 +40,8 @@ export class AppPageGetStarted extends TiniComponent {
         <li>Install the specific pre-built packages.</li>
       </ol>
       <p>
-        <strong>Quick note</strong>: A <strong>theme</strong> is a combination of a
-        <code>soul</code> and a <code>skin</code>. You can have one or more
+        <strong>Quick note</strong>: A <strong>theme</strong> is a combination
+        of a <code>soul</code> and a <code>skin</code>. You can have one or more
         themes both at the build time and the run time.
       </p>
 

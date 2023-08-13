@@ -173,10 +173,7 @@ export class AppPageComponentsLink extends TiniComponent {
         <app-section class="weights">
           <div slot="content">
             <h2>Weights</h2>
-            <p>
-              Please note that the active font  the respective
-              weights.
-            </p>
+            <p>Please note that the active font the respective weights.</p>
           </div>
           <div slot="code">
             ${FONT_WEIGHTS.map(
