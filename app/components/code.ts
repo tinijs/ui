@@ -7,6 +7,7 @@ import {
   ref,
   createRef,
   Ref,
+  classMap,
   stylingWithBases,
 } from '@tinijs/core';
 import {commonBases, codeBases} from '@tinijs/ui';
@@ -24,13 +25,16 @@ export class AppCodeComponent extends TiniComponent {
 
   private readonly codeRef: Ref<HTMLElement> = createRef();
   @Input({type: String}) declare code?: string;
+  @Input({type: String}) declare language?: string;
 
   onRenders() {
     hljs.highlightElement(this.codeRef.value!);
   }
 
   protected render() {
-    return html`<pre><code ${ref(this.codeRef)}>${this.code}</code></pre>`;
+    return html`<pre><code class=${classMap({
+      [`language-${this.language}`]: !!this.language,
+    })} ${ref(this.codeRef)}>${this.code}</code></pre>`;
   }
 
   static styles = css`
