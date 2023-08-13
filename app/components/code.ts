@@ -42,6 +42,7 @@ export class AppCodeComponent extends TiniComponent {
       display: block;
       overflow-x: auto;
       padding: 1em;
+      font-size: 0.9rem;
     }
     code.hljs {
       padding: 3px 5px;

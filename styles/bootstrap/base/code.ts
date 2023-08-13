@@ -6,7 +6,7 @@ export default css`
   kbd,
   samp {
     font-family: var(--font-code) !important;
-    font-size: 0.9rem !important;
+    font-size: 0.9em;
     direction: ltr /* rtl:ignore */;
     unicode-bidi: bidi-override;
   }
@@ -16,7 +16,7 @@ export default css`
   kbd *,
   samp * {
     font-family: var(--font-code) !important;
-    font-size: 0.9rem !important;
+    font-size: 1em;
   }
 
   pre {
@@ -24,7 +24,6 @@ export default css`
     margin-top: 0;
     margin-bottom: 1rem;
     overflow: auto;
-    font-size: 0.875em;
   }
   pre code {
     font-size: inherit;
@@ -34,7 +33,6 @@ export default css`
 
   code {
     padding: 0.15rem 0.35rem;
-    font-size: 0.875em;
     color: var(--color-tertiary);
     background: color-mix(in oklab, var(--color-tertiary), transparent 90%);
     word-wrap: break-word;
@@ -46,14 +44,12 @@ export default css`
 
   kbd {
     padding: 0.2rem 0.4rem;
-    font-size: 0.875em;
     color: var(--color-foreground-contrast);
     background-color: var(--color-foreground);
     border-radius: 0.2rem;
   }
   kbd kbd {
     padding: 0;
-    font-size: 1em;
     font-weight: 700;
   }
 `;

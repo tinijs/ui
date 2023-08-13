@@ -207,7 +207,7 @@ containerEl.innerHTML = ${nameVar}Code;
           ? nothing
           : html`
               <div class="modal-body">
-                <app-section .noUsageTabs=${true} style="margin-top: 1rem;">
+                <app-section noUsageTabs style="margin-top: 1rem;">
                   <div slot="content" class="imports">
                     <h2 style="margin-top: 0;">Imports</h2>
                     <p>

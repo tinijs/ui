@@ -29,9 +29,9 @@ export const guidesRoutes: Route[] = [
 
 export const componentsRoutes: Route[] = [
   {
-    path: 'components/base',
-    component: 'app-page-components-base',
-    action: () => import('./pages/components/base'),
+    path: 'components/bases',
+    component: 'app-page-components-bases',
+    action: () => import('./pages/components/bases'),
   },
   {
     path: 'components/text',

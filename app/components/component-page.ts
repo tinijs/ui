@@ -281,7 +281,7 @@ useComponents([
   private renderArticle() {
     return html`
       <div class="body article">
-        <app-section .noUsageTabs=${true}>
+        <app-section noUsageTabs>
           <div slot="content" class="imports">
             <h2>Imports</h2>
             <p>
@@ -336,7 +336,7 @@ useComponents([
 
         <slot></slot>
 
-        <app-section .noUsageTabs=${true}>
+        <app-section noUsageTabs>
           <div slot="content" class="api">
             <h2>API</h2>
             <p>
@@ -374,7 +374,7 @@ useComponents([
           </div>
         </app-section>
 
-        <app-section .noUsageTabs=${true}>
+        <app-section noUsageTabs>
           <div slot="content" class="styles">
             <h2>Variables & parts</h2>
             <p>
