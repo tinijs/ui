@@ -69,7 +69,7 @@ export class AppPageGetStarted extends TiniComponent {
         The skeleton app comes with a default theme
         (<code>bootstrap/light</code>).
       </p>
-      <p>To change themes of the app, run:</p>
+      <p>To change themes of the app, for example:</p>
       <app-code
         language="bash"
         code="npx tini ui use bootstrap/dark"
@@ -78,7 +78,7 @@ export class AppPageGetStarted extends TiniComponent {
       <h4>Add Tini UI to an existing project</h4>
       <p>Install the CLI as a dev dependency:</p>
       <app-code language="bash" code="npm i -D @tinijs/cli"></app-code>
-      <p>Then run <code>tini ui use &lt;list of soul/skins&gt;</code>:</p>
+      <p>Then run <code>tini ui use &lt;list of soul/skins&gt;</code>, for example:</p>
       <app-code
         language="bash"
         code="npx tini ui use bootstrap/light,dark"

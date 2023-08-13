@@ -21,9 +21,9 @@ export class TiniButtonComponent extends LitElement {
     this.disabled = false;
   }
 
-  private mainClasses: ClassInfo = {};
+  private rootClasses: ClassInfo = {};
   protected willUpdate() {
-    this.mainClasses = {
+    this.rootClasses = {
       [BUTTON]: true,
       [`bg-${this.color}`]: !!this.color,
       [`color-${this.textColor}`]: !!this.textColor,
@@ -35,7 +35,7 @@ export class TiniButtonComponent extends LitElement {
   protected render() {
     return html`<button
       part=${BUTTON}
-      class=${classMap(this.mainClasses)}
+      class=${classMap(this.rootClasses)}
       ?disabled=${this.disabled}
     >
       <slot></slot>

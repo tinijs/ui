@@ -15,9 +15,9 @@ export class TiniIconComponent extends LitElement {
   @property({type: String}) declare color?: ColorsAndGradients;
   @property({type: String}) declare size?: Sizes;
 
-  private mainClasses: ClassInfo = {};
+  private rootClasses: ClassInfo = {};
   protected willUpdate() {
-    this.mainClasses = {
+    this.rootClasses = {
       [ICON]: true,
       recolor: !!this.color,
       [`color-${this.color}`]: !!this.color,
@@ -29,7 +29,7 @@ export class TiniIconComponent extends LitElement {
     return html`
       <i
         part=${ICON}
-        class=${classMap(this.mainClasses)}
+        class=${classMap(this.rootClasses)}
         style=${styleMap({'--icon-image': `url(${this.src})`})}
       ></i>
     `;

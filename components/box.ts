@@ -15,9 +15,9 @@ export class TiniBoxComponent extends LitElement {
   // @property({type: String}) declare padding?: Multipliers;
   // @property({type: String}) declare margin?: Multipliers;
 
-  private mainClasses = {};
+  private rootClasses = {};
   protected willUpdate() {
-    this.mainClasses = {
+    this.rootClasses = {
       [BOX]: true,
       [`bg-${this.background}`]: !!this.background,
       [`color-${this.textColor}`]: !!this.textColor,
@@ -26,7 +26,7 @@ export class TiniBoxComponent extends LitElement {
 
   protected render() {
     return html`
-      <div part=${BOX} class=${classMap(this.mainClasses)}>
+      <div part=${BOX} class=${classMap(this.rootClasses)}>
         <slot></slot>
       </div>
     `;

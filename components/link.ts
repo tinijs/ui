@@ -36,9 +36,9 @@ export class TiniLinkComponent extends LitElement {
   @property({type: Boolean}) declare italic?: boolean;
   @property({type: Boolean}) declare underline?: boolean;
 
-  private mainClasses: ClassInfo = {};
+  private rootClasses: ClassInfo = {};
   willUpdate() {
-    this.mainClasses = {
+    this.rootClasses = {
       [LINK]: true,
       [`color-${this.color}`]: !!this.color,
       [`font-${this.font}`]: !!this.font,
@@ -108,7 +108,7 @@ export class TiniLinkComponent extends LitElement {
         router-ignore
         ${ref(this.anchorRef)}
         part=${LINK}
-        class=${classMap(this.mainClasses)}
+        class=${classMap(this.rootClasses)}
         href=${this.href || '/'}
         target=${ifDefined(this.target)}
         rel=${ifDefined(this.rel)}

@@ -489,6 +489,7 @@ export class AppSkinEditorComponent extends TiniComponent {
 
         .content {
           padding: var(--size-space-0_5x);
+          margin-bottom: 0;
         }
       }
 

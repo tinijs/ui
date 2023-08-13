@@ -40,10 +40,10 @@ export class TiniTextComponent extends LitElement {
   @property({type: Boolean}) declare underline?: boolean;
 
   private tag!: StaticValue;
-  private mainClasses: ClassInfo = {};
+  private rootClasses: ClassInfo = {};
   protected willUpdate() {
     this.tag = literal`${unsafeStatic(this.type || TextTypes.Span)}`;
-    this.mainClasses = {
+    this.rootClasses = {
       [TEXT]: true,
       [`color-${this.color}`]: !!this.color,
       [`font-${this.font}`]: !!this.font,
@@ -57,7 +57,7 @@ export class TiniTextComponent extends LitElement {
 
   protected render() {
     return html`
-      <${this.tag} part=${TEXT} class=${classMap(this.mainClasses)}>
+      <${this.tag} part=${TEXT} class=${classMap(this.rootClasses)}>
         <slot></slot>
       </${this.tag}>
     `;
