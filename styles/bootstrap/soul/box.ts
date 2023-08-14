@@ -1,20 +1,22 @@
 import {css} from 'lit';
-import {generateColorVaries, generateGradientVaries} from '@tinijs/core';
+import {
+  generateColorVaries,
+  generateGradientVaries,
+  generateBasicFactorVaries,
+  generateFontSizeVaries,
+  generateSpaceVaries,
+  generateBorderStyleVaries,
+} from '@tinijs/core';
 
 export const boxStyle = css`
   :host {
-    --box-background: var(--color-background);
-    --box-color: var(--color-foreground);
+    --box-background: none;
+    --box-text-color: var(--color-foreground);
+    --box-text-size: var(--size-text);
     --box-border: none;
     --box-radius: var(--size-radius);
-    --box-padding-top: var(--size-space);
-    --box-padding-right: var(--size-space);
-    --box-padding-bottom: var(--size-space);
-    --box-padding-left: var(--size-space);
-    --box-margin-top: 0;
-    --box-margin-right: 0;
-    --box-margin-bottom: 0;
-    --box-margin-left: 0;
+    --box-padding: var(--size-space);
+    --box-margin: 0;
   }
 
   /*
@@ -24,33 +26,72 @@ export const boxStyle = css`
   .box {
     width: 100%;
     background: var(--box-background);
-    color: var(--box-color);
+    color: var(--box-text-color);
+    font-size: var(--box-text-size);
     border: var(--box-border);
     border-radius: var(--box-radius);
-    padding-top: var(--box-padding-top);
-    padding-right: var(--box-padding-right);
-    padding-bottom: var(--box-padding-bottom);
-    padding-left: var(--box-padding-left);
-    margin-top: var(--box-margin-top);
-    margin-right: var(--box-margin-right);
-    margin-bottom: var(--box-margin-bottom);
-    margin-left: var(--box-margin-left);
+    padding: var(--box-padding);
+    margin: var(--box-margin);
   }
 
   /*
-   * [color]
+   * [textSize]
+   */
+
+  ${generateFontSizeVaries(
+    sizeFactor => `
+    :host([textSize="${sizeFactor}"]),
+    .text-size-${sizeFactor} {
+      --box-text-size: var(--size-text-${sizeFactor});
+    }
+  `
+  )}
+
+  /*
+   * [borderSize] & [borderRadius]
+   */
+
+  ${generateBasicFactorVaries(
+    size => `
+    .border-size-${size} {
+      --box-border: var(--size-border-${size}) solid var(--color-medium);
+    }
+    .border-radius-${size} {
+      --box-radius: var(--size-radius-${size});
+    }
+  `
+  )}
+
+  /*
+   * [borderStyle]
+   */
+
+  ${generateBorderStyleVaries(
+    borderStyle => `
+    .border-style-${borderStyle} {
+      border-style: ${borderStyle};
+    }
+  `
+  )}
+
+  /*
+   * [color] & [borderColor]
    */
 
   ${generateColorVaries(
     ({name, color, contrast}) => `
     .bg-${name} {
       --box-background: ${color};
-      --box-color: ${contrast};
+      --box-text-color: ${contrast};
     }
 
     :host([textColor="${name}"]),
-    .color-${name} {
-      --box-color: ${color} !important;
+    .text-color-${name} {
+      --box-text-color: ${color} !important;
+    }
+
+    .border-color-${name} {
+      border-color: ${color};
     }
   `
   )}
@@ -59,7 +100,41 @@ export const boxStyle = css`
     ({name, gradient, contrast}) => `
     .bg-${name} {
       --box-background: ${gradient};
-      --box-color: ${contrast};
+      --box-text-color: ${contrast};
+    }
+  `
+  )}
+
+  /*
+   * [padding] & [margin]
+   */
+
+  ${generateSpaceVaries(
+    sizeFactor => `
+    .padding-top-${sizeFactor} {
+      padding-top: var(--size-space-${sizeFactor});
+    }
+    .padding-right-${sizeFactor} {
+      padding-right: var(--size-space-${sizeFactor});
+    }
+    .padding-bottom-${sizeFactor} {
+      padding-bottom: var(--size-space-${sizeFactor});
+    }
+    .padding-left-${sizeFactor} {
+      padding-left: var(--size-space-${sizeFactor});
+    }
+
+    :host(.margin-top-${sizeFactor}) {
+      margin-top: var(--size-space-${sizeFactor});
+    }
+    :host(.margin-right-${sizeFactor}) {
+      margin-right: var(--size-space-${sizeFactor});
+    }
+    :host(.margin-bottom-${sizeFactor}) {
+      margin-bottom: var(--size-space-${sizeFactor});
+    }
+    :host(.margin-left-${sizeFactor}) {
+      margin-left: var(--size-space-${sizeFactor});
     }
   `
   )}

@@ -52,8 +52,8 @@ export class AppPageComponentsBox extends TiniComponent {
           <div slot="content">
             <h2>Default</h2>
             <p>
-              Default background is the current <code>background</code>, default
-              color is the current <code>foreground</code>.
+              Default background is <code>none</code>, default color is the
+              current <code>foreground</code>.
             </p>
           </div>
           <div slot="code">
@@ -156,6 +156,84 @@ export class AppPageComponentsBox extends TiniComponent {
             >
           </div>
         </app-section>
+
+        <app-section class="text-sizes">
+          <div slot="content">
+            <h2>Text sizes</h2>
+            <p>Text size from 0.1x to 10x.</p>
+          </div>
+          <div slot="code">
+            <tini-box textSize="0_5x">Text size 0.5x</tini-box>
+            <tini-box>Text size 1x</tini-box>
+            <tini-box textSize="3x">Text size 3x</tini-box>
+          </div>
+        </app-section>
+
+        <app-section class="borders">
+          <div slot="content">
+            <h2>Borders</h2>
+          </div>
+          <div slot="code">
+            <tini-box borderSize="1x">Box with a default border</tini-box>
+            <tini-box borderSize="1x" borderColor="primary"
+              >Box with border of primary color</tini-box
+            >
+            <tini-box borderSize="2x" borderRadius="3x"
+              >Box with border of 2x size and 3x radius</tini-box
+            >
+            <tini-box borderSize="1x" borderStyle="dashed"
+              >Box with border of dashed style</tini-box
+            >
+          </div>
+        </app-section>
+
+        <app-section class="paddings">
+          <div slot="content">
+            <h2>Paddings</h2>
+          </div>
+          <div slot="code">
+            <tini-box background="primary" padding="0_5x"
+              >Box with "0.5x" padding</tini-box
+            >
+            <tini-box background="primary" padding="1x 2x"
+              >Box with "1x 2x" padding</tini-box
+            >
+            <tini-box background="primary" padding="1x 2x 3x"
+              >Box with "1x 2x 3x" padding</tini-box
+            >
+            <tini-box background="primary" padding="1x 2x 3x 4x"
+              >Box with "1x 2x 3x 4x" padding</tini-box
+            >
+          </div>
+        </app-section>
+
+        <app-section class="margins">
+          <div slot="content">
+            <h2>Margins</h2>
+          </div>
+          <div slot="code">
+            <div class="margin-container">
+              <tini-box background="primary" margin="0_5x"
+                >Box with "0.5x" margin</tini-box
+              >
+            </div>
+            <div class="margin-container">
+              <tini-box background="primary" margin="1x 2x"
+                >Box with "1x 2x" margin</tini-box
+              >
+            </div>
+            <div class="margin-container">
+              <tini-box background="primary" margin="1x 2x 3x"
+                >Box with "1x 2x 3x" margin</tini-box
+              >
+            </div>
+            <div class="margin-container">
+              <tini-box background="primary" margin="1x 2x 3x 4x"
+                >Box with "1x 2x 3x 4x" margin</tini-box
+              >
+            </div>
+          </div>
+        </app-section>
       </app-component-page>
     `;
   }
@@ -169,6 +247,11 @@ export class AppPageComponentsBox extends TiniComponent {
       display: flex;
       flex-flow: column nowrap;
       gap: var(--size-space);
+
+      .margin-container {
+        border: 1px solid var(--color-medium);
+        margin-top: var(--size-space);
+      }
     }
   `;
 }
