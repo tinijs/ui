@@ -9,11 +9,11 @@ import {
 export const buttonStyle = css`
   :host {
     --button-background: var(--color-medium) /* Background color */;
-    --button-color: var(--color-medium-contrast) /* Text color */;
+    --button-text-color: var(--color-medium-contrast) /* Text color */;
+    --button-text-size: var(--size-md);
+    --button-padding: var(--size-md) /* Base padding */;
     --button-border: none;
     --button-radius: var(--size-radius);
-    --button-padding: var(--size-md) /* Base padding */;
-    --button-font-size: var(--size-md);
     --button-hover-brightness: 1.1;
     --button-active-brightness: 0.95;
     --button-disabled-opacity: 0.5
@@ -40,12 +40,12 @@ export const buttonStyle = css`
     gap: calc(var(--button-padding) * 0.5);
     padding: calc(var(--button-padding) * 0.5) var(--button-padding);
     font-family: var(--font-body);
-    font-size: var(--button-font-size);
+    font-size: var(--button-text-size);
     line-height: 1.5;
     border: var(--button-border);
     border-radius: var(--button-radius);
     background: var(--button-background);
-    color: var(--button-color);
+    color: var(--button-text-color);
     outline: 0 !important;
     transition: background-color 0.15s ease-in-out;
   }
@@ -93,13 +93,13 @@ export const buttonStyle = css`
     ({name, color, contrast}) => `
     .bg-${name} {
       --button-background: ${color};
-      --button-color: ${contrast};
+      --button-text-color: ${contrast};
       --button-focus-visible-shadow-color: color-mix(in oklab, ${color}, transparent 70%);
     }
 
     :host([textColor="${name}"]),
     .color-${name} {
-      --button-color: ${color} !important;
+      --button-text-color: ${color} !important;
     }
   `
   )}
@@ -108,7 +108,7 @@ export const buttonStyle = css`
     ({name, gradient, color, contrast}) => `
     .bg-${name} {
       --button-background: ${gradient};
-      --button-color: ${contrast};
+      --button-text-color: ${contrast};
       --button-hover-background: ${gradient};
       --button-focus-visible-shadow-color: color-mix(in oklab, ${color}, transparent 70%);
     }
@@ -124,7 +124,7 @@ export const buttonStyle = css`
   ${generateSizeVaries(
     size => `
     .size-${size} {
-      --button-font-size: var(--size-${size});
+      --button-text-size: var(--size-${size});
       --button-padding: var(--size-${size});
       --button-focus-visible-shadow-size: var(--size-${size}-0_3x);
     }

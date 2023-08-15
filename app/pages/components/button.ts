@@ -6,6 +6,7 @@ import {
   stylingWithBases,
   BASE_COLORS,
   BASE_GRADIENTS,
+  SIZES,
 } from '@tinijs/core';
 import {
   commonBases,
@@ -145,48 +146,26 @@ export class AppPageComponentsButton extends TiniComponent {
         <app-section class="disabled-colors">
           <div slot="content"><h2>Disabled colors</h2></div>
           <div slot="code">
-            <tini-button color="primary" disabled>Primary</tini-button>
-            <tini-button color="secondary" disabled>Secondary</tini-button>
-            <tini-button color="tertiary" disabled>Tertiary</tini-button>
-            <tini-button color="success" disabled>Success</tini-button>
-            <tini-button color="danger" disabled>Danger</tini-button>
-            <tini-button color="warning" disabled>Warning</tini-button>
-            <tini-button color="light" disabled>Light</tini-button>
-            <tini-button color="medium" disabled>Medium</tini-button>
-            <tini-button color="dark" disabled>Dark</tini-button>
+            ${BASE_COLORS.map(
+              color => html`
+                <tini-button color=${color} disabled
+                  >Button ${color} disabled</tini-button
+                >
+              `
+            )}
           </div>
         </app-section>
 
         <app-section class="disabled-gradients">
           <div slot="content"><h2>Disabled gradients</h2></div>
           <div slot="code">
-            <tini-button color="gradient-primary" disabled
-              >Gradient Primary</tini-button
-            >
-            <tini-button color="gradient-secondary" disabled
-              >Gradient Secondary</tini-button
-            >
-            <tini-button color="gradient-tertiary" disabled
-              >Gradient Tertiary</tini-button
-            >
-            <tini-button color="gradient-success" disabled
-              >Gradient Success</tini-button
-            >
-            <tini-button color="gradient-danger" disabled
-              >Gradient Danger</tini-button
-            >
-            <tini-button color="gradient-warning" disabled
-              >Gradient Warning</tini-button
-            >
-            <tini-button color="gradient-light" disabled
-              >Gradient Light</tini-button
-            >
-            <tini-button color="gradient-medium" disabled
-              >Gradient Medium</tini-button
-            >
-            <tini-button color="gradient-dark" disabled
-              >Gradient Dark</tini-button
-            >
+            ${BASE_GRADIENTS.map(
+              gradient => html`
+                <tini-button color=${gradient} disabled
+                  >Gradient ${gradient} disabled</tini-button
+                >
+              `
+            )}
           </div>
         </app-section>
 
@@ -214,18 +193,13 @@ export class AppPageComponentsButton extends TiniComponent {
         <app-section class="sizes">
           <div slot="content"><h2>Sizes</h2></div>
           <div slot="code">
-            <tini-button size="xxxs" color="primary">XXXS</tini-button>
-            <tini-button size="xxs" color="primary">XXS</tini-button>
-            <tini-button size="xs" color="primary">XS</tini-button>
-            <tini-button size="ss" color="primary">SS</tini-button>
-            <tini-button size="sm" color="primary">SM</tini-button>
-            <tini-button size="md" color="primary">MD</tini-button>
-            <tini-button size="ml" color="primary">ML</tini-button>
-            <tini-button size="lg" color="primary">LG</tini-button>
-            <tini-button size="sl" color="primary">SL</tini-button>
-            <tini-button size="xl" color="primary">XL</tini-button>
-            <tini-button size="xxl" color="primary">XXL</tini-button>
-            <tini-button size="xxxl" color="primary">XXXL</tini-button>
+            ${SIZES.map(
+              size => html`
+                <tini-button size=${size} color="primary"
+                  >${size.toLowerCase()}</tini-button
+                >
+              `
+            )}
           </div>
         </app-section>
 
