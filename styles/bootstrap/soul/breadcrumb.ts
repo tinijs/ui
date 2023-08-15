@@ -1,25 +1,33 @@
 import {css} from 'lit';
-import {generateColorVaries} from '@tinijs/core';
 
 export const breadcrumbStyle = css`
-  :host {
-  }
+  /* :host {} */
 
   /*
    * Main
    */
 
-  /*
-   * [color]
-   */
+  .breadcrumb {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
 
-  ${generateColorVaries(
-    ({name, color}) => `
-    .color-${name} {
-      
-    }
-  `
-  )}
+  .item {
+    color: var(--color-medium);
+  }
+
+  .item::before {
+    content: '/';
+    margin: 0 var(--size-space-0_5x);
+    color: var(--color-medium);
+  }
+
+  .item:first-child::before {
+    display: none;
+  }
 `;
 
 export const breadcrumbScript = undefined;
