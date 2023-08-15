@@ -24,15 +24,21 @@ export const cardStyle = css`
   .head,
   .foot {
     display: none;
-    padding: var(--size-space-0_5x) var(--size-space);
-    align-items: center;
-    justify-content: space-between;
-    background: color-mix(in oklab, var(--color-background-shade), white 75%);
   }
 
   .head-populated,
   .foot-populated {
+    padding: var(--size-space-0_5x) var(--size-space);
+    background: color-mix(in oklab, var(--color-background-shade), white 75%);
+  }
+
+  .head-populated,
+  .head-populated > :first-child,
+  .foot-populated,
+  .foot-populated > :first-child {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .head {
@@ -46,6 +52,10 @@ export const cardStyle = css`
   .foot {
     border-top: var(--card-border);
   }
+
+  /*
+   * Content
+   */
 
   ::slotted(.card-image) {
     width: calc(100% + (var(--size-space) * 2));

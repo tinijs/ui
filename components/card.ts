@@ -41,7 +41,6 @@ export class TiniCardComponent extends LitElement {
   }
 
   protected render() {
-    console.log('render ...');
     return html`
       <div
         class=${classMap(this.rootClassesParts)}

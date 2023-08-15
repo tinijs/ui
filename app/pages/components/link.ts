@@ -55,9 +55,7 @@ export class AppPageComponentsLink extends TiniComponent {
         <div slot="description">Use link to navigate around.</div>
 
         <app-section class="default">
-          <div slot="content">
-            <h2>Default</h2>
-          </div>
+          <h2 slot="title">Default</h2>
           <div slot="code">
             <tini-link href="#">This is a default link!</tini-link>
           </div>
@@ -66,9 +64,7 @@ export class AppPageComponentsLink extends TiniComponent {
         ${BASE_COLORS.map(
           color => html`
             <app-section class="colors">
-              <div slot="content">
-                <h2>Color ${color}</h2>
-              </div>
+              <h2 slot="title">Color ${color}</h2>
               <div slot="code">
                 <tini-link href="#" color=${color}
                   >Link with ${color} color</tini-link
@@ -115,8 +111,8 @@ export class AppPageComponentsLink extends TiniComponent {
         ${BASE_GRADIENTS.map(
           gradient => html`
             <app-section class="gradients">
+              <h2 slot="title">${gradient.replace(/-/g, ' ')}</h2>
               <div slot="content">
-                <h2>${gradient.replace(/-/g, ' ')}</h2>
                 <p>
                   Note that the gradient links only support underline for the
                   last one line of text.
@@ -143,9 +139,7 @@ export class AppPageComponentsLink extends TiniComponent {
         )}
 
         <app-section class="fonts">
-          <div slot="content">
-            <h2>Fonts</h2>
-          </div>
+          <h2 slot="title">Fonts</h2>
           <div slot="code">
             ${FONT_TYPES.map(
               font =>
@@ -157,9 +151,7 @@ export class AppPageComponentsLink extends TiniComponent {
         </app-section>
 
         <app-section class="sizes">
-          <div slot="content">
-            <h2>Sizes</h2>
-          </div>
+          <h2 slot="title">Sizes</h2>
           <div slot="code">
             ${SIZE_FACTORS.map(
               size =>
@@ -171,8 +163,8 @@ export class AppPageComponentsLink extends TiniComponent {
         </app-section>
 
         <app-section class="weights">
+          <h2 slot="title">Weights</h2>
           <div slot="content">
-            <h2>Weights</h2>
             <p>Please note that the active font the respective weights.</p>
           </div>
           <div slot="code">
@@ -186,9 +178,7 @@ export class AppPageComponentsLink extends TiniComponent {
         </app-section>
 
         <app-section class="transfroms">
-          <div slot="content">
-            <h2>Text transforms</h2>
-          </div>
+          <h2 slot="title">Text transforms</h2>
           <div slot="code">
             ${TEXT_TRANSFORMS.map(
               transform =>
@@ -200,9 +190,7 @@ export class AppPageComponentsLink extends TiniComponent {
         </app-section>
 
         <app-section class="italic-underline">
-          <div slot="content">
-            <h2>Italic and Underline</h2>
-          </div>
+          <h2 slot="title">Italic and Underline</h2>
           <div slot="code">
             <tini-link italic>Link with italic style</tini-link>
             <tini-link underline>Link with underline decoration</tini-link>
@@ -213,10 +201,6 @@ export class AppPageComponentsLink extends TiniComponent {
   }
 
   static styles = css`
-    app-section [slot='content'] h2 {
-      text-transform: capitalize;
-    }
-
     app-section [slot='code'] {
       display: flex;
       flex-flow: column;

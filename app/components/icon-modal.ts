@@ -208,8 +208,8 @@ containerEl.innerHTML = ${nameVar}Code;
           : html`
               <div class="modal-body">
                 <app-section noUsageTabs style="margin-top: 1rem;">
+                  <h2 slot="title" style="margin-top: 0;">Imports</h2>
                   <div slot="content" class="imports">
-                    <h2 style="margin-top: 0;">Imports</h2>
                     <p>
                       After installing the respective icons pack, you can import
                       and use the component, data URI, SVG code or URL anywhere

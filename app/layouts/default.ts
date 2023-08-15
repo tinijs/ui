@@ -34,7 +34,6 @@ export class AppLayoutDefault extends TiniComponent {
         'header header header' var(--header-height)
         'menu page ads' auto
         / 1fr 4fr 1fr;
-      column-gap: 2rem;
     }
 
     .header {
@@ -68,7 +67,7 @@ export class AppLayoutDefault extends TiniComponent {
 
     .page {
       grid-area: page;
-      padding: 1rem 5rem;
+      padding: 1rem 7rem;
     }
   `;
 }

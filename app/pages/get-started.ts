@@ -46,9 +46,8 @@ export class AppPageGetStarted extends TiniComponent {
       </p>
 
       <app-section noUsageTabs>
+        <h2 slot="title">Install and Usage</h2>
         <div slot="content">
-          <h2>Install and Usage</h2>
-
           <h3>1. Use the official CLI</h3>
           <p>
             The CLI is the <strong>recommended</strong> way of using Tini UI. It
@@ -121,9 +120,8 @@ npm i @tinijs/ui-bootstrap"
       </app-section>
 
       <app-section noUsageTabs>
+        <h2 slot="title">Packages</h2>
         <div slot="content">
-          <h2>Packages</h2>
-
           <h3>Bootstrap</h3>
           <app-code
             language="bash"

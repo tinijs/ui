@@ -33,8 +33,8 @@ export class AppPageGuidesCustomization extends TiniComponent {
       </p>
 
       <app-section noUsageTabs>
+        <h2 slot="title">Terminologies</h2>
         <div slot="content">
-          <h2>Terminologies</h2>
           <ul>
             <li>
               <strong>Soul</strong>: the feel of a component (design system).
@@ -49,8 +49,8 @@ export class AppPageGuidesCustomization extends TiniComponent {
       </app-section>
 
       <app-section noUsageTabs>
+        <h2 slot="title">Build skins</h2>
         <div slot="content">
-          <h2>Build skins</h2>
           <p>
             To create your own skins, you can copy the variables from one of the
             skin that belongs to a soul you want to associated, for example
@@ -68,8 +68,8 @@ export class AppPageGuidesCustomization extends TiniComponent {
       </app-section>
 
       <app-section noUsageTabs>
+        <h2 slot="title">Build souls</h2>
         <div slot="content">
-          <h2>Build souls</h2>
           <p>
             You can create a public soul and share it with the community by
             contributing to the
@@ -96,8 +96,8 @@ export class AppPageGuidesCustomization extends TiniComponent {
       </app-section>
 
       <app-section noUsageTabs>
+        <h2 slot="title">Customize a component</h2>
         <div slot="content">
-          <h2>Customize a component</h2>
           <p>
             To customize a component, you can edit its
             <strong>variables</strong> or provide custom styles via its
@@ -108,8 +108,8 @@ export class AppPageGuidesCustomization extends TiniComponent {
       </app-section>
 
       <app-section noUsageTabs>
+        <h2 slot="title">Variable reference</h2>
         <div slot="content">
-          <h2>Variable reference</h2>
           <p>
             Please see the list of
             <a

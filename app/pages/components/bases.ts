@@ -96,8 +96,8 @@ export class AppPageComponentsBases extends TiniComponent {
       ${this.BASE_LIST.map(
         ([name, description, previewCode]) => html`
           <app-section noUsageTabs>
+            <h2 slot="title">${name}</h2>
             <div slot="content">
-              <h2 class="title">${name}</h2>
               <p>${description}</p>
 
               ${!previewCode
@@ -145,10 +145,6 @@ export class MyPage extends TiniComponent {}"
   }
 
   static styles = css`
-    .title {
-      text-transform: capitalize;
-    }
-
     .preview {
       padding: var(--size-space);
       border-radius: var(--size-radius);

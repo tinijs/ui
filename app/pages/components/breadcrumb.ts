@@ -57,9 +57,7 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
         <div slot="description">Breadcrumb description.</div>
 
         <app-section class="default">
-          <div slot="content">
-            <h2>Default</h2>
-          </div>
+          <h2 slot="title">Default</h2>
           <div slot="code">
             <tini-breadcrumb .items=${[this.ITEMS[0]]}></tini-breadcrumb>
             <tini-breadcrumb
@@ -70,9 +68,7 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
         </app-section>
 
         <app-section class="colors">
-          <div slot="content">
-            <h2>Link colors</h2>
-          </div>
+          <h2 slot="title">Link colors</h2>
           <div slot="code">
             ${BASE_COLORS.map(
               color =>
@@ -85,9 +81,7 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
         </app-section>
 
         <app-section class="gradients">
-          <div slot="content">
-            <h2>Link gradients</h2>
-          </div>
+          <h2 slot="title">Link gradients</h2>
           <div slot="code">
             ${BASE_GRADIENTS.map(
               gradient =>
@@ -103,10 +97,6 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
   }
 
   static styles = css`
-    app-section [slot='content'] h2 {
-      text-transform: capitalize;
-    }
-
     app-section [slot='code'] {
       display: flex;
       flex-direction: column;

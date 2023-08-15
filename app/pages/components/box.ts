@@ -49,8 +49,8 @@ export class AppPageComponentsBox extends TiniComponent {
         <div slot="description">Boxes are containers for any content.</div>
 
         <app-section class="default">
+          <h2 slot="title">Default</h2>
           <div slot="content">
-            <h2>Default</h2>
             <p>
               Default background is <code>none</code>, default color is the
               current <code>foreground</code>.
@@ -64,9 +64,7 @@ export class AppPageComponentsBox extends TiniComponent {
         ${BASE_COLORS.map(
           color => html`
             <app-section class="colors">
-              <div slot="content">
-                <h2>Color ${color}</h2>
-              </div>
+              <h2 slot="title">Color ${color}</h2>
               <div slot="code">
                 <tini-box background=${color}
                   >Box with ${color} background</tini-box
@@ -113,9 +111,7 @@ export class AppPageComponentsBox extends TiniComponent {
         ${BASE_GRADIENTS.map(
           gradient => html`
             <app-section class="gradients">
-              <div slot="content">
-                <h2>${gradient.replace(/-/g, ' ')}</h2>
-              </div>
+              <h2 slot="title">${gradient.replace(/-/g, ' ')}</h2>
               <div slot="code">
                 <tini-box background=${gradient}
                   >Box with ${gradient} background</tini-box
@@ -137,8 +133,8 @@ export class AppPageComponentsBox extends TiniComponent {
         )}
 
         <app-section class="text-colors">
+          <h2 slot="title">Text colors</h2>
           <div slot="content">
-            <h2>Text colors</h2>
             <p>
               You can combine any text colors with any background colors. Below
               are just some examples.
@@ -158,8 +154,8 @@ export class AppPageComponentsBox extends TiniComponent {
         </app-section>
 
         <app-section class="text-sizes">
+          <h2 slot="title">Text sizes</h2>
           <div slot="content">
-            <h2>Text sizes</h2>
             <p>Text size from 0.1x to 10x.</p>
           </div>
           <div slot="code">
@@ -170,9 +166,7 @@ export class AppPageComponentsBox extends TiniComponent {
         </app-section>
 
         <app-section class="borders">
-          <div slot="content">
-            <h2>Borders</h2>
-          </div>
+          <h2 slot="title">Borders</h2>
           <div slot="code">
             <tini-box borderSize="1x">Box with a default border</tini-box>
             <tini-box borderSize="1x" borderColor="primary"
@@ -188,10 +182,11 @@ export class AppPageComponentsBox extends TiniComponent {
         </app-section>
 
         <app-section class="paddings">
-          <div slot="content">
-            <h2>Paddings</h2>
-          </div>
+          <h2 slot="title">Paddings</h2>
           <div slot="code">
+            <tini-box background="primary" padding="0x"
+              >Box with "0x" padding</tini-box
+            >
             <tini-box background="primary" padding="0_5x"
               >Box with "0.5x" padding</tini-box
             >
@@ -208,9 +203,7 @@ export class AppPageComponentsBox extends TiniComponent {
         </app-section>
 
         <app-section class="margins">
-          <div slot="content">
-            <h2>Margins</h2>
-          </div>
+          <h2 slot="title">Margins</h2>
           <div slot="code">
             <div class="margin-container">
               <tini-box background="primary" margin="0_5x"
@@ -239,10 +232,6 @@ export class AppPageComponentsBox extends TiniComponent {
   }
 
   static styles = css`
-    app-section [slot='content'] h2 {
-      text-transform: capitalize;
-    }
-
     app-section [slot='code'] {
       display: flex;
       flex-flow: column nowrap;

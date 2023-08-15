@@ -82,6 +82,7 @@ export class AppSectionComponent extends TiniComponent {
   protected render() {
     return html`
       <section>
+        <slot name="title"></slot>
         <slot name="content"></slot>
         <slot name="code"></slot>
         ${this.noUsageTabs || !this.originalCode
@@ -123,6 +124,10 @@ export class AppSectionComponent extends TiniComponent {
   static styles = css`
     :host {
       margin-top: 3rem;
+    }
+
+    ::slotted([slot='title']) {
+      text-transform: capitalize;
     }
 
     ::slotted([slot='code']) {

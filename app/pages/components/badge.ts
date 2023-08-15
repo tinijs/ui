@@ -53,8 +53,8 @@ export class AppPageComponentsBadge extends TiniComponent {
         <div slot="description">Badge description.</div>
 
         <app-section class="default">
+          <h2 slot="title">Default</h2>
           <div slot="content">
-            <h2>Default</h2>
             <p>
               Default color is <code>medium</code>, default size is
               <code>md</code>.
@@ -68,8 +68,8 @@ export class AppPageComponentsBadge extends TiniComponent {
         </app-section>
 
         <app-section class="pilled-rounded">
+          <h2 slot="title">Pilled and Rouded</h2>
           <div slot="content">
-            <h2>Pilled and Rouded</h2>
             <p>
               Rounded badges are best for values with less than or equals 2
               characters.
@@ -92,9 +92,7 @@ export class AppPageComponentsBadge extends TiniComponent {
         ${BASE_COLORS.map(
           color => html`
             <app-section class="colors">
-              <div slot="content">
-                <h2>Color ${color}</h2>
-              </div>
+              <h2 slot="title">Color ${color}</h2>
               <div slot="code">
                 <tini-badge color=${color}>99+</tini-badge>
                 <tini-badge color=${`${color}-shade` as any}>99+</tini-badge>
@@ -119,9 +117,7 @@ export class AppPageComponentsBadge extends TiniComponent {
         ${BASE_GRADIENTS.map(
           gradient => html`
             <app-section class="gradients">
-              <div slot="content">
-                <h2>${gradient.replace(/-/g, ' ')}</h2>
-              </div>
+              <h2 slot="title">${gradient.replace(/-/g, ' ')}</h2>
               <div slot="code">
                 <tini-badge color=${gradient}>99+</tini-badge>
                 <tini-badge color=${`${gradient}-shade` as any}>99+</tini-badge>
@@ -137,8 +133,8 @@ export class AppPageComponentsBadge extends TiniComponent {
         )}
 
         <app-section class="text-colors">
+          <h2 slot="title">Text colors</h2>
           <div slot="content">
-            <h2>Text colors</h2>
             <p>
               You can combine any text colors with any background colors. Below
               are just some examples.
@@ -154,7 +150,7 @@ export class AppPageComponentsBadge extends TiniComponent {
         </app-section>
 
         <app-section class="sizes">
-          <div slot="content"><h2>Sizes</h2></div>
+          <h2 slot="title">Sizes</h2>
           <div slot="code">
             ${SIZES.map(
               size =>
@@ -167,10 +163,6 @@ export class AppPageComponentsBadge extends TiniComponent {
   }
 
   static styles = css`
-    app-section [slot='content'] h2 {
-      text-transform: capitalize;
-    }
-
     app-section [slot='code'] {
       tini-box {
         width: 65px;

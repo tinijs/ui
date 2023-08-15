@@ -282,8 +282,8 @@ useComponents([
     return html`
       <div class="body article">
         <app-section noUsageTabs>
+          <h2 slot="title">Imports</h2>
           <div slot="content" class="imports">
-            <h2>Imports</h2>
             <p>
               After the
               <a href="/get-started">initial setup</a>, you can import and use
@@ -337,8 +337,8 @@ useComponents([
         <slot></slot>
 
         <app-section noUsageTabs>
+          <h2 slot="title">API</h2>
           <div slot="content" class="api">
-            <h2>API</h2>
             <p>
               For implementation detail, please see the
               <a
@@ -375,8 +375,8 @@ useComponents([
         </app-section>
 
         <app-section noUsageTabs>
+          <h2 slot="title">Variables & parts</h2>
           <div slot="content" class="styles">
-            <h2>Variables & parts</h2>
             <p>
               Please see the
               <a href="/guides/customization">Customization</a> guide for more

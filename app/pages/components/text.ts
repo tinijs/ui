@@ -58,8 +58,8 @@ export class AppPageComponentsText extends TiniComponent {
         </div>
 
         <app-section class="default">
+          <h2 slot="title">Default</h2>
           <div slot="content">
-            <h2>Default</h2>
             <p>
               The default container tag is <code>span</code>. The default color
               is <code>foreground</code>.
@@ -71,8 +71,8 @@ export class AppPageComponentsText extends TiniComponent {
         </app-section>
 
         <app-section class="types">
+          <h2 slot="title">Types</h2>
           <div slot="content">
-            <h2>Types</h2>
             <p>Use different tag types.</p>
           </div>
           <div slot="code">
@@ -88,9 +88,7 @@ export class AppPageComponentsText extends TiniComponent {
         ${BASE_COLORS.map(
           color => html`
             <app-section class="colors">
-              <div slot="content">
-                <h2>Color ${color}</h2>
-              </div>
+              <h2 slot="title">Color ${color}</h2>
               <div slot="code">
                 <tini-text color=${color}>Text with ${color} color</tini-text>
                 <tini-text color=${`${color}-shade` as any}
@@ -135,9 +133,7 @@ export class AppPageComponentsText extends TiniComponent {
         ${BASE_GRADIENTS.map(
           gradient => html`
             <app-section class="gradients">
-              <div slot="content">
-                <h2>${gradient.replace(/-/g, ' ')}</h2>
-              </div>
+              <h2 slot="title">${gradient.replace(/-/g, ' ')}</h2>
               <div slot="code">
                 <tini-text color=${gradient}
                   >Text with ${gradient} color</tini-text
@@ -159,9 +155,7 @@ export class AppPageComponentsText extends TiniComponent {
         )}
 
         <app-section class="fonts">
-          <div slot="content">
-            <h2>Fonts</h2>
-          </div>
+          <h2 slot="title">Fonts</h2>
           <div slot="code">
             ${FONT_TYPES.map(
               font =>
@@ -171,9 +165,7 @@ export class AppPageComponentsText extends TiniComponent {
         </app-section>
 
         <app-section class="sizes">
-          <div slot="content">
-            <h2>Sizes</h2>
-          </div>
+          <h2 slot="title">Sizes</h2>
           <div slot="code">
             ${SIZE_FACTORS.map(
               size =>
@@ -185,8 +177,8 @@ export class AppPageComponentsText extends TiniComponent {
         </app-section>
 
         <app-section class="weights">
+          <h2 slot="title">Weights</h2>
           <div slot="content">
-            <h2>Weights</h2>
             <p>
               Please note that the active font must support the respective
               weights.
@@ -203,9 +195,7 @@ export class AppPageComponentsText extends TiniComponent {
         </app-section>
 
         <app-section class="transfroms">
-          <div slot="content">
-            <h2>Text transforms</h2>
-          </div>
+          <h2 slot="title">Text transforms</h2>
           <div slot="code">
             ${TEXT_TRANSFORMS.map(
               transform =>
@@ -217,9 +207,7 @@ export class AppPageComponentsText extends TiniComponent {
         </app-section>
 
         <app-section class="italic-underline">
-          <div slot="content">
-            <h2>Italic and Underline</h2>
-          </div>
+          <h2 slot="title">Italic and Underline</h2>
           <div slot="code">
             <tini-text italic>Text with italic style</tini-text>
             <tini-text underline>Text with underline decoration</tini-text>
@@ -230,10 +218,6 @@ export class AppPageComponentsText extends TiniComponent {
   }
 
   static styles = css`
-    app-section [slot='content'] h2 {
-      text-transform: capitalize;
-    }
-
     app-section [slot='code'] {
       display: flex;
       flex-flow: column;

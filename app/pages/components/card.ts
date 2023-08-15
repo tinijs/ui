@@ -44,8 +44,8 @@ export class AppPageComponentsCard extends TiniComponent {
         <div slot="description">Card description.</div>
 
         <app-section class="default">
+          <h2 slot="title">Default</h2>
           <div slot="content">
-            <h2>Default</h2>
             <p>Max width is <code>--wide-xs</code>.</p>
           </div>
           <div slot="code">
@@ -61,9 +61,7 @@ export class AppPageComponentsCard extends TiniComponent {
         </app-section>
 
         <app-section class="default">
-          <div slot="content">
-            <h2>Fluid card</h2>
-          </div>
+          <h2 slot="title">Fluid card</h2>
           <div slot="code">
             <tini-card fluid>
               <strong class="card-title">Card title</strong>
@@ -77,9 +75,7 @@ export class AppPageComponentsCard extends TiniComponent {
         </app-section>
 
         <app-section class="default">
-          <div slot="content">
-            <h2>Head and foot</h2>
-          </div>
+          <h2 slot="title">Head and foot</h2>
           <div slot="code">
             <tini-card>
               <span slot="head">Card head</span>
@@ -95,9 +91,7 @@ export class AppPageComponentsCard extends TiniComponent {
         </app-section>
 
         <app-section class="default">
-          <div slot="content">
-            <h2>Image card</h2>
-          </div>
+          <h2 slot="title">Image card</h2>
           <div slot="code">
             <tini-card>
               <img

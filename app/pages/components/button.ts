@@ -60,8 +60,8 @@ export class AppPageComponentsButton extends TiniComponent {
         <div slot="description">Use buttons to trigger actions.</div>
 
         <app-section class="default">
+          <h2 slot="title">Default</h2>
           <div slot="content">
-            <h2>Default</h2>
             <p>
               Default color is <code>medium</code>, default size is
               <code>md</code>.
@@ -75,9 +75,7 @@ export class AppPageComponentsButton extends TiniComponent {
         ${BASE_COLORS.map(
           color => html`
             <app-section class="colors">
-              <div slot="content">
-                <h2>Color ${color}</h2>
-              </div>
+              <h2 slot="title">Color ${color}</h2>
               <div slot="code">
                 <tini-button color=${color}>Button ${color}</tini-button>
                 <tini-button color=${`${color}-shade` as any}
@@ -122,9 +120,7 @@ export class AppPageComponentsButton extends TiniComponent {
         ${BASE_GRADIENTS.map(
           gradient => html`
             <app-section class="gradients">
-              <div slot="content">
-                <h2>${gradient.replace(/-/g, ' ')}</h2>
-              </div>
+              <h2 slot="title">${gradient.replace(/-/g, ' ')}</h2>
               <div slot="code">
                 <tini-button color=${gradient}>Button ${gradient}</tini-button>
                 <tini-button color=${`${gradient}-shade` as any}
@@ -144,34 +140,32 @@ export class AppPageComponentsButton extends TiniComponent {
         )}
 
         <app-section class="disabled-colors">
-          <div slot="content"><h2>Disabled colors</h2></div>
+          <h2 slot="title">Disabled colors</h2>
           <div slot="code">
             ${BASE_COLORS.map(
-              color => html`
-                <tini-button color=${color} disabled
+              color =>
+                html`<tini-button color=${color} disabled
                   >Button ${color} disabled</tini-button
-                >
-              `
+                >`
             )}
           </div>
         </app-section>
 
         <app-section class="disabled-gradients">
-          <div slot="content"><h2>Disabled gradients</h2></div>
+          <h2 slot="title">Disabled gradients</h2>
           <div slot="code">
             ${BASE_GRADIENTS.map(
-              gradient => html`
-                <tini-button color=${gradient} disabled
+              gradient =>
+                html`<tini-button color=${gradient} disabled
                   >Gradient ${gradient} disabled</tini-button
-                >
-              `
+                >`
             )}
           </div>
         </app-section>
 
         <app-section class="text-colors">
+          <h2 slot="title">Text colors</h2>
           <div slot="content">
-            <h2>Text colors</h2>
             <p>
               You can combine any text colors with any background colors. Below
               are just some examples.
@@ -191,20 +185,19 @@ export class AppPageComponentsButton extends TiniComponent {
         </app-section>
 
         <app-section class="sizes">
-          <div slot="content"><h2>Sizes</h2></div>
+          <h2 slot="title">Sizes</h2>
           <div slot="code">
             ${SIZES.map(
-              size => html`
-                <tini-button size=${size} color="primary"
+              size =>
+                html`<tini-button size=${size} color="primary"
                   >${size.toLowerCase()}</tini-button
-                >
-              `
+                > `
             )}
           </div>
         </app-section>
 
         <app-section class="icons-and-justifications">
-          <div slot="content"><h2>Icons and Justifications</h2></div>
+          <h2 slot="title">Icons and Justifications</h2>
           <div slot="code">
             <tini-button color="primary">
               <icon-heart-fill
@@ -282,10 +275,6 @@ export class AppPageComponentsButton extends TiniComponent {
   }
 
   static styles = css`
-    app-section [slot='content'] h2 {
-      text-transform: capitalize;
-    }
-
     app-section [slot='code'] {
       display: flex;
       flex-flow: column;
