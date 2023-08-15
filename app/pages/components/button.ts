@@ -190,7 +190,7 @@ export class AppPageComponentsButton extends TiniComponent {
             ${SIZES.map(
               size =>
                 html`<tini-button size=${size} color="primary"
-                  >${size.toLowerCase()}</tini-button
+                  >${size}</tini-button
                 > `
             )}
           </div>

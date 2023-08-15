@@ -47,9 +47,9 @@ export const badgeStyle = css`
    */
 
   .rounded {
-    --badge-rounded-dimension: calc(var(--badge-text-size) * 1.75);
-    width: var(--badge-rounded-dimension);
-    height: var(--badge-rounded-dimension);
+    --badge-rounded-size: calc(var(--badge-text-size) * 1.75);
+    width: var(--badge-rounded-size);
+    height: var(--badge-rounded-size);
     border-radius: 100% !important;
     overflow: hidden;
   }
