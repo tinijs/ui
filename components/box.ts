@@ -28,7 +28,7 @@ export class TiniBoxComponent extends LitElement {
   @property({type: String}) declare margin?: string;
 
   private rootClasses: ClassInfo = {};
-  protected willUpdate() {
+  willUpdate() {
     // host classes
     this.updateHostClasses();
     // root classes

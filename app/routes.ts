@@ -58,6 +58,81 @@ export const componentsRoutes: Route[] = [
     component: 'app-page-components-button',
     action: () => import('./pages/components/button'),
   },
+  {
+    path: 'components/badge',
+    component: 'app-page-components-badge',
+    action: () => import('./pages/components/badge'),
+  },
+  {
+    path: 'components/breadcrumb',
+    component: 'app-page-components-breadcrumb',
+    action: () => import('./pages/components/breadcrumb'),
+  },
+  {
+    path: 'components/card',
+    component: 'app-page-components-card',
+    action: () => import('./pages/components/card'),
+  },
+  {
+    path: 'components/checkbox',
+    component: 'app-page-components-checkbox',
+    action: () => import('./pages/components/checkbox'),
+  },
+  {
+    path: 'components/dialog',
+    component: 'app-page-components-dialog',
+    action: () => import('./pages/components/dialog'),
+  },
+  {
+    path: 'components/input',
+    component: 'app-page-components-input',
+    action: () => import('./pages/components/input'),
+  },
+  {
+    path: 'components/label',
+    component: 'app-page-components-label',
+    action: () => import('./pages/components/label'),
+  },
+  {
+    path: 'components/message',
+    component: 'app-page-components-message',
+    action: () => import('./pages/components/message'),
+  },
+  {
+    path: 'components/modal',
+    component: 'app-page-components-modal',
+    action: () => import('./pages/components/modal'),
+  },
+  {
+    path: 'components/pagination',
+    component: 'app-page-components-pagination',
+    action: () => import('./pages/components/pagination'),
+  },
+  {
+    path: 'components/radio',
+    component: 'app-page-components-radio',
+    action: () => import('./pages/components/radio'),
+  },
+  {
+    path: 'components/select',
+    component: 'app-page-components-select',
+    action: () => import('./pages/components/select'),
+  },
+  {
+    path: 'components/spinner',
+    component: 'app-page-components-spinner',
+    action: () => import('./pages/components/spinner'),
+  },
+  {
+    path: 'components/switch',
+    component: 'app-page-components-switch',
+    action: () => import('./pages/components/switch'),
+  },
+  {
+    path: 'components/textarea',
+    component: 'app-page-components-textarea',
+    action: () => import('./pages/components/textarea'),
+  },
 ];
 
 export const iconsRoutes: Route[] = [

@@ -16,7 +16,7 @@ export class TiniIconComponent extends LitElement {
   @property({type: String}) declare size?: Sizes;
 
   private rootClasses: ClassInfo = {};
-  protected willUpdate() {
+  willUpdate() {
     this.rootClasses = {
       [ICON]: true,
       recolor: !!this.color,

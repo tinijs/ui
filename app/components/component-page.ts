@@ -301,11 +301,11 @@ useComponents([
                 <p>
                   The official
                   <tini-link
-                    href="https://parceljs.org/features/code-splitting/#shared-bundles"
+                    href="https://github.com/tinijs/cli"
                     target="_blank"
                     >CLI</tini-link
                   >
-                  provides the <code>tini use</code> command. It helps you to
+                  provides the <code>tini ui use</code> command. It helps you to
                   manage <strong>components</strong>, <strong>souls</strong> and
                   <strong>skins</strong> under a single importing endpoint.
                 </p>

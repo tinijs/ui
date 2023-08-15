@@ -41,7 +41,7 @@ export class TiniTextComponent extends LitElement {
 
   private tag!: StaticValue;
   private rootClasses: ClassInfo = {};
-  protected willUpdate() {
+  willUpdate() {
     this.tag = literal`${unsafeStatic(this.type || TextTypes.Span)}`;
     this.rootClasses = {
       [TEXT]: true,
