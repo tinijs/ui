@@ -1,7 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property, state, queryAssignedElements} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
+import {partMap, PartInfo} from '@tinijs/core';
 
 export const CARD = 'card';
 export const TINI_CARD = `tini-${CARD}`;

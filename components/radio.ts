@@ -1,8 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
-import {ColorsAndGradients, Sizes} from '@tinijs/core';
+import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
 
 export const RADIO = 'radio';
 export const TINI_RADIO = `tini-${RADIO}`;
@@ -13,16 +12,19 @@ export class TiniRadioComponent extends LitElement {
 
   // @property({type: String}) declare prop?: string;
 
-  private rootClasses: ClassInfo = {};
+  private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
-    this.rootClasses = {
+    this.rootClassesParts = {
       [RADIO]: true,
     };
   }
 
   protected render() {
     return html`
-      <radio part=${RADIO} class=${classMap(this.rootClasses)}></radio>
+      <radio
+        part=${partMap(this.rootClassesParts)}
+        class=${classMap(this.rootClassesParts)}
+      ></radio>
     `;
   }
 }

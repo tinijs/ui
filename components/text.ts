@@ -3,6 +3,8 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {html, literal, unsafeStatic, StaticValue} from 'lit/static-html.js';
 import {
+  partMap,
+  PartInfo,
   ColorsAndGradients,
   FontTypes,
   FontSizeFactors,
@@ -40,10 +42,10 @@ export class TiniTextComponent extends LitElement {
   @property({type: Boolean}) declare underline?: boolean;
 
   private tag!: StaticValue;
-  private rootClasses: ClassInfo = {};
+  private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.tag = literal`${unsafeStatic(this.type || TextTypes.Span)}`;
-    this.rootClasses = {
+    this.rootClassesParts = {
       [TEXT]: true,
       [`color-${this.color}`]: !!this.color,
       [`font-${this.font}`]: !!this.font,
@@ -57,7 +59,9 @@ export class TiniTextComponent extends LitElement {
 
   protected render() {
     return html`
-      <${this.tag} part=${TEXT} class=${classMap(this.rootClasses)}>
+      <${this.tag} part=${partMap(this.rootClassesParts)} class=${classMap(
+        this.rootClassesParts
+      )}>
         <slot></slot>
       </${this.tag}>
     `;

@@ -2,7 +2,7 @@ import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {styleMap} from 'lit/directives/style-map.js';
-import {ColorsAndGradients, Sizes} from '@tinijs/core';
+import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
 
 export const ICON = 'icon';
 export const TINI_ICON = `tini-${ICON}`;
@@ -15,9 +15,9 @@ export class TiniIconComponent extends LitElement {
   @property({type: String}) declare color?: ColorsAndGradients;
   @property({type: String}) declare size?: Sizes;
 
-  private rootClasses: ClassInfo = {};
+  private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
-    this.rootClasses = {
+    this.rootClassesParts = {
       [ICON]: true,
       recolor: !!this.color,
       [`color-${this.color}`]: !!this.color,
@@ -28,8 +28,8 @@ export class TiniIconComponent extends LitElement {
   protected render() {
     return html`
       <i
-        part=${ICON}
-        class=${classMap(this.rootClasses)}
+        part=${partMap(this.rootClassesParts)}
+        class=${classMap(this.rootClassesParts)}
         style=${styleMap({'--icon-image': `url(${this.src})`})}
       ></i>
     `;

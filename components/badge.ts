@@ -1,7 +1,13 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {ColorsAndGradients, Colors, Sizes} from '@tinijs/core';
+import {
+  partMap,
+  PartInfo,
+  ColorsAndGradients,
+  Colors,
+  Sizes,
+} from '@tinijs/core';
 
 export const BADGE = 'badge';
 export const TINI_BADGE = `tini-${BADGE}`;
@@ -16,9 +22,9 @@ export class TiniBadgeComponent extends LitElement {
   @property({type: Boolean}) declare pilled?: boolean;
   @property({type: Boolean}) declare rounded?: boolean;
 
-  private rootClasses: ClassInfo = {};
+  private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
-    this.rootClasses = {
+    this.rootClassesParts = {
       [BADGE]: true,
       [`bg-${this.color}`]: !!this.color,
       [`color-${this.textColor}`]: !!this.textColor,
@@ -30,7 +36,10 @@ export class TiniBadgeComponent extends LitElement {
 
   protected render() {
     return html`
-      <span part=${BADGE} class=${classMap(this.rootClasses)}>
+      <span
+        part=${partMap(this.rootClassesParts)}
+        class=${classMap(this.rootClassesParts)}
+      >
         <slot></slot>
       </span>
     `;

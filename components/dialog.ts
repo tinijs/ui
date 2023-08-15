@@ -1,8 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
-import {ColorsAndGradients, Sizes} from '@tinijs/core';
+import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
 
 export const DIALOG = 'dialog';
 export const TINI_DIALOG = `tini-${DIALOG}`;
@@ -13,16 +12,19 @@ export class TiniDialogComponent extends LitElement {
 
   // @property({type: String}) declare prop?: string;
 
-  private rootClasses: ClassInfo = {};
+  private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
-    this.rootClasses = {
+    this.rootClassesParts = {
       [DIALOG]: true,
     };
   }
 
   protected render() {
     return html`
-      <dialog part=${DIALOG} class=${classMap(this.rootClasses)}></dialog>
+      <dialog
+        part=${partMap(this.rootClassesParts)}
+        class=${classMap(this.rootClassesParts)}
+      ></dialog>
     `;
   }
 }

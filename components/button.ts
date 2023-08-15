@@ -1,7 +1,14 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {ColorsAndGradients, Colors, Sizes, JustifyContents} from '@tinijs/core';
+import {
+  partMap,
+  PartInfo,
+  ColorsAndGradients,
+  Colors,
+  Sizes,
+  JustifyContents,
+} from '@tinijs/core';
 
 export const BUTTON = 'button';
 export const TINI_BUTTON = `tini-${BUTTON}`;
@@ -21,9 +28,9 @@ export class TiniButtonComponent extends LitElement {
     this.disabled = false;
   }
 
-  private rootClasses: ClassInfo = {};
+  private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
-    this.rootClasses = {
+    this.rootClassesParts = {
       [BUTTON]: true,
       [`bg-${this.color}`]: !!this.color,
       [`color-${this.textColor}`]: !!this.textColor,
@@ -34,8 +41,8 @@ export class TiniButtonComponent extends LitElement {
 
   protected render() {
     return html`<button
-      part=${BUTTON}
-      class=${classMap(this.rootClasses)}
+      part=${partMap(this.rootClassesParts)}
+      class=${classMap(this.rootClassesParts)}
       ?disabled=${this.disabled}
     >
       <slot></slot>

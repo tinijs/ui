@@ -4,6 +4,8 @@ import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
 import {
+  partMap,
+  PartInfo,
   ColorsAndGradients,
   FontTypes,
   FontSizeFactors,
@@ -36,9 +38,9 @@ export class TiniLinkComponent extends LitElement {
   @property({type: Boolean}) declare italic?: boolean;
   @property({type: Boolean}) declare underline?: boolean;
 
-  private rootClasses: ClassInfo = {};
+  private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
-    this.rootClasses = {
+    this.rootClassesParts = {
       [LINK]: true,
       [`color-${this.color}`]: !!this.color,
       [`font-${this.font}`]: !!this.font,
@@ -107,8 +109,8 @@ export class TiniLinkComponent extends LitElement {
       <a
         router-ignore
         ${ref(this.anchorRef)}
-        part=${LINK}
-        class=${classMap(this.rootClasses)}
+        part=${partMap(this.rootClassesParts)}
+        class=${classMap(this.rootClassesParts)}
         href=${this.href || '/'}
         target=${ifDefined(this.target)}
         rel=${ifDefined(this.rel)}

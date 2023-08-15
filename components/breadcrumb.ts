@@ -1,7 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, ColorsAndGradients} from '@tinijs/core';
+import {partMap, PartInfo, ColorsAndGradients} from '@tinijs/core';
 
 export interface BreadcrumbItem {
   label: string;
@@ -19,19 +19,25 @@ export class TiniBreadcrumbComponent extends LitElement {
   @property({type: String}) declare items?: BreadcrumbItem[];
   @property({type: String}) declare linkColor?: ColorsAndGradients;
 
-  private rootClasses: ClassInfo = {};
+  private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
-    this.rootClasses = {
+    this.rootClassesParts = {
       [BREADCRUMB]: true,
     };
   }
 
   protected render() {
     return html`
-      <ol part=${BREADCRUMB} class=${classMap(this.rootClasses)}>
+      <ol
+        part=${partMap(this.rootClassesParts)}
+        class=${classMap(this.rootClassesParts)}
+      >
         ${this.items?.map(
           item => html`
-            <li class="item" part=${partMap({item: true, active: !item.href})}>
+            <li
+              class="item"
+              part=${partMap({item: true, 'item-active': !item.href})}
+            >
               ${!item.href
                 ? html`${item.label}`
                 : html`

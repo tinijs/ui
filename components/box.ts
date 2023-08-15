@@ -2,6 +2,8 @@ import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {
+  partMap,
+  PartInfo,
   ColorsAndGradients,
   Colors,
   SizeFactors,
@@ -27,12 +29,12 @@ export class TiniBoxComponent extends LitElement {
   @property({type: String}) declare padding?: string;
   @property({type: String}) declare margin?: string;
 
-  private rootClasses: ClassInfo = {};
+  private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     // host classes
     this.updateHostClasses();
     // root classes
-    this.rootClasses = {
+    this.rootClassesParts = {
       [BOX]: true,
       [`bg-${this.background}`]: !!this.background,
       [`text-color-${this.textColor}`]: !!this.textColor,
@@ -60,7 +62,10 @@ export class TiniBoxComponent extends LitElement {
 
   protected render() {
     return html`
-      <div part=${BOX} class=${classMap(this.rootClasses)}>
+      <div
+        part=${partMap(this.rootClassesParts)}
+        class=${classMap(this.rootClassesParts)}
+      >
         <slot></slot>
       </div>
     `;

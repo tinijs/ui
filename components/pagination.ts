@@ -1,8 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
-import {ColorsAndGradients, Sizes} from '@tinijs/core';
+import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
 
 export const PAGINATION = 'pagination';
 export const TINI_PAGINATION = `tini-${PAGINATION}`;
@@ -13,9 +12,9 @@ export class TiniPaginationComponent extends LitElement {
 
   // @property({type: String}) declare prop?: string;
 
-  private rootClasses: ClassInfo = {};
+  private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
-    this.rootClasses = {
+    this.rootClassesParts = {
       [PAGINATION]: true,
     };
   }
@@ -23,8 +22,8 @@ export class TiniPaginationComponent extends LitElement {
   protected render() {
     return html`
       <pagination
-        part=${PAGINATION}
-        class=${classMap(this.rootClasses)}
+        part=${partMap(this.rootClassesParts)}
+        class=${classMap(this.rootClassesParts)}
       ></pagination>
     `;
   }

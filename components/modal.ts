@@ -1,8 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
-import {ColorsAndGradients, Sizes} from '@tinijs/core';
+import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
 
 export const MODAL = 'modal';
 export const TINI_MODAL = `tini-${MODAL}`;
@@ -13,16 +12,19 @@ export class TiniModalComponent extends LitElement {
 
   // @property({type: String}) declare prop?: string;
 
-  private rootClasses: ClassInfo = {};
+  private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
-    this.rootClasses = {
+    this.rootClassesParts = {
       [MODAL]: true,
     };
   }
 
   protected render() {
     return html`
-      <modal part=${MODAL} class=${classMap(this.rootClasses)}></modal>
+      <modal
+        part=${partMap(this.rootClassesParts)}
+        class=${classMap(this.rootClassesParts)}
+      ></modal>
     `;
   }
 }
