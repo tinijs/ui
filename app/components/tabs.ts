@@ -30,7 +30,7 @@ export class AppTabsComponent extends TiniComponent {
 
   @queryAssignedElements({slot: 'title'})
   private readonly titleSlotElems?: HTMLElement[];
-  @Reactive() private hasTitleContent = false;
+  @Reactive() private titleSlotPopulated = false;
 
   @Input({type: Array}) declare tabItems?: TabItem[];
   @Input({type: String}) declare activeName?: string;
@@ -73,12 +73,15 @@ export class AppTabsComponent extends TiniComponent {
       <div part="head${!this.activeName ? '' : ' head-expanded'}" class="head">
         <div
           part="title"
-          class=${classMap({title: true, 'has-content': this.hasTitleContent})}
+          class=${classMap({
+            title: true,
+            'title-populated': this.titleSlotPopulated,
+          })}
         >
           <slot
             name="title"
             @slotchange=${() =>
-              (this.hasTitleContent = !!this.titleSlotElems?.length)}
+              (this.titleSlotPopulated = !!this.titleSlotElems?.length)}
           ></slot>
         </div>
         <div part="tablinks" class="tablinks">
@@ -129,7 +132,7 @@ export class AppTabsComponent extends TiniComponent {
         font-weight: bold;
         padding: var(--size-space-0_5x) var(--size-space);
 
-        &.has-content {
+        &.title-populated {
           display: block;
         }
       }

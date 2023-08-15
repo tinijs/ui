@@ -1,8 +1,7 @@
 import {LitElement, html} from 'lit';
-import {property} from 'lit/decorators.js';
+import {property, state, queryAssignedElements} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
-import {ColorsAndGradients, Sizes} from '@tinijs/core';
+import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
 
 export const CARD = 'card';
 export const TINI_CARD = `tini-${CARD}`;
@@ -11,18 +10,69 @@ export const TINI_CARD = `tini-${CARD}`;
 export class TiniCardComponent extends LitElement {
   static readonly defaultTagName = TINI_CARD;
 
-  // @property({type: String}) declare prop?: string;
+  @property({type: Boolean}) declare fluid?: boolean;
 
-  private rootClasses: ClassInfo = {};
+  @queryAssignedElements({slot: 'head'})
+  private readonly headSlotElems?: HTMLElement[];
+  @queryAssignedElements({slot: 'foot'})
+  private readonly footSlotElems?: HTMLElement[];
+  @state() private headSlotPopulated = false;
+  @state() private footSlotPopulated = false;
+
+  private rootClassesParts: ClassInfo | PartInfo = {};
+  private headClassesParts: ClassInfo | PartInfo = {};
+  private footClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
-    this.rootClasses = {
+    // root class
+    this.rootClassesParts = {
       [CARD]: true,
+      fluid: !!this.fluid,
+    };
+    // head classes or parts
+    this.headClassesParts = {
+      head: true,
+      'head-populated': this.headSlotPopulated,
+    };
+    // foot classes or parts
+    this.footClassesParts = {
+      foot: true,
+      'foot-populated': this.footSlotPopulated,
     };
   }
 
   protected render() {
+    console.log('render ...');
     return html`
-      <card part=${CARD} class=${classMap(this.rootClasses)}></card>
+      <div
+        class=${classMap(this.rootClassesParts)}
+        part=${partMap(this.rootClassesParts)}
+      >
+        <div
+          class=${classMap(this.headClassesParts)}
+          part=${partMap(this.headClassesParts)}
+        >
+          <slot
+            name="head"
+            @slotchange=${() =>
+              (this.headSlotPopulated = !!this.headSlotElems?.length)}
+          ></slot>
+        </div>
+
+        <div class="body" part="body">
+          <slot></slot>
+        </div>
+
+        <div
+          class=${classMap(this.footClassesParts)}
+          part=${partMap(this.footClassesParts)}
+        >
+          <slot
+            name="foot"
+            @slotchange=${() =>
+              (this.footSlotPopulated = !!this.footSlotElems?.length)}
+          ></slot>
+        </div>
+      </div>
     `;
   }
 }
