@@ -109,9 +109,9 @@ export const componentsRoutes: Route[] = [
     action: () => import('./pages/components/pagination'),
   },
   {
-    path: 'components/radio',
-    component: 'app-page-components-radio',
-    action: () => import('./pages/components/radio'),
+    path: 'components/radios',
+    component: 'app-page-components-radios',
+    action: () => import('./pages/components/radios'),
   },
   {
     path: 'components/select',
