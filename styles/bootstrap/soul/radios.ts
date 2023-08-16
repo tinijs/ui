@@ -36,7 +36,7 @@ export const radiosStyle = css`
     cursor: pointer;
     width: var(--radio-size);
     height: var(--radio-size);
-    margin-top: calc(var(--radio-size) / -7);
+    margin-top: calc(var(--radio-size) / -10);
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;

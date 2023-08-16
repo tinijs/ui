@@ -19,6 +19,8 @@ import {
   CheckboxesOnChangeDetail,
 } from '@tinijs/ui';
 
+import {COLOR_SUFFIXES} from '../../consts/varies';
+
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -40,7 +42,11 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsCheckboxes extends TiniComponent {
-  private readonly PART_LIST = [['checkboxes', 'The root part']];
+  private readonly PART_LIST = [
+    ['checkboxes', 'The root part'],
+    ['checkbox', 'Item container'],
+    ['input', 'The input element'],
+  ];
 
   private readonly PREPROCESS_CODE = (code: string) =>
     code.replace(/\<tini\-checkboxes/g, '<tini-checkboxes .items=${[...]}');
@@ -77,19 +83,7 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
   }
 
   private buildColorList(baseColor: string): CheckboxesItem[] {
-    return [
-      '',
-      'shade',
-      'shade-2',
-      'shade-3',
-      'shade-4',
-      'shade-5',
-      'tint',
-      'tint-2',
-      'tint-3',
-      'tint-4',
-      'tint-5',
-    ].map(suffix => {
+    return COLOR_SUFFIXES.map(suffix => {
       const color = `${baseColor}${
         !suffix ? '' : `-${suffix}`
       }` as ColorsAndGradients;
