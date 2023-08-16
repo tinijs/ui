@@ -64,7 +64,7 @@ export class AppHeaderComponent extends TiniComponent {
         <div class="brand">
           <a href="/">
             <img src=${this.LOGO_URL} alt=${this.APP_NAME} />
-            <h1>${this.APP_NAME}</h1>
+            <h1>${this.APP_NAME}<sup>α</sup></h1>
           </a>
         </div>
         <div class="menu">
@@ -130,34 +130,40 @@ export class AppHeaderComponent extends TiniComponent {
       color: var(--color-primary-contrast);
       text-decoration: none;
       font-family: var(--font-head);
-    }
 
-    .brand a img {
-      width: 1.5rem;
-      height: auto;
-    }
+      img {
+        width: 1.5rem;
+        height: auto;
+      }
 
-    .brand a h1 {
-      margin: 0 0 0 0.5rem;
-      font-size: 1.25rem;
+      h1 {
+        margin: 0 0 0 0.5rem;
+        font-size: 1.25rem;
+      }
+
+      sup {
+        display: inline-block;
+        font-size: var(--size-text-0_85x);
+        margin-left: var(--size-space-0_5x);
+      }
     }
 
     .menu {
       display: flex;
       align-items: center;
       gap: var(--size-space-1_5x);
-    }
 
-    .menu > * {
-      color: var(--color-light);
-      text-decoration: none;
-      background: none;
-      padding: var(--size-space-0_5x);
-      border-radius: var(--size-radius);
-    }
+      & > * {
+        color: var(--color-light);
+        text-decoration: none;
+        background: none;
+        padding: var(--size-space-0_5x);
+        border-radius: var(--size-radius);
 
-    .menu > *:hover {
-      background: var(--color-primary-shade);
+        &:hover {
+          background: var(--color-primary-shade);
+        }
+      }
     }
 
     .theme-select {
@@ -191,10 +197,10 @@ export class AppHeaderComponent extends TiniComponent {
       background: var(--color-background);
       border: var(--size-border) solid var(--color-background-shade);
       box-shadow: var(--shadow-box);
-    }
 
-    .skin-editor-container.showed {
-      display: block;
+      &.showed {
+        display: block;
+      }
     }
   `;
 }

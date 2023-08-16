@@ -1,11 +1,11 @@
 import {LitElement, html, nothing} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
-import {CheckboxesItem, CheckboxesOnChangeDetail} from './checkboxes';
+import {partMap, PartInfo} from '@tinijs/core';
+import {CheckboxesItem, CheckboxesEventDetail} from './checkboxes';
 
 export type RadiosItem = Omit<CheckboxesItem, 'name'>;
-export type RadiosOnChangeDetail = Omit<CheckboxesOnChangeDetail, 'name'>;
+export type RadiosEventDetail = Omit<CheckboxesEventDetail, 'name'>;
 
 export const RADIOS = 'radios';
 export const TINI_RADIOS = `tini-${RADIOS}`;
@@ -32,9 +32,10 @@ export class TiniRadiosComponent extends LitElement {
   }
 
   private onChange(e: InputEvent) {
+    e.stopPropagation();
     const target = e.target as HTMLInputElement;
     const {value, checked} = target;
-    const detail: RadiosOnChangeDetail = {
+    const detail: RadiosEventDetail = {
       target,
       value,
       checked,

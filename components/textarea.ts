@@ -1,7 +1,12 @@
-import {LitElement, html} from 'lit';
+import {LitElement, html, nothing} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
+import {ifDefined} from 'lit/directives/if-defined.js';
+import {partMap, PartInfo, Colors, Sizes} from '@tinijs/core';
+
+import {InputEventDetail} from './input';
+
+export type TextareaEventDetail = InputEventDetail;
 
 export const TEXTAREA = 'textarea';
 export const TINI_TEXTAREA = `tini-${TEXTAREA}`;
@@ -10,21 +15,65 @@ export const TINI_TEXTAREA = `tini-${TEXTAREA}`;
 export class TiniTextareaComponent extends LitElement {
   static readonly defaultTagName = TINI_TEXTAREA;
 
-  // @property({type: String}) declare prop?: string;
+  @property({type: String}) declare label?: string;
+  @property({type: String}) declare placeholder?: string;
+  @property({type: String}) declare name?: string;
+  @property({type: String}) declare value?: string;
+  @property({type: Boolean}) declare disabled?: boolean;
+  @property({type: Boolean}) declare readonly?: boolean;
+  @property({type: String}) declare color?: Colors;
+  @property({type: String}) declare size?: Sizes;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
       [TEXTAREA]: true,
+      disabled: !!this.disabled,
+      [`color-${this.color}`]: !!this.color,
+      [`size-${this.size}`]: !!this.size,
     };
+  }
+
+  private buildEventDetail(e: InputEvent) {
+    const target = e.target as HTMLInputElement;
+    const {name, value} = target;
+    return {
+      target,
+      name,
+      value,
+    } as TextareaEventDetail;
+  }
+
+  private onChange(e: InputEvent) {
+    e.stopPropagation();
+    const detail = this.buildEventDetail(e);
+    return this.dispatchEvent(new CustomEvent('change', {detail}));
+  }
+
+  private onInput(e: InputEvent) {
+    e.stopPropagation();
+    const detail = this.buildEventDetail(e);
+    return this.dispatchEvent(new CustomEvent('input', {detail}));
   }
 
   protected render() {
     return html`
-      <textarea
+      <label
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
-      />
+      >
+        ${!this.label ? nothing : html`<span part="label">${this.label}</span>`}
+        <textarea
+          part="native-textarea"
+          name=${ifDefined(this.name)}
+          placeholder=${ifDefined(this.placeholder)}
+          .value=${this.value || ''}
+          ?disabled=${this.disabled}
+          ?readonly=${this.readonly}
+          @change=${this.onChange}
+          @input=${this.onInput}
+        ></textarea>
+      </label>
     `;
   }
 }

@@ -15,7 +15,7 @@ import {
   codeBases,
   TiniRadiosComponent,
   RadiosItem,
-  RadiosOnChangeDetail,
+  RadiosEventDetail,
 } from '@tinijs/ui';
 
 import {COLOR_SUFFIXES} from '../../consts/varies';
@@ -163,7 +163,7 @@ export class AppPageComponentsRadios extends TiniComponent {
                 item.label = `Checkbox ${no}`;
                 return item;
               })}
-              @change=${({detail}: CustomEvent<RadiosOnChangeDetail>) =>
+              @change=${({detail}: CustomEvent<RadiosEventDetail>) =>
                 console.log('Radios "change" event: ', detail)}
             ></tini-radios>
           </div>

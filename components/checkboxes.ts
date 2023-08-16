@@ -2,7 +2,9 @@ import {LitElement, html, nothing} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
-import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
+import {partMap, PartInfo, Colors, Sizes} from '@tinijs/core';
+
+import {InputEventDetail} from './input';
 
 export interface CheckboxesItem {
   value: string;
@@ -10,14 +12,11 @@ export interface CheckboxesItem {
   label?: string;
   checked?: boolean;
   disabled?: boolean;
-  color?: ColorsAndGradients;
+  color?: Colors;
   size?: Sizes;
 }
 
-export interface CheckboxesOnChangeDetail {
-  target: HTMLInputElement;
-  name: string;
-  value: string;
+export interface CheckboxesEventDetail extends InputEventDetail {
   checked: boolean;
 }
 
@@ -40,9 +39,10 @@ export class TiniCheckboxesComponent extends LitElement {
   }
 
   private onChange(e: InputEvent) {
+    e.stopPropagation();
     const target = e.target as HTMLInputElement;
     const {name, value, checked} = target;
-    const detail: CheckboxesOnChangeDetail = {
+    const detail: CheckboxesEventDetail = {
       target,
       name,
       value,

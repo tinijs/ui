@@ -16,7 +16,7 @@ import {
   codeBases,
   TiniCheckboxesComponent,
   CheckboxesItem,
-  CheckboxesOnChangeDetail,
+  CheckboxesEventDetail,
 } from '@tinijs/ui';
 
 import {COLOR_SUFFIXES} from '../../consts/varies';
@@ -175,7 +175,7 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
                 item.label = `Checkbox ${no}`;
                 return item;
               })}
-              @change=${({detail}: CustomEvent<CheckboxesOnChangeDetail>) =>
+              @change=${({detail}: CustomEvent<CheckboxesEventDetail>) =>
                 console.log('Checkboxes "change" event: ', detail)}
             ></tini-checkboxes>
           </div>
