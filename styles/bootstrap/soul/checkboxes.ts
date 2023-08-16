@@ -1,22 +1,35 @@
 import {css} from 'lit';
 import {generateColorVaries, generateSizeVaries} from '@tinijs/core';
 
-export const checkboxStyle = css`
-  :host {
-    --checkbox-size: var(--size-md);
-    --checkbox-background: var(--color-primary);
-    display: inline;
-  }
+export const checkboxesStyle = css`
+  /* :host {} */
 
   /*
    * Main
    */
 
-  .checkbox {
-    cursor: pointer;
-    display: inline-flex;
+  .checkboxes {
+    display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    gap: var(--size-space);
+  }
+
+  .checkboxes.wrap {
+    flex-flow: column;
+    align-items: flex-start;
+  }
+
+  /*
+   * Checkbox item
+   */
+
+  .checkbox {
+    --checkbox-size: var(--size-md);
+    --checkbox-background: var(--color-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
   }
 
   input {
@@ -62,16 +75,15 @@ export const checkboxStyle = css`
   }
 
   /*
-   * [disabled]
+   * [?disabled]
    */
 
   .checkbox.disabled {
+    cursor: default;
     opacity: 0.5;
   }
 
-  .checkbox.disabled,
   input:disabled {
-    cursor: not-allowed;
     pointer-events: none;
     filter: none;
   }
@@ -101,5 +113,5 @@ export const checkboxStyle = css`
   )}
 `;
 
-export const checkboxScript = undefined;
-export const checkboxUnscript = undefined;
+export const checkboxesScript = undefined;
+export const checkboxesUnscript = undefined;

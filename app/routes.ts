@@ -74,9 +74,9 @@ export const componentsRoutes: Route[] = [
     action: () => import('./pages/components/card'),
   },
   {
-    path: 'components/checkbox',
-    component: 'app-page-components-checkbox',
-    action: () => import('./pages/components/checkbox'),
+    path: 'components/checkboxes',
+    component: 'app-page-components-checkboxes',
+    action: () => import('./pages/components/checkboxes'),
   },
   {
     path: 'components/dialog',
