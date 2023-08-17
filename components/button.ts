@@ -10,8 +10,7 @@ import {
   JustifyContents,
 } from '@tinijs/core';
 
-export const BUTTON = 'button';
-export const TINI_BUTTON = `tini-${BUTTON}`;
+export const TINI_BUTTON = 'tini-button';
 
 /* UseBases(common) */
 export class TiniButtonComponent extends LitElement {
@@ -31,7 +30,7 @@ export class TiniButtonComponent extends LitElement {
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
-      [BUTTON]: true,
+      root: true,
       [`bg-${this.color}`]: !!this.color,
       [`color-${this.textColor}`]: !!this.textColor,
       [`size-${this.size}`]: !!this.size,

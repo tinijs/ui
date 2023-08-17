@@ -41,8 +41,8 @@ import {AppSectionComponent} from '../../components/section';
 })
 export class AppPageComponentsTextarea extends TiniComponent {
   private readonly PART_LIST = [
-    ['textarea', 'The root part'],
-    ['native-textarea', 'The textarea element'],
+    ['root', 'The root part'],
+    ['textarea', 'The textarea element'],
   ];
 
   protected render() {

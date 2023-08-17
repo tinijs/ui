@@ -25,35 +25,34 @@ export enum TextTypes {
   Span = 'span',
 }
 
-export const TEXT = 'text';
-export const TINI_TEXT = `tini-${TEXT}`;
+export const TINI_TEXT = 'tini-text';
 
 /* UseBases(common,headings) */
 export class TiniTextComponent extends LitElement {
   static readonly defaultTagName = TINI_TEXT;
 
   @property({type: String}) declare type?: TextTypes;
+  @property({type: Boolean}) declare italic?: boolean;
+  @property({type: Boolean}) declare underline?: boolean;
   @property({type: String}) declare color?: ColorsAndGradients;
   @property({type: String}) declare font?: FontTypes;
   @property({type: String}) declare size?: FontSizeFactors;
   @property({type: String}) declare weight?: FontWeights;
   @property({type: String}) declare transform?: TextTransforms;
-  @property({type: Boolean}) declare italic?: boolean;
-  @property({type: Boolean}) declare underline?: boolean;
 
   private tag!: StaticValue;
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.tag = literal`${unsafeStatic(this.type || TextTypes.Span)}`;
     this.rootClassesParts = {
-      [TEXT]: true,
+      root: true,
+      italic: !!this.italic,
+      underline: !!this.underline,
       [`color-${this.color}`]: !!this.color,
       [`font-${this.font}`]: !!this.font,
       [`size-${this.size}`]: !!this.size,
       [`weight-${this.weight}`]: !!this.weight,
       [`transform-${this.transform}`]: !!this.transform,
-      italic: !!this.italic,
-      underline: !!this.underline,
     };
   }
 

@@ -41,8 +41,8 @@ import {AppSectionComponent} from '../../components/section';
 })
 export class AppPageComponentsInput extends TiniComponent {
   private readonly PART_LIST = [
-    ['input', 'The root part'],
-    ['native-input', 'The input element'],
+    ['root', 'The root part'],
+    ['input', 'The input element'],
   ];
 
   protected render() {

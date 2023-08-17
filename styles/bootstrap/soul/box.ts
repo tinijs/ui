@@ -20,10 +20,10 @@ export const boxStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
-  .box {
+  .root {
     width: 100%;
     background: var(--box-background);
     color: var(--box-text-color);
@@ -40,9 +40,8 @@ export const boxStyle = css`
 
   ${generateFontSizeVaries(
     sizeFactor => `
-    :host([textSize="${sizeFactor}"]),
     .text-size-${sizeFactor} {
-      --box-text-size: var(--size-text-${sizeFactor});
+      --box-text-size: var(--size-text-${sizeFactor}) !important;
     }
   `
   )}
@@ -85,7 +84,6 @@ export const boxStyle = css`
       --box-text-color: ${contrast};
     }
 
-    :host([textColor="${name}"]),
     .text-color-${name} {
       --box-text-color: ${color} !important;
     }

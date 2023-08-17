@@ -142,11 +142,11 @@ export class AppMenuComponent extends TiniComponent {
     }
 
     tini-link {
-      &::part(link) {
+      &::part(root) {
         color: var(--color-foreground);
       }
 
-      &.active::part(link) {
+      &.active::part(root) {
         font-weight: bold;
         text-decoration: underline;
       }

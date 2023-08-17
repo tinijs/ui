@@ -38,7 +38,7 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsBreadcrumb extends TiniComponent {
-  private readonly PART_LIST = [['breadcrumb', 'The root part']];
+  private readonly PART_LIST = [['root', 'The root part']];
 
   private readonly ITEMS: BreadcrumbItem[] = [
     {label: 'Home', href: '#'},

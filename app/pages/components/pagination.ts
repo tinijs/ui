@@ -38,7 +38,7 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsPagination extends TiniComponent {
-  private readonly PART_LIST = [['pagination', 'The root part']];
+  private readonly PART_LIST = [['root', 'The root part']];
 
   protected render() {
     return html`

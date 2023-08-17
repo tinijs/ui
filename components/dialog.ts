@@ -20,8 +20,7 @@ export interface DialogResult<Context> {
   dialog: HTMLDialogElement;
 }
 
-export const DIALOG = 'dialog';
-export const TINI_DIALOG = `tini-${DIALOG}`;
+export const TINI_DIALOG = 'tini-dialog';
 
 /* UseBases(common) */
 /* UseComponents(button) */
@@ -45,7 +44,7 @@ export class TiniDialogComponent extends LitElement {
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
-      [DIALOG]: true,
+      root: true,
       [this.type]: true,
       'backdrop-closed': !!this.backdropClosed,
     };

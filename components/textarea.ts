@@ -8,8 +8,7 @@ import {InputEventDetail} from './input';
 
 export type TextareaEventDetail = InputEventDetail;
 
-export const TEXTAREA = 'textarea';
-export const TINI_TEXTAREA = `tini-${TEXTAREA}`;
+export const TINI_TEXTAREA = 'tini-textarea';
 
 /* UseBases(common) */
 export class TiniTextareaComponent extends LitElement {
@@ -27,7 +26,7 @@ export class TiniTextareaComponent extends LitElement {
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
-      [TEXTAREA]: true,
+      root: true,
       disabled: !!this.disabled,
       [`color-${this.color}`]: !!this.color,
       [`size-${this.size}`]: !!this.size,
@@ -70,7 +69,7 @@ export class TiniTextareaComponent extends LitElement {
       >
         ${!this.label ? nothing : html`<span part="label">${this.label}</span>`}
         <textarea
-          part="native-textarea"
+          part="textarea"
           name=${ifDefined(this.name)}
           placeholder=${ifDefined(this.placeholder)}
           .value=${this.value || ''}

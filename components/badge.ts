@@ -9,28 +9,27 @@ import {
   Sizes,
 } from '@tinijs/core';
 
-export const BADGE = 'badge';
-export const TINI_BADGE = `tini-${BADGE}`;
+export const TINI_BADGE = 'tini-badge';
 
 /* UseBases(common) */
 export class TiniBadgeComponent extends LitElement {
   static readonly defaultTagName = TINI_BADGE;
 
   @property({type: String}) declare color?: ColorsAndGradients;
-  @property({type: String}) declare textColor?: Colors;
-  @property({type: String}) declare size?: Sizes;
   @property({type: Boolean}) declare pilled?: boolean;
   @property({type: Boolean}) declare rounded?: boolean;
+  @property({type: String}) declare textColor?: Colors;
+  @property({type: String}) declare size?: Sizes;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
-      [BADGE]: true,
+      root: true,
+      pilled: !!this.pilled,
+      rounded: !!this.rounded,
       [`bg-${this.color}`]: !!this.color,
       [`color-${this.textColor}`]: !!this.textColor,
       [`size-${this.size}`]: !!this.size,
-      pilled: !!this.pilled,
-      rounded: !!this.rounded,
     };
   }
 

@@ -20,8 +20,7 @@ export interface CheckboxesEventDetail extends InputEventDetail {
   checked: boolean;
 }
 
-export const CHECKBOXES = 'checkboxes';
-export const TINI_CHECKBOXES = `tini-${CHECKBOXES}`;
+export const TINI_CHECKBOXES = 'tini-checkboxes';
 
 /* UseBases(common) */
 export class TiniCheckboxesComponent extends LitElement {
@@ -33,7 +32,7 @@ export class TiniCheckboxesComponent extends LitElement {
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
-      [CHECKBOXES]: true,
+      root: true,
       wrap: !!this.wrap,
     };
   }
@@ -76,10 +75,10 @@ export class TiniCheckboxesComponent extends LitElement {
     size,
   }: CheckboxesItem) {
     const itemClassesParts: ClassInfo | PartInfo = {
-      checkbox: true,
+      item: true,
+      disabled: !!disabled,
       [`bg-${color}`]: !!color,
       [`size-${size}`]: !!size,
-      disabled: !!disabled,
     };
     return html`
       <label

@@ -3,8 +3,7 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {partMap, PartInfo, Colors, Sizes} from '@tinijs/core';
 
-export const SPINNER = 'spinner';
-export const TINI_SPINNER = `tini-${SPINNER}`;
+export const TINI_SPINNER = 'tini-spinner';
 
 /* UseBases(common) */
 export class TiniSpinnerComponent extends LitElement {
@@ -16,7 +15,7 @@ export class TiniSpinnerComponent extends LitElement {
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
-      [SPINNER]: true,
+      root: true,
       [`color-${this.color}`]: !!this.color,
       [`size-${this.size}`]: !!this.size,
     };

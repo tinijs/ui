@@ -15,7 +15,7 @@ export const iconStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
   i {

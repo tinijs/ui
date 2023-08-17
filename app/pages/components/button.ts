@@ -48,7 +48,7 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsButton extends TiniComponent {
-  private readonly PART_LIST = [['button', 'The root part']];
+  private readonly PART_LIST = [['root', 'The root part']];
   protected render() {
     return html`
       <app-component-page
@@ -290,7 +290,7 @@ export class AppPageComponentsButton extends TiniComponent {
     }
 
     .icons-and-justifications [slot='code'] {
-      tini-button::part(button) {
+      tini-button::part(root) {
         width: var(--wide-xs);
       }
     }

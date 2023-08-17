@@ -6,7 +6,7 @@ import {
   stylingWithBases,
   SIZES,
   BASE_COLORS,
-  ColorsAndGradients,
+  Colors,
 } from '@tinijs/core';
 import {
   commonBases,
@@ -43,8 +43,8 @@ import {AppSectionComponent} from '../../components/section';
 })
 export class AppPageComponentsCheckboxes extends TiniComponent {
   private readonly PART_LIST = [
-    ['checkboxes', 'The root part'],
-    ['checkbox', 'Item container'],
+    ['root', 'The root part'],
+    ['item', 'Checkbox item container'],
     ['input', 'The input element'],
   ];
 
@@ -84,9 +84,7 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
 
   private buildColorList(baseColor: string): CheckboxesItem[] {
     return COLOR_SUFFIXES.map(suffix => {
-      const color = `${baseColor}${
-        !suffix ? '' : `-${suffix}`
-      }` as ColorsAndGradients;
+      const color = `${baseColor}${!suffix ? '' : `-${suffix}`}` as Colors;
       return {
         value: '',
         label: `Checkbox ${color}`,

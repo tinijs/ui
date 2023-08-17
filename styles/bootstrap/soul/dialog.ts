@@ -4,7 +4,7 @@ export const dialogStyle = css`
   /* :host {} */
 
   /*
-   * Main
+   * Root
    */
 
   dialog {

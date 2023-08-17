@@ -16,10 +16,10 @@ export const switchStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
-  .switch {
+  .root {
     --offset: 2px;
     --wrapper-size: calc(var(--switch-size) * 2);
     --slider-outer-size: calc((var(--wrapper-size) / 2) + var(--offset));
@@ -29,7 +29,7 @@ export const switchStyle = css`
     align-items: center;
   }
 
-  .switch-wrapper {
+  .switch {
     position: relative;
     display: inline-block;
     width: var(--wrapper-size);

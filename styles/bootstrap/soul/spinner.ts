@@ -8,10 +8,10 @@ export const spinnerStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
-  .spinner {
+  .root {
     width: calc(var(--spinner-size) * 2);
     height: calc(var(--spinner-size) * 2);
     border: calc(var(--spinner-size) / 4) solid var(--color-background-shade);

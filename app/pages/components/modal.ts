@@ -37,7 +37,7 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsModal extends TiniComponent {
-  private readonly PART_LIST = [['modal', 'The root part']];
+  private readonly PART_LIST = [['root', 'The root part']];
 
   private readonly defaultModalRef: Ref<TiniModalComponent> = createRef();
 

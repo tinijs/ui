@@ -42,8 +42,8 @@ import {AppSectionComponent} from '../../components/section';
 })
 export class AppPageComponentsRadios extends TiniComponent {
   private readonly PART_LIST = [
-    ['radios', 'The root part'],
-    ['radio', 'Item container'],
+    ['root', 'The root part'],
+    ['item', 'Radio item container'],
     ['input', 'The input element'],
   ];
 

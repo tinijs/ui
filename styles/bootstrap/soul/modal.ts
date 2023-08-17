@@ -4,7 +4,7 @@ export const modalStyle = css`
   /* :host {} */
 
   /*
-   * Main
+   * Root
    */
 
   dialog {

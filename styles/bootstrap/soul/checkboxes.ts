@@ -5,17 +5,17 @@ export const checkboxesStyle = css`
   /* :host {} */
 
   /*
-   * Main
+   * Root
    */
 
-  .checkboxes {
+  .root {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: var(--size-space);
   }
 
-  .checkboxes.wrap {
+  .wrap {
     flex-flow: column;
     align-items: flex-start;
   }
@@ -24,7 +24,7 @@ export const checkboxesStyle = css`
    * Checkbox item
    */
 
-  .checkbox {
+  .item {
     --checkbox-size: var(--size-md);
     --checkbox-background: var(--color-primary);
     cursor: pointer;
@@ -78,7 +78,7 @@ export const checkboxesStyle = css`
    * [?disabled]
    */
 
-  .checkbox.disabled {
+  .item.disabled {
     cursor: default;
     opacity: 0.5;
   }

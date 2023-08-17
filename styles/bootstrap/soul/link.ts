@@ -21,7 +21,7 @@ export const linkStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
   a {
@@ -111,9 +111,8 @@ export const linkStyle = css`
 
   ${generateFontTypeVaries(
     fontType => `
-    :host([font="${fontType}"]),
     .font-${fontType} {
-      --link-font: var(--font-${fontType});
+      --link-font: var(--font-${fontType}) !important;
     }
   `
   )}

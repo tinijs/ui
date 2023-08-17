@@ -7,8 +7,7 @@ import {CheckboxesItem, CheckboxesEventDetail} from './checkboxes';
 export type RadiosItem = Omit<CheckboxesItem, 'name'>;
 export type RadiosEventDetail = Omit<CheckboxesEventDetail, 'name'>;
 
-export const RADIOS = 'radios';
-export const TINI_RADIOS = `tini-${RADIOS}`;
+export const TINI_RADIOS = 'tini-radios';
 
 /* UseBases(common) */
 export class TiniRadiosComponent extends LitElement {
@@ -27,7 +26,7 @@ export class TiniRadiosComponent extends LitElement {
     this.validateProperties();
     // root classes parts
     this.rootClassesParts = {
-      [RADIOS]: true,
+      root: true,
       wrap: !!this.wrap,
     };
   }
@@ -68,10 +67,10 @@ export class TiniRadiosComponent extends LitElement {
     size,
   }: RadiosItem) {
     const itemClassesParts: ClassInfo | PartInfo = {
-      radio: true,
+      item: true,
+      disabled: !!disabled,
       [`bg-${color}`]: !!color,
       [`size-${size}`]: !!size,
-      disabled: !!disabled,
     };
     return html`
       <label

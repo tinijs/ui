@@ -13,10 +13,10 @@ export const labelStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
-  .label {
+  .root {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -49,7 +49,6 @@ export const labelStyle = css`
       --label-text-color: ${contrast};
     }
 
-    :host([textColor="${name}"]),
     .color-${name} {
       --label-text-color: ${color} !important;
     }

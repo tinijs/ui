@@ -29,7 +29,7 @@ export const buttonStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
   button {
@@ -86,7 +86,7 @@ export const buttonStyle = css`
   }
 
   /*
-   * [color]
+   * [color] & [textColor]
    */
 
   ${generateColorVaries(
@@ -97,7 +97,6 @@ export const buttonStyle = css`
       --button-focus-visible-shadow-color: color-mix(in oklab, ${color}, transparent 70%);
     }
 
-    :host([textColor="${name}"]),
     .color-${name} {
       --button-text-color: ${color} !important;
     }

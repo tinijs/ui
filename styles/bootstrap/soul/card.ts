@@ -8,10 +8,10 @@ export const cardStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
-  .card {
+  .root {
     display: flex;
     flex-direction: column;
     background-color: var(--card-background);

@@ -4,8 +4,7 @@ import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {styleMap} from 'lit/directives/style-map.js';
 import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
 
-export const ICON = 'icon';
-export const TINI_ICON = `tini-${ICON}`;
+export const TINI_ICON = 'tini-icon';
 
 /* UseBases(common) */
 export class TiniIconComponent extends LitElement {
@@ -18,7 +17,7 @@ export class TiniIconComponent extends LitElement {
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
-      [ICON]: true,
+      root: true,
       recolor: !!this.color,
       [`color-${this.color}`]: !!this.color,
       [`size-${this.size}`]: !!this.size,

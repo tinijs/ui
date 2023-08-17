@@ -9,8 +9,7 @@ import {DialogButton, DialogResult} from './dialog';
 export type ModalButton = DialogButton;
 export type ModalResult<Context> = DialogResult<Context>;
 
-export const MODAL = 'modal';
-export const TINI_MODAL = `tini-${MODAL}`;
+export const TINI_MODAL = 'tini-modal';
 
 /* UseBases(common) */
 export class TiniModalComponent extends LitElement {
@@ -26,7 +25,7 @@ export class TiniModalComponent extends LitElement {
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
-      [MODAL]: true,
+      root: true,
       'backdrop-closed': !!this.backdropClosed,
     };
   }

@@ -104,6 +104,17 @@ export class AppPageGuidesCustomization extends TiniComponent {
             <strong>parts</strong>. Please see the list of variables and parts
             at the bottom of a component detail page.
           </p>
+
+          <p><strong>Using variables</strong></p>
+          <app-code
+            .code=${'<tini-button style="--button-background: aqua;"></tini-button>'}
+          ></app-code>
+
+          <p><strong>Using parts</strong></p>
+          <app-code
+            language="css"
+            .code=${'tini-button::part(root) {\n  background-color: aqua;\n}'}
+          ></app-code>
         </div>
       </app-section>
 

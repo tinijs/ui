@@ -15,10 +15,10 @@ export const paginationStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
-  .pagination {
+  .root {
     list-style: none;
     margin: 0;
     padding: 0;

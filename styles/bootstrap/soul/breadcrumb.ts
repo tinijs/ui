@@ -4,10 +4,10 @@ export const breadcrumbStyle = css`
   /* :host {} */
 
   /*
-   * Main
+   * Root
    */
 
-  .breadcrumb {
+  .root {
     list-style: none;
     padding: 0;
     margin: 0;

@@ -8,8 +8,7 @@ export interface PaginationItem {
   href?: string;
 }
 
-export const PAGINATION = 'pagination';
-export const TINI_PAGINATION = `tini-${PAGINATION}`;
+export const TINI_PAGINATION = 'tini-pagination';
 
 /* UseBases(common) */
 export class TiniPaginationComponent extends LitElement {
@@ -41,7 +40,7 @@ export class TiniPaginationComponent extends LitElement {
     this.validateProperties();
     // root classes parts
     this.rootClassesParts = {
-      [PAGINATION]: true,
+      root: true,
       [`color-${this.color}`]: !!this.color,
       [`size-${this.size}`]: !!this.size,
     };

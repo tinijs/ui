@@ -11,16 +11,16 @@ export const inputStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
-  .input {
+  .root {
     display: inline-flex;
     align-items: center;
     gap: var(--size-space-0_5x);
   }
 
-  .input.wrap {
+  .wrap {
     flex-flow: column;
     align-items: flex-start;
     gap: var(--size-space-0_5x);

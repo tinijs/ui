@@ -5,17 +5,17 @@ export const radiosStyle = css`
   /* :host {} */
 
   /*
-   * Main
+   * Root
    */
 
-  .radios {
+  .root {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: var(--size-space);
   }
 
-  .radios.wrap {
+  .wrap {
     flex-flow: column;
     align-items: flex-start;
   }
@@ -24,7 +24,7 @@ export const radiosStyle = css`
    * Radio item
    */
 
-  .radio {
+  .item {
     --radio-size: var(--size-md);
     --radio-background: var(--color-primary);
     cursor: pointer;
@@ -75,7 +75,7 @@ export const radiosStyle = css`
    * [?disabled]
    */
 
-  .radio.disabled {
+  .item.disabled {
     cursor: default;
     opacity: 0.5;
   }

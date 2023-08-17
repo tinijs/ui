@@ -12,8 +12,7 @@ import {
   BorderStyles,
 } from '@tinijs/core';
 
-export const BOX = 'box';
-export const TINI_BOX = `tini-${BOX}`;
+export const TINI_BOX = 'tini-box';
 
 /* UseBases(common) */
 export class TiniBoxComponent extends LitElement {
@@ -35,7 +34,7 @@ export class TiniBoxComponent extends LitElement {
     this.updateHostClasses();
     // root classes
     this.rootClassesParts = {
-      [BOX]: true,
+      root: true,
       [`bg-${this.background}`]: !!this.background,
       [`text-color-${this.textColor}`]: !!this.textColor,
       [`text-size-${this.textSize}`]: !!this.textSize,

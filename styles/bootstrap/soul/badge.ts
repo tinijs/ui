@@ -17,10 +17,10 @@ export const badgeStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
-  .badge {
+  .root {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -65,7 +65,6 @@ export const badgeStyle = css`
       --badge-text-color: ${contrast};
     }
 
-    :host([textColor="${name}"]),
     .color-${name} {
       --badge-text-color: ${color} !important;
     }

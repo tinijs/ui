@@ -19,10 +19,10 @@ export const textStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
-  .text {
+  .root {
     color: var(--text-color);
     text-transform: var(--text-transform);
   }
@@ -77,9 +77,8 @@ export const textStyle = css`
 
   ${generateFontTypeVaries(
     fontType => `
-    :host([font="${fontType}"]),
     .font-${fontType} {
-      --text-font: var(--font-${fontType});
+      --text-font: var(--font-${fontType}) !important;
       font-family: var(--text-font);
     }
   `
@@ -92,7 +91,7 @@ export const textStyle = css`
   ${generateFontSizeVaries(
     sizeFactor => `
     .size-${sizeFactor} {
-      --text-size: var(--size-text-${sizeFactor});
+      --text-size: var(--size-text-${sizeFactor}) !important;
       font-size: var(--text-size);
     }
   `
@@ -105,7 +104,7 @@ export const textStyle = css`
   ${generateFontWeightVaries(
     fontWeight => `
     .weight-${fontWeight} {
-      --text-weight: ${fontWeight};
+      --text-weight: ${fontWeight} !important;
       font-weight: var(--text-weight);
     }
   `

@@ -18,10 +18,10 @@ export const messageStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
-  .message {
+  .root {
     width: 100%;
     background: color-mix(in oklab, var(--message-background), transparent 50%);
     color: var(--message-text-color);
@@ -38,9 +38,8 @@ export const messageStyle = css`
 
   ${generateFontSizeVaries(
     sizeFactor => `
-    :host([textSize="${sizeFactor}"]),
     .text-size-${sizeFactor} {
-      --message-text-size: var(--size-text-${sizeFactor});
+      --message-text-size: var(--size-text-${sizeFactor}) !important;
     }
   `
   )}
@@ -57,7 +56,6 @@ export const messageStyle = css`
       border-color: ${color};
     }
 
-    :host([textColor="${name}"]),
     .text-color-${name} {
       --message-text-color: ${color} !important;
     }

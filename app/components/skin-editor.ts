@@ -588,9 +588,9 @@ export class AppSkinEditorComponent extends TiniComponent {
       border-top: var(--size-border) solid var(--color-background-shade);
       padding: var(--size-space-0_5x);
 
-      .show-code {
+      tini-button.show-code {
         &,
-        &::part(button) {
+        &::part(root) {
           width: 100%;
         }
 

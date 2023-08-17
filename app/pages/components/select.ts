@@ -42,7 +42,7 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsSelect extends TiniComponent {
-  private readonly PART_LIST = [['select', 'The root part']];
+  private readonly PART_LIST = [['root', 'The root part']];
 
   private OPTIONS: SelectOption[] = [
     {label: 'Option 1', value: '1'},

@@ -10,10 +10,10 @@ export const textareaStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
-  .textarea {
+  .root {
     display: flex;
     flex-flow: column;
     align-items: flex-start;

@@ -1,5 +1,5 @@
 import {css} from 'lit';
-import {generateColorVaries} from '@tinijs/core';
+import {generateColorVaries, generateSizeVaries} from '@tinijs/core';
 
 export const xxxStyle = css`
   :host {
@@ -7,8 +7,12 @@ export const xxxStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
+
+  .root {
+    
+  }
 
 
   /*
@@ -23,6 +27,19 @@ export const xxxStyle = css`
   `
   )}
 
+
+
+  /*
+   * [size]
+   */
+
+  ${generateSizeVaries(
+    size => `
+    .size-${size} {
+      
+    }
+  `
+  )}
 `;
 
 export const xxxScript = undefined;

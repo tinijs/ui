@@ -20,8 +20,7 @@ export interface InputEventDetail {
   value: string;
 }
 
-export const INPUT = 'input';
-export const TINI_INPUT = `tini-${INPUT}`;
+export const TINI_INPUT = 'tini-input';
 
 /* UseBases(common) */
 export class TiniInputComponent extends LitElement {
@@ -41,7 +40,7 @@ export class TiniInputComponent extends LitElement {
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
-      [INPUT]: true,
+      root: true,
       wrap: !!this.wrap,
       disabled: !!this.disabled,
       [`color-${this.color}`]: !!this.color,
@@ -85,7 +84,7 @@ export class TiniInputComponent extends LitElement {
       >
         ${!this.label ? nothing : html`<span part="label">${this.label}</span>`}
         <input
-          part="native-input"
+          part="input"
           type=${ifDefined(this.type)}
           name=${ifDefined(this.name)}
           placeholder=${ifDefined(this.placeholder)}

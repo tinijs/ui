@@ -22,8 +22,7 @@ export type SelectOptgroup = SelectOption & {
 
 export type SelectEventDetail = InputEventDetail;
 
-export const SELECT = 'select';
-export const TINI_SELECT = `tini-${SELECT}`;
+export const TINI_SELECT = 'tini-select';
 
 /* UseBases(common) */
 export class TiniSelectComponent extends LitElement {
@@ -40,7 +39,7 @@ export class TiniSelectComponent extends LitElement {
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
-      [SELECT]: true,
+      root: true,
       wrap: !!this.wrap,
       disabled: !!this.disabled,
       [`color-${this.color}`]: !!this.color,
@@ -70,7 +69,7 @@ export class TiniSelectComponent extends LitElement {
       >
         ${!this.label ? nothing : html`<span part="label">${this.label}</span>`}
         <select
-          part="native-select"
+          part="select"
           name=${ifDefined(this.name)}
           ?disabled=${this.disabled}
           @change=${this.onChange}

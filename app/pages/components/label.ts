@@ -39,7 +39,7 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsLabel extends TiniComponent {
-  private readonly PART_LIST = [['label', 'The root part']];
+  private readonly PART_LIST = [['root', 'The root part']];
 
   protected render() {
     return html`

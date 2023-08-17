@@ -37,7 +37,7 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsBox extends TiniComponent {
-  private readonly PART_LIST = [['box', 'The root part']];
+  private readonly PART_LIST = [['root', 'The root part']];
   protected render() {
     return html`
       <app-component-page

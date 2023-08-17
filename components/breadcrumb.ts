@@ -8,8 +8,7 @@ export interface BreadcrumbItem {
   href?: string;
 }
 
-export const BREADCRUMB = 'breadcrumb';
-export const TINI_BREADCRUMB = `tini-${BREADCRUMB}`;
+export const TINI_BREADCRUMB = 'tini-breadcrumb';
 
 /* UseBases(common) */
 /* UseComponents(link) */
@@ -22,7 +21,7 @@ export class TiniBreadcrumbComponent extends LitElement {
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
-      [BREADCRUMB]: true,
+      root: true,
     };
   }
 
@@ -32,26 +31,29 @@ export class TiniBreadcrumbComponent extends LitElement {
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
       >
-        ${this.items?.map(
-          item => html`
-            <li
-              class="item"
-              part=${partMap({item: true, 'item-active': !item.href})}
-            >
-              ${!item.href
-                ? html`${item.label}`
-                : html`
-                    <tini-link
-                      exportparts="link"
-                      href=${item.href}
-                      .color=${this.linkColor}
-                      >${item.label}</tini-link
-                    >
-                  `}
-            </li>
-          `
-        )}
+        ${this.items?.map(item => this.renderItem(item))}
       </ol>
+    `;
+  }
+
+  private renderItem(item: BreadcrumbItem) {
+    const itemClassesParts: ClassInfo | PartInfo = {
+      item: true,
+      'item-active': !item.href,
+    };
+    return html`
+      <li class=${classMap(itemClassesParts)} part=${partMap(itemClassesParts)}>
+        ${!item.href
+          ? html`${item.label}`
+          : html`
+              <tini-link
+                exportparts="link"
+                href=${item.href}
+                .color=${this.linkColor}
+                >${item.label}</tini-link
+              >
+            `}
+      </li>
     `;
   }
 }

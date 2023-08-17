@@ -3,8 +3,7 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {partMap, PartInfo, Colors, SizeFactors} from '@tinijs/core';
 
-export const MESSAGE = 'message';
-export const TINI_MESSAGE = `tini-${MESSAGE}`;
+export const TINI_MESSAGE = 'tini-message';
 
 /* UseBases(common) */
 export class TiniMessageComponent extends LitElement {
@@ -17,7 +16,7 @@ export class TiniMessageComponent extends LitElement {
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
-      [MESSAGE]: true,
+      root: true,
       [`bg-${this.background}`]: !!this.background,
       [`text-color-${this.textColor}`]: !!this.textColor,
       [`text-size-${this.textSize}`]: !!this.textSize,

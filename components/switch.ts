@@ -4,8 +4,7 @@ import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
 
-export const SWITCH = 'switch';
-export const TINI_SWITCH = `tini-${SWITCH}`;
+export const TINI_SWITCH = 'tini-switch';
 
 /* UseBases(common) */
 export class TiniSwitchComponent extends LitElement {
@@ -22,7 +21,7 @@ export class TiniSwitchComponent extends LitElement {
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
-      [SWITCH]: true,
+      root: true,
       disabled: !!this.disabled,
       [`color-${this.color}`]: !!this.color,
       [`size-${this.size}`]: !!this.size,
@@ -50,7 +49,7 @@ export class TiniSwitchComponent extends LitElement {
         class=${classMap(this.rootClassesParts)}
         part=${partMap(this.rootClassesParts)}
       >
-        <div class="switch-wrapper">
+        <div class="switch">
           <input
             part="input"
             type="checkbox"

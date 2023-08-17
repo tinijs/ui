@@ -3,8 +3,7 @@ import {property, state, queryAssignedElements} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {partMap, PartInfo} from '@tinijs/core';
 
-export const CARD = 'card';
-export const TINI_CARD = `tini-${CARD}`;
+export const TINI_CARD = 'tini-card';
 
 /* UseBases(common) */
 export class TiniCardComponent extends LitElement {
@@ -21,17 +20,22 @@ export class TiniCardComponent extends LitElement {
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   private headClassesParts: ClassInfo | PartInfo = {};
+  private bodyClassesParts: ClassInfo | PartInfo = {};
   private footClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     // root class
     this.rootClassesParts = {
-      [CARD]: true,
+      root: true,
       fluid: !!this.fluid,
     };
     // head classes or parts
     this.headClassesParts = {
       head: true,
       'head-populated': this.headSlotPopulated,
+    };
+    // body classes or parts
+    this.bodyClassesParts = {
+      body: true,
     };
     // foot classes or parts
     this.footClassesParts = {
@@ -57,7 +61,10 @@ export class TiniCardComponent extends LitElement {
           ></slot>
         </div>
 
-        <div class="body" part="body">
+        <div
+          class=${classMap(this.bodyClassesParts)}
+          part=${partMap(this.bodyClassesParts)}
+        >
           <slot></slot>
         </div>
 

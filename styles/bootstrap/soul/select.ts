@@ -11,16 +11,16 @@ export const selectStyle = css`
   }
 
   /*
-   * Main
+   * Root
    */
 
-  .select {
+  .root {
     display: inline-flex;
     align-items: center;
     gap: var(--size-space-0_5x);
   }
 
-  .select.wrap {
+  .wrap {
     flex-flow: column;
     align-items: flex-start;
     gap: var(--size-space-0_5x);

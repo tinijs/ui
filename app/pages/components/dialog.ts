@@ -39,7 +39,7 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsDialog extends TiniComponent {
-  private readonly PART_LIST = [['dialog', 'The root part']];
+  private readonly PART_LIST = [['root', 'The root part']];
 
   private readonly alertDialogRef: Ref<TiniDialogComponent> = createRef();
   private readonly confirmDialogRef: Ref<TiniDialogComponent> = createRef();
