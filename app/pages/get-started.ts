@@ -134,7 +134,18 @@ npm i @tinijs/ui-bootstrap"
           </ul>
 
           <h3>And more</h3>
-          <p>// TODO: add more ...</p>
+          <p><strong>TODO</strong>: add more souls and skins</p>
+          <ul>
+            <li>Material</li>
+            <li>iOS</li>
+            <li>Fluent</li>
+            <li>Ant</li>
+            <li>Spectrum</li>
+            <li>Shoelace</li>
+            <li>PrimeNG</li>
+            <li>Element Plus</li>
+            <li>...</li>
+          </ul>
         </div>
       </app-section>
     `;

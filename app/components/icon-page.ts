@@ -192,7 +192,7 @@ export class AppIconPageComponent extends TiniComponent {
         <div class="content">
           ${!this.displayedItems?.length
             ? !this.filterQuery
-              ? html`<div class="loading">Fetching icons list ...</div>`
+              ? html`<div class="loading">Fetching icons list ... please wait! Public CDN sometimes very slow!</div>`
               : html`<div class="empty">No icon found!</div>`
             : html`
                 <div class="icons">
