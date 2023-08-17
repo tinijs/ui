@@ -23,6 +23,8 @@ import {
   IconHeartFillComponent,
 } from '@tinijs/bootstrap-icons';
 
+import {renderColorVaries, renderGradientVaries} from '../../helpers/varies';
+
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -73,67 +75,33 @@ export class AppPageComponentsButton extends TiniComponent {
         </app-section>
 
         ${BASE_COLORS.map(
-          color => html`
+          baseName => html`
             <app-section class="colors">
-              <h2 slot="title">Color ${color}</h2>
+              <h2 slot="title">Color ${baseName}</h2>
               <div slot="code">
-                <tini-button color=${color}>Button ${color}</tini-button>
-                <tini-button color=${`${color}-shade` as any}
-                  >Button ${color}-shade</tini-button
-                >
-                <tini-button color=${`${color}-shade-2` as any}
-                  >Button ${color}-shade-2</tini-button
-                >
-                <tini-button color=${`${color}-shade-3` as any}
-                  >Button ${color}-shade-3</tini-button
-                >
-                <tini-button color=${`${color}-shade-4` as any}
-                  >Button ${color}-shade-4</tini-button
-                >
-                <tini-button color=${`${color}-shade-5` as any}
-                  >Button ${color}-shade-5</tini-button
-                >
-                <tini-button color=${`${color}-tint` as any}
-                  >Button ${color}-tint</tini-button
-                >
-                <tini-button color=${`${color}-tint-2` as any}
-                  >Button ${color}-tint-2</tini-button
-                >
-                <tini-button color=${`${color}-tint-3` as any}
-                  >Button ${color}-tint-3</tini-button
-                >
-                <tini-button color=${`${color}-tint-4` as any}
-                  >Button ${color}-tint-4</tini-button
-                >
-                <tini-button color=${`${color}-tint-5` as any}
-                  >Button ${color}-tint-5</tini-button
-                >
-                <tini-box background=${color}>
-                  <tini-button color=${`${color}-contrast` as any}
-                    >Button ${color}-contrast</tini-button
-                  >
-                </tini-box>
+                ${renderColorVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-button color=${fullName}
+                      >Button ${fullName}</tini-button
+                    >`
+                )}
               </div>
             </app-section>
           `
         )}
         ${BASE_GRADIENTS.map(
-          gradient => html`
+          baseName => html`
             <app-section class="gradients">
-              <h2 slot="title">${gradient.replace(/-/g, ' ')}</h2>
+              <h2 slot="title">${baseName.replace(/-/g, ' ')}</h2>
               <div slot="code">
-                <tini-button color=${gradient}>Button ${gradient}</tini-button>
-                <tini-button color=${`${gradient}-shade` as any}
-                  >Button ${gradient}-shade</tini-button
-                >
-                <tini-button color=${`${gradient}-tint` as any}
-                  >Button ${gradient}-tint</tini-button
-                >
-                <tini-box background=${gradient}>
-                  <tini-button color=${`${gradient}-contrast` as any}
-                    >Button ${gradient}-contrast</tini-button
-                  >
-                </tini-box>
+                ${renderGradientVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-button color=${fullName}
+                      >Button ${fullName}</tini-button
+                    >`
+                )}
               </div>
             </app-section>
           `
@@ -256,13 +224,13 @@ export class AppPageComponentsButton extends TiniComponent {
             </tini-button>
             <!-- / -->
             <tini-button justify="space-between" color="primary">
-              <span class="content-group">
+              <div class="content-group">
                 <icon-heart-fill
                   size="ss"
                   color="primary-contrast"
                 ></icon-heart-fill>
                 <span>Content Group</span>
-              </span>
+              </div>
               <icon-chevron-right
                 size="ss"
                 color="primary-contrast"

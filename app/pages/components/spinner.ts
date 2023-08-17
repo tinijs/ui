@@ -17,6 +17,8 @@ import {
   TiniSpinnerComponent,
 } from '@tinijs/ui';
 
+import {renderColorVaries} from '../../helpers/varies';
+
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -65,26 +67,15 @@ export class AppPageComponentsSpinner extends TiniComponent {
         </app-section>
 
         ${BASE_COLORS.map(
-          color => html`
+          baseName => html`
             <app-section class="colors">
-              <h2 slot="title">Color ${color}</h2>
+              <h2 slot="title">Color ${baseName}</h2>
               <div slot="code">
-                <tini-spinner color=${color}></tini-spinner>
-                <tini-spinner color=${`${color}-shade` as any}></tini-spinner>
-                <tini-spinner color=${`${color}-shade-2` as any}></tini-spinner>
-                <tini-spinner color=${`${color}-shade-3` as any}></tini-spinner>
-                <tini-spinner color=${`${color}-shade-4` as any}></tini-spinner>
-                <tini-spinner color=${`${color}-shade-5` as any}></tini-spinner>
-                <tini-spinner color=${`${color}-tint` as any}></tini-spinner>
-                <tini-spinner color=${`${color}-tint-2` as any}></tini-spinner>
-                <tini-spinner color=${`${color}-tint-3` as any}></tini-spinner>
-                <tini-spinner color=${`${color}-tint-4` as any}></tini-spinner>
-                <tini-spinner color=${`${color}-tint-5` as any}></tini-spinner>
-                <tini-box background=${color}>
-                  <tini-spinner
-                    color=${`${color}-contrast` as any}
-                  ></tini-spinner>
-                </tini-box>
+                ${renderColorVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-spinner color=${fullName}></tini-spinner>`
+                )}
               </div>
             </app-section>
           `

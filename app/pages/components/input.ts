@@ -13,11 +13,12 @@ import {
   linkBases,
   textBases,
   codeBases,
+  TiniBoxComponent,
   TiniInputComponent,
   InputEventDetail,
 } from '@tinijs/ui';
 
-import {COLOR_SUFFIXES} from '../../consts/varies';
+import {renderColorVaries} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -25,6 +26,7 @@ import {AppSectionComponent} from '../../components/section';
 @Page({
   name: 'app-page-components-input',
   components: [
+    TiniBoxComponent,
     TiniInputComponent,
     AppComponentPageComponent,
     AppSectionComponent,
@@ -112,17 +114,18 @@ export class AppPageComponentsInput extends TiniComponent {
         </app-section>
 
         ${BASE_COLORS.map(
-          baseColor => html`
+          baseName => html`
             <app-section class="colors">
-              <h2 slot="title">Color ${baseColor}</h2>
+              <h2 slot="title">Color ${baseName}</h2>
               <div slot="code">
-                ${COLOR_SUFFIXES.map(suffix => {
-                  const color = `${baseColor}${!suffix ? '' : `-${suffix}`}`;
-                  return html`<tini-input
-                    .color=${color}
-                    placeholder="Focus on me to see"
-                  ></tini-input>`;
-                })}
+                ${renderColorVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-input
+                      color="${fullName}"
+                      placeholder="Focus on me to see"
+                    ></tini-input>`
+                )}
               </div>
             </app-section>
           `
@@ -132,7 +135,7 @@ export class AppPageComponentsInput extends TiniComponent {
           <h2 slot="title">Sizes</h2>
           <div slot="code">
             ${SIZES.map(
-              size => html`<tini-input size=${size} value=${size}></tini-input>`
+              size => html`<tini-input size=${size} placeholder=${size}></tini-input>`
             )}
           </div>
         </app-section>

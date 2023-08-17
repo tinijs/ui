@@ -63,34 +63,32 @@ export class AppPageComponentsPagination extends TiniComponent {
           </div>
         </app-section>
 
-        ${BASE_COLORS.map(
-          color => html`
-            <app-section class="colors">
-              <h2 slot="title">Color ${color}</h2>
-              <div slot="code">
-                <tini-pagination
+        <app-section class="colors">
+          <h2 slot="title">Colors</h2>
+          <div slot="code">
+            ${BASE_COLORS.map(
+              color =>
+                html`<tini-pagination
                   totalPage="3"
                   currentPage="2"
                   color=${color}
-                ></tini-pagination>
-              </div>
-            </app-section>
-          `
-        )}
-        ${BASE_GRADIENTS.map(
-          gradient => html`
-            <app-section class="gradients">
-              <h2 slot="title">${gradient.replace(/-/g, ' ')}</h2>
-              <div slot="code">
-                <tini-pagination
+                ></tini-pagination>`
+            )}
+          </div>
+        </app-section>
+        <app-section class="gradients">
+          <h2 slot="title">Gradients</h2>
+          <div slot="code">
+            ${BASE_GRADIENTS.map(
+              gradient =>
+                html`<tini-pagination
                   totalPage="3"
                   currentPage="2"
                   color=${gradient}
-                ></tini-pagination>
-              </div>
-            </app-section>
-          `
-        )}
+                ></tini-pagination>`
+            )}
+          </div>
+        </app-section>
 
         <app-section class="sizes">
           <h2 slot="title">Sizes</h2>

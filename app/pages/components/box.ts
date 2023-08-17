@@ -16,6 +16,8 @@ import {
   TiniBoxComponent,
 } from '@tinijs/ui';
 
+import {renderColorVaries, renderGradientVaries} from '../../helpers/varies';
+
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -62,71 +64,33 @@ export class AppPageComponentsBox extends TiniComponent {
         </app-section>
 
         ${BASE_COLORS.map(
-          color => html`
+          baseName => html`
             <app-section class="colors">
-              <h2 slot="title">Color ${color}</h2>
+              <h2 slot="title">Color ${baseName}</h2>
               <div slot="code">
-                <tini-box background=${color}
-                  >Box with ${color} background</tini-box
-                >
-                <tini-box background=${`${color}-shade` as any}
-                  >Box with ${color}-shade background</tini-box
-                >
-                <tini-box background=${`${color}-shade-2` as any}
-                  >Box with ${color}-shade-2 background</tini-box
-                >
-                <tini-box background=${`${color}-shade-3` as any}
-                  >Box with ${color}-shade-3 background</tini-box
-                >
-                <tini-box background=${`${color}-shade-4` as any}
-                  >Box with ${color}-shade-4 background</tini-box
-                >
-                <tini-box background=${`${color}-shade-5` as any}
-                  >Box with ${color}-shade-5 background</tini-box
-                >
-                <tini-box background=${`${color}-tint` as any}
-                  >Box with ${color}-tint background</tini-box
-                >
-                <tini-box background=${`${color}-tint-2` as any}
-                  >Box with ${color}-tint-2 background</tini-box
-                >
-                <tini-box background=${`${color}-tint-3` as any}
-                  >Box with ${color}-tint-3 background</tini-box
-                >
-                <tini-box background=${`${color}-tint-4` as any}
-                  >Box with ${color}-tint-4 background</tini-box
-                >
-                <tini-box background=${`${color}-tint-5` as any}
-                  >Box with ${color}-tint-5 background</tini-box
-                >
-                <tini-box background=${color}>
-                  <tini-box background=${`${color}-contrast` as any}
-                    >Box with ${color}-contrast background</tini-box
-                  >
-                </tini-box>
+                ${renderColorVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-box background=${fullName}
+                      >Box with ${fullName} background</tini-box
+                    >`
+                )}
               </div>
             </app-section>
           `
         )}
         ${BASE_GRADIENTS.map(
-          gradient => html`
+          baseName => html`
             <app-section class="gradients">
-              <h2 slot="title">${gradient.replace(/-/g, ' ')}</h2>
+              <h2 slot="title">${baseName.replace(/-/g, ' ')}</h2>
               <div slot="code">
-                <tini-box background=${gradient}
-                  >Box with ${gradient} background</tini-box
-                >
-                <tini-box background=${`${gradient}-shade` as any}
-                  >Box with ${gradient}-shade background</tini-box
-                >
-                <tini-box background=${`${gradient}-tint` as any}
-                  >Box with ${gradient}-tint background</tini-box
-                >
-                <tini-box background=${gradient}>
-                  <tini-box background=${`${gradient}-contrast` as any}
-                    >Box with ${gradient}-contrast background</tini-box
-                  >
-                </tini-box>
+                ${renderGradientVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-box background=${fullName}
+                      >Box with ${fullName} background</tini-box
+                    >`
+                )}
               </div>
             </app-section>
           `

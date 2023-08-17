@@ -16,6 +16,8 @@ import {
   TiniMessageComponent,
 } from '@tinijs/ui';
 
+import {renderColorVaries} from '../../helpers/varies';
+
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -64,48 +66,17 @@ export class AppPageComponentsMessage extends TiniComponent {
         </app-section>
 
         ${BASE_COLORS.map(
-          color => html`
+          baseName => html`
             <app-section class="colors">
-              <h2 slot="title">Color ${color}</h2>
+              <h2 slot="title">Color ${baseName}</h2>
               <div slot="code">
-                <tini-message background=${color}
-                  >Message with ${color} background</tini-message
-                >
-                <tini-message background=${`${color}-shade` as any}
-                  >Message with ${color}-shade background</tini-message
-                >
-                <tini-message background=${`${color}-shade-2` as any}
-                  >Message with ${color}-shade-2 background</tini-message
-                >
-                <tini-message background=${`${color}-shade-3` as any}
-                  >Message with ${color}-shade-3 background</tini-message
-                >
-                <tini-message background=${`${color}-shade-4` as any}
-                  >Message with ${color}-shade-4 background</tini-message
-                >
-                <tini-message background=${`${color}-shade-5` as any}
-                  >Message with ${color}-shade-5 background</tini-message
-                >
-                <tini-message background=${`${color}-tint` as any}
-                  >Message with ${color}-tint background</tini-message
-                >
-                <tini-message background=${`${color}-tint-2` as any}
-                  >Message with ${color}-tint-2 background</tini-message
-                >
-                <tini-message background=${`${color}-tint-3` as any}
-                  >Message with ${color}-tint-3 background</tini-message
-                >
-                <tini-message background=${`${color}-tint-4` as any}
-                  >Message with ${color}-tint-4 background</tini-message
-                >
-                <tini-message background=${`${color}-tint-5` as any}
-                  >Message with ${color}-tint-5 background</tini-message
-                >
-                <tini-box background=${color}>
-                  <tini-message background=${`${color}-contrast` as any}
-                    >Message with ${color}-contrast background</tini-message
-                  >
-                </tini-box>
+                ${renderColorVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-message background=${fullName}
+                      >Message with ${fullName} background</tini-message
+                    >`
+                )}
               </div>
             </app-section>
           `
@@ -135,9 +106,9 @@ export class AppPageComponentsMessage extends TiniComponent {
             <p>Text size from 0.1x to 10x.</p>
           </div>
           <div slot="code">
-            <tini-message textSize="0_5x">Text size 0.5x</tini-message>
-            <tini-message>Text size 1x</tini-message>
-            <tini-message textSize="3x">Text size 3x</tini-message>
+            <tini-message textSize="0_5x" background="primary">Text size 0.5x</tini-message>
+            <tini-message background="primary">Text size 1x</tini-message>
+            <tini-message textSize="3x" background="primary">Text size 3x</tini-message>
           </div>
         </app-section>
       </app-component-page>

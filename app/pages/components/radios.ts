@@ -13,12 +13,13 @@ import {
   linkBases,
   textBases,
   codeBases,
+  TiniBoxComponent,
   TiniRadiosComponent,
   RadiosItem,
   RadiosEventDetail,
 } from '@tinijs/ui';
 
-import {COLOR_SUFFIXES} from '../../consts/varies';
+import {renderColorVaries} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -26,6 +27,7 @@ import {AppSectionComponent} from '../../components/section';
 @Page({
   name: 'app-page-components-radios',
   components: [
+    TiniBoxComponent,
     TiniRadiosComponent,
     AppComponentPageComponent,
     AppSectionComponent,
@@ -170,33 +172,35 @@ export class AppPageComponentsRadios extends TiniComponent {
         </app-section>
 
         ${BASE_COLORS.map(
-          baseColor => html`
+          baseName => html`
             <app-section
               class="colors"
               .preprocessCode=${this.PREPROCESS_CODE_COLORS}
             >
-              <h2 slot="title">Color ${baseColor}</h2>
+              <h2 slot="title">Color ${baseName}</h2>
               <div slot="content">
                 <p>
-                  Add <code>{color: '${baseColor}[-...]'}</code> to the items.
+                  Add <code>{color: '${baseName}[-...]'}</code> to the items.
                 </p>
               </div>
               <div slot="code">
-                ${COLOR_SUFFIXES.map(suffix => {
-                  const color = `${baseColor}${!suffix ? '' : `-${suffix}`}`;
-                  return html`<tini-radios
-                    name=${`${color}`}
-                    wrap
-                    .items=${[
-                      {
-                        value: '',
-                        label: `Checkbox color ${color}`,
-                        checked: true,
-                        color,
-                      },
-                    ]}
-                  ></tini-radios>`;
-                })}
+                ${renderColorVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-radios
+                      name=${`${fullName}`}
+                      wrap
+                      .items=${[
+                        {
+                          value: '',
+                          label: `Checkbox color ${fullName}`,
+                          checked: true,
+                          color: fullName,
+                        },
+                      ]}
+                    ></tini-radios>`,
+                  true
+                )}
               </div>
             </app-section>
           `

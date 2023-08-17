@@ -21,6 +21,8 @@ import {
   TiniLinkComponent,
 } from '@tinijs/ui';
 
+import {renderColorVaries, renderGradientVaries} from '../../helpers/varies';
+
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -62,56 +64,25 @@ export class AppPageComponentsLink extends TiniComponent {
         </app-section>
 
         ${BASE_COLORS.map(
-          color => html`
+          baseName => html`
             <app-section class="colors">
-              <h2 slot="title">Color ${color}</h2>
+              <h2 slot="title">Color ${baseName}</h2>
               <div slot="code">
-                <tini-link href="#" color=${color}
-                  >Link with ${color} color</tini-link
-                >
-                <tini-link href="#" color=${`${color}-shade` as any}
-                  >Link with ${color}-shade color</tini-link
-                >
-                <tini-link href="#" color=${`${color}-shade-2` as any}
-                  >Link with ${color}-shade-2 color</tini-link
-                >
-                <tini-link href="#" color=${`${color}-shade-3` as any}
-                  >Link with ${color}-shade-3 color</tini-link
-                >
-                <tini-link href="#" color=${`${color}-shade-4` as any}
-                  >Link with ${color}-shade-4 color</tini-link
-                >
-                <tini-link href="#" color=${`${color}-shade-5` as any}
-                  >Link with ${color}-shade-5 color</tini-link
-                >
-                <tini-link href="#" color=${`${color}-tint` as any}
-                  >Link with ${color}-tint color</tini-link
-                >
-                <tini-link href="#" color=${`${color}-tint-2` as any}
-                  >Link with ${color}-tint-2 color</tini-link
-                >
-                <tini-link href="#" color=${`${color}-tint-3` as any}
-                  >Link with ${color}-tint-3 color</tini-link
-                >
-                <tini-link href="#" color=${`${color}-tint-4` as any}
-                  >Link with ${color}-tint-4 color</tini-link
-                >
-                <tini-link href="#" color=${`${color}-tint-5` as any}
-                  >Link with ${color}-tint-5 color</tini-link
-                >
-                <tini-box background=${color}>
-                  <tini-link href="#" color=${`${color}-contrast` as any}
-                    >Link with ${color}-contrast color</tini-link
-                  >
-                </tini-box>
+                ${renderColorVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-link href="#" color=${fullName}
+                      >Link with ${fullName} color</tini-link
+                    >`
+                )}
               </div>
             </app-section>
           `
         )}
         ${BASE_GRADIENTS.map(
-          gradient => html`
+          baseName => html`
             <app-section class="gradients">
-              <h2 slot="title">${gradient.replace(/-/g, ' ')}</h2>
+              <h2 slot="title">${baseName.replace(/-/g, ' ')}</h2>
               <div slot="content">
                 <p>
                   Note that the gradient links only support underline for the
@@ -119,20 +90,13 @@ export class AppPageComponentsLink extends TiniComponent {
                 </p>
               </div>
               <div slot="code">
-                <tini-link href="#" color=${gradient}
-                  >Link with ${gradient} color</tini-link
-                >
-                <tini-link href="#" color=${`${gradient}-shade` as any}
-                  >Link with ${gradient}-shade color</tini-link
-                >
-                <tini-link href="#" color=${`${gradient}-tint` as any}
-                  >Link with ${gradient}-tint color</tini-link
-                >
-                <tini-box background=${gradient}>
-                  <tini-link href="#" color=${`${gradient}-contrast` as any}
-                    >Link with ${gradient}-contrast color</tini-link
-                  >
-                </tini-box>
+                ${renderGradientVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-link href="#" color=${fullName}
+                      >Link with ${fullName} color</tini-link
+                    >`
+                )}
               </div>
             </app-section>
           `
@@ -192,8 +156,10 @@ export class AppPageComponentsLink extends TiniComponent {
         <app-section class="italic-underline">
           <h2 slot="title">Italic and Underline</h2>
           <div slot="code">
-            <tini-link italic>Link with italic style</tini-link>
-            <tini-link underline>Link with underline decoration</tini-link>
+            <tini-link href="#" italic>Link with italic style</tini-link>
+            <tini-link href="#" underline
+              >Link with underline decoration</tini-link
+            >
           </div>
         </app-section>
       </app-component-page>

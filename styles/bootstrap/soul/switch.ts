@@ -77,7 +77,7 @@ export const switchStyle = css`
     transform: translateX(var(--slider-size));
   }
 
-  .switch > span {
+  .root > span {
     margin-left: var(--size-space-0_5x);
   }
 

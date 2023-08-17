@@ -13,13 +13,14 @@ import {
   linkBases,
   textBases,
   codeBases,
+  TiniBoxComponent,
   TiniSelectComponent,
   SelectOption,
   SelectOptgroup,
   SelectEventDetail,
 } from '@tinijs/ui';
 
-import {COLOR_SUFFIXES} from '../../consts/varies';
+import {renderColorVaries} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -27,6 +28,7 @@ import {AppSectionComponent} from '../../components/section';
 @Page({
   name: 'app-page-components-select',
   components: [
+    TiniBoxComponent,
     TiniSelectComponent,
     AppComponentPageComponent,
     AppSectionComponent,
@@ -142,17 +144,18 @@ export class AppPageComponentsSelect extends TiniComponent {
         </app-section>
 
         ${BASE_COLORS.map(
-          baseColor => html`
+          baseName => html`
             <app-section class="colors">
-              <h2 slot="title">Color ${baseColor}</h2>
+              <h2 slot="title">Color ${baseName}</h2>
               <div slot="code">
-                ${COLOR_SUFFIXES.map(suffix => {
-                  const color = `${baseColor}${!suffix ? '' : `-${suffix}`}`;
-                  return html`<tini-select
-                    .color=${color}
-                    .items=${this.OPTIONS}
-                  ></tini-select>`;
-                })}
+                ${renderColorVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-select
+                      color="${fullName}"
+                      .items=${this.OPTIONS}
+                    ></tini-select>`
+                )}
               </div>
             </app-section>
           `

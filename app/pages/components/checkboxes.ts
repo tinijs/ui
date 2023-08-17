@@ -14,12 +14,13 @@ import {
   linkBases,
   textBases,
   codeBases,
+  TiniBoxComponent,
   TiniCheckboxesComponent,
   CheckboxesItem,
   CheckboxesEventDetail,
 } from '@tinijs/ui';
 
-import {COLOR_SUFFIXES} from '../../consts/varies';
+import {mapColorVaries} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -27,6 +28,7 @@ import {AppSectionComponent} from '../../components/section';
 @Page({
   name: 'app-page-components-checkboxes',
   components: [
+    TiniBoxComponent,
     TiniCheckboxesComponent,
     AppComponentPageComponent,
     AppSectionComponent,
@@ -82,16 +84,18 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
     return this.DEFAULT_LIST.map((item, i) => modifier({...item}, i));
   }
 
-  private buildColorList(baseColor: string): CheckboxesItem[] {
-    return COLOR_SUFFIXES.map(suffix => {
-      const color = `${baseColor}${!suffix ? '' : `-${suffix}`}` as Colors;
-      return {
-        value: '',
-        label: `Checkbox ${color}`,
-        checked: true,
-        color,
-      };
-    });
+  private buildColorList(baseName: string) {
+    return mapColorVaries(
+      baseName,
+      fullName =>
+        ({
+          value: '',
+          label: `Checkbox ${fullName}`,
+          checked: true,
+          color: fullName as Colors,
+        }) as CheckboxesItem,
+      true
+    );
   }
 
   protected render() {
@@ -180,19 +184,21 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
         </app-section>
 
         ${BASE_COLORS.map(
-          color => html`
+          baseName => html`
             <app-section
               class="colors"
               .preprocessCode=${this.PREPROCESS_CODE_COLORS}
             >
-              <h2 slot="title">Color ${color}</h2>
+              <h2 slot="title">Color ${baseName}</h2>
               <div slot="content">
-                <p>Add <code>{color: '${color}[-...]'}</code> to the items.</p>
+                <p>
+                  Add <code>{color: '${baseName}[-...]'}</code> to the items.
+                </p>
               </div>
               <div slot="code">
                 <tini-checkboxes
                   wrap
-                  .items=${this.buildColorList(color)}
+                  .items=${this.buildColorList(baseName)}
                 ></tini-checkboxes>
               </div>
             </app-section>

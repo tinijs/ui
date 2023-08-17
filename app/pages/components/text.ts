@@ -22,6 +22,8 @@ import {
   TiniTextComponent,
 } from '@tinijs/ui';
 
+import {renderColorVaries, renderGradientVaries} from '../../helpers/varies';
+
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -86,69 +88,33 @@ export class AppPageComponentsText extends TiniComponent {
         </app-section>
 
         ${BASE_COLORS.map(
-          color => html`
+          baseName => html`
             <app-section class="colors">
-              <h2 slot="title">Color ${color}</h2>
+              <h2 slot="title">Color ${baseName}</h2>
               <div slot="code">
-                <tini-text color=${color}>Text with ${color} color</tini-text>
-                <tini-text color=${`${color}-shade` as any}
-                  >Text with ${color}-shade color</tini-text
-                >
-                <tini-text color=${`${color}-shade-2` as any}
-                  >Text with ${color}-shade-2 color</tini-text
-                >
-                <tini-text color=${`${color}-shade-3` as any}
-                  >Text with ${color}-shade-3 color</tini-text
-                >
-                <tini-text color=${`${color}-shade-4` as any}
-                  >Text with ${color}-shade-4 color</tini-text
-                >
-                <tini-text color=${`${color}-shade-5` as any}
-                  >Text with ${color}-shade-5 color</tini-text
-                >
-                <tini-text color=${`${color}-tint` as any}
-                  >Text with ${color}-tint color</tini-text
-                >
-                <tini-text color=${`${color}-tint-2` as any}
-                  >Text with ${color}-tint-2 color</tini-text
-                >
-                <tini-text color=${`${color}-tint-3` as any}
-                  >Text with ${color}-tint-3 color</tini-text
-                >
-                <tini-text color=${`${color}-tint-4` as any}
-                  >Text with ${color}-tint-4 color</tini-text
-                >
-                <tini-text color=${`${color}-tint-5` as any}
-                  >Text with ${color}-tint-5 color</tini-text
-                >
-                <tini-box background=${color}>
-                  <tini-text color=${`${color}-contrast` as any}
-                    >Text with ${color}-contrast color</tini-text
-                  >
-                </tini-box>
+                ${renderColorVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-text color=${fullName}
+                      >Text with ${fullName} color</tini-text
+                    >`
+                )}
               </div>
             </app-section>
           `
         )}
         ${BASE_GRADIENTS.map(
-          gradient => html`
+          baseName => html`
             <app-section class="gradients">
-              <h2 slot="title">${gradient.replace(/-/g, ' ')}</h2>
+              <h2 slot="title">${baseName.replace(/-/g, ' ')}</h2>
               <div slot="code">
-                <tini-text color=${gradient}
-                  >Text with ${gradient} color</tini-text
-                >
-                <tini-text color=${`${gradient}-shade` as any}
-                  >Text with ${gradient}-shade color</tini-text
-                >
-                <tini-text color=${`${gradient}-tint` as any}
-                  >Text with ${gradient}-tint color</tini-text
-                >
-                <tini-box background=${gradient}>
-                  <tini-text color=${`${gradient}-contrast` as any}
-                    >Text with ${gradient}-contrast color</tini-text
-                  >
-                </tini-box>
+                ${renderGradientVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-text color=${fullName}
+                      >Text with ${fullName} color</tini-text
+                    >`
+                )}
               </div>
             </app-section>
           `

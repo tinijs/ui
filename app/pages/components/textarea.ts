@@ -13,11 +13,12 @@ import {
   linkBases,
   textBases,
   codeBases,
+  TiniBoxComponent,
   TiniTextareaComponent,
   TextareaEventDetail,
 } from '@tinijs/ui';
 
-import {COLOR_SUFFIXES} from '../../consts/varies';
+import {renderColorVaries} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -25,6 +26,7 @@ import {AppSectionComponent} from '../../components/section';
 @Page({
   name: 'app-page-components-textarea',
   components: [
+    TiniBoxComponent,
     TiniTextareaComponent,
     AppComponentPageComponent,
     AppSectionComponent,
@@ -90,6 +92,7 @@ export class AppPageComponentsTextarea extends TiniComponent {
             <tini-textarea
               label="Event"
               name="textarea-with-event"
+              place="Change my content"
               @input=${({detail}: CustomEvent<TextareaEventDetail>) =>
                 console.log('Textarea "input" event: ', detail)}
               @change=${({detail}: CustomEvent<TextareaEventDetail>) =>
@@ -99,14 +102,18 @@ export class AppPageComponentsTextarea extends TiniComponent {
         </app-section>
 
         ${BASE_COLORS.map(
-          baseColor => html`
+          baseName => html`
             <app-section class="colors">
-              <h2 slot="title">Color ${baseColor}</h2>
+              <h2 slot="title">Color ${baseName}</h2>
               <div slot="code">
-                ${COLOR_SUFFIXES.map(suffix => {
-                  const color = `${baseColor}${!suffix ? '' : `-${suffix}`}`;
-                  return html`<tini-textarea .color=${color}></tini-textarea>`;
-                })}
+                ${renderColorVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-textarea
+                      color=${fullName}
+                      placeholder="Focus me to see"
+                    ></tini-textarea>`
+                )}
               </div>
             </app-section>
           `
@@ -117,7 +124,10 @@ export class AppPageComponentsTextarea extends TiniComponent {
           <div slot="code">
             ${SIZES.map(
               size =>
-                html`<tini-textarea size=${size} value=${size}></tini-textarea>`
+                html`<tini-textarea
+                  size=${size}
+                  placeholder=${size}
+                ></tini-textarea>`
             )}
           </div>
         </app-section>

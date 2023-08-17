@@ -18,6 +18,8 @@ import {
   TiniBadgeComponent,
 } from '@tinijs/ui';
 
+import {renderColorVaries, renderGradientVaries} from '../../helpers/varies';
+
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -90,43 +92,29 @@ export class AppPageComponentsBadge extends TiniComponent {
         </app-section>
 
         ${BASE_COLORS.map(
-          color => html`
+          baseName => html`
             <app-section class="colors">
-              <h2 slot="title">Color ${color}</h2>
+              <h2 slot="title">Color ${baseName}</h2>
               <div slot="code">
-                <tini-badge color=${color}>99+</tini-badge>
-                <tini-badge color=${`${color}-shade` as any}>99+</tini-badge>
-                <tini-badge color=${`${color}-shade-2` as any}>99+</tini-badge>
-                <tini-badge color=${`${color}-shade-3` as any}>99+</tini-badge>
-                <tini-badge color=${`${color}-shade-4` as any}>99+</tini-badge>
-                <tini-badge color=${`${color}-shade-5` as any}>99+</tini-badge>
-                <tini-badge color=${`${color}-tint` as any}>99+</tini-badge>
-                <tini-badge color=${`${color}-tint-2` as any}>99+</tini-badge>
-                <tini-badge color=${`${color}-tint-3` as any}>99+</tini-badge>
-                <tini-badge color=${`${color}-tint-4` as any}>99+</tini-badge>
-                <tini-badge color=${`${color}-tint-5` as any}>99+</tini-badge>
-                <tini-box background=${color}>
-                  <tini-badge color=${`${color}-contrast` as any}
-                    >99+</tini-badge
-                  >
-                </tini-box>
+                ${renderColorVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-badge color=${fullName}>99+</tini-badge>`
+                )}
               </div>
             </app-section>
           `
         )}
         ${BASE_GRADIENTS.map(
-          gradient => html`
+          baseName => html`
             <app-section class="gradients">
-              <h2 slot="title">${gradient.replace(/-/g, ' ')}</h2>
+              <h2 slot="title">${baseName.replace(/-/g, ' ')}</h2>
               <div slot="code">
-                <tini-badge color=${gradient}>99+</tini-badge>
-                <tini-badge color=${`${gradient}-shade` as any}>99+</tini-badge>
-                <tini-badge color=${`${gradient}-tint` as any}>99+</tini-badge>
-                <tini-box background=${gradient}>
-                  <tini-badge color=${`${gradient}-contrast` as any}
-                    >99+</tini-badge
-                  >
-                </tini-box>
+                ${renderGradientVaries(
+                  baseName,
+                  fullName =>
+                    html`<tini-badge color=${fullName}>99+</tini-badge>`
+                )}
               </div>
             </app-section>
           `

@@ -1,6 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
+import {ifDefined} from 'lit/directives/if-defined.js';
 import {partMap, PartInfo, ColorsAndGradients} from '@tinijs/core';
 
 export interface BreadcrumbItem {
@@ -49,7 +50,7 @@ export class TiniBreadcrumbComponent extends LitElement {
               <tini-link
                 exportparts="link"
                 href=${item.href}
-                .color=${this.linkColor}
+                color=${ifDefined(this.linkColor)}
                 >${item.label}</tini-link
               >
             `}
