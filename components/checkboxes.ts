@@ -41,14 +41,16 @@ export class TiniCheckboxesComponent extends LitElement {
   private onChange(e: InputEvent) {
     e.stopPropagation();
     const target = e.target as HTMLInputElement;
-    const {name, value, checked} = target;
-    const detail: CheckboxesEventDetail = {
-      target,
-      name,
-      value,
-      checked,
-    };
-    return this.dispatchEvent(new CustomEvent('change', {detail}));
+    return this.dispatchEvent(
+      new CustomEvent('change', {
+        detail: {
+          target,
+          name: target.name,
+          value: target.value,
+          checked: target.checked,
+        },
+      })
+    );
   }
 
   protected render() {

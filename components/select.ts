@@ -51,13 +51,15 @@ export class TiniSelectComponent extends LitElement {
   private onChange(e: InputEvent) {
     e.stopPropagation();
     const target = e.target as HTMLInputElement;
-    const {name, value} = target;
-    const detail: SelectEventDetail = {
-      target,
-      name,
-      value,
-    };
-    return this.dispatchEvent(new CustomEvent('change', {detail}));
+    return this.dispatchEvent(
+      new CustomEvent('change', {
+        detail: {
+          target,
+          name: target.name,
+          value: target.value,
+        },
+      })
+    );
   }
 
   protected render() {

@@ -18,13 +18,14 @@ export class TiniRadiosComponent extends LitElement {
   @property({type: Array}) declare items?: RadiosItem[];
   @property({type: Boolean}) declare wrap?: boolean;
 
-  connectedCallback() {
-    super.connectedCallback();
+  private validateProperties() {
     if (!this.name) throw new Error('Property "name" is required.');
   }
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
+    this.validateProperties();
+    // root classes parts
     this.rootClassesParts = {
       [RADIOS]: true,
       wrap: !!this.wrap,
@@ -34,13 +35,15 @@ export class TiniRadiosComponent extends LitElement {
   private onChange(e: InputEvent) {
     e.stopPropagation();
     const target = e.target as HTMLInputElement;
-    const {value, checked} = target;
-    const detail: RadiosEventDetail = {
-      target,
-      value,
-      checked,
-    };
-    return this.dispatchEvent(new CustomEvent('change', {detail}));
+    return this.dispatchEvent(
+      new CustomEvent('change', {
+        detail: {
+          target,
+          value: target.value,
+          checked: target.checked,
+        },
+      })
+    );
   }
 
   protected render() {

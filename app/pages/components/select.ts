@@ -115,6 +115,7 @@ export class AppPageComponentsSelect extends TiniComponent {
             ></tini-select>
             <tini-select
               wrap
+              disabled
               label="Disabled select"
               .items=${this.OPTIONS}
             ></tini-select>

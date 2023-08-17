@@ -39,7 +39,11 @@ export const textareaStyle = css`
   }
 
   textarea:disabled {
-    background: color-mix(in oklab, var(--color-background-shade), white 50%);
+    background: color-mix(
+      in oklab,
+      var(--color-background-shade),
+      transparent 50%
+    );
     opacity: 1;
     color: var(--color-medium);
   }

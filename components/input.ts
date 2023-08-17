@@ -61,14 +61,20 @@ export class TiniInputComponent extends LitElement {
 
   private onChange(e: InputEvent) {
     e.stopPropagation();
-    const detail = this.buildEventDetail(e);
-    return this.dispatchEvent(new CustomEvent('change', {detail}));
+    return this.dispatchEvent(
+      new CustomEvent('change', {
+        detail: this.buildEventDetail(e),
+      })
+    );
   }
 
   private onInput(e: InputEvent) {
     e.stopPropagation();
-    const detail = this.buildEventDetail(e);
-    return this.dispatchEvent(new CustomEvent('input', {detail}));
+    return this.dispatchEvent(
+      new CustomEvent('input', {
+        detail: this.buildEventDetail(e),
+      })
+    );
   }
 
   protected render() {

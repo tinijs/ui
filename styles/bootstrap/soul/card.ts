@@ -29,7 +29,11 @@ export const cardStyle = css`
   .head-populated,
   .foot-populated {
     padding: var(--size-space-0_5x) var(--size-space);
-    background: color-mix(in oklab, var(--color-background-shade), white 75%);
+    background: color-mix(
+      in oklab,
+      var(--color-background-shade),
+      transparent 75%
+    );
   }
 
   .head-populated,
