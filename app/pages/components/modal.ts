@@ -1,4 +1,12 @@
-import {Page, TiniComponent, html, stylingWithBases} from '@tinijs/core';
+import {
+  Page,
+  TiniComponent,
+  html,
+  stylingWithBases,
+  ref,
+  Ref,
+  createRef,
+} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -31,6 +39,8 @@ import {AppSectionComponent} from '../../components/section';
 export class AppPageComponentsModal extends TiniComponent {
   private readonly PART_LIST = [['modal', 'The root part']];
 
+  private readonly defaultModalRef: Ref<TiniModalComponent> = createRef();
+
   protected render() {
     return html`
       <app-component-page
@@ -40,6 +50,22 @@ export class AppPageComponentsModal extends TiniComponent {
         .partList=${this.PART_LIST}
       >
         <div slot="description">Modal description.</div>
+
+        <app-section class="default">
+          <h2 slot="title">Default</h2>
+          <div slot="code">
+            <tini-button @click=${() => this.defaultModalRef.value?.show()}
+              >Open modal</tini-button
+            >
+            <tini-modal
+              ${ref(this.defaultModalRef)}
+              @no=${() => this.defaultModalRef.value?.hide()}
+              @yes=${() => this.defaultModalRef.value?.hide()}
+            >
+              <p>Modal content.</p>
+            </tini-modal>
+          </div>
+        </app-section>
       </app-component-page>
     `;
   }
