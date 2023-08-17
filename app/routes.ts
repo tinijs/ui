@@ -1,139 +1,202 @@
 import {Route} from '@tinijs/router';
 
+/*
+ * Layouts
+ */
+
 export const defaultLayoutRoute: Route = {
   path: '',
   component: 'app-layout-default',
 };
 
-export const topRoutes: Route[] = [
-  {
-    path: '',
-    component: 'app-page-home',
-    action: () => import('./pages/home'),
-    title: 'Introduction',
-  },
-  {
-    path: 'get-started',
-    component: 'app-page-get-started',
-    action: () => import('./pages/get-started'),
-  },
+/*
+ * Top Routes
+ */
+
+export const introductionRoute: Route = {
+  path: '',
+  component: 'app-page-home',
+  action: () => import('./pages/home'),
+  title: 'Introduction',
+};
+
+export const getStartedRoute: Route = {
+  path: 'get-started',
+  component: 'app-page-get-started',
+  action: () => import('./pages/get-started'),
+};
+
+export const topRoutes = [introductionRoute, getStartedRoute];
+
+/*
+ * Guides Routes
+ */
+
+export const guidesCustomizationRoute: Route = {
+  path: 'guides/customization',
+  component: 'app-page-guides-customization',
+  action: () => import('./pages/guides/customization'),
+};
+
+export const guidesRoutes = [guidesCustomizationRoute];
+
+/*
+ * Components Routes
+ */
+
+export const componentsBasesRoute: Route = {
+  path: 'components/bases',
+  component: 'app-page-components-bases',
+  action: () => import('./pages/components/bases'),
+};
+
+export const componentsTextRoute: Route = {
+  path: 'components/text',
+  component: 'app-page-components-text',
+  action: () => import('./pages/components/text'),
+};
+
+export const componentsLinkRoute: Route = {
+  path: 'components/link',
+  component: 'app-page-components-link',
+  action: () => import('./pages/components/link'),
+};
+
+export const componentsIconRoute: Route = {
+  path: 'components/icon',
+  component: 'app-page-components-icon',
+  action: () => import('./pages/components/icon'),
+};
+
+export const componentsBoxRoute: Route = {
+  path: 'components/box',
+  component: 'app-page-components-box',
+  action: () => import('./pages/components/box'),
+};
+
+export const componentsButtonRoute: Route = {
+  path: 'components/button',
+  component: 'app-page-components-button',
+  action: () => import('./pages/components/button'),
+};
+
+export const componentsBadgeRoute: Route = {
+  path: 'components/badge',
+  component: 'app-page-components-badge',
+  action: () => import('./pages/components/badge'),
+};
+
+export const componentsBreadcrumbRoute: Route = {
+  path: 'components/breadcrumb',
+  component: 'app-page-components-breadcrumb',
+  action: () => import('./pages/components/breadcrumb'),
+};
+
+export const componentsCardRoute: Route = {
+  path: 'components/card',
+  component: 'app-page-components-card',
+  action: () => import('./pages/components/card'),
+};
+
+export const componentsCheckboxesRoute: Route = {
+  path: 'components/checkboxes',
+  component: 'app-page-components-checkboxes',
+  action: () => import('./pages/components/checkboxes'),
+};
+
+export const componentsDialogRoute: Route = {
+  path: 'components/dialog',
+  component: 'app-page-components-dialog',
+  action: () => import('./pages/components/dialog'),
+};
+
+export const componentsInputRoute: Route = {
+  path: 'components/input',
+  component: 'app-page-components-input',
+  action: () => import('./pages/components/input'),
+};
+
+export const componentsLabelRoute: Route = {
+  path: 'components/label',
+  component: 'app-page-components-label',
+  action: () => import('./pages/components/label'),
+};
+
+export const componentsMessageRoute: Route = {
+  path: 'components/message',
+  component: 'app-page-components-message',
+  action: () => import('./pages/components/message'),
+};
+
+export const componentsModalRoute: Route = {
+  path: 'components/modal',
+  component: 'app-page-components-modal',
+  action: () => import('./pages/components/modal'),
+};
+
+export const componentsPaginationRoute: Route = {
+  path: 'components/pagination',
+  component: 'app-page-components-pagination',
+  action: () => import('./pages/components/pagination'),
+};
+
+export const componentsRadiosRoute: Route = {
+  path: 'components/radios',
+  component: 'app-page-components-radios',
+  action: () => import('./pages/components/radios'),
+};
+
+export const componentsSelectRoute: Route = {
+  path: 'components/select',
+  component: 'app-page-components-select',
+  action: () => import('./pages/components/select'),
+};
+
+export const componentsSpinnerRoute: Route = {
+  path: 'components/spinner',
+  component: 'app-page-components-spinner',
+  action: () => import('./pages/components/spinner'),
+};
+
+export const componentsSwitchRoute: Route = {
+  path: 'components/switch',
+  component: 'app-page-components-switch',
+  action: () => import('./pages/components/switch'),
+};
+
+export const componentsTextareaRoute: Route = {
+  path: 'components/textarea',
+  component: 'app-page-components-textarea',
+  action: () => import('./pages/components/textarea'),
+};
+
+export const componentsRoutes = [
+  componentsBasesRoute,
+  componentsTextRoute,
+  componentsLinkRoute,
+  componentsIconRoute,
+  componentsBoxRoute,
+  componentsButtonRoute,
+  componentsBadgeRoute,
+  componentsLabelRoute,
+  componentsMessageRoute,
+  componentsSpinnerRoute,
+  componentsCardRoute,
+  componentsBreadcrumbRoute,
+  componentsPaginationRoute,
+  componentsDialogRoute,
+  componentsModalRoute,
+  componentsInputRoute,
+  componentsTextareaRoute,
+  componentsSelectRoute,
+  componentsCheckboxesRoute,
+  componentsRadiosRoute,
+  componentsSwitchRoute,
 ];
 
-export const guidesRoutes: Route[] = [
-  {
-    path: 'guides/customization',
-    component: 'app-page-guides-customization',
-    action: () => import('./pages/guides/customization'),
-  },
-];
-
-export const componentsRoutes: Route[] = [
-  {
-    path: 'components/bases',
-    component: 'app-page-components-bases',
-    action: () => import('./pages/components/bases'),
-  },
-  {
-    path: 'components/text',
-    component: 'app-page-components-text',
-    action: () => import('./pages/components/text'),
-  },
-  {
-    path: 'components/link',
-    component: 'app-page-components-link',
-    action: () => import('./pages/components/link'),
-  },
-  {
-    path: 'components/icon',
-    component: 'app-page-components-icon',
-    action: () => import('./pages/components/icon'),
-  },
-  {
-    path: 'components/box',
-    component: 'app-page-components-box',
-    action: () => import('./pages/components/box'),
-  },
-  {
-    path: 'components/button',
-    component: 'app-page-components-button',
-    action: () => import('./pages/components/button'),
-  },
-  {
-    path: 'components/badge',
-    component: 'app-page-components-badge',
-    action: () => import('./pages/components/badge'),
-  },
-  {
-    path: 'components/breadcrumb',
-    component: 'app-page-components-breadcrumb',
-    action: () => import('./pages/components/breadcrumb'),
-  },
-  {
-    path: 'components/card',
-    component: 'app-page-components-card',
-    action: () => import('./pages/components/card'),
-  },
-  {
-    path: 'components/checkboxes',
-    component: 'app-page-components-checkboxes',
-    action: () => import('./pages/components/checkboxes'),
-  },
-  {
-    path: 'components/dialog',
-    component: 'app-page-components-dialog',
-    action: () => import('./pages/components/dialog'),
-  },
-  {
-    path: 'components/input',
-    component: 'app-page-components-input',
-    action: () => import('./pages/components/input'),
-  },
-  {
-    path: 'components/label',
-    component: 'app-page-components-label',
-    action: () => import('./pages/components/label'),
-  },
-  {
-    path: 'components/message',
-    component: 'app-page-components-message',
-    action: () => import('./pages/components/message'),
-  },
-  {
-    path: 'components/modal',
-    component: 'app-page-components-modal',
-    action: () => import('./pages/components/modal'),
-  },
-  {
-    path: 'components/pagination',
-    component: 'app-page-components-pagination',
-    action: () => import('./pages/components/pagination'),
-  },
-  {
-    path: 'components/radios',
-    component: 'app-page-components-radios',
-    action: () => import('./pages/components/radios'),
-  },
-  {
-    path: 'components/select',
-    component: 'app-page-components-select',
-    action: () => import('./pages/components/select'),
-  },
-  {
-    path: 'components/spinner',
-    component: 'app-page-components-spinner',
-    action: () => import('./pages/components/spinner'),
-  },
-  {
-    path: 'components/switch',
-    component: 'app-page-components-switch',
-    action: () => import('./pages/components/switch'),
-  },
-  {
-    path: 'components/textarea',
-    component: 'app-page-components-textarea',
-    action: () => import('./pages/components/textarea'),
-  },
-];
+/*
+ * Icons Routes
+ */
 
 export const iconsRoutes: Route[] = [
   {
@@ -216,11 +279,19 @@ export const iconsRoutes: Route[] = [
   },
 ];
 
+/*
+ * 404
+ */
+
 export const notFoundRoute: Route = {
   path: '**',
   component: 'app-page-404',
   action: () => import('./pages/404'),
 };
+
+/*
+ * All Routes
+ */
 
 export default [
   {

@@ -106,9 +106,13 @@ export class AppPageComponentsMessage extends TiniComponent {
             <p>Text size from 0.1x to 10x.</p>
           </div>
           <div slot="code">
-            <tini-message textSize="0_5x" background="primary">Text size 0.5x</tini-message>
+            <tini-message textSize="0_5x" background="primary"
+              >Text size 0.5x</tini-message
+            >
             <tini-message background="primary">Text size 1x</tini-message>
-            <tini-message textSize="3x" background="primary">Text size 3x</tini-message>
+            <tini-message textSize="3x" background="primary"
+              >Text size 3x</tini-message
+            >
           </div>
         </app-section>
       </app-component-page>

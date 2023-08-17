@@ -135,7 +135,8 @@ export class AppPageComponentsInput extends TiniComponent {
           <h2 slot="title">Sizes</h2>
           <div slot="code">
             ${SIZES.map(
-              size => html`<tini-input size=${size} placeholder=${size}></tini-input>`
+              size =>
+                html`<tini-input size=${size} placeholder=${size}></tini-input>`
             )}
           </div>
         </app-section>

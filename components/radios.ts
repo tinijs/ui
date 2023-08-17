@@ -78,6 +78,7 @@ export class TiniRadiosComponent extends LitElement {
         part=${partMap(itemClassesParts)}
       >
         <input
+          class="input"
           part="input"
           type="radio"
           name=${this.name}

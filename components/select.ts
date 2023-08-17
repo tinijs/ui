@@ -69,6 +69,7 @@ export class TiniSelectComponent extends LitElement {
       >
         ${!this.label ? nothing : html`<span part="label">${this.label}</span>`}
         <select
+          class="select"
           part="select"
           name=${ifDefined(this.name)}
           ?disabled=${this.disabled}
@@ -88,7 +89,7 @@ export class TiniSelectComponent extends LitElement {
 
   private renderOptgroup({label, children}: SelectOptgroup) {
     return html`
-      <optgroup part="optgroup" label=${label}>
+      <optgroup class="optgroup" part="optgroup" label=${label}>
         ${children.map(option => this.renderOption(option))}
       </optgroup>
     `;
@@ -97,6 +98,7 @@ export class TiniSelectComponent extends LitElement {
   private renderOption({label, value, disabled, selected}: SelectOption) {
     return html`
       <option
+        class="option"
         part="option"
         value=${ifDefined(value)}
         ?disabled=${disabled}

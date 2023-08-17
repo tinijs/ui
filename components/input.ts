@@ -84,6 +84,7 @@ export class TiniInputComponent extends LitElement {
       >
         ${!this.label ? nothing : html`<span part="label">${this.label}</span>`}
         <input
+          class="input"
           part="input"
           type=${ifDefined(this.type)}
           name=${ifDefined(this.name)}

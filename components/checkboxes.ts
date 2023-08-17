@@ -86,6 +86,7 @@ export class TiniCheckboxesComponent extends LitElement {
         part=${partMap(itemClassesParts)}
       >
         <input
+          class="input"
           part="input"
           type="checkbox"
           name=${ifDefined(name)}
