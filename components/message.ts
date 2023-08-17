@@ -1,7 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
+import {partMap, PartInfo, Colors, SizeFactors} from '@tinijs/core';
 
 export const MESSAGE = 'message';
 export const TINI_MESSAGE = `tini-${MESSAGE}`;
@@ -10,21 +10,28 @@ export const TINI_MESSAGE = `tini-${MESSAGE}`;
 export class TiniMessageComponent extends LitElement {
   static readonly defaultTagName = TINI_MESSAGE;
 
-  // @property({type: String}) declare prop?: string;
+  @property({type: String}) declare background?: Colors;
+  @property({type: String}) declare textColor?: Colors;
+  @property({type: String}) declare textSize?: SizeFactors;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
       [MESSAGE]: true,
+      [`bg-${this.background}`]: !!this.background,
+      [`text-color-${this.textColor}`]: !!this.textColor,
+      [`text-size-${this.textSize}`]: !!this.textSize,
     };
   }
 
   protected render() {
     return html`
-      <message
+      <div
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
-      ></message>
+      >
+        <slot></slot>
+      </div>
     `;
   }
 }
