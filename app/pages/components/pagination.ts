@@ -71,7 +71,7 @@ export class AppPageComponentsPagination extends TiniComponent {
                 html`<tini-pagination
                   total-page="3"
                   current-page="2"
-                  color=${color}
+                  scheme=${color}
                 ></tini-pagination>`
             )}
           </div>
@@ -84,7 +84,7 @@ export class AppPageComponentsPagination extends TiniComponent {
                 html`<tini-pagination
                   total-page="3"
                   current-page="2"
-                  color=${gradient}
+                  scheme=${gradient}
                 ></tini-pagination>`
             )}
           </div>

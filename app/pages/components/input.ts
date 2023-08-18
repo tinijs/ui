@@ -122,7 +122,7 @@ export class AppPageComponentsInput extends TiniComponent {
                   baseName,
                   fullName =>
                     html`<tini-input
-                      color="${fullName}"
+                      scheme="${fullName}"
                       placeholder="Focus on me to see"
                     ></tini-input>`
                 )}

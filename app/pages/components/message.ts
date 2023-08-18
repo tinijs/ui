@@ -73,7 +73,7 @@ export class AppPageComponentsMessage extends TiniComponent {
                 ${renderColorVaries(
                   baseName,
                   fullName =>
-                    html`<tini-message background=${fullName}
+                    html`<tini-message scheme=${fullName}
                       >Message with ${fullName} background</tini-message
                     >`
                 )}
@@ -91,27 +91,27 @@ export class AppPageComponentsMessage extends TiniComponent {
             </p>
           </div>
           <div slot="code">
-            <tini-message text-color="primary"
+            <tini-message color="primary"
               >Default background / Primary text</tini-message
             >
-            <tini-message background="warning" text-color="primary"
+            <tini-message scheme="warning" color="primary"
               >Warning background / Primary text</tini-message
             >
           </div>
         </app-section>
 
-        <app-section class="text-sizes">
-          <h2 slot="title">Text sizes</h2>
+        <app-section class="font-sizes">
+          <h2 slot="title">Font sizes</h2>
           <div slot="content">
-            <p>Text size from 0.1x to 10x.</p>
+            <p>Font size from 0.1x to 10x.</p>
           </div>
           <div slot="code">
-            <tini-message text-size="0_5x" background="primary"
-              >Text size 0.5x</tini-message
+            <tini-message font-size="0_5x" scheme="primary"
+              >Font size 0.5x</tini-message
             >
-            <tini-message background="primary">Text size 1x</tini-message>
-            <tini-message text-size="3x" background="primary"
-              >Text size 3x</tini-message
+            <tini-message scheme="primary">Font size 1x</tini-message>
+            <tini-message font-size="3x" scheme="primary"
+              >Font size 3x</tini-message
             >
           </div>
         </app-section>

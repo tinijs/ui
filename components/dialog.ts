@@ -12,7 +12,7 @@ export enum DialogTypes {
 
 export interface DialogButton {
   text?: string;
-  color?: ColorsAndGradients;
+  scheme?: ColorsAndGradients;
 }
 
 export interface DialogResult<Context> {
@@ -118,7 +118,7 @@ export class TiniDialogComponent extends LitElement {
                 ? nothing
                 : html`
                     <tini-button
-                      color=${this.noButton?.color || 'medium'}
+                      scheme=${this.noButton?.scheme || 'medium'}
                       @click=${this.clickNo}
                     >
                       ${this.noButton?.text ||
@@ -128,7 +128,7 @@ export class TiniDialogComponent extends LitElement {
             </div>
             <div part="foot-right" class="foot-right">
               <tini-button
-                color=${this.yesButton?.color || 'primary'}
+                scheme=${this.yesButton?.scheme || 'primary'}
                 @click=${this.clickYes}
               >
                 ${this.yesButton?.text ||

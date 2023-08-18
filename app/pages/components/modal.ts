@@ -64,7 +64,7 @@ export class AppPageComponentsModal extends TiniComponent {
           <div slot="code">
             <div class="group">
               <tini-button
-                color="primary"
+                scheme="primary"
                 @click=${() => this.default1ModalRef.value?.show()}
                 >Open modal</tini-button
               >
@@ -80,7 +80,7 @@ export class AppPageComponentsModal extends TiniComponent {
 
             <div class="group" style="margin-top: 1rem;">
               <tini-button
-                color="primary"
+                scheme="primary"
                 @click=${() => this.default2ModalRef.value?.show()}
                 >Open modal (close on clicking backdrop)</tini-button
               >

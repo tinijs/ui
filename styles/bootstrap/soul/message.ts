@@ -1,16 +1,11 @@
 import {css} from 'lit';
-import {
-  generateColorVaries,
-  generateBasicFactorVaries,
-  generateFontSizeVaries,
-  generateBorderStyleVaries,
-} from '@tinijs/core';
+import {generateColorVaries, generateFontSizeVaries} from '@tinijs/core';
 
 export const messageStyle = css`
   :host {
     --message-background: var(--color-medium);
-    --message-text-color: var(--color-medium);
-    --message-text-size: var(--size-text);
+    --message-color: var(--color-medium);
+    --message-font-size: var(--size-text);
     --message-border: var(--size-border) solid var(--color-medium);
     --message-radius: var(--size-radius);
     --message-padding: var(--size-space);
@@ -24,8 +19,8 @@ export const messageStyle = css`
   .root {
     width: 100%;
     background: color-mix(in oklab, var(--message-background), transparent 50%);
-    color: var(--message-text-color);
-    font-size: var(--message-text-size);
+    color: var(--message-color);
+    font-size: var(--message-font-size);
     border: var(--message-border);
     border-radius: var(--message-radius);
     padding: var(--message-padding);
@@ -33,13 +28,13 @@ export const messageStyle = css`
   }
 
   /*
-   * [textSize]
+   * [fontSize]
    */
 
   ${generateFontSizeVaries(
     sizeFactor => `
-    .text-size-${sizeFactor} {
-      --message-text-size: var(--size-text-${sizeFactor}) !important;
+    .font-size-${sizeFactor} {
+      --message-font-size: var(--size-text-${sizeFactor}) !important;
     }
   `
   )}
@@ -50,14 +45,14 @@ export const messageStyle = css`
 
   ${generateColorVaries(
     ({name, color}) => `
-    .bg-${name} {
+    .scheme-${name} {
       --message-background: ${color};
-      --message-text-color: ${color};
+      --message-color: ${color};
       border-color: ${color};
     }
 
-    .text-color-${name} {
-      --message-text-color: ${color} !important;
+    .color-${name} {
+      --message-color: ${color} !important;
     }
   `
   )}

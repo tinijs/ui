@@ -74,7 +74,7 @@ export class AppPageComponentsSpinner extends TiniComponent {
                 ${renderColorVaries(
                   baseName,
                   fullName =>
-                    html`<tini-spinner color=${fullName}></tini-spinner>`
+                    html`<tini-spinner scheme=${fullName}></tini-spinner>`
                 )}
               </div>
             </app-section>
@@ -86,7 +86,10 @@ export class AppPageComponentsSpinner extends TiniComponent {
           <div slot="code">
             ${SIZES.map(
               size =>
-                html`<tini-spinner size=${size} color="primary"></tini-spinner>`
+                html`<tini-spinner
+                  size=${size}
+                  scheme="primary"
+                ></tini-spinner>`
             )}
           </div>
         </app-section>

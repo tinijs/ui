@@ -90,7 +90,7 @@ export class TiniModalComponent extends LitElement {
           <div part="foot-left" class="foot-left"></div>
           <div part="foot-right" class="foot-right">
             <tini-button
-              color=${this.yesButton?.color || 'primary'}
+              scheme=${this.yesButton?.scheme || 'primary'}
               @click=${this.clickYes}
             >
               ${this.yesButton?.text || 'OK'}

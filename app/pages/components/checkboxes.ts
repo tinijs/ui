@@ -92,7 +92,7 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
           value: '',
           label: `Checkbox ${fullName}`,
           checked: true,
-          color: fullName as Colors,
+          scheme: fullName as Colors,
         }) as CheckboxesItem,
       true
     );

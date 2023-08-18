@@ -53,12 +53,12 @@ export const inputStyle = css`
   }
 
   /*
-   * [color]
+   * [scheme]
    */
 
   ${generateColorVaries(
     ({name, color}) => `
-    .color-${name} {
+    .scheme-${name} {
       --input-color: ${color};
     }
   `

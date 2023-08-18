@@ -49,12 +49,12 @@ export const textareaStyle = css`
   }
 
   /*
-   * [color]
+   * [scheme]
    */
 
   ${generateColorVaries(
     ({name, color}) => `
-    .color-${name} {
+    .scheme-${name} {
       --textarea-color: ${color};
     }
   `

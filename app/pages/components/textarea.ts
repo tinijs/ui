@@ -110,7 +110,7 @@ export class AppPageComponentsTextarea extends TiniComponent {
                   baseName,
                   fullName =>
                     html`<tini-textarea
-                      color=${fullName}
+                      scheme=${fullName}
                       placeholder="Focus me to see"
                     ></tini-textarea>`
                 )}

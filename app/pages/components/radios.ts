@@ -195,7 +195,7 @@ export class AppPageComponentsRadios extends TiniComponent {
                           value: '',
                           label: `Checkbox color ${fullName}`,
                           checked: true,
-                          color: fullName,
+                          scheme: fullName,
                         },
                       ]}
                     ></tini-radios>`,

@@ -24,6 +24,7 @@ export class TiniBreadcrumbComponent extends LitElement {
   willUpdate() {
     this.rootClassesParts = {
       root: true,
+      [`link-color-${this.linkColor}`]: !!this.linkColor,
     };
   }
 

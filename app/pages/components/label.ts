@@ -75,7 +75,7 @@ export class AppPageComponentsLabel extends TiniComponent {
                 ${renderColorVaries(
                   baseName,
                   fullName =>
-                    html`<tini-label color=${fullName}>Label</tini-label>`
+                    html`<tini-label scheme=${fullName}>Label</tini-label>`
                 )}
               </div>
             </app-section>
@@ -91,8 +91,8 @@ export class AppPageComponentsLabel extends TiniComponent {
             </p>
           </div>
           <div slot="code">
-            <tini-label text-color="primary">Label</tini-label>
-            <tini-label color="warning" text-color="primary">Label</tini-label>
+            <tini-label color="primary">Label</tini-label>
+            <tini-label scheme="warning" color="primary">Label</tini-label>
           </div>
         </app-section>
 
@@ -101,7 +101,7 @@ export class AppPageComponentsLabel extends TiniComponent {
           <div slot="code">
             ${SIZES.map(
               size =>
-                html`<tini-label size=${size} color="primary"
+                html`<tini-label size=${size} scheme="primary"
                   >Label</tini-label
                 >`
             )}

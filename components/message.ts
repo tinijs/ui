@@ -1,7 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo, Colors, SizeFactors} from '@tinijs/core';
+import {partMap, PartInfo, Colors, FontSizeFactors} from '@tinijs/core';
 
 export const TINI_MESSAGE = 'tini-message';
 
@@ -9,19 +9,18 @@ export const TINI_MESSAGE = 'tini-message';
 export class TiniMessageComponent extends LitElement {
   static readonly defaultTagName = TINI_MESSAGE;
 
-  @property({type: String, reflect: true}) declare background?: Colors;
-  @property({type: String, reflect: true, attribute: 'text-color'})
-  declare textColor?: Colors;
-  @property({type: String, reflect: true, attribute: 'text-size'})
-  declare textSize?: SizeFactors;
+  @property({type: String, reflect: true}) declare scheme?: Colors;
+  @property({type: String, reflect: true}) declare color?: Colors;
+  @property({type: String, reflect: true, attribute: 'font-size'})
+  declare fontSize?: FontSizeFactors;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
       root: true,
-      [`bg-${this.background}`]: !!this.background,
-      [`text-color-${this.textColor}`]: !!this.textColor,
-      [`text-size-${this.textSize}`]: !!this.textSize,
+      [`scheme-${this.scheme}`]: !!this.scheme,
+      [`color-${this.color}`]: !!this.color,
+      [`font-size-${this.fontSize}`]: !!this.fontSize,
     };
   }
 

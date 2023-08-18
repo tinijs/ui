@@ -98,7 +98,7 @@ export const linkStyle = css`
       left: 0;
       bottom: 0;
       width: 100%;
-      height: calc(var(--link-font-size) / 12);
+      height: calc(var(--link-font-size) / 12.5);
       background: ${gradient};
     }
     .color-${name}:hover::after {

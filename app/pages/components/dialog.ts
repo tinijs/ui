@@ -73,7 +73,7 @@ export class AppPageComponentsDialog extends TiniComponent {
           <div slot="code">
             <div class="group">
               <tini-button
-                color="primary"
+                scheme="primary"
                 @click=${() => this.alert1DialogRef.value?.show()}
                 >Open alert</tini-button
               >
@@ -88,7 +88,7 @@ export class AppPageComponentsDialog extends TiniComponent {
             </div>
             <div class="group" style="margin-top: 1rem;">
               <tini-button
-                color="primary"
+                scheme="primary"
                 @click=${() => this.alert2DialogRef.value?.show()}
                 >Open alert (close on clicking backdrop)</tini-button
               >
@@ -115,7 +115,7 @@ export class AppPageComponentsDialog extends TiniComponent {
           </div>
           <div slot="code">
             <tini-button
-              color="primary"
+              scheme="primary"
               @click=${() => this.confirmDialogRef.value?.show()}
               >Open confirm</tini-button
             >
@@ -141,7 +141,7 @@ export class AppPageComponentsDialog extends TiniComponent {
           </div>
           <div slot="code">
             <tini-button
-              color="primary"
+              scheme="primary"
               @click=${() => this.promptDialogRef.value?.show()}
               >Open prompt</tini-button
             >
@@ -169,7 +169,7 @@ export class AppPageComponentsDialog extends TiniComponent {
           </div>
           <div slot="code">
             <tini-button
-              color="primary"
+              scheme="primary"
               @click=${() => this.customButtonsDialogRef.value?.show()}
               >Open custom dialog</tini-button
             >
@@ -177,8 +177,8 @@ export class AppPageComponentsDialog extends TiniComponent {
               ${ref(this.customButtonsDialogRef)}
               title-text="Delete this item?"
               type="confirm"
-              .no-button=${{text: 'Cancel', color: 'secondary'}}
-              .yes-button=${{text: 'Delete?', color: 'danger'}}
+              .no-button=${{text: 'Cancel', scheme: 'secondary'}}
+              .yes-button=${{text: 'Delete?', scheme: 'danger'}}
               @no=${() => this.customButtonsDialogRef.value?.hide()}
               @yes=${() => this.customButtonsDialogRef.value?.hide()}
             >
@@ -194,7 +194,7 @@ export class AppPageComponentsDialog extends TiniComponent {
           </div>
           <div slot="code">
             <tini-button
-              color="primary"
+              scheme="primary"
               @click=${() => this.customHeadFootDialogRef.value?.show()}
               >Open custom alert</tini-button
             >

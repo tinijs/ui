@@ -9,14 +9,14 @@ export const TINI_SPINNER = 'tini-spinner';
 export class TiniSpinnerComponent extends LitElement {
   static readonly defaultTagName = TINI_SPINNER;
 
-  @property({type: String, reflect: true}) declare color?: Colors;
+  @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare size?: Sizes;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
       root: true,
-      [`color-${this.color}`]: !!this.color,
+      [`scheme-${this.scheme}`]: !!this.scheme,
       [`size-${this.size}`]: !!this.size,
     };
   }

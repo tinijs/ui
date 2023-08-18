@@ -101,12 +101,12 @@ export const switchStyle = css`
   }
 
   /*
-   * [color]
+   * [scheme]
    */
 
   ${generateColorVaries(
     ({name, color, contrast}) => `
-    .color-${name} {
+    .scheme-${name} {
       --switch-active-background: ${color};
       --switch-hover-shadow: ${color};
       --switch-active-color: ${contrast};
@@ -116,7 +116,7 @@ export const switchStyle = css`
 
   ${generateGradientVaries(
     ({name, gradient, color, contrast}) => `
-    .color-${name} {
+    .scheme-${name} {
       --switch-background: var(--gradient-medium);
       --switch-hover-shadow: ${color};
       --switch-active-background: ${gradient};

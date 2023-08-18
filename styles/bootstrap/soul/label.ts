@@ -4,11 +4,13 @@ import {generateColorVaries, generateSizeVaries} from '@tinijs/core';
 export const labelStyle = css`
   :host {
     --label-background: var(--color-medium) /* Background color */;
-    --label-text-color: var(--color-medium-contrast) /* Text color */;
-    --label-text-size: var(--size-md);
-    --label-padding: var(--size-md-0_5x) /* Base padding */;
+    --label-size: var(--size-md);
+    --label-color: var(--color-medium-contrast) /* Text color */;
     --label-border: none;
     --label-radius: var(--size-radius);
+  }
+
+  :host {
     display: inline;
   }
 
@@ -20,12 +22,12 @@ export const labelStyle = css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: var(--label-padding);
+    padding: calc(var(--label-size) * 0.5);
     border: var(--label-border);
     border-radius: var(--label-radius);
     background: color-mix(in oklab, var(--label-background), transparent 50%);
-    color: var(--label-text-color);
-    font-size: var(--label-text-size);
+    color: var(--label-color);
+    font-size: var(--label-size);
     font-weight: bold;
     line-height: 1;
   }
@@ -44,13 +46,13 @@ export const labelStyle = css`
 
   ${generateColorVaries(
     ({name, color, contrast}) => `
-    .bg-${name} {
+    .scheme-${name} {
       --label-background: ${color};
-      --label-text-color: ${contrast};
+      --label-color: ${contrast};
     }
 
     .color-${name} {
-      --label-text-color: ${color} !important;
+      --label-color: ${color} !important;
     }
   `
   )}
@@ -62,8 +64,7 @@ export const labelStyle = css`
   ${generateSizeVaries(
     size => `
     .size-${size} {
-      --label-text-size: var(--size-${size});
-      --label-padding: var(--size-${size}-0_5x);
+      --label-size: var(--size-${size});
     }
   `
   )}

@@ -2,6 +2,7 @@ import {css} from 'lit';
 
 export const cardStyle = css`
   :host {
+    --card-width: var(--wide-xs);
     --card-background: var(--color-background-tint);
     --card-border: var(--size-border) solid var(--color-background-shade);
     --card-radius: var(--size-radius);
@@ -18,7 +19,7 @@ export const cardStyle = css`
     border: var(--card-border);
     border-radius: var(--card-radius);
     overflow: hidden;
-    max-width: var(--wide-xs);
+    max-width: var(--card-width);
   }
 
   .head,

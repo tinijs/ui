@@ -8,10 +8,10 @@ import {
 export const paginationStyle = css`
   :host {
     --pagination-background: none;
+    --pagination-size: var(--size-md);
     --pagination-color: var(--color-primary);
     --pagination-active-background: var(--color-primary);
     --pagination-active-color: var(--color-primary-contrast);
-    --pagination-size: var(--size-md);
   }
 
   /*
@@ -88,7 +88,7 @@ export const paginationStyle = css`
 
   ${generateColorVaries(
     ({name, color, contrast}) => `
-    .color-${name} {
+    .scheme-${name} {
       --pagination-color: ${color};
       --pagination-active-background: ${color};
       --pagination-active-color: ${contrast};
@@ -98,7 +98,7 @@ export const paginationStyle = css`
 
   ${generateGradientVaries(
     ({name, gradient, color, contrast}) => `
-    .color-${name} {
+    .scheme-${name} {
       --pagination-color: ${color};
       --pagination-active-background: ${gradient};
       --pagination-active-color: ${contrast};

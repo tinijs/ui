@@ -19,7 +19,7 @@ export class TiniPaginationComponent extends LitElement {
   @property({type: Number, reflect: true, attribute: 'current-page'})
   declare currentPage: number;
   @property({type: Object}) declare hrefBuilder?: (pageNum: number) => string;
-  @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
+  @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;
   @property({type: String, reflect: true}) declare size?: Sizes;
 
   private validateProperties() {
@@ -43,7 +43,7 @@ export class TiniPaginationComponent extends LitElement {
     // root classes parts
     this.rootClassesParts = {
       root: true,
-      [`color-${this.color}`]: !!this.color,
+      [`scheme-${this.scheme}`]: !!this.scheme,
       [`size-${this.size}`]: !!this.size,
     };
     // previous classes parts

@@ -94,7 +94,7 @@ export const checkboxesStyle = css`
 
   ${generateColorVaries(
     ({name, color}) => `
-    .bg-${name} {
+    .scheme-${name} {
       --checkbox-background: ${color};
     }
   `

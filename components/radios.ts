@@ -63,13 +63,13 @@ export class TiniRadiosComponent extends LitElement {
     label,
     checked,
     disabled,
-    color,
+    scheme,
     size,
   }: RadiosItem) {
     const itemClassesParts: ClassInfo | PartInfo = {
       item: true,
       disabled: !!disabled,
-      [`bg-${color}`]: !!color,
+      [`scheme-${scheme}`]: !!scheme,
       [`size-${size}`]: !!size,
     };
     return html`

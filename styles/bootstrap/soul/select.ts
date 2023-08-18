@@ -53,12 +53,12 @@ export const selectStyle = css`
   }
 
   /*
-   * [color]
+   * [scheme]
    */
 
   ${generateColorVaries(
     ({name, color}) => `
-    .color-${name} {
+    .scheme-${name} {
       --select-color: ${color};
     }
   `

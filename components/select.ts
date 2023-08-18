@@ -33,7 +33,7 @@ export class TiniSelectComponent extends LitElement {
   @property({type: String, reflect: true}) declare name?: string;
   @property({type: Boolean, reflect: true}) declare wrap?: boolean;
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
-  @property({type: String, reflect: true}) declare color?: Colors;
+  @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare size?: Sizes;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
@@ -42,7 +42,7 @@ export class TiniSelectComponent extends LitElement {
       root: true,
       wrap: !!this.wrap,
       disabled: !!this.disabled,
-      [`color-${this.color}`]: !!this.color,
+      [`scheme-${this.scheme}`]: !!this.scheme,
       [`size-${this.size}`]: !!this.size,
     };
   }

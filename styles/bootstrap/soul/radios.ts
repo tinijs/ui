@@ -91,7 +91,7 @@ export const radiosStyle = css`
 
   ${generateColorVaries(
     ({name, color}) => `
-    .bg-${name} {
+    .scheme-${name} {
       --radio-background: ${color};
     }
   `

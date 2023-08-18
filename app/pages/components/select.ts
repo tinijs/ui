@@ -152,7 +152,7 @@ export class AppPageComponentsSelect extends TiniComponent {
                   baseName,
                   fullName =>
                     html`<tini-select
-                      color="${fullName}"
+                      scheme="${fullName}"
                       .items=${this.OPTIONS}
                     ></tini-select>`
                 )}

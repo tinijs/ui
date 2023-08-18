@@ -12,10 +12,15 @@ export const spinnerStyle = css`
    */
 
   .root {
-    width: calc(var(--spinner-size) * 2);
-    height: calc(var(--spinner-size) * 2);
-    border: calc(var(--spinner-size) / 4) solid var(--color-background-shade);
-    border-top: calc(var(--spinner-size) / 4) solid var(--spinner-color);
+    --size: calc(var(--spinner-size) * 2);
+    --border-width: calc(var(--spinner-size) / 4);
+  }
+
+  .root {
+    width: var(--size);
+    height: var(--size);
+    border: var(--border-width) solid var(--color-background-shade);
+    border-top: var(--border-width) solid var(--spinner-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }
@@ -35,7 +40,7 @@ export const spinnerStyle = css`
 
   ${generateColorVaries(
     ({name, color}) => `
-    .color-${name} {
+    .scheme-${name} {
       --spinner-color: ${color};
     }
   `

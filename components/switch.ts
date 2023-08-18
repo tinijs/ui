@@ -15,7 +15,7 @@ export class TiniSwitchComponent extends LitElement {
   @property({type: String, reflect: true}) declare value?: string;
   @property({type: Boolean, reflect: true}) declare checked?: boolean;
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
-  @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
+  @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;
   @property({type: String, reflect: true}) declare size?: Sizes;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
@@ -24,7 +24,7 @@ export class TiniSwitchComponent extends LitElement {
       root: true,
       checked: !!this.checked,
       disabled: !!this.disabled,
-      [`color-${this.color}`]: !!this.color,
+      [`scheme-${this.scheme}`]: !!this.scheme,
       [`size-${this.size}`]: !!this.size,
     };
   }

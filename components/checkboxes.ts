@@ -12,7 +12,7 @@ export interface CheckboxesItem {
   label?: string;
   checked?: boolean;
   disabled?: boolean;
-  color?: Colors;
+  scheme?: Colors;
   size?: Sizes;
 }
 
@@ -71,13 +71,13 @@ export class TiniCheckboxesComponent extends LitElement {
     label,
     checked,
     disabled,
-    color,
+    scheme,
     size,
   }: CheckboxesItem) {
     const itemClassesParts: ClassInfo | PartInfo = {
       item: true,
       disabled: !!disabled,
-      [`bg-${color}`]: !!color,
+      [`scheme-${scheme}`]: !!scheme,
       [`size-${size}`]: !!size,
     };
     return html`

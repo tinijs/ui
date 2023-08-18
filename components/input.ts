@@ -34,7 +34,7 @@ export class TiniInputComponent extends LitElement {
   @property({type: Boolean, reflect: true}) declare wrap?: boolean;
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
   @property({type: Boolean, reflect: true}) declare readonly?: boolean;
-  @property({type: String, reflect: true}) declare color?: Colors;
+  @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare size?: Sizes;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
@@ -44,7 +44,7 @@ export class TiniInputComponent extends LitElement {
       wrap: !!this.wrap,
       disabled: !!this.disabled,
       readonly: !!this.readonly,
-      [`color-${this.color}`]: !!this.color,
+      [`scheme-${this.scheme}`]: !!this.scheme,
       [`size-${this.size}`]: !!this.size,
     };
   }

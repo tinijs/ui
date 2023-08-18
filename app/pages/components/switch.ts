@@ -71,7 +71,7 @@ export class AppPageComponentsSwitch extends TiniComponent {
           <h2 slot="title">Colors</h2>
           <div slot="code">
             ${BASE_COLORS.map(
-              color => html`<tini-switch checked color=${color}></tini-switch>`
+              color => html`<tini-switch checked scheme=${color}></tini-switch>`
             )}
           </div>
         </app-section>
@@ -81,7 +81,7 @@ export class AppPageComponentsSwitch extends TiniComponent {
           <div slot="code">
             ${BASE_GRADIENTS.map(
               gradient =>
-                html`<tini-switch checked color=${gradient}></tini-switch>`
+                html`<tini-switch checked scheme=${gradient}></tini-switch>`
             )}
           </div>
         </app-section>

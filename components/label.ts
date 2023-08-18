@@ -10,19 +10,18 @@ export class TiniLabelComponent extends LitElement {
   static readonly defaultTagName = TINI_LABEL;
 
   @property({type: Boolean, reflect: true}) declare pilled?: boolean;
-  @property({type: String, reflect: true}) declare color?: Colors;
-  @property({type: String, reflect: true, attribute: 'text-color'})
-  declare textColor?: Colors;
+  @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare size?: Sizes;
+  @property({type: String, reflect: true}) declare color?: Colors;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
       root: true,
       pilled: !!this.pilled,
-      [`bg-${this.color}`]: !!this.color,
-      [`color-${this.textColor}`]: !!this.textColor,
+      [`scheme-${this.scheme}`]: !!this.scheme,
       [`size-${this.size}`]: !!this.size,
+      [`color-${this.color}`]: !!this.color,
     };
   }
 

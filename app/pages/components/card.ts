@@ -55,7 +55,7 @@ export class AppPageComponentsCard extends TiniComponent {
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
               </p>
-              <tini-button color="primary">Go somewhere</tini-button>
+              <tini-button scheme="primary">Go somewhere</tini-button>
             </tini-card>
           </div>
         </app-section>
@@ -69,7 +69,7 @@ export class AppPageComponentsCard extends TiniComponent {
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
               </p>
-              <tini-button color="primary">Go somewhere</tini-button>
+              <tini-button scheme="primary">Go somewhere</tini-button>
             </tini-card>
           </div>
         </app-section>
@@ -84,7 +84,7 @@ export class AppPageComponentsCard extends TiniComponent {
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
               </p>
-              <tini-button color="primary">Go somewhere</tini-button>
+              <tini-button scheme="primary">Go somewhere</tini-button>
               <span slot="foot">Card foot</span>
             </tini-card>
           </div>
@@ -103,7 +103,7 @@ export class AppPageComponentsCard extends TiniComponent {
                 Some quick example text to build on the card title and make up
                 the bulk of the card's content.
               </p>
-              <tini-button color="primary">Go somewhere</tini-button>
+              <tini-button scheme="primary">Go somewhere</tini-button>
             </tini-card>
           </div>
         </app-section>
