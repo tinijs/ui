@@ -10,15 +10,16 @@ import {
 export const buttonStyle = css`
   :host {
     --button-background: var(--color-medium) /* Background color */;
-    --button-size: var(--size-md);
-    --button-text-color: var(--color-medium-contrast) /* Text color */;
-    --button-border-radius: var(--size-radius);
-    --button-hover-brightness: 1.1;
-    --button-active-brightness: 0.95;
-    --button-disabled-opacity: 0.5
-      /* Dimmer or brighter to indicate the click action */;
-    --button-focus-visible-shadow-size: calc(var(--button-size) * 0.3);
-    --button-focus-visible-shadow-color: var(--color-medium);
+    --button-size: var(--size-md) /* Base size */;
+    --button-color: var(--color-medium-contrast) /* Text color */;
+    --button-border-radius: var(--size-radius) /* Border radius */;
+    --button-hover-brightness: 1.1 /* Over brightness */;
+    --button-active-brightness: 0.95 /* Click brightness */;
+    --button-disabled-opacity: 0.5 /* Disabled opacity */;
+    --button-focus-visible-shadow-size: var(--size-md-0_3x)
+      /* Focus visible shadow size */;
+    --button-focus-visible-shadow-color: var(--color-medium)
+      /* Focus visible shadow color */;
   }
 
   :host {
@@ -37,7 +38,7 @@ export const buttonStyle = css`
     gap: calc(var(--button-size) * 0.5);
     padding: calc(var(--button-size) * 0.5) var(--button-size);
     background: var(--button-background);
-    color: var(--button-text-color);
+    color: var(--button-color);
     font-family: var(--font-body);
     font-size: var(--button-size);
     line-height: 1.5;
@@ -99,19 +100,19 @@ export const buttonStyle = css`
   )}
 
   /*
-   * [scheme] & [textColor]
+   * [scheme] & [color]
    */
 
   ${generateColorVaries(
     ({name, color, contrast}) => `
     .scheme-${name} {
       --button-background: ${color};
-      --button-text-color: ${contrast};
+      --button-color: ${contrast};
       --button-focus-visible-shadow-color: ${color};
     }
 
-    .text-color-${name} {
-      --button-text-color: ${color} !important;
+    .color-${name} {
+      --button-color: ${color} !important;
     }
   `
   )}
@@ -120,7 +121,7 @@ export const buttonStyle = css`
     ({name, gradient, color, contrast}) => `
     .scheme-${name} {
       --button-background: ${gradient};
-      --button-text-color: ${contrast};
+      --button-color: ${contrast};
       --button-focus-visible-shadow-color: ${color};
     }
   `
@@ -134,6 +135,7 @@ export const buttonStyle = css`
     size => `
     .size-${size} {
       --button-size: var(--size-${size});
+      --button-focus-visible-shadow-size: var(--size-${size}-0_3x);
     }
   `
   )}
@@ -141,12 +143,12 @@ export const buttonStyle = css`
 
 
   /*
-   * [textSize]
+   * [fontSize]
    */
 
   ${generateFontSizeVaries(
     fontSize => `
-    .text-size-${fontSize} {
+    .font-size-${fontSize} {
       font-size: var(--size-text-${fontSize}) !important;
     }
   `

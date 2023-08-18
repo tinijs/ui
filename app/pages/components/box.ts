@@ -105,27 +105,27 @@ export class AppPageComponentsBox extends TiniComponent {
             </p>
           </div>
           <div slot="code">
-            <tini-box text-color="primary"
+            <tini-box color="primary"
               >Default background / Primary text</tini-box
             >
-            <tini-box scheme="warning" text-color="primary"
+            <tini-box scheme="warning" color="primary"
               >Warning background / Primary text</tini-box
             >
-            <tini-box scheme="gradient-danger" text-color="primary"
+            <tini-box scheme="gradient-danger" color="primary"
               >Gradient Danger background / Primary text</tini-box
             >
           </div>
         </app-section>
 
-        <app-section class="text-sizes">
-          <h2 slot="title">Text sizes</h2>
+        <app-section class="font-sizes">
+          <h2 slot="title">Font sizes</h2>
           <div slot="content">
-            <p>Text size from 0.1x to 10x.</p>
+            <p>Font size from 0.1x to 10x.</p>
           </div>
           <div slot="code">
-            <tini-box text-size="0_5x">Text size 0.5x</tini-box>
-            <tini-box>Text size 1x</tini-box>
-            <tini-box text-size="3x">Text size 3x</tini-box>
+            <tini-box font-size="0_5x">Font size 0.5x</tini-box>
+            <tini-box font-size="1x">Font size 1x</tini-box>
+            <tini-box font-size="3x">Font size 3x</tini-box>
           </div>
         </app-section>
 

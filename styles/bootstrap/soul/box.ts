@@ -11,8 +11,8 @@ import {
 export const boxStyle = css`
   :host {
     --box-background: none;
-    --box-text-size: var(--size-text);
-    --box-text-color: var(--color-foreground);
+    --box-font-size: var(--size-text);
+    --box-color: var(--color-foreground);
     --box-border: none;
     --box-border-radius: var(--size-radius);
     --box-padding: var(--size-space);
@@ -26,8 +26,8 @@ export const boxStyle = css`
   .root {
     width: 100%;
     background: var(--box-background);
-    font-size: var(--box-text-size);
-    color: var(--box-text-color);
+    font-size: var(--box-font-size);
+    color: var(--box-color);
     border: var(--box-border);
     border-radius: var(--box-border-radius);
     padding: var(--box-padding);
@@ -35,13 +35,13 @@ export const boxStyle = css`
   }
 
   /*
-   * [textSize]
+   * [fontSize]
    */
 
   ${generateFontSizeVaries(
     sizeFactor => `
-    .text-size-${sizeFactor} {
-      --box-text-size: var(--size-text-${sizeFactor}) !important;
+    .font-size-${sizeFactor} {
+      --box-font-size: var(--size-text-${sizeFactor}) !important;
     }
   `
   )}
@@ -78,18 +78,18 @@ export const boxStyle = css`
   )}
 
   /*
-   * [scheme] & [textColor] & [border (color)]
+   * [scheme] & [color] & [border (color)]
    */
 
   ${generateColorVaries(
     ({name, color, contrast}) => `
     .scheme-${name} {
       --box-background: ${color};
-      --box-text-color: ${contrast};
+      --box-color: ${contrast};
     }
 
-    .text-color-${name} {
-      --box-text-color: ${color} !important;
+    .color-${name} {
+      --box-color: ${color} !important;
     }
 
     .border-color-${name} {
@@ -104,7 +104,7 @@ export const boxStyle = css`
     ({name, gradient, contrast}) => `
     .scheme-${name} {
       --box-background: ${gradient};
-      --box-text-color: ${contrast};
+      --box-color: ${contrast};
     }
   `
   )}

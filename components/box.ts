@@ -20,10 +20,9 @@ export class TiniBoxComponent extends LitElement {
 
   @property({type: String, reflect: true})
   declare scheme?: ColorsAndGradients;
-  @property({type: String, reflect: true, attribute: 'text-size'})
-  declare textSize?: SizeFactors;
-  @property({type: String, reflect: true, attribute: 'text-color'})
-  declare textColor?: Colors;
+  @property({type: String, reflect: true, attribute: 'font-size'})
+  declare fontSize?: SizeFactors;
+  @property({type: String, reflect: true}) declare color?: Colors;
   @property({type: String, reflect: true}) declare bordering?: string;
   @property({type: String, reflect: true, attribute: 'border-radius'})
   declare borderRadius?: SizeBasicFactors;
@@ -38,8 +37,8 @@ export class TiniBoxComponent extends LitElement {
     this.rootClassesParts = {
       root: true,
       [`scheme-${this.scheme}`]: !!this.scheme,
-      [`text-size-${this.textSize}`]: !!this.textSize,
-      [`text-color-${this.textColor}`]: !!this.textColor,
+      [`font-size-${this.fontSize}`]: !!this.fontSize,
+      [`color-${this.color}`]: !!this.color,
       ...borderingToClassInfo(this.bordering),
       [`border-radius-${this.borderRadius}`]: !!this.borderRadius,
       ...sizeFactorsToClassInfo('padding', this.padding),

@@ -21,10 +21,9 @@ export class TiniButtonComponent extends LitElement {
   @property({type: String, reflect: true}) declare justify?: JustifyContents;
   @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;
   @property({type: String, reflect: true}) declare size?: Sizes;
-  @property({type: String, reflect: true, attribute: 'text-color'})
-  declare textColor?: Colors;
-  @property({type: String, reflect: true, attribute: 'text-size'})
-  declare textSize?: FontSizeFactors;
+  @property({type: String, reflect: true, attribute: 'font-size'})
+  declare fontSize?: FontSizeFactors;
+  @property({type: String, reflect: true}) declare color?: Colors;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
@@ -34,8 +33,8 @@ export class TiniButtonComponent extends LitElement {
       [`justify-${this.justify}`]: !!this.justify,
       [`scheme-${this.scheme}`]: !!this.scheme,
       [`size-${this.size}`]: !!this.size,
-      [`text-color-${this.textColor}`]: !!this.textColor,
-      [`text-size-${this.textSize}`]: !!this.textSize,
+      [`font-size-${this.fontSize}`]: !!this.fontSize,
+      [`color-${this.color}`]: !!this.color,
     };
   }
 
