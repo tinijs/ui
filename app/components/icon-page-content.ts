@@ -79,7 +79,7 @@ export class AppIconPageContentComponent extends TiniComponent {
                       fullName =>
                         html`<tini-icon
                           .src=${this.src}
-                          color=${fullName}
+                          scheme=${fullName}
                         ></tini-icon>`
                     )}
                   </div>
@@ -100,7 +100,7 @@ export class AppIconPageContentComponent extends TiniComponent {
                       fullName =>
                         html`<tini-icon
                           .src=${this.src}
-                          color=${fullName}
+                          scheme=${fullName}
                         ></tini-icon>`
                     )}
                   </div>

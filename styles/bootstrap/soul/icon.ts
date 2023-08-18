@@ -48,7 +48,7 @@ export const iconStyle = css`
 
   ${generateColorVaries(
     ({name, color}) => `
-    .color-${name} {
+    .scheme-${name} {
       --icon-color: ${color};
     }
   `
@@ -56,7 +56,7 @@ export const iconStyle = css`
 
   ${generateGradientVaries(
     ({name, gradient}) => `
-    .color-${name} {
+    .scheme-${name} {
       --icon-color: ${gradient};
     }
   `

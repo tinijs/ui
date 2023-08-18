@@ -11,16 +11,16 @@ export class TiniIconComponent extends LitElement {
   static readonly defaultTagName = TINI_ICON;
 
   @property({type: String, reflect: true}) declare src?: string;
-  @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
   @property({type: String, reflect: true}) declare size?: Sizes;
+  @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
       root: true,
-      recolor: !!this.color,
-      [`color-${this.color}`]: !!this.color,
+      recolor: !!this.scheme,
       [`size-${this.size}`]: !!this.size,
+      [`scheme-${this.scheme}`]: !!this.scheme,
     };
   }
 

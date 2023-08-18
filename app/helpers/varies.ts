@@ -71,7 +71,7 @@ function renderColorOrGradientVaries(
       return suffix !== 'contrast'
         ? render(fullName)
         : // prettier-ignore
-          html`<tini-box background=${baseName}>\n  ${render(fullName)}\n</tini-box>`;
+          html`<tini-box scheme=${baseName}>\n  ${render(fullName)}\n</tini-box>`;
     });
 }
 
