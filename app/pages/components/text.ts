@@ -135,7 +135,7 @@ export class AppPageComponentsText extends TiniComponent {
           <div slot="code">
             ${SIZE_FACTORS.map(
               size =>
-                html`<tini-text size=${size}
+                html`<tini-text font-size=${size}
                   >${size.replace('_', '.')}</tini-text
                 >`
             )}

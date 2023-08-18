@@ -12,7 +12,7 @@ export const badgeStyle = css`
     --badge-color: var(--color-medium-contrast) /* Text color */;
     --badge-radius: var(--size-radius) /* Border radius */;
   }
-  
+
   :host {
     display: inline;
   }

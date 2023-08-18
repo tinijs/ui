@@ -15,6 +15,9 @@ export const switchStyle = css`
     --switch-active-color: var(--color-primary-contrast);
     --switch-transition: 0.3s;
     --switch-space: 2px;
+  }
+
+  :host {
     display: inline;
   }
 
@@ -26,6 +29,9 @@ export const switchStyle = css`
     --wrapper-size: calc(var(--switch-size) * 2);
     --slider-outer-size: calc((var(--wrapper-size) / 2) + var(--switch-space));
     --slider-size: calc((var(--wrapper-size) / 2) - var(--switch-space));
+  }
+
+  .root {
     cursor: pointer;
     display: inline-flex;
     align-items: center;

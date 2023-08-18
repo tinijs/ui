@@ -11,12 +11,15 @@ import {
 export const linkStyle = css`
   :host {
     --link-color: var(--color-primary);
+    --link-font-size: var(--size-text);
     --link-font: var(--font-body);
-    --link-size: var(--size-text);
     --link-weight: normal;
     --link-transform: none;
     --link-disabled-color: var(--color-medium);
     --link-disabled-opacity: 0.5;
+  }
+
+  :host {
     display: inline;
   }
 
@@ -29,7 +32,7 @@ export const linkStyle = css`
     text-decoration: none;
     font-family: var(--link-font);
     color: var(--link-color);
-    font-size: var(--link-size);
+    font-size: var(--link-font-size);
     font-weight: var(--link-weight);
     text-transform: var(--link-transform);
   }
@@ -95,7 +98,7 @@ export const linkStyle = css`
       left: 0;
       bottom: 0;
       width: 100%;
-      height: calc(var(--link-size) / 12);
+      height: calc(var(--link-font-size) / 12);
       background: ${gradient};
     }
     .color-${name}:hover::after {
@@ -126,8 +129,8 @@ export const linkStyle = css`
 
   ${generateFontSizeVaries(
     sizeFactor => `
-    .size-${sizeFactor} {
-      --link-size: var(--size-text-${sizeFactor});
+    .font-size-${sizeFactor} {
+      --link-font-size: var(--size-text-${sizeFactor});
     }
   `
   )}

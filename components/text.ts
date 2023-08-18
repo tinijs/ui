@@ -35,8 +35,9 @@ export class TiniTextComponent extends LitElement {
   @property({type: Boolean, reflect: true}) declare italic?: boolean;
   @property({type: Boolean, reflect: true}) declare underline?: boolean;
   @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
+  @property({type: String, reflect: true, attribute: 'font-size'})
+  declare fontSize?: FontSizeFactors;
   @property({type: String, reflect: true}) declare font?: FontTypes;
-  @property({type: String, reflect: true}) declare size?: FontSizeFactors;
   @property({type: String, reflect: true}) declare weight?: FontWeights;
   @property({type: String, reflect: true}) declare transform?: TextTransforms;
 
@@ -49,8 +50,8 @@ export class TiniTextComponent extends LitElement {
       italic: !!this.italic,
       underline: !!this.underline,
       [`color-${this.color}`]: !!this.color,
+      [`font-size-${this.fontSize}`]: !!this.fontSize,
       [`font-${this.font}`]: !!this.font,
-      [`size-${this.size}`]: !!this.size,
       [`weight-${this.weight}`]: !!this.weight,
       [`transform-${this.transform}`]: !!this.transform,
     };

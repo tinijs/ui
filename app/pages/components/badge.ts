@@ -142,7 +142,9 @@ export class AppPageComponentsBadge extends TiniComponent {
           <div slot="code">
             ${SIZES.map(
               size =>
-                html`<tini-badge size=${size} scheme="primary">1000</tini-badge>`
+                html`<tini-badge size=${size} scheme="primary"
+                  >1000</tini-badge
+                >`
             )}
           </div>
         </app-section>

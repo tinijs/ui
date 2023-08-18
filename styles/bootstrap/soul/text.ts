@@ -11,8 +11,8 @@ import {
 export const textStyle = css`
   :host {
     --text-color: var(--color-foreground);
+    --text-font-size: var(--size-text);
     --text-font: var(--font-body);
-    --text-size: var(--size-text);
     --text-weight: normal;
     --text-transform: none;
     display: inline;
@@ -29,7 +29,7 @@ export const textStyle = css`
 
   span {
     font-family: var(--text-font);
-    font-size: var(--text-size);
+    font-size: var(--text-font-size);
     font-weight: var(--text-weight);
   }
 
@@ -94,9 +94,9 @@ export const textStyle = css`
 
   ${generateFontSizeVaries(
     sizeFactor => `
-    .size-${sizeFactor} {
-      --text-size: var(--size-text-${sizeFactor}) !important;
-      font-size: var(--text-size);
+    .font-size-${sizeFactor} {
+      --text-font-size: var(--size-text-${sizeFactor}) !important;
+      font-size: var(--text-font-size);
     }
   `
   )}

@@ -119,7 +119,7 @@ export class AppPageComponentsLink extends TiniComponent {
           <div slot="code">
             ${SIZE_FACTORS.map(
               size =>
-                html`<tini-link href="#" size=${size}
+                html`<tini-link href="#" font-size=${size}
                   >${size.replace('_', '.')}</tini-link
                 >`
             )}
