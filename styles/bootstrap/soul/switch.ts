@@ -10,8 +10,11 @@ export const switchStyle = css`
     --switch-size: var(--size-md);
     --switch-background: var(--color-medium);
     --switch-color: var(--color-light);
+    --switch-hover-shadow: var(--color-primary);
     --switch-active-background: var(--color-primary);
     --switch-active-color: var(--color-primary-contrast);
+    --switch-transition: 0.3s;
+    --switch-space: 2px;
     display: inline;
   }
 
@@ -20,10 +23,9 @@ export const switchStyle = css`
    */
 
   .root {
-    --offset: 2px;
     --wrapper-size: calc(var(--switch-size) * 2);
-    --slider-outer-size: calc((var(--wrapper-size) / 2) + var(--offset));
-    --slider-size: calc((var(--wrapper-size) / 2) - var(--offset));
+    --slider-outer-size: calc((var(--wrapper-size) / 2) + var(--switch-space));
+    --slider-size: calc((var(--wrapper-size) / 2) - var(--switch-space));
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -43,14 +45,14 @@ export const switchStyle = css`
   }
 
   .slider {
-    position: absolute;
     cursor: pointer;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background: var(--switch-background);
-    transition: 0.4s;
+    transition: var(--switch-transition);
     border-radius: var(--slider-outer-size);
   }
 
@@ -59,11 +61,18 @@ export const switchStyle = css`
     content: '';
     height: var(--slider-size);
     width: var(--slider-size);
-    left: var(--offset);
-    bottom: var(--offset);
+    left: var(--switch-space);
+    bottom: var(--switch-space);
     background: var(--switch-color);
-    transition: 0.4s;
+    transition: var(--switch-transition);
     border-radius: 50%;
+  }
+
+  input:focus + .slider {
+    outline: none;
+    border-color: color-mix(in oklab, var(--switch-hover-shadow), transparent 30%);
+    box-shadow: 0 0 0 calc(var(--switch-size) / 4)
+      color-mix(in oklab, var(--switch-hover-shadow), transparent 70%);
   }
 
   input:checked + .slider {
@@ -89,15 +98,17 @@ export const switchStyle = css`
     ({name, color, contrast}) => `
     .color-${name} {
       --switch-active-background: ${color};
+      --switch-hover-shadow: ${color};
       --switch-active-color: ${contrast};
     }
   `
   )}
 
   ${generateGradientVaries(
-    ({name, gradient, contrast}) => `
+    ({name, gradient, color, contrast}) => `
     .color-${name} {
       --switch-background: var(--gradient-medium);
+      --switch-hover-shadow: ${color};
       --switch-active-background: ${gradient};
       --switch-active-color: ${contrast};
     }
