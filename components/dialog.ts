@@ -11,8 +11,8 @@ export enum DialogTypes {
 }
 
 export interface DialogButton {
-  text: string;
-  color: ColorsAndGradients;
+  text?: string;
+  color?: ColorsAndGradients;
 }
 
 export interface DialogResult<Context> {
@@ -26,6 +26,8 @@ export const TINI_DIALOG = 'tini-dialog';
 /* UseComponents(button) */
 export class TiniDialogComponent extends LitElement {
   static readonly defaultTagName = TINI_DIALOG;
+
+  private readonly BACKDROP_CLOSED = 'backdrop-closed';
 
   @property({type: String}) declare type: DialogTypes;
   @property({type: String}) declare titleText?: string;
@@ -46,7 +48,7 @@ export class TiniDialogComponent extends LitElement {
     this.rootClassesParts = {
       root: true,
       [this.type]: true,
-      'backdrop-closed': !!this.backdropClosed,
+      [this.BACKDROP_CLOSED]: !!this.backdropClosed,
     };
   }
 
@@ -74,8 +76,8 @@ export class TiniDialogComponent extends LitElement {
 
   private clickDialog(e: MouseEvent) {
     if (!this.backdropClosed) return;
-    const backdropClicked = !!(e.target as any)?.getAttribute('part');
-    if (backdropClicked) this.clickNo();
+    const targetPart = (e.target as any)?.getAttribute('part');
+    if (targetPart && ~targetPart.indexOf(this.BACKDROP_CLOSED)) this.clickNo();
   }
 
   private clickNo() {
@@ -95,31 +97,41 @@ export class TiniDialogComponent extends LitElement {
         @click=${this.clickDialog}
       >
         <div part="head" class="head">
-          <em>${this.titleText || 'Untitled'}</em>
-          <button @click=${this.clickNo}>✕</button>
+          <slot name="head">
+            <strong>${this.titleText || 'Untitled'}</strong>
+            <button @click=${this.clickNo}>✕</button>
+          </slot>
         </div>
+
         <div part="body" class="body">
           <slot></slot>
         </div>
+
         <div part="foot" class="foot">
-          ${this.type === DialogTypes.Alert
-            ? nothing
-            : html`
-                <tini-button
-                  color=${this.noButton?.color || 'medium'}
-                  @click=${this.clickNo}
-                >
-                  ${this.noButton?.text ||
-                  (this.type === DialogTypes.Prompt ? 'Cancel' : 'No')}
-                </tini-button>
-              `}
-          <tini-button
-            color=${this.yesButton?.color || 'primary'}
-            @click=${this.clickYes}
-          >
-            ${this.yesButton?.text ||
-            (this.type === DialogTypes.Prompt ? 'OK' : 'Yes')}
-          </tini-button>
+          <slot name="foot">
+            <div part="foot-left" class="foot-left">
+              ${this.type === DialogTypes.Alert
+                ? nothing
+                : html`
+                    <tini-button
+                      color=${this.noButton?.color || 'medium'}
+                      @click=${this.clickNo}
+                    >
+                      ${this.noButton?.text ||
+                      (this.type === DialogTypes.Confirm ? 'No' : 'Cancel')}
+                    </tini-button>
+                  `}
+            </div>
+            <div part="foot-right" class="foot-right">
+              <tini-button
+                color=${this.yesButton?.color || 'primary'}
+                @click=${this.clickYes}
+              >
+                ${this.yesButton?.text ||
+                (this.type === DialogTypes.Confirm ? 'Yes' : 'OK')}
+              </tini-button>
+            </div>
+          </slot>
         </div>
       </dialog>
     `;

@@ -15,6 +15,8 @@ export const TINI_MODAL = 'tini-modal';
 export class TiniModalComponent extends LitElement {
   static readonly defaultTagName = TINI_MODAL;
 
+  private readonly BACKDROP_CLOSED = 'backdrop-closed';
+
   @property({type: String}) declare titleText?: string;
   @property({type: Boolean}) declare backdropClosed?: boolean;
   @property({type: Object}) declare yesButton?: ModalButton;
@@ -26,7 +28,7 @@ export class TiniModalComponent extends LitElement {
   willUpdate() {
     this.rootClassesParts = {
       root: true,
-      'backdrop-closed': !!this.backdropClosed,
+      [this.BACKDROP_CLOSED]: !!this.backdropClosed,
     };
   }
 
@@ -54,8 +56,8 @@ export class TiniModalComponent extends LitElement {
 
   private clickDialog(e: MouseEvent) {
     if (!this.backdropClosed) return;
-    const backdropClicked = !!(e.target as any)?.getAttribute('part');
-    if (backdropClicked) this.clickNo();
+    const targetPart = (e.target as any)?.getAttribute('part');
+    if (targetPart && ~targetPart.indexOf(this.BACKDROP_CLOSED)) this.clickNo();
   }
 
   private clickNo() {
@@ -75,19 +77,22 @@ export class TiniModalComponent extends LitElement {
         @click=${this.clickDialog}
       >
         <div part="head" class="head">
-          <em>${this.titleText || 'Untitled'}</em>
+          <strong>${this.titleText || 'Untitled'}</strong>
           <button @click=${this.clickNo}>✕</button>
         </div>
         <div part="body" class="body">
           <slot></slot>
         </div>
         <div part="foot" class="foot">
-          <tini-button
-            color=${this.yesButton?.color || 'primary'}
-            @click=${this.clickYes}
-          >
-            ${this.yesButton?.text || 'OK'}
-          </tini-button>
+          <div part="foot-left" class="foot-left"></div>
+          <div part="foot-right" class="foot-right">
+            <tini-button
+              color=${this.yesButton?.color || 'primary'}
+              @click=${this.clickYes}
+            >
+              ${this.yesButton?.text || 'OK'}
+            </tini-button>
+          </div>
         </div>
       </dialog>
     `;

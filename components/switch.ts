@@ -51,8 +51,8 @@ export class TiniSwitchComponent extends LitElement {
       >
         <div class="switch">
           <input
-            class="input"
             part="input"
+            class="input"
             type="checkbox"
             name=${ifDefined(this.name)}
             value=${ifDefined(this.value)}

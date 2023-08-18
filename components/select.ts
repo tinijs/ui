@@ -69,8 +69,8 @@ export class TiniSelectComponent extends LitElement {
       >
         ${!this.label ? nothing : html`<span part="label">${this.label}</span>`}
         <select
-          class="select"
           part="select"
+          class="select"
           name=${ifDefined(this.name)}
           ?disabled=${this.disabled}
           @change=${this.onChange}
@@ -98,8 +98,8 @@ export class TiniSelectComponent extends LitElement {
   private renderOption({label, value, disabled, selected}: SelectOption) {
     return html`
       <option
-        class="option"
         part="option"
+        class="option"
         value=${ifDefined(value)}
         ?disabled=${disabled}
         ?selected=${selected}

@@ -1,7 +1,9 @@
 import {css} from 'lit';
 
 export const dialogStyle = css`
-  /* :host {} */
+  :host {
+    --dialog-width: var(--wide-ss);
+  }
 
   /*
    * Root
@@ -10,8 +12,8 @@ export const dialogStyle = css`
   dialog {
     position: fixed;
     padding: 0;
-    width: calc(100% - 2rem);
-    max-width: 480px;
+    width: calc(100% - var(--size-space-2x));
+    max-width: var(--dialog-width);
     border: none;
     border-radius: var(--size-radius);
     box-shadow: var(--shadow-box);
@@ -39,14 +41,13 @@ export const dialogStyle = css`
   .head {
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--color-background-shade);
-    padding: 1rem;
+    border-bottom: var(--size-border) solid var(--color-background-shade);
+    padding: var(--size-space);
   }
 
-  .head em {
+  .head strong {
     display: block;
-    font-size: 1.2rem;
-    font-style: normal;
+    font-size: var(--size-text-1_2x);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -56,13 +57,13 @@ export const dialogStyle = css`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2rem;
-    height: 2rem;
+    width: var(--size-space-2x);
+    height: var(--size-space-2x);
     padding: 0;
     background: none;
     border: none;
     opacity: 0.5;
-    font-size: 1.5rem;
+    font-size: var(--size-text-1_5x);
     cursor: pointer;
     color: var(--color-foreground);
   }
@@ -72,7 +73,8 @@ export const dialogStyle = css`
   }
 
   .body {
-    padding: 1rem;
+    flex-flow: column;
+    padding: var(--size-space-1_5x);
     overflow-x: hidden;
     overflow-y: auto;
     max-height: 75vh;
@@ -82,8 +84,8 @@ export const dialogStyle = css`
   .foot {
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
-    border-top: 1px solid var(--color-background-shade);
+    padding: var(--size-space);
+    border-top: var(--size-border) solid var(--color-background-shade);
   }
 `;
 

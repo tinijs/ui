@@ -69,8 +69,8 @@ export class TiniTextareaComponent extends LitElement {
       >
         ${!this.label ? nothing : html`<span part="label">${this.label}</span>`}
         <textarea
-          class="textarea"
           part="textarea"
+          class="textarea"
           name=${ifDefined(this.name)}
           placeholder=${ifDefined(this.placeholder)}
           .value=${this.value || ''}
