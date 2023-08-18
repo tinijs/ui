@@ -27,7 +27,7 @@ export class TiniCheckboxesComponent extends LitElement {
   static readonly defaultTagName = TINI_CHECKBOXES;
 
   @property({type: Array}) declare items?: CheckboxesItem[];
-  @property({type: Boolean}) declare wrap?: boolean;
+  @property({type: Boolean, reflect: true}) declare wrap?: boolean;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

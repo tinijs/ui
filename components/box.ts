@@ -18,15 +18,22 @@ export const TINI_BOX = 'tini-box';
 export class TiniBoxComponent extends LitElement {
   static readonly defaultTagName = TINI_BOX;
 
-  @property({type: String}) declare background?: ColorsAndGradients;
-  @property({type: String}) declare textColor?: Colors;
-  @property({type: String}) declare textSize?: SizeFactors;
-  @property({type: String}) declare borderSize?: SizeBasicFactors;
-  @property({type: String}) declare borderStyle?: BorderStyles;
-  @property({type: String}) declare borderColor?: Colors;
-  @property({type: String}) declare borderRadius?: SizeBasicFactors;
-  @property({type: String}) declare padding?: string;
-  @property({type: String}) declare margin?: string;
+  @property({type: String, reflect: true})
+  declare background?: ColorsAndGradients;
+  @property({type: String, reflect: true, attribute: 'text-color'})
+  declare textColor?: Colors;
+  @property({type: String, reflect: true, attribute: 'text-size'})
+  declare textSize?: SizeFactors;
+  @property({type: String, reflect: true, attribute: 'border-size'})
+  declare borderSize?: SizeBasicFactors;
+  @property({type: String, reflect: true, attribute: 'border-style'})
+  declare borderStyle?: BorderStyles;
+  @property({type: String, reflect: true, attribute: 'border-color'})
+  declare borderColor?: Colors;
+  @property({type: String, reflect: true, attribute: 'border-radius'})
+  declare borderRadius?: SizeBasicFactors;
+  @property({type: String, reflect: true}) declare padding?: string;
+  @property({type: String, reflect: true}) declare margin?: string;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

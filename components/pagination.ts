@@ -14,11 +14,13 @@ export const TINI_PAGINATION = 'tini-pagination';
 export class TiniPaginationComponent extends LitElement {
   static readonly defaultTagName = TINI_PAGINATION;
 
-  @property({type: Number}) declare totalPage: number;
-  @property({type: Number}) declare currentPage: number;
+  @property({type: Number, reflect: true, attribute: 'total-page'})
+  declare totalPage: number;
+  @property({type: Number, reflect: true, attribute: 'current-page'})
+  declare currentPage: number;
   @property({type: Object}) declare hrefBuilder?: (pageNum: number) => string;
-  @property({type: String}) declare color?: ColorsAndGradients;
-  @property({type: String}) declare size?: Sizes;
+  @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
+  @property({type: String, reflect: true}) declare size?: Sizes;
 
   private validateProperties() {
     // default values
@@ -56,13 +58,13 @@ export class TiniPaginationComponent extends LitElement {
     };
   }
 
-  private defaultHrefBuilder(pageNum: number) {
-    return `?page=${pageNum}`;
+  private defaultHrefBuilder() {
+    return 'javascript:void(0);';
   }
 
   private buildHref(pageNum: number) {
     return !this.hrefBuilder
-      ? this.defaultHrefBuilder(pageNum)
+      ? this.defaultHrefBuilder()
       : this.hrefBuilder(pageNum);
   }
 
@@ -91,7 +93,7 @@ export class TiniPaginationComponent extends LitElement {
   private renderPrevious() {
     const prevPageNum = this.currentPage - 1;
     const href = this.previousClassesParts.disabled
-      ? 'javascript:void(0);'
+      ? this.defaultHrefBuilder()
       : this.buildHref(prevPageNum);
     return html`
       <li
@@ -112,7 +114,7 @@ export class TiniPaginationComponent extends LitElement {
   private renderNext() {
     const nextPageNum = this.currentPage + 1;
     const href = this.nextClassesParts.disabled
-      ? 'javascript:void(0);'
+      ? this.defaultHrefBuilder()
       : this.buildHref(nextPageNum);
     return html`
       <li
@@ -138,7 +140,7 @@ export class TiniPaginationComponent extends LitElement {
         active: pageNum === this.currentPage,
       };
       const href = itemClassesParts.active
-        ? 'javascript:void(0);'
+        ? this.defaultHrefBuilder()
         : this.buildHref(pageNum);
       return html`
         <li

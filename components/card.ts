@@ -9,7 +9,7 @@ export const TINI_CARD = 'tini-card';
 export class TiniCardComponent extends LitElement {
   static readonly defaultTagName = TINI_CARD;
 
-  @property({type: Boolean}) declare fluid?: boolean;
+  @property({type: Boolean, reflect: true}) declare fluid?: boolean;
 
   @queryAssignedElements({slot: 'head'})
   private readonly headSlotElems?: HTMLElement[];

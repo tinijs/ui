@@ -79,7 +79,7 @@ export class AppPageComponentsDialog extends TiniComponent {
               >
               <tini-dialog
                 ${ref(this.alert1DialogRef)}
-                titleText="An alert dialog"
+                title-text="An alert dialog"
                 @no=${() => this.alert1DialogRef.value?.hide()}
                 @yes=${() => this.alert1DialogRef.value?.hide()}
               >
@@ -94,8 +94,8 @@ export class AppPageComponentsDialog extends TiniComponent {
               >
               <tini-dialog
                 ${ref(this.alert2DialogRef)}
-                backdropClosed
-                titleText="An alert dialog"
+                backdrop-closed
+                title-text="An alert dialog"
                 @no=${() => this.alert2DialogRef.value?.hide()}
                 @yes=${() => this.alert2DialogRef.value?.hide()}
               >
@@ -122,7 +122,7 @@ export class AppPageComponentsDialog extends TiniComponent {
             <tini-dialog
               ${ref(this.confirmDialogRef)}
               type="confirm"
-              titleText="A confirm dialog"
+              title-text="A confirm dialog"
               @no=${() => this.confirmDialogRef.value?.hide()}
               @yes=${() => this.confirmDialogRef.value?.hide()}
             >
@@ -148,7 +148,7 @@ export class AppPageComponentsDialog extends TiniComponent {
             <tini-dialog
               ${ref(this.promptDialogRef)}
               type="prompt"
-              titleText="A prompt dialog"
+              title-text="A prompt dialog"
               @no=${() => this.promptDialogRef.value?.hide()}
               @yes=${() => this.promptDialogRef.value?.hide()}
             >
@@ -175,10 +175,10 @@ export class AppPageComponentsDialog extends TiniComponent {
             >
             <tini-dialog
               ${ref(this.customButtonsDialogRef)}
-              titleText="Delete this item?"
+              title-text="Delete this item?"
               type="confirm"
-              .noButton=${{text: 'Cancel', color: 'secondary'}}
-              .yesButton=${{text: 'Delete?', color: 'danger'}}
+              .no-button=${{text: 'Cancel', color: 'secondary'}}
+              .yes-button=${{text: 'Delete?', color: 'danger'}}
               @no=${() => this.customButtonsDialogRef.value?.hide()}
               @yes=${() => this.customButtonsDialogRef.value?.hide()}
             >

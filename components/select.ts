@@ -29,12 +29,12 @@ export class TiniSelectComponent extends LitElement {
   static readonly defaultTagName = TINI_SELECT;
 
   @property({type: String}) declare items?: SelectItem[];
-  @property({type: String}) declare label?: string;
-  @property({type: String}) declare name?: string;
-  @property({type: Boolean}) declare wrap?: boolean;
-  @property({type: Boolean}) declare disabled?: boolean;
-  @property({type: String}) declare color?: Colors;
-  @property({type: String}) declare size?: Sizes;
+  @property({type: String, reflect: true}) declare label?: string;
+  @property({type: String, reflect: true}) declare name?: string;
+  @property({type: Boolean, reflect: true}) declare wrap?: boolean;
+  @property({type: Boolean, reflect: true}) declare disabled?: boolean;
+  @property({type: String, reflect: true}) declare color?: Colors;
+  @property({type: String, reflect: true}) declare size?: Sizes;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

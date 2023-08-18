@@ -105,13 +105,13 @@ export class AppPageComponentsBox extends TiniComponent {
             </p>
           </div>
           <div slot="code">
-            <tini-box textColor="primary"
+            <tini-box text-color="primary"
               >Default background / Primary text</tini-box
             >
-            <tini-box background="warning" textColor="primary"
+            <tini-box background="warning" text-color="primary"
               >Warning background / Primary text</tini-box
             >
-            <tini-box background="gradient-danger" textColor="primary"
+            <tini-box background="gradient-danger" text-color="primary"
               >Gradient Danger background / Primary text</tini-box
             >
           </div>
@@ -123,23 +123,23 @@ export class AppPageComponentsBox extends TiniComponent {
             <p>Text size from 0.1x to 10x.</p>
           </div>
           <div slot="code">
-            <tini-box textSize="0_5x">Text size 0.5x</tini-box>
+            <tini-box text-size="0_5x">Text size 0.5x</tini-box>
             <tini-box>Text size 1x</tini-box>
-            <tini-box textSize="3x">Text size 3x</tini-box>
+            <tini-box text-size="3x">Text size 3x</tini-box>
           </div>
         </app-section>
 
         <app-section class="borders">
           <h2 slot="title">Borders</h2>
           <div slot="code">
-            <tini-box borderSize="1x">Box with a default border</tini-box>
-            <tini-box borderSize="1x" borderColor="primary"
+            <tini-box border-size="1x">Box with a default border</tini-box>
+            <tini-box border-size="1x" border-color="primary"
               >Box with border of primary color</tini-box
             >
-            <tini-box borderSize="2x" borderRadius="3x"
+            <tini-box border-size="2x" border-radius="3x"
               >Box with border of 2x size and 3x radius</tini-box
             >
-            <tini-box borderSize="1x" borderStyle="dashed"
+            <tini-box border-size="1x" border-style="dashed"
               >Box with border of dashed style</tini-box
             >
           </div>

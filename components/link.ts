@@ -21,22 +21,21 @@ export class TiniLinkComponent extends LitElement {
 
   private anchorRef: Ref<HTMLAnchorElement> = createRef();
 
-  @property({type: String}) declare href?: string;
-  @property({type: String}) declare rel?: string;
-  @property({type: String}) declare target?:
+  @property({type: String, reflect: true}) declare href?: string;
+  @property({type: String, reflect: true}) declare rel?: string;
+  @property({type: String, reflect: true}) declare target?:
     | '_blank'
     | '_self'
     | '_parent'
     | '_top';
-  @property({type: String}) declare active?: string;
-
-  @property({type: Boolean}) declare italic?: boolean;
-  @property({type: Boolean}) declare underline?: boolean;
-  @property({type: String}) declare color?: ColorsAndGradients;
-  @property({type: String}) declare font?: FontTypes;
-  @property({type: String}) declare size?: FontSizeFactors;
-  @property({type: String}) declare weight?: FontWeights;
-  @property({type: String}) declare transform?: TextTransforms;
+  @property({type: String, reflect: true}) declare active?: string;
+  @property({type: Boolean, reflect: true}) declare italic?: boolean;
+  @property({type: Boolean, reflect: true}) declare underline?: boolean;
+  @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
+  @property({type: String, reflect: true}) declare font?: FontTypes;
+  @property({type: String, reflect: true}) declare size?: FontSizeFactors;
+  @property({type: String, reflect: true}) declare weight?: FontWeights;
+  @property({type: String, reflect: true}) declare transform?: TextTransforms;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

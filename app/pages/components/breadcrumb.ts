@@ -73,7 +73,7 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
             ${BASE_COLORS.map(
               color =>
                 html`<tini-breadcrumb
-                  linkColor=${color}
+                  link-color=${color}
                   .items=${this.ITEMS}
                 ></tini-breadcrumb>`
             )}
@@ -86,7 +86,7 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
             ${BASE_GRADIENTS.map(
               gradient =>
                 html`<tini-breadcrumb
-                  linkColor=${gradient}
+                  link-color=${gradient}
                   .items=${this.ITEMS}
                 ></tini-breadcrumb>`
             )}

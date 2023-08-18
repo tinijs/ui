@@ -61,6 +61,8 @@ export const boxStyle = css`
   `
   )}
 
+
+
   /*
    * [borderStyle]
    */
@@ -72,6 +74,8 @@ export const boxStyle = css`
     }
   `
   )}
+
+
 
   /*
    * [color] & [borderColor]
@@ -102,6 +106,8 @@ export const boxStyle = css`
     }
   `
   )}
+
+
 
   /*
    * [padding] & [margin]

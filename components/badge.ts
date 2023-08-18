@@ -15,11 +15,12 @@ export const TINI_BADGE = 'tini-badge';
 export class TiniBadgeComponent extends LitElement {
   static readonly defaultTagName = TINI_BADGE;
 
-  @property({type: String}) declare color?: ColorsAndGradients;
-  @property({type: Boolean}) declare pilled?: boolean;
-  @property({type: Boolean}) declare rounded?: boolean;
-  @property({type: String}) declare textColor?: Colors;
-  @property({type: String}) declare size?: Sizes;
+  @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
+  @property({type: Boolean, reflect: true}) declare pilled?: boolean;
+  @property({type: Boolean, reflect: true}) declare rounded?: boolean;
+  @property({type: String, reflect: true, attribute: 'text-color'})
+  declare textColor?: Colors;
+  @property({type: String, reflect: true}) declare size?: Sizes;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

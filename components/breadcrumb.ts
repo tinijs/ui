@@ -17,7 +17,8 @@ export class TiniBreadcrumbComponent extends LitElement {
   static readonly defaultTagName = TINI_BREADCRUMB;
 
   @property({type: String}) declare items?: BreadcrumbItem[];
-  @property({type: String}) declare linkColor?: ColorsAndGradients;
+  @property({type: String, reflect: true, attribute: 'link-color'})
+  declare linkColor?: ColorsAndGradients;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

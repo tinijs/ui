@@ -9,9 +9,11 @@ export const TINI_MESSAGE = 'tini-message';
 export class TiniMessageComponent extends LitElement {
   static readonly defaultTagName = TINI_MESSAGE;
 
-  @property({type: String}) declare background?: Colors;
-  @property({type: String}) declare textColor?: Colors;
-  @property({type: String}) declare textSize?: SizeFactors;
+  @property({type: String, reflect: true}) declare background?: Colors;
+  @property({type: String, reflect: true, attribute: 'text-color'})
+  declare textColor?: Colors;
+  @property({type: String, reflect: true, attribute: 'text-size'})
+  declare textSize?: SizeFactors;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

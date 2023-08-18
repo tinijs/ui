@@ -10,9 +10,9 @@ export const TINI_ICON = 'tini-icon';
 export class TiniIconComponent extends LitElement {
   static readonly defaultTagName = TINI_ICON;
 
-  @property({type: String}) declare src?: string;
-  @property({type: String}) declare color?: ColorsAndGradients;
-  @property({type: String}) declare size?: Sizes;
+  @property({type: String, reflect: true}) declare src?: string;
+  @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
+  @property({type: String, reflect: true}) declare size?: Sizes;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

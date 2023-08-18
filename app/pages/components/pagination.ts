@@ -59,7 +59,7 @@ export class AppPageComponentsPagination extends TiniComponent {
             </p>
           </div>
           <div slot="code">
-            <tini-pagination totalPage="3"></tini-pagination>
+            <tini-pagination total-page="3"></tini-pagination>
           </div>
         </app-section>
 
@@ -69,8 +69,8 @@ export class AppPageComponentsPagination extends TiniComponent {
             ${BASE_COLORS.map(
               color =>
                 html`<tini-pagination
-                  totalPage="3"
-                  currentPage="2"
+                  total-page="3"
+                  current-page="2"
                   color=${color}
                 ></tini-pagination>`
             )}
@@ -82,8 +82,8 @@ export class AppPageComponentsPagination extends TiniComponent {
             ${BASE_GRADIENTS.map(
               gradient =>
                 html`<tini-pagination
-                  totalPage="3"
-                  currentPage="2"
+                  total-page="3"
+                  current-page="2"
                   color=${gradient}
                 ></tini-pagination>`
             )}
@@ -96,8 +96,8 @@ export class AppPageComponentsPagination extends TiniComponent {
             ${SIZES.map(
               size =>
                 html`<tini-pagination
-                  totalPage="3"
-                  currentPage="2"
+                  total-page="3"
+                  current-page="2"
                   size=${size}
                 ></tini-pagination>`
             )}

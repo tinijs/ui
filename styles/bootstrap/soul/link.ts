@@ -105,6 +105,7 @@ export const linkStyle = css`
   )}
 
 
+
   /*
    * [font]
    */
@@ -116,6 +117,8 @@ export const linkStyle = css`
     }
   `
   )}
+
+
 
   /*
    * [size]
@@ -129,6 +132,8 @@ export const linkStyle = css`
   `
   )}
 
+
+
   /*
    * [weight]
    */
@@ -140,6 +145,8 @@ export const linkStyle = css`
     }
   `
   )}
+
+
 
   /*
    * [transform]

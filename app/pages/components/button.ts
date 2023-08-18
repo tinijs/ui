@@ -140,13 +140,13 @@ export class AppPageComponentsButton extends TiniComponent {
             </p>
           </div>
           <div slot="code">
-            <tini-button textColor="primary"
+            <tini-button text-color="primary"
               >Default background / Primary text</tini-button
             >
-            <tini-button color="warning" textColor="primary"
+            <tini-button color="warning" text-color="primary"
               >Warning background / Primary text</tini-button
             >
-            <tini-button color="gradient-danger" textColor="primary"
+            <tini-button color="gradient-danger" text-color="primary"
               >Gradient Danger background / Primary text</tini-button
             >
           </div>

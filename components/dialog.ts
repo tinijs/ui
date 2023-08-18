@@ -29,11 +29,15 @@ export class TiniDialogComponent extends LitElement {
 
   private readonly BACKDROP_CLOSED = 'backdrop-closed';
 
-  @property({type: String}) declare type: DialogTypes;
-  @property({type: String}) declare titleText?: string;
-  @property({type: Boolean}) declare backdropClosed?: boolean;
-  @property({type: Object}) declare noButton?: DialogButton;
-  @property({type: Object}) declare yesButton?: DialogButton;
+  @property({type: String, reflect: true}) declare type: DialogTypes;
+  @property({type: String, reflect: true, attribute: 'title-text'})
+  declare titleText?: string;
+  @property({type: Boolean, reflect: true, attribute: 'backdrop-closed'})
+  declare backdropClosed?: boolean;
+  @property({type: Object, attribute: 'no-button'})
+  declare noButton?: DialogButton;
+  @property({type: Object, attribute: 'yes-button'})
+  declare yesButton?: DialogButton;
 
   private dialogRef: Ref<HTMLDialogElement> = createRef();
   private context?: unknown;

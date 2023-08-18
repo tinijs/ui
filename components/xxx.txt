@@ -9,7 +9,7 @@ export const TINI_XXX = 'tini-xxx';
 export class TiniXxxComponent extends LitElement {
   static readonly defaultTagName = TINI_XXX;
 
-  @property({type: String}) declare prop?: string;
+  @property({type: String, reflect: true}) declare prop?: string;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

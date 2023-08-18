@@ -91,8 +91,8 @@ export class AppPageComponentsLabel extends TiniComponent {
             </p>
           </div>
           <div slot="code">
-            <tini-label textColor="primary">Label</tini-label>
-            <tini-label color="warning" textColor="primary">Label</tini-label>
+            <tini-label text-color="primary">Label</tini-label>
+            <tini-label color="warning" text-color="primary">Label</tini-label>
           </div>
         </app-section>
 

@@ -129,9 +129,9 @@ export class AppPageComponentsBadge extends TiniComponent {
             </p>
           </div>
           <div slot="code">
-            <tini-badge textColor="primary">99+</tini-badge>
-            <tini-badge color="warning" textColor="primary">99+</tini-badge>
-            <tini-badge color="gradient-danger" textColor="primary"
+            <tini-badge text-color="primary">99+</tini-badge>
+            <tini-badge color="warning" text-color="primary">99+</tini-badge>
+            <tini-badge color="gradient-danger" text-color="primary"
               >99+</tini-badge
             >
           </div>

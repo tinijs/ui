@@ -10,18 +10,19 @@ export const TINI_SWITCH = 'tini-switch';
 export class TiniSwitchComponent extends LitElement {
   static readonly defaultTagName = TINI_SWITCH;
 
-  @property({type: String}) declare value?: string;
-  @property({type: String}) declare name?: string;
-  @property({type: String}) declare label?: string;
-  @property({type: Boolean}) declare checked?: boolean;
-  @property({type: Boolean}) declare disabled?: boolean;
-  @property({type: String}) declare color?: ColorsAndGradients;
-  @property({type: String}) declare size?: Sizes;
+  @property({type: String, reflect: true}) declare label?: string;
+  @property({type: String, reflect: true}) declare name?: string;
+  @property({type: String, reflect: true}) declare value?: string;
+  @property({type: Boolean, reflect: true}) declare checked?: boolean;
+  @property({type: Boolean, reflect: true}) declare disabled?: boolean;
+  @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
+  @property({type: String, reflect: true}) declare size?: Sizes;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
       root: true,
+      checked: !!this.checked,
       disabled: !!this.disabled,
       [`color-${this.color}`]: !!this.color,
       [`size-${this.size}`]: !!this.size,

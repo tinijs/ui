@@ -26,16 +26,16 @@ export const TINI_INPUT = 'tini-input';
 export class TiniInputComponent extends LitElement {
   static readonly defaultTagName = TINI_INPUT;
 
-  @property({type: String}) declare label?: string;
-  @property({type: String}) declare placeholder?: string;
-  @property({type: String}) declare name?: string;
-  @property({type: String}) declare type?: InputTypes;
-  @property({type: String}) declare value?: string;
-  @property({type: Boolean}) declare wrap?: boolean;
-  @property({type: Boolean}) declare disabled?: boolean;
-  @property({type: Boolean}) declare readonly?: boolean;
-  @property({type: String}) declare color?: Colors;
-  @property({type: String}) declare size?: Sizes;
+  @property({type: String, reflect: true}) declare label?: string;
+  @property({type: String, reflect: true}) declare placeholder?: string;
+  @property({type: String, reflect: true}) declare type?: InputTypes;
+  @property({type: String, reflect: true}) declare name?: string;
+  @property({type: String, reflect: true}) declare value?: string;
+  @property({type: Boolean, reflect: true}) declare wrap?: boolean;
+  @property({type: Boolean, reflect: true}) declare disabled?: boolean;
+  @property({type: Boolean, reflect: true}) declare readonly?: boolean;
+  @property({type: String, reflect: true}) declare color?: Colors;
+  @property({type: String, reflect: true}) declare size?: Sizes;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
@@ -43,6 +43,7 @@ export class TiniInputComponent extends LitElement {
       root: true,
       wrap: !!this.wrap,
       disabled: !!this.disabled,
+      readonly: !!this.readonly,
       [`color-${this.color}`]: !!this.color,
       [`size-${this.size}`]: !!this.size,
     };

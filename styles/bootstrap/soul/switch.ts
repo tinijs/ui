@@ -70,7 +70,11 @@ export const switchStyle = css`
 
   input:focus + .slider {
     outline: none;
-    border-color: color-mix(in oklab, var(--switch-hover-shadow), transparent 30%);
+    border-color: color-mix(
+      in oklab,
+      var(--switch-hover-shadow),
+      transparent 30%
+    );
     box-shadow: 0 0 0 calc(var(--switch-size) / 4)
       color-mix(in oklab, var(--switch-hover-shadow), transparent 70%);
   }
@@ -114,6 +118,8 @@ export const switchStyle = css`
     }
   `
   )}
+
+
 
   /*
    * [size]

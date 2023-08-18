@@ -71,6 +71,8 @@ export const textStyle = css`
   `
   )}
 
+
+
   /*
    * [font]
    */
@@ -83,6 +85,8 @@ export const textStyle = css`
     }
   `
   )}
+
+
 
   /*
    * [size]
@@ -97,6 +101,8 @@ export const textStyle = css`
   `
   )}
 
+
+
   /*
    * [weight]
    */
@@ -109,6 +115,8 @@ export const textStyle = css`
     }
   `
   )}
+
+
 
   /*
    * [transform]
