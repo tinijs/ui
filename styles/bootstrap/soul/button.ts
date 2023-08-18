@@ -3,28 +3,25 @@ import {
   generateColorVaries,
   generateGradientVaries,
   generateSizeVaries,
+  generateFontSizeVaries,
   generateJustifyVaries,
 } from '@tinijs/core';
 
 export const buttonStyle = css`
   :host {
     --button-background: var(--color-medium) /* Background color */;
+    --button-size: var(--size-md);
     --button-text-color: var(--color-medium-contrast) /* Text color */;
-    --button-text-size: var(--size-md);
-    --button-padding: var(--size-md) /* Base padding */;
-    --button-border: none;
-    --button-radius: var(--size-radius);
+    --button-border-radius: var(--size-radius);
     --button-hover-brightness: 1.1;
     --button-active-brightness: 0.95;
     --button-disabled-opacity: 0.5
       /* Dimmer or brighter to indicate the click action */;
-    --button-focus-visible-shadow-size: var(--size-md-0_3x)
-      /* Size of the shadow while focusing */;
-    --button-focus-visible-shadow-color: color-mix(
-      in oklab,
-      var(--color-foreground),
-      transparent 70%
-    );
+    --button-focus-visible-shadow-size: calc(var(--button-size) * 0.3);
+    --button-focus-visible-shadow-color: var(--color-medium);
+  }
+
+  :host {
     display: inline;
   }
 
@@ -37,17 +34,17 @@ export const buttonStyle = css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: calc(var(--button-padding) * 0.5);
-    padding: calc(var(--button-padding) * 0.5) var(--button-padding);
-    font-family: var(--font-body);
-    font-size: var(--button-text-size);
-    line-height: 1.5;
-    border: var(--button-border);
-    border-radius: var(--button-radius);
+    gap: calc(var(--button-size) * 0.5);
+    padding: calc(var(--button-size) * 0.5) var(--button-size);
     background: var(--button-background);
     color: var(--button-text-color);
+    font-family: var(--font-body);
+    font-size: var(--button-size);
+    line-height: 1.5;
+    border: none;
+    border-radius: var(--button-border-radius);
     outline: 0 !important;
-    transition: background-color 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
   }
 
   button:hover {
@@ -60,7 +57,11 @@ export const buttonStyle = css`
 
   button:focus-visible {
     box-shadow: 0 0 0 var(--button-focus-visible-shadow-size)
-      var(--button-focus-visible-shadow-color);
+      color-mix(
+        in oklab,
+        var(--button-focus-visible-shadow-color),
+        transparent 70%
+      );
   }
 
   button:disabled,
@@ -82,55 +83,8 @@ export const buttonStyle = css`
   button ::slotted(.content-group) {
     display: inline-flex;
     align-items: center;
-    gap: calc(var(--button-padding) * 0.5);
+    gap: calc(var(--button-size) * 0.5);
   }
-
-  /*
-   * [color] & [textColor]
-   */
-
-  ${generateColorVaries(
-    ({name, color, contrast}) => `
-    .bg-${name} {
-      --button-background: ${color};
-      --button-text-color: ${contrast};
-      --button-focus-visible-shadow-color: color-mix(in oklab, ${color}, transparent 70%);
-    }
-
-    .color-${name} {
-      --button-text-color: ${color} !important;
-    }
-  `
-  )}
-
-  ${generateGradientVaries(
-    ({name, gradient, color, contrast}) => `
-    .bg-${name} {
-      --button-background: ${gradient};
-      --button-text-color: ${contrast};
-      --button-hover-background: ${gradient};
-      --button-focus-visible-shadow-color: color-mix(in oklab, ${color}, transparent 70%);
-    }
-  `
-  )}
-
-
-
-  /*
-   * [size]
-   */
-
-  ${generateSizeVaries(
-    size => `
-    .size-${size} {
-      --button-text-size: var(--size-${size});
-      --button-padding: var(--size-${size});
-      --button-focus-visible-shadow-size: var(--size-${size}-0_3x);
-    }
-  `
-  )}
-
-
 
   /*
    * [justify]
@@ -140,6 +94,60 @@ export const buttonStyle = css`
     justify => `
     .justify-${justify} {
       justify-content: ${justify};
+    }
+  `
+  )}
+
+  /*
+   * [scheme] & [textColor]
+   */
+
+  ${generateColorVaries(
+    ({name, color, contrast}) => `
+    .scheme-${name} {
+      --button-background: ${color};
+      --button-text-color: ${contrast};
+      --button-focus-visible-shadow-color: ${color};
+    }
+
+    .text-color-${name} {
+      --button-text-color: ${color} !important;
+    }
+  `
+  )}
+
+  ${generateGradientVaries(
+    ({name, gradient, color, contrast}) => `
+    .scheme-${name} {
+      --button-background: ${gradient};
+      --button-text-color: ${contrast};
+      --button-focus-visible-shadow-color: ${color};
+    }
+  `
+  )}
+
+  /*
+   * [size]
+   */
+
+  ${generateSizeVaries(
+    size => `
+    .size-${size} {
+      --button-size: var(--size-${size});
+    }
+  `
+  )}
+
+
+
+  /*
+   * [textSize]
+   */
+
+  ${generateFontSizeVaries(
+    fontSize => `
+    .text-size-${fontSize} {
+      font-size: var(--size-text-${fontSize}) !important;
     }
   `
   )}

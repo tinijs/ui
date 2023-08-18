@@ -82,7 +82,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 ${renderColorVaries(
                   baseName,
                   fullName =>
-                    html`<tini-button color=${fullName}
+                    html`<tini-button scheme=${fullName}
                       >Button ${fullName}</tini-button
                     >`
                 )}
@@ -98,7 +98,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 ${renderGradientVaries(
                   baseName,
                   fullName =>
-                    html`<tini-button color=${fullName}
+                    html`<tini-button scheme=${fullName}
                       >Button ${fullName}</tini-button
                     >`
                 )}
@@ -112,7 +112,7 @@ export class AppPageComponentsButton extends TiniComponent {
           <div slot="code">
             ${BASE_COLORS.map(
               color =>
-                html`<tini-button color=${color} disabled
+                html`<tini-button scheme=${color} disabled
                   >Button ${color} disabled</tini-button
                 >`
             )}
@@ -124,7 +124,7 @@ export class AppPageComponentsButton extends TiniComponent {
           <div slot="code">
             ${BASE_GRADIENTS.map(
               gradient =>
-                html`<tini-button color=${gradient} disabled
+                html`<tini-button scheme=${gradient} disabled
                   >Gradient ${gradient} disabled</tini-button
                 >`
             )}
@@ -143,10 +143,10 @@ export class AppPageComponentsButton extends TiniComponent {
             <tini-button text-color="primary"
               >Default background / Primary text</tini-button
             >
-            <tini-button color="warning" text-color="primary"
+            <tini-button scheme="warning" text-color="primary"
               >Warning background / Primary text</tini-button
             >
-            <tini-button color="gradient-danger" text-color="primary"
+            <tini-button scheme="gradient-danger" text-color="primary"
               >Gradient Danger background / Primary text</tini-button
             >
           </div>
@@ -157,83 +157,95 @@ export class AppPageComponentsButton extends TiniComponent {
           <div slot="code">
             ${SIZES.map(
               size =>
-                html`<tini-button size=${size} color="primary"
+                html`<tini-button size=${size} scheme="primary"
                   >${size}</tini-button
                 > `
             )}
           </div>
         </app-section>
 
+        <app-section class="text-sizes">
+          <h2 slot="title">Text sizes</h2>
+          <div slot="content">
+            <p>Text size from 0.1x to 10x.</p>
+          </div>
+          <div slot="code">
+            <tini-button scheme="primary" text-size="0_5x">Text size 0.5x</tini-button>
+            <tini-button scheme="primary" text-size="1x">Text size 1x</tini-button>
+            <tini-button scheme="primary" text-size="3x">Text size 3x</tini-button>
+          </div>
+        </app-section>
+
         <app-section class="icons-and-justifications">
           <h2 slot="title">Icons and Justifications</h2>
           <div slot="code">
-            <tini-button color="primary">
+            <tini-button scheme="primary">
               <icon-heart-fill
                 size="ss"
-                color="primary-contrast"
+                scheme="primary-contrast"
               ></icon-heart-fill>
               <span>Left</span>
             </tini-button>
             <!-- / -->
-            <tini-button color="primary">
+            <tini-button scheme="primary">
               <span>Right</span>
               <icon-heart-fill
                 size="ss"
-                color="primary-contrast"
+                scheme="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
             <!-- / -->
-            <tini-button color="primary">
+            <tini-button scheme="primary">
               <icon-heart-fill
                 size="ss"
-                color="primary-contrast"
+                scheme="primary-contrast"
               ></icon-heart-fill>
               <span>Left Right</span>
               <icon-heart-fill
                 size="ss"
-                color="primary-contrast"
+                scheme="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
             <!-- / -->
-            <tini-button justify="space-between" color="primary">
+            <tini-button justify="space-between" scheme="primary">
               <icon-heart-fill
                 size="ss"
-                color="primary-contrast"
+                scheme="primary-contrast"
               ></icon-heart-fill>
               <span>Far Left</span>
             </tini-button>
             <!-- / -->
-            <tini-button justify="space-between" color="primary">
+            <tini-button justify="space-between" scheme="primary">
               <span>Far Right</span>
               <icon-heart-fill
                 size="ss"
-                color="primary-contrast"
+                scheme="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
             <!-- / -->
-            <tini-button justify="space-between" color="primary">
+            <tini-button justify="space-between" scheme="primary">
               <icon-chevron-left
                 size="ss"
-                color="primary-contrast"
+                scheme="primary-contrast"
               ></icon-chevron-left>
               <span>Far Left Right</span>
               <icon-chevron-right
                 size="ss"
-                color="primary-contrast"
+                scheme="primary-contrast"
               ></icon-chevron-right>
             </tini-button>
             <!-- / -->
-            <tini-button justify="space-between" color="primary">
+            <tini-button justify="space-between" scheme="primary">
               <div class="content-group">
                 <icon-heart-fill
                   size="ss"
-                  color="primary-contrast"
+                  scheme="primary-contrast"
                 ></icon-heart-fill>
                 <span>Content Group</span>
               </div>
               <icon-chevron-right
                 size="ss"
-                color="primary-contrast"
+                scheme="primary-contrast"
               ></icon-chevron-right>
             </tini-button>
           </div>

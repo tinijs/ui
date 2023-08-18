@@ -7,6 +7,7 @@ import {
   ColorsAndGradients,
   Colors,
   Sizes,
+  FontSizeFactors,
   JustifyContents,
 } from '@tinijs/core';
 
@@ -16,22 +17,25 @@ export const TINI_BUTTON = 'tini-button';
 export class TiniButtonComponent extends LitElement {
   static readonly defaultTagName = TINI_BUTTON;
 
-  @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
+  @property({type: Boolean, reflect: true}) declare disabled?: boolean;
+  @property({type: String, reflect: true}) declare justify?: JustifyContents;
+  @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;
+  @property({type: String, reflect: true}) declare size?: Sizes;
   @property({type: String, reflect: true, attribute: 'text-color'})
   declare textColor?: Colors;
-  @property({type: String, reflect: true}) declare size?: Sizes;
-  @property({type: String, reflect: true}) declare justify?: JustifyContents;
-  @property({type: Boolean, reflect: true}) declare disabled?: boolean;
+  @property({type: String, reflect: true, attribute: 'text-size'})
+  declare textSize?: FontSizeFactors;
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
     this.rootClassesParts = {
       root: true,
       disabled: !!this.disabled,
-      [`bg-${this.color}`]: !!this.color,
-      [`color-${this.textColor}`]: !!this.textColor,
-      [`size-${this.size}`]: !!this.size,
       [`justify-${this.justify}`]: !!this.justify,
+      [`scheme-${this.scheme}`]: !!this.scheme,
+      [`size-${this.size}`]: !!this.size,
+      [`text-color-${this.textColor}`]: !!this.textColor,
+      [`text-size-${this.textSize}`]: !!this.textSize,
     };
   }
 

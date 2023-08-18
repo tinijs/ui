@@ -176,9 +176,7 @@ export class AppPageComponentsBox extends TiniComponent {
           <h2 slot="title">Margins</h2>
           <div slot="code">
             <div class="margin-container">
-              <tini-box scheme="primary"
-                >Box with "0x" margin</tini-box
-              >
+              <tini-box scheme="primary">Box with "0x" margin</tini-box>
             </div>
             <div class="margin-container">
               <tini-box scheme="primary" margin="0_5x"
