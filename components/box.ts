@@ -7,9 +7,9 @@ import {
   ColorsAndGradients,
   Colors,
   SizeFactors,
-  sizeFactorsToClassInfo,
   SizeBasicFactors,
-  BorderStyles,
+  sizeFactorsToClassInfo,
+  borderingToClassInfo,
 } from '@tinijs/core';
 
 export const TINI_BOX = 'tini-box';
@@ -19,17 +19,12 @@ export class TiniBoxComponent extends LitElement {
   static readonly defaultTagName = TINI_BOX;
 
   @property({type: String, reflect: true})
-  declare background?: ColorsAndGradients;
-  @property({type: String, reflect: true, attribute: 'text-color'})
-  declare textColor?: Colors;
+  declare scheme?: ColorsAndGradients;
   @property({type: String, reflect: true, attribute: 'text-size'})
   declare textSize?: SizeFactors;
-  @property({type: String, reflect: true, attribute: 'border-size'})
-  declare borderSize?: SizeBasicFactors;
-  @property({type: String, reflect: true, attribute: 'border-style'})
-  declare borderStyle?: BorderStyles;
-  @property({type: String, reflect: true, attribute: 'border-color'})
-  declare borderColor?: Colors;
+  @property({type: String, reflect: true, attribute: 'text-color'})
+  declare textColor?: Colors;
+  @property({type: String, reflect: true}) declare bordering?: string;
   @property({type: String, reflect: true, attribute: 'border-radius'})
   declare borderRadius?: SizeBasicFactors;
   @property({type: String, reflect: true}) declare padding?: string;
@@ -42,14 +37,12 @@ export class TiniBoxComponent extends LitElement {
     // root classes
     this.rootClassesParts = {
       root: true,
-      [`bg-${this.background}`]: !!this.background,
-      [`text-color-${this.textColor}`]: !!this.textColor,
+      [`scheme-${this.scheme}`]: !!this.scheme,
       [`text-size-${this.textSize}`]: !!this.textSize,
-      [`border-size-${this.borderSize}`]: !!this.borderSize,
-      [`border-color-${this.borderColor}`]: !!this.borderColor,
-      [`border-style-${this.borderStyle}`]: !!this.borderStyle,
+      [`text-color-${this.textColor}`]: !!this.textColor,
+      ...borderingToClassInfo(this.bordering),
       [`border-radius-${this.borderRadius}`]: !!this.borderRadius,
-      ...(!this.padding ? {} : sizeFactorsToClassInfo('padding', this.padding)),
+      ...sizeFactorsToClassInfo('padding', this.padding),
     };
   }
 

@@ -11,10 +11,10 @@ import {
 export const boxStyle = css`
   :host {
     --box-background: none;
-    --box-text-color: var(--color-foreground);
     --box-text-size: var(--size-text);
+    --box-text-color: var(--color-foreground);
     --box-border: none;
-    --box-radius: var(--size-radius);
+    --box-border-radius: var(--size-radius);
     --box-padding: var(--size-space);
     --box-margin: 0;
   }
@@ -26,10 +26,10 @@ export const boxStyle = css`
   .root {
     width: 100%;
     background: var(--box-background);
-    color: var(--box-text-color);
     font-size: var(--box-text-size);
+    color: var(--box-text-color);
     border: var(--box-border);
-    border-radius: var(--box-radius);
+    border-radius: var(--box-border-radius);
     padding: var(--box-padding);
     margin: var(--box-margin);
   }
@@ -47,43 +47,43 @@ export const boxStyle = css`
   )}
 
   /*
-   * [borderSize] & [borderRadius]
+   * [border (size)] & [borderRadius]
    */
 
   ${generateBasicFactorVaries(
     size => `
-    .border-size-${size} {
-      --box-border: var(--size-border-${size}) solid var(--color-medium);
+    .border-width-${size} {
+      border-width: var(--size-border-${size}) !important;
+      border-color: var(--color-medium);
+      border-style: solid;
     }
     .border-radius-${size} {
-      --box-radius: var(--size-radius-${size});
+      --box-border-radius: var(--size-radius-${size});
     }
   `
   )}
 
-
-
   /*
-   * [borderStyle]
+   * [border (style)]
    */
 
   ${generateBorderStyleVaries(
     borderStyle => `
     .border-style-${borderStyle} {
-      border-style: ${borderStyle};
+      border-style: ${borderStyle} !important;
+      border-width: var(--size-border);
+      border-color: var(--color-medium);
     }
   `
   )}
 
-
-
   /*
-   * [color] & [borderColor]
+   * [scheme] & [textColor] & [border (color)]
    */
 
   ${generateColorVaries(
     ({name, color, contrast}) => `
-    .bg-${name} {
+    .scheme-${name} {
       --box-background: ${color};
       --box-text-color: ${contrast};
     }
@@ -93,21 +93,21 @@ export const boxStyle = css`
     }
 
     .border-color-${name} {
-      border-color: ${color};
+      border-color: ${color} !important;
+      border-width: var(--size-border);
+      border-style: solid;
     }
   `
   )}
 
   ${generateGradientVaries(
     ({name, gradient, contrast}) => `
-    .bg-${name} {
+    .scheme-${name} {
       --box-background: ${gradient};
       --box-text-color: ${contrast};
     }
   `
   )}
-
-
 
   /*
    * [padding] & [margin]
