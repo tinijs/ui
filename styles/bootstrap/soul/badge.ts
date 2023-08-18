@@ -8,11 +8,12 @@ import {
 export const badgeStyle = css`
   :host {
     --badge-background: var(--color-medium) /* Background color */;
-    --badge-text-color: var(--color-medium-contrast) /* Text color */;
-    --badge-text-size: var(--size-md);
-    --badge-padding: var(--size-md-0_25x) /* Base padding */;
-    --badge-border: none;
-    --badge-radius: var(--size-radius);
+    --badge-size: var(--size-md) /* Base size */;
+    --badge-color: var(--color-medium-contrast) /* Text color */;
+    --badge-radius: var(--size-radius) /* Border radius */;
+  }
+  
+  :host {
     display: inline;
   }
 
@@ -24,12 +25,12 @@ export const badgeStyle = css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: var(--badge-padding);
-    border: var(--badge-border);
-    border-radius: var(--badge-radius);
+    padding: calc(var(--badge-size) * 0.25);
     background: var(--badge-background);
-    color: var(--badge-text-color);
-    font-size: var(--badge-text-size);
+    color: var(--badge-color);
+    font-size: var(--badge-size);
+    border: none;
+    border-radius: var(--badge-radius);
     font-weight: bold;
     line-height: 1;
   }
@@ -47,9 +48,9 @@ export const badgeStyle = css`
    */
 
   .rounded {
-    --badge-rounded-size: calc(var(--badge-text-size) * 1.75);
-    width: var(--badge-rounded-size);
-    height: var(--badge-rounded-size);
+    --rounded-size: calc(var(--badge-size) * 1.75);
+    width: var(--rounded-size);
+    height: var(--rounded-size);
     border-radius: 100% !important;
     overflow: hidden;
   }
@@ -60,27 +61,25 @@ export const badgeStyle = css`
 
   ${generateColorVaries(
     ({name, color, contrast}) => `
-    .bg-${name} {
+    .scheme-${name} {
       --badge-background: ${color};
-      --badge-text-color: ${contrast};
+      --badge-color: ${contrast};
     }
 
     .color-${name} {
-      --badge-text-color: ${color} !important;
+      --badge-color: ${color} !important;
     }
   `
   )}
 
   ${generateGradientVaries(
     ({name, gradient, contrast}) => `
-    .bg-${name} {
+    .scheme-${name} {
       --badge-background: ${gradient};
-      --badge-text-color: ${contrast};
+      --badge-color: ${contrast};
     }
   `
   )}
-
-
 
   /*
    * [size]
@@ -89,8 +88,7 @@ export const badgeStyle = css`
   ${generateSizeVaries(
     size => `
     .size-${size} {
-      --badge-text-size: var(--size-${size});
-      --badge-padding: var(--size-${size}-0_25x);
+      --badge-size: var(--size-${size});
     }
   `
   )}

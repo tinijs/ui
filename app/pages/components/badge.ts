@@ -79,14 +79,14 @@ export class AppPageComponentsBadge extends TiniComponent {
           </div>
           <div slot="code">
             <div class="group">
-              <tini-badge pilled color="primary">0</tini-badge>
-              <tini-badge pilled color="secondary">99+</tini-badge>
-              <tini-badge pilled color="tertiary">1000</tini-badge>
+              <tini-badge pilled scheme="primary">0</tini-badge>
+              <tini-badge pilled scheme="secondary">99+</tini-badge>
+              <tini-badge pilled scheme="tertiary">1000</tini-badge>
             </div>
             <div class="group" style="margin-top: 1rem;">
-              <tini-badge rounded color="success">0</tini-badge>
-              <tini-badge rounded color="warning">99+</tini-badge>
-              <tini-badge rounded color="danger">1000</tini-badge>
+              <tini-badge rounded scheme="success">0</tini-badge>
+              <tini-badge rounded scheme="warning">99+</tini-badge>
+              <tini-badge rounded scheme="danger">1000</tini-badge>
             </div>
           </div>
         </app-section>
@@ -99,7 +99,7 @@ export class AppPageComponentsBadge extends TiniComponent {
                 ${renderColorVaries(
                   baseName,
                   fullName =>
-                    html`<tini-badge color=${fullName}>99+</tini-badge>`
+                    html`<tini-badge scheme=${fullName}>99+</tini-badge>`
                 )}
               </div>
             </app-section>
@@ -113,7 +113,7 @@ export class AppPageComponentsBadge extends TiniComponent {
                 ${renderGradientVaries(
                   baseName,
                   fullName =>
-                    html`<tini-badge color=${fullName}>99+</tini-badge>`
+                    html`<tini-badge scheme=${fullName}>99+</tini-badge>`
                 )}
               </div>
             </app-section>
@@ -129,9 +129,9 @@ export class AppPageComponentsBadge extends TiniComponent {
             </p>
           </div>
           <div slot="code">
-            <tini-badge text-color="primary">99+</tini-badge>
-            <tini-badge color="warning" text-color="primary">99+</tini-badge>
-            <tini-badge color="gradient-danger" text-color="primary"
+            <tini-badge color="primary">99+</tini-badge>
+            <tini-badge scheme="warning" color="primary">99+</tini-badge>
+            <tini-badge scheme="gradient-danger" color="primary"
               >99+</tini-badge
             >
           </div>
@@ -142,7 +142,7 @@ export class AppPageComponentsBadge extends TiniComponent {
           <div slot="code">
             ${SIZES.map(
               size =>
-                html`<tini-badge size=${size} color="primary">1000</tini-badge>`
+                html`<tini-badge size=${size} scheme="primary">1000</tini-badge>`
             )}
           </div>
         </app-section>
