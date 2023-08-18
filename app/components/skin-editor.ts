@@ -292,7 +292,7 @@ export class AppSkinEditorComponent extends TiniComponent {
         <section class="naming">
           <div class="content">
             <label>
-              <span>Custom skin for soul:</span>
+              <span>Custom skin for soul?</span>
               <select @change=${this.changeSoul}>
                 ${this.SOUL_LIST.map(
                   soul => html`<option value=${soul.id}>${soul.name}</option>`
@@ -404,8 +404,12 @@ export class AppSkinEditorComponent extends TiniComponent {
       </div>
 
       <div class="foot">
-        <tini-button class="show-code" color="primary" @click=${this.showModal}>
-          <icon-code color="primary-contrast" size="sm"></icon-code>
+        <tini-button
+          class="show-code"
+          scheme="primary"
+          @click=${this.showModal}
+        >
+          <icon-code scheme="primary-contrast" size="sm"></icon-code>
           <span>Show code</span>
         </tini-button>
       </div>

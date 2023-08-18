@@ -20,8 +20,8 @@ export enum TextTypes {
   H5 = 'h5',
   H6 = 'h6',
   P = 'p',
-  Strong = 'strong',
   Em = 'em',
+  Strong = 'strong',
   Span = 'span',
 }
 
@@ -37,21 +37,24 @@ export class TiniTextComponent extends LitElement {
   @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
   @property({type: String, reflect: true, attribute: 'font-size'})
   declare fontSize?: FontSizeFactors;
-  @property({type: String, reflect: true}) declare font?: FontTypes;
+  @property({type: String, reflect: true, attribute: 'font-family'})
+  declare fontFamily?: FontTypes;
   @property({type: String, reflect: true}) declare weight?: FontWeights;
   @property({type: String, reflect: true}) declare transform?: TextTransforms;
 
   private tag!: StaticValue;
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
+    // root tag
     this.tag = literal`${unsafeStatic(this.type || TextTypes.Span)}`;
+    // root classes parts
     this.rootClassesParts = {
       root: true,
       italic: !!this.italic,
       underline: !!this.underline,
       [`color-${this.color}`]: !!this.color,
       [`font-size-${this.fontSize}`]: !!this.fontSize,
-      [`font-${this.font}`]: !!this.font,
+      [`font-family-${this.fontFamily}`]: !!this.fontFamily,
       [`weight-${this.weight}`]: !!this.weight,
       [`transform-${this.transform}`]: !!this.transform,
     };

@@ -130,8 +130,8 @@ export class AppPageComponentsText extends TiniComponent {
           </div>
         </app-section>
 
-        <app-section class="sizes">
-          <h2 slot="title">Sizes</h2>
+        <app-section class="font-sizes">
+          <h2 slot="title">Font sizes</h2>
           <div slot="code">
             ${SIZE_FACTORS.map(
               size =>
@@ -175,8 +175,15 @@ export class AppPageComponentsText extends TiniComponent {
         <app-section class="italic-underline">
           <h2 slot="title">Italic and Underline</h2>
           <div slot="code">
-            <tini-text italic>Text with italic style</tini-text>
-            <tini-text underline>Text with underline decoration</tini-text>
+            <tini-text italic>Text with italic style</tini-text><br />
+            <tini-text italic color="gradient-primary" font-size="2x"
+              >Gradient text with italic style</tini-text
+            ><br />
+            <tini-text underline>Text with underline decoration</tini-text
+            ><br />
+            <tini-text underline color="gradient-primary" font-size="2x"
+              >Gradient text with underline decoration</tini-text
+            >
           </div>
         </app-section>
       </app-component-page>
@@ -194,7 +201,9 @@ export class AppPageComponentsText extends TiniComponent {
       }
     }
 
-    .sizes [slot='code'] {
+    .types [slot='code'],
+    .font-sizes [slot='code'],
+    .italic-underline [slot='code'] {
       display: block;
     }
   `;

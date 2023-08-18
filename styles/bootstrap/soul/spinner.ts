@@ -35,7 +35,7 @@ export const spinnerStyle = css`
   }
 
   /*
-   * [color]
+   * [scheme]
    */
 
   ${generateColorVaries(

@@ -47,7 +47,7 @@ export const boxStyle = css`
   )}
 
   /*
-   * [border (size)] & [borderRadius]
+   * [border/width] & [borderRadius]
    */
 
   ${generateBasicFactorVaries(
@@ -64,7 +64,7 @@ export const boxStyle = css`
   )}
 
   /*
-   * [border (style)]
+   * [border/style]
    */
 
   ${generateBorderStyleVaries(
@@ -78,7 +78,7 @@ export const boxStyle = css`
   )}
 
   /*
-   * [scheme] & [color] & [border (color)]
+   * [scheme] & [color] & [border/color]
    */
 
   ${generateColorVaries(

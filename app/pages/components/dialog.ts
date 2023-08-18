@@ -177,8 +177,8 @@ export class AppPageComponentsDialog extends TiniComponent {
               ${ref(this.customButtonsDialogRef)}
               title-text="Delete this item?"
               type="confirm"
-              .no-button=${{text: 'Cancel', scheme: 'secondary'}}
-              .yes-button=${{text: 'Delete?', scheme: 'danger'}}
+              .noButton=${{text: 'Cancel', scheme: 'secondary'}}
+              .yesButton=${{text: 'Delete?', scheme: 'danger'}}
               @no=${() => this.customButtonsDialogRef.value?.hide()}
               @yes=${() => this.customButtonsDialogRef.value?.hide()}
             >
@@ -207,7 +207,7 @@ export class AppPageComponentsDialog extends TiniComponent {
               <p>Provide your custom head and foot.</p>
               <div slot="foot" style="width: 100%; text-align: center;">
                 <tini-button
-                  color="success"
+                  scheme="success"
                   @click=${() => this.customHeadFootDialogRef.value?.hide()}
                   >Close</tini-button
                 >

@@ -18,8 +18,6 @@ import {
   InputEventDetail,
 } from '@tinijs/ui';
 
-import {renderColorVaries} from '../../helpers/varies';
-
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -113,23 +111,18 @@ export class AppPageComponentsInput extends TiniComponent {
           </div>
         </app-section>
 
-        ${BASE_COLORS.map(
-          baseName => html`
-            <app-section class="colors">
-              <h2 slot="title">Color ${baseName}</h2>
-              <div slot="code">
-                ${renderColorVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-input
-                      scheme="${fullName}"
-                      placeholder="Focus on me to see"
-                    ></tini-input>`
-                )}
-              </div>
-            </app-section>
-          `
-        )}
+        <app-section class="colors">
+          <h2 slot="title">Colors</h2>
+          <div slot="code">
+            ${BASE_COLORS.map(
+              baseName =>
+                html`<tini-input
+                  scheme="${baseName}"
+                  placeholder="Focus on me to see"
+                ></tini-input>`
+            )}
+          </div>
+        </app-section>
 
         <app-section class="sizes">
           <h2 slot="title">Sizes</h2>
@@ -145,6 +138,12 @@ export class AppPageComponentsInput extends TiniComponent {
   }
 
   static styles = css`
+    app-section [slot='code'] {
+      tini-box {
+        width: 250px;
+      }
+    }
+
     .colors [slot='code'],
     .sizes [slot='code'] {
       display: flex;

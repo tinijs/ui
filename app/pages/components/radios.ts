@@ -19,8 +19,6 @@ import {
   RadiosEventDetail,
 } from '@tinijs/ui';
 
-import {renderColorVaries} from '../../helpers/varies';
-
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -171,40 +169,32 @@ export class AppPageComponentsRadios extends TiniComponent {
           </div>
         </app-section>
 
-        ${BASE_COLORS.map(
-          baseName => html`
-            <app-section
-              class="colors"
-              .preprocessCode=${this.PREPROCESS_CODE_COLORS}
-            >
-              <h2 slot="title">Color ${baseName}</h2>
-              <div slot="content">
-                <p>
-                  Add <code>{color: '${baseName}[-...]'}</code> to the items.
-                </p>
-              </div>
-              <div slot="code">
-                ${renderColorVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-radios
-                      name=${`${fullName}`}
-                      wrap
-                      .items=${[
-                        {
-                          value: '',
-                          label: `Checkbox color ${fullName}`,
-                          checked: true,
-                          scheme: fullName,
-                        },
-                      ]}
-                    ></tini-radios>`,
-                  true
-                )}
-              </div>
-            </app-section>
-          `
-        )}
+        <app-section
+          class="colors"
+          .preprocessCode=${this.PREPROCESS_CODE_COLORS}
+        >
+          <h2 slot="title">Colors</h2>
+          <div slot="content">
+            <p>Add <code>{color: '...'}</code> to the items.</p>
+          </div>
+          <div slot="code">
+            ${BASE_COLORS.map(
+              baseName =>
+                html`<tini-radios
+                  name=${`${baseName}`}
+                  wrap
+                  .items=${[
+                    {
+                      value: '',
+                      label: `Checkbox color ${baseName}`,
+                      checked: true,
+                      scheme: baseName,
+                    },
+                  ]}
+                ></tini-radios>`
+            )}
+          </div>
+        </app-section>
 
         <app-section
           class="sizes"

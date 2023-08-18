@@ -20,8 +20,6 @@ import {
   SelectEventDetail,
 } from '@tinijs/ui';
 
-import {renderColorVaries} from '../../helpers/varies';
-
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -143,23 +141,18 @@ export class AppPageComponentsSelect extends TiniComponent {
           </div>
         </app-section>
 
-        ${BASE_COLORS.map(
-          baseName => html`
-            <app-section class="colors">
-              <h2 slot="title">Color ${baseName}</h2>
-              <div slot="code">
-                ${renderColorVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-select
-                      scheme="${fullName}"
-                      .items=${this.OPTIONS}
-                    ></tini-select>`
-                )}
-              </div>
-            </app-section>
-          `
-        )}
+        <app-section class="colors">
+          <h2 slot="title">Colors</h2>
+          <div slot="code">
+            ${BASE_COLORS.map(
+              baseName =>
+                html`<tini-select
+                  scheme="${baseName}"
+                  .items=${this.OPTIONS}
+                ></tini-select>`
+            )}
+          </div>
+        </app-section>
 
         <app-section class="sizes">
           <h2 slot="title">Sizes</h2>

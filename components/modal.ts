@@ -21,8 +21,7 @@ export class TiniModalComponent extends LitElement {
   declare titleText?: string;
   @property({type: Boolean, reflect: true, attribute: 'backdrop-closed'})
   declare backdropClosed?: boolean;
-  @property({type: Object, attribute: 'yes-button'})
-  declare yesButton?: ModalButton;
+  @property({type: Object}) declare yesButton?: ModalButton;
 
   private dialogRef: Ref<HTMLDialogElement> = createRef();
   private context?: unknown;

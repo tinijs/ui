@@ -2,7 +2,7 @@ import {LitElement, html, nothing} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
-import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
+import {partMap, PartInfo, ColorsAndGradients} from '@tinijs/core';
 
 export enum DialogTypes {
   Alert = 'alert',
@@ -34,10 +34,8 @@ export class TiniDialogComponent extends LitElement {
   declare titleText?: string;
   @property({type: Boolean, reflect: true, attribute: 'backdrop-closed'})
   declare backdropClosed?: boolean;
-  @property({type: Object, attribute: 'no-button'})
-  declare noButton?: DialogButton;
-  @property({type: Object, attribute: 'yes-button'})
-  declare yesButton?: DialogButton;
+  @property({type: Object}) declare noButton?: DialogButton;
+  @property({type: Object}) declare yesButton?: DialogButton;
 
   private dialogRef: Ref<HTMLDialogElement> = createRef();
   private context?: unknown;

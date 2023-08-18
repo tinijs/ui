@@ -18,8 +18,6 @@ import {
   TextareaEventDetail,
 } from '@tinijs/ui';
 
-import {renderColorVaries} from '../../helpers/varies';
-
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -101,23 +99,18 @@ export class AppPageComponentsTextarea extends TiniComponent {
           </div>
         </app-section>
 
-        ${BASE_COLORS.map(
-          baseName => html`
-            <app-section class="colors">
-              <h2 slot="title">Color ${baseName}</h2>
-              <div slot="code">
-                ${renderColorVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-textarea
-                      scheme=${fullName}
-                      placeholder="Focus me to see"
-                    ></tini-textarea>`
-                )}
-              </div>
-            </app-section>
-          `
-        )}
+        <app-section class="colors">
+          <h2 slot="title">Colors</h2>
+          <div slot="code">
+            ${BASE_COLORS.map(
+              baseName =>
+                html`<tini-textarea
+                  scheme=${baseName}
+                  placeholder="Focus me to see"
+                ></tini-textarea>`
+            )}
+          </div>
+        </app-section>
 
         <app-section class="sizes">
           <h2 slot="title">Sizes</h2>

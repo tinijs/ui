@@ -125,8 +125,6 @@ export const switchStyle = css`
   `
   )}
 
-
-
   /*
    * [size]
    */

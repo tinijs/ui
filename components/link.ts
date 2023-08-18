@@ -34,7 +34,8 @@ export class TiniLinkComponent extends LitElement {
   @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
   @property({type: String, reflect: true, attribute: 'font-size'})
   declare fontSize?: FontSizeFactors;
-  @property({type: String, reflect: true}) declare font?: FontTypes;
+  @property({type: String, reflect: true, attribute: 'font-family'})
+  declare fontFamily?: FontTypes;
   @property({type: String, reflect: true}) declare weight?: FontWeights;
   @property({type: String, reflect: true}) declare transform?: TextTransforms;
 
@@ -46,7 +47,7 @@ export class TiniLinkComponent extends LitElement {
       underline: !!this.underline,
       [`color-${this.color}`]: !!this.color,
       [`font-size-${this.fontSize}`]: !!this.fontSize,
-      [`font-${this.font}`]: !!this.font,
+      [`font-family-${this.fontFamily}`]: !!this.fontFamily,
       [`weight-${this.weight}`]: !!this.weight,
       [`transform-${this.transform}`]: !!this.transform,
     };

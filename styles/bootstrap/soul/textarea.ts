@@ -5,7 +5,7 @@ export const textareaStyle = css`
   :host {
     --textarea-color: var(--color-primary);
     --textarea-size: var(--size-md);
-    --textarea-border: var(--size-border) solid var(--color-background-shade);
+    --textarea-border: var(--size-border) solid var(--color-medium);
     --textarea-radius: var(--size-radius);
   }
 
@@ -23,12 +23,13 @@ export const textareaStyle = css`
   textarea {
     width: 100%;
     background: var(--color-background-tint);
+    color: var(--color-foreground);
     border: var(--textarea-border);
     border-radius: var(--textarea-radius);
     padding: calc(var(--textarea-size) / 2) calc(var(--textarea-size) / 1.5);
-    transition: all 0.15s ease-in-out;
     font-family: var(--font-body);
     font-size: var(--textarea-size);
+    transition: all 0.15s ease-in-out;
   }
 
   textarea:focus {

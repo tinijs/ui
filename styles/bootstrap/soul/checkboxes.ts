@@ -46,6 +46,7 @@ export const checkboxesStyle = css`
     background-size: contain;
     border: var(--size-border-0_5x) solid var(--color-medium);
     border-radius: var(--size-radius);
+    transition: all 0.15s ease-in-out;
   }
 
   input:focus {
@@ -89,7 +90,7 @@ export const checkboxesStyle = css`
   }
 
   /*
-   * [color]
+   * [scheme]
    */
 
   ${generateColorVaries(

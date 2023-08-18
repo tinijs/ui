@@ -87,11 +87,11 @@ export class AppHeaderComponent extends TiniComponent {
             )}
           </select>
           <button class="skin-editor-toggler" @click=${this.toggleSkinEditor}>
-            <icon-palette color="primary-contrast" size="sm"></icon-palette>
+            <icon-palette scheme="primary-contrast" size="sm"></icon-palette>
             <span>Skin Editor</span>
           </button>
           <a href=${this.REPO_URL} target="_blank">
-            <icon-github color="primary-contrast" size="sm"></icon-github>
+            <icon-github scheme="primary-contrast" size="sm"></icon-github>
           </a>
         </div>
       </header>

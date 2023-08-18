@@ -5,8 +5,11 @@ export const selectStyle = css`
   :host {
     --select-color: var(--color-primary);
     --select-size: var(--size-md);
-    --select-border: var(--size-border) solid var(--color-background-shade);
+    --select-border: var(--size-border) solid var(--color-medium);
     --select-radius: var(--size-radius);
+  }
+
+  :host {
     display: inline;
   }
 
@@ -28,11 +31,12 @@ export const selectStyle = css`
 
   select {
     background: var(--color-background-tint);
+    color: var(--color-foreground);
     border: var(--select-border);
     border-radius: var(--select-radius);
     padding: calc(var(--select-size) / 2) calc(var(--select-size) / 1.5);
-    transition: all 0.15s ease-in-out;
     font-size: var(--select-size);
+    transition: all 0.15s ease-in-out;
   }
 
   select:focus {

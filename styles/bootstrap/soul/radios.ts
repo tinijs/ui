@@ -47,6 +47,7 @@ export const radiosStyle = css`
     background-size: contain;
     border: var(--size-border-0_5x) solid var(--color-medium);
     border-radius: 100%;
+    transition: all 0.15s ease-in-out;
   }
 
   input:focus {
@@ -86,7 +87,7 @@ export const radiosStyle = css`
   }
 
   /*
-   * [color]
+   * [scheme]
    */
 
   ${generateColorVaries(

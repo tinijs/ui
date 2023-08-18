@@ -106,6 +106,10 @@ export class AppPageGuidesCustomization extends TiniComponent {
           </p>
 
           <p><strong>Using variables</strong></p>
+          <p>
+            If you app has multiple souls, please make sure to add customization
+            for all of them.
+          </p>
           <app-code
             .code=${'<tini-button style="--button-background: aqua;"></tini-button>'}
           ></app-code>

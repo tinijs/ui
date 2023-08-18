@@ -40,7 +40,7 @@ export const messageStyle = css`
   )}
 
   /*
-   * [color]
+   * [scheme] & [color]
    */
 
   ${generateColorVaries(

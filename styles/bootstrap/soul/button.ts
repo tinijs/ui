@@ -140,8 +140,6 @@ export const buttonStyle = css`
   `
   )}
 
-
-
   /*
    * [fontSize]
    */

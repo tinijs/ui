@@ -51,7 +51,7 @@ export const paginationStyle = css`
     background: color-mix(
       in oklab,
       var(--color-background-shade),
-      transparent 75%
+      transparent 70%
     );
   }
 
@@ -78,12 +78,16 @@ export const paginationStyle = css`
   .next.disabled a,
   .next.disabled a:hover {
     cursor: default;
-    background: var(--color-background-shade);
+    background: color-mix(
+      in oklab,
+      var(--color-background-shade),
+      transparent 50%
+    );
     color: var(--color-medium);
   }
 
   /*
-   * [color]
+   * [scheme]
    */
 
   ${generateColorVaries(

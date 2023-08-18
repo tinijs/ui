@@ -41,7 +41,7 @@ export const labelStyle = css`
   }
 
   /*
-   * [color]
+   * [scheme] & [color]
    */
 
   ${generateColorVaries(

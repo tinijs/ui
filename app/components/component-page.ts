@@ -239,7 +239,7 @@ useComponents([
           <h1 class="title">
             <span>${this.titleText || 'Untitled page'}</span>
             <a class="github-link" href=${this.articleLink} target="_blank">
-              <icon-github size="sm"></icon-github>
+              <icon-github scheme="foreground" size="sm"></icon-github>
             </a>
           </h1>
           <div class="switch-mode">

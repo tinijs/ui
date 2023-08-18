@@ -11,6 +11,9 @@ export const iconStyle = css`
     --icon-height: var(--size-md-2x);
     --icon-color: none;
     --icon-image: url();
+  }
+
+  :host {
     display: inline;
   }
 
@@ -43,7 +46,7 @@ export const iconStyle = css`
   }
 
   /*
-   * [color]
+   * [scheme]
    */
 
   ${generateColorVaries(
@@ -61,8 +64,6 @@ export const iconStyle = css`
     }
   `
   )}
-
-
 
   /*
    * [size]

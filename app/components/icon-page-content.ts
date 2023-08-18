@@ -117,7 +117,12 @@ export class AppIconPageContentComponent extends TiniComponent {
         <h2 slot="title">Sizes</h2>
         <div slot="code">
           ${SIZES.map(
-            size => html`<tini-icon size=${size} .src=${this.src}></tini-icon>`
+            size =>
+              html`<tini-icon
+                scheme="primary"
+                size=${size}
+                .src=${this.src}
+              ></tini-icon>`
           )}
         </div>
       </app-section>

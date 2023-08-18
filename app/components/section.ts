@@ -63,14 +63,16 @@ export class AppSectionComponent extends TiniComponent {
       const [trimSpaces] = content.split('<');
       content = content
         .split('\n')
-        .map(line =>
-          line
-            .replace(trimSpaces, '')
-            .replace(/<!--\?lit\$([\s\S]*?)\$-->/g, '')
-            .replace(/(<!---->){2}/g, '\n')
-            .replace(/<!---->/g, '')
-            .replace(/<!-- \/ -->/g, '')
-            .replace(/<!--/g, '\n<!--')
+        .map(
+          line =>
+            line
+              .replace(trimSpaces, '')
+              .replace(/<!--\?lit\$([\s\S]*?)\$-->/g, '') // lit directive
+              .replace(/(<!---->){2}/g, '\n') // lit directive
+              .replace(/<!---->/g, '') // lit directive
+              .replace(/<!-- \/ -->/g, '') // section split
+              .replace(/<!--/g, '\n<!--') // comment
+              .replace(/=""/g, '') // boolean attribute
         )
         .join('\n');
       this.originalCode = !this.preprocessCode
@@ -95,7 +97,7 @@ export class AppSectionComponent extends TiniComponent {
                   mainStore.commit('referPlatform', detail.name)}
               >
                 <div slot="title">
-                  <icon-code size="sm"></icon-code>
+                  <icon-code scheme="foreground" size="sm"></icon-code>
                   <span>Code</span>
                 </div>
                 ${repeat(

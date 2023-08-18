@@ -5,8 +5,11 @@ export const inputStyle = css`
   :host {
     --input-color: var(--color-primary);
     --input-size: var(--size-md);
-    --input-border: var(--size-border) solid var(--color-background-shade);
+    --input-border: var(--size-border) solid var(--color-medium);
     --input-radius: var(--size-radius);
+  }
+
+  :host {
     display: inline;
   }
 
@@ -28,11 +31,12 @@ export const inputStyle = css`
 
   input {
     background: var(--color-background-tint);
+    color: var(--color-foreground);
     border: var(--input-border);
     border-radius: var(--input-radius);
     padding: calc(var(--input-size) / 2) calc(var(--input-size) / 1.5);
-    transition: all 0.15s ease-in-out;
     font-size: var(--input-size);
+    transition: all 0.15s ease-in-out;
   }
 
   input:focus {

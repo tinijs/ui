@@ -6,8 +6,6 @@ export const xxxStyle = css`
     
   }
 
-
-
   /*
    * Root
    */
@@ -16,21 +14,17 @@ export const xxxStyle = css`
     
   }
 
-
-
   /*
-   * [color]
+   * [scheme]
    */
 
   ${generateColorVaries(
     ({name, color}) => `
-    .color-${name} {
+    .scheme-${name} {
       
     }
   `
   )}
-
-
 
   /*
    * [size]

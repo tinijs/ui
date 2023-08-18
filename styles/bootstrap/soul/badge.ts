@@ -56,7 +56,7 @@ export const badgeStyle = css`
   }
 
   /*
-   * [color]
+   * [scheme]
    */
 
   ${generateColorVaries(
