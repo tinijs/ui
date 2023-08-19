@@ -14,13 +14,13 @@ export const TINI_PAGINATION = 'tini-pagination';
 export class TiniPaginationComponent extends LitElement {
   static readonly defaultTagName = TINI_PAGINATION;
 
-  @property({type: Number, reflect: true, attribute: 'total-page'})
-  declare totalPage: number;
-  @property({type: Number, reflect: true, attribute: 'current-page'})
-  declare currentPage: number;
-  @property({type: Object}) declare hrefBuilder?: (pageNum: number) => string;
+  /* eslint-disable prettier/prettier */
+  @property({type: Number, reflect: true}) declare totalPage: number;
+  @property({type: Number, reflect: true}) declare currentPage: number;
   @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;
   @property({type: String, reflect: true}) declare size?: Sizes;
+  @property({type: Object}) declare hrefBuilder?: (pageNum: number) => string;
+  /* eslint-enable prettier/prettier */
 
   private validateProperties() {
     // default values

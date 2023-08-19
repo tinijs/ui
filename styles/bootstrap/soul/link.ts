@@ -12,7 +12,7 @@ export const linkStyle = css`
   :host {
     --link-color: var(--color-primary);
     --link-font-size: var(--size-text);
-    --link-font-family: var(--font-body);
+    --link-font: var(--font-body);
     --link-weight: normal;
     --link-transform: none;
     --link-disabled-color: var(--color-medium);
@@ -30,7 +30,7 @@ export const linkStyle = css`
   a {
     position: relative;
     text-decoration: none;
-    font-family: var(--link-font-family);
+    font-family: var(--link-font);
     color: var(--link-color);
     font-size: var(--link-font-size);
     font-weight: var(--link-weight);
@@ -104,13 +104,13 @@ export const linkStyle = css`
   )}
 
   /*
-   * [fontFamily]
+   * [font]
    */
 
   ${generateFontTypeVaries(
     fontType => `
-    .font-family-${fontType} {
-      --link-font-family: var(--font-${fontType}) !important;
+    .font-${fontType} {
+      --link-font: var(--font-${fontType}) !important;
     }
   `
   )}

@@ -9,10 +9,11 @@ export const TINI_MESSAGE = 'tini-message';
 export class TiniMessageComponent extends LitElement {
   static readonly defaultTagName = TINI_MESSAGE;
 
+  /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare color?: Colors;
-  @property({type: String, reflect: true, attribute: 'font-size'})
-  declare fontSize?: FontSizeFactors;
+  @property({type: String, reflect: true}) declare fontSize?: FontSizeFactors;
+  /* eslint-enable prettier/prettier */
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

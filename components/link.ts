@@ -13,6 +13,8 @@ import {
   TextTransforms,
 } from '@tinijs/core';
 
+export type LinkTargets = '_blank' | '_self' | '_parent' | '_top';
+
 export const TINI_LINK = 'tini-link';
 
 /* UseBases(common) */
@@ -21,23 +23,19 @@ export class TiniLinkComponent extends LitElement {
 
   private anchorRef: Ref<HTMLAnchorElement> = createRef();
 
+  /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare href?: string;
   @property({type: String, reflect: true}) declare rel?: string;
-  @property({type: String, reflect: true}) declare target?:
-    | '_blank'
-    | '_self'
-    | '_parent'
-    | '_top';
+  @property({type: String, reflect: true}) declare target?: LinkTargets;
   @property({type: String, reflect: true}) declare active?: string;
   @property({type: Boolean, reflect: true}) declare italic?: boolean;
   @property({type: Boolean, reflect: true}) declare underline?: boolean;
   @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
-  @property({type: String, reflect: true, attribute: 'font-size'})
-  declare fontSize?: FontSizeFactors;
-  @property({type: String, reflect: true, attribute: 'font-family'})
-  declare fontFamily?: FontTypes;
+  @property({type: String, reflect: true}) declare fontSize?: FontSizeFactors;
+  @property({type: String, reflect: true}) declare font?: FontTypes;
   @property({type: String, reflect: true}) declare weight?: FontWeights;
   @property({type: String, reflect: true}) declare transform?: TextTransforms;
+  /* eslint-enable prettier/prettier */
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
@@ -47,7 +45,7 @@ export class TiniLinkComponent extends LitElement {
       underline: !!this.underline,
       [`color-${this.color}`]: !!this.color,
       [`font-size-${this.fontSize}`]: !!this.fontSize,
-      [`font-family-${this.fontFamily}`]: !!this.fontFamily,
+      [`font-${this.font}`]: !!this.font,
       [`weight-${this.weight}`]: !!this.weight,
       [`transform-${this.transform}`]: !!this.transform,
     };

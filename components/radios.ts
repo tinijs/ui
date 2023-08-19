@@ -13,9 +13,11 @@ export const TINI_RADIOS = 'tini-radios';
 export class TiniRadiosComponent extends LitElement {
   static readonly defaultTagName = TINI_RADIOS;
 
+  /* eslint-disable prettier/prettier */
   @property({type: Array}) declare items?: RadiosItem[];
   @property({type: String, reflect: true}) declare name: string;
   @property({type: Boolean, reflect: true}) declare wrap?: boolean;
+  /* eslint-enable prettier/prettier */
 
   private validateProperties() {
     if (!this.name) throw new Error('Property "name" is required.');

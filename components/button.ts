@@ -17,13 +17,14 @@ export const TINI_BUTTON = 'tini-button';
 export class TiniButtonComponent extends LitElement {
   static readonly defaultTagName = TINI_BUTTON;
 
+  /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
   @property({type: String, reflect: true}) declare justify?: JustifyContents;
   @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;
   @property({type: String, reflect: true}) declare size?: Sizes;
-  @property({type: String, reflect: true, attribute: 'font-size'})
-  declare fontSize?: FontSizeFactors;
+  @property({type: String, reflect: true}) declare fontSize?: FontSizeFactors;
   @property({type: String, reflect: true}) declare color?: Colors;
+  /* eslint-enable prettier/prettier */
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

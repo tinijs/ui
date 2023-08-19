@@ -119,7 +119,7 @@ export class AppPageComponentsLink extends TiniComponent {
           <div slot="code">
             ${SIZE_FACTORS.map(
               size =>
-                html`<tini-link href="#" font-size=${size}
+                html`<tini-link href="#" fontSize=${size}
                   >${size.replace('_', '.')}</tini-link
                 >`
             )}
@@ -157,17 +157,13 @@ export class AppPageComponentsLink extends TiniComponent {
           <h2 slot="title">Italic and Underline</h2>
           <div slot="code">
             <tini-link href="#" italic>Link with italic style</tini-link><br />
-            <tini-link href="#" italic color="gradient-primary" font-size="2x"
+            <tini-link href="#" italic color="gradient-primary" fontSize="2x"
               >Gradient link with italic style</tini-link
             ><br />
             <tini-link href="#" underline
               >Link with underline decoration</tini-link
             ><br />
-            <tini-link
-              href="#"
-              underline
-              color="gradient-primary"
-              font-size="2x"
+            <tini-link href="#" underline color="gradient-primary" fontSize="2x"
               >Gradient link with underline decoration</tini-link
             >
           </div>

@@ -9,8 +9,10 @@ export const TINI_SPINNER = 'tini-spinner';
 export class TiniSpinnerComponent extends LitElement {
   static readonly defaultTagName = TINI_SPINNER;
 
+  /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare size?: Sizes;
+  /* eslint-enable prettier/prettier */
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

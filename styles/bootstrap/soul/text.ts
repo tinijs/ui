@@ -12,7 +12,7 @@ export const textStyle = css`
   :host {
     --text-color: var(--color-foreground);
     --text-font-size: var(--size-text);
-    --text-font-family: var(--font-body);
+    --text-font: var(--font-body);
     --text-weight: normal;
     --text-transform: none;
   }
@@ -32,7 +32,7 @@ export const textStyle = css`
   }
 
   span {
-    font-family: var(--text-font-family);
+    font-family: var(--text-font);
     font-size: var(--text-font-size);
     font-weight: var(--text-weight);
   }
@@ -141,14 +141,14 @@ export const textStyle = css`
   )}
 
   /*
-   * [fontFamily]
+   * [font]
    */
 
   ${generateFontTypeVaries(
     fontType => `
-    .font-family-${fontType} {
-      --text-font-family: var(--font-${fontType}) !important;
-      font-family: var(--text-font-family);
+    .font-${fontType} {
+      --text-font: var(--font-${fontType}) !important;
+      font-family: var(--text-font);
     }
   `
   )}

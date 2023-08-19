@@ -28,6 +28,7 @@ export const TINI_SELECT = 'tini-select';
 export class TiniSelectComponent extends LitElement {
   static readonly defaultTagName = TINI_SELECT;
 
+  /* eslint-disable prettier/prettier */
   @property({type: String}) declare items?: SelectItem[];
   @property({type: String, reflect: true}) declare label?: string;
   @property({type: String, reflect: true}) declare name?: string;
@@ -35,6 +36,7 @@ export class TiniSelectComponent extends LitElement {
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
   @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare size?: Sizes;
+  /* eslint-enable prettier/prettier */
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

@@ -10,9 +10,11 @@ export const TINI_ICON = 'tini-icon';
 export class TiniIconComponent extends LitElement {
   static readonly defaultTagName = TINI_ICON;
 
+  /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare src?: string;
   @property({type: String, reflect: true}) declare size?: Sizes;
   @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;
+  /* eslint-enable prettier/prettier */
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

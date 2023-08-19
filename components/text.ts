@@ -31,16 +31,16 @@ export const TINI_TEXT = 'tini-text';
 export class TiniTextComponent extends LitElement {
   static readonly defaultTagName = TINI_TEXT;
 
+  /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare type?: TextTypes;
   @property({type: Boolean, reflect: true}) declare italic?: boolean;
   @property({type: Boolean, reflect: true}) declare underline?: boolean;
   @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
-  @property({type: String, reflect: true, attribute: 'font-size'})
-  declare fontSize?: FontSizeFactors;
-  @property({type: String, reflect: true, attribute: 'font-family'})
-  declare fontFamily?: FontTypes;
+  @property({type: String, reflect: true}) declare fontSize?: FontSizeFactors;
+  @property({type: String, reflect: true}) declare font?: FontTypes;
   @property({type: String, reflect: true}) declare weight?: FontWeights;
   @property({type: String, reflect: true}) declare transform?: TextTransforms;
+  /* eslint-enable prettier/prettier */
 
   private tag!: StaticValue;
   private rootClassesParts: ClassInfo | PartInfo = {};
@@ -54,7 +54,7 @@ export class TiniTextComponent extends LitElement {
       underline: !!this.underline,
       [`color-${this.color}`]: !!this.color,
       [`font-size-${this.fontSize}`]: !!this.fontSize,
-      [`font-family-${this.fontFamily}`]: !!this.fontFamily,
+      [`font-${this.font}`]: !!this.font,
       [`weight-${this.weight}`]: !!this.weight,
       [`transform-${this.transform}`]: !!this.transform,
     };

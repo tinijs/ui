@@ -170,13 +170,13 @@ export class AppPageComponentsButton extends TiniComponent {
             <p>Font size from 0.1x to 10x.</p>
           </div>
           <div slot="code">
-            <tini-button scheme="primary" font-size="0_5x"
+            <tini-button scheme="primary" fontSize="0_5x"
               >Font size 0.5x</tini-button
             >
-            <tini-button scheme="primary" font-size="1x"
+            <tini-button scheme="primary" fontSize="1x"
               >Font size 1x</tini-button
             >
-            <tini-button scheme="primary" font-size="3x"
+            <tini-button scheme="primary" fontSize="3x"
               >Font size 3x</tini-button
             >
           </div>

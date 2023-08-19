@@ -135,7 +135,7 @@ export class AppPageComponentsText extends TiniComponent {
           <div slot="code">
             ${SIZE_FACTORS.map(
               size =>
-                html`<tini-text font-size=${size}
+                html`<tini-text fontSize=${size}
                   >${size.replace('_', '.')}</tini-text
                 >`
             )}
@@ -176,12 +176,12 @@ export class AppPageComponentsText extends TiniComponent {
           <h2 slot="title">Italic and Underline</h2>
           <div slot="code">
             <tini-text italic>Text with italic style</tini-text><br />
-            <tini-text italic color="gradient-primary" font-size="2x"
+            <tini-text italic color="gradient-primary" fontSize="2x"
               >Gradient text with italic style</tini-text
             ><br />
             <tini-text underline>Text with underline decoration</tini-text
             ><br />
-            <tini-text underline color="gradient-primary" font-size="2x"
+            <tini-text underline color="gradient-primary" fontSize="2x"
               >Gradient text with underline decoration</tini-text
             >
           </div>

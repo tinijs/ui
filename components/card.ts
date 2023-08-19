@@ -9,12 +9,14 @@ export const TINI_CARD = 'tini-card';
 export class TiniCardComponent extends LitElement {
   static readonly defaultTagName = TINI_CARD;
 
+  /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare fluid?: boolean;
+  /* eslint-enable prettier/prettier */
 
-  @queryAssignedElements({slot: 'head'})
-  private readonly headSlotElems?: HTMLElement[];
-  @queryAssignedElements({slot: 'foot'})
-  private readonly footSlotElems?: HTMLElement[];
+  /* eslint-disable prettier/prettier */
+  @queryAssignedElements({slot: 'head'}) private readonly headSlotElems?: HTMLElement[];
+  @queryAssignedElements({slot: 'foot'}) private readonly footSlotElems?: HTMLElement[];
+  /* eslint-enable prettier/prettier */
   @state() private headSlotPopulated = false;
   @state() private footSlotPopulated = false;
 

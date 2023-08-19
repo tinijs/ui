@@ -70,7 +70,7 @@ export class AppPageComponentsModal extends TiniComponent {
               >
               <tini-modal
                 ${ref(this.default1ModalRef)}
-                title-text="Modal title"
+                titleText="Modal title"
                 @no=${() => this.default1ModalRef.value?.hide()}
                 @yes=${() => this.default1ModalRef.value?.hide()}
               >
@@ -86,8 +86,8 @@ export class AppPageComponentsModal extends TiniComponent {
               >
               <tini-modal
                 ${ref(this.default2ModalRef)}
-                backdrop-closed
-                title-text="Modal title"
+                backdropClosed
+                titleText="Modal title"
                 @no=${() => this.default2ModalRef.value?.hide()}
                 @yes=${() => this.default2ModalRef.value?.hide()}
               >

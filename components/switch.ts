@@ -10,6 +10,7 @@ export const TINI_SWITCH = 'tini-switch';
 export class TiniSwitchComponent extends LitElement {
   static readonly defaultTagName = TINI_SWITCH;
 
+  /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;
   @property({type: String, reflect: true}) declare name?: string;
   @property({type: String, reflect: true}) declare value?: string;
@@ -17,6 +18,7 @@ export class TiniSwitchComponent extends LitElement {
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
   @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;
   @property({type: String, reflect: true}) declare size?: Sizes;
+  /* eslint-enable prettier/prettier */
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

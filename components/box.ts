@@ -18,16 +18,15 @@ export const TINI_BOX = 'tini-box';
 export class TiniBoxComponent extends LitElement {
   static readonly defaultTagName = TINI_BOX;
 
-  @property({type: String, reflect: true})
-  declare scheme?: ColorsAndGradients;
-  @property({type: String, reflect: true, attribute: 'font-size'})
-  declare fontSize?: SizeFactors;
+  /* eslint-disable prettier/prettier */
+  @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;
+  @property({type: String, reflect: true}) declare fontSize?: SizeFactors;
   @property({type: String, reflect: true}) declare color?: Colors;
   @property({type: String, reflect: true}) declare bordering?: string;
-  @property({type: String, reflect: true, attribute: 'border-radius'})
-  declare borderRadius?: SizeBasicFactors;
+  @property({type: String, reflect: true}) declare borderRadius?: SizeBasicFactors;
   @property({type: String, reflect: true}) declare padding?: string;
   @property({type: String, reflect: true}) declare margin?: string;
+  /* eslint-enable prettier/prettier */
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

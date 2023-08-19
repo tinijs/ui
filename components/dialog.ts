@@ -29,13 +29,13 @@ export class TiniDialogComponent extends LitElement {
 
   private readonly BACKDROP_CLOSED = 'backdrop-closed';
 
+  /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare type: DialogTypes;
-  @property({type: String, reflect: true, attribute: 'title-text'})
-  declare titleText?: string;
-  @property({type: Boolean, reflect: true, attribute: 'backdrop-closed'})
-  declare backdropClosed?: boolean;
+  @property({type: String, reflect: true}) declare titleText?: string;
+  @property({type: Boolean, reflect: true}) declare backdropClosed?: boolean;
   @property({type: Object}) declare noButton?: DialogButton;
   @property({type: Object}) declare yesButton?: DialogButton;
+  /* eslint-enable prettier/prettier */
 
   private dialogRef: Ref<HTMLDialogElement> = createRef();
   private context?: unknown;

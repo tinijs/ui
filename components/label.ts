@@ -9,10 +9,12 @@ export const TINI_LABEL = 'tini-label';
 export class TiniLabelComponent extends LitElement {
   static readonly defaultTagName = TINI_LABEL;
 
+  /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare pilled?: boolean;
   @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare size?: Sizes;
   @property({type: String, reflect: true}) declare color?: Colors;
+  /* eslint-enable prettier/prettier */
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

@@ -16,9 +16,10 @@ export const TINI_BREADCRUMB = 'tini-breadcrumb';
 export class TiniBreadcrumbComponent extends LitElement {
   static readonly defaultTagName = TINI_BREADCRUMB;
 
+  /* eslint-disable prettier/prettier */
   @property({type: String}) declare items?: BreadcrumbItem[];
-  @property({type: String, reflect: true, attribute: 'link-color'})
-  declare linkColor?: ColorsAndGradients;
+  @property({type: String, reflect: true}) declare linkColor?: ColorsAndGradients;
+  /* eslint-enable prettier/prettier */
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

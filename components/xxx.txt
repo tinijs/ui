@@ -9,7 +9,9 @@ export const TINI_XXX = 'tini-xxx';
 export class TiniXxxComponent extends LitElement {
   static readonly defaultTagName = TINI_XXX;
 
+  /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare prop?: string;
+  /* eslint-enable prettier/prettier */
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

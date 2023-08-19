@@ -123,9 +123,9 @@ export class AppPageComponentsBox extends TiniComponent {
             <p>Font size from 0.1x to 10x.</p>
           </div>
           <div slot="code">
-            <tini-box font-size="0_5x">Font size 0.5x</tini-box>
-            <tini-box font-size="1x">Font size 1x</tini-box>
-            <tini-box font-size="3x">Font size 3x</tini-box>
+            <tini-box fontSize="0_5x">Font size 0.5x</tini-box>
+            <tini-box fontSize="1x">Font size 1x</tini-box>
+            <tini-box fontSize="3x">Font size 3x</tini-box>
           </div>
         </app-section>
 
@@ -144,7 +144,7 @@ export class AppPageComponentsBox extends TiniComponent {
               >Box with border of primary color</tini-box
             >
             <tini-box bordering="2x">Box with border of 2x size</tini-box>
-            <tini-box bordering="2x dashed primary" border-radius="3x"
+            <tini-box bordering="2x dashed primary" borderRadius="3x"
               >Box with border of 2x size, dashed style, primary color and 3x
               radius</tini-box
             >

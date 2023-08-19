@@ -79,7 +79,7 @@ export class AppPageComponentsDialog extends TiniComponent {
               >
               <tini-dialog
                 ${ref(this.alert1DialogRef)}
-                title-text="An alert dialog"
+                titleText="An alert dialog"
                 @no=${() => this.alert1DialogRef.value?.hide()}
                 @yes=${() => this.alert1DialogRef.value?.hide()}
               >
@@ -94,8 +94,8 @@ export class AppPageComponentsDialog extends TiniComponent {
               >
               <tini-dialog
                 ${ref(this.alert2DialogRef)}
-                backdrop-closed
-                title-text="An alert dialog"
+                backdropClosed
+                titleText="An alert dialog"
                 @no=${() => this.alert2DialogRef.value?.hide()}
                 @yes=${() => this.alert2DialogRef.value?.hide()}
               >
@@ -122,7 +122,7 @@ export class AppPageComponentsDialog extends TiniComponent {
             <tini-dialog
               ${ref(this.confirmDialogRef)}
               type="confirm"
-              title-text="A confirm dialog"
+              titleText="A confirm dialog"
               @no=${() => this.confirmDialogRef.value?.hide()}
               @yes=${() => this.confirmDialogRef.value?.hide()}
             >
@@ -148,7 +148,7 @@ export class AppPageComponentsDialog extends TiniComponent {
             <tini-dialog
               ${ref(this.promptDialogRef)}
               type="prompt"
-              title-text="A prompt dialog"
+              titleText="A prompt dialog"
               @no=${() => this.promptDialogRef.value?.hide()}
               @yes=${() => this.promptDialogRef.value?.hide()}
             >
@@ -175,7 +175,7 @@ export class AppPageComponentsDialog extends TiniComponent {
             >
             <tini-dialog
               ${ref(this.customButtonsDialogRef)}
-              title-text="Delete this item?"
+              titleText="Delete this item?"
               type="confirm"
               .noButton=${{text: 'Cancel', scheme: 'secondary'}}
               .yesButton=${{text: 'Delete?', scheme: 'danger'}}

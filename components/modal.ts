@@ -17,11 +17,11 @@ export class TiniModalComponent extends LitElement {
 
   private readonly BACKDROP_CLOSED = 'backdrop-closed';
 
-  @property({type: String, reflect: true, attribute: 'title-text'})
-  declare titleText?: string;
-  @property({type: Boolean, reflect: true, attribute: 'backdrop-closed'})
-  declare backdropClosed?: boolean;
+  /* eslint-disable prettier/prettier */
+  @property({type: String, reflect: true}) declare titleText?: string;
+  @property({type: Boolean, reflect: true}) declare backdropClosed?: boolean;
   @property({type: Object}) declare yesButton?: ModalButton;
+  /* eslint-enable prettier/prettier */
 
   private dialogRef: Ref<HTMLDialogElement> = createRef();
   private context?: unknown;

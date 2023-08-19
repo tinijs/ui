@@ -26,8 +26,10 @@ export const TINI_CHECKBOXES = 'tini-checkboxes';
 export class TiniCheckboxesComponent extends LitElement {
   static readonly defaultTagName = TINI_CHECKBOXES;
 
+  /* eslint-disable prettier/prettier */
   @property({type: Array}) declare items?: CheckboxesItem[];
   @property({type: Boolean, reflect: true}) declare wrap?: boolean;
+  /* eslint-enable prettier/prettier */
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {

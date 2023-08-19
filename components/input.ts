@@ -26,6 +26,7 @@ export const TINI_INPUT = 'tini-input';
 export class TiniInputComponent extends LitElement {
   static readonly defaultTagName = TINI_INPUT;
 
+  /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;
   @property({type: String, reflect: true}) declare placeholder?: string;
   @property({type: String, reflect: true}) declare type?: InputTypes;
@@ -36,6 +37,7 @@ export class TiniInputComponent extends LitElement {
   @property({type: Boolean, reflect: true}) declare readonly?: boolean;
   @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare size?: Sizes;
+  /* eslint-enable prettier/prettier */
 
   private rootClassesParts: ClassInfo | PartInfo = {};
   willUpdate() {
