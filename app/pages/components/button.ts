@@ -1,13 +1,4 @@
-import {
-  Page,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBases,
-  BASE_COLORS,
-  BASE_GRADIENTS,
-  SIZES,
-} from '@tinijs/core';
+import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -23,7 +14,17 @@ import {
   IconHeartFillComponent,
 } from '@tinijs/bootstrap-icons';
 
-import {renderColorVaries, renderGradientVaries} from '../../helpers/varies';
+import {
+  renderSection,
+  renderDefaultSection,
+  renderBaseColorsSection,
+  renderContrastColorsSection,
+  renderBaseGradientsSection,
+  renderContrastGradientsSection,
+  renderSizesSection,
+  renderFontColorsSection,
+  renderFontSizesSection,
+} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -61,130 +62,115 @@ export class AppPageComponentsButton extends TiniComponent {
       >
         <div slot="description">Use buttons to trigger actions.</div>
 
-        <app-section class="default">
-          <h2 slot="title">Default</h2>
-          <div slot="content">
+        <!-- default -->
+        ${renderDefaultSection(
+          html`
             <p>
               Default color is <code>medium</code>, default size is
               <code>md</code>.
             </p>
-          </div>
-          <div slot="code">
-            <tini-button>Default</tini-button>
-          </div>
-        </app-section>
-
-        ${BASE_COLORS.map(
-          baseName => html`
-            <app-section class="colors">
-              <h2 slot="title">Color ${baseName}</h2>
-              <div slot="code">
-                ${renderColorVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-button scheme=${fullName}
-                      >Button ${fullName}</tini-button
-                    >`
-                )}
-              </div>
-            </app-section>
-          `
+          `,
+          html`<tini-button>Default</tini-button>`
         )}
-        ${BASE_GRADIENTS.map(
-          baseName => html`
-            <app-section class="gradients">
-              <h2 slot="title">${baseName.replace(/-/g, ' ')}</h2>
-              <div slot="code">
-                ${renderGradientVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-button scheme=${fullName}
-                      >Button ${fullName}</tini-button
-                    >`
-                )}
-              </div>
-            </app-section>
+
+        <!-- block -->
+        ${renderSection(
+          'block',
+          'Block',
+          null,
+          html`<tini-button block>Block button</tini-button>`
+        )}
+
+        <!-- colors -->
+        ${renderBaseColorsSection(
+          baseName =>
+            html`<tini-button scheme=${baseName}
+              >Button ${baseName}</tini-button
+            >`
+        )}
+
+        <!-- contrast colors -->
+        ${renderContrastColorsSection(
+          contrastName => html`
+            <tini-button scheme=${contrastName}
+              >Button ${contrastName}</tini-button
+            >
           `
         )}
 
-        <app-section class="disabled-colors">
-          <h2 slot="title">Disabled colors</h2>
-          <div slot="code">
-            ${BASE_COLORS.map(
-              color =>
-                html`<tini-button scheme=${color} disabled
-                  >Button ${color} disabled</tini-button
-                >`
-            )}
-          </div>
-        </app-section>
+        <!-- disabled colors -->
+        ${renderBaseColorsSection(
+          baseName =>
+            html`<tini-button disabled scheme=${baseName}
+              >Button ${baseName} disabled</tini-button
+            >`,
+          {
+            className: 'disabled',
+            title: 'Disabled colors',
+          }
+        )}
 
-        <app-section class="disabled-gradients">
-          <h2 slot="title">Disabled gradients</h2>
-          <div slot="code">
-            ${BASE_GRADIENTS.map(
-              gradient =>
-                html`<tini-button scheme=${gradient} disabled
-                  >Gradient ${gradient} disabled</tini-button
-                >`
-            )}
-          </div>
-        </app-section>
+        <!-- gradients -->
+        ${renderBaseGradientsSection(
+          baseName =>
+            html`<tini-button scheme=${baseName}
+              >Button ${baseName}</tini-button
+            >`
+        )}
 
-        <app-section class="text-colors">
-          <h2 slot="title">Text colors</h2>
-          <div slot="content">
-            <p>
-              You can combine any text colors with any background colors. Below
-              are just some examples.
-            </p>
-          </div>
-          <div slot="code">
-            <tini-button color="primary"
-              >Default background / Primary text</tini-button
+        <!-- contrast gradients -->
+        ${renderContrastGradientsSection(
+          contrastName => html`
+            <tini-button scheme=${contrastName}
+              >Button ${contrastName}</tini-button
             >
-            <tini-button scheme="warning" color="primary"
-              >Warning background / Primary text</tini-button
-            >
-            <tini-button scheme="gradient-danger" color="primary"
-              >Gradient Danger background / Primary text</tini-button
-            >
-          </div>
-        </app-section>
+          `
+        )}
 
-        <app-section class="sizes">
-          <h2 slot="title">Sizes</h2>
-          <div slot="code">
-            ${SIZES.map(
-              size =>
-                html`<tini-button size=${size} scheme="primary"
-                  >${size}</tini-button
-                > `
-            )}
-          </div>
-        </app-section>
+        <!-- disabled gradients -->
+        ${renderBaseGradientsSection(
+          baseName =>
+            html`<tini-button disabled scheme=${baseName}
+              >Button ${baseName} disabled</tini-button
+            >`,
+          {
+            className: 'disabled',
+            title: 'Disabled gradients',
+          }
+        )}
 
-        <app-section class="font-sizes">
-          <h2 slot="title">Font sizes</h2>
-          <div slot="content">
-            <p>Font size from 0.1x to 10x.</p>
-          </div>
-          <div slot="code">
-            <tini-button scheme="primary" fontSize="0_5x"
-              >Font size 0.5x</tini-button
-            >
-            <tini-button scheme="primary" fontSize="1x"
-              >Font size 1x</tini-button
-            >
-            <tini-button scheme="primary" fontSize="3x"
-              >Font size 3x</tini-button
-            >
-          </div>
-        </app-section>
+        <!-- text colors -->
+        ${renderFontColorsSection(
+          ['background', 'warning', 'gradient-danger'],
+          scheme =>
+            html`<tini-button scheme=${scheme} color="primary"
+              >Button with ${scheme} scheme / primary text</tini-button
+            >`
+        )}
 
-        <app-section class="icons-and-justifications">
-          <h2 slot="title">Icons and Justifications</h2>
-          <div slot="code">
+        <!-- sizes -->
+        ${renderSizesSection(
+          size =>
+            html`<tini-button size=${size} scheme="primary"
+              >${size}</tini-button
+            > `
+        )}
+
+        <!-- font sizes -->
+        ${renderFontSizesSection(
+          false,
+          fontSize =>
+            html`<tini-button scheme="primary" fontSize=${fontSize}
+              >Button with ${fontSize} font size</tini-button
+            >`
+        )}
+
+        <!-- icons and justifications -->
+        ${renderSection(
+          'icons-and-justifications',
+          'Icons and Justifications',
+          null,
+          html`
             <tini-button scheme="primary">
               <icon-heart-fill
                 size="ss"
@@ -192,7 +178,7 @@ export class AppPageComponentsButton extends TiniComponent {
               ></icon-heart-fill>
               <span>Left</span>
             </tini-button>
-            <!-- / -->
+
             <tini-button scheme="primary">
               <span>Right</span>
               <icon-heart-fill
@@ -200,7 +186,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 scheme="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
-            <!-- / -->
+
             <tini-button scheme="primary">
               <icon-heart-fill
                 size="ss"
@@ -212,7 +198,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 scheme="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
-            <!-- / -->
+
             <tini-button justify="space-between" scheme="primary">
               <icon-heart-fill
                 size="ss"
@@ -220,7 +206,7 @@ export class AppPageComponentsButton extends TiniComponent {
               ></icon-heart-fill>
               <span>Far Left</span>
             </tini-button>
-            <!-- / -->
+
             <tini-button justify="space-between" scheme="primary">
               <span>Far Right</span>
               <icon-heart-fill
@@ -228,7 +214,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 scheme="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
-            <!-- / -->
+
             <tini-button justify="space-between" scheme="primary">
               <icon-chevron-left
                 size="ss"
@@ -240,7 +226,7 @@ export class AppPageComponentsButton extends TiniComponent {
                 scheme="primary-contrast"
               ></icon-chevron-right>
             </tini-button>
-            <!-- / -->
+
             <tini-button justify="space-between" scheme="primary">
               <div class="content-group">
                 <icon-heart-fill
@@ -254,8 +240,8 @@ export class AppPageComponentsButton extends TiniComponent {
                 scheme="primary-contrast"
               ></icon-chevron-right>
             </tini-button>
-          </div>
-        </app-section>
+          `
+        )}
       </app-component-page>
     `;
   }

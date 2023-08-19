@@ -69,7 +69,9 @@ export class TiniSelectComponent extends LitElement {
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
       >
-        ${!this.label ? nothing : html`<span part="label">${this.label}</span>`}
+        ${!this.label
+          ? nothing
+          : html`<span part="label" class="label">${this.label}</span>`}
         <select
           part="select"
           class="select"

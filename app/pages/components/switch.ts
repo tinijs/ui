@@ -1,13 +1,4 @@
-import {
-  Page,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBases,
-  BASE_COLORS,
-  BASE_GRADIENTS,
-  SIZES,
-} from '@tinijs/core';
+import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -16,6 +7,13 @@ import {
   codeBases,
   TiniSwitchComponent,
 } from '@tinijs/ui';
+
+import {
+  renderDefaultSection,
+  renderBaseColorsSection,
+  renderBaseGradientsSection,
+  renderSizesSection,
+} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -38,7 +36,13 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsSwitch extends TiniComponent {
-  private readonly PART_LIST = [['root', 'The root part']];
+  private readonly PART_LIST = [
+    ['root', 'The root part'],
+    ['switch', 'The switch container'],
+    ['input', 'The input element'],
+    ['slider', 'The slider part'],
+    ['label', 'The label'],
+  ];
 
   protected render() {
     return html`
@@ -50,50 +54,39 @@ export class AppPageComponentsSwitch extends TiniComponent {
       >
         <div slot="description">Switch description.</div>
 
-        <app-section class="default">
-          <h2 slot="title">Default</h2>
-          <div slot="content">
+        <!-- default -->
+        ${renderDefaultSection(
+          html`
             <p>
               Default color is <code>medium</code>, default size is
               <code>md</code>.
             </p>
-          </div>
-          <div slot="code">
+          `,
+          html`
             <tini-switch label="Default switch checkbox input"></tini-switch>
             <tini-switch
               checked
               label="Default switch checkbox input (checked)"
             ></tini-switch>
-          </div>
-        </app-section>
+          `
+        )}
 
-        <app-section class="colors">
-          <h2 slot="title">Colors</h2>
-          <div slot="code">
-            ${BASE_COLORS.map(
-              color => html`<tini-switch checked scheme=${color}></tini-switch>`
-            )}
-          </div>
-        </app-section>
+        <!-- colors -->
+        ${renderBaseColorsSection(
+          baseName =>
+            html`<tini-switch checked scheme=${baseName}></tini-switch>`
+        )}
 
-        <app-section class="gradients">
-          <h2 slot="title">Gradients</h2>
-          <div slot="code">
-            ${BASE_GRADIENTS.map(
-              gradient =>
-                html`<tini-switch checked scheme=${gradient}></tini-switch>`
-            )}
-          </div>
-        </app-section>
+        <!-- gradients -->
+        ${renderBaseGradientsSection(
+          baseName =>
+            html`<tini-switch checked scheme=${baseName}></tini-switch>`
+        )}
 
-        <app-section class="sizes">
-          <h2 slot="title">Sizes</h2>
-          <div slot="code">
-            ${SIZES.map(
-              size => html`<tini-switch checked size=${size}></tini-switch>`
-            )}
-          </div>
-        </app-section>
+        <!-- sizes -->
+        ${renderSizesSection(
+          size => html`<tini-switch checked size=${size}></tini-switch>`
+        )}
       </app-component-page>
     `;
   }

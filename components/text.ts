@@ -20,8 +20,8 @@ export enum TextTypes {
   H5 = 'h5',
   H6 = 'h6',
   P = 'p',
-  Em = 'em',
   Strong = 'strong',
+  Em = 'em',
   Span = 'span',
 }
 

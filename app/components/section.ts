@@ -2,6 +2,7 @@ import {
   Component,
   TiniComponent,
   Input,
+  Reactive,
   html,
   css,
   nothing,
@@ -21,11 +22,12 @@ import {
   HTML_ICON,
 } from '../consts/platform-icons';
 import {mainStore} from '../stores/main';
+import {formatHTML} from '../helpers/format';
 
 import {AppTabsComponent, TabItem} from '../components/tabs';
 import {AppCodeComponent} from '../components/code';
 
-type CodeBuilder = (code?: string, context?: any) => string;
+export type CodeBuilder = (code?: string, context?: any) => string;
 
 export const APP_SECTION = 'app-section';
 @Component({
@@ -51,30 +53,14 @@ export class AppSectionComponent extends TiniComponent {
   @Input({type: Object}) codeBuilders?: Record<string, CodeBuilder>;
   @Input({type: Object}) codeBuildContext?: unknown;
 
-  private originalCode?: string;
+  @Reactive() private originalCode?: string;
 
-  onCreate() {
-    let content = this.querySelector('[slot="code"]')
-      ?.innerHTML.split('\n')
-      .map(item => item.trimEnd())
-      .filter(item => !!item)
-      .join('\n');
+  async onCreate() {
+    let content = this.querySelector('[slot="code"]')?.innerHTML;
     if (content) {
-      const [trimSpaces] = content.split('<');
-      content = content
-        .split('\n')
-        .map(
-          line =>
-            line
-              .replace(trimSpaces, '')
-              .replace(/<!--\?lit\$([\s\S]*?)\$-->/g, '') // lit directive
-              .replace(/(<!---->){2}/g, '\n') // lit directive
-              .replace(/<!---->/g, '') // lit directive
-              .replace(/<!-- \/ -->/g, '') // section split
-              .replace(/<!--/g, '\n<!--') // comment
-              .replace(/=""/g, '') // boolean attribute
-        )
-        .join('\n');
+      content = await formatHTML(
+        content.replace(/<!--.*?-->/g, '').replace(/=""/g, '')
+      );
       this.originalCode = !this.preprocessCode
         ? content
         : this.preprocessCode(content, this.codeBuildContext);

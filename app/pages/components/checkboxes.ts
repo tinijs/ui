@@ -4,8 +4,6 @@ import {
   html,
   css,
   stylingWithBases,
-  SIZES,
-  BASE_COLORS,
   Colors,
 } from '@tinijs/core';
 import {
@@ -19,6 +17,14 @@ import {
   CheckboxesItem,
   CheckboxesEventDetail,
 } from '@tinijs/ui';
+
+import {
+  renderSection,
+  renderDefaultSection,
+  renderBaseColorsSection,
+  renderSizesSection,
+} from '../../helpers/varies';
+import {CodeBuilder} from '../../components/section';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -44,32 +50,21 @@ import {AppSectionComponent} from '../../components/section';
 export class AppPageComponentsCheckboxes extends TiniComponent {
   private readonly PART_LIST = [
     ['root', 'The root part'],
-    ['item', 'Checkbox item container'],
-    ['input', 'The input element'],
+    ['item', 'Item container'],
+    ['input', 'An input element'],
+    ['label', 'A label'],
   ];
 
-  private readonly PREPROCESS_CODE = (code: string) =>
-    code.replace(/\<tini\-checkboxes/g, '<tini-checkboxes .items=${[...]}');
-  private readonly PREPROCESS_CODE_DISABLED = (code: string) =>
+  private readonly PREPROCESS_CODE_DEFAULT = ((code: string) =>
     code.replace(
       /\<tini\-checkboxes/g,
-      '<tini-checkboxes .items=${[{disabled: true}]}'
-    );
-  private readonly PREPROCESS_CODE_EVENTS = (code: string) =>
+      '<tini-checkboxes .items=${...}'
+    )) as CodeBuilder;
+  private readonly PREPROCESS_CODE_EVENTS = ((code: string) =>
     code.replace(
       /\<tini\-checkboxes/g,
-      '<tini-checkboxes .items=${[...]} @change=${HANDLER}'
-    );
-  private readonly PREPROCESS_CODE_COLORS = (code: string) =>
-    code.replace(
-      /\<tini\-checkboxes/g,
-      "<tini-checkboxes .items=${[{color: '...'}]}"
-    );
-  private readonly PREPROCESS_CODE_SIZES = (code: string) =>
-    code.replace(
-      /\<tini\-checkboxes/g,
-      "<tini-checkboxes .items=${[{size: '...'}]}"
-    );
+      '<tini-checkboxes @change=${HANDLER}'
+    )) as CodeBuilder;
 
   private DEFAULT_LIST: CheckboxesItem[] = [
     {value: '', label: 'Default checkbox'},
@@ -92,126 +87,128 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
       >
         <div slot="description">Checkboxes description.</div>
 
-        <app-section class="default" .preprocessCode=${this.PREPROCESS_CODE}>
-          <h2 slot="title">Default</h2>
-          <div slot="content">
+        <!-- default -->
+        ${renderDefaultSection(
+          html`
             <p>
               Default active color is <code>primary</code>, default size is
               <code>md</code>.
             </p>
-          </div>
-          <div slot="code">
-            <tini-checkboxes .items=${this.DEFAULT_LIST}></tini-checkboxes>
-          </div>
-        </app-section>
+          `,
+          html`<tini-checkboxes .items=${this.DEFAULT_LIST}></tini-checkboxes>`,
+          {
+            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
+          }
+        )}
 
-        <app-section class="no-label" .preprocessCode=${this.PREPROCESS_CODE}>
-          <h2 slot="title">No label</h2>
-          <div slot="content">
-            <p>Omit the <code>label</code> from the items.</p>
-          </div>
-          <div slot="code">
-            <tini-checkboxes
-              .items=${this.buildCustomList(item => !(item.label = '') && item)}
-            ></tini-checkboxes>
-          </div>
-        </app-section>
+        <!-- no label -->
+        ${renderSection(
+          'no-label',
+          'No label',
+          html`<p>Omit the <code>label</code> from the items.</p>`,
+          html`<tini-checkboxes
+            .items=${this.buildCustomList(item => !(item.label = '') && item)}
+          ></tini-checkboxes>`,
+          {
+            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
+          }
+        )}
 
-        <app-section class="wrap" .preprocessCode=${this.PREPROCESS_CODE}>
-          <h2 slot="title">Wrap</h2>
-          <div slot="code">
-            <tini-checkboxes wrap .items=${this.DEFAULT_LIST}></tini-checkboxes>
-          </div>
-        </app-section>
+        <!-- wrap -->
+        ${renderSection(
+          'wrap',
+          'Wrap',
+          null,
+          html`<tini-checkboxes
+            wrap
+            .items=${this.DEFAULT_LIST}
+          ></tini-checkboxes>`,
 
-        <app-section
-          class="disabled"
-          .preprocessCode=${this.PREPROCESS_CODE_DISABLED}
-        >
-          <h2 slot="title">Disabled</h2>
-          <div slot="content">
-            <p>Add <code>{disable: true}</code> to the items.</p>
-          </div>
-          <div slot="code">
-            <tini-checkboxes
-              .items=${this.buildCustomList(
-                item => (item.disabled = true) && item
-              )}
-            ></tini-checkboxes>
-          </div>
-        </app-section>
+          {
+            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
+          }
+        )}
 
-        <app-section
-          class="events"
-          .preprocessCode=${this.PREPROCESS_CODE_EVENTS}
-        >
-          <h2 slot="title">Events</h2>
-          <div slot="content">
+        <!-- disabled -->
+        ${renderSection(
+          'disabled',
+          'Disabled',
+          html`<p>Add <code>{disable: true}</code> to the items.</p>`,
+          html`<tini-checkboxes
+            .items=${this.buildCustomList(
+              item => (item.disabled = true) && item
+            )}
+          ></tini-checkboxes>`,
+
+          {
+            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
+          }
+        )}
+
+        <!-- events -->
+        ${renderSection(
+          'events',
+          'Events',
+          html`
             <p>
               Use the <code>change</code> event to capture changes (open the
               console to see the event log).
             </p>
-          </div>
-          <div slot="code">
-            <tini-checkboxes
-              .items=${this.buildCustomList((item, i) => {
-                const no = i + 1;
-                item.value = `value-${no}`;
-                item.name = `checkbox-${no}`;
-                item.label = `Checkbox ${no}`;
-                return item;
-              })}
-              @change=${({detail}: CustomEvent<CheckboxesEventDetail>) =>
-                console.log('Checkboxes "change" event: ', detail)}
-            ></tini-checkboxes>
-          </div>
-        </app-section>
+          `,
+          html`<tini-checkboxes
+            .items=${this.buildCustomList((item, i) => {
+              const no = i + 1;
+              item.value = `value-${no}`;
+              item.name = `checkbox-${no}`;
+              item.label = `Checkbox ${no}`;
+              return item;
+            })}
+            @change=${({detail}: CustomEvent<CheckboxesEventDetail>) =>
+              console.log('Checkboxes "change" event: ', detail)}
+          ></tini-checkboxes>`,
+          {
+            preprocessCode: this.PREPROCESS_CODE_EVENTS,
+          }
+        )}
 
-        <app-section
-          class="colors"
-          .preprocessCode=${this.PREPROCESS_CODE_COLORS}
-        >
-          <h2 slot="title">Colors</h2>
-          <div slot="content">
-            <p>Add <code>{color: '...'}</code> to the items.</p>
-          </div>
-          <div slot="code">
-            ${BASE_COLORS.map(
-              baseName =>
-                html`<tini-checkboxes
-                  wrap
-                  .items=${[
-                    {
-                      value: '',
-                      label: `Checkbox ${baseName}`,
-                      checked: true,
-                      scheme: baseName as Colors,
-                    },
-                  ]}
-                ></tini-checkboxes>`
-            )}
-          </div>
-        </app-section>
+        <!-- colors -->
+        ${renderBaseColorsSection(
+          baseName =>
+            html`<tini-checkboxes
+              wrap
+              .items=${[
+                {
+                  value: '',
+                  label: `Checkbox ${baseName}`,
+                  checked: true,
+                  scheme: baseName as Colors,
+                },
+              ]}
+            ></tini-checkboxes>`,
+          {
+            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
+            content: html`<p>Add <code>{color: '...'}</code> to the items.</p>`,
+          }
+        )}
 
-        <app-section
-          class="sizes"
-          .preprocessCode=${this.PREPROCESS_CODE_SIZES}
-        >
-          <h2 slot="title">Sizes</h2>
-          <div slot="content">
-            <p>Add <code>{size: '...'}</code> to the items.</p>
-          </div>
-          <div slot="code">
+        <!-- sizes -->
+        ${renderSizesSection(
+          size => html`
             <tini-checkboxes
               wrap
-              .items=${SIZES.map(size => ({
-                value: '',
-                label: `Checkbox size ${size}`,
-                size,
-              }))}
+              .items=${[
+                {
+                  value: '',
+                  label: `Checkbox size ${size}`,
+                  size,
+                },
+              ]}
             ></tini-checkboxes>
-          </div>
-        </app-section>
+          `,
+          {
+            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
+          }
+        )}
       </app-component-page>
     `;
   }

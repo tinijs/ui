@@ -49,12 +49,12 @@ export class TiniPaginationComponent extends LitElement {
     // previous classes parts
     this.previousClassesParts = {
       previous: true,
-      disabled: this.currentPage === 1,
+      'previous-disabled': this.currentPage === 1,
     };
     // next classes parts
     this.nextClassesParts = {
       next: true,
-      disabled: this.currentPage === this.totalPage,
+      'next-disabled': this.currentPage === this.totalPage,
     };
   }
 
@@ -137,7 +137,7 @@ export class TiniPaginationComponent extends LitElement {
       const pageNum = i + 1;
       const itemClassesParts: ClassInfo | PartInfo = {
         item: true,
-        active: pageNum === this.currentPage,
+        'item-active': pageNum === this.currentPage,
       };
       const href = itemClassesParts.active
         ? this.defaultHrefBuilder()

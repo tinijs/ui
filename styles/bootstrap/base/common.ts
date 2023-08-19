@@ -9,7 +9,6 @@ export default css`
 
   :host {
     display: block;
-    container-type: inline-size;
     margin: 0;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;

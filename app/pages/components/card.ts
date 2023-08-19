@@ -1,4 +1,4 @@
-import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
+import {Page, TiniComponent, html, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -8,6 +8,8 @@ import {
   TiniButtonComponent,
   TiniCardComponent,
 } from '@tinijs/ui';
+
+import {renderSection, renderDefaultSection} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -31,7 +33,14 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsCard extends TiniComponent {
-  private readonly PART_LIST = [['root', 'The root part']];
+  private readonly PART_LIST = [
+    ['root', 'The root part'],
+    ['head', 'The head part'],
+    ['head-populated', 'The head part, with content'],
+    ['body', 'The body part'],
+    ['foot', 'The foot part'],
+    ['foot-populated', 'The foot part, with content'],
+  ];
 
   protected render() {
     return html`
@@ -43,12 +52,10 @@ export class AppPageComponentsCard extends TiniComponent {
       >
         <div slot="description">Card description.</div>
 
-        <app-section class="default">
-          <h2 slot="title">Default</h2>
-          <div slot="content">
-            <p>Max width is <code>--wide-xs</code>.</p>
-          </div>
-          <div slot="code">
+        <!-- default -->
+        ${renderDefaultSection(
+          html`<p>Max width is <code>--wide-xs</code>.</p>`,
+          html`
             <tini-card>
               <strong class="card-title">Card title</strong>
               <p>
@@ -57,12 +64,15 @@ export class AppPageComponentsCard extends TiniComponent {
               </p>
               <tini-button scheme="primary">Go somewhere</tini-button>
             </tini-card>
-          </div>
-        </app-section>
+          `
+        )}
 
-        <app-section class="default">
-          <h2 slot="title">Fluid card</h2>
-          <div slot="code">
+        <!-- fluid -->
+        ${renderSection(
+          'fluid',
+          'Fluid card',
+          null,
+          html`
             <tini-card fluid>
               <strong class="card-title">Card title</strong>
               <p>
@@ -71,12 +81,15 @@ export class AppPageComponentsCard extends TiniComponent {
               </p>
               <tini-button scheme="primary">Go somewhere</tini-button>
             </tini-card>
-          </div>
-        </app-section>
+          `
+        )}
 
-        <app-section class="default">
-          <h2 slot="title">Head and foot</h2>
-          <div slot="code">
+        <!-- head and foot -->
+        ${renderSection(
+          'head-foot',
+          'Head and foot',
+          null,
+          html`
             <tini-card>
               <span slot="head">Card head</span>
               <strong class="card-title">Card title</strong>
@@ -87,12 +100,15 @@ export class AppPageComponentsCard extends TiniComponent {
               <tini-button scheme="primary">Go somewhere</tini-button>
               <span slot="foot">Card foot</span>
             </tini-card>
-          </div>
-        </app-section>
+          `
+        )}
 
-        <app-section class="default">
-          <h2 slot="title">Image card</h2>
-          <div slot="code">
+        <!-- image -->
+        ${renderSection(
+          'image',
+          'Image card',
+          null,
+          html`
             <tini-card>
               <img
                 class="card-image"
@@ -105,8 +121,8 @@ export class AppPageComponentsCard extends TiniComponent {
               </p>
               <tini-button scheme="primary">Go somewhere</tini-button>
             </tini-card>
-          </div>
-        </app-section>
+          `
+        )}
       </app-component-page>
     `;
   }

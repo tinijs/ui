@@ -16,6 +16,8 @@ import {
   TiniModalComponent,
 } from '@tinijs/ui';
 
+import {renderDefaultSection} from '../../helpers/varies';
+
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -37,7 +39,14 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsModal extends TiniComponent {
-  private readonly PART_LIST = [['root', 'The root part']];
+  private readonly PART_LIST = [
+    ['root', 'The root part'],
+    ['head', 'The head part'],
+    ['body', 'The body part'],
+    ['foot', 'The foot part'],
+    ['foot-left', 'The left part of the foot'],
+    ['foot-right', 'The right part of the foot'],
+  ];
 
   private readonly default1ModalRef: Ref<TiniModalComponent> = createRef();
   private readonly default2ModalRef: Ref<TiniModalComponent> = createRef();
@@ -52,16 +61,16 @@ export class AppPageComponentsModal extends TiniComponent {
       >
         <div slot="description">Modal description.</div>
 
-        <app-section class="default">
-          <h2 slot="title">Default</h2>
-          <div slot="content">
+        <!-- default -->
+        ${renderDefaultSection(
+          html`
             <p>
               Use <code>yes</code> and <code>no</code> to capture events. For
               more on customizing button and head/foot slot. Please see the
               <a href="/components/dialog">Dialog</a> component.
             </p>
-          </div>
-          <div slot="code">
+          `,
+          html`
             <div class="group">
               <tini-button
                 scheme="primary"
@@ -94,14 +103,15 @@ export class AppPageComponentsModal extends TiniComponent {
                 ${this.sampleContent}
               </tini-modal>
             </div>
-          </div>
-        </app-section>
+          `
+        )}
       </app-component-page>
     `;
   }
 
   private get sampleContent() {
-    return html`<h3>Modal</h3>
+    return html`
+      <h3>Modal</h3>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae
         enim felis. Pellentesque habitant morbi tristique senectus et netus et
@@ -132,6 +142,7 @@ export class AppPageComponentsModal extends TiniComponent {
         sit amet nunc. Nunc eu blandit lectus. Donec faucibus rutrum libero, sit
         amet faucibus nisi convallis porta. Suspendisse potenti. Donec auctor
         metus enim, eu semper nisi pretium pulvinar.
-      </p>`;
+      </p>
+    `;
   }
 }

@@ -88,6 +88,17 @@ export const buttonStyle = css`
   }
 
   /*
+   * [?block]
+   */
+
+  :host([block]),
+  .block {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  /*
    * [justify]
    */
 

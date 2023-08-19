@@ -4,8 +4,7 @@ import {
   html,
   css,
   stylingWithBases,
-  BASE_COLORS,
-  BASE_GRADIENTS,
+  ifDefined,
 } from '@tinijs/core';
 import {
   commonBases,
@@ -16,7 +15,17 @@ import {
   TiniBoxComponent,
 } from '@tinijs/ui';
 
-import {renderColorVaries, renderGradientVaries} from '../../helpers/varies';
+import {
+  renderSection,
+  renderDefaultSection,
+  renderBaseColorsSection,
+  renderContrastColorsSection,
+  renderBaseGradientsSection,
+  renderContrastGradientsSection,
+  renderFontColorsSection,
+  renderFontSizesSection,
+  renderSpacesSection,
+} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -50,156 +59,111 @@ export class AppPageComponentsBox extends TiniComponent {
       >
         <div slot="description">Boxes are containers for any content.</div>
 
-        <app-section class="default">
-          <h2 slot="title">Default</h2>
-          <div slot="content">
+        <!-- default -->
+        ${renderDefaultSection(
+          html`
             <p>
               Default background is <code>none</code>, default color is the
               current <code>foreground</code>.
             </p>
-          </div>
-          <div slot="code">
-            <tini-box>Here is a default box</tini-box>
-          </div>
-        </app-section>
-
-        ${BASE_COLORS.map(
-          baseName => html`
-            <app-section class="colors">
-              <h2 slot="title">Color ${baseName}</h2>
-              <div slot="code">
-                ${renderColorVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-box scheme=${fullName}
-                      >Box with ${fullName} background</tini-box
-                    >`
-                )}
-              </div>
-            </app-section>
-          `
+          `,
+          html`<tini-box>Here is a default box</tini-box>`
         )}
-        ${BASE_GRADIENTS.map(
-          baseName => html`
-            <app-section class="gradients">
-              <h2 slot="title">${baseName.replace(/-/g, ' ')}</h2>
-              <div slot="code">
-                ${renderGradientVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-box scheme=${fullName}
-                      >Box with ${fullName} background</tini-box
-                    >`
-                )}
-              </div>
-            </app-section>
+
+        <!-- colors -->
+        ${renderBaseColorsSection(
+          baseName =>
+            html`<tini-box scheme=${baseName}
+              >Box with ${baseName} background</tini-box
+            >`
+        )}
+
+        <!-- contrast colors -->
+        ${renderContrastColorsSection(
+          contrastName => html`
+            <tini-box scheme=${contrastName}
+              >Box with ${contrastName} background</tini-box
+            >
           `
         )}
 
-        <app-section class="text-colors">
-          <h2 slot="title">Text colors</h2>
-          <div slot="content">
-            <p>
-              You can combine any text colors with any background colors. Below
-              are just some examples.
-            </p>
-          </div>
-          <div slot="code">
-            <tini-box color="primary"
-              >Default background / Primary text</tini-box
-            >
-            <tini-box scheme="warning" color="primary"
-              >Warning background / Primary text</tini-box
-            >
-            <tini-box scheme="gradient-danger" color="primary"
-              >Gradient Danger background / Primary text</tini-box
-            >
-          </div>
-        </app-section>
+        <!-- gradients -->
+        ${renderBaseGradientsSection(
+          baseName =>
+            html`<tini-box scheme=${baseName}
+              >Box with ${baseName} background</tini-box
+            >`
+        )}
 
-        <app-section class="font-sizes">
-          <h2 slot="title">Font sizes</h2>
-          <div slot="content">
-            <p>Font size from 0.1x to 10x.</p>
-          </div>
-          <div slot="code">
-            <tini-box fontSize="0_5x">Font size 0.5x</tini-box>
-            <tini-box fontSize="1x">Font size 1x</tini-box>
-            <tini-box fontSize="3x">Font size 3x</tini-box>
-          </div>
-        </app-section>
+        <!-- contrast gradients -->
+        ${renderContrastGradientsSection(
+          contrastName => html`
+            <tini-box scheme=${contrastName}
+              >Box with ${contrastName} background</tini-box
+            >
+          `
+        )}
 
-        <app-section class="borders">
-          <h2 slot="title">Borders</h2>
-          <div slot="content">
+        <!-- text colors -->
+        ${renderFontColorsSection(
+          ['background', 'warning', 'gradient-danger'],
+          scheme =>
+            html`<tini-box scheme=${scheme} color="primary"
+              >Box with ${scheme} scheme / primary text</tini-box
+            >`
+        )}
+
+        <!-- font sizes -->
+        ${renderFontSizesSection(
+          false,
+          fontSize =>
+            html`<tini-box fontSize=${fontSize}
+              >Box with ${fontSize.replace('_', '.')} font size</tini-box
+            >`
+        )}
+
+        <!-- borders -->
+        ${renderSection(
+          'borders',
+          'Borders',
+          html`
             <p>
               Default style is <code>solid</code>, default color is
               <code>medium</code>, default size is <code>border</code>, default
               border radius is <code>radius</code>.
             </p>
-          </div>
-          <div slot="code">
-            <tini-box bordering="solid">Box with border</tini-box>
-            <tini-box bordering="primary"
-              >Box with border of primary color</tini-box
-            >
-            <tini-box bordering="2x">Box with border of 2x size</tini-box>
-            <tini-box bordering="2x dashed primary" borderRadius="3x"
-              >Box with border of 2x size, dashed style, primary color and 3x
-              radius</tini-box
-            >
-          </div>
-        </app-section>
+          `,
+          html`
+            ${[['solid'], ['primary'], ['2x'], ['2x dashed primary', '3x']].map(
+              ([bordering, radius]) =>
+                html`<tini-box
+                  bordering=${bordering}
+                  borderRadius=${ifDefined(radius)}
+                  >Box with "${bordering}"
+                  border${!radius ? '' : ` and "${radius}" radius`}</tini-box
+                >`
+            )}
+          `
+        )}
 
-        <app-section class="paddings">
-          <h2 slot="title">Paddings</h2>
-          <div slot="code">
-            <tini-box bordering="solid" padding="0x"
-              ><div>Box with "0x" padding</div></tini-box
-            >
-            <tini-box bordering="solid" padding="0_5x"
-              ><div>Box with "0.5x" padding</div></tini-box
-            >
-            <tini-box bordering="solid" padding="1x 2x"
-              ><div>Box with "1x 2x" padding</div></tini-box
-            >
-            <tini-box bordering="solid" padding="1x 2x 3x"
-              ><div>Box with "1x 2x 3x" padding</div></tini-box
-            >
-            <tini-box bordering="solid" padding="1x 2x 3x 4x"
-              ><div>Box with "1x 2x 3x 4x" padding</div></tini-box
-            >
-          </div>
-        </app-section>
+        <!-- paddings -->
+        ${renderSpacesSection(
+          'padding',
+          padding => html`<tini-box bordering="solid" padding=${padding}
+              ><div>Box with "${padding}" padding</div></tini-box
+            ></app-section>`
+        )}
 
-        <app-section class="margins">
-          <h2 slot="title">Margins</h2>
-          <div slot="code">
-            <div class="margin-container">
-              <tini-box scheme="primary">Box with "0x" margin</tini-box>
-            </div>
-            <div class="margin-container">
-              <tini-box scheme="primary" margin="0_5x"
-                >Box with "0.5x" margin</tini-box
+        <!-- margins -->
+        ${renderSpacesSection(
+          'margin',
+          margin =>
+            html`<div class="margin-container">
+              <tini-box scheme="primary" margin=${margin}
+                >Box with "${margin}" margin</tini-box
               >
-            </div>
-            <div class="margin-container">
-              <tini-box scheme="primary" margin="1x 2x"
-                >Box with "1x 2x" margin</tini-box
-              >
-            </div>
-            <div class="margin-container">
-              <tini-box scheme="primary" margin="1x 2x 3x"
-                >Box with "1x 2x 3x" margin</tini-box
-              >
-            </div>
-            <div class="margin-container">
-              <tini-box scheme="primary" margin="1x 2x 3x 4x"
-                >Box with "1x 2x 3x 4x" margin</tini-box
-              >
-            </div>
-          </div>
-        </app-section>
+            </div>`
+        )}
       </app-component-page>
     `;
   }

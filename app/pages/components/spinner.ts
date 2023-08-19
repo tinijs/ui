@@ -1,12 +1,4 @@
-import {
-  Page,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBases,
-  BASE_COLORS,
-  SIZES,
-} from '@tinijs/core';
+import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -17,7 +9,12 @@ import {
   TiniSpinnerComponent,
 } from '@tinijs/ui';
 
-import {renderColorVaries} from '../../helpers/varies';
+import {
+  renderDefaultSection,
+  renderBaseColorsSection,
+  renderContrastColorsSection,
+  renderSizesSection,
+} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -53,46 +50,33 @@ export class AppPageComponentsSpinner extends TiniComponent {
       >
         <div slot="description">Spinner description.</div>
 
-        <app-section class="default">
-          <h2 slot="title">Default</h2>
-          <div slot="content">
+        <!-- default -->
+        ${renderDefaultSection(
+          html`
             <p>
               Default color is <code>medium</code>, default size is
               <code>md</code>.
             </p>
-          </div>
-          <div slot="code">
-            <tini-spinner></tini-spinner>
-          </div>
-        </app-section>
-
-        ${BASE_COLORS.map(
-          baseName => html`
-            <app-section class="colors">
-              <h2 slot="title">Color ${baseName}</h2>
-              <div slot="code">
-                ${renderColorVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-spinner scheme=${fullName}></tini-spinner>`
-                )}
-              </div>
-            </app-section>
-          `
+          `,
+          html`<tini-spinner></tini-spinner>`
         )}
 
-        <app-section class="sizes">
-          <h2 slot="title">Sizes</h2>
-          <div slot="code">
-            ${SIZES.map(
-              size =>
-                html`<tini-spinner
-                  size=${size}
-                  scheme="primary"
-                ></tini-spinner>`
-            )}
-          </div>
-        </app-section>
+        <!-- colors -->
+        ${renderBaseColorsSection(
+          baseName => html`<tini-spinner scheme=${baseName}></tini-spinner>`
+        )}
+
+        <!-- contrast colors -->
+        ${renderContrastColorsSection(
+          contrastName =>
+            html`<tini-spinner scheme=${contrastName}></tini-spinner>`
+        )}
+
+        <!-- sizes -->
+        ${renderSizesSection(
+          size =>
+            html`<tini-spinner size=${size} scheme="primary"></tini-spinner>`
+        )}
       </app-component-page>
     `;
   }
@@ -100,17 +84,12 @@ export class AppPageComponentsSpinner extends TiniComponent {
   static styles = css`
     app-section [slot='code'] {
       display: flex;
-      align-items: center;
-      justify-content: space-evenly;
+      flex-wrap: wrap;
       gap: 1rem;
 
       tini-box {
         width: 65px;
       }
-    }
-
-    .default [slot='code'] {
-      display: block;
     }
   `;
 }

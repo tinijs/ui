@@ -6,9 +6,6 @@ import {
   css,
   nothing,
   stylingWithBases,
-  BASE_COLORS,
-  BASE_GRADIENTS,
-  SIZES,
 } from '@tinijs/core';
 import {
   commonBases,
@@ -20,7 +17,15 @@ import {
   TiniIconComponent,
 } from '@tinijs/ui';
 
-import {renderColorVaries, renderGradientVaries} from '../helpers/varies';
+import {
+  renderDefaultSection,
+  renderBaseColorsSection,
+  renderContrastColorsSection,
+  renderBaseGradientsSection,
+  renderContrastGradientsSection,
+  renderSizesSection,
+} from '../helpers/varies';
+import {AppSectionComponent} from './section';
 
 export const APP_ICON_PAGE_CONTENT = 'app-icon-page-content';
 @Component({
@@ -40,100 +45,95 @@ export class AppIconPageContentComponent extends TiniComponent {
 
   @Input({type: String}) src!: string;
   @Input({type: Boolean}) noVariants = false;
-  @Input({type: Object}) preprocessCode?: any;
-  @Input({type: Object}) codeBuildContext?: any;
+  @Input({type: Object}) preprocessCode?: AppSectionComponent['preprocessCode'];
+  @Input({type: Object})
+  codeBuildContext?: AppSectionComponent['codeBuildContext'];
+
+  private renderSectionOptions?: any;
+  willUpdate() {
+    this.renderSectionOptions = {
+      preprocessCode: this.preprocessCode,
+      codeBuildContext: this.codeBuildContext,
+    };
+  }
 
   protected render() {
     return html`
-      <app-section
-        class="default"
-        .preprocessCode=${this.preprocessCode}
-        .codeBuildContext=${this.codeBuildContext}
-      >
-        <h2 slot="title">Default</h2>
-        <div slot="content">
+      <!-- default -->
+      ${renderDefaultSection(
+        html`
           <p>
             Default color is the <strong>original</strong> color, and default
             size is <code>md</code>.
           </p>
-        </div>
-        <div slot="code">
-          <tini-icon .src=${this.src}></tini-icon>
-        </div>
-      </app-section>
+        `,
+        html`<tini-icon .src=${this.src}></tini-icon>`,
+        this.renderSectionOptions
+      )}
 
+      <!-- variants -->
       ${this.noVariants
         ? nothing
         : html`
-            ${BASE_COLORS.map(
-              baseName => html`
-                <app-section
-                  class="colors"
-                  .preprocessCode=${this.preprocessCode}
-                  .codeBuildContext=${this.codeBuildContext}
-                >
-                  <h2 slot="title">Color ${baseName}</h2>
-                  <div slot="code">
-                    ${renderColorVaries(
-                      baseName,
-                      fullName =>
-                        html`<tini-icon
-                          .src=${this.src}
-                          scheme=${fullName}
-                        ></tini-icon>`
-                    )}
-                  </div>
-                </app-section>
-              `
+            <!-- colors -->
+            ${renderBaseColorsSection(
+              baseName =>
+                html`<tini-icon
+                  .src=${this.src}
+                  scheme=${baseName}
+                ></tini-icon>`,
+              this.renderSectionOptions
             )}
-            ${BASE_GRADIENTS.map(
-              baseName => html`
-                <app-section
-                  class="gradients"
-                  .preprocessCode=${this.preprocessCode}
-                  .codeBuildContext=${this.codeBuildContext}
-                >
-                  <h2 slot="title">${baseName.replace(/-/g, ' ')}</h2>
-                  <div slot="code">
-                    ${renderGradientVaries(
-                      baseName,
-                      fullName =>
-                        html`<tini-icon
-                          .src=${this.src}
-                          scheme=${fullName}
-                        ></tini-icon>`
-                    )}
-                  </div>
-                </app-section>
-              `
+
+            <!-- contrast colors -->
+            ${renderContrastColorsSection(
+              contrastName =>
+                html`<tini-icon
+                  .src=${this.src}
+                  scheme=${contrastName}
+                ></tini-icon>`,
+              this.renderSectionOptions
+            )}
+
+            <!-- gradients -->
+            ${renderBaseGradientsSection(
+              baseName =>
+                html`<tini-icon
+                  .src=${this.src}
+                  scheme=${baseName}
+                ></tini-icon>`,
+              this.renderSectionOptions
+            )}
+
+            <!-- contrast gradients -->
+            ${renderContrastGradientsSection(
+              contrastName =>
+                html`<tini-icon
+                  .src=${this.src}
+                  scheme=${contrastName}
+                ></tini-icon>`,
+              this.renderSectionOptions
             )}
           `}
 
-      <app-section
-        class="sizes"
-        .preprocessCode=${this.preprocessCode}
-        .codeBuildContext=${this.codeBuildContext}
-      >
-        <h2 slot="title">Sizes</h2>
-        <div slot="code">
-          ${SIZES.map(
-            size =>
-              html`<tini-icon
-                scheme="primary"
-                size=${size}
-                .src=${this.src}
-              ></tini-icon>`
-          )}
-        </div>
-      </app-section>
+      <!-- sizes -->
+      ${renderSizesSection(
+        size =>
+          html`<tini-icon
+            scheme="primary"
+            size=${size}
+            .src=${this.src}
+          ></tini-icon>`,
+        this.renderSectionOptions
+      )}
     `;
   }
 
   static styles = css`
-    app-section [slot='code'] {
-      tini-box {
-        width: 65px;
-      }
+    .contrasts [slot='code'] {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
   `;
 }

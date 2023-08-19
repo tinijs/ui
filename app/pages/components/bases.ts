@@ -43,26 +43,30 @@ import {AppSectionComponent} from '../../components/section';
 export class AppPageComponentsBases extends TiniComponent {
   private readonly PACKAGE_PREFIX = Configurable.getOption('packagePrefix');
 
-  private readonly headingsPreviewCode = `<h1>H1</h1>
-<h2>H2</h2>
-<h3>H3</h3>
-<h4>H4</h4>
-<h5>H5</h5>
-<h6>H6</h6>`;
+  private readonly headingsPreviewCode = `
+    <h1>H1</h1>
+    <h2>H2</h2>
+    <h3>H3</h3>
+    <h4>H4</h4>
+    <h5>H5</h5>
+    <h6>H6</h6>
+  `;
   private readonly textPreviewCode =
     '<p>A paragraph with <em>em</em>, <strong>strong</strong> and <span>span</span>.</p>';
   private readonly linkPreviewCode = '<a href="#">A link</a>';
   private readonly buttonPreviewCode = '<button>A button</button>';
-  private readonly formPreviewCode = `<form>
-  <label for="input">A label</label><br/>
-  <input id="input" type="text" placeholder="A text input"><br/>
-  <textarea placeholder="A textarea"></textarea><br/>
-  <select>
-    <option>Option 1</option>
-    <option>Option 2</option>
-    <option>Option 3</option>
-  </select>
-</form>`;
+  private readonly formPreviewCode = `
+    <form>
+      <label for="input">A label</label><br/>
+      <input id="input" type="text" placeholder="A text input"><br/>
+      <textarea placeholder="A textarea"></textarea><br/>
+      <select>
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+    </form>
+  `;
   private readonly codePreviewCode = "<code>const a = 'A code block';</code>";
 
   private readonly BASE_LIST = [

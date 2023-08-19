@@ -1,13 +1,4 @@
-import {
-  Page,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBases,
-  BASE_COLORS,
-  BASE_GRADIENTS,
-  SIZES,
-} from '@tinijs/core';
+import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -16,6 +7,13 @@ import {
   codeBases,
   TiniPaginationComponent,
 } from '@tinijs/ui';
+
+import {
+  renderDefaultSection,
+  renderBaseColorsSection,
+  renderBaseGradientsSection,
+  renderSizesSection,
+} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -38,7 +36,15 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsPagination extends TiniComponent {
-  private readonly PART_LIST = [['root', 'The root part']];
+  private readonly PART_LIST = [
+    ['root', 'The root part'],
+    ['previous', 'The previous button'],
+    ['previous-disabled', 'The disabled previous button'],
+    ['next', 'The next button'],
+    ['next-disabled', 'The disabled next button'],
+    ['item', 'An item button'],
+    ['item-active', 'An active item button'],
+  ];
 
   protected render() {
     return html`
@@ -50,59 +56,46 @@ export class AppPageComponentsPagination extends TiniComponent {
       >
         <div slot="description">Pagination description.</div>
 
-        <app-section class="default">
-          <h2 slot="title">Default</h2>
-          <div slot="content">
+        <!-- default -->
+        ${renderDefaultSection(
+          html`
             <p>
               Default current page is <code>1</code>. Default color is
               <code>primary</code>, default size is <code>md</code>.
             </p>
-          </div>
-          <div slot="code">
-            <tini-pagination totalPage="3"></tini-pagination>
-          </div>
-        </app-section>
+          `,
+          html`<tini-pagination totalPage="3"></tini-pagination>`
+        )}
 
-        <app-section class="colors">
-          <h2 slot="title">Colors</h2>
-          <div slot="code">
-            ${BASE_COLORS.map(
-              color =>
-                html`<tini-pagination
-                  totalPage="3"
-                  currentPage="2"
-                  scheme=${color}
-                ></tini-pagination>`
-            )}
-          </div>
-        </app-section>
-        <app-section class="gradients">
-          <h2 slot="title">Gradients</h2>
-          <div slot="code">
-            ${BASE_GRADIENTS.map(
-              gradient =>
-                html`<tini-pagination
-                  totalPage="3"
-                  currentPage="2"
-                  scheme=${gradient}
-                ></tini-pagination>`
-            )}
-          </div>
-        </app-section>
+        <!-- colors -->
+        ${renderBaseColorsSection(
+          baseName =>
+            html`<tini-pagination
+              totalPage="3"
+              currentPage="2"
+              scheme=${baseName}
+            ></tini-pagination>`
+        )}
 
-        <app-section class="sizes">
-          <h2 slot="title">Sizes</h2>
-          <div slot="code">
-            ${SIZES.map(
-              size =>
-                html`<tini-pagination
-                  totalPage="3"
-                  currentPage="2"
-                  size=${size}
-                ></tini-pagination>`
-            )}
-          </div>
-        </app-section>
+        <!-- gradients -->
+        ${renderBaseGradientsSection(
+          baseName =>
+            html`<tini-pagination
+              totalPage="3"
+              currentPage="2"
+              scheme=${baseName}
+            ></tini-pagination>`
+        )}
+
+        <!-- sizes -->
+        ${renderSizesSection(
+          size =>
+            html`<tini-pagination
+              totalPage="3"
+              currentPage="2"
+              size=${size}
+            ></tini-pagination>`
+        )}
       </app-component-page>
     `;
   }

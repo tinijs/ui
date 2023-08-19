@@ -63,9 +63,11 @@ export class TiniSwitchComponent extends LitElement {
             ?disabled=${this.disabled}
             @change=${this.onChange}
           />
-          <span class="slider"></span>
+          <span part="slider" class="slider"></span>
         </div>
-        ${!this.label ? nothing : html`<span>${this.label}</span>`}
+        ${!this.label
+          ? nothing
+          : html`<span part="label" class="label">${this.label}</span>`}
       </label>
     `;
   }

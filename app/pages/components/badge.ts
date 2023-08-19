@@ -1,13 +1,4 @@
-import {
-  Page,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBases,
-  BASE_COLORS,
-  BASE_GRADIENTS,
-  SIZES,
-} from '@tinijs/core';
+import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -18,7 +9,16 @@ import {
   TiniBadgeComponent,
 } from '@tinijs/ui';
 
-import {renderColorVaries, renderGradientVaries} from '../../helpers/varies';
+import {
+  renderSection,
+  renderDefaultSection,
+  renderBaseColorsSection,
+  renderContrastColorsSection,
+  renderBaseGradientsSection,
+  renderContrastGradientsSection,
+  renderFontColorsSection,
+  renderSizesSection,
+} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -54,110 +54,101 @@ export class AppPageComponentsBadge extends TiniComponent {
       >
         <div slot="description">Badge description.</div>
 
-        <app-section class="default">
-          <h2 slot="title">Default</h2>
-          <div slot="content">
+        <!-- default -->
+        ${renderDefaultSection(
+          html`
             <p>
               Default color is <code>medium</code>, default size is
               <code>md</code>.
             </p>
-          </div>
-          <div slot="code">
-            <tini-badge>0</tini-badge>
-            <tini-badge>99+</tini-badge>
-            <tini-badge>1000</tini-badge>
-          </div>
-        </app-section>
+          `,
+          html`
+            ${['0', '99+', '1000'].map(
+              content => html`<tini-badge>${content}</tini-badge>`
+            )}
+          `
+        )}
 
-        <app-section class="pilled-rounded">
-          <h2 slot="title">Pilled and Rouded</h2>
-          <div slot="content">
+        <!-- pilled-rounded -->
+        ${renderSection(
+          'pilled-rounded',
+          'Pilled and Rouded',
+          html`
             <p>
               Rounded badges are best for values with less than or equals 2
               characters.
             </p>
-          </div>
-          <div slot="code">
+          `,
+          html`
             <div class="group">
-              <tini-badge pilled scheme="primary">0</tini-badge>
-              <tini-badge pilled scheme="secondary">99+</tini-badge>
-              <tini-badge pilled scheme="tertiary">1000</tini-badge>
+              ${[
+                ['0', 'primary'],
+                ['99+', 'secondary'],
+                ['1000', 'tertiary'],
+              ].map(
+                ([content, scheme]) =>
+                  html`<tini-badge pilled scheme=${scheme}
+                    >${content}</tini-badge
+                  >`
+              )}
             </div>
             <div class="group" style="margin-top: 1rem;">
-              <tini-badge rounded scheme="success">0</tini-badge>
-              <tini-badge rounded scheme="warning">99+</tini-badge>
-              <tini-badge rounded scheme="danger">1000</tini-badge>
+              ${[
+                ['0', 'success'],
+                ['99+', 'warning'],
+                ['1000', 'danger'],
+              ].map(
+                ([content, scheme]) =>
+                  html`<tini-badge rounded scheme=${scheme}
+                    >${content}</tini-badge
+                  >`
+              )}
             </div>
-          </div>
-        </app-section>
-
-        ${BASE_COLORS.map(
-          baseName => html`
-            <app-section class="colors">
-              <h2 slot="title">Color ${baseName}</h2>
-              <div slot="code">
-                ${renderColorVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-badge scheme=${fullName}>99+</tini-badge>`
-                )}
-              </div>
-            </app-section>
-          `
-        )}
-        ${BASE_GRADIENTS.map(
-          baseName => html`
-            <app-section class="gradients">
-              <h2 slot="title">${baseName.replace(/-/g, ' ')}</h2>
-              <div slot="code">
-                ${renderGradientVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-badge scheme=${fullName}>99+</tini-badge>`
-                )}
-              </div>
-            </app-section>
           `
         )}
 
-        <app-section class="text-colors">
-          <h2 slot="title">Text colors</h2>
-          <div slot="content">
-            <p>
-              You can combine any text colors with any background colors. Below
-              are just some examples.
-            </p>
-          </div>
-          <div slot="code">
-            <tini-badge color="primary">99+</tini-badge>
-            <tini-badge scheme="warning" color="primary">99+</tini-badge>
-            <tini-badge scheme="gradient-danger" color="primary"
-              >99+</tini-badge
-            >
-          </div>
-        </app-section>
+        <!-- colors -->
+        ${renderBaseColorsSection(
+          baseName => html`<tini-badge scheme=${baseName}>99+</tini-badge>`
+        )}
 
-        <app-section class="sizes">
-          <h2 slot="title">Sizes</h2>
-          <div slot="code">
-            ${SIZES.map(
-              size =>
-                html`<tini-badge size=${size} scheme="primary"
-                  >1000</tini-badge
-                >`
-            )}
-          </div>
-        </app-section>
+        <!-- contrasts -->
+        ${renderContrastColorsSection(
+          contrastName =>
+            html`<tini-badge scheme=${contrastName}>99+</tini-badge>`
+        )}
+
+        <!-- gradients -->
+        ${renderBaseGradientsSection(
+          baseName => html`<tini-badge scheme=${baseName}>99+</tini-badge>`
+        )}
+
+        <!-- contrast gradients -->
+        ${renderContrastGradientsSection(
+          contrastName =>
+            html`<tini-badge scheme=${contrastName}>99+</tini-badge>`
+        )}
+
+        <!-- text colors -->
+        ${renderFontColorsSection(
+          ['medium', 'warning', 'gradient-danger'],
+          scheme =>
+            html`<tini-badge scheme=${scheme} color="primary">99+</tini-badge>`
+        )}
+
+        <!-- sizes -->
+        ${renderSizesSection(
+          size =>
+            html`<tini-badge size=${size} scheme="primary">1000</tini-badge>`
+        )}
       </app-component-page>
     `;
   }
 
   static styles = css`
-    app-section [slot='code'] {
-      tini-box {
-        width: 65px;
-        margin-top: var(--size-space);
-      }
+    .contrasts [slot='code'] {
+      display: flex;
+      gap: 1rem;
     }
   `;
 }

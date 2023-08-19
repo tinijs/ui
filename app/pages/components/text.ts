@@ -1,16 +1,4 @@
-import {
-  Page,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBases,
-  BASE_COLORS,
-  BASE_GRADIENTS,
-  FONT_TYPES,
-  SIZE_FACTORS,
-  FONT_WEIGHTS,
-  TEXT_TRANSFORMS,
-} from '@tinijs/core';
+import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -22,7 +10,18 @@ import {
   TiniTextComponent,
 } from '@tinijs/ui';
 
-import {renderColorVaries, renderGradientVaries} from '../../helpers/varies';
+import {
+  renderSection,
+  renderDefaultSection,
+  renderBaseColorsSection,
+  renderContrastColorsSection,
+  renderBaseGradientsSection,
+  renderContrastGradientsSection,
+  renderFontTypesSection,
+  renderFontSizesSection,
+  renderWeightsSection,
+  renderTransformsSection,
+} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -59,122 +58,103 @@ export class AppPageComponentsText extends TiniComponent {
           Create texts with different colors, fonts, sizes ...
         </div>
 
-        <app-section class="default">
-          <h2 slot="title">Default</h2>
-          <div slot="content">
+        <!-- default -->
+        ${renderDefaultSection(
+          html`
             <p>
               The default container tag is <code>span</code>. The default color
               is <code>foreground</code>.
             </p>
-          </div>
-          <div slot="code">
-            <tini-text>This is a default text</tini-text>
-          </div>
-        </app-section>
+          `,
+          html`<tini-text>This is a default text</tini-text>`
+        )}
 
-        <app-section class="types">
-          <h2 slot="title">Types</h2>
-          <div slot="content">
-            <p>Use different tag types.</p>
-          </div>
-          <div slot="code">
+        <!-- types -->
+        ${renderSection(
+          'types',
+          'Types',
+          html`<p>Use different tag types.</p>`,
+          html`
             ${Object.values(TextTypes).map(
               type =>
                 html`<tini-text type=${type}
                   >Use the &lt;${type}&gt; tag</tini-text
                 >`
             )}
-          </div>
-        </app-section>
-
-        ${BASE_COLORS.map(
-          baseName => html`
-            <app-section class="colors">
-              <h2 slot="title">Color ${baseName}</h2>
-              <div slot="code">
-                ${renderColorVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-text color=${fullName}
-                      >Text with ${fullName} color</tini-text
-                    >`
-                )}
-              </div>
-            </app-section>
-          `
-        )}
-        ${BASE_GRADIENTS.map(
-          baseName => html`
-            <app-section class="gradients">
-              <h2 slot="title">${baseName.replace(/-/g, ' ')}</h2>
-              <div slot="code">
-                ${renderGradientVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-text color=${fullName}
-                      >Text with ${fullName} color</tini-text
-                    >`
-                )}
-              </div>
-            </app-section>
           `
         )}
 
-        <app-section class="fonts">
-          <h2 slot="title">Fonts</h2>
-          <div slot="code">
-            ${FONT_TYPES.map(
-              font =>
-                html`<tini-text font=${font}>Text with ${font} font</tini-text>`
-            )}
-          </div>
-        </app-section>
+        <!-- colors -->
+        ${renderBaseColorsSection(
+          baseName =>
+            html`<tini-text color=${baseName}
+              >Text with ${baseName} color</tini-text
+            >`
+        )}
 
-        <app-section class="font-sizes">
-          <h2 slot="title">Font sizes</h2>
-          <div slot="code">
-            ${SIZE_FACTORS.map(
-              size =>
-                html`<tini-text fontSize=${size}
-                  >${size.replace('_', '.')}</tini-text
-                >`
-            )}
-          </div>
-        </app-section>
+        <!-- contrast colors -->
+        ${renderContrastColorsSection(
+          contrastName => html`
+            <tini-text color=${contrastName}
+              >Text with ${contrastName} color</tini-text
+            >
+          `
+        )}
 
-        <app-section class="weights">
-          <h2 slot="title">Weights</h2>
-          <div slot="content">
-            <p>
-              Please note that the active font must support the respective
-              weights.
-            </p>
-          </div>
-          <div slot="code">
-            ${FONT_WEIGHTS.map(
-              weight =>
-                html`<tini-text weight=${weight}
-                  >Text with ${weight} weight</tini-text
-                >`
-            )}
-          </div>
-        </app-section>
+        <!-- gradients -->
+        ${renderBaseGradientsSection(
+          baseName =>
+            html`<tini-text color=${baseName}
+              >Text with ${baseName} color</tini-text
+            >`
+        )}
 
-        <app-section class="transfroms">
-          <h2 slot="title">Text transforms</h2>
-          <div slot="code">
-            ${TEXT_TRANSFORMS.map(
-              transform =>
-                html`<tini-text transform=${transform}
-                  >Text with ${transform} transform</tini-text
-                >`
-            )}
-          </div>
-        </app-section>
+        <!-- contrast gradients -->
+        ${renderContrastGradientsSection(
+          contrastName => html`
+            <tini-text color=${contrastName}
+              >Text with ${contrastName} color</tini-text
+            >
+          `
+        )}
 
-        <app-section class="italic-underline">
-          <h2 slot="title">Italic and Underline</h2>
-          <div slot="code">
+        <!-- fonts -->
+        ${renderFontTypesSection(
+          font =>
+            html`<tini-text font=${font}>Text with ${font} font</tini-text>`
+        )}
+
+        <!-- font sizes -->
+        ${renderFontSizesSection(
+          true,
+          fontSize =>
+            html`<tini-text fontSize=${fontSize}
+              >${fontSize.replace('_', '.')}</tini-text
+            >`
+        )}
+
+        <!-- weights -->
+        ${renderWeightsSection(
+          weight =>
+            html`<tini-text weight=${weight}
+              >Text with ${weight} weight</tini-text
+            >`
+        )}
+
+        <!-- transforms -->
+        ${renderTransformsSection(
+          transform =>
+            html`<tini-text transform=${transform}
+              >Text with ${transform} transform</tini-text
+            >`
+        )}
+
+        <!-- italic and underline -->
+        ${renderSection(
+          'italic-underline',
+          'Italic and Underline',
+          null,
+          html`
             <tini-text italic>Text with italic style</tini-text><br />
             <tini-text italic color="gradient-primary" fontSize="2x"
               >Gradient text with italic style</tini-text
@@ -184,8 +164,8 @@ export class AppPageComponentsText extends TiniComponent {
             <tini-text underline color="gradient-primary" fontSize="2x"
               >Gradient text with underline decoration</tini-text
             >
-          </div>
-        </app-section>
+          `
+        )}
       </app-component-page>
     `;
   }

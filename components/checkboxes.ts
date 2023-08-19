@@ -97,7 +97,9 @@ export class TiniCheckboxesComponent extends LitElement {
           ?disabled=${disabled}
           @change=${this.onChange}
         />
-        ${!label ? nothing : html`<span>${label}</span>`}
+        ${!label
+          ? nothing
+          : html`<span part="label" class="label">${label}</span>`}
       </label>
     `;
   }

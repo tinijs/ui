@@ -85,14 +85,16 @@ export class TiniInputComponent extends LitElement {
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
       >
-        ${!this.label ? nothing : html`<span part="label">${this.label}</span>`}
+        ${!this.label
+          ? nothing
+          : html`<span part="label" class="label">${this.label}</span>`}
         <input
           part="input"
           class="input"
           type=${ifDefined(this.type)}
           name=${ifDefined(this.name)}
           placeholder=${ifDefined(this.placeholder)}
-          value=${ifDefined(this.value)}
+          .value=${this.value || ''}
           ?disabled=${this.disabled}
           ?readonly=${this.readonly}
           @change=${this.onChange}

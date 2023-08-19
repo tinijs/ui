@@ -18,6 +18,7 @@ export class TiniButtonComponent extends LitElement {
   static readonly defaultTagName = TINI_BUTTON;
 
   /* eslint-disable prettier/prettier */
+  @property({type: Boolean, reflect: true}) declare block?: boolean;
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
   @property({type: String, reflect: true}) declare justify?: JustifyContents;
   @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;
@@ -30,6 +31,7 @@ export class TiniButtonComponent extends LitElement {
   willUpdate() {
     this.rootClassesParts = {
       root: true,
+      block: !!this.block,
       disabled: !!this.disabled,
       [`justify-${this.justify}`]: !!this.justify,
       [`scheme-${this.scheme}`]: !!this.scheme,

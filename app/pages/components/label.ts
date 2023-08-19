@@ -1,12 +1,4 @@
-import {
-  Page,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBases,
-  SIZES,
-  BASE_COLORS,
-} from '@tinijs/core';
+import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -17,7 +9,13 @@ import {
   TiniLabelComponent,
 } from '@tinijs/ui';
 
-import {renderColorVaries} from '../../helpers/varies';
+import {
+  renderDefaultSection,
+  renderBaseColorsSection,
+  renderContrastColorsSection,
+  renderSizesSection,
+  renderFontColorsSection,
+} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -53,70 +51,55 @@ export class AppPageComponentsLabel extends TiniComponent {
       >
         <div slot="description">Label description.</div>
 
-        <app-section class="default">
-          <h2 slot="title">Default</h2>
-          <div slot="content">
+        <!-- default -->
+        ${renderDefaultSection(
+          html`
             <p>
               Default color is <code>medium</code>, default size is
               <code>md</code>.
             </p>
-          </div>
-          <div slot="code">
+          `,
+          html`
             <tini-label>Label</tini-label>
             <tini-label pilled>Label</tini-label>
-          </div>
-        </app-section>
-
-        ${BASE_COLORS.map(
-          baseName => html`
-            <app-section class="colors">
-              <h2 slot="title">Color ${baseName}</h2>
-              <div slot="code">
-                ${renderColorVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-label scheme=${fullName}>Label</tini-label>`
-                )}
-              </div>
-            </app-section>
           `
         )}
 
-        <app-section class="text-colors">
-          <h2 slot="title">Text colors</h2>
-          <div slot="content">
-            <p>
-              You can combine any text colors with any background colors. Below
-              are just some examples.
-            </p>
-          </div>
-          <div slot="code">
-            <tini-label color="primary">Label</tini-label>
-            <tini-label scheme="warning" color="primary">Label</tini-label>
-          </div>
-        </app-section>
+        <!-- colors -->
+        ${renderBaseColorsSection(
+          baseName => html`<tini-label scheme=${baseName}>Label</tini-label>`
+        )}
 
-        <app-section class="sizes">
-          <h2 slot="title">Sizes</h2>
-          <div slot="code">
-            ${SIZES.map(
-              size =>
-                html`<tini-label size=${size} scheme="primary"
-                  >Label</tini-label
-                >`
-            )}
-          </div>
-        </app-section>
+        <!-- contrast colors -->
+        ${renderContrastColorsSection(
+          contrastName => html`
+            <tini-label scheme=${contrastName}>Label</tini-label>
+          `
+        )}
+
+        <!-- text colors -->
+        ${renderFontColorsSection(
+          ['medium', 'warning'],
+          scheme =>
+            html`<tini-label scheme=${scheme} color="primary"
+              >Label</tini-label
+            >`
+        )}
+
+        <!-- sizes -->
+        ${renderSizesSection(
+          size =>
+            html`<tini-label size=${size} scheme="primary">Label</tini-label>`
+        )}
       </app-component-page>
     `;
   }
 
   static styles = css`
-    app-section [slot='code'] {
-      tini-box {
-        width: 85px;
-        margin-top: var(--size-space);
-      }
+    .contrasts [slot='code'] {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
     }
   `;
 }

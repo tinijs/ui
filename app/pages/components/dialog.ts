@@ -18,6 +18,8 @@ import {
   TiniDialogComponent,
 } from '@tinijs/ui';
 
+import {renderSection, renderDefaultSection} from '../../helpers/varies';
+
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -41,7 +43,14 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsDialog extends TiniComponent {
-  private readonly PART_LIST = [['root', 'The root part']];
+  private readonly PART_LIST = [
+    ['root', 'The root part'],
+    ['head', 'The head part'],
+    ['body', 'The body part'],
+    ['foot', 'The foot part'],
+    ['foot-left', 'The left part of the foot'],
+    ['foot-right', 'The right part of the foot'],
+  ];
 
   private readonly alert1DialogRef: Ref<TiniDialogComponent> = createRef();
   private readonly alert2DialogRef: Ref<TiniDialogComponent> = createRef();
@@ -62,15 +71,15 @@ export class AppPageComponentsDialog extends TiniComponent {
       >
         <div slot="description">Dialog description.</div>
 
-        <app-section class="default">
-          <h2 slot="title">Default</h2>
-          <div slot="content">
+        <!-- default -->
+        ${renderDefaultSection(
+          html`
             <p>
               Default type is <code>alert</code>. Use <code>yes</code> and
               <code>no</code> to capture events.
             </p>
-          </div>
-          <div slot="code">
+          `,
+          html`
             <div class="group">
               <tini-button
                 scheme="primary"
@@ -86,6 +95,7 @@ export class AppPageComponentsDialog extends TiniComponent {
                 <p>Alert dialog content.</p>
               </tini-dialog>
             </div>
+
             <div class="group" style="margin-top: 1rem;">
               <tini-button
                 scheme="primary"
@@ -102,18 +112,20 @@ export class AppPageComponentsDialog extends TiniComponent {
                 <p>Alert dialog content, close on clicking backdrop.</p>
               </tini-dialog>
             </div>
-          </div>
-        </app-section>
+          `
+        )}
 
-        <app-section class="confirm">
-          <h2 slot="title">Confirm</h2>
-          <div slot="content">
+        <!-- confirm -->
+        ${renderSection(
+          'confirm',
+          'Confirm',
+          html`
             <p>
               Use type <code>confirm</code> to create dialog with
               <strong>Yes/No</strong> button.
             </p>
-          </div>
-          <div slot="code">
+          `,
+          html`
             <tini-button
               scheme="primary"
               @click=${() => this.confirmDialogRef.value?.show()}
@@ -128,18 +140,20 @@ export class AppPageComponentsDialog extends TiniComponent {
             >
               <p>Confirm dialog content.</p>
             </tini-dialog>
-          </div>
-        </app-section>
+          `
+        )}
 
-        <app-section class="prompt">
-          <h2 slot="title">Prompt</h2>
-          <div slot="content">
+        <!-- prompt -->
+        ${renderSection(
+          'prompt',
+          'Prompt',
+          html`
             <p>
               Use type <code>prompt</code> to create dialog with
               <strong>OK/Cancel</strong> button.
             </p>
-          </div>
-          <div slot="code">
+          `,
+          html`
             <tini-button
               scheme="primary"
               @click=${() => this.promptDialogRef.value?.show()}
@@ -159,15 +173,15 @@ export class AppPageComponentsDialog extends TiniComponent {
                 placeholder="email@example.com"
               ></tini-input>
             </tini-dialog>
-          </div>
-        </app-section>
+          `
+        )}
 
-        <app-section class="custom-buttons">
-          <h2 slot="title">Custom buttons</h2>
-          <div slot="content">
-            <p>Customize the Yes/No button.</p>
-          </div>
-          <div slot="code">
+        <!-- custom buttons -->
+        ${renderSection(
+          'custom-buttons',
+          'Custom buttons',
+          html`<p>Customize the Yes/No button.</p>`,
+          html`
             <tini-button
               scheme="primary"
               @click=${() => this.customButtonsDialogRef.value?.show()}
@@ -184,15 +198,15 @@ export class AppPageComponentsDialog extends TiniComponent {
             >
               <p>Customize text and color of the buttons.</p>
             </tini-dialog>
-          </div>
-        </app-section>
+          `
+        )}
 
-        <app-section class="custom-head-foot">
-          <h2 slot="title">Custom head and foot</h2>
-          <div slot="content">
-            <p>Provide your own head and foot.</p>
-          </div>
-          <div slot="code">
+        <!-- custom head and foot -->
+        ${renderSection(
+          'custom-head-foot',
+          'Custom head and foot',
+          html`<p>Provide your own head and foot.</p>`,
+          html`
             <tini-button
               scheme="primary"
               @click=${() => this.customHeadFootDialogRef.value?.show()}
@@ -213,8 +227,8 @@ export class AppPageComponentsDialog extends TiniComponent {
                 >
               </div>
             </tini-dialog>
-          </div>
-        </app-section>
+          `
+        )}
       </app-component-page>
     `;
   }

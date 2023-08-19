@@ -1,12 +1,4 @@
-import {
-  Page,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBases,
-  BASE_COLORS,
-  SIZES,
-} from '@tinijs/core';
+import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -19,6 +11,13 @@ import {
   SelectOptgroup,
   SelectEventDetail,
 } from '@tinijs/ui';
+
+import {
+  renderSection,
+  renderDefaultSection,
+  renderBaseColorsSection,
+  renderSizesSection,
+} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -42,7 +41,13 @@ import {AppSectionComponent} from '../../components/section';
   },
 })
 export class AppPageComponentsSelect extends TiniComponent {
-  private readonly PART_LIST = [['root', 'The root part']];
+  private readonly PART_LIST = [
+    ['root', 'The root part'],
+    ['label', 'The label'],
+    ['select', 'The select element'],
+    ['optgroup', 'An optgroup element'],
+    ['option', 'An option element'],
+  ];
 
   private OPTIONS: SelectOption[] = [
     {label: 'Option 1', value: '1'},
@@ -71,9 +76,10 @@ export class AppPageComponentsSelect extends TiniComponent {
       >
         <div slot="description">Select description.</div>
 
-        <app-section class="default">
-          <h2 slot="title">Default</h2>
-          <div slot="code">
+        <!-- default -->
+        ${renderDefaultSection(
+          null,
+          html`
             <tini-select
               label="Select an option"
               .items=${this.OPTIONS}
@@ -82,12 +88,15 @@ export class AppPageComponentsSelect extends TiniComponent {
               label="Using optgroup"
               .items=${this.OPTGROUPS}
             ></tini-select>
-          </div>
-        </app-section>
+          `
+        )}
 
-        <app-section class="wrap">
-          <h2 slot="title">Wrap</h2>
-          <div slot="code">
+        <!-- wrap -->
+        ${renderSection(
+          'wrap',
+          'Wrap',
+          null,
+          html`
             <tini-select
               wrap
               label="Select an option"
@@ -98,12 +107,15 @@ export class AppPageComponentsSelect extends TiniComponent {
               label="Using optgroup"
               .items=${this.OPTGROUPS}
             ></tini-select>
-          </div>
-        </app-section>
+          `
+        )}
 
-        <app-section class="disabled">
-          <h2 slot="title">Disabled</h2>
-          <div slot="code">
+        <!-- disabled -->
+        ${renderSection(
+          'disabled',
+          'Disabled',
+          null,
+          html`
             <tini-select
               wrap
               label="Disabled option"
@@ -119,18 +131,20 @@ export class AppPageComponentsSelect extends TiniComponent {
               label="Disabled select"
               .items=${this.OPTIONS}
             ></tini-select>
-          </div>
-        </app-section>
+          `
+        )}
 
-        <app-section class="events">
-          <h2 slot="title">Events</h2>
-          <div slot="content">
+        <!-- events -->
+        ${renderSection(
+          'events',
+          'Events',
+          html`
             <p>
               Use the <code>change</code> event to capture changes (open the
               console to see the event log).
             </p>
-          </div>
-          <div slot="code">
+          `,
+          html`
             <tini-select
               label="Event"
               name="input-with-event"
@@ -138,34 +152,26 @@ export class AppPageComponentsSelect extends TiniComponent {
               @change=${({detail}: CustomEvent<SelectEventDetail>) =>
                 console.log('Select "change" event: ', detail)}
             ></tini-select>
-          </div>
-        </app-section>
+          `
+        )}
 
-        <app-section class="colors">
-          <h2 slot="title">Colors</h2>
-          <div slot="code">
-            ${BASE_COLORS.map(
-              baseName =>
-                html`<tini-select
-                  scheme="${baseName}"
-                  .items=${this.OPTIONS}
-                ></tini-select>`
-            )}
-          </div>
-        </app-section>
+        <!-- colors -->
+        ${renderBaseColorsSection(
+          baseName =>
+            html`<tini-select
+              scheme="${baseName}"
+              .items=${this.OPTIONS}
+            ></tini-select>`
+        )}
 
-        <app-section class="sizes">
-          <h2 slot="title">Sizes</h2>
-          <div slot="code">
-            ${SIZES.map(
-              size =>
-                html`<tini-select
-                  size=${size}
-                  .items=${this.OPTIONS}
-                ></tini-select>`
-            )}
-          </div>
-        </app-section>
+        <!-- sizes -->
+        ${renderSizesSection(
+          size =>
+            html`<tini-select
+              size=${size}
+              .items=${this.OPTIONS}
+            ></tini-select>`
+        )}
       </app-component-page>
     `;
   }

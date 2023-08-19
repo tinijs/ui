@@ -1,11 +1,4 @@
-import {
-  Page,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBases,
-  BASE_COLORS,
-} from '@tinijs/core';
+import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -16,7 +9,13 @@ import {
   TiniMessageComponent,
 } from '@tinijs/ui';
 
-import {renderColorVaries} from '../../helpers/varies';
+import {
+  renderDefaultSection,
+  renderBaseColorsSection,
+  renderContrastColorsSection,
+  renderFontColorsSection,
+  renderFontSizesSection,
+} from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -52,69 +51,51 @@ export class AppPageComponentsMessage extends TiniComponent {
       >
         <div slot="description">Message description.</div>
 
-        <app-section class="default">
-          <h2 slot="title">Default</h2>
-          <div slot="content">
+        <!-- default -->
+        ${renderDefaultSection(
+          html`
             <p>
               Default background is <code>none</code>, default color is the
               current <code>foreground</code>.
             </p>
-          </div>
-          <div slot="code">
-            <tini-message>Here is a default message</tini-message>
-          </div>
-        </app-section>
+          `,
+          html`<tini-message>Here is a default message</tini-message>`
+        )}
 
-        ${BASE_COLORS.map(
-          baseName => html`
-            <app-section class="colors">
-              <h2 slot="title">Color ${baseName}</h2>
-              <div slot="code">
-                ${renderColorVaries(
-                  baseName,
-                  fullName =>
-                    html`<tini-message scheme=${fullName}
-                      >Message with ${fullName} background</tini-message
-                    >`
-                )}
-              </div>
-            </app-section>
+        <!-- colors -->
+        ${renderBaseColorsSection(
+          baseName =>
+            html`<tini-message scheme=${baseName}
+              >Message with ${baseName} background</tini-message
+            >`
+        )}
+
+        <!-- contrast colors -->
+        ${renderContrastColorsSection(
+          contrastName => html`
+            <tini-message scheme=${contrastName}
+              >Message with ${contrastName} background</tini-message
+            >
           `
         )}
 
-        <app-section class="text-colors">
-          <h2 slot="title">Text colors</h2>
-          <div slot="content">
-            <p>
-              You can combine any text colors with any background colors. Below
-              are just some examples.
-            </p>
-          </div>
-          <div slot="code">
-            <tini-message color="primary"
-              >Default background / Primary text</tini-message
-            >
-            <tini-message scheme="warning" color="primary"
-              >Warning background / Primary text</tini-message
-            >
-          </div>
-        </app-section>
+        <!-- font colors -->
+        ${renderFontColorsSection(
+          ['medium', 'warning'],
+          scheme =>
+            html`<tini-message scheme=${scheme} color="primary"
+              >Message with ${scheme} scheme / primary text</tini-message
+            >`
+        )}
 
-        <app-section class="font-sizes">
-          <h2 slot="title">Font sizes</h2>
-          <div slot="content">
-            <p>Font size from 0.1x to 10x.</p>
-          </div>
-          <div slot="code">
-            <tini-message fontSize="0_5x" scheme="primary"
-              >Font size 0.5x</tini-message
-            >
-            <tini-message scheme="primary">Font size 1x</tini-message>
-            <tini-message fontSize="3x" scheme="primary"
-              >Font size 3x</tini-message
-            >
-          </div>
-        </app-section>
+        <!-- font sizes -->
+        ${renderFontSizesSection(
+          false,
+          fontSize =>
+            html`<tini-message fontSize=${fontSize} scheme="primary"
+              >Message with ${fontSize} font size</tini-message
+            >`
+        )}
       </app-component-page>
     `;
   }

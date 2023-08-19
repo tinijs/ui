@@ -55,7 +55,7 @@ export const paginationStyle = css`
     );
   }
 
-  li.active a {
+  li.item-active a {
     cursor: default;
     background: var(--pagination-active-background);
     color: var(--pagination-active-color);
@@ -73,10 +73,10 @@ export const paginationStyle = css`
     content: 'Next';
   }
 
-  .previous.disabled a,
-  .previous.disabled a:hover,
-  .next.disabled a,
-  .next.disabled a:hover {
+  .previous-disabled a,
+  .previous-disabled a:hover,
+  .next-disabled a,
+  .next-disabled a:hover {
     cursor: default;
     background: color-mix(
       in oklab,

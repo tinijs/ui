@@ -70,7 +70,9 @@ export class TiniTextareaComponent extends LitElement {
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
       >
-        ${!this.label ? nothing : html`<span part="label">${this.label}</span>`}
+        ${!this.label
+          ? nothing
+          : html`<span part="label" class="label">${this.label}</span>`}
         <textarea
           part="textarea"
           class="textarea"
