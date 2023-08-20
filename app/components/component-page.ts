@@ -228,7 +228,11 @@ useComponents([
     if (this.contentMode === Modes.Component && !this.componentSourceCode) {
       this.componentSourceCode = await getText(this.componentUrl);
     } else if (this.contentMode === Modes.Soul && !this.soulSourceCode) {
-      this.soulSourceCode = await getText(this.soulUrl);
+      try {
+        this.soulSourceCode = await getText(this.soulUrl);
+      } catch (err) {
+        alert(`Unable to access: ${this.soulUrl}`);
+      }
     }
   }
 
