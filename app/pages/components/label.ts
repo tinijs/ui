@@ -79,9 +79,9 @@ export class AppPageComponentsLabel extends TiniComponent {
 
         <!-- text colors -->
         ${renderFontColorsSection(
-          ['medium', 'warning'],
+          ['medium', 'warning'] as any,
           scheme =>
-            html`<tini-label scheme=${scheme} color="primary"
+            html`<tini-label scheme=${scheme as any} color="primary"
               >Label</tini-label
             >`
         )}

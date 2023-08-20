@@ -5,7 +5,7 @@ export const labelStyle = css`
   :host {
     --label-background: var(--color-medium) /* Background color */;
     --label-size: var(--size-md);
-    --label-color: var(--color-medium-contrast) /* Text color */;
+    --label-color: black /* Text color */;
     --label-border: none;
     --label-radius: var(--size-radius);
   }
@@ -28,7 +28,7 @@ export const labelStyle = css`
     background: color-mix(in oklab, var(--label-background), transparent 50%);
     color: var(--label-color);
     font-size: var(--label-size);
-    font-weight: bold;
+    font-weight: normal;
     line-height: 1;
   }
 
@@ -45,10 +45,9 @@ export const labelStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, color, contrast}) => `
+    ({name, color}) => `
     .scheme-${name} {
       --label-background: ${color};
-      --label-color: ${contrast};
     }
 
     .color-${name} {

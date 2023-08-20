@@ -27,7 +27,7 @@ import {formatHTML} from '../helpers/format';
 import {AppTabsComponent, TabItem} from '../components/tabs';
 import {AppCodeComponent} from '../components/code';
 
-export type CodeBuilder = (code?: string, context?: any) => string;
+export type CodeBuilder = (code: string, context?: any) => string;
 
 export const APP_SECTION = 'app-section';
 @Component({
@@ -53,7 +53,7 @@ export class AppSectionComponent extends TiniComponent {
   @Input({type: Object}) codeBuilders?: Record<string, CodeBuilder>;
   @Input({type: Object}) codeBuildContext?: unknown;
 
-  @Reactive() private originalCode?: string;
+  @Reactive() private originalCode = '';
 
   async onCreate() {
     let content = this.querySelector('[slot="code"]')?.innerHTML;

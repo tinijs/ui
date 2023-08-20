@@ -7,10 +7,20 @@ import {
   FONT_TYPES,
   FONT_WEIGHTS,
   TEXT_TRANSFORMS,
+  ColorsAndGradients,
+  Colors,
+  Gradients,
+  Sizes,
+  FontTypes,
+  SizeFactors,
+  FontWeights,
+  TextTransforms,
+  FontSizeFactors,
+  SpaceSizeFactors,
 } from '@tinijs/core';
 import {AppSectionComponent} from '../components/section';
 
-interface RenderSectionOptions {
+export interface RenderSectionOptions {
   className?: string;
   title?: string;
   content?: HTMLTemplateResult;
@@ -91,7 +101,9 @@ function renderColorOrGradientVaries(
       const fullName = buildFullName(baseName, suffix);
       return suffix !== 'contrast'
         ? render(fullName)
-        : html`<tini-box scheme=${baseName}>${render(fullName)}</tini-box>`;
+        : html`<tini-box scheme=${baseName as ColorsAndGradients}
+            >${render(fullName)}</tini-box
+          >`;
     });
 }
 
@@ -162,7 +174,7 @@ export function renderDefaultSection(
 }
 
 export function renderBaseColorsSection(
-  handler: (baseName: string) => HTMLTemplateResult,
+  handler: (baseName: Colors) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
@@ -180,7 +192,7 @@ export function renderBaseColorsSection(
 }
 
 export function renderContrastColorsSection(
-  handler: (contrastName: string, baseName: string) => HTMLTemplateResult,
+  handler: (contrastName: Colors, baseName: Colors) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
@@ -191,7 +203,7 @@ export function renderContrastColorsSection(
       ${BASE_COLORS.map(
         baseName => html`
           <tini-box scheme=${baseName}>
-            ${handler(`${baseName}-contrast`, baseName)}
+            ${handler(`${baseName}-contrast` as Colors, baseName)}
           </tini-box>
         `
       )}
@@ -201,7 +213,7 @@ export function renderContrastColorsSection(
 }
 
 export function renderBaseGradientsSection(
-  handler: (baseName: string) => HTMLTemplateResult,
+  handler: (baseName: Gradients) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
@@ -219,7 +231,7 @@ export function renderBaseGradientsSection(
 }
 
 export function renderContrastGradientsSection(
-  handler: (contrastName: string, baseName: string) => HTMLTemplateResult,
+  handler: (contrastName: Gradients, baseName: Gradients) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
@@ -229,7 +241,7 @@ export function renderContrastGradientsSection(
     html`${BASE_GRADIENTS.map(
       baseName => html`
         <tini-box scheme=${baseName}>
-          ${handler(`${baseName}-contrast`, baseName)}
+          ${handler(`${baseName}-contrast` as Gradients, baseName)}
         </tini-box>
       `
     )}`,
@@ -238,7 +250,7 @@ export function renderContrastGradientsSection(
 }
 
 export function renderSizesSection(
-  handler: (size: string) => HTMLTemplateResult,
+  handler: (size: Sizes) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
@@ -251,8 +263,8 @@ export function renderSizesSection(
 }
 
 export function renderFontColorsSection(
-  schemes: string[],
-  handler: (scheme: string) => HTMLTemplateResult,
+  schemes: ColorsAndGradients[],
+  handler: (scheme: ColorsAndGradients) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
@@ -270,7 +282,7 @@ export function renderFontColorsSection(
 }
 
 export function renderFontTypesSection(
-  handler: (fontType: string) => HTMLTemplateResult,
+  handler: (fontType: FontTypes) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
@@ -284,22 +296,23 @@ export function renderFontTypesSection(
 
 export function renderFontSizesSection(
   full: boolean,
-  handler: (fontSize: string) => HTMLTemplateResult,
+  handler: (fontSize: FontSizeFactors) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
     'font-sizes',
     'Font sizes',
     html` <p>Font size from 0.1x to 10x.</p> `,
-    html`${(full ? SIZE_FACTORS : ['0_5x', '1x', '3x']).map(fontSize =>
-      handler(fontSize)
-    )}`,
+    html`${(full
+      ? SIZE_FACTORS
+      : (['0_5x', '1x', '3x'] as FontSizeFactors[])
+    ).map(fontSize => handler(fontSize))}`,
     options
   );
 }
 
 export function renderWeightsSection(
-  handler: (weight: string) => HTMLTemplateResult,
+  handler: (weight: FontWeights) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
@@ -312,7 +325,7 @@ export function renderWeightsSection(
 }
 
 export function renderTransformsSection(
-  handler: (transform: string) => HTMLTemplateResult,
+  handler: (transform: TextTransforms) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(

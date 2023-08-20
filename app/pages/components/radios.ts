@@ -9,6 +9,7 @@ import {
   TiniRadiosComponent,
   RadiosItem,
   RadiosEventDetail,
+  TINI_RADIOS,
 } from '@tinijs/ui';
 
 import {
@@ -48,16 +49,12 @@ export class AppPageComponentsRadios extends TiniComponent {
     ['label', 'A label'],
   ];
 
-  private readonly PREPROCESS_CODE_DEFAULT = ((code: string) =>
-    code.replace(
-      /\<tini\-radios/g,
-      '<tini-radios .items=${...}'
-    )) as CodeBuilder;
-  private readonly PREPROCESS_CODE_EVENTS = ((code: string) =>
-    code.replace(
-      /\<tini\-radios/g,
-      '<tini-radios @change=${HANDLER}'
-    )) as CodeBuilder;
+  private TAG_REGEX = new RegExp(`<${TINI_RADIOS}`, 'g');
+
+  private readonly PREPROCESS_CODE_DEFAULT = (code: string) =>
+    code.replace(this.TAG_REGEX, `<${TINI_RADIOS} .items=\${...}`);
+  private readonly PREPROCESS_CODE_EVENTS = (code: string) =>
+    code.replace(this.TAG_REGEX, `<${TINI_RADIOS} @change=\${HANDLER}`);
 
   private DEFAULT_LIST: RadiosItem[] = [
     {value: '', label: 'Default checkbox'},
@@ -193,8 +190,8 @@ export class AppPageComponentsRadios extends TiniComponent {
 
         <!-- sizes -->
         ${renderSizesSection(
-          size => html`
-            <tini-radios
+          size =>
+            html`<tini-radios
               name="sizes"
               wrap
               .items=${[
@@ -204,8 +201,7 @@ export class AppPageComponentsRadios extends TiniComponent {
                   size,
                 },
               ]}
-            ></tini-radios>
-          `,
+            ></tini-radios>`,
           {
             preprocessCode: this.PREPROCESS_CODE_DEFAULT,
           }

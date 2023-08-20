@@ -6,10 +6,12 @@ import {
   textBases,
   codeBases,
   BreadcrumbItem,
+  TINI_BREADCRUMB,
   TiniBreadcrumbComponent,
 } from '@tinijs/ui';
 
 import {
+  RenderSectionOptions,
   renderDefaultSection,
   renderBaseColorsSection,
   renderBaseGradientsSection,
@@ -48,6 +50,22 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
     {label: 'Data'},
   ];
 
+  private getCodePreprocessor() {
+    const tagRegex = new RegExp(`<${TINI_BREADCRUMB}`, 'g');
+    return function (code: string) {
+      return code
+        .replace(tagRegex, `<${TINI_BREADCRUMB} .items=\${...}`)
+        .replace(/linkcolor=/g, 'linkColor=');
+    };
+  }
+
+  private defaultSectionOptions?: RenderSectionOptions;
+  willUpdate() {
+    this.defaultSectionOptions = {
+      preprocessCode: this.getCodePreprocessor(),
+    };
+  }
+
   protected render() {
     return html`
       <app-component-page
@@ -65,7 +83,8 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
             ${[[this.ITEMS[0]], [this.ITEMS[0], this.ITEMS[1]], this.ITEMS].map(
               items => html`<tini-breadcrumb .items=${items}></tini-breadcrumb>`
             )}
-          `
+          `,
+          this.defaultSectionOptions
         )}
 
         <!-- colors -->
@@ -74,7 +93,8 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
             html`<tini-breadcrumb
               linkColor=${baseName}
               .items=${this.ITEMS}
-            ></tini-breadcrumb>`
+            ></tini-breadcrumb>`,
+          this.defaultSectionOptions
         )}
 
         <!-- gradients -->
@@ -83,7 +103,8 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
             html`<tini-breadcrumb
               linkColor=${baseName}
               .items=${this.ITEMS}
-            ></tini-breadcrumb>`
+            ></tini-breadcrumb>`,
+          this.defaultSectionOptions
         )}
       </app-component-page>
     `;

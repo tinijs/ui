@@ -13,6 +13,7 @@ import {
   textBases,
   codeBases,
   TiniBoxComponent,
+  TINI_CHECKBOXES,
   TiniCheckboxesComponent,
   CheckboxesItem,
   CheckboxesEventDetail,
@@ -55,15 +56,17 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
     ['label', 'A label'],
   ];
 
+  private TAG_REGEX = new RegExp(`<${TINI_CHECKBOXES}`, 'g');
+
   private readonly PREPROCESS_CODE_DEFAULT = ((code: string) =>
     code.replace(
-      /\<tini\-checkboxes/g,
-      '<tini-checkboxes .items=${...}'
+      this.TAG_REGEX,
+      `<${TINI_CHECKBOXES} .items=\${...}`
     )) as CodeBuilder;
   private readonly PREPROCESS_CODE_EVENTS = ((code: string) =>
     code.replace(
-      /\<tini\-checkboxes/g,
-      '<tini-checkboxes @change=${HANDLER}'
+      this.TAG_REGEX,
+      `<${TINI_CHECKBOXES} @change=\${HANDLER}`
     )) as CodeBuilder;
 
   private DEFAULT_LIST: CheckboxesItem[] = [
@@ -193,8 +196,8 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
 
         <!-- sizes -->
         ${renderSizesSection(
-          size => html`
-            <tini-checkboxes
+          size =>
+            html`<tini-checkboxes
               wrap
               .items=${[
                 {
@@ -203,8 +206,7 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
                   size,
                 },
               ]}
-            ></tini-checkboxes>
-          `,
+            ></tini-checkboxes>`,
           {
             preprocessCode: this.PREPROCESS_CODE_DEFAULT,
           }

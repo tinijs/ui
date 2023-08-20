@@ -52,6 +52,10 @@ import {AppSectionComponent} from '../../components/section';
 })
 export class AppPageComponentsButton extends TiniComponent {
   private readonly PART_LIST = [['root', 'The root part']];
+
+  private readonly PREPROCESS_CODE_FONT_SIZE = (code: string) =>
+    code.replace(/fontsize=/g, 'fontSize=');
+
   protected render() {
     return html`
       <app-component-page
@@ -141,7 +145,7 @@ export class AppPageComponentsButton extends TiniComponent {
 
         <!-- text colors -->
         ${renderFontColorsSection(
-          ['background', 'warning', 'gradient-danger'],
+          ['background', 'warning', 'gradient-danger'] as any,
           scheme =>
             html`<tini-button scheme=${scheme} color="primary"
               >Button with ${scheme} scheme / primary text</tini-button
@@ -162,7 +166,10 @@ export class AppPageComponentsButton extends TiniComponent {
           fontSize =>
             html`<tini-button scheme="primary" fontSize=${fontSize}
               >Button with ${fontSize} font size</tini-button
-            >`
+            >`,
+          {
+            preprocessCode: this.PREPROCESS_CODE_FONT_SIZE,
+          }
         )}
 
         <!-- icons and justifications -->
@@ -253,7 +260,7 @@ export class AppPageComponentsButton extends TiniComponent {
       gap: var(--size-space);
 
       tini-box {
-        width: 325px;
+        width: 350px;
       }
     }
 

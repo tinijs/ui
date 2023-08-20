@@ -49,6 +49,10 @@ import {AppSectionComponent} from '../../components/section';
 })
 export class AppPageComponentsBox extends TiniComponent {
   private readonly PART_LIST = [['root', 'The root part']];
+
+  private readonly PREPROCESS_CODE_RADIUS = (code: string) =>
+    code.replace(/borderradius=/g, 'borderRadius=');
+
   protected render() {
     return html`
       <app-component-page
@@ -106,7 +110,7 @@ export class AppPageComponentsBox extends TiniComponent {
 
         <!-- text colors -->
         ${renderFontColorsSection(
-          ['background', 'warning', 'gradient-danger'],
+          ['background', 'warning', 'gradient-danger'] as any,
           scheme =>
             html`<tini-box scheme=${scheme} color="primary"
               >Box with ${scheme} scheme / primary text</tini-box
@@ -138,19 +142,22 @@ export class AppPageComponentsBox extends TiniComponent {
               ([bordering, radius]) =>
                 html`<tini-box
                   bordering=${bordering}
-                  borderRadius=${ifDefined(radius)}
-                  >Box with "${bordering}"
-                  border${!radius ? '' : ` and "${radius}" radius`}</tini-box
+                  borderRadius=${ifDefined(radius as any)}
+                  >Box with ${bordering}
+                  border${!radius ? '' : ` and ${radius} radius`}</tini-box
                 >`
             )}
-          `
+          `,
+          {
+            preprocessCode: this.PREPROCESS_CODE_RADIUS,
+          }
         )}
 
         <!-- paddings -->
         ${renderSpacesSection(
           'padding',
           padding => html`<tini-box bordering="solid" padding=${padding}
-              ><div>Box with "${padding}" padding</div></tini-box
+              ><div>Box with ${padding} padding</div></tini-box
             ></app-section>`
         )}
 
@@ -160,7 +167,7 @@ export class AppPageComponentsBox extends TiniComponent {
           margin =>
             html`<div class="margin-container">
               <tini-box scheme="primary" margin=${margin}
-                >Box with "${margin}" margin</tini-box
+                >Box with ${margin} margin</tini-box
               >
             </div>`
         )}

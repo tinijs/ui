@@ -81,9 +81,9 @@ export class AppPageComponentsMessage extends TiniComponent {
 
         <!-- font colors -->
         ${renderFontColorsSection(
-          ['medium', 'warning'],
+          ['medium', 'warning'] as any,
           scheme =>
-            html`<tini-message scheme=${scheme} color="primary"
+            html`<tini-message scheme=${scheme as any} color="primary"
               >Message with ${scheme} scheme / primary text</tini-message
             >`
         )}

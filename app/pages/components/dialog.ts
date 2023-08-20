@@ -191,8 +191,8 @@ export class AppPageComponentsDialog extends TiniComponent {
               ${ref(this.customButtonsDialogRef)}
               titleText="Delete this item?"
               type="confirm"
-              .noButton=${{text: 'Cancel', scheme: 'secondary'}}
-              .yesButton=${{text: 'Delete?', scheme: 'danger'}}
+              .noButton=${{text: 'Cancel', scheme: 'secondary'} as any}
+              .yesButton=${{text: 'Delete?', scheme: 'danger'} as any}
               @no=${() => this.customButtonsDialogRef.value?.hide()}
               @yes=${() => this.customButtonsDialogRef.value?.hide()}
             >

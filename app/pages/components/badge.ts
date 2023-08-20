@@ -87,7 +87,7 @@ export class AppPageComponentsBadge extends TiniComponent {
                 ['1000', 'tertiary'],
               ].map(
                 ([content, scheme]) =>
-                  html`<tini-badge pilled scheme=${scheme}
+                  html`<tini-badge pilled scheme=${scheme as any}
                     >${content}</tini-badge
                   >`
               )}
@@ -99,7 +99,7 @@ export class AppPageComponentsBadge extends TiniComponent {
                 ['1000', 'danger'],
               ].map(
                 ([content, scheme]) =>
-                  html`<tini-badge rounded scheme=${scheme}
+                  html`<tini-badge rounded scheme=${scheme as any}
                     >${content}</tini-badge
                   >`
               )}
@@ -131,7 +131,7 @@ export class AppPageComponentsBadge extends TiniComponent {
 
         <!-- text colors -->
         ${renderFontColorsSection(
-          ['medium', 'warning', 'gradient-danger'],
+          ['medium', 'warning', 'gradient-danger'] as any,
           scheme =>
             html`<tini-badge scheme=${scheme} color="primary">99+</tini-badge>`
         )}
