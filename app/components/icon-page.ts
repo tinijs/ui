@@ -54,6 +54,7 @@ export class AppIconPageComponent extends TiniComponent {
   @Input({type: String}) declare titleText?: string;
   @Input({type: String}) declare homepage?: string;
   @Input({type: Boolean}) declare noVariants?: boolean;
+  @Input({type: String}) declare customIndexUrl?: string;
 
   @Reactive() private currentPage = 1;
   @Reactive() private filterQuery?: string;
@@ -81,7 +82,8 @@ export class AppIconPageComponent extends TiniComponent {
 
   async onCreate() {
     this.data = await get(
-      `https://unpkg.com/${this.packageName}@latest/index.json`
+      this.customIndexUrl ||
+        `https://unpkg.com/${this.packageName}@latest/index.json`
     );
     this.totalPages = Math.ceil(this.data.items.length / this.SIZE);
   }

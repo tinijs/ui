@@ -37,7 +37,7 @@
     "url": "https://github.com/tinijs/ui/issues"
   },
   "dependencies": {
-    "@tinijs/bootstrap-icons": "^0.1.2",
+    "@tinijs/bootstrap-icons": "^0.2.0",
     "@tinijs/core": "file:../core/tinijs-core-0.1.1.tgz",
     "@tinijs/router": "^0.1.1",
     "@tinijs/store": "^0.1.1",
