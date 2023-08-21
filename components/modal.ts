@@ -2,7 +2,7 @@ import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
-import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
+import {partMap, PartInfo} from '@tinijs/core';
 
 import {DialogButton, DialogResult} from './dialog';
 
@@ -20,6 +20,7 @@ export class TiniModalComponent extends LitElement {
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare titleText?: string;
   @property({type: Boolean, reflect: true}) declare backdropClosed?: boolean;
+  @property({type: Object}) declare noButton?: ModalButton;
   @property({type: Object}) declare yesButton?: ModalButton;
   /* eslint-enable prettier/prettier */
 
@@ -79,22 +80,33 @@ export class TiniModalComponent extends LitElement {
         @click=${this.clickDialog}
       >
         <div part="head" class="head">
-          <strong>${this.titleText || 'Untitled'}</strong>
-          <button @click=${this.clickNo}>✕</button>
+          <slot name="head">
+            <strong>${this.titleText || 'Untitled'}</strong>
+            <button @click=${this.clickNo}>✕</button>
+          </slot>
         </div>
         <div part="body" class="body">
           <slot></slot>
         </div>
         <div part="foot" class="foot">
-          <div part="foot-left" class="foot-left"></div>
-          <div part="foot-right" class="foot-right">
-            <tini-button
-              scheme=${this.yesButton?.scheme || 'primary'}
-              @click=${this.clickYes}
-            >
-              ${this.yesButton?.text || 'OK'}
-            </tini-button>
-          </div>
+          <slot name="foot">
+            <div part="foot-left" class="foot-left">
+              <tini-button
+                scheme=${this.noButton?.scheme || 'medium'}
+                @click=${this.clickNo}
+              >
+                ${this.noButton?.text || 'Cancel'}
+              </tini-button>
+            </div>
+            <div part="foot-right" class="foot-right">
+              <tini-button
+                scheme=${this.yesButton?.scheme || 'primary'}
+                @click=${this.clickYes}
+              >
+                ${this.yesButton?.text || 'OK'}
+              </tini-button>
+            </div>
+          </slot>
         </div>
       </dialog>
     `;

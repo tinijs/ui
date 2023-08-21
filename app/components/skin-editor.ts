@@ -60,7 +60,8 @@ export class AppSkinEditorComponent extends TiniComponent {
 
   private readonly REPO_URL = Configurable.getOption('repoUrl');
   private readonly SOUL_LIST = Configurable.getOption('soulList');
-  private readonly SKIN_URL_RESOLVER = Configurable.getOption('skinUrlResolver');
+  private readonly SKIN_URL_RESOLVER =
+    Configurable.getOption('skinUrlResolver');
 
   private modalRef: Ref<AppModalComponent> = createRef();
   private modalContentRef: Ref<HTMLDivElement> = createRef();

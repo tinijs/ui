@@ -8,8 +8,12 @@ export class Configurable {
     repoUrl: 'https://github.com/tinijs/ui',
     iconsRepoUrl: 'https://github.com/tinijs/icons',
     packagePrefix: '@tinijs/ui',
-    soulUrlResolver: undefined as undefined | ((soulId: string, name: string) => string),
-    skinUrlResolver: undefined as undefined | ((soulId: string, skinId: string) => string),
+    soulUrlResolver: undefined as
+      | undefined
+      | ((soulId: string, name: string) => string),
+    skinUrlResolver: undefined as
+      | undefined
+      | ((soulId: string, skinId: string) => string),
     componentUrlResolver: undefined as undefined | ((name: string) => string),
     soulList: [
       {

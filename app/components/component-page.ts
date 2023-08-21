@@ -72,8 +72,11 @@ export class AppComponentPageComponent extends TiniComponent {
 
   private readonly PACKAGE_PREFIX = Configurable.getOption('packagePrefix');
   private readonly REPO_URL = Configurable.getOption('repoUrl');
-  private readonly SOUL_URL_RESOLVER = Configurable.getOption('soulUrlResolver');
-  private readonly COMPONENT_URL_RESOLVER = Configurable.getOption('componentUrlResolver');
+  private readonly SOUL_URL_RESOLVER =
+    Configurable.getOption('soulUrlResolver');
+  private readonly COMPONENT_URL_RESOLVER = Configurable.getOption(
+    'componentUrlResolver'
+  );
 
   private readonly IMPORT_TAB_ITEMS: TabItem[] = [
     {name: ImportMethods.Tini},
