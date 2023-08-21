@@ -27,7 +27,6 @@ import {AppModalComponent} from './modal';
 import {AppGradientPickerComponent} from './gradient-picker';
 
 import {Configurable} from '../configurable';
-import {OFFICIAL_REPO_URL} from '../consts/main';
 import {FONTS} from '../consts/theme';
 import {buildGithubRawUrl} from '../helpers/github';
 import {changeTheme} from '../helpers/theme';
@@ -59,9 +58,9 @@ export const APP_SKIN_EDITOR = 'app-skin-editor';
 export class AppSkinEditorComponent extends TiniComponent {
   static readonly defaultTagName = APP_SKIN_EDITOR;
 
-  private readonly PRIVATE_REPO = Configurable.getOption('privateRepo');
   private readonly REPO_URL = Configurable.getOption('repoUrl');
   private readonly SOUL_LIST = Configurable.getOption('soulList');
+  private readonly SKIN_URL_RESOLVER = Configurable.getOption('skinUrlResolver');
 
   private modalRef: Ref<AppModalComponent> = createRef();
   private modalContentRef: Ref<HTMLDivElement> = createRef();
@@ -135,13 +134,11 @@ export class AppSkinEditorComponent extends TiniComponent {
   private async fetchSkinVariables() {
     const {soul, skin} = this.getCurrentTheme();
     this.variablesMap = await extractCSSVariables(
-      !this.PRIVATE_REPO
+      !this.SKIN_URL_RESOLVER
         ? `${buildGithubRawUrl(
             this.REPO_URL
           )}/main/styles/${soul}/skins/${skin}.css`
-        : `${buildGithubRawUrl(
-            OFFICIAL_REPO_URL
-          )}/main/styles/bootstrap/skins/light.css`
+        : this.SKIN_URL_RESOLVER(soul, skin)
     );
   }
 

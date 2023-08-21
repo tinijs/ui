@@ -72,6 +72,8 @@ export class AppComponentPageComponent extends TiniComponent {
 
   private readonly PACKAGE_PREFIX = Configurable.getOption('packagePrefix');
   private readonly REPO_URL = Configurable.getOption('repoUrl');
+  private readonly SOUL_URL_RESOLVER = Configurable.getOption('soulUrlResolver');
+  private readonly COMPONENT_URL_RESOLVER = Configurable.getOption('componentUrlResolver');
 
   private readonly IMPORT_TAB_ITEMS: TabItem[] = [
     {name: ImportMethods.Tini},
@@ -168,9 +170,11 @@ export class AppComponentPageComponent extends TiniComponent {
   }
 
   private buildSoulUrl() {
-    return `${buildGithubRawUrl(this.REPO_URL)}/main/styles/${
-      this.activeSoulId
-    }/soul/${this.name}.ts`;
+    return !this.SOUL_URL_RESOLVER
+      ? `${buildGithubRawUrl(this.REPO_URL)}/main/styles/${
+          this.activeSoulId
+        }/soul/${this.name}.ts`
+      : this.SOUL_URL_RESOLVER(this.activeSoulId, this.name);
   }
 
   private buildComponentLink() {
@@ -178,9 +182,11 @@ export class AppComponentPageComponent extends TiniComponent {
   }
 
   private buildComponentUrl() {
-    return `${buildGithubRawUrl(this.referComponentRepoUrl)}/main/components/${
-      this.name
-    }.ts`;
+    return !this.COMPONENT_URL_RESOLVER
+      ? `${buildGithubRawUrl(this.referComponentRepoUrl)}/main/components/${
+          this.name
+        }.ts`
+      : this.COMPONENT_URL_RESOLVER(this.name);
   }
 
   private buildImportTiniCode() {

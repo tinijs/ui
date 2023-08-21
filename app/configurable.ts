@@ -5,10 +5,12 @@ export class Configurable {
     appId: 'ui',
     appName: 'Tini UI',
     logoUrl: new URL('./assets/logo.svg', import.meta.url).toString(),
-    privateRepo: false,
     repoUrl: 'https://github.com/tinijs/ui',
     iconsRepoUrl: 'https://github.com/tinijs/icons',
     packagePrefix: '@tinijs/ui',
+    soulUrlResolver: undefined as undefined | ((soulId: string, name: string) => string),
+    skinUrlResolver: undefined as undefined | ((soulId: string, skinId: string) => string),
+    componentUrlResolver: undefined as undefined | ((name: string) => string),
     soulList: [
       {
         id: 'bootstrap',
