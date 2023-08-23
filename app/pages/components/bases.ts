@@ -16,7 +16,7 @@ import {
   buttonBases,
   formBases,
   codeBases,
-} from '@tinijs/ui';
+} from '@tinijs/ui/bases';
 import {Subscribe} from '@tinijs/store';
 
 import {Configurable} from '../../configurable';
@@ -118,7 +118,7 @@ export class AppPageComponentsBases extends TiniComponent {
                 code="import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 
 // 1. import the style
-import {${name}Bases} from '@tinijs/ui';
+import {${name}Bases} from '@tinijs/ui/bases';
 
 @Page({
   theming: {

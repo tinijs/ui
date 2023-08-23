@@ -11,11 +11,9 @@ import {
   JustifyContents,
 } from '@tinijs/core';
 
-export const TINI_BUTTON = 'tini-button';
-
 /* UseBases(common) */
 export class TiniButtonComponent extends LitElement {
-  static readonly defaultTagName = TINI_BUTTON;
+  static readonly defaultTagName = 'tini-button';
 
   /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare block?: boolean;

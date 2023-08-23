@@ -5,10 +5,12 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniBoxComponent,
+} from '@tinijs/ui/bases';
+import {TiniBoxComponent} from '@tinijs/ui/components/box';
+import {
   TiniInputComponent,
   InputEventDetail,
-} from '@tinijs/ui';
+} from '@tinijs/ui/components/input';
 
 import {
   renderSection,

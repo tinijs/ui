@@ -20,12 +20,10 @@ export interface DialogResult<Context> {
   dialog: HTMLDialogElement;
 }
 
-export const TINI_DIALOG = 'tini-dialog';
-
 /* UseBases(common) */
 /* UseComponents(button) */
 export class TiniDialogComponent extends LitElement {
-  static readonly defaultTagName = TINI_DIALOG;
+  static readonly defaultTagName = 'tini-dialog';
 
   private readonly BACKDROP_CLOSED = 'backdrop-closed';
 

@@ -3,11 +3,9 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {partMap, PartInfo, Colors, Sizes} from '@tinijs/core';
 
-export const TINI_SPINNER = 'tini-spinner';
-
 /* UseBases(common) */
 export class TiniSpinnerComponent extends LitElement {
-  static readonly defaultTagName = TINI_SPINNER;
+  static readonly defaultTagName = 'tini-spinner';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare scheme?: Colors;

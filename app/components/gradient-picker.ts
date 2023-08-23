@@ -16,11 +16,9 @@ import {
 } from '@tinijs/core';
 // @ts-ignore
 import * as Grapick from 'grapick';
-import {commonBases, formBases} from '@tinijs/ui';
+import {commonBases, formBases} from '@tinijs/ui/bases';
 
 import {parseGradient} from '../helpers/gradient';
-
-export const APP_GRADIENT_PICKER = 'app-gradient-picker';
 
 @Component({
   theming: {
@@ -28,7 +26,7 @@ export const APP_GRADIENT_PICKER = 'app-gradient-picker';
   },
 })
 export class AppGradientPickerComponent extends TiniComponent {
-  static readonly defaultTagName = APP_GRADIENT_PICKER;
+  static readonly defaultTagName = 'app-gradient-picker';
 
   @Input({type: String}) name!: string;
   @Input({type: String}) value = 'none';

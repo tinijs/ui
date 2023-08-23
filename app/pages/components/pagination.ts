@@ -5,8 +5,8 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniPaginationComponent,
-} from '@tinijs/ui';
+} from '@tinijs/ui/bases';
+import {TiniPaginationComponent} from '@tinijs/ui/components/pagination';
 
 import {
   renderDefaultSection,

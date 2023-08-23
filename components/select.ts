@@ -22,11 +22,9 @@ export type SelectOptgroup = SelectOption & {
 
 export type SelectEventDetail = InputEventDetail;
 
-export const TINI_SELECT = 'tini-select';
-
 /* UseBases(common) */
 export class TiniSelectComponent extends LitElement {
-  static readonly defaultTagName = TINI_SELECT;
+  static readonly defaultTagName = 'tini-select';
 
   /* eslint-disable prettier/prettier */
   @property({type: String}) declare items?: SelectItem[];

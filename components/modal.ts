@@ -9,11 +9,9 @@ import {DialogButton, DialogResult} from './dialog';
 export type ModalButton = DialogButton;
 export type ModalResult<Context> = DialogResult<Context>;
 
-export const TINI_MODAL = 'tini-modal';
-
 /* UseBases(common) */
 export class TiniModalComponent extends LitElement {
-  static readonly defaultTagName = TINI_MODAL;
+  static readonly defaultTagName = 'tini-modal';
 
   private readonly BACKDROP_CLOSED = 'backdrop-closed';
 

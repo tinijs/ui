@@ -13,14 +13,9 @@ import {
   render,
   nothing,
 } from '@tinijs/core';
-import {IconCodeComponent} from '@tinijs/bootstrap-icons';
-import {
-  commonBases,
-  buttonBases,
-  codeBases,
-  formBases,
-  TiniButtonComponent,
-} from '@tinijs/ui';
+import {IconCodeComponent} from '@tinijs/bootstrap-icons/code';
+import {commonBases, buttonBases, codeBases, formBases} from '@tinijs/ui/bases';
+import {TiniButtonComponent} from '@tinijs/ui/components/button';
 
 import {AppCodeComponent} from './code';
 import {AppModalComponent} from './modal';
@@ -41,8 +36,6 @@ import {
 } from '../helpers/font';
 import {mainStore} from '../stores/main';
 
-export const APP_SKIN_EDITOR = 'app-skin-editor';
-
 @Component({
   components: [
     IconCodeComponent,
@@ -56,7 +49,7 @@ export const APP_SKIN_EDITOR = 'app-skin-editor';
   },
 })
 export class AppSkinEditorComponent extends TiniComponent {
-  static readonly defaultTagName = APP_SKIN_EDITOR;
+  static readonly defaultTagName = 'app-skin-editor';
 
   private readonly REPO_URL = Configurable.getOption('repoUrl');
   private readonly SOUL_LIST = Configurable.getOption('soulList');

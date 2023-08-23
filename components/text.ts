@@ -25,11 +25,9 @@ export enum TextTypes {
   Span = 'span',
 }
 
-export const TINI_TEXT = 'tini-text';
-
 /* UseBases(common,headings) */
 export class TiniTextComponent extends LitElement {
-  static readonly defaultTagName = TINI_TEXT;
+  static readonly defaultTagName = 'tini-text';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare type?: TextTypes;

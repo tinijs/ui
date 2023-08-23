@@ -9,11 +9,9 @@ import {
   Sizes,
 } from '@tinijs/core';
 
-export const TINI_BADGE = 'tini-badge';
-
 /* UseBases(common) */
 export class TiniBadgeComponent extends LitElement {
-  static readonly defaultTagName = TINI_BADGE;
+  static readonly defaultTagName = 'tini-badge';
 
   /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare pilled?: boolean;

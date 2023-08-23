@@ -5,9 +5,9 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniButtonComponent,
-  TiniCardComponent,
-} from '@tinijs/ui';
+} from '@tinijs/ui/bases';
+import {TiniButtonComponent} from '@tinijs/ui/components/button';
+import {TiniCardComponent} from '@tinijs/ui/components/card';
 
 import {renderSection, renderDefaultSection} from '../../helpers/varies';
 

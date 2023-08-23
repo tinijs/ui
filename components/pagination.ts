@@ -8,11 +8,9 @@ export interface PaginationItem {
   href?: string;
 }
 
-export const TINI_PAGINATION = 'tini-pagination';
-
 /* UseBases(common) */
 export class TiniPaginationComponent extends LitElement {
-  static readonly defaultTagName = TINI_PAGINATION;
+  static readonly defaultTagName = 'tini-pagination';
 
   /* eslint-disable prettier/prettier */
   @property({type: Number, reflect: true}) declare totalPage: number;

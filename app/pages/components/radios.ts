@@ -5,12 +5,13 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniBoxComponent,
+} from '@tinijs/ui/bases';
+import {TiniBoxComponent} from '@tinijs/ui/components/box';
+import {
   TiniRadiosComponent,
   RadiosItem,
   RadiosEventDetail,
-  TINI_RADIOS,
-} from '@tinijs/ui';
+} from '@tinijs/ui/components/radios';
 
 import {
   renderSection,
@@ -49,16 +50,17 @@ export class AppPageComponentsRadios extends TiniComponent {
     ['label', 'A label'],
   ];
 
-  private TAG_REGEX = new RegExp(`<${TINI_RADIOS}`, 'g');
+  private readonly TAG_NAME = TiniRadiosComponent.defaultTagName;
+  private TAG_REGEX = new RegExp(`<${this.TAG_NAME}`, 'g');
 
   private readonly PREPROCESS_CODE_DEFAULT = (code: string) =>
-    code.replace(this.TAG_REGEX, `<${TINI_RADIOS} .items=\${...}`);
+    code.replace(this.TAG_REGEX, `<${this.TAG_NAME} .items=\${...}`);
   private readonly PREPROCESS_CODE_EVENTS = (code: string) =>
-    code.replace(this.TAG_REGEX, `<${TINI_RADIOS} @change=\${HANDLER}`);
+    code.replace(this.TAG_REGEX, `<${this.TAG_NAME} @change=\${HANDLER}`);
 
   private DEFAULT_LIST: RadiosItem[] = [
-    {value: '', label: 'Default checkbox'},
-    {value: '', label: 'Default checkbox (checked)', checked: true},
+    {value: '', label: 'Default radio'},
+    {value: '', label: 'Default radio (checked)', checked: true},
   ];
 
   private buildCustomList(

@@ -12,11 +12,9 @@ import {
   borderingToClassInfo,
 } from '@tinijs/core';
 
-export const TINI_BOX = 'tini-box';
-
 /* UseBases(common) */
 export class TiniBoxComponent extends LitElement {
-  static readonly defaultTagName = TINI_BOX;
+  static readonly defaultTagName = 'tini-box';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;

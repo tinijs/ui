@@ -15,11 +15,9 @@ import {
 
 export type LinkTargets = '_blank' | '_self' | '_parent' | '_top';
 
-export const TINI_LINK = 'tini-link';
-
 /* UseBases(common) */
 export class TiniLinkComponent extends LitElement {
-  static readonly defaultTagName = TINI_LINK;
+  static readonly defaultTagName = 'tini-link';
 
   private anchorRef: Ref<HTMLAnchorElement> = createRef();
 

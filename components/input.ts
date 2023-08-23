@@ -20,11 +20,9 @@ export interface InputEventDetail {
   value: string;
 }
 
-export const TINI_INPUT = 'tini-input';
-
 /* UseBases(common) */
 export class TiniInputComponent extends LitElement {
-  static readonly defaultTagName = TINI_INPUT;
+  static readonly defaultTagName = 'tini-input';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;

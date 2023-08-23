@@ -5,10 +5,11 @@ import {
   linkBases,
   textBases,
   codeBases,
+} from '@tinijs/ui/bases';
+import {
   BreadcrumbItem,
-  TINI_BREADCRUMB,
   TiniBreadcrumbComponent,
-} from '@tinijs/ui';
+} from '@tinijs/ui/components/breadcrumb';
 
 import {
   RenderSectionOptions,
@@ -51,10 +52,11 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
   ];
 
   private getCodePreprocessor() {
-    const tagRegex = new RegExp(`<${TINI_BREADCRUMB}`, 'g');
+    const tagName = TiniBreadcrumbComponent.defaultTagName;
+    const tagRegex = new RegExp(`<${tagName}`, 'g');
     return function (code: string) {
       return code
-        .replace(tagRegex, `<${TINI_BREADCRUMB} .items=\${...}`)
+        .replace(tagRegex, `<${tagName} .items=\${...}`)
         .replace(/linkcolor=/g, 'linkColor=');
     };
   }

@@ -13,10 +13,10 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniButtonComponent,
-  TiniInputComponent,
-  TiniDialogComponent,
-} from '@tinijs/ui';
+} from '@tinijs/ui/bases';
+import {TiniButtonComponent} from '@tinijs/ui/components/button';
+import {TiniInputComponent} from '@tinijs/ui/components/input';
+import {TiniDialogComponent} from '@tinijs/ui/components/dialog';
 
 import {renderSection, renderDefaultSection} from '../../helpers/varies';
 

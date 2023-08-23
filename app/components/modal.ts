@@ -18,8 +18,8 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniButtonComponent,
-} from '@tinijs/ui';
+} from '@tinijs/ui/bases';
+import {TiniButtonComponent} from '@tinijs/ui/components/button';
 
 export enum ModalKinds {
   Bare = 'bare',
@@ -39,7 +39,6 @@ export interface ModalResult<Context> {
   dialog: HTMLDialogElement;
 }
 
-export const APP_MODAL = 'app-modal';
 @Component({
   components: [TiniButtonComponent],
   theming: {
@@ -53,7 +52,7 @@ export const APP_MODAL = 'app-modal';
   },
 })
 export class AppModalComponent extends TiniComponent {
-  static readonly defaultTagName = APP_MODAL;
+  static readonly defaultTagName = 'app-modal';
 
   @Input({type: String}) declare kind: ModalKinds;
   @Input({type: String}) declare titleText?: string;

@@ -10,18 +10,17 @@ import {
   classMap,
   stylingWithBases,
 } from '@tinijs/core';
-import {commonBases, codeBases} from '@tinijs/ui';
+import {commonBases, codeBases} from '@tinijs/ui/bases';
 
 import hljs from '../helpers/highlight';
 
-export const APP_CODE = 'app-code';
 @Component({
   theming: {
     styling: stylingWithBases([commonBases, codeBases]),
   },
 })
 export class AppCodeComponent extends TiniComponent {
-  static readonly defaultTagName = APP_CODE;
+  static readonly defaultTagName = 'app-code';
 
   private readonly codeRef: Ref<HTMLElement> = createRef();
   @Input({type: String}) declare code?: string;

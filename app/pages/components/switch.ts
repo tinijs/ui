@@ -5,8 +5,8 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniSwitchComponent,
-} from '@tinijs/ui';
+} from '@tinijs/ui/bases';
+import {TiniSwitchComponent} from '@tinijs/ui/components/switch';
 
 import {
   renderDefaultSection,

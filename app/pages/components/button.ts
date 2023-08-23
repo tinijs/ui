@@ -5,14 +5,12 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniBoxComponent,
-  TiniButtonComponent,
-} from '@tinijs/ui';
-import {
-  IconChevronLeftComponent,
-  IconChevronRightComponent,
-  IconHeartFillComponent,
-} from '@tinijs/bootstrap-icons';
+} from '@tinijs/ui/bases';
+import {TiniBoxComponent} from '@tinijs/ui/components/box';
+import {TiniButtonComponent} from '@tinijs/ui/components/button';
+import {IconChevronLeftComponent} from '@tinijs/bootstrap-icons/chevron-left';
+import {IconChevronRightComponent} from '@tinijs/bootstrap-icons/chevron-right';
+import {IconHeartFillComponent} from '@tinijs/bootstrap-icons/heart-fill';
 
 import {
   renderSection,

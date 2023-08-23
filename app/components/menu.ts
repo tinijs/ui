@@ -3,7 +3,6 @@ import {
   TiniComponent,
   html,
   css,
-  nothing,
   stylingWithBases,
 } from '@tinijs/core';
 import {Route} from '@tinijs/router';
@@ -12,14 +11,13 @@ import {
   headingsBases,
   linkBases,
   textBases,
-  TiniLinkComponent,
-} from '@tinijs/ui';
+} from '@tinijs/ui/bases';
+import {TiniLinkComponent} from '@tinijs/ui/components/link';
 
 import {Configurable} from '../configurable';
 
 type NavItem = {title: string; href: string};
 
-export const APP_MENU = 'app-menu';
 @Component({
   components: [TiniLinkComponent],
   theming: {
@@ -32,7 +30,7 @@ export const APP_MENU = 'app-menu';
   },
 })
 export class AppMenuComponent extends TiniComponent {
-  static readonly defaultTagName = APP_MENU;
+  static readonly defaultTagName = 'app-menu';
 
   private readonly ROUTES = Configurable.getOption('routes');
   private readonly GROUP_NAMES = ['top', 'guides', 'components', 'icons'];

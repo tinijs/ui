@@ -19,8 +19,8 @@ import {
   textBases,
   buttonBases,
   codeBases,
-} from '@tinijs/ui';
-import {IconGithubComponent} from '@tinijs/bootstrap-icons';
+} from '@tinijs/ui/bases';
+import {IconGithubComponent} from '@tinijs/bootstrap-icons/github';
 
 import {Configurable} from '../configurable';
 import {OFFICIAL_REPO_URL, ImportMethods} from '../consts/main';
@@ -48,7 +48,6 @@ enum Modes {
   Soul = 'soul',
 }
 
-export const APP_COMPONENT_PAGE = 'app-component-page';
 @Component({
   components: [
     IconGithubComponent,
@@ -68,7 +67,7 @@ export const APP_COMPONENT_PAGE = 'app-component-page';
   },
 })
 export class AppComponentPageComponent extends TiniComponent {
-  static readonly defaultTagName = APP_COMPONENT_PAGE;
+  static readonly defaultTagName = 'app-component-page';
 
   private readonly PACKAGE_PREFIX = Configurable.getOption('packagePrefix');
   private readonly REPO_URL = Configurable.getOption('repoUrl');
@@ -199,7 +198,7 @@ export class AppComponentPageComponent extends TiniComponent {
 // 1. import the component
 import {${nameClass}} from '${
       !this.customComponentPrefix ? '@tinijs/ui' : this.PACKAGE_PREFIX
-    }';
+    }/components/${this.name}';
 
 @Page({
   components: [
@@ -222,7 +221,7 @@ import '${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}.incl
 import {useComponents} from '@tinijs/core';
 
 // 1. import the component
-import {${nameClass}} from '${this.PACKAGE_PREFIX}-${this.activeSoulId}';
+import {${nameClass}} from '${this.PACKAGE_PREFIX}-${this.activeSoulId}/${this.name}';
 
 useComponents([
   ${nameClass}, // 2. register the component
@@ -359,6 +358,11 @@ useComponents([
                 @click=${this.switchMode.bind(this, Modes.Component)}
                 >component source code</a
               >.
+            </p>
+            <p>
+              <strong>Please note</strong>: Events are not show up in the list,
+              in the mean time, please see <strong>Component Source</strong> for
+              detail. <strong style="color: red;"><- TODO: show events</strong>
             </p>
             <table>
               <thead>

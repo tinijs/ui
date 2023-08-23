@@ -4,11 +4,9 @@ import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
 
-export const TINI_SWITCH = 'tini-switch';
-
 /* UseBases(common) */
 export class TiniSwitchComponent extends LitElement {
-  static readonly defaultTagName = TINI_SWITCH;
+  static readonly defaultTagName = 'tini-switch';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;

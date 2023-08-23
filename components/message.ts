@@ -3,11 +3,9 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {partMap, PartInfo, Colors, FontSizeFactors} from '@tinijs/core';
 
-export const TINI_MESSAGE = 'tini-message';
-
 /* UseBases(common) */
 export class TiniMessageComponent extends LitElement {
-  static readonly defaultTagName = TINI_MESSAGE;
+  static readonly defaultTagName = 'tini-message';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare scheme?: Colors;

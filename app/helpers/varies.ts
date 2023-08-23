@@ -170,7 +170,7 @@ export function renderDefaultSection(
   code: HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
-  return renderSection('default', 'Detault', content, code, options);
+  return renderSection('default', 'Default', content, code, options);
 }
 
 export function renderBaseColorsSection(

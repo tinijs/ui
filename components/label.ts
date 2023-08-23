@@ -3,11 +3,9 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {partMap, PartInfo, Colors, Sizes} from '@tinijs/core';
 
-export const TINI_LABEL = 'tini-label';
-
 /* UseBases(common) */
 export class TiniLabelComponent extends LitElement {
-  static readonly defaultTagName = TINI_LABEL;
+  static readonly defaultTagName = 'tini-label';
 
   /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare pilled?: boolean;

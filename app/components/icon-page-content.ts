@@ -13,9 +13,9 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniBoxComponent,
-  TiniIconComponent,
-} from '@tinijs/ui';
+} from '@tinijs/ui/bases';
+import {TiniBoxComponent} from '@tinijs/ui/components/box';
+import {TiniIconComponent} from '@tinijs/ui/components/icon';
 
 import {
   renderDefaultSection,
@@ -27,7 +27,6 @@ import {
 } from '../helpers/varies';
 import {AppSectionComponent} from './section';
 
-export const APP_ICON_PAGE_CONTENT = 'app-icon-page-content';
 @Component({
   components: [TiniBoxComponent, TiniIconComponent],
   theming: {
@@ -41,7 +40,7 @@ export const APP_ICON_PAGE_CONTENT = 'app-icon-page-content';
   },
 })
 export class AppIconPageContentComponent extends TiniComponent {
-  static readonly defaultTagName = APP_ICON_PAGE_CONTENT;
+  static readonly defaultTagName = 'app-icon-page-content';
 
   @Input({type: String}) src!: string;
   @Input({type: Boolean}) noVariants = false;

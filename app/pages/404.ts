@@ -1,11 +1,6 @@
 import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
-import {
-  codeBases,
-  headingsBases,
-  linkBases,
-  textBases,
-  TiniLinkComponent,
-} from '@tinijs/ui';
+import {codeBases, headingsBases, linkBases, textBases} from '@tinijs/ui/bases';
+import {TiniLinkComponent} from '@tinijs/ui/components/link';
 
 @Page({
   name: 'app-page-404',

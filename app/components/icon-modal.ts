@@ -16,7 +16,7 @@ import {
   linkBases,
   textBases,
   codeBases,
-} from '@tinijs/ui';
+} from '@tinijs/ui/bases';
 
 import {IconsImportMethods} from '../consts/main';
 import {mainStore} from '../stores/main';
@@ -29,7 +29,6 @@ import {AppIconPageContentComponent} from './icon-page-content';
 
 export type IconDef = [string, string];
 
-export const APP_ICON_MODAL = 'app-icon-modal';
 @Component({
   components: [
     AppSectionComponent,
@@ -49,7 +48,7 @@ export const APP_ICON_MODAL = 'app-icon-modal';
   },
 })
 export class AppIconModalComponent extends TiniComponent {
-  static readonly defaultTagName = APP_ICON_MODAL;
+  static readonly defaultTagName = 'app-icon-modal';
 
   private readonly ICONS_IMPORT_TAB_ITEMS: TabItem[] = [
     {name: IconsImportMethods.Tini},
@@ -97,7 +96,7 @@ export class AppIconModalComponent extends TiniComponent {
     const tiniJSCode = `import {Component} from '@tinijs/core';
 
 // 1. import the component
-import {${nameClass}} from '${packName}';
+import {${nameClass}} from '${packName}/${iconName}';
 
 @Component({
   components: [
@@ -117,7 +116,7 @@ import '${packName}/${iconName}.include';
 import {useComponents} from '@tinijs/core';
 
 // 1. import the component
-import {${nameClass}} from '${packName}';
+import {${nameClass}} from '${packName}/${iconName}';
 
 useComponents([
   ${nameClass}, // 2. register the component

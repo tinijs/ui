@@ -3,11 +3,9 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
 
-export const TINI_XXX = 'tini-xxx';
-
 /* UseBases(common) */
 export class TiniXxxComponent extends LitElement {
-  static readonly defaultTagName = TINI_XXX;
+  static readonly defaultTagName = 'tini-xxx';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare prop?: string;

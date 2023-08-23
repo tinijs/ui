@@ -5,9 +5,9 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniBoxComponent,
-  TiniLinkComponent,
-} from '@tinijs/ui';
+} from '@tinijs/ui/bases';
+import {TiniBoxComponent} from '@tinijs/ui/components/box';
+import {TiniLinkComponent} from '@tinijs/ui/components/link';
 
 import {
   renderSection,

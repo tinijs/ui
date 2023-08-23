@@ -5,12 +5,14 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniBoxComponent,
+} from '@tinijs/ui/bases';
+import {TiniBoxComponent} from '@tinijs/ui/components/box';
+import {
   TiniSelectComponent,
   SelectOption,
   SelectOptgroup,
   SelectEventDetail,
-} from '@tinijs/ui';
+} from '@tinijs/ui/components/select';
 
 import {
   renderSection,

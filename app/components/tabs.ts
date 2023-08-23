@@ -9,8 +9,10 @@ import {
   nothing,
   stylingWithBases,
   queryAssignedElements,
+  partMap,
 } from '@tinijs/core';
-import {commonBases, buttonBases, TiniIconComponent} from '@tinijs/ui';
+import {commonBases, buttonBases} from '@tinijs/ui/bases';
+import {TiniIconComponent} from '@tinijs/ui/components/icon';
 
 export interface TabItem {
   name: string;
@@ -18,7 +20,6 @@ export interface TabItem {
   iconOnly?: boolean;
 }
 
-export const APP_TABS = 'app-tabs';
 @Component({
   components: [TiniIconComponent],
   theming: {
@@ -26,7 +27,7 @@ export const APP_TABS = 'app-tabs';
   },
 })
 export class AppTabsComponent extends TiniComponent {
-  static readonly defaultTagName = APP_TABS;
+  static readonly defaultTagName = 'app-tabs';
 
   @queryAssignedElements({slot: 'title'})
   private readonly titleSlotElems?: HTMLElement[];
@@ -70,7 +71,10 @@ export class AppTabsComponent extends TiniComponent {
 
   protected render() {
     return html`
-      <div part="head${!this.activeName ? '' : ' head-expanded'}" class="head">
+      <div
+        class="head"
+        part=${partMap({head: true, 'head-expanded': !!this.activeName})}
+      >
         <div
           part="title"
           class=${classMap({

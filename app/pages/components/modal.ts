@@ -13,8 +13,8 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniModalComponent,
-} from '@tinijs/ui';
+} from '@tinijs/ui/bases';
+import {TiniModalComponent} from '@tinijs/ui/components/modal';
 
 import {renderDefaultSection} from '../../helpers/varies';
 

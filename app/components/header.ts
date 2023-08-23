@@ -8,11 +8,9 @@ import {
   stylingWithBases,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
-import {commonBases, linkBases, buttonBases, formBases} from '@tinijs/ui';
-import {
-  IconGithubComponent,
-  IconPaletteComponent,
-} from '@tinijs/bootstrap-icons';
+import {commonBases, linkBases, buttonBases, formBases} from '@tinijs/ui/bases';
+import {IconGithubComponent} from '@tinijs/bootstrap-icons/github';
+import {IconPaletteComponent} from '@tinijs/bootstrap-icons/palette';
 
 import {Configurable} from '../configurable';
 import {changeTheme} from '../helpers/theme';
@@ -20,7 +18,6 @@ import {mainStore} from '../stores/main';
 
 import {AppSkinEditorComponent} from './skin-editor';
 
-export const APP_HEADER = 'app-header';
 @Component({
   components: [
     IconGithubComponent,
@@ -32,7 +29,7 @@ export const APP_HEADER = 'app-header';
   },
 })
 export class AppHeaderComponent extends TiniComponent {
-  static readonly defaultTagName = APP_HEADER;
+  static readonly defaultTagName = 'app-header';
 
   private readonly APP_NAME = Configurable.getOption('appName');
   private readonly LOGO_URL = Configurable.getOption('logoUrl');

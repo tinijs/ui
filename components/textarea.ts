@@ -8,11 +8,9 @@ import {InputEventDetail} from './input';
 
 export type TextareaEventDetail = InputEventDetail;
 
-export const TINI_TEXTAREA = 'tini-textarea';
-
 /* UseBases(common) */
 export class TiniTextareaComponent extends LitElement {
-  static readonly defaultTagName = TINI_TEXTAREA;
+  static readonly defaultTagName = 'tini-textarea';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;

@@ -9,8 +9,8 @@ import {
   repeat,
   stylingWithBases,
 } from '@tinijs/core';
-import {commonBases} from '@tinijs/ui';
-import {IconCodeComponent} from '@tinijs/bootstrap-icons';
+import {commonBases} from '@tinijs/ui/bases';
+import {IconCodeComponent} from '@tinijs/bootstrap-icons/code';
 
 import {ConsumerPlatforms} from '../consts/main';
 import {
@@ -29,7 +29,6 @@ import {AppCodeComponent} from '../components/code';
 
 export type CodeBuilder = (code: string, context?: any) => string;
 
-export const APP_SECTION = 'app-section';
 @Component({
   components: [IconCodeComponent, AppTabsComponent, AppCodeComponent],
   theming: {
@@ -37,7 +36,7 @@ export const APP_SECTION = 'app-section';
   },
 })
 export class AppSectionComponent extends TiniComponent {
-  static readonly defaultTagName = APP_SECTION;
+  static readonly defaultTagName = 'app-section';
 
   private readonly USAGE_TAB_ITEMS: TabItem[] = [
     {name: ConsumerPlatforms.Tini, icon: TINI_ICON},
@@ -100,6 +99,17 @@ export class AppSectionComponent extends TiniComponent {
                               this.codeBuildContext
                             )}
                           ></app-code>`}
+
+                      <p>
+                        <strong>Please note</strong>: Code sample is NOT correct
+                        for Vue, React, Angular & Svelte. Events and
+                        non-primitive props are not reflected in the sample as
+                        well, in the mean time, please see
+                        <strong>Component Source</strong> for detail.
+                        <strong style="color: red;"
+                          ><- TODO: fix code samples</strong
+                        >
+                      </p>
                     </div>
                   `
                 )}
@@ -145,8 +155,7 @@ export class AppSectionComponent extends TiniComponent {
       }
 
       &::part(head-expanded) {
-        border-bottom-right-radius: none;
-        border-bottom-left-radius: none;
+        border-radius: var(--size-radius) var(--size-radius) 0 0;
       }
 
       &::part(tablinks) {

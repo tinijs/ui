@@ -9,12 +9,10 @@ export interface BreadcrumbItem {
   href?: string;
 }
 
-export const TINI_BREADCRUMB = 'tini-breadcrumb';
-
 /* UseBases(common) */
 /* UseComponents(link) */
 export class TiniBreadcrumbComponent extends LitElement {
-  static readonly defaultTagName = TINI_BREADCRUMB;
+  static readonly defaultTagName = 'tini-breadcrumb';
 
   /* eslint-disable prettier/prettier */
   @property({type: String}) declare items?: BreadcrumbItem[];

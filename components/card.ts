@@ -3,11 +3,9 @@ import {property, state, queryAssignedElements} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {partMap, PartInfo} from '@tinijs/core';
 
-export const TINI_CARD = 'tini-card';
-
 /* UseBases(common) */
 export class TiniCardComponent extends LitElement {
-  static readonly defaultTagName = TINI_CARD;
+  static readonly defaultTagName = 'tini-card';
 
   /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare fluid?: boolean;

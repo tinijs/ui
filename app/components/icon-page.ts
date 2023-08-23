@@ -20,7 +20,7 @@ import {
   buttonBases,
   codeBases,
   formBases,
-} from '@tinijs/ui';
+} from '@tinijs/ui/bases';
 
 import {Configurable} from '../configurable';
 import {get} from '../helpers/http';
@@ -28,7 +28,6 @@ import {get} from '../helpers/http';
 import {AppCodeComponent} from './code';
 import {AppIconModalComponent, IconDef} from './icon-modal';
 
-export const APP_ICON_PAGE = 'app-icon-page';
 @Component({
   components: [AppCodeComponent, AppIconModalComponent],
   theming: {
@@ -44,7 +43,7 @@ export const APP_ICON_PAGE = 'app-icon-page';
   },
 })
 export class AppIconPageComponent extends TiniComponent {
-  static readonly defaultTagName = APP_ICON_PAGE;
+  static readonly defaultTagName = 'app-icon-page';
 
   private readonly ICONS_REPO_URL = Configurable.getOption('iconsRepoUrl');
   private readonly SIZE = 200;

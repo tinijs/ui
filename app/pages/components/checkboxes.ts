@@ -12,12 +12,13 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniBoxComponent,
-  TINI_CHECKBOXES,
+} from '@tinijs/ui/bases';
+import {TiniBoxComponent} from '@tinijs/ui/components/box';
+import {
   TiniCheckboxesComponent,
   CheckboxesItem,
   CheckboxesEventDetail,
-} from '@tinijs/ui';
+} from '@tinijs/ui/components/checkboxes';
 
 import {
   renderSection,
@@ -56,17 +57,18 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
     ['label', 'A label'],
   ];
 
-  private TAG_REGEX = new RegExp(`<${TINI_CHECKBOXES}`, 'g');
+  private readonly TAG_NAME = TiniCheckboxesComponent.defaultTagName;
+  private TAG_REGEX = new RegExp(`<${this.TAG_NAME}`, 'g');
 
   private readonly PREPROCESS_CODE_DEFAULT = ((code: string) =>
     code.replace(
       this.TAG_REGEX,
-      `<${TINI_CHECKBOXES} .items=\${...}`
+      `<${this.TAG_NAME} .items=\${...}`
     )) as CodeBuilder;
   private readonly PREPROCESS_CODE_EVENTS = ((code: string) =>
     code.replace(
       this.TAG_REGEX,
-      `<${TINI_CHECKBOXES} @change=\${HANDLER}`
+      `<${this.TAG_NAME} @change=\${HANDLER}`
     )) as CodeBuilder;
 
   private DEFAULT_LIST: CheckboxesItem[] = [

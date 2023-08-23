@@ -7,11 +7,9 @@ import {CheckboxesItem, CheckboxesEventDetail} from './checkboxes';
 export type RadiosItem = Omit<CheckboxesItem, 'name'>;
 export type RadiosEventDetail = Omit<CheckboxesEventDetail, 'name'>;
 
-export const TINI_RADIOS = 'tini-radios';
-
 /* UseBases(common) */
 export class TiniRadiosComponent extends LitElement {
-  static readonly defaultTagName = TINI_RADIOS;
+  static readonly defaultTagName = 'tini-radios';
 
   /* eslint-disable prettier/prettier */
   @property({type: Array}) declare items?: RadiosItem[];

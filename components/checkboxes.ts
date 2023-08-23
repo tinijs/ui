@@ -20,11 +20,9 @@ export interface CheckboxesEventDetail extends InputEventDetail {
   checked: boolean;
 }
 
-export const TINI_CHECKBOXES = 'tini-checkboxes';
-
 /* UseBases(common) */
 export class TiniCheckboxesComponent extends LitElement {
-  static readonly defaultTagName = TINI_CHECKBOXES;
+  static readonly defaultTagName = 'tini-checkboxes';
 
   /* eslint-disable prettier/prettier */
   @property({type: Array}) declare items?: CheckboxesItem[];

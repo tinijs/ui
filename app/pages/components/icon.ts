@@ -5,8 +5,8 @@ import {
   linkBases,
   textBases,
   codeBases,
-  TiniIconComponent,
-} from '@tinijs/ui';
+} from '@tinijs/ui/bases';
+import {TiniIconComponent} from '@tinijs/ui/components/icon';
 import {dataURI as iconSRC} from '@tinijs/bootstrap-icons/heart-fill.source';
 
 import {AppComponentPageComponent} from '../../components/component-page';
