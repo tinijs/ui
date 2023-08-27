@@ -1,11 +1,6 @@
-import {
-  Page,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBases,
-  ifDefined,
-} from '@tinijs/core';
+import {html, css} from 'lit';
+import {ifDefined} from 'lit/directives/if-defined.js';
+import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,

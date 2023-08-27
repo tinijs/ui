@@ -3,7 +3,7 @@ import {
   generateColorVaries,
   generateGradientVaries,
   generateSizeVaries,
-} from '@tinijs/core';
+} from 'tinijs';
 
 export const badgeStyle = css`
   :host {

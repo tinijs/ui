@@ -16,7 +16,7 @@ export const modalStyle = css`
     max-width: var(--modal-width);
     border: none;
     border-radius: var(--size-radius);
-    box-shadow: var(--shadow-box);
+    box-shadow: var(--shadow);
     background: var(--color-background);
     color: var(--color-foreground);
   }

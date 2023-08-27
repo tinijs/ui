@@ -1,4 +1,4 @@
-import {changeTheme as _changeTheme} from '@tinijs/core';
+import {changeTheme as applyTheme} from '@tinijs/core';
 
 import {Configurable} from '../configurable';
 import {mainStore} from '../stores/main';
@@ -7,10 +7,10 @@ function getKey() {
   return `TiniApp:${Configurable.getOption('appId')}:theme`;
 }
 
-function commitTheme(soul: string, skin: string) {
-  mainStore.commit('activeSoulId', soul);
-  mainStore.commit('activeSkinId', skin);
-  return _changeTheme({soul, skin});
+function commitTheme(soulId: string, skinId: string) {
+  mainStore.commit('activeSoulId', soulId);
+  mainStore.commit('activeSkinId', skinId);
+  return applyTheme({soulId, skinId});
 }
 
 export function initTheme() {

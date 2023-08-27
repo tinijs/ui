@@ -10,7 +10,7 @@ import {
   FontSizeFactors,
   FontWeights,
   TextTransforms,
-} from '@tinijs/core';
+} from 'tinijs';
 
 export enum TextTypes {
   H1 = 'h1',

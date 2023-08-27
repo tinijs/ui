@@ -5,7 +5,7 @@ import {
   generateSizeVaries,
   generateFontSizeVaries,
   generateJustifyVaries,
-} from '@tinijs/core';
+} from 'tinijs';
 
 export const buttonStyle = css`
   :host {

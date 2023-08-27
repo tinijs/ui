@@ -1,15 +1,7 @@
-import {
-  Component,
-  TiniComponent,
-  Input,
-  html,
-  css,
-  ref,
-  createRef,
-  Ref,
-  classMap,
-  stylingWithBases,
-} from '@tinijs/core';
+import {html, css} from 'lit';
+import {classMap} from 'lit/directives/class-map.js';
+import {ref, Ref, createRef} from 'lit/directives/ref.js';
+import {Component, TiniComponent, Input, stylingWithBases} from '@tinijs/core';
 import {commonBases, codeBases} from '@tinijs/ui/bases';
 
 import hljs from '../helpers/highlight';

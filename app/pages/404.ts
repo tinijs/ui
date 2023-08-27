@@ -1,4 +1,5 @@
-import {Page, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
+import {html, css} from 'lit';
+import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {codeBases, headingsBases, linkBases, textBases} from '@tinijs/ui/bases';
 import {TiniLinkComponent} from '@tinijs/ui/components/link';
 

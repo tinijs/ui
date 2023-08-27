@@ -1,17 +1,12 @@
+import {html, css, render, nothing} from 'lit';
+import {queryAll} from 'lit/decorators.js';
+import {repeat} from 'lit/directives/repeat.js';
+import {ref, Ref, createRef} from 'lit/directives/ref.js';
 import {
   Component,
   TiniComponent,
   Reactive,
-  html,
-  css,
   stylingWithBases,
-  repeat,
-  QueryAll,
-  ref,
-  createRef,
-  Ref,
-  render,
-  nothing,
 } from '@tinijs/core';
 import {IconCodeComponent} from '@tinijs/bootstrap-icons/code';
 import {commonBases, buttonBases, codeBases, formBases} from '@tinijs/ui/bases';
@@ -59,7 +54,7 @@ export class AppSkinEditorComponent extends TiniComponent {
   private modalRef: Ref<AppModalComponent> = createRef();
   private modalContentRef: Ref<HTMLDivElement> = createRef();
   @Reactive() private variablesMap: Map<string, VariableDef> = new Map();
-  @QueryAll('.field') private allInputs!: NodeListOf<HTMLElement>;
+  @queryAll('.field') private allInputs!: NodeListOf<HTMLElement>;
   private changedVariablesMap: Map<string, string> = new Map();
   private skinTitle = 'Untitled';
 

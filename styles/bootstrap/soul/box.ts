@@ -6,7 +6,7 @@ import {
   generateFontSizeVaries,
   generateSpaceVaries,
   generateBorderStyleVaries,
-} from '@tinijs/core';
+} from 'tinijs';
 
 export const boxStyle = css`
   :host {

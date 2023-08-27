@@ -1,4 +1,5 @@
-import {Layout, TiniComponent, html, css, stylingWithBases} from '@tinijs/core';
+import {html, css} from 'lit';
+import {Layout, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {commonBases} from '@tinijs/ui/bases';
 
 import {AppHeaderComponent} from '../components/header';
@@ -62,7 +63,7 @@ export class AppLayoutDefault extends TiniComponent {
     .menu {
       grid-area: menu;
       border-right: 1px solid var(--color-background-shade);
-      box-shadow: var(--shadow-box);
+      box-shadow: var(--shadow);
     }
 
     .page {

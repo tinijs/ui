@@ -1,10 +1,9 @@
+import {html, css} from 'lit';
+import {classMap} from 'lit/directives/class-map.js';
 import {
   Component,
   TiniComponent,
   Reactive,
-  html,
-  css,
-  classMap,
   stylingWithBases,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
@@ -117,7 +116,7 @@ export class AppHeaderComponent extends TiniComponent {
       padding: var(--size-space);
       background-color: var(--color-primary);
       color: var(--color-light);
-      box-shadow: var(--shadow-box);
+      box-shadow: var(--shadow);
     }
 
     .brand a {
@@ -193,7 +192,7 @@ export class AppHeaderComponent extends TiniComponent {
       height: calc(100dvh - var(--header-height));
       background: var(--color-background);
       border: var(--size-border) solid var(--color-background-shade);
-      box-shadow: var(--shadow-box);
+      box-shadow: var(--shadow);
 
       &.showed {
         display: block;

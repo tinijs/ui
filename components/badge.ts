@@ -1,13 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {
-  partMap,
-  PartInfo,
-  ColorsAndGradients,
-  Colors,
-  Sizes,
-} from '@tinijs/core';
+import {partMap, PartInfo, ColorsAndGradients, Colors, Sizes} from 'tinijs';
 
 /* UseBases(common) */
 export class TiniBadgeComponent extends LitElement {

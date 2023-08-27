@@ -1,7 +1,8 @@
 import {LitElement, html, nothing} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo} from '@tinijs/core';
+import {partMap, PartInfo} from 'tinijs';
+
 import {CheckboxesItem, CheckboxesEventDetail} from './checkboxes';
 
 export type RadiosItem = Omit<CheckboxesItem, 'name'>;

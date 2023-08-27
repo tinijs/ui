@@ -2,7 +2,7 @@ import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {styleMap} from 'lit/directives/style-map.js';
-import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
+import {partMap, PartInfo, ColorsAndGradients, Sizes} from 'tinijs';
 
 /* UseBases(common) */
 export class TiniIconComponent extends LitElement {

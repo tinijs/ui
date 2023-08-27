@@ -135,8 +135,9 @@
   --wide-xxl: 2560px;
   --wide-xxxl: 3840px;
   /* shadows */
-  --shadow-box: none;
+  --shadow: none;
+  --shadow-least: none;
   --shadow-lesser: none;
   --shadow-greater: none;
-  --shadow-text: none;
+  --shadow-greatest: none;
 }

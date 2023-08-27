@@ -1,12 +1,10 @@
+import {html, css, nothing} from 'lit';
+import {repeat} from 'lit/directives/repeat.js';
 import {
   Component,
   TiniComponent,
   Input,
   Reactive,
-  html,
-  css,
-  nothing,
-  repeat,
   stylingWithBases,
 } from '@tinijs/core';
 import {commonBases} from '@tinijs/ui/bases';

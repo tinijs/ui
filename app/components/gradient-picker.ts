@@ -1,3 +1,7 @@
+import {html, css} from 'lit';
+import {classMap} from 'lit/directives/class-map.js';
+import {styleMap} from 'lit/directives/style-map.js';
+import {ref, Ref, createRef} from 'lit/directives/ref.js';
 import {
   Component,
   TiniComponent,
@@ -5,13 +9,6 @@ import {
   Output,
   EventEmitter,
   Reactive,
-  html,
-  css,
-  ref,
-  Ref,
-  createRef,
-  classMap,
-  styleMap,
   stylingWithBases,
 } from '@tinijs/core';
 // @ts-ignore

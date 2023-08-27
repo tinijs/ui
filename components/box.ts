@@ -10,7 +10,7 @@ import {
   SizeBasicFactors,
   sizeFactorsToClassInfo,
   borderingToClassInfo,
-} from '@tinijs/core';
+} from 'tinijs';
 
 /* UseBases(common) */
 export class TiniBoxComponent extends LitElement {

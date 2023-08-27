@@ -1,5 +1,5 @@
 import {css} from 'lit';
-import {generateColorVaries, generateFontSizeVaries} from '@tinijs/core';
+import {generateColorVaries, generateFontSizeVaries} from 'tinijs';
 
 export const messageStyle = css`
   :host {

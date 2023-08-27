@@ -1,15 +1,6 @@
-import {
-  Component,
-  TiniComponent,
-  Input,
-  html,
-  css,
-  nothing,
-  ref,
-  createRef,
-  Ref,
-  stylingWithBases,
-} from '@tinijs/core';
+import {html, css, nothing} from 'lit';
+import {ref, Ref, createRef} from 'lit/directives/ref.js';
+import {Component, TiniComponent, Input, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -113,7 +104,7 @@ import '${packName}/${iconName}.include';
 /*
  * Option II: import as a shared bundle (if your bundler supports it)
  */
-import {useComponents} from '@tinijs/core';
+import {useComponents} from 'tinijs';
 
 // 1. import the component
 import {${nameClass}} from '${packName}/${iconName}';

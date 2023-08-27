@@ -1,5 +1,5 @@
 import {css} from 'lit';
-import {generateColorVaries, generateSizeVaries} from '@tinijs/core';
+import {generateColorVaries, generateSizeVaries} from 'tinijs';
 
 export const radiosStyle = css`
   /* :host {} */

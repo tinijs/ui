@@ -1,13 +1,6 @@
-import {
-  Page,
-  TiniComponent,
-  Reactive,
-  html,
-  css,
-  unsafeHTML,
-  nothing,
-  stylingWithBases,
-} from '@tinijs/core';
+import {html, css, nothing} from 'lit';
+import {unsafeHTML} from 'lit/directives/unsafe-html.js';
+import {Page, TiniComponent, Reactive, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,

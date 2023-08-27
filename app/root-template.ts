@@ -1,4 +1,5 @@
-import {TiniComponent, html} from '@tinijs/core';
+import {html} from 'lit';
+import {TiniComponent} from '@tinijs/core';
 import {createRouter} from '@tinijs/router';
 
 import {Configurable} from './configurable';

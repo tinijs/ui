@@ -2,7 +2,7 @@ import {LitElement, html, nothing} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
-import {partMap, PartInfo, ColorsAndGradients, Sizes} from '@tinijs/core';
+import {partMap, PartInfo, ColorsAndGradients, Sizes} from 'tinijs';
 
 /* UseBases(common) */
 export class TiniSwitchComponent extends LitElement {

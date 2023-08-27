@@ -2,7 +2,7 @@ import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
-import {partMap, PartInfo} from '@tinijs/core';
+import {partMap, PartInfo} from 'tinijs';
 
 import {DialogButton, DialogResult} from './dialog';
 

@@ -1,4 +1,4 @@
-import {parse, GradientNode} from 'gradient-parser';
+import {parse} from 'gradient-parser';
 import * as chroma from 'chroma-js';
 
 export function parseGradient(value: string) {

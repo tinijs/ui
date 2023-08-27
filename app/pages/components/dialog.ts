@@ -1,12 +1,6 @@
-import {
-  Page,
-  TiniComponent,
-  html,
-  stylingWithBases,
-  ref,
-  Ref,
-  createRef,
-} from '@tinijs/core';
+import {html} from 'lit';
+import {ref, Ref, createRef} from 'lit/directives/ref.js';
+import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,

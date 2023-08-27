@@ -2,7 +2,7 @@ import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
-import {partMap, PartInfo, ColorsAndGradients} from '@tinijs/core';
+import {partMap, PartInfo, ColorsAndGradients} from 'tinijs';
 
 export interface BreadcrumbItem {
   label: string;

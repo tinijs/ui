@@ -1,15 +1,11 @@
+import {html, css, nothing} from 'lit';
+import {repeat} from 'lit/directives/repeat.js';
+import {ref, Ref, createRef} from 'lit/directives/ref.js';
 import {
   Component,
   TiniComponent,
   Input,
   Reactive,
-  html,
-  css,
-  repeat,
-  nothing,
-  ref,
-  createRef,
-  Ref,
   stylingWithBases,
 } from '@tinijs/core';
 import {

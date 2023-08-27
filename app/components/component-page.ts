@@ -1,15 +1,13 @@
+import {html, css, nothing} from 'lit';
+import {classMap} from 'lit/directives/class-map.js';
+import {cache} from 'lit/directives/cache.js';
+import {repeat} from 'lit/directives/repeat.js';
 import {
   Component,
   TiniComponent,
   Input,
   Reactive,
-  html,
-  css,
-  nothing,
-  cache,
-  classMap,
   stylingWithBases,
-  repeat,
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
 import {
@@ -218,7 +216,7 @@ import '${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}.incl
 /*
  * Option II: import as a shared bundle (if your bundler supports it)
  */
-import {useComponents} from '@tinijs/core';
+import {useComponents} from 'tinijs';
 
 // 1. import the component
 import {${nameClass}} from '${this.PACKAGE_PREFIX}-${this.activeSoulId}/${this.name}';

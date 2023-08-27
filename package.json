@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@tinijs/bootstrap-icons": "^0.5.0",
-    "@tinijs/core": "^0.6.0",
+    "@tinijs/core": "file:../core/tinijs-core-0.6.0.tgz",
     "@tinijs/router": "^0.6.0",
     "@tinijs/store": "^0.6.0",
     "chroma-js": "^2.4.2",
@@ -49,7 +49,7 @@
     "prettier": "^3.0.2"
   },
   "devDependencies": {
-    "@tinijs/cli": "^0.6.0",
+    "@tinijs/cli": "file:../cli/tinijs-cli-0.6.0.tgz",
     "@types/chroma-js": "^2.4.0",
     "@types/gradient-parser": "^0.1.2",
     "@types/node": "^20.4.2",

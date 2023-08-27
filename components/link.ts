@@ -11,7 +11,7 @@ import {
   FontSizeFactors,
   FontWeights,
   TextTransforms,
-} from '@tinijs/core';
+} from 'tinijs';
 
 export type LinkTargets = '_blank' | '_self' | '_parent' | '_top';
 

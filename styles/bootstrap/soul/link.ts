@@ -6,7 +6,7 @@ import {
   generateFontSizeVaries,
   generateFontWeightVaries,
   generateTextTransformVaries,
-} from '@tinijs/core';
+} from 'tinijs';
 
 export const linkStyle = css`
   :host {

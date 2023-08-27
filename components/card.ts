@@ -1,7 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property, state, queryAssignedElements} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo} from '@tinijs/core';
+import {partMap, PartInfo} from 'tinijs';
 
 /* UseBases(common) */
 export class TiniCardComponent extends LitElement {

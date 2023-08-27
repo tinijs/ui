@@ -1,7 +1,7 @@
 import {LitElement, html} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo, Colors, Sizes} from '@tinijs/core';
+import {partMap, PartInfo, Colors, Sizes} from 'tinijs';
 
 /* UseBases(common) */
 export class TiniLabelComponent extends LitElement {

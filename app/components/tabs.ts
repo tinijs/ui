@@ -1,14 +1,12 @@
+import {html, css, nothing} from 'lit';
+import {queryAssignedElements} from 'lit/decorators.js';
+import {classMap} from 'lit/directives/class-map.js';
 import {
   Component,
   TiniComponent,
   Input,
   Reactive,
-  classMap,
-  html,
-  css,
-  nothing,
   stylingWithBases,
-  queryAssignedElements,
   partMap,
 } from '@tinijs/core';
 import {commonBases, buttonBases} from '@tinijs/ui/bases';

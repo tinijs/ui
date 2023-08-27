@@ -1,10 +1,5 @@
-import {
-  Component,
-  TiniComponent,
-  html,
-  css,
-  stylingWithBases,
-} from '@tinijs/core';
+import {html, css} from 'lit';
+import {Component, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {Route} from '@tinijs/router';
 import {
   commonBases,

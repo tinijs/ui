@@ -12,11 +12,9 @@ import {
   Gradients,
   Sizes,
   FontTypes,
-  SizeFactors,
   FontWeights,
   TextTransforms,
   FontSizeFactors,
-  SpaceSizeFactors,
 } from '@tinijs/core';
 import {AppSectionComponent} from '../components/section';
 

@@ -1,14 +1,10 @@
+import {html, css, nothing} from 'lit';
+import {classMap} from 'lit/directives/class-map.js';
+import {ref, Ref, createRef} from 'lit/directives/ref.js';
 import {
   Component,
   TiniComponent,
   Input,
-  html,
-  css,
-  nothing,
-  classMap,
-  ref,
-  createRef,
-  Ref,
   stylingWithBases,
   Colors,
 } from '@tinijs/core';
