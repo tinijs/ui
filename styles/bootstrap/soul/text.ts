@@ -1,5 +1,6 @@
 import {css} from 'lit';
 import {
+  VaryGroups,
   generateColorVaries,
   generateGradientVaries,
   generateFontTypeVaries,
@@ -112,7 +113,7 @@ export const textStyle = css`
 
   ${generateColorVaries(
     ({name, color}) => `
-    .color-${name} {
+    .${VaryGroups.Color}-${name} {
       --text-color: ${color};
     }
   `
@@ -120,14 +121,14 @@ export const textStyle = css`
 
   ${generateGradientVaries(
     ({name, gradient}) => `
-    .color-${name} {
+    .${VaryGroups.Color}-${name} {
       position: relative;
       background: ${gradient};
       -webkit-background-clip: text;
 	    -webkit-text-fill-color: transparent;
     }
 
-    .color-${name}.underline::after {
+    .${VaryGroups.Color}-${name}.underline::after {
       --underline-height: calc(var(--text-font-size) / 13);
       content: '';
       position: absolute;
@@ -145,9 +146,9 @@ export const textStyle = css`
    */
 
   ${generateFontTypeVaries(
-    fontType => `
-    .font-${fontType} {
-      --text-font: var(--font-${fontType}) !important;
+    ({fullName, type}) => `
+    .${fullName} {
+      --text-font: ${type} !important;
       font-family: var(--text-font);
     }
   `
@@ -158,9 +159,9 @@ export const textStyle = css`
    */
 
   ${generateFontSizeVaries(
-    sizeFactor => `
-    .font-size-${sizeFactor} {
-      --text-font-size: var(--size-text-${sizeFactor}) !important;
+    ({fullName, size}) => `
+    .${fullName} {
+      --text-font-size: ${size} !important;
       font-size: var(--text-font-size);
     }
   `
@@ -171,9 +172,9 @@ export const textStyle = css`
    */
 
   ${generateFontWeightVaries(
-    fontWeight => `
-    .weight-${fontWeight} {
-      --text-weight: ${fontWeight} !important;
+    ({fullName, weight}) => `
+    .${fullName} {
+      --text-weight: ${weight} !important;
       font-weight: var(--text-weight);
     }
   `
@@ -184,8 +185,8 @@ export const textStyle = css`
    */
 
   ${generateTextTransformVaries(
-    transform => `
-    .transform-${transform} {
+    ({fullName, transform}) => `
+    .${fullName} {
       --text-transform: ${transform};
     }
   `

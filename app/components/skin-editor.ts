@@ -76,6 +76,7 @@ export class AppSkinEditorComponent extends TiniComponent {
       {name: 'Colors', items: []},
       {name: 'Gradients', items: []},
       {name: 'Sizes', items: []},
+      {name: 'Scales', items: []},
       {name: 'Wides', items: []},
       {name: 'Shadows', items: []},
     ] as Array<{name: string; items: VariableDef[]}>;
@@ -87,7 +88,6 @@ export class AppSkinEditorComponent extends TiniComponent {
       } else if (key.startsWith('--color')) {
         if (
           !~key.indexOf('-contrast') &&
-          !~key.indexOf('-rgb') &&
           !~key.indexOf('-shade') &&
           !~key.indexOf('-tint')
         ) {
@@ -103,10 +103,12 @@ export class AppSkinEditorComponent extends TiniComponent {
         }
       } else if (key.startsWith('--size')) {
         result[3].items.push(def);
-      } else if (key.startsWith('--wide')) {
+      } else if (key.startsWith('--scale')) {
         result[4].items.push(def);
-      } else if (key.startsWith('--shadow')) {
+      } else if (key.startsWith('--wide')) {
         result[5].items.push(def);
+      } else if (key.startsWith('--shadow')) {
+        result[6].items.push(def);
       }
     }
     // result
@@ -401,7 +403,7 @@ export class AppSkinEditorComponent extends TiniComponent {
           scheme="primary"
           @click=${this.showModal}
         >
-          <icon-code scheme="primary-contrast" size="sm"></icon-code>
+          <icon-code scheme="primary-contrast" scale="sm"></icon-code>
           <span>Show code</span>
         </tini-button>
       </div>

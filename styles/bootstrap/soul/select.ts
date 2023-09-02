@@ -1,10 +1,10 @@
 import {css} from 'lit';
-import {generateColorVaries, generateSizeVaries} from 'tinijs';
+import {generateColorVaries, generateScaleVaries} from 'tinijs';
 
 export const selectStyle = css`
   :host {
     --select-color: var(--color-primary);
-    --select-size: var(--size-md);
+    --select-scale: var(--scale-md);
     --select-border: var(--size-border) solid var(--color-medium);
     --select-radius: var(--size-radius);
   }
@@ -34,15 +34,15 @@ export const selectStyle = css`
     color: var(--color-foreground);
     border: var(--select-border);
     border-radius: var(--select-radius);
-    padding: calc(var(--select-size) / 2) calc(var(--select-size) / 1.5);
-    font-size: var(--select-size);
+    padding: calc(var(--select-scale) / 2) calc(var(--select-scale) / 1.5);
+    font-size: var(--select-scale);
     transition: all 0.15s ease-in-out;
   }
 
   select:focus {
     outline: none;
     border-color: color-mix(in oklab, var(--select-color), transparent 30%);
-    box-shadow: 0 0 0 calc(var(--select-size) / 4)
+    box-shadow: 0 0 0 calc(var(--select-scale) / 4)
       color-mix(in oklab, var(--select-color), transparent 70%);
   }
 
@@ -61,21 +61,21 @@ export const selectStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, color}) => `
-    .scheme-${name} {
+    ({fullName, color}) => `
+    .${fullName} {
       --select-color: ${color};
     }
   `
   )}
 
   /*
-   * [size]
+   * [scale]
    */
 
-  ${generateSizeVaries(
-    size => `
-    .size-${size} {
-      --select-size: var(--size-${size});
+  ${generateScaleVaries(
+    ({fullName, scale}) => `
+    .${fullName} {
+      --select-scale: ${scale};
     }
   `
   )}

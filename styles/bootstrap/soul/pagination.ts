@@ -2,13 +2,13 @@ import {css} from 'lit';
 import {
   generateColorVaries,
   generateGradientVaries,
-  generateSizeVaries,
+  generateScaleVaries,
 } from 'tinijs';
 
 export const paginationStyle = css`
   :host {
     --pagination-background: none;
-    --pagination-size: var(--size-md);
+    --pagination-scale: var(--scale-md);
     --pagination-color: var(--color-primary);
     --pagination-active-background: var(--color-primary);
     --pagination-active-color: var(--color-primary-contrast);
@@ -28,14 +28,14 @@ export const paginationStyle = css`
 
   li a {
     display: block;
-    padding: calc(var(--pagination-size) / 2.75)
-      calc(var(--pagination-size) / 1.25);
+    padding: calc(var(--pagination-scale) / 2.75)
+      calc(var(--pagination-scale) / 1.25);
     text-decoration: none;
     background: var(--pagination-background);
     color: var(--pagination-color);
     border: var(--size-border) solid var(--color-background-shade);
     border-right-width: 0;
-    font-size: var(--pagination-size);
+    font-size: var(--pagination-scale);
   }
 
   li:first-child a {
@@ -91,8 +91,8 @@ export const paginationStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, color, contrast}) => `
-    .scheme-${name} {
+    ({fullName, color, contrast}) => `
+    .${fullName} {
       --pagination-color: ${color};
       --pagination-active-background: ${color};
       --pagination-active-color: ${contrast};
@@ -101,8 +101,8 @@ export const paginationStyle = css`
   )}
 
   ${generateGradientVaries(
-    ({name, gradient, color, contrast}) => `
-    .scheme-${name} {
+    ({fullName, gradient, color, contrast}) => `
+    .${fullName} {
       --pagination-color: ${color};
       --pagination-active-background: ${gradient};
       --pagination-active-color: ${contrast};
@@ -111,13 +111,13 @@ export const paginationStyle = css`
   )}
 
   /*
-   * [size]
+   * [scale]
    */
 
-  ${generateSizeVaries(
-    size => `
-    .size-${size} {
-      --pagination-size: var(--size-${size});
+  ${generateScaleVaries(
+    ({fullName, scale}) => `
+    .${fullName} {
+      --pagination-scale: ${scale};
     }
   `
   )}

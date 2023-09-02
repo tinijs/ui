@@ -13,7 +13,7 @@ import {
   renderDefaultSection,
   renderBaseColorsSection,
   renderBaseGradientsSection,
-  renderSizesSection,
+  renderScalesSection,
 } from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
@@ -84,9 +84,9 @@ export class AppPageComponentsSwitch extends TiniComponent {
             html`<tini-switch checked scheme=${baseName}></tini-switch>`
         )}
 
-        <!-- sizes -->
-        ${renderSizesSection(
-          size => html`<tini-switch checked size=${size}></tini-switch>`
+        <!-- scales -->
+        ${renderScalesSection(
+          scale => html`<tini-switch checked scale=${scale}></tini-switch>`
         )}
       </app-component-page>
     `;

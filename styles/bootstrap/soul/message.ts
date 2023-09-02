@@ -1,5 +1,5 @@
 import {css} from 'lit';
-import {generateColorVaries, generateFontSizeVaries} from 'tinijs';
+import {VaryGroups, generateColorVaries, generateFontSizeVaries} from 'tinijs';
 
 export const messageStyle = css`
   :host {
@@ -32,9 +32,9 @@ export const messageStyle = css`
    */
 
   ${generateFontSizeVaries(
-    sizeFactor => `
-    .font-size-${sizeFactor} {
-      --message-font-size: var(--size-text-${sizeFactor}) !important;
+    ({fullName, size}) => `
+    .${fullName} {
+      --message-font-size: ${size} !important;
     }
   `
   )}
@@ -44,14 +44,14 @@ export const messageStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, color}) => `
-    .scheme-${name} {
+    ({name, fullName, color}) => `
+    .${fullName} {
       --message-background: ${color};
       --message-color: ${color};
       border-color: ${color};
     }
 
-    .color-${name} {
+    .${VaryGroups.Color}-${name} {
       --message-color: ${color} !important;
     }
   `

@@ -1,5 +1,5 @@
 import {css} from 'lit';
-import {generateColorVaries, generateSizeVaries} from 'tinijs';
+import {generateColorVaries, generateScaleVaries} from 'tinijs';
 
 export const xxxStyle = css`
   :host {
@@ -19,20 +19,20 @@ export const xxxStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, color}) => `
-    .scheme-${name} {
+    ({fullName, color}) => `
+    .${fullName} {
       
     }
   `
   )}
 
   /*
-   * [size]
+   * [scale]
    */
 
-  ${generateSizeVaries(
-    size => `
-    .size-${size} {
+  ${generateScaleVaries(
+    ({fullName, scale}) => `
+    .${fullName} {
       
     }
   `

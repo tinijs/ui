@@ -104,23 +104,23 @@
   --gradient-foreground-tint: linear-gradient(180deg, #ffffff 0%, #dddddd 100%);
   /* sizes */
   --size-text: 16px;
-  --size-radius: 3px;
-  --size-border: 1px;
-  --size-outline: 1px;
   --size-space: 1rem;
-  /* size steps */
-  --size-xxxs: 3px;
-  --size-xxs: 5px;
-  --size-xs: 7px;
-  --size-ss: 9px;
-  --size-sm: 12px;
-  --size-md: 15px;
-  --size-ml: 18px;
-  --size-lg: 21px;
-  --size-sl: 24px;
-  --size-xl: 27px;
-  --size-xxl: 30px;
-  --size-xxxl: 34px;
+  --size-outline: 1px;
+  --size-border: 1px;
+  --size-radius: 3px;
+  /* scales */
+  --scale-xxxs: 3px;
+  --scale-xxs: 5px;
+  --scale-xs: 7px;
+  --scale-ss: 9px;
+  --scale-sm: 12px;
+  --scale-md: 15px;
+  --scale-ml: 18px;
+  --scale-lg: 21px;
+  --scale-sl: 24px;
+  --scale-xl: 27px;
+  --scale-xxl: 30px;
+  --scale-xxxl: 34px;
   /* wides */
   --wide-xxxs: 150px;
   --wide-xxs: 240px;
@@ -135,9 +135,11 @@
   --wide-xxl: 2560px;
   --wide-xxxl: 3840px;
   /* shadows */
-  --shadow: none;
+  --shadow-normal: none;
   --shadow-least: none;
   --shadow-lesser: none;
   --shadow-greater: none;
   --shadow-greatest: none;
+  --shadow-scarcity: none;
+  --shadow-excess: none;
 }

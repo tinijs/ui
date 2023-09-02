@@ -1,10 +1,10 @@
 import {css} from 'lit';
-import {generateColorVaries, generateSizeVaries} from 'tinijs';
+import {generateColorVaries, generateScaleVaries} from 'tinijs';
 
 export const spinnerStyle = css`
   :host {
     --spinner-color: var(--color-foreground);
-    --spinner-size: var(--size-md);
+    --spinner-scale: var(--scale-md);
   }
 
   /*
@@ -12,8 +12,8 @@ export const spinnerStyle = css`
    */
 
   .root {
-    --size: calc(var(--spinner-size) * 2);
-    --border-width: calc(var(--spinner-size) / 4);
+    --size: calc(var(--spinner-scale) * 2);
+    --border-width: calc(var(--spinner-scale) / 4);
   }
 
   .root {
@@ -39,21 +39,21 @@ export const spinnerStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, color}) => `
-    .scheme-${name} {
+    ({fullName, color}) => `
+    .${fullName} {
       --spinner-color: ${color};
     }
   `
   )}
 
   /*
-   * [size]
+   * [scale]
    */
 
-  ${generateSizeVaries(
-    size => `
-    .size-${size} {
-      --spinner-size: var(--size-${size});
+  ${generateScaleVaries(
+    ({fullName, scale}) => `
+    .${fullName} {
+      --spinner-scale: ${scale};
     }
   `
   )}

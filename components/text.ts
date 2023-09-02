@@ -1,13 +1,16 @@
-import {LitElement} from 'lit';
+import {PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
-import {classMap, ClassInfo} from 'lit/directives/class-map.js';
+import {classMap} from 'lit/directives/class-map.js';
+import {styleMap} from 'lit/directives/style-map.js';
 import {html, literal, unsafeStatic, StaticValue} from 'lit/static-html.js';
 import {
+  TiniElement,
   partMap,
-  PartInfo,
-  ColorsAndGradients,
+  VaryGroups,
+  Colors,
+  Gradients,
+  Factors,
   FontTypes,
-  FontSizeFactors,
   FontWeights,
   TextTransforms,
 } from 'tinijs';
@@ -26,43 +29,45 @@ export enum TextTypes {
 }
 
 /* UseBases(common,headings) */
-export class TiniTextComponent extends LitElement {
+export class TiniTextComponent extends TiniElement {
   static readonly defaultTagName = 'tini-text';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare type?: TextTypes;
   @property({type: Boolean, reflect: true}) declare italic?: boolean;
   @property({type: Boolean, reflect: true}) declare underline?: boolean;
-  @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
-  @property({type: String, reflect: true}) declare fontSize?: FontSizeFactors;
-  @property({type: String, reflect: true}) declare font?: FontTypes;
-  @property({type: String, reflect: true}) declare weight?: FontWeights;
-  @property({type: String, reflect: true}) declare transform?: TextTransforms;
+  @property({type: String, reflect: true}) declare color?: Colors | Gradients;
+  @property({type: String, reflect: true}) declare fontType?: FontTypes;
+  @property({type: String, reflect: true}) declare fontSize?: Factors;
+  @property({type: String, reflect: true}) declare fontWeight?: FontWeights;
+  @property({type: String, reflect: true}) declare textTransform?: TextTransforms;
   /* eslint-enable prettier/prettier */
 
   private tag!: StaticValue;
-  private rootClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
     // root tag
     this.tag = literal`${unsafeStatic(this.type || TextTypes.Span)}`;
     // root classes parts
-    this.rootClassesParts = {
-      root: true,
+    this.extendRootClassesParts({
       italic: !!this.italic,
       underline: !!this.underline,
-      [`color-${this.color}`]: !!this.color,
-      [`font-size-${this.fontSize}`]: !!this.fontSize,
-      [`font-${this.font}`]: !!this.font,
-      [`weight-${this.weight}`]: !!this.weight,
-      [`transform-${this.transform}`]: !!this.transform,
-    };
+      [`${VaryGroups.Color}-${this.color}`]: !!this.color,
+      [`${VaryGroups.FontType}-${this.fontType}`]: !!this.fontType,
+      [`${VaryGroups.FontSize}-${this.fontSize}`]: !!this.fontSize,
+      [`${VaryGroups.FontWeight}-${this.fontWeight}`]: !!this.fontWeight,
+      [`${VaryGroups.TextTransform}-${this.textTransform}`]:
+        !!this.textTransform,
+    });
   }
 
   protected render() {
     return html`
-      <${this.tag} part=${partMap(this.rootClassesParts)} class=${classMap(
-        this.rootClassesParts
-      )}>
+      <${this.tag}
+        part=${partMap(this.rootClassesParts)}
+        class=${classMap(this.rootClassesParts)}
+        style=${styleMap(this.rootStyles)}
+      >
         <slot></slot>
       </${this.tag}>
     `;

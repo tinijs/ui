@@ -19,8 +19,11 @@ import {
   renderContrastGradientsSection,
   renderFontTypesSection,
   renderFontSizesSection,
-  renderWeightsSection,
+  renderFontWeightsSection,
+  renderTextTransformsSection,
+  renderItalicUnderlineSection,
   renderTransformsSection,
+  renderFiltersSection,
 } from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
@@ -121,7 +124,7 @@ export class AppPageComponentsText extends TiniComponent {
         <!-- fonts -->
         ${renderFontTypesSection(
           font =>
-            html`<tini-text font=${font}>Text with ${font} font</tini-text>`
+            html`<tini-text fontType=${font}>Text with ${font} font</tini-text>`
         )}
 
         <!-- font sizes -->
@@ -134,38 +137,79 @@ export class AppPageComponentsText extends TiniComponent {
         )}
 
         <!-- weights -->
-        ${renderWeightsSection(
+        ${renderFontWeightsSection(
           weight =>
-            html`<tini-text weight=${weight}
+            html`<tini-text fontWeight=${weight}
               >Text with ${weight} weight</tini-text
             >`
         )}
 
         <!-- transforms -->
-        ${renderTransformsSection(
+        ${renderTextTransformsSection(
           transform =>
-            html`<tini-text transform=${transform}
+            html`<tini-text textTransform=${transform}
               >Text with ${transform} transform</tini-text
             >`
         )}
 
         <!-- italic and underline -->
-        ${renderSection(
-          'italic-underline',
-          'Italic and Underline',
-          null,
-          html`
-            <tini-text italic>Text with italic style</tini-text><br />
-            <tini-text italic color="gradient-primary" fontSize="2x"
-              >Gradient text with italic style</tini-text
-            ><br />
-            <tini-text underline>Text with underline decoration</tini-text
-            ><br />
-            <tini-text underline color="gradient-primary" fontSize="2x"
-              >Gradient text with underline decoration</tini-text
+        ${renderItalicUnderlineSection(html`
+          <tini-text italic>Text with italic style</tini-text><br />
+          <tini-text italic color="gradient-primary" fontSize="2x"
+            >Gradient text with italic style</tini-text
+          ><br />
+          <tini-text underline>Text with underline decoration</tini-text><br />
+          <tini-text underline color="gradient-primary" fontSize="2x"
+            >Gradient text with underline decoration</tini-text
+          >
+        `)}
+
+        <!-- transforms -->
+        ${renderTransformsSection(html`
+          <tini-text
+            fontSize="1_5x"
+            style="display: inline-flex;"
+            transform="rotate(-45deg)"
+            >Transform me</tini-text
+          >
+          <tini-text
+            style="display: inline-flex;"
+            transform="translateX(370px) scale(5) skew(45deg, 10deg)"
+            >Transform me</tini-text
+          >
+        `)}
+
+        <!-- filters -->
+        ${renderFiltersSection(html`
+          <div class="group">
+            <tini-text color="primary" fontSize="1_5x">Text</tini-text>
+            <tini-text color="primary" fontSize="1_5x" filter="opacity(50%)"
+              >Filtered text</tini-text
             >
-          `
-        )}
+          </div>
+          <div class="group">
+            <tini-text color="gradient-disco-club" fontSize="1_5x"
+              >Text</tini-text
+            >
+            <tini-text
+              color="gradient-disco-club"
+              fontSize="1_5x"
+              filter="blur(2px)"
+              >Filtered text</tini-text
+            >
+          </div>
+          <div class="group">
+            <tini-text color="gradient-mello-yellow" fontSize="1_5x"
+              >Text</tini-text
+            >
+            <tini-text
+              color="gradient-mello-yellow"
+              fontSize="1_5x"
+              filter="grayscale(90%)"
+              >Filtered text</tini-text
+            >
+          </div>
+        `)}
       </app-component-page>
     `;
   }

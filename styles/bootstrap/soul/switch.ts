@@ -2,12 +2,12 @@ import {css} from 'lit';
 import {
   generateColorVaries,
   generateGradientVaries,
-  generateSizeVaries,
+  generateScaleVaries,
 } from 'tinijs';
 
 export const switchStyle = css`
   :host {
-    --switch-size: var(--size-md);
+    --switch-scale: var(--scale-md);
     --switch-background: var(--color-medium);
     --switch-color: var(--color-light);
     --switch-hover-shadow: var(--color-primary);
@@ -26,7 +26,7 @@ export const switchStyle = css`
    */
 
   .root {
-    --wrapper-size: calc(var(--switch-size) * 2);
+    --wrapper-size: calc(var(--switch-scale) * 2);
     --slider-outer-size: calc((var(--wrapper-size) / 2) + var(--switch-space));
     --slider-size: calc((var(--wrapper-size) / 2) - var(--switch-space));
   }
@@ -81,7 +81,7 @@ export const switchStyle = css`
       var(--switch-hover-shadow),
       transparent 30%
     );
-    box-shadow: 0 0 0 calc(var(--switch-size) / 4)
+    box-shadow: 0 0 0 calc(var(--switch-scale) / 4)
       color-mix(in oklab, var(--switch-hover-shadow), transparent 70%);
   }
 
@@ -105,8 +105,8 @@ export const switchStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, color, contrast}) => `
-    .scheme-${name} {
+    ({fullName, color, contrast}) => `
+    .${fullName} {
       --switch-active-background: ${color};
       --switch-hover-shadow: ${color};
       --switch-active-color: ${contrast};
@@ -115,8 +115,8 @@ export const switchStyle = css`
   )}
 
   ${generateGradientVaries(
-    ({name, gradient, color, contrast}) => `
-    .scheme-${name} {
+    ({fullName, gradient, color, contrast}) => `
+    .${fullName} {
       --switch-background: var(--gradient-medium);
       --switch-hover-shadow: ${color};
       --switch-active-background: ${gradient};
@@ -126,13 +126,13 @@ export const switchStyle = css`
   )}
 
   /*
-   * [size]
+   * [scale]
    */
 
-  ${generateSizeVaries(
-    size => `
-    .size-${size} {
-      --switch-size: var(--size-${size});
+  ${generateScaleVaries(
+    ({fullName, scale}) => `
+    .${fullName} {
+      --switch-scale: ${scale};
     }
   `
   )}

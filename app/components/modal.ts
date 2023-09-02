@@ -154,7 +154,7 @@ export class AppModalComponent extends TiniComponent {
       max-width: 960px;
       border: none;
       border-radius: var(--size-radius);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-normal);
       background: var(--color-background);
       color: var(--color-foreground);
     }

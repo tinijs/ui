@@ -1,26 +1,27 @@
-import {LitElement, html} from 'lit';
+import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
-import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo, Colors, FontSizeFactors} from 'tinijs';
+import {classMap} from 'lit/directives/class-map.js';
+import {styleMap} from 'lit/directives/style-map.js';
+import {TiniElement, partMap, VaryGroups, Colors, Factors} from 'tinijs';
 
 /* UseBases(common) */
-export class TiniMessageComponent extends LitElement {
+export class TiniMessageComponent extends TiniElement {
   static readonly defaultTagName = 'tini-message';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare color?: Colors;
-  @property({type: String, reflect: true}) declare fontSize?: FontSizeFactors;
+  @property({type: String, reflect: true}) declare fontSize?: Factors;
   /* eslint-enable prettier/prettier */
 
-  private rootClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
-    this.rootClassesParts = {
-      root: true,
-      [`scheme-${this.scheme}`]: !!this.scheme,
-      [`color-${this.color}`]: !!this.color,
-      [`font-size-${this.fontSize}`]: !!this.fontSize,
-    };
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
+    // root classes parts
+    this.extendRootClassesParts({
+      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
+      [`${VaryGroups.Color}-${this.color}`]: !!this.color,
+      [`${VaryGroups.FontSize}-${this.fontSize}`]: !!this.fontSize,
+    });
   }
 
   protected render() {
@@ -28,6 +29,7 @@ export class TiniMessageComponent extends LitElement {
       <div
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
+        style=${styleMap(this.rootStyles)}
       >
         <slot></slot>
       </div>

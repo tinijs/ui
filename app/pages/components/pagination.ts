@@ -13,7 +13,7 @@ import {
   renderDefaultSection,
   renderBaseColorsSection,
   renderBaseGradientsSection,
-  renderSizesSection,
+  renderScalesSection,
 } from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
@@ -88,13 +88,13 @@ export class AppPageComponentsPagination extends TiniComponent {
             ></tini-pagination>`
         )}
 
-        <!-- sizes -->
-        ${renderSizesSection(
-          size =>
+        <!-- scales -->
+        ${renderScalesSection(
+          scale =>
             html`<tini-pagination
               totalPage="3"
               currentPage="2"
-              size=${size}
+              scale=${scale}
             ></tini-pagination>`
         )}
       </app-component-page>

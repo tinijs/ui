@@ -1,15 +1,16 @@
-import {LitElement, html, nothing} from 'lit';
+import {html, nothing, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
-import {classMap, ClassInfo} from 'lit/directives/class-map.js';
+import {classMap} from 'lit/directives/class-map.js';
+import {styleMap} from 'lit/directives/style-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
-import {partMap, PartInfo, Colors, Sizes} from 'tinijs';
+import {TiniElement, partMap, VaryGroups, Colors, Scales} from 'tinijs';
 
 import {InputEventDetail} from './input';
 
 export type TextareaEventDetail = InputEventDetail;
 
 /* UseBases(common) */
-export class TiniTextareaComponent extends LitElement {
+export class TiniTextareaComponent extends TiniElement {
   static readonly defaultTagName = 'tini-textarea';
 
   /* eslint-disable prettier/prettier */
@@ -20,18 +21,18 @@ export class TiniTextareaComponent extends LitElement {
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
   @property({type: Boolean, reflect: true}) declare readonly?: boolean;
   @property({type: String, reflect: true}) declare scheme?: Colors;
-  @property({type: String, reflect: true}) declare size?: Sizes;
+  @property({type: String, reflect: true}) declare scale?: Scales;
   /* eslint-enable prettier/prettier */
 
-  private rootClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
-    this.rootClassesParts = {
-      root: true,
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
+    // root classes parts
+    this.extendRootClassesParts({
       disabled: !!this.disabled,
       readonly: !!this.readonly,
-      [`scheme-${this.scheme}`]: !!this.scheme,
-      [`size-${this.size}`]: !!this.size,
-    };
+      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
+      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
+    });
   }
 
   private buildEventDetail(e: InputEvent) {
@@ -67,6 +68,7 @@ export class TiniTextareaComponent extends LitElement {
       <label
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
+        style=${styleMap(this.rootStyles)}
       >
         ${!this.label
           ? nothing

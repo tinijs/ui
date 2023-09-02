@@ -1,14 +1,17 @@
-import {LitElement, html} from 'lit';
+import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
-import {classMap, ClassInfo} from 'lit/directives/class-map.js';
+import {classMap} from 'lit/directives/class-map.js';
+import {styleMap} from 'lit/directives/style-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
 import {
+  TiniElement,
   partMap,
-  PartInfo,
-  ColorsAndGradients,
+  VaryGroups,
+  Colors,
+  Gradients,
+  Factors,
   FontTypes,
-  FontSizeFactors,
   FontWeights,
   TextTransforms,
 } from 'tinijs';
@@ -16,9 +19,10 @@ import {
 export type LinkTargets = '_blank' | '_self' | '_parent' | '_top';
 
 /* UseBases(common) */
-export class TiniLinkComponent extends LitElement {
+export class TiniLinkComponent extends TiniElement {
   static readonly defaultTagName = 'tini-link';
 
+  private readonly ROUTER_CHANGE_EVENT = 'tini:router:change';
   private anchorRef: Ref<HTMLAnchorElement> = createRef();
 
   /* eslint-disable prettier/prettier */
@@ -28,36 +32,44 @@ export class TiniLinkComponent extends LitElement {
   @property({type: String, reflect: true}) declare active?: string;
   @property({type: Boolean, reflect: true}) declare italic?: boolean;
   @property({type: Boolean, reflect: true}) declare underline?: boolean;
-  @property({type: String, reflect: true}) declare color?: ColorsAndGradients;
-  @property({type: String, reflect: true}) declare fontSize?: FontSizeFactors;
-  @property({type: String, reflect: true}) declare font?: FontTypes;
-  @property({type: String, reflect: true}) declare weight?: FontWeights;
-  @property({type: String, reflect: true}) declare transform?: TextTransforms;
+  @property({type: String, reflect: true}) declare color?: Colors | Gradients;
+  @property({type: String, reflect: true}) declare fontType?: FontTypes;
+  @property({type: String, reflect: true}) declare fontSize?: Factors;
+  @property({type: String, reflect: true}) declare fontWeight?: FontWeights;
+  @property({type: String, reflect: true}) declare textTransform?: TextTransforms;
   /* eslint-enable prettier/prettier */
 
-  private rootClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
-    this.rootClassesParts = {
-      root: true,
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
+    // root classes parts
+    this.extendRootClassesParts({
       italic: !!this.italic,
       underline: !!this.underline,
-      [`color-${this.color}`]: !!this.color,
-      [`font-size-${this.fontSize}`]: !!this.fontSize,
-      [`font-${this.font}`]: !!this.font,
-      [`weight-${this.weight}`]: !!this.weight,
-      [`transform-${this.transform}`]: !!this.transform,
-    };
+      [`${VaryGroups.Color}-${this.color}`]: !!this.color,
+      [`${VaryGroups.FontType}-${this.fontType}`]: !!this.fontType,
+      [`${VaryGroups.FontSize}-${this.fontSize}`]: !!this.fontSize,
+      [`${VaryGroups.FontWeight}-${this.fontWeight}`]: !!this.fontWeight,
+      [`${VaryGroups.TextTransform}-${this.textTransform}`]:
+        !!this.textTransform,
+    });
   }
 
   connectedCallback() {
     super.connectedCallback();
-    if (this.active) window.addEventListener('route', this.updateActiveStatus);
+    if (this.active)
+      window.addEventListener(
+        this.ROUTER_CHANGE_EVENT,
+        this.updateActiveStatus
+      );
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     if (this.active)
-      window.removeEventListener('route', this.updateActiveStatus);
+      window.removeEventListener(
+        this.ROUTER_CHANGE_EVENT,
+        this.updateActiveStatus
+      );
   }
 
   updated() {
@@ -108,6 +120,7 @@ export class TiniLinkComponent extends LitElement {
         ${ref(this.anchorRef)}
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
+        style=${styleMap(this.rootStyles)}
         href=${this.href || '/'}
         target=${ifDefined(this.target)}
         rel=${ifDefined(this.rel)}

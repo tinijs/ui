@@ -17,7 +17,7 @@ import {
   renderSection,
   renderDefaultSection,
   renderBaseColorsSection,
-  renderSizesSection,
+  renderScalesSection,
 } from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
@@ -115,12 +115,12 @@ export class AppPageComponentsTextarea extends TiniComponent {
             ></tini-textarea>`
         )}
 
-        <!-- sizes -->
-        ${renderSizesSection(
-          size =>
+        <!-- scales -->
+        ${renderScalesSection(
+          scale =>
             html`<tini-textarea
-              size=${size}
-              placeholder=${size}
+              scale=${scale}
+              placeholder=${scale}
             ></tini-textarea>`
         )}
       </app-component-page>

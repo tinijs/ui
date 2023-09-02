@@ -1,10 +1,11 @@
-import {LitElement, html} from 'lit';
+import {html, PropertyValues} from 'lit';
 import {property, state, queryAssignedElements} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo} from 'tinijs';
+import {styleMap} from 'lit/directives/style-map.js';
+import {TiniElement, partMap, PartInfo} from 'tinijs';
 
 /* UseBases(common) */
-export class TiniCardComponent extends LitElement {
+export class TiniCardComponent extends TiniElement {
   static readonly defaultTagName = 'tini-card';
 
   /* eslint-disable prettier/prettier */
@@ -18,26 +19,25 @@ export class TiniCardComponent extends LitElement {
   @state() private headSlotPopulated = false;
   @state() private footSlotPopulated = false;
 
-  private rootClassesParts: ClassInfo | PartInfo = {};
   private headClassesParts: ClassInfo | PartInfo = {};
   private bodyClassesParts: ClassInfo | PartInfo = {};
   private footClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
-    // root class
-    this.rootClassesParts = {
-      root: true,
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
+    // root classes parts
+    this.extendRootClassesParts({
       fluid: !!this.fluid,
-    };
-    // head classes or parts
+    });
+    // head classes parts
     this.headClassesParts = {
       head: true,
       'head-populated': this.headSlotPopulated,
     };
-    // body classes or parts
+    // body classes parts
     this.bodyClassesParts = {
       body: true,
     };
-    // foot classes or parts
+    // foot classes parts
     this.footClassesParts = {
       foot: true,
       'foot-populated': this.footSlotPopulated,
@@ -49,6 +49,7 @@ export class TiniCardComponent extends LitElement {
       <div
         class=${classMap(this.rootClassesParts)}
         part=${partMap(this.rootClassesParts)}
+        style=${styleMap(this.rootStyles)}
       >
         <div
           class=${classMap(this.headClassesParts)}

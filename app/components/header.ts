@@ -83,11 +83,11 @@ export class AppHeaderComponent extends TiniComponent {
             )}
           </select>
           <button class="skin-editor-toggler" @click=${this.toggleSkinEditor}>
-            <icon-palette scheme="primary-contrast" size="sm"></icon-palette>
+            <icon-palette scheme="primary-contrast" scale="sm"></icon-palette>
             <span>Skin Editor</span>
           </button>
           <a href=${this.REPO_URL} target="_blank">
-            <icon-github scheme="primary-contrast" size="sm"></icon-github>
+            <icon-github scheme="primary-contrast" scale="sm"></icon-github>
           </a>
         </div>
       </header>
@@ -116,7 +116,7 @@ export class AppHeaderComponent extends TiniComponent {
       padding: var(--size-space);
       background-color: var(--color-primary);
       color: var(--color-light);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-normal);
     }
 
     .brand a {
@@ -192,7 +192,7 @@ export class AppHeaderComponent extends TiniComponent {
       height: calc(100dvh - var(--header-height));
       background: var(--color-background);
       border: var(--size-border) solid var(--color-background-shade);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-normal);
 
       &.showed {
         display: block;

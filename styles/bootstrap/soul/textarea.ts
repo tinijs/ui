@@ -1,10 +1,10 @@
 import {css} from 'lit';
-import {generateColorVaries, generateSizeVaries} from 'tinijs';
+import {generateColorVaries, generateScaleVaries} from 'tinijs';
 
 export const textareaStyle = css`
   :host {
     --textarea-color: var(--color-primary);
-    --textarea-size: var(--size-md);
+    --textarea-scale: var(--scale-md);
     --textarea-border: var(--size-border) solid var(--color-medium);
     --textarea-radius: var(--size-radius);
   }
@@ -26,16 +26,16 @@ export const textareaStyle = css`
     color: var(--color-foreground);
     border: var(--textarea-border);
     border-radius: var(--textarea-radius);
-    padding: calc(var(--textarea-size) / 2) calc(var(--textarea-size) / 1.5);
+    padding: calc(var(--textarea-scale) / 2) calc(var(--textarea-scale) / 1.5);
     font-family: var(--font-body);
-    font-size: var(--textarea-size);
+    font-size: var(--textarea-scale);
     transition: all 0.15s ease-in-out;
   }
 
   textarea:focus {
     outline: none;
     border-color: color-mix(in oklab, var(--textarea-color), transparent 30%);
-    box-shadow: 0 0 0 calc(var(--textarea-size) / 4)
+    box-shadow: 0 0 0 calc(var(--textarea-scale) / 4)
       color-mix(in oklab, var(--textarea-color), transparent 70%);
   }
 
@@ -54,21 +54,21 @@ export const textareaStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, color}) => `
-    .scheme-${name} {
+    ({fullName, color}) => `
+    .${fullName} {
       --textarea-color: ${color};
     }
   `
   )}
 
   /*
-   * [size]
+   * [scale]
    */
 
-  ${generateSizeVaries(
-    size => `
-    .size-${size} {
-      --textarea-size: var(--size-${size});
+  ${generateScaleVaries(
+    ({fullName, scale}) => `
+    .${fullName} {
+      --textarea-scale: ${scale};
     }
   `
   )}

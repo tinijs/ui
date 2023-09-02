@@ -1,55 +1,56 @@
-import {LitElement, html} from 'lit';
+import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
-import {classMap, ClassInfo} from 'lit/directives/class-map.js';
+import {classMap} from 'lit/directives/class-map.js';
+import {styleMap} from 'lit/directives/style-map.js';
 import {
+  TiniElement,
   partMap,
-  PartInfo,
-  ColorsAndGradients,
+  VaryGroups,
   Colors,
-  SizeFactors,
-  SizeBasicFactors,
-  sizeFactorsToClassInfo,
-  borderingToClassInfo,
+  Gradients,
+  Factors,
+  BorderRadiuses,
+  factorsToClassInfo,
+  borderToClassInfo,
 } from 'tinijs';
 
 /* UseBases(common) */
-export class TiniBoxComponent extends LitElement {
+export class TiniBoxComponent extends TiniElement {
   static readonly defaultTagName = 'tini-box';
 
   /* eslint-disable prettier/prettier */
-  @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;
-  @property({type: String, reflect: true}) declare fontSize?: SizeFactors;
+  @property({type: String, reflect: true}) declare scheme?: Colors | Gradients;
+  @property({type: String, reflect: true}) declare fontSize?: Factors;
   @property({type: String, reflect: true}) declare color?: Colors;
-  @property({type: String, reflect: true}) declare bordering?: string;
-  @property({type: String, reflect: true}) declare borderRadius?: SizeBasicFactors;
+  @property({type: String, reflect: true}) declare border?: string;
+  @property({type: String, reflect: true}) declare borderRadius?: BorderRadiuses;
   @property({type: String, reflect: true}) declare padding?: string;
   @property({type: String, reflect: true}) declare margin?: string;
   /* eslint-enable prettier/prettier */
 
-  private rootClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
     // host classes
     this.updateHostClasses();
-    // root classes
-    this.rootClassesParts = {
-      root: true,
-      [`scheme-${this.scheme}`]: !!this.scheme,
-      [`font-size-${this.fontSize}`]: !!this.fontSize,
-      [`color-${this.color}`]: !!this.color,
-      ...borderingToClassInfo(this.bordering),
-      [`border-radius-${this.borderRadius}`]: !!this.borderRadius,
-      ...sizeFactorsToClassInfo('padding', this.padding),
-    };
+    // root classes parts
+    this.extendRootClassesParts({
+      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
+      [`${VaryGroups.FontSize}-${this.fontSize}`]: !!this.fontSize,
+      [`${VaryGroups.Color}-${this.color}`]: !!this.color,
+      [`${VaryGroups.BorderRadius}-${this.borderRadius}`]: !!this.borderRadius,
+      ...borderToClassInfo(this.border),
+      ...factorsToClassInfo(VaryGroups.Padding, this.padding),
+    });
   }
 
   private updateHostClasses() {
     if (this.margin) {
       this.classList.add(
-        ...Object.keys(sizeFactorsToClassInfo('margin', this.margin))
+        ...Object.keys(factorsToClassInfo(VaryGroups.Margin, this.margin))
       );
     } else {
       this.classList.forEach(className => {
-        if (!className.startsWith('margin-')) return;
+        if (!className.startsWith(`${VaryGroups.Margin}-`)) return;
         this.classList.remove(className);
       });
     }
@@ -60,6 +61,7 @@ export class TiniBoxComponent extends LitElement {
       <div
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
+        style=${styleMap(this.rootStyles)}
       >
         <slot></slot>
       </div>

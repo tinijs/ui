@@ -18,7 +18,7 @@ import {
   renderSection,
   renderDefaultSection,
   renderBaseColorsSection,
-  renderSizesSection,
+  renderScalesSection,
 } from '../../helpers/varies';
 import {CodeBuilder} from '../../components/section';
 
@@ -190,16 +190,16 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
           }
         )}
 
-        <!-- sizes -->
-        ${renderSizesSection(
-          size =>
+        <!-- scales -->
+        ${renderScalesSection(
+          scale =>
             html`<tini-checkboxes
               wrap
               .items=${[
                 {
                   value: '',
-                  label: `Checkbox size ${size}`,
-                  size,
+                  label: `Checkbox scale ${scale}`,
+                  scale,
                 },
               ]}
             ></tini-checkboxes>`,

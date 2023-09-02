@@ -1,5 +1,6 @@
 import {css} from 'lit';
 import {
+  VaryGroups,
   generateColorVaries,
   generateGradientVaries,
   generateFontTypeVaries,
@@ -69,7 +70,7 @@ export const linkStyle = css`
 
   ${generateColorVaries(
     ({name, color}) => `
-    .color-${name} {
+    .${VaryGroups.Color}-${name} {
       --link-color: ${color};
     }
   `
@@ -77,14 +78,14 @@ export const linkStyle = css`
 
   ${generateGradientVaries(
     ({name, gradient}) => `
-    .color-${name} {
+    .${VaryGroups.Color}-${name} {
       position: relative;
       background: ${gradient};
       -webkit-background-clip: text;
 	    -webkit-text-fill-color: transparent;
     }
 
-    .color-${name}::after {
+    .${VaryGroups.Color}-${name}::after {
       --underline-height: calc(var(--link-font-size) / 13);
       visibility: hidden;
       content: '';
@@ -96,8 +97,8 @@ export const linkStyle = css`
       background: ${gradient};
     }
 
-    .color-${name}:hover::after,
-    .color-${name}.underline::after {
+    .${VaryGroups.Color}-${name}:hover::after,
+    .${VaryGroups.Color}-${name}.underline::after {
       visibility: visible;
     }
   `
@@ -108,9 +109,9 @@ export const linkStyle = css`
    */
 
   ${generateFontTypeVaries(
-    fontType => `
-    .font-${fontType} {
-      --link-font: var(--font-${fontType}) !important;
+    ({fullName, type}) => `
+    .${fullName} {
+      --link-font: ${type} !important;
     }
   `
   )}
@@ -120,9 +121,9 @@ export const linkStyle = css`
    */
 
   ${generateFontSizeVaries(
-    sizeFactor => `
-    .font-size-${sizeFactor} {
-      --link-font-size: var(--size-text-${sizeFactor});
+    ({fullName, size}) => `
+    .${fullName} {
+      --link-font-size: ${size};
     }
   `
   )}
@@ -132,9 +133,9 @@ export const linkStyle = css`
    */
 
   ${generateFontWeightVaries(
-    fontWeight => `
-    .weight-${fontWeight} {
-      --link-weight: ${fontWeight};
+    ({fullName, weight}) => `
+    .${fullName} {
+      --link-weight: ${weight};
     }
   `
   )}
@@ -144,8 +145,8 @@ export const linkStyle = css`
    */
 
   ${generateTextTransformVaries(
-    transform => `
-    .transform-${transform} {
+    ({fullName, transform}) => `
+    .${fullName} {
       --link-transform: ${transform};
     }
   `

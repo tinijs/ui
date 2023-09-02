@@ -63,7 +63,7 @@ export class AppLayoutDefault extends TiniComponent {
     .menu {
       grid-area: menu;
       border-right: 1px solid var(--color-background-shade);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-normal);
     }
 
     .page {

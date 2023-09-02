@@ -19,7 +19,7 @@ import {
   renderSection,
   renderDefaultSection,
   renderBaseColorsSection,
-  renderSizesSection,
+  renderScalesSection,
 } from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
@@ -167,11 +167,11 @@ export class AppPageComponentsSelect extends TiniComponent {
             ></tini-select>`
         )}
 
-        <!-- sizes -->
-        ${renderSizesSection(
-          size =>
+        <!-- scales -->
+        ${renderScalesSection(
+          scale =>
             html`<tini-select
-              size=${size}
+              scale=${scale}
               .items=${this.OPTIONS}
             ></tini-select>`
         )}
@@ -183,7 +183,7 @@ export class AppPageComponentsSelect extends TiniComponent {
     .wrap [slot='code'],
     .disabled [slot='code'],
     .colors [slot='code'],
-    .sizes [slot='code'] {
+    .scales [slot='code'] {
       display: flex;
       flex-flow: column;
       gap: 1rem;

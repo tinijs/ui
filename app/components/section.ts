@@ -80,7 +80,7 @@ export class AppSectionComponent extends TiniComponent {
                   mainStore.commit('referPlatform', detail.name)}
               >
                 <div slot="title">
-                  <icon-code scheme="foreground" size="sm"></icon-code>
+                  <icon-code scheme="foreground" scale="sm"></icon-code>
                   <span>Code</span>
                 </div>
                 ${repeat(

@@ -1,7 +1,16 @@
-import {LitElement, html} from 'lit';
+import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo, ColorsAndGradients, Sizes} from 'tinijs';
+import {styleMap} from 'lit/directives/style-map.js';
+import {
+  TiniElement,
+  partMap,
+  PartInfo,
+  VaryGroups,
+  Colors,
+  Gradients,
+  Scales,
+} from 'tinijs';
 
 export interface PaginationItem {
   text: string;
@@ -9,14 +18,14 @@ export interface PaginationItem {
 }
 
 /* UseBases(common) */
-export class TiniPaginationComponent extends LitElement {
+export class TiniPaginationComponent extends TiniElement {
   static readonly defaultTagName = 'tini-pagination';
 
   /* eslint-disable prettier/prettier */
   @property({type: Number, reflect: true}) declare totalPage: number;
   @property({type: Number, reflect: true}) declare currentPage: number;
-  @property({type: String, reflect: true}) declare scheme?: ColorsAndGradients;
-  @property({type: String, reflect: true}) declare size?: Sizes;
+  @property({type: String, reflect: true}) declare scheme?: Colors | Gradients;
+  @property({type: String, reflect: true}) declare scale?: Scales;
   @property({type: Object}) declare hrefBuilder?: (pageNum: number) => string;
   /* eslint-enable prettier/prettier */
 
@@ -33,17 +42,17 @@ export class TiniPaginationComponent extends LitElement {
     }
   }
 
-  private rootClassesParts: ClassInfo | PartInfo = {};
   private previousClassesParts: ClassInfo | PartInfo = {};
   private nextClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
+    // default and validations
     this.validateProperties();
     // root classes parts
-    this.rootClassesParts = {
-      root: true,
-      [`scheme-${this.scheme}`]: !!this.scheme,
-      [`size-${this.size}`]: !!this.size,
-    };
+    this.extendRootClassesParts({
+      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
+      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
+    });
     // previous classes parts
     this.previousClassesParts = {
       previous: true,
@@ -82,6 +91,7 @@ export class TiniPaginationComponent extends LitElement {
       <ul
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
+        style=${styleMap(this.rootStyles)}
       >
         ${this.renderPrevious()} ${this.renderItems()} ${this.renderNext()}
       </ul>

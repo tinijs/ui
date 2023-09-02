@@ -1,5 +1,5 @@
 import {css} from 'lit';
-import {generateColorVaries, generateSizeVaries} from 'tinijs';
+import {generateColorVaries, generateScaleVaries} from 'tinijs';
 
 export const checkboxesStyle = css`
   /* :host {} */
@@ -25,7 +25,7 @@ export const checkboxesStyle = css`
    */
 
   .item {
-    --checkbox-size: var(--size-md);
+    --checkbox-scale: var(--scale-md);
     --checkbox-background: var(--color-primary);
     cursor: pointer;
     display: flex;
@@ -34,8 +34,8 @@ export const checkboxesStyle = css`
 
   input {
     cursor: pointer;
-    width: var(--checkbox-size);
-    height: var(--checkbox-size);
+    width: var(--checkbox-scale);
+    height: var(--checkbox-scale);
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -44,7 +44,7 @@ export const checkboxesStyle = css`
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    border: var(--size-border-0_5x) solid var(--color-medium);
+    border: var(--size-border) solid var(--color-medium);
     border-radius: var(--size-radius);
     transition: all 0.15s ease-in-out;
   }
@@ -56,7 +56,7 @@ export const checkboxesStyle = css`
       transparent 50%
     );
     outline: 0;
-    box-shadow: 0 0 0 calc(var(--checkbox-size) / 4)
+    box-shadow: 0 0 0 calc(var(--checkbox-scale) / 4)
       color-mix(in oklab, var(--checkbox-background), transparent 70%);
   }
 
@@ -71,8 +71,8 @@ export const checkboxesStyle = css`
   }
 
   span {
-    font-size: var(--checkbox-size);
-    margin-left: calc(var(--checkbox-size) / 3);
+    font-size: var(--checkbox-scale);
+    margin-left: calc(var(--checkbox-scale) / 3);
   }
 
   /*
@@ -94,21 +94,21 @@ export const checkboxesStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, color}) => `
-    .scheme-${name} {
+    ({fullName, color}) => `
+    .${fullName} {
       --checkbox-background: ${color};
     }
   `
   )}
 
   /*
-   * [size]
+   * [scale]
    */
 
-  ${generateSizeVaries(
-    size => `
-    .size-${size} {
-      --checkbox-size: var(--size-${size});
+  ${generateScaleVaries(
+    ({fullName, scale}) => `
+    .${fullName} {
+      --checkbox-scale: ${scale};
     }
   `
   )}

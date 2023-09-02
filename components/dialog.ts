@@ -1,8 +1,9 @@
-import {LitElement, html, nothing} from 'lit';
+import {html, nothing, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
-import {classMap, ClassInfo} from 'lit/directives/class-map.js';
+import {classMap} from 'lit/directives/class-map.js';
+import {styleMap} from 'lit/directives/style-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
-import {partMap, PartInfo, ColorsAndGradients} from 'tinijs';
+import {TiniElement, partMap, Colors, Gradients} from 'tinijs';
 
 export enum DialogTypes {
   Alert = 'alert',
@@ -12,7 +13,7 @@ export enum DialogTypes {
 
 export interface DialogButton {
   text?: string;
-  scheme?: ColorsAndGradients;
+  scheme?: Colors | Gradients;
 }
 
 export interface DialogResult<Context> {
@@ -22,7 +23,7 @@ export interface DialogResult<Context> {
 
 /* UseBases(common) */
 /* UseComponents(button) */
-export class TiniDialogComponent extends LitElement {
+export class TiniDialogComponent extends TiniElement {
   static readonly defaultTagName = 'tini-dialog';
 
   private readonly BACKDROP_CLOSED = 'backdrop-closed';
@@ -43,13 +44,13 @@ export class TiniDialogComponent extends LitElement {
     this.type = DialogTypes.Alert;
   }
 
-  private rootClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
-    this.rootClassesParts = {
-      root: true,
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
+    // root classes parts
+    this.extendRootClassesParts({
       [this.type]: true,
       [this.BACKDROP_CLOSED]: !!this.backdropClosed,
-    };
+    });
   }
 
   get opened() {
@@ -94,6 +95,7 @@ export class TiniDialogComponent extends LitElement {
         ${ref(this.dialogRef)}
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
+        style=${styleMap(this.rootStyles)}
         @click=${this.clickDialog}
       >
         <div part="head" class="head">

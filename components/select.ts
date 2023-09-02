@@ -1,8 +1,9 @@
-import {LitElement, html, nothing} from 'lit';
+import {html, nothing, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
-import {classMap, ClassInfo} from 'lit/directives/class-map.js';
+import {classMap} from 'lit/directives/class-map.js';
+import {styleMap} from 'lit/directives/style-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
-import {partMap, PartInfo, Colors, Sizes} from 'tinijs';
+import {TiniElement, partMap, VaryGroups, Colors, Scales} from 'tinijs';
 
 import {InputEventDetail} from './input';
 
@@ -24,7 +25,7 @@ export type SelectOptgroup = SelectOption & {
 export type SelectEventDetail = InputEventDetail;
 
 /* UseBases(common) */
-export class TiniSelectComponent extends LitElement {
+export class TiniSelectComponent extends TiniElement {
   static readonly defaultTagName = 'tini-select';
 
   /* eslint-disable prettier/prettier */
@@ -34,18 +35,18 @@ export class TiniSelectComponent extends LitElement {
   @property({type: Boolean, reflect: true}) declare wrap?: boolean;
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
   @property({type: String, reflect: true}) declare scheme?: Colors;
-  @property({type: String, reflect: true}) declare size?: Sizes;
+  @property({type: String, reflect: true}) declare scale?: Scales;
   /* eslint-enable prettier/prettier */
 
-  private rootClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
-    this.rootClassesParts = {
-      root: true,
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
+    // root classes parts
+    this.extendRootClassesParts({
       wrap: !!this.wrap,
       disabled: !!this.disabled,
-      [`scheme-${this.scheme}`]: !!this.scheme,
-      [`size-${this.size}`]: !!this.size,
-    };
+      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
+      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
+    });
   }
 
   private onChange(e: InputEvent) {
@@ -67,6 +68,7 @@ export class TiniSelectComponent extends LitElement {
       <label
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
+        style=${styleMap(this.rootStyles)}
       >
         ${!this.label
           ? nothing

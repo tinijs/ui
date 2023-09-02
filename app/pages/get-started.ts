@@ -111,10 +111,10 @@ npm i @tinijs/ui-bootstrap"
           ></app-code>
           <p>Then import use the components, for example:</p>
           <app-code
-            code="import {TiniButtonComponent} from '@tinijs/ui-bootstrap/components/button.js';"
+            code="import {TiniButtonComponent} from '@tinijs/ui-bootstrap/components/button';"
           ></app-code>
           <app-code
-            code='&lt;tini-button color="primary"&gt;A button&lt;/tini-button&gt;'
+            code='&lt;tini-button scheme="primary"&gt;A button&lt;/tini-button&gt;'
           ></app-code>
           <p>Please see the list of official packages below.</p>
         </div>

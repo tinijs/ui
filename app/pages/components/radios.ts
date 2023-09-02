@@ -18,7 +18,7 @@ import {
   renderSection,
   renderDefaultSection,
   renderBaseColorsSection,
-  renderSizesSection,
+  renderScalesSection,
 } from '../../helpers/varies';
 import {CodeBuilder} from '../../components/section';
 
@@ -191,17 +191,17 @@ export class AppPageComponentsRadios extends TiniComponent {
           }
         )}
 
-        <!-- sizes -->
-        ${renderSizesSection(
-          size =>
+        <!-- scales -->
+        ${renderScalesSection(
+          scale =>
             html`<tini-radios
-              name="sizes"
+              name="scales"
               wrap
               .items=${[
                 {
                   value: '',
-                  label: `Checkbox size ${size}`,
-                  size,
+                  label: `Checkbox scale ${scale}`,
+                  scale,
                 },
               ]}
             ></tini-radios>`,

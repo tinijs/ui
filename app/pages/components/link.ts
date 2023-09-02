@@ -19,8 +19,11 @@ import {
   renderContrastGradientsSection,
   renderFontTypesSection,
   renderFontSizesSection,
-  renderWeightsSection,
+  renderFontWeightsSection,
+  renderTextTransformsSection,
+  renderItalicUnderlineSection,
   renderTransformsSection,
+  renderFiltersSection,
 } from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
@@ -99,7 +102,7 @@ export class AppPageComponentsLink extends TiniComponent {
         <!-- fonts -->
         ${renderFontTypesSection(
           font =>
-            html`<tini-link href="#" font=${font}
+            html`<tini-link href="#" fontType=${font}
               >Link with ${font} font</tini-link
             >`
         )}
@@ -114,39 +117,81 @@ export class AppPageComponentsLink extends TiniComponent {
         )}
 
         <!-- weights -->
-        ${renderWeightsSection(
+        ${renderFontWeightsSection(
           weight =>
-            html`<tini-link href="#" weight=${weight}
+            html`<tini-link href="#" fontWeight=${weight}
               >Text with ${weight} weight</tini-link
             >`
         )}
 
         <!-- transforms -->
-        ${renderTransformsSection(
+        ${renderTextTransformsSection(
           transform =>
-            html`<tini-link href="#" transform=${transform}
+            html`<tini-link href="#" textTransform=${transform}
               >Text with ${transform} transform</tini-link
             >`
         )}
 
         <!-- italic-underline -->
-        ${renderSection(
-          'italic-underline',
-          'Italic and Underline',
-          null,
-          html`
-            <tini-link href="#" italic>Link with italic style</tini-link><br />
-            <tini-link href="#" italic color="gradient-primary" fontSize="2x"
-              >Gradient link with italic style</tini-link
-            ><br />
-            <tini-link href="#" underline
-              >Link with underline decoration</tini-link
-            ><br />
-            <tini-link href="#" underline color="gradient-primary" fontSize="2x"
-              >Gradient link with underline decoration</tini-link
+        ${renderItalicUnderlineSection(html`
+          <tini-link href="#" italic>Link with italic style</tini-link><br />
+          <tini-link href="#" italic color="gradient-primary" fontSize="2x"
+            >Gradient link with italic style</tini-link
+          ><br />
+          <tini-link href="#" underline
+            >Link with underline decoration</tini-link
+          ><br />
+          <tini-link href="#" underline color="gradient-primary" fontSize="2x"
+            >Gradient link with underline decoration</tini-link
+          >
+        `)}
+
+        <!-- transforms -->
+        ${renderTransformsSection(html`
+          <tini-link
+            fontSize="1_5x"
+            style="display: inline-flex;"
+            transform="rotate(-45deg)"
+            >Transform me</tini-link
+          >
+          <tini-link
+            style="display: inline-flex;"
+            transform="translateX(370px) scale(5) skew(45deg, 10deg)"
+            >Transform me</tini-link
+          >
+        `)}
+
+        <!-- filters -->
+        ${renderFiltersSection(html`
+          <div class="group">
+            <tini-link color="primary" fontSize="1_5x">Link</tini-link>
+            <tini-link color="primary" fontSize="1_5x" filter="opacity(50%)"
+              >Filtered link</tini-link
             >
-          `
-        )}
+          </div>
+          <div class="group">
+            <tini-link color="gradient-disco-club" fontSize="1_5x"
+              >Link</tini-link
+            >
+            <tini-link
+              color="gradient-disco-club"
+              fontSize="1_5x"
+              filter="blur(2px)"
+              >Filtered link</tini-link
+            >
+          </div>
+          <div class="group">
+            <tini-link color="gradient-mello-yellow" fontSize="1_5x"
+              >Link</tini-link
+            >
+            <tini-link
+              color="gradient-mello-yellow"
+              fontSize="1_5x"
+              filter="grayscale(90%)"
+              >Filtered link</tini-link
+            >
+          </div>
+        `)}
       </app-component-page>
     `;
   }

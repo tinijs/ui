@@ -11,12 +11,15 @@ import {TiniBoxComponent} from '@tinijs/ui/components/box';
 import {TiniIconComponent} from '@tinijs/ui/components/icon';
 
 import {
+  renderSection,
   renderDefaultSection,
   renderBaseColorsSection,
   renderContrastColorsSection,
   renderBaseGradientsSection,
   renderContrastGradientsSection,
-  renderSizesSection,
+  renderScalesSection,
+  renderTransformsSection,
+  renderFiltersSection,
 } from '../helpers/varies';
 import {AppSectionComponent} from './section';
 
@@ -108,21 +111,69 @@ export class AppIconPageContentComponent extends TiniComponent {
             )}
           `}
 
-      <!-- sizes -->
-      ${renderSizesSection(
-        size =>
-          html`<tini-icon
-            scheme="primary"
-            size=${size}
-            .src=${this.src}
-          ></tini-icon>`,
+      <!-- scales -->
+      ${renderScalesSection(
+        scale => html`<tini-icon scale=${scale} .src=${this.src}></tini-icon>`,
         this.renderSectionOptions
       )}
+
+      <!-- transforms -->
+      ${renderTransformsSection(html`
+        <tini-icon transform="rotate(-45deg)" .src=${this.src}></tini-icon>
+        <tini-icon
+          transform="scale(2.5) translate(30px, 15px)"
+          .src=${this.src}
+        ></tini-icon>
+        <tini-icon
+          transform="translate(170px, 10px) scale(3.5) skew(20deg, 10deg)"
+          .src=${this.src}
+        ></tini-icon>
+      `)}
+
+      <!-- filters -->
+      ${renderFiltersSection(html`
+        <div class="group">
+          <tini-icon scheme="primary" scale="xxl" .src=${this.src}></tini-icon>
+          <tini-icon
+            scheme="primary"
+            scale="xxl"
+            filter="opacity(50%)"
+            .src=${this.src}
+          ></tini-icon>
+        </div>
+        <div class="group">
+          <tini-icon
+            scheme="gradient-disco-club"
+            scale="xxl"
+            .src=${this.src}
+          ></tini-icon>
+          <tini-icon
+            scheme="gradient-disco-club"
+            scale="xxl"
+            filter="blur(5px)"
+            .src=${this.src}
+          ></tini-icon>
+        </div>
+        <div class="group">
+          <tini-icon
+            scheme="gradient-mello-yellow"
+            scale="xxl"
+            .src=${this.src}
+          ></tini-icon>
+          <tini-icon
+            scheme="gradient-mello-yellow"
+            scale="xxl"
+            filter="grayscale(90%)"
+            .src=${this.src}
+          ></tini-icon>
+        </div>
+      `)}
     `;
   }
 
   static styles = css`
-    .contrasts [slot='code'] {
+    .contrasts [slot='code'],
+    .common-contrasts [slot='code'] {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;

@@ -1,21 +1,21 @@
-import {LitElement, html} from 'lit';
+import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
-import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo, ColorsAndGradients, Sizes} from 'tinijs';
+import {classMap} from 'lit/directives/class-map.js';
+import {styleMap} from 'lit/directives/style-map.js';
+import {TiniElement, partMap, PartInfo, Colors, Scales} from 'tinijs';
 
 /* UseBases(common) */
-export class TiniXxxComponent extends LitElement {
+export class TiniXxxComponent extends TiniElement {
   static readonly defaultTagName = 'tini-xxx';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare prop?: string;
   /* eslint-enable prettier/prettier */
 
-  private rootClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
-    this.rootClassesParts = {
-      root: true,
-    };
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
+    // root classes parts
+    this.extendRootClassesParts({});
   }
 
   protected render() {
@@ -23,6 +23,7 @@ export class TiniXxxComponent extends LitElement {
       <xxx
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
+        class=${styleMap(this.rootStyles)}
       ></xxx>
     `;
   }

@@ -1,14 +1,15 @@
 import {css} from 'lit';
 import {
+  VaryGroups,
   generateColorVaries,
   generateGradientVaries,
-  generateSizeVaries,
+  generateScaleVaries,
 } from 'tinijs';
 
 export const badgeStyle = css`
   :host {
     --badge-background: var(--color-medium) /* Background color */;
-    --badge-size: var(--size-md) /* Base size */;
+    --badge-scale: var(--scale-md) /* Base scale */;
     --badge-color: var(--color-medium-contrast) /* Text color */;
     --badge-radius: var(--size-radius) /* Border radius */;
   }
@@ -25,10 +26,11 @@ export const badgeStyle = css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: calc(var(--badge-size) * 0.25);
+    padding: calc(var(--badge-scale) * 0.25);
+    padding-top: calc(var(--badge-scale) * 0.3);
     background: var(--badge-background);
     color: var(--badge-color);
-    font-size: var(--badge-size);
+    font-size: calc(var(--badge-scale) * 0.95);
     border: none;
     border-radius: var(--badge-radius);
     font-weight: bold;
@@ -36,45 +38,46 @@ export const badgeStyle = css`
   }
 
   /*
-   * [?pilled]
+   * [?pill]
    */
 
-  .pilled {
+  .pill {
     border-radius: 1000px !important;
   }
 
   /*
-   * [?rounded]
+   * [?circle]
    */
 
-  .rounded {
-    --rounded-size: calc(var(--badge-size) * 1.75);
-    width: var(--rounded-size);
-    height: var(--rounded-size);
+  .circle {
+    --circle-size: calc(var(--badge-scale) * 1.75);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    font-size: calc(var(--badge-scale) * 0.8);
     border-radius: 100% !important;
     overflow: hidden;
   }
 
   /*
-   * [scheme]
+   * [scheme] & [color]
    */
 
   ${generateColorVaries(
-    ({name, color, contrast}) => `
-    .scheme-${name} {
+    ({name, fullName, color, contrast}) => `
+    .${fullName} {
       --badge-background: ${color};
       --badge-color: ${contrast};
     }
 
-    .color-${name} {
+    .${VaryGroups.Color}-${name} {
       --badge-color: ${color} !important;
     }
   `
   )}
 
   ${generateGradientVaries(
-    ({name, gradient, contrast}) => `
-    .scheme-${name} {
+    ({fullName, gradient, contrast}) => `
+    .${fullName} {
       --badge-background: ${gradient};
       --badge-color: ${contrast};
     }
@@ -82,13 +85,13 @@ export const badgeStyle = css`
   )}
 
   /*
-   * [size]
+   * [scale]
    */
 
-  ${generateSizeVaries(
-    size => `
-    .size-${size} {
-      --badge-size: var(--size-${size});
+  ${generateScaleVaries(
+    ({fullName, scale}) => `
+    .${fullName} {
+      --badge-scale: ${scale};
     }
   `
   )}

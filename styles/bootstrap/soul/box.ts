@@ -1,11 +1,13 @@
 import {css} from 'lit';
 import {
+  VaryGroups,
   generateColorVaries,
   generateGradientVaries,
-  generateBasicFactorVaries,
-  generateFontSizeVaries,
   generateSpaceVaries,
+  generateFontSizeVaries,
+  generateBorderWidthVaries,
   generateBorderStyleVaries,
+  generateBorderRadiusVaries,
 } from 'tinijs';
 
 export const boxStyle = css`
@@ -39,26 +41,23 @@ export const boxStyle = css`
    */
 
   ${generateFontSizeVaries(
-    sizeFactor => `
-    .font-size-${sizeFactor} {
-      --box-font-size: var(--size-text-${sizeFactor}) !important;
+    ({fullName, size}) => `
+    .${fullName} {
+      --box-font-size: ${size} !important;
     }
   `
   )}
 
   /*
-   * [border/width] & [borderRadius]
+   * [border/width]
    */
 
-  ${generateBasicFactorVaries(
-    size => `
-    .border-width-${size} {
-      border-width: var(--size-border-${size}) !important;
+  ${generateBorderWidthVaries(
+    ({fullName, width}) => `
+    .${fullName} {
+      border-width: ${width} !important;
       border-color: var(--color-medium);
       border-style: solid;
-    }
-    .border-radius-${size} {
-      --box-border-radius: var(--size-radius-${size});
     }
   `
   )}
@@ -68,11 +67,23 @@ export const boxStyle = css`
    */
 
   ${generateBorderStyleVaries(
-    borderStyle => `
-    .border-style-${borderStyle} {
-      border-style: ${borderStyle} !important;
+    ({fullName, style}) => `
+    .${fullName} {
+      border-style: ${style} !important;
       border-width: var(--size-border);
       border-color: var(--color-medium);
+    }
+  `
+  )}
+
+  /*
+   * [borderRadius]
+   */
+
+  ${generateBorderRadiusVaries(
+    ({fullName, radius}) => `
+    .${fullName} {
+      --box-border-radius: ${radius};
     }
   `
   )}
@@ -82,17 +93,17 @@ export const boxStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, color, contrast}) => `
-    .scheme-${name} {
+    ({name, fullName, color, contrast}) => `
+    .${fullName} {
       --box-background: ${color};
       --box-color: ${contrast};
     }
 
-    .color-${name} {
+    .${VaryGroups.Color}-${name} {
       --box-color: ${color} !important;
     }
 
-    .border-color-${name} {
+    .${VaryGroups.BorderColor}-${name} {
       border-color: ${color} !important;
       border-width: var(--size-border);
       border-style: solid;
@@ -101,8 +112,8 @@ export const boxStyle = css`
   )}
 
   ${generateGradientVaries(
-    ({name, gradient, contrast}) => `
-    .scheme-${name} {
+    ({fullName, gradient, contrast}) => `
+    .${fullName} {
       --box-background: ${gradient};
       --box-color: ${contrast};
     }
@@ -114,31 +125,31 @@ export const boxStyle = css`
    */
 
   ${generateSpaceVaries(
-    sizeFactor => `
-    .padding-top-${sizeFactor} {
-      padding-top: var(--size-space-${sizeFactor});
+    ({name, space}) => `
+    .${VaryGroups.Padding}-top-${name} {
+      padding-top: ${space};
     }
-    .padding-right-${sizeFactor} {
-      padding-right: var(--size-space-${sizeFactor});
+    .${VaryGroups.Padding}-right-${name} {
+      padding-right: ${space};
     }
-    .padding-bottom-${sizeFactor} {
-      padding-bottom: var(--size-space-${sizeFactor});
+    .${VaryGroups.Padding}-bottom-${name} {
+      padding-bottom: ${space};
     }
-    .padding-left-${sizeFactor} {
-      padding-left: var(--size-space-${sizeFactor});
+    .${VaryGroups.Padding}-left-${name} {
+      padding-left: ${space};
     }
 
-    :host(.margin-top-${sizeFactor}) {
-      margin-top: var(--size-space-${sizeFactor});
+    :host(.${VaryGroups.Margin}-top-${name}) {
+      margin-top: ${space};
     }
-    :host(.margin-right-${sizeFactor}) {
-      margin-right: var(--size-space-${sizeFactor});
+    :host(.${VaryGroups.Margin}-right-${name}) {
+      margin-right: ${space};
     }
-    :host(.margin-bottom-${sizeFactor}) {
-      margin-bottom: var(--size-space-${sizeFactor});
+    :host(.${VaryGroups.Margin}-bottom-${name}) {
+      margin-bottom: ${space};
     }
-    :host(.margin-left-${sizeFactor}) {
-      margin-left: var(--size-space-${sizeFactor});
+    :host(.${VaryGroups.Margin}-left-${name}) {
+      margin-left: ${space};
     }
   `
   )}

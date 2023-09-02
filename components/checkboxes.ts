@@ -1,8 +1,16 @@
-import {LitElement, html, nothing} from 'lit';
+import {html, nothing, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
+import {styleMap} from 'lit/directives/style-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
-import {partMap, PartInfo, Colors, Sizes} from 'tinijs';
+import {
+  TiniElement,
+  partMap,
+  PartInfo,
+  VaryGroups,
+  Colors,
+  Scales,
+} from 'tinijs';
 
 import {InputEventDetail} from './input';
 
@@ -13,7 +21,7 @@ export interface CheckboxesItem {
   checked?: boolean;
   disabled?: boolean;
   scheme?: Colors;
-  size?: Sizes;
+  scale?: Scales;
 }
 
 export interface CheckboxesEventDetail extends InputEventDetail {
@@ -21,7 +29,7 @@ export interface CheckboxesEventDetail extends InputEventDetail {
 }
 
 /* UseBases(common) */
-export class TiniCheckboxesComponent extends LitElement {
+export class TiniCheckboxesComponent extends TiniElement {
   static readonly defaultTagName = 'tini-checkboxes';
 
   /* eslint-disable prettier/prettier */
@@ -29,12 +37,12 @@ export class TiniCheckboxesComponent extends LitElement {
   @property({type: Boolean, reflect: true}) declare wrap?: boolean;
   /* eslint-enable prettier/prettier */
 
-  private rootClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
-    this.rootClassesParts = {
-      root: true,
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
+    // root classes parts
+    this.extendRootClassesParts({
       wrap: !!this.wrap,
-    };
+    });
   }
 
   private onChange(e: InputEvent) {
@@ -59,6 +67,7 @@ export class TiniCheckboxesComponent extends LitElement {
           <div
             part=${partMap(this.rootClassesParts)}
             class=${classMap(this.rootClassesParts)}
+            style=${styleMap(this.rootStyles)}
           >
             ${this.items.map(item => this.renderItem(item))}
           </div>
@@ -72,13 +81,13 @@ export class TiniCheckboxesComponent extends LitElement {
     checked,
     disabled,
     scheme,
-    size,
+    scale,
   }: CheckboxesItem) {
     const itemClassesParts: ClassInfo | PartInfo = {
       item: true,
       disabled: !!disabled,
-      [`scheme-${scheme}`]: !!scheme,
-      [`size-${size}`]: !!size,
+      [`${VaryGroups.Scheme}-${scheme}`]: !!scheme,
+      [`${VaryGroups.Scale}-${scale}`]: !!scale,
     };
     return html`
       <label

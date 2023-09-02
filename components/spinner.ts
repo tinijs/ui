@@ -1,24 +1,25 @@
-import {LitElement, html} from 'lit';
+import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
-import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo, Colors, Sizes} from 'tinijs';
+import {classMap} from 'lit/directives/class-map.js';
+import {styleMap} from 'lit/directives/style-map.js';
+import {TiniElement, partMap, VaryGroups, Colors, Scales} from 'tinijs';
 
 /* UseBases(common) */
-export class TiniSpinnerComponent extends LitElement {
+export class TiniSpinnerComponent extends TiniElement {
   static readonly defaultTagName = 'tini-spinner';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare scheme?: Colors;
-  @property({type: String, reflect: true}) declare size?: Sizes;
+  @property({type: String, reflect: true}) declare scale?: Scales;
   /* eslint-enable prettier/prettier */
 
-  private rootClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
-    this.rootClassesParts = {
-      root: true,
-      [`scheme-${this.scheme}`]: !!this.scheme,
-      [`size-${this.size}`]: !!this.size,
-    };
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
+    // root classes parts
+    this.extendRootClassesParts({
+      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
+      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
+    });
   }
 
   protected render() {
@@ -26,6 +27,7 @@ export class TiniSpinnerComponent extends LitElement {
       <div
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
+        style=${styleMap(this.rootStyles)}
       ></div>
     `;
   }

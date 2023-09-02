@@ -8,7 +8,7 @@ import {initTheme} from './helpers/theme';
 import './layouts/default';
 
 export class AppRootTemplate extends TiniComponent {
-  public readonly $router = createRouter(Configurable.getOption('routes'), {
+  public readonly router = createRouter(Configurable.getOption('routes'), {
     linkTrigger: true,
   });
 
@@ -17,6 +17,6 @@ export class AppRootTemplate extends TiniComponent {
   }
 
   protected render() {
-    return html`<router-outlet .router=${this.$router}></router-outlet>`;
+    return html`<router-outlet .router=${this.router}></router-outlet>`;
   }
 }

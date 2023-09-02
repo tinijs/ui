@@ -18,7 +18,7 @@ import {
   renderBaseGradientsSection,
   renderContrastGradientsSection,
   renderFontColorsSection,
-  renderSizesSection,
+  renderScalesSection,
 } from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
@@ -70,13 +70,13 @@ export class AppPageComponentsBadge extends TiniComponent {
           `
         )}
 
-        <!-- pilled-rounded -->
+        <!-- pill-circle -->
         ${renderSection(
-          'pilled-rounded',
-          'Pilled and Rouded',
+          'pill-circle',
+          'Pill and Circle',
           html`
             <p>
-              Rounded badges are best for values with less than or equals 2
+              Circle badges are best for values with less than or equals 2
               characters.
             </p>
           `,
@@ -88,7 +88,7 @@ export class AppPageComponentsBadge extends TiniComponent {
                 ['1000', 'tertiary'],
               ].map(
                 ([content, scheme]) =>
-                  html`<tini-badge pilled scheme=${scheme as any}
+                  html`<tini-badge pill scheme=${scheme as any}
                     >${content}</tini-badge
                   >`
               )}
@@ -100,7 +100,7 @@ export class AppPageComponentsBadge extends TiniComponent {
                 ['1000', 'danger'],
               ].map(
                 ([content, scheme]) =>
-                  html`<tini-badge rounded scheme=${scheme as any}
+                  html`<tini-badge circle scheme=${scheme as any}
                     >${content}</tini-badge
                   >`
               )}
@@ -137,10 +137,10 @@ export class AppPageComponentsBadge extends TiniComponent {
             html`<tini-badge scheme=${scheme} color="primary">99+</tini-badge>`
         )}
 
-        <!-- sizes -->
-        ${renderSizesSection(
-          size =>
-            html`<tini-badge size=${size} scheme="primary">1000</tini-badge>`
+        <!-- scales -->
+        ${renderScalesSection(
+          scale =>
+            html`<tini-badge scale=${scale} scheme="primary">1000</tini-badge>`
         )}
       </app-component-page>
     `;
@@ -149,6 +149,7 @@ export class AppPageComponentsBadge extends TiniComponent {
   static styles = css`
     .contrasts [slot='code'] {
       display: flex;
+      flex-wrap: wrap;
       gap: 1rem;
     }
   `;

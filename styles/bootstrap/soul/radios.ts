@@ -1,5 +1,5 @@
 import {css} from 'lit';
-import {generateColorVaries, generateSizeVaries} from 'tinijs';
+import {generateColorVaries, generateScaleVaries} from 'tinijs';
 
 export const radiosStyle = css`
   /* :host {} */
@@ -25,7 +25,7 @@ export const radiosStyle = css`
    */
 
   .item {
-    --radio-size: var(--size-md);
+    --radio-size: var(--scale-md);
     --radio-background: var(--color-primary);
     cursor: pointer;
     display: flex;
@@ -45,7 +45,7 @@ export const radiosStyle = css`
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    border: var(--size-border-0_5x) solid var(--color-medium);
+    border: var(--size-border) solid var(--color-medium);
     border-radius: 100%;
     transition: all 0.15s ease-in-out;
   }
@@ -91,21 +91,21 @@ export const radiosStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, color}) => `
-    .scheme-${name} {
+    ({fullName, color}) => `
+    .${fullName} {
       --radio-background: ${color};
     }
   `
   )}
 
   /*
-   * [size]
+   * [scale]
    */
 
-  ${generateSizeVaries(
-    size => `
-    .size-${size} {
-      --radio-size: var(--size-${size});
+  ${generateScaleVaries(
+    ({fullName, scale}) => `
+    .${fullName} {
+      --radio-size: ${scale};
     }
   `
   )}

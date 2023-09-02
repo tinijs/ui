@@ -20,9 +20,11 @@ import {
   renderContrastColorsSection,
   renderBaseGradientsSection,
   renderContrastGradientsSection,
-  renderSizesSection,
+  renderScalesSection,
   renderFontColorsSection,
   renderFontSizesSection,
+  renderTransformsSection,
+  renderFiltersSection,
 } from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
@@ -151,11 +153,11 @@ export class AppPageComponentsButton extends TiniComponent {
             >`
         )}
 
-        <!-- sizes -->
-        ${renderSizesSection(
-          size =>
-            html`<tini-button size=${size} scheme="primary"
-              >${size}</tini-button
+        <!-- scales -->
+        ${renderScalesSection(
+          scale =>
+            html`<tini-button scale=${scale} scheme="primary"
+              >${scale}</tini-button
             > `
         )}
 
@@ -179,7 +181,7 @@ export class AppPageComponentsButton extends TiniComponent {
           html`
             <tini-button scheme="primary">
               <icon-heart-fill
-                size="ss"
+                scale="ss"
                 scheme="primary-contrast"
               ></icon-heart-fill>
               <span>Left</span>
@@ -188,66 +190,100 @@ export class AppPageComponentsButton extends TiniComponent {
             <tini-button scheme="primary">
               <span>Right</span>
               <icon-heart-fill
-                size="ss"
+                scale="ss"
                 scheme="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
 
             <tini-button scheme="primary">
               <icon-heart-fill
-                size="ss"
+                scale="ss"
                 scheme="primary-contrast"
               ></icon-heart-fill>
               <span>Left Right</span>
               <icon-heart-fill
-                size="ss"
+                scale="ss"
                 scheme="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
 
-            <tini-button justify="space-between" scheme="primary">
+            <tini-button justifyContent="space-between" scheme="primary">
               <icon-heart-fill
-                size="ss"
+                scale="ss"
                 scheme="primary-contrast"
               ></icon-heart-fill>
               <span>Far Left</span>
             </tini-button>
 
-            <tini-button justify="space-between" scheme="primary">
+            <tini-button justifyContent="space-between" scheme="primary">
               <span>Far Right</span>
               <icon-heart-fill
-                size="ss"
+                scale="ss"
                 scheme="primary-contrast"
               ></icon-heart-fill>
             </tini-button>
 
-            <tini-button justify="space-between" scheme="primary">
+            <tini-button justifyContent="space-between" scheme="primary">
               <icon-chevron-left
-                size="ss"
+                scale="ss"
                 scheme="primary-contrast"
               ></icon-chevron-left>
               <span>Far Left Right</span>
               <icon-chevron-right
-                size="ss"
+                scale="ss"
                 scheme="primary-contrast"
               ></icon-chevron-right>
             </tini-button>
 
-            <tini-button justify="space-between" scheme="primary">
+            <tini-button justifyContent="space-between" scheme="primary">
               <div class="content-group">
                 <icon-heart-fill
-                  size="ss"
+                  scale="ss"
                   scheme="primary-contrast"
                 ></icon-heart-fill>
                 <span>Content Group</span>
               </div>
               <icon-chevron-right
-                size="ss"
+                scale="ss"
                 scheme="primary-contrast"
               ></icon-chevron-right>
             </tini-button>
           `
         )}
+
+        <!-- transforms -->
+        ${renderTransformsSection(html`
+          <tini-button style="display: inline-flex;" transform="rotate(-45deg)"
+            >Transform me</tini-button
+          >
+          <tini-button
+            style="display: inline-flex;"
+            transform="translateX(300px) scale(2) skew(45deg, 10deg)"
+            >Transform me</tini-button
+          >
+        `)}
+
+        <!-- filters -->
+        ${renderFiltersSection(html`
+          <div class="group">
+            <tini-button scheme="primary">Button</tini-button>
+            <tini-button scheme="primary" filter="opacity(50%)"
+              >Filtered button</tini-button
+            >
+          </div>
+          <div class="group">
+            <tini-button scheme="gradient-disco-club">Button</tini-button>
+            <tini-button scheme="gradient-disco-club" filter="blur(1px)"
+              >Filtered button</tini-button
+            >
+          </div>
+          <div class="group">
+            <tini-button scheme="gradient-mello-yellow">Button</tini-button>
+            <tini-button scheme="gradient-mello-yellow" filter="grayscale(90%)"
+              >Filtered button</tini-button
+            >
+          </div>
+        `)}
       </app-component-page>
     `;
   }
@@ -263,7 +299,7 @@ export class AppPageComponentsButton extends TiniComponent {
       }
     }
 
-    .sizes [slot='code'] {
+    .scales [slot='code'] {
       display: block;
     }
 

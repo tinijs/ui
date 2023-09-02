@@ -2,14 +2,14 @@ import {css} from 'lit';
 import {
   generateColorVaries,
   generateGradientVaries,
-  generateSizeVaries,
+  generateScaleVaries,
 } from 'tinijs';
 
 export const iconStyle = css`
   :host {
-    --icon-width: var(--size-md-2x);
-    --icon-height: var(--size-md-2x);
-    --icon-color: none;
+    --icon-width: var(--scale-md-2x);
+    --icon-height: var(--scale-md-2x);
+    --icon-scheme: none;
     --icon-image: url();
   }
 
@@ -33,8 +33,8 @@ export const iconStyle = css`
     height: var(--icon-height);
   }
 
-  .recolor {
-    background: var(--icon-color);
+  .scheme {
+    background: var(--icon-scheme);
     -webkit-mask-image: var(--icon-image);
     -webkit-mask-size: var(--icon-width) var(--icon-height);
     -webkit-mask-repeat: no-repeat;
@@ -50,30 +50,30 @@ export const iconStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, color}) => `
-    .scheme-${name} {
-      --icon-color: ${color};
+    ({fullName, color}) => `
+    .${fullName} {
+      --icon-scheme: ${color};
     }
   `
   )}
 
   ${generateGradientVaries(
-    ({name, gradient}) => `
-    .scheme-${name} {
-      --icon-color: ${gradient};
+    ({fullName, gradient}) => `
+    .${fullName} {
+      --icon-scheme: ${gradient};
     }
   `
   )}
 
   /*
-   * [size]
+   * [scale]
    */
 
-  ${generateSizeVaries(
-    size => `
-    .size-${size} {
-      --icon-width: var(--size-${size}-2x);
-      --icon-height: var(--size-${size}-2x);
+  ${generateScaleVaries(
+    ({name, fullName}) => `
+    .${fullName} {
+      --icon-width: var(--scale-${name}-2x);
+      --icon-height: var(--scale-${name}-2x);
     }
   `
   )}

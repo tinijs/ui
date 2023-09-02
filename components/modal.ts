@@ -1,8 +1,9 @@
-import {LitElement, html} from 'lit';
+import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
-import {classMap, ClassInfo} from 'lit/directives/class-map.js';
+import {classMap} from 'lit/directives/class-map.js';
+import {styleMap} from 'lit/directives/style-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
-import {partMap, PartInfo} from 'tinijs';
+import {TiniElement, partMap} from 'tinijs';
 
 import {DialogButton, DialogResult} from './dialog';
 
@@ -10,7 +11,7 @@ export type ModalButton = DialogButton;
 export type ModalResult<Context> = DialogResult<Context>;
 
 /* UseBases(common) */
-export class TiniModalComponent extends LitElement {
+export class TiniModalComponent extends TiniElement {
   static readonly defaultTagName = 'tini-modal';
 
   private readonly BACKDROP_CLOSED = 'backdrop-closed';
@@ -25,12 +26,12 @@ export class TiniModalComponent extends LitElement {
   private dialogRef: Ref<HTMLDialogElement> = createRef();
   private context?: unknown;
 
-  private rootClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
-    this.rootClassesParts = {
-      root: true,
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
+    // root classes parts
+    this.extendRootClassesParts({
       [this.BACKDROP_CLOSED]: !!this.backdropClosed,
-    };
+    });
   }
 
   get opened() {
@@ -75,6 +76,7 @@ export class TiniModalComponent extends LitElement {
         ${ref(this.dialogRef)}
         part=${partMap(this.rootClassesParts)}
         class=${classMap(this.rootClassesParts)}
+        style=${styleMap(this.rootStyles)}
         @click=${this.clickDialog}
       >
         <div part="head" class="head">

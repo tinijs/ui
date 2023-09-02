@@ -20,6 +20,8 @@ import {
   renderFontColorsSection,
   renderFontSizesSection,
   renderSpacesSection,
+  renderTransformsSection,
+  renderFiltersSection,
 } from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
@@ -133,13 +135,19 @@ export class AppPageComponentsBox extends TiniComponent {
             </p>
           `,
           html`
-            ${[['solid'], ['primary'], ['2x'], ['2x dashed primary', '3x']].map(
-              ([bordering, radius]) =>
+            ${[
+              ['solid'],
+              ['primary'],
+              ['big'],
+              ['big dashed primary', 'max'],
+            ].map(
+              ([border, radius]) =>
                 html`<tini-box
-                  bordering=${bordering}
+                  border=${border}
                   borderRadius=${ifDefined(radius as any)}
-                  >Box with ${bordering}
-                  border${!radius ? '' : ` and ${radius} radius`}</tini-box
+                  >Box with <strong>${border}</strong> border${!radius
+                    ? ''
+                    : html` and <strong>${radius}</strong> radius`}</tini-box
                 >`
             )}
           `,
@@ -151,8 +159,8 @@ export class AppPageComponentsBox extends TiniComponent {
         <!-- paddings -->
         ${renderSpacesSection(
           'padding',
-          padding => html`<tini-box bordering="solid" padding=${padding}
-              ><div>Box with ${padding} padding</div></tini-box
+          padding => html`<tini-box border="solid" padding=${padding}
+              ><div>Box with <strong>${padding}</strong> padding</div></tini-box
             ></app-section>`
         )}
 
@@ -162,10 +170,31 @@ export class AppPageComponentsBox extends TiniComponent {
           margin =>
             html`<div class="margin-container">
               <tini-box scheme="primary" margin=${margin}
-                >Box with ${margin} margin</tini-box
+                >Box with <strong>${margin}</strong> margin</tini-box
               >
             </div>`
         )}
+
+        <!-- transforms -->
+        ${renderTransformsSection(html`
+          <tini-box scheme="primary" transform="rotate(-15deg)">Transform me</tini-box>
+          <tini-box scheme="primary" transform="translateX(100px) skew(45deg, 10deg)"
+            >Transform me</tini-box
+          >
+        `)}
+
+        <!-- filters -->
+        ${renderFiltersSection(html`
+          <tini-box scheme="primary" filter="opacity(50%)"
+            >Filtered box</tini-box
+          >
+          <tini-box scheme="gradient-disco-club" filter="blur(1px)"
+            >Filtered box</tini-box
+          >
+          <tini-box scheme="gradient-mello-yellow" filter="grayscale(90%)"
+            >Filtered box</tini-box
+          >
+        `)}
       </app-component-page>
     `;
   }

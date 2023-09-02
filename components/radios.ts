@@ -1,7 +1,8 @@
-import {LitElement, html, nothing} from 'lit';
+import {html, nothing, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {partMap, PartInfo} from 'tinijs';
+import {styleMap} from 'lit/directives/style-map.js';
+import {TiniElement, partMap, PartInfo, VaryGroups} from 'tinijs';
 
 import {CheckboxesItem, CheckboxesEventDetail} from './checkboxes';
 
@@ -9,7 +10,7 @@ export type RadiosItem = Omit<CheckboxesItem, 'name'>;
 export type RadiosEventDetail = Omit<CheckboxesEventDetail, 'name'>;
 
 /* UseBases(common) */
-export class TiniRadiosComponent extends LitElement {
+export class TiniRadiosComponent extends TiniElement {
   static readonly defaultTagName = 'tini-radios';
 
   /* eslint-disable prettier/prettier */
@@ -22,14 +23,14 @@ export class TiniRadiosComponent extends LitElement {
     if (!this.name) throw new Error('Property "name" is required.');
   }
 
-  private rootClassesParts: ClassInfo | PartInfo = {};
-  willUpdate() {
+  willUpdate(changedValues: PropertyValues) {
+    super.willUpdate(changedValues);
+    // default and validations
     this.validateProperties();
     // root classes parts
-    this.rootClassesParts = {
-      root: true,
+    this.extendRootClassesParts({
       wrap: !!this.wrap,
-    };
+    });
   }
 
   private onChange(e: InputEvent) {
@@ -53,6 +54,7 @@ export class TiniRadiosComponent extends LitElement {
           <div
             part=${partMap(this.rootClassesParts)}
             class=${classMap(this.rootClassesParts)}
+            style=${styleMap(this.rootStyles)}
           >
             ${this.items.map(item => this.renderItem(item))}
           </div>
@@ -65,13 +67,13 @@ export class TiniRadiosComponent extends LitElement {
     checked,
     disabled,
     scheme,
-    size,
+    scale,
   }: RadiosItem) {
     const itemClassesParts: ClassInfo | PartInfo = {
       item: true,
       disabled: !!disabled,
-      [`scheme-${scheme}`]: !!scheme,
-      [`size-${size}`]: !!size,
+      [`${VaryGroups.Scheme}-${scheme}`]: !!scheme,
+      [`${VaryGroups.Scale}-${scale}`]: !!scale,
     };
     return html`
       <label

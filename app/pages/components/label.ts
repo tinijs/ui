@@ -14,7 +14,7 @@ import {
   renderDefaultSection,
   renderBaseColorsSection,
   renderContrastColorsSection,
-  renderSizesSection,
+  renderScalesSection,
   renderFontColorsSection,
 } from '../../helpers/varies';
 
@@ -62,7 +62,7 @@ export class AppPageComponentsLabel extends TiniComponent {
           `,
           html`
             <tini-label>Label</tini-label>
-            <tini-label pilled>Label</tini-label>
+            <tini-label pill>Label</tini-label>
           `
         )}
 
@@ -87,10 +87,10 @@ export class AppPageComponentsLabel extends TiniComponent {
             >`
         )}
 
-        <!-- sizes -->
-        ${renderSizesSection(
-          size =>
-            html`<tini-label size=${size} scheme="primary">Label</tini-label>`
+        <!-- scales -->
+        ${renderScalesSection(
+          scale =>
+            html`<tini-label scale=${scale} scheme="primary">Label</tini-label>`
         )}
       </app-component-page>
     `;

@@ -1,20 +1,21 @@
 import {html, nothing, HTMLTemplateResult} from 'lit';
 import {
-  BASE_COLORS,
-  BASE_GRADIENTS,
-  SIZES,
-  SIZE_FACTORS,
+  ALL_BASE_COLORS,
+  ALL_BASE_GRADIENTS,
+  SCALES,
+  FACTORS,
   FONT_TYPES,
   FONT_WEIGHTS,
   TEXT_TRANSFORMS,
-  ColorsAndGradients,
   Colors,
+  CommonColors,
   Gradients,
-  Sizes,
+  CommonGradients,
+  Scales,
+  Factors,
   FontTypes,
   FontWeights,
   TextTransforms,
-  FontSizeFactors,
 } from '@tinijs/core';
 import {AppSectionComponent} from '../components/section';
 
@@ -29,22 +30,8 @@ export interface RenderSectionOptions {
   codeBuildContext?: AppSectionComponent['codeBuildContext'];
 }
 
-export const COLOR_SUFFIXES = [
-  '',
-  'shade',
-  'shade-2',
-  'shade-3',
-  'shade-4',
-  'shade-5',
-  'tint',
-  'tint-2',
-  'tint-3',
-  'tint-4',
-  'tint-5',
-  'contrast',
-];
-
-export const GRADIENT_SUFFIXES = ['', 'shade', 'tint', 'contrast'];
+export const COLOR_SUFFIXES = ['', 'shade', 'tint', 'contrast'];
+export const GRADIENT_SUFFIXES = COLOR_SUFFIXES;
 
 function buildFullName(baseName: string, suffix: string) {
   return `${baseName}${!suffix ? '' : `-${suffix}`}`;
@@ -99,7 +86,7 @@ function renderColorOrGradientVaries(
       const fullName = buildFullName(baseName, suffix);
       return suffix !== 'contrast'
         ? render(fullName)
-        : html`<tini-box scheme=${baseName as ColorsAndGradients}
+        : html`<tini-box scheme=${baseName as Colors | Gradients}
             >${render(fullName)}</tini-box
           >`;
     });
@@ -172,7 +159,7 @@ export function renderDefaultSection(
 }
 
 export function renderBaseColorsSection(
-  handler: (baseName: Colors) => HTMLTemplateResult,
+  handler: (baseName: Colors | CommonColors) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
@@ -180,25 +167,28 @@ export function renderBaseColorsSection(
     'Colors',
     html`
       <p>
-        Suffixing colors with <code>-shade & -shade-2,3,4,5</code> for more
-        shades, and <code>-tint & -tint-2,3,4,5</code> for more tints.
+        Suffixing colors with <code>-shade</code> for shade, and
+        <code>-tint</code> for tint.
       </p>
     `,
-    html`${BASE_COLORS.map(baseName => handler(baseName))}`,
+    html`${ALL_BASE_COLORS.map(baseName => handler(baseName))}`,
     options
   );
 }
 
 export function renderContrastColorsSection(
-  handler: (contrastName: Colors, baseName: Colors) => HTMLTemplateResult,
+  handler: (
+    contrastName: Colors | CommonColors,
+    baseName: Colors | CommonColors
+  ) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
     'contrasts',
-    'Contrast colors',
+    'Color contrasts',
     html`<p>Contrasts are used against schemed backgrounds.</p>`,
     html`
-      ${BASE_COLORS.map(
+      ${ALL_BASE_COLORS.map(
         baseName => html`
           <tini-box scheme=${baseName}>
             ${handler(`${baseName}-contrast` as Colors, baseName)}
@@ -211,7 +201,7 @@ export function renderContrastColorsSection(
 }
 
 export function renderBaseGradientsSection(
-  handler: (baseName: Gradients) => HTMLTemplateResult,
+  handler: (baseName: Gradients | CommonGradients) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
@@ -219,24 +209,27 @@ export function renderBaseGradientsSection(
     'Gradients',
     html`
       <p>
-        Suffixing gradients with <code>-shade</code> for shade, and
+        Suffixing colors with <code>-shade</code> for shade, and
         <code>-tint</code> for tint.
       </p>
     `,
-    html`${BASE_GRADIENTS.map(baseName => handler(baseName))}`,
+    html`${ALL_BASE_GRADIENTS.map(baseName => handler(baseName))}`,
     options
   );
 }
 
 export function renderContrastGradientsSection(
-  handler: (contrastName: Gradients, baseName: Gradients) => HTMLTemplateResult,
+  handler: (
+    contrastName: Gradients | CommonGradients,
+    baseName: Gradients | CommonGradients
+  ) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
     'contrasts',
-    'Contrast gradients',
+    'Gradient contrasts',
     html`<p>Contrasts are used against schemed backgrounds.</p>`,
-    html`${BASE_GRADIENTS.map(
+    html`${ALL_BASE_GRADIENTS.map(
       baseName => html`
         <tini-box scheme=${baseName}>
           ${handler(`${baseName}-contrast` as Gradients, baseName)}
@@ -247,27 +240,27 @@ export function renderContrastGradientsSection(
   );
 }
 
-export function renderSizesSection(
-  handler: (size: Sizes) => HTMLTemplateResult,
+export function renderScalesSection(
+  handler: (scale: Scales) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
-    'sizes',
-    'Sizes',
+    'scales',
+    'Scales',
     null,
-    html`${SIZES.map(size => handler(size))}`,
+    html`${SCALES.map(scale => handler(scale))}`,
     options
   );
 }
 
 export function renderFontColorsSection(
-  schemes: ColorsAndGradients[],
-  handler: (scheme: ColorsAndGradients) => HTMLTemplateResult,
+  schemes: (Colors | Gradients)[],
+  handler: (scheme: Colors | Gradients) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
-    'font-colors',
-    'Font colors',
+    'text-colors',
+    'Text colors',
     html`
       <p>
         You can combine any text colors with any background colors. Below are
@@ -294,41 +287,40 @@ export function renderFontTypesSection(
 
 export function renderFontSizesSection(
   full: boolean,
-  handler: (fontSize: FontSizeFactors) => HTMLTemplateResult,
+  handler: (factor: Factors) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
     'font-sizes',
     'Font sizes',
     html` <p>Font size from 0.1x to 10x.</p> `,
-    html`${(full
-      ? SIZE_FACTORS
-      : (['0_5x', '1x', '3x'] as FontSizeFactors[])
-    ).map(fontSize => handler(fontSize))}`,
+    html`${(full ? FACTORS : (['0_5x', '1x', '3x'] as Factors[])).map(factor =>
+      handler(factor)
+    )}`,
     options
   );
 }
 
-export function renderWeightsSection(
+export function renderFontWeightsSection(
   handler: (weight: FontWeights) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
-    'weights',
-    'Weights',
+    'font-weights',
+    'Font weights',
     html`<p>Please note that the active font the respective weights.</p>`,
     html`${FONT_WEIGHTS.map(weight => handler(weight))}`,
     options
   );
 }
 
-export function renderTransformsSection(
+export function renderTextTransformsSection(
   handler: (transform: TextTransforms) => HTMLTemplateResult,
   options: RenderSectionOptions = {}
 ) {
   return renderSection(
-    'transforms',
-    'Transforms',
+    'text-transforms',
+    'Text transforms',
     null,
     html`${TEXT_TRANSFORMS.map(transform => handler(transform))}`,
     options
@@ -347,6 +339,63 @@ export function renderSpacesSection(
     html`${['0x', '0_5x', '1x 2x', '1x 2x 3x', '1x 2x 3x 4x'].map(value =>
       handler(value)
     )}`,
+    options
+  );
+}
+
+export function renderItalicUnderlineSection(
+  code: HTMLTemplateResult,
+  options: RenderSectionOptions = {}
+) {
+  return renderSection(
+    'italic-underline',
+    'Italic and Underline',
+    null,
+    code,
+    options
+  );
+}
+
+export function renderTransformsSection(
+  code: HTMLTemplateResult,
+  options: RenderSectionOptions = {}
+) {
+  return renderSection(
+    'transforms',
+    'Transforms',
+    html`
+      <p>
+        Supports standard
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform"
+          target="_blank"
+          >CSS tranforms</a
+        >.
+      </p>
+    `,
+    code,
+    options
+  );
+}
+
+export function renderFiltersSection(
+  code: HTMLTemplateResult,
+  options: RenderSectionOptions = {}
+) {
+  return renderSection(
+    'filters',
+    'Filters',
+    html`
+      <p>
+        Supports standard
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter"
+          target="_blank"
+          >CSS filters</a
+        >.
+      </p>
+    `,
+    code,
     options
   );
 }

@@ -101,7 +101,7 @@ export class AppTabsComponent extends TiniComponent {
               >
                 ${!icon
                   ? nothing
-                  : html`<tini-icon src=${icon} size="xs"></tini-icon>`}
+                  : html`<tini-icon src=${icon} scale="xs"></tini-icon>`}
                 ${iconOnly ? nothing : html`<span>${name}</span>`}
               </button>
             `
@@ -156,8 +156,8 @@ export class AppTabsComponent extends TiniComponent {
         }
 
         tini-icon {
-          width: var(--size-xs-2x);
-          height: var(--size-xs-2x);
+          width: var(--scale-xs-2x);
+          height: var(--scale-xs-2x);
           margin-right: var(--size-space-0_25x);
         }
       }

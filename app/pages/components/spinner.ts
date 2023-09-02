@@ -14,7 +14,7 @@ import {
   renderDefaultSection,
   renderBaseColorsSection,
   renderContrastColorsSection,
-  renderSizesSection,
+  renderScalesSection,
 } from '../../helpers/varies';
 
 import {AppComponentPageComponent} from '../../components/component-page';
@@ -73,10 +73,10 @@ export class AppPageComponentsSpinner extends TiniComponent {
             html`<tini-spinner scheme=${contrastName}></tini-spinner>`
         )}
 
-        <!-- sizes -->
-        ${renderSizesSection(
-          size =>
-            html`<tini-spinner size=${size} scheme="primary"></tini-spinner>`
+        <!-- scales -->
+        ${renderScalesSection(
+          scale =>
+            html`<tini-spinner scale=${scale} scheme="primary"></tini-spinner>`
         )}
       </app-component-page>
     `;

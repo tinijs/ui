@@ -1,10 +1,10 @@
 import {css} from 'lit';
-import {generateColorVaries, generateSizeVaries} from 'tinijs';
+import {VaryGroups, generateColorVaries, generateScaleVaries} from 'tinijs';
 
 export const labelStyle = css`
   :host {
     --label-background: var(--color-medium) /* Background color */;
-    --label-size: var(--size-md);
+    --label-scale: var(--scale-md);
     --label-color: black /* Text color */;
     --label-border: none;
     --label-radius: var(--size-radius);
@@ -22,21 +22,21 @@ export const labelStyle = css`
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: calc(var(--label-size) * 0.5);
+    padding: calc(var(--label-scale) * 0.5);
     border: var(--label-border);
     border-radius: var(--label-radius);
     background: color-mix(in oklab, var(--label-background), transparent 50%);
     color: var(--label-color);
-    font-size: var(--label-size);
+    font-size: var(--label-scale);
     font-weight: normal;
     line-height: 1;
   }
 
   /*
-   * [?pilled]
+   * [?pill]
    */
 
-  .pilled {
+  .pill {
     border-radius: 1000px !important;
   }
 
@@ -45,25 +45,25 @@ export const labelStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, color}) => `
-    .scheme-${name} {
+    ({name, fullName, color}) => `
+    .${fullName} {
       --label-background: ${color};
     }
 
-    .color-${name} {
+    .${VaryGroups.Color}-${name} {
       --label-color: ${color} !important;
     }
   `
   )}
 
   /*
-   * [size]
+   * [scale]
    */
 
-  ${generateSizeVaries(
-    size => `
-    .size-${size} {
-      --label-size: var(--size-${size});
+  ${generateScaleVaries(
+    ({fullName, scale}) => `
+    .${fullName} {
+      --label-scale: ${scale};
     }
   `
   )}
