@@ -135,7 +135,7 @@ export class AppPageGuidesCustomization extends TiniComponent {
             >
             and
             <a
-              href="https://unpkg.com/@tinijs/ui@latest/skin-utils.css"
+              href="https://unpkg.com/@tinijs/ui@latest/utilities.css"
               target="_blank"
               >skin utilities</a
             >.

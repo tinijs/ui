@@ -107,7 +107,7 @@ npm i @tinijs/ui-bootstrap"
           </p>
           <app-code
             code="@import '../node_modules/@tinijs/ui-bootstrap/styles/skins/light.css';
-@import '../node_modules/@tinijs/ui-bootstrap/skin-utils.css';"
+@import '../node_modules/@tinijs/ui-bootstrap/utilities.css';"
           ></app-code>
           <p>Then import use the components, for example:</p>
           <app-code
