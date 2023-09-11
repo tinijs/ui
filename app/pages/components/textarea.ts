@@ -1,4 +1,4 @@
-import {html, css} from 'lit';
+import {html} from 'lit';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -16,12 +16,18 @@ import {
 import {
   renderSection,
   renderDefaultSection,
-  renderBaseColorsSection,
+  renderColorsSection,
   renderScalesSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {
+  AppSectionComponent,
+  FLEX_COLUMN_STYLES,
+} from '../../components/section';
 
 @Page({
   name: 'app-page-components-textarea',
@@ -48,6 +54,30 @@ export class AppPageComponentsTextarea extends TiniComponent {
     ['label', 'The label'],
   ];
 
+  private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniTextareaComponent.defaultTagName],
+        [
+          /* scheme, */ ReactCommonProps.SchemeButColorsOnly,
+          ReactCommonProps.Scale,
+        ]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        common: FLEX_COLUMN_STYLES,
+      },
+    };
+  }
+
   protected render() {
     return html`
       <app-component-page
@@ -69,7 +99,8 @@ export class AppPageComponentsTextarea extends TiniComponent {
           html`<tini-textarea
             label="Content"
             placeholder="Lorem ipsum ..."
-          ></tini-textarea>`
+          ></tini-textarea>`,
+          this.renderSectionOptions
         )}
 
         <!-- disabled -->
@@ -80,7 +111,8 @@ export class AppPageComponentsTextarea extends TiniComponent {
           html`<tini-textarea
             disabled
             placeholder="Lorem ipsum ..."
-          ></tini-textarea>`
+          ></tini-textarea>`,
+          this.renderSectionOptions
         )}
 
         <!-- events -->
@@ -103,16 +135,18 @@ export class AppPageComponentsTextarea extends TiniComponent {
               @change=${({detail}: CustomEvent<TextareaEventDetail>) =>
                 console.log('Textarea "change" event: ', detail)}
             ></tini-textarea>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName =>
+        ${renderColorsSection(
+          color =>
             html`<tini-textarea
-              scheme=${baseName}
+              scheme=${color}
               placeholder="Focus me to see"
-            ></tini-textarea>`
+            ></tini-textarea>`,
+          this.renderSectionOptions
         )}
 
         <!-- scales -->
@@ -121,17 +155,10 @@ export class AppPageComponentsTextarea extends TiniComponent {
             html`<tini-textarea
               scale=${scale}
               placeholder=${scale}
-            ></tini-textarea>`
+            ></tini-textarea>`,
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;
   }
-
-  static styles = css`
-    app-section [slot='code'] {
-      display: flex;
-      flex-flow: column;
-      gap: 1rem;
-    }
-  `;
 }

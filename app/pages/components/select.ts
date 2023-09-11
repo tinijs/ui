@@ -1,4 +1,4 @@
-import {html, css} from 'lit';
+import {html} from 'lit';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -18,12 +18,20 @@ import {
 import {
   renderSection,
   renderDefaultSection,
-  renderBaseColorsSection,
+  renderColorsSection,
   renderScalesSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {
+  AppSectionComponent,
+  BLOCK_STYLES,
+  FLEX_COLUMN_STYLES,
+  WIDE_XXS_STYLES,
+} from '../../components/section';
 
 @Page({
   name: 'app-page-components-select',
@@ -69,6 +77,32 @@ export class AppPageComponentsSelect extends TiniComponent {
     },
   ];
 
+  private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniSelectComponent.defaultTagName],
+        [
+          /* scheme, */ ReactCommonProps.SchemeButColorsOnly,
+          ReactCommonProps.Scale,
+        ]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        common: FLEX_COLUMN_STYLES,
+        default: BLOCK_STYLES,
+        contrastBoxes: WIDE_XXS_STYLES,
+      },
+    };
+  }
+
   protected render() {
     return html`
       <app-component-page
@@ -91,7 +125,8 @@ export class AppPageComponentsSelect extends TiniComponent {
               label="Using optgroup"
               .items=${this.OPTGROUPS}
             ></tini-select>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- wrap -->
@@ -110,7 +145,8 @@ export class AppPageComponentsSelect extends TiniComponent {
               label="Using optgroup"
               .items=${this.OPTGROUPS}
             ></tini-select>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- disabled -->
@@ -134,7 +170,8 @@ export class AppPageComponentsSelect extends TiniComponent {
               label="Disabled select"
               .items=${this.OPTIONS}
             ></tini-select>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- events -->
@@ -155,16 +192,18 @@ export class AppPageComponentsSelect extends TiniComponent {
               @change=${({detail}: CustomEvent<SelectEventDetail>) =>
                 console.log('Select "change" event: ', detail)}
             ></tini-select>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName =>
+        ${renderColorsSection(
+          color =>
             html`<tini-select
-              scheme="${baseName}"
+              scheme="${color}"
               .items=${this.OPTIONS}
-            ></tini-select>`
+            ></tini-select>`,
+          this.renderSectionOptions
         )}
 
         <!-- scales -->
@@ -173,20 +212,10 @@ export class AppPageComponentsSelect extends TiniComponent {
             html`<tini-select
               scale=${scale}
               .items=${this.OPTIONS}
-            ></tini-select>`
+            ></tini-select>`,
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;
   }
-
-  static styles = css`
-    .wrap [slot='code'],
-    .disabled [slot='code'],
-    .colors [slot='code'],
-    .scales [slot='code'] {
-      display: flex;
-      flex-flow: column;
-      gap: 1rem;
-    }
-  `;
 }

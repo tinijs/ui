@@ -9,7 +9,8 @@ import {
   codeBases,
 } from '@tinijs/ui/bases';
 
-import {IconsImportMethods} from '../consts/main';
+import {ConsumerPlatforms, IconsImportMethods} from '../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../helpers/code-builder';
 import {mainStore} from '../stores/main';
 
 import {AppSectionComponent} from './section';
@@ -50,8 +51,21 @@ export class AppIconModalComponent extends TiniComponent {
     {name: IconsImportMethods.URL},
   ];
 
-  private readonly PREPROCESS_CODE = (code: string, context: any) =>
-    !context ? code : code.replace(/tini-icon/g, context.nameTag);
+  private readonly PREPROCESS_CODE: CodeBuilder = builder =>
+    builder.customModifier((code, context) =>
+      (!context
+        ? code
+        : code.replace(/tini-icon/g, (context as any).nameTag)
+      ).replace(/src=\"([\s\S]*?)\"/g, '')
+    );
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ (builder.context as any).nameTag],
+        [/* scheme, */ ReactCommonProps.Scale]
+      ),
+  };
 
   @Input({type: String}) declare packageName?: string;
   @Input({type: String}) declare packageVersion?: string;
@@ -102,7 +116,7 @@ export class MyComponent extends TiniComponent {}`;
 import '${packName}/${iconName}.include';
 
 /*
- * Option II: import as a shared bundle (if your bundler supports it)
+ * Option II: import and register
  */
 import {useComponents} from 'tinijs';
 
@@ -110,6 +124,17 @@ import {useComponents} from 'tinijs';
 import {${nameClass}} from '${packName}/${iconName}';
 
 useComponents([
+  ${nameClass}, // 2. register the component
+]);
+`;
+
+    const reactTagName = nameClass.replace('Component', '');
+    const othersCodeReact = `import {importComponents} from 'tinijs';
+
+// 1. import the constructor and the React wrapper
+import {${nameClass}, ${reactTagName}} from '${packName}/${iconName}';
+
+importComponents([
   ${nameClass}, // 2. register the component
 ]);
 `;
@@ -148,6 +173,7 @@ containerEl.innerHTML = ${nameVar}Code;
       iconSRC,
       tiniJSCode,
       othersCode,
+      othersCodeReact,
       standaloneCode,
       dataURICode,
       svgCode,
@@ -179,6 +205,7 @@ containerEl.innerHTML = ${nameVar}Code;
       iconSRC,
       tiniJSCode,
       othersCode,
+      othersCodeReact,
       standaloneCode,
       dataURICode,
       svgCode,
@@ -197,7 +224,7 @@ containerEl.innerHTML = ${nameVar}Code;
           ? nothing
           : html`
               <div class="modal-body">
-                <app-section noUsageTabs style="margin-top: 1rem;">
+                <app-section noCodeSample style="margin-top: 1rem;">
                   <h2 slot="title" style="margin-top: 0;">Imports</h2>
                   <div slot="content" class="imports">
                     <p>
@@ -218,8 +245,16 @@ containerEl.innerHTML = ${nameVar}Code;
                       </div>
 
                       <div data-tab=${IconsImportMethods.Others}>
-                        <p>For Vue, React, Angular, Svelte, ...</p>
+                        <p><strong>Vue, Angular, Svelte, ...</strong></p>
                         <app-code .code=${othersCode}></app-code>
+                        <p><strong>React</strong></p>
+                        <p>
+                          Enums for attribute values (<code>Colors</code>,
+                          <code>Scales</code>, ...) can be imported from the
+                          <code>tinijs</code> package also. Other enums are
+                          imported from the same endpoint as the constructor.
+                        </p>
+                        <app-code .code=${othersCodeReact}></app-code>
                       </div>
 
                       <div data-tab=${IconsImportMethods.Standalone}>
@@ -270,6 +305,7 @@ containerEl.innerHTML = ${nameVar}Code;
                 <app-icon-page-content
                   .src=${iconSRC}
                   .preprocessCode=${this.PREPROCESS_CODE}
+                  .codeBuilders=${this.CODE_BUILDERS}
                   .codeBuildContext=${names}
                   ?noVariants=${this.noVariants}
                 ></app-icon-page-content>

@@ -9,6 +9,13 @@ import {
 } from '@tinijs/ui/bases';
 import {TiniXxxComponent} from '@tinijs/ui/bases/components/xxx';
 
+import {
+  renderSection,
+  RenderSectionOptions,
+} from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
+
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
@@ -33,6 +40,20 @@ export class AppPageComponentsXxx extends TiniComponent {
   private readonly PART_LIST = [
     ['root', 'The root part'],
   ];
+
+  private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder => builder,
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+    };
+  }
 
   protected render() {
     return html`

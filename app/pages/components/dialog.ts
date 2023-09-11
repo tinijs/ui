@@ -12,7 +12,13 @@ import {TiniButtonComponent} from '@tinijs/ui/components/button';
 import {TiniInputComponent} from '@tinijs/ui/components/input';
 import {TiniDialogComponent} from '@tinijs/ui/components/dialog';
 
-import {renderSection, renderDefaultSection} from '../../helpers/varies';
+import {
+  renderSection,
+  renderDefaultSection,
+  RenderSectionOptions,
+} from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -45,6 +51,25 @@ export class AppPageComponentsDialog extends TiniComponent {
     ['foot-left', 'The left part of the foot'],
     ['foot-right', 'The right part of the foot'],
   ];
+
+  private readonly PREPROCESS_CODE: CodeBuilder = builder =>
+    builder.attrCasing(['title text', 'backdrop closed']);
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniDialogComponent.defaultTagName],
+        [/* scheme, */ {name: 'type', enumName: 'DialogTypes'}]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+    };
+  }
 
   private readonly alert1DialogRef: Ref<TiniDialogComponent> = createRef();
   private readonly alert2DialogRef: Ref<TiniDialogComponent> = createRef();
@@ -106,7 +131,8 @@ export class AppPageComponentsDialog extends TiniComponent {
                 <p>Alert dialog content, close on clicking backdrop.</p>
               </tini-dialog>
             </div>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- confirm -->
@@ -134,7 +160,8 @@ export class AppPageComponentsDialog extends TiniComponent {
             >
               <p>Confirm dialog content.</p>
             </tini-dialog>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- prompt -->
@@ -167,7 +194,8 @@ export class AppPageComponentsDialog extends TiniComponent {
                 placeholder="email@example.com"
               ></tini-input>
             </tini-dialog>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- custom buttons -->
@@ -192,7 +220,8 @@ export class AppPageComponentsDialog extends TiniComponent {
             >
               <p>Customize text and color of the buttons.</p>
             </tini-dialog>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- custom head and foot -->
@@ -221,7 +250,8 @@ export class AppPageComponentsDialog extends TiniComponent {
                 >
               </div>
             </tini-dialog>
-          `
+          `,
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;

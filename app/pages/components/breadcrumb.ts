@@ -1,4 +1,4 @@
-import {html, css} from 'lit';
+import {html} from 'lit';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -7,24 +7,32 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
+import {TiniBoxComponent} from '@tinijs/ui/components/box';
 import {
   BreadcrumbItem,
   TiniBreadcrumbComponent,
 } from '@tinijs/ui/components/breadcrumb';
 
 import {
-  RenderSectionOptions,
   renderDefaultSection,
-  renderBaseColorsSection,
-  renderBaseGradientsSection,
+  renderColorsSection,
+  renderGradientsSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {
+  AppSectionComponent,
+  FLEX_COLUMN_STYLES,
+  WIDE_XS_STYLES,
+} from '../../components/section';
 
 @Page({
   name: 'app-page-components-breadcrumb',
   components: [
+    TiniBoxComponent,
     TiniBreadcrumbComponent,
     AppComponentPageComponent,
     AppSectionComponent,
@@ -52,20 +60,26 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
     {label: 'Data'},
   ];
 
-  private getCodePreprocessor() {
-    const tagName = TiniBreadcrumbComponent.defaultTagName;
-    const tagRegex = new RegExp(`<${tagName}`, 'g');
-    return function (code: string) {
-      return code
-        .replace(tagRegex, `<${tagName} .items=\${...}`)
-        .replace(/linkcolor=/g, 'linkColor=');
-    };
-  }
+  private readonly PREPROCESS_CODE: CodeBuilder = builder =>
+    builder.attrCasing(['link color']);
 
-  private defaultSectionOptions?: RenderSectionOptions;
-  willUpdate() {
-    this.defaultSectionOptions = {
-      preprocessCode: this.getCodePreprocessor(),
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniBreadcrumbComponent.defaultTagName],
+        [/* scheme, */ ReactCommonProps.LinkColor]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        common: FLEX_COLUMN_STYLES,
+        contrastBoxes: WIDE_XS_STYLES,
+      },
     };
   }
 
@@ -87,37 +101,29 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
               items => html`<tini-breadcrumb .items=${items}></tini-breadcrumb>`
             )}
           `,
-          this.defaultSectionOptions
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName =>
+        ${renderColorsSection(
+          color =>
             html`<tini-breadcrumb
-              linkColor=${baseName}
+              linkColor=${color}
               .items=${this.ITEMS}
             ></tini-breadcrumb>`,
-          this.defaultSectionOptions
+          this.renderSectionOptions
         )}
 
         <!-- gradients -->
-        ${renderBaseGradientsSection(
-          baseName =>
+        ${renderGradientsSection(
+          gradient =>
             html`<tini-breadcrumb
-              linkColor=${baseName}
+              linkColor=${gradient}
               .items=${this.ITEMS}
             ></tini-breadcrumb>`,
-          this.defaultSectionOptions
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;
   }
-
-  static styles = css`
-    app-section [slot='code'] {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-  `;
 }

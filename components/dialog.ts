@@ -23,6 +23,7 @@ export interface DialogResult<Context> {
 
 /* UseBases(common) */
 /* UseComponents(button) */
+/* ReactEvents(yes:onYes,no:onNo) */
 export class TiniDialogComponent extends TiniElement {
   static readonly defaultTagName = 'tini-dialog';
 

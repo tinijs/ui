@@ -1,4 +1,4 @@
-import {html, css} from 'lit';
+import {html} from 'lit';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -16,12 +16,19 @@ import {
 import {
   renderSection,
   renderDefaultSection,
-  renderBaseColorsSection,
+  renderColorsSection,
   renderScalesSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {
+  AppSectionComponent,
+  FLEX_COLUMN_STYLES,
+  WIDE_XS_STYLES,
+} from '../../components/section';
 
 @Page({
   name: 'app-page-components-input',
@@ -48,6 +55,34 @@ export class AppPageComponentsInput extends TiniComponent {
     ['label', 'The label'],
   ];
 
+  private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniInputComponent.defaultTagName],
+        [
+          /* scheme, */ ReactCommonProps.SchemeButColorsOnly,
+          ReactCommonProps.Scale,
+          {name: 'type', enumName: 'InputTypes'},
+        ]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        schemes: FLEX_COLUMN_STYLES,
+        contrasts: FLEX_COLUMN_STYLES,
+        contrastBoxes: WIDE_XS_STYLES,
+        scales: FLEX_COLUMN_STYLES,
+      },
+    };
+  }
+
   protected render() {
     return html`
       <app-component-page
@@ -73,7 +108,8 @@ export class AppPageComponentsInput extends TiniComponent {
               type="email"
               placeholder="name@example.com"
             ></tini-input>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- wrap -->
@@ -85,7 +121,8 @@ export class AppPageComponentsInput extends TiniComponent {
             wrap
             label="Name"
             placeholder="Enter your name"
-          ></tini-input>`
+          ></tini-input>`,
+          this.renderSectionOptions
         )}
 
         <!-- disabled -->
@@ -93,7 +130,8 @@ export class AppPageComponentsInput extends TiniComponent {
           'disabled',
           'Disabled',
           null,
-          html`<tini-input disabled value="John Doe"></tini-input>`
+          html`<tini-input disabled value="John Doe"></tini-input>`,
+          this.renderSectionOptions
         )}
 
         <!-- events -->
@@ -115,39 +153,27 @@ export class AppPageComponentsInput extends TiniComponent {
               @change=${({detail}: CustomEvent<InputEventDetail>) =>
                 console.log('Input "change" event: ', detail)}
             ></tini-input>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName =>
+        ${renderColorsSection(
+          color =>
             html`<tini-input
-              scheme="${baseName}"
+              scheme="${color}"
               placeholder="Focus on me to see"
-            ></tini-input>`
+            ></tini-input>`,
+          this.renderSectionOptions
         )}
 
         <!-- scales -->
         ${renderScalesSection(
           scale =>
-            html`<tini-input scale=${scale} placeholder=${scale}></tini-input>`
+            html`<tini-input scale=${scale} placeholder=${scale}></tini-input>`,
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;
   }
-
-  static styles = css`
-    app-section [slot='code'] {
-      tini-box {
-        width: 250px;
-      }
-    }
-
-    .colors [slot='code'],
-    .scales [slot='code'] {
-      display: flex;
-      flex-flow: column;
-      gap: 1rem;
-    }
-  `;
 }

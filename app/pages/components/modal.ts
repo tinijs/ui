@@ -10,7 +10,9 @@ import {
 } from '@tinijs/ui/bases';
 import {TiniModalComponent} from '@tinijs/ui/components/modal';
 
-import {renderDefaultSection} from '../../helpers/varies';
+import {renderDefaultSection, RenderSectionOptions} from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -41,6 +43,27 @@ export class AppPageComponentsModal extends TiniComponent {
     ['foot-left', 'The left part of the foot'],
     ['foot-right', 'The right part of the foot'],
   ];
+
+  private readonly PREPROCESS_CODE: CodeBuilder = builder =>
+    builder.attrCasing(['title text', 'backdrop closed']);
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniModalComponent.defaultTagName],
+        [
+          /* scheme, */
+        ]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+    };
+  }
 
   private readonly default1ModalRef: Ref<TiniModalComponent> = createRef();
   private readonly default2ModalRef: Ref<TiniModalComponent> = createRef();
@@ -97,7 +120,8 @@ export class AppPageComponentsModal extends TiniComponent {
                 ${this.sampleContent}
               </tini-modal>
             </div>
-          `
+          `,
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;

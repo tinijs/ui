@@ -1,4 +1,4 @@
-import {html, css} from 'lit';
+import {html} from 'lit';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -12,13 +12,15 @@ import {TiniSpinnerComponent} from '@tinijs/ui/components/spinner';
 
 import {
   renderDefaultSection,
-  renderBaseColorsSection,
-  renderContrastColorsSection,
+  renderColorsSection,
   renderScalesSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {AppSectionComponent, FLEX_ROW_STYLES} from '../../components/section';
 
 @Page({
   name: 'app-page-components-spinner',
@@ -41,6 +43,30 @@ import {AppSectionComponent} from '../../components/section';
 export class AppPageComponentsSpinner extends TiniComponent {
   private readonly PART_LIST = [['root', 'The root part']];
 
+  private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniSpinnerComponent.defaultTagName],
+        [
+          /* scheme, */ ReactCommonProps.SchemeButColorsOnly,
+          ReactCommonProps.Scale,
+        ]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        common: FLEX_ROW_STYLES,
+      },
+    };
+  }
+
   protected render() {
     return html`
       <app-component-page
@@ -59,38 +85,23 @@ export class AppPageComponentsSpinner extends TiniComponent {
               <code>md</code>.
             </p>
           `,
-          html`<tini-spinner></tini-spinner>`
+          html`<tini-spinner></tini-spinner>`,
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName => html`<tini-spinner scheme=${baseName}></tini-spinner>`
-        )}
-
-        <!-- contrast colors -->
-        ${renderContrastColorsSection(
-          contrastName =>
-            html`<tini-spinner scheme=${contrastName}></tini-spinner>`
+        ${renderColorsSection(
+          color => html`<tini-spinner scheme=${color}></tini-spinner>`,
+          this.renderSectionOptions
         )}
 
         <!-- scales -->
         ${renderScalesSection(
           scale =>
-            html`<tini-spinner scale=${scale} scheme="primary"></tini-spinner>`
+            html`<tini-spinner scale=${scale} scheme="primary"></tini-spinner>`,
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;
   }
-
-  static styles = css`
-    app-section [slot='code'] {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-
-      tini-box {
-        width: 65px;
-      }
-    }
-  `;
 }

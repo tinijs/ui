@@ -19,13 +19,14 @@ export class AppCodeComponent extends TiniComponent {
   @Input({type: String}) declare language?: string;
 
   onRenders() {
+    this.codeRef.value!.textContent = this.code!;
     hljs.highlightElement(this.codeRef.value!);
   }
 
   protected render() {
     return html`<pre><code class=${classMap({
       [`language-${this.language}`]: !!this.language,
-    })} ${ref(this.codeRef)}>${this.code}</code></pre>`;
+    })} ${ref(this.codeRef)}></code></pre>`;
   }
 
   static styles = css`

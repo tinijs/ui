@@ -1,4 +1,4 @@
-import {html, css} from 'lit';
+import {html} from 'lit';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -12,14 +12,16 @@ import {TiniLabelComponent} from '@tinijs/ui/components/label';
 
 import {
   renderDefaultSection,
-  renderBaseColorsSection,
-  renderContrastColorsSection,
+  renderColorsSection,
   renderScalesSection,
   renderFontColorsSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {AppSectionComponent, FLEX_ROW_STYLES} from '../../components/section';
 
 @Page({
   name: 'app-page-components-label',
@@ -42,6 +44,31 @@ import {AppSectionComponent} from '../../components/section';
 export class AppPageComponentsLabel extends TiniComponent {
   private readonly PART_LIST = [['root', 'The root part']];
 
+  private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniLabelComponent.defaultTagName],
+        [
+          /* scheme, */ ReactCommonProps.SchemeButColorsOnly,
+          ReactCommonProps.Scale,
+          ReactCommonProps.Color,
+        ]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        contrasts: FLEX_ROW_STYLES,
+      },
+    };
+  }
+
   protected render() {
     return html`
       <app-component-page
@@ -63,19 +90,14 @@ export class AppPageComponentsLabel extends TiniComponent {
           html`
             <tini-label>Label</tini-label>
             <tini-label pill>Label</tini-label>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName => html`<tini-label scheme=${baseName}>Label</tini-label>`
-        )}
-
-        <!-- contrast colors -->
-        ${renderContrastColorsSection(
-          contrastName => html`
-            <tini-label scheme=${contrastName}>Label</tini-label>
-          `
+        ${renderColorsSection(
+          color => html`<tini-label scheme=${color}>Label</tini-label>`,
+          this.renderSectionOptions
         )}
 
         <!-- text colors -->
@@ -84,23 +106,19 @@ export class AppPageComponentsLabel extends TiniComponent {
           scheme =>
             html`<tini-label scheme=${scheme as any} color="primary"
               >Label</tini-label
-            >`
+            >`,
+          this.renderSectionOptions
         )}
 
         <!-- scales -->
         ${renderScalesSection(
           scale =>
-            html`<tini-label scale=${scale} scheme="primary">Label</tini-label>`
+            html`<tini-label scale=${scale} scheme="primary"
+              >Label</tini-label
+            >`,
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;
   }
-
-  static styles = css`
-    .contrasts [slot='code'] {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-  `;
 }

@@ -92,7 +92,7 @@ export class AppPageComponentsBases extends TiniComponent {
 
       ${this.BASE_LIST.map(
         ([name, description, previewCode]) => html`
-          <app-section noUsageTabs>
+          <app-section noCodeSample>
             <h2 slot="title">${name}</h2>
             <div slot="content">
               <p>${description}</p>

@@ -1,4 +1,4 @@
-import {html, css} from 'lit';
+import {html} from 'lit';
 import {Page, TiniComponent, stylingWithBases, Colors} from '@tinijs/core';
 import {
   commonBases,
@@ -17,13 +17,18 @@ import {
 import {
   renderSection,
   renderDefaultSection,
-  renderBaseColorsSection,
+  renderColorsSection,
   renderScalesSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
-import {CodeBuilder} from '../../components/section';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {
+  AppSectionComponent,
+  FLEX_COLUMN_STYLES,
+} from '../../components/section';
 
 @Page({
   name: 'app-page-components-checkboxes',
@@ -51,24 +56,33 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
     ['label', 'A label'],
   ];
 
-  private readonly TAG_NAME = TiniCheckboxesComponent.defaultTagName;
-  private TAG_REGEX = new RegExp(`<${this.TAG_NAME}`, 'g');
-
-  private readonly PREPROCESS_CODE_DEFAULT = ((code: string) =>
-    code.replace(
-      this.TAG_REGEX,
-      `<${this.TAG_NAME} .items=\${...}`
-    )) as CodeBuilder;
-  private readonly PREPROCESS_CODE_EVENTS = ((code: string) =>
-    code.replace(
-      this.TAG_REGEX,
-      `<${this.TAG_NAME} @change=\${HANDLER}`
-    )) as CodeBuilder;
-
   private DEFAULT_LIST: CheckboxesItem[] = [
     {value: '', label: 'Default checkbox'},
     {value: '', label: 'Default checkbox (checked)', checked: true},
   ];
+
+  private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniCheckboxesComponent.defaultTagName],
+        [
+          /* scheme, */
+        ]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        common: FLEX_COLUMN_STYLES,
+      },
+    };
+  }
 
   private buildCustomList(
     modifier: (item: CheckboxesItem, i: number) => CheckboxesItem
@@ -95,9 +109,7 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
             </p>
           `,
           html`<tini-checkboxes .items=${this.DEFAULT_LIST}></tini-checkboxes>`,
-          {
-            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
-          }
+          this.renderSectionOptions
         )}
 
         <!-- no label -->
@@ -108,9 +120,7 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
           html`<tini-checkboxes
             .items=${this.buildCustomList(item => !(item.label = '') && item)}
           ></tini-checkboxes>`,
-          {
-            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
-          }
+          this.renderSectionOptions
         )}
 
         <!-- wrap -->
@@ -122,10 +132,7 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
             wrap
             .items=${this.DEFAULT_LIST}
           ></tini-checkboxes>`,
-
-          {
-            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
-          }
+          this.renderSectionOptions
         )}
 
         <!-- disabled -->
@@ -138,10 +145,7 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
               item => (item.disabled = true) && item
             )}
           ></tini-checkboxes>`,
-
-          {
-            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
-          }
+          this.renderSectionOptions
         )}
 
         <!-- events -->
@@ -165,27 +169,25 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
             @change=${({detail}: CustomEvent<CheckboxesEventDetail>) =>
               console.log('Checkboxes "change" event: ', detail)}
           ></tini-checkboxes>`,
-          {
-            preprocessCode: this.PREPROCESS_CODE_EVENTS,
-          }
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName =>
+        ${renderColorsSection(
+          color =>
             html`<tini-checkboxes
               wrap
               .items=${[
                 {
                   value: '',
-                  label: `Checkbox ${baseName}`,
+                  label: `Checkbox ${color}`,
                   checked: true,
-                  scheme: baseName as Colors,
+                  scheme: color as Colors,
                 },
               ]}
             ></tini-checkboxes>`,
           {
-            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
+            ...this.renderSectionOptions,
             content: html`<p>Add <code>{color: '...'}</code> to the items.</p>`,
           }
         )}
@@ -203,18 +205,9 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
                 },
               ]}
             ></tini-checkboxes>`,
-          {
-            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
-          }
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;
   }
-
-  static styles = css`
-    app-section [slot='code'] {
-      display: flex;
-      flex-flow: column;
-    }
-  `;
 }

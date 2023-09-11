@@ -33,7 +33,7 @@ export class AppPageGuidesCustomization extends TiniComponent {
         customize Tini UI components.
       </p>
 
-      <app-section noUsageTabs>
+      <app-section noCodeSample>
         <h2 slot="title">Terminologies</h2>
         <div slot="content">
           <ul>
@@ -49,7 +49,7 @@ export class AppPageGuidesCustomization extends TiniComponent {
         </div>
       </app-section>
 
-      <app-section noUsageTabs>
+      <app-section noCodeSample>
         <h2 slot="title">Build skins</h2>
         <div slot="content">
           <p>
@@ -68,7 +68,7 @@ export class AppPageGuidesCustomization extends TiniComponent {
         </div>
       </app-section>
 
-      <app-section noUsageTabs>
+      <app-section noCodeSample>
         <h2 slot="title">Build souls</h2>
         <div slot="content">
           <p>
@@ -96,7 +96,7 @@ export class AppPageGuidesCustomization extends TiniComponent {
         </div>
       </app-section>
 
-      <app-section noUsageTabs>
+      <app-section noCodeSample>
         <h2 slot="title">Customize a component</h2>
         <div slot="content">
           <p>
@@ -123,7 +123,7 @@ export class AppPageGuidesCustomization extends TiniComponent {
         </div>
       </app-section>
 
-      <app-section noUsageTabs>
+      <app-section noCodeSample>
         <h2 slot="title">Variable reference</h2>
         <div slot="content">
           <p>

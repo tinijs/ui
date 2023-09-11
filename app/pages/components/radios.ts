@@ -1,4 +1,4 @@
-import {html, css} from 'lit';
+import {html} from 'lit';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -17,13 +17,18 @@ import {
 import {
   renderSection,
   renderDefaultSection,
-  renderBaseColorsSection,
+  renderColorsSection,
   renderScalesSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
-import {CodeBuilder} from '../../components/section';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {
+  AppSectionComponent,
+  FLEX_COLUMN_STYLES,
+} from '../../components/section';
 
 @Page({
   name: 'app-page-components-radios',
@@ -51,18 +56,33 @@ export class AppPageComponentsRadios extends TiniComponent {
     ['label', 'A label'],
   ];
 
-  private readonly TAG_NAME = TiniRadiosComponent.defaultTagName;
-  private TAG_REGEX = new RegExp(`<${this.TAG_NAME}`, 'g');
-
-  private readonly PREPROCESS_CODE_DEFAULT = (code: string) =>
-    code.replace(this.TAG_REGEX, `<${this.TAG_NAME} .items=\${...}`);
-  private readonly PREPROCESS_CODE_EVENTS = (code: string) =>
-    code.replace(this.TAG_REGEX, `<${this.TAG_NAME} @change=\${HANDLER}`);
-
   private DEFAULT_LIST: RadiosItem[] = [
     {value: '', label: 'Default radio'},
     {value: '', label: 'Default radio (checked)', checked: true},
   ];
+
+  private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniRadiosComponent.defaultTagName],
+        [
+          /* scheme, */
+        ]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        common: FLEX_COLUMN_STYLES,
+      },
+    };
+  }
 
   private buildCustomList(
     modifier: (item: RadiosItem, i: number) => RadiosItem
@@ -92,9 +112,7 @@ export class AppPageComponentsRadios extends TiniComponent {
             name="default"
             .items=${this.DEFAULT_LIST}
           ></tini-radios>`,
-          {
-            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
-          }
+          this.renderSectionOptions
         )}
 
         <!-- no label -->
@@ -106,9 +124,7 @@ export class AppPageComponentsRadios extends TiniComponent {
             name="no-label"
             .items=${this.buildCustomList(item => !(item.label = '') && item)}
           ></tini-radios>`,
-          {
-            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
-          }
+          this.renderSectionOptions
         )}
 
         <!-- wrap -->
@@ -121,9 +137,7 @@ export class AppPageComponentsRadios extends TiniComponent {
             name="wrap"
             .items=${this.DEFAULT_LIST}
           ></tini-radios>`,
-          {
-            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
-          }
+          this.renderSectionOptions
         )}
 
         <!-- disabled -->
@@ -137,9 +151,7 @@ export class AppPageComponentsRadios extends TiniComponent {
               item => (item.disabled = true) && item
             )}
           ></tini-radios>`,
-          {
-            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
-          }
+          this.renderSectionOptions
         )}
 
         <!-- events -->
@@ -165,28 +177,26 @@ export class AppPageComponentsRadios extends TiniComponent {
                 console.log('Radios "change" event: ', detail)}
             ></tini-radios>
           `,
-          {
-            preprocessCode: this.PREPROCESS_CODE_EVENTS,
-          }
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName =>
+        ${renderColorsSection(
+          color =>
             html`<tini-radios
-              name=${`${baseName}`}
+              name=${`${color}`}
               wrap
               .items=${[
                 {
                   value: '',
-                  label: `Checkbox color ${baseName}`,
+                  label: `Checkbox color ${color}`,
                   checked: true,
-                  scheme: baseName,
+                  scheme: color,
                 },
               ]}
             ></tini-radios>`,
           {
-            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
+            ...this.renderSectionOptions,
             content: html`<p>Add <code>{color: '...'}</code> to the items.</p>`,
           }
         )}
@@ -205,18 +215,9 @@ export class AppPageComponentsRadios extends TiniComponent {
                 },
               ]}
             ></tini-radios>`,
-          {
-            preprocessCode: this.PREPROCESS_CODE_DEFAULT,
-          }
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;
   }
-
-  static styles = css`
-    app-section [slot='code'] {
-      display: flex;
-      flex-flow: column;
-    }
-  `;
 }

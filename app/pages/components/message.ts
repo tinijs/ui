@@ -1,4 +1,4 @@
-import {html, css} from 'lit';
+import {html} from 'lit';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -12,14 +12,19 @@ import {TiniMessageComponent} from '@tinijs/ui/components/message';
 
 import {
   renderDefaultSection,
-  renderBaseColorsSection,
-  renderContrastColorsSection,
+  renderColorsSection,
   renderFontColorsSection,
   renderFontSizesSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {
+  AppSectionComponent,
+  FLEX_COLUMN_STYLES,
+} from '../../components/section';
 
 @Page({
   name: 'app-page-components-message',
@@ -42,6 +47,32 @@ import {AppSectionComponent} from '../../components/section';
 export class AppPageComponentsMessage extends TiniComponent {
   private readonly PART_LIST = [['root', 'The root part']];
 
+  private readonly PREPROCESS_CODE: CodeBuilder = builder =>
+    builder.attrCasing(['font size']);
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniMessageComponent.defaultTagName],
+        [
+          /* scheme, */ ReactCommonProps.SchemeButColorsOnly,
+          ReactCommonProps.Color,
+          ReactCommonProps.FontSize,
+        ]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        common: FLEX_COLUMN_STYLES,
+      },
+    };
+  }
+
   protected render() {
     return html`
       <app-component-page
@@ -60,24 +91,17 @@ export class AppPageComponentsMessage extends TiniComponent {
               current <code>foreground</code>.
             </p>
           `,
-          html`<tini-message>Here is a default message</tini-message>`
+          html`<tini-message>Here is a default message</tini-message>`,
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName =>
-            html`<tini-message scheme=${baseName}
-              >Message with ${baseName} background</tini-message
-            >`
-        )}
-
-        <!-- contrast colors -->
-        ${renderContrastColorsSection(
-          contrastName => html`
-            <tini-message scheme=${contrastName}
-              >Message with ${contrastName} background</tini-message
-            >
-          `
+        ${renderColorsSection(
+          color =>
+            html`<tini-message scheme=${color}
+              >Message with ${color} background</tini-message
+            >`,
+          this.renderSectionOptions
         )}
 
         <!-- font colors -->
@@ -86,7 +110,8 @@ export class AppPageComponentsMessage extends TiniComponent {
           scheme =>
             html`<tini-message scheme=${scheme as any} color="primary"
               >Message with ${scheme} scheme / primary text</tini-message
-            >`
+            >`,
+          this.renderSectionOptions
         )}
 
         <!-- font sizes -->
@@ -95,17 +120,10 @@ export class AppPageComponentsMessage extends TiniComponent {
           fontSize =>
             html`<tini-message fontSize=${fontSize} scheme="primary"
               >Message with ${fontSize} font size</tini-message
-            >`
+            >`,
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;
   }
-
-  static styles = css`
-    app-section [slot='code'] {
-      display: flex;
-      flex-flow: column nowrap;
-      gap: var(--size-space);
-    }
-  `;
 }

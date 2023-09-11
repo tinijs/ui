@@ -1,4 +1,4 @@
-import {html, css} from 'lit';
+import {html} from 'lit';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -7,21 +7,30 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
+import {TiniBoxComponent} from '@tinijs/ui/components/box';
 import {TiniSwitchComponent} from '@tinijs/ui/components/switch';
 
 import {
   renderDefaultSection,
-  renderBaseColorsSection,
-  renderBaseGradientsSection,
+  renderColorsSection,
+  renderGradientsSection,
   renderScalesSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {
+  AppSectionComponent,
+  FLEX_COLUMN_STYLES,
+  FLEX_ROW_STYLES,
+} from '../../components/section';
 
 @Page({
   name: 'app-page-components-switch',
   components: [
+    TiniBoxComponent,
     TiniSwitchComponent,
     AppComponentPageComponent,
     AppSectionComponent,
@@ -44,6 +53,28 @@ export class AppPageComponentsSwitch extends TiniComponent {
     ['slider', 'The slider part'],
     ['label', 'The label'],
   ];
+
+  private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniSwitchComponent.defaultTagName],
+        [/* scheme, */ ReactCommonProps.Scale]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        default: FLEX_COLUMN_STYLES,
+        contrasts: FLEX_ROW_STYLES,
+      },
+    };
+  }
 
   protected render() {
     return html`
@@ -69,34 +100,29 @@ export class AppPageComponentsSwitch extends TiniComponent {
               checked
               label="Default switch checkbox input (checked)"
             ></tini-switch>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName =>
-            html`<tini-switch checked scheme=${baseName}></tini-switch>`
+        ${renderColorsSection(
+          color => html`<tini-switch checked scheme=${color}></tini-switch>`,
+          this.renderSectionOptions
         )}
 
         <!-- gradients -->
-        ${renderBaseGradientsSection(
-          baseName =>
-            html`<tini-switch checked scheme=${baseName}></tini-switch>`
+        ${renderGradientsSection(
+          gradient =>
+            html`<tini-switch checked scheme=${gradient}></tini-switch>`,
+          this.renderSectionOptions
         )}
 
         <!-- scales -->
         ${renderScalesSection(
-          scale => html`<tini-switch checked scale=${scale}></tini-switch>`
+          scale => html`<tini-switch checked scale=${scale}></tini-switch>`,
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;
   }
-
-  static styles = css`
-    .default [slot='code'] {
-      display: flex;
-      flex-flow: column;
-      gap: var(--size-space);
-    }
-  `;
 }

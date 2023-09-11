@@ -1,4 +1,4 @@
-import {html, css, nothing} from 'lit';
+import {html, nothing} from 'lit';
 import {Component, TiniComponent, Input, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -11,17 +11,15 @@ import {TiniBoxComponent} from '@tinijs/ui/components/box';
 import {TiniIconComponent} from '@tinijs/ui/components/icon';
 
 import {
-  renderSection,
   renderDefaultSection,
-  renderBaseColorsSection,
-  renderContrastColorsSection,
-  renderBaseGradientsSection,
-  renderContrastGradientsSection,
+  renderColorsSection,
+  renderGradientsSection,
   renderScalesSection,
   renderTransformsSection,
   renderFiltersSection,
+  RenderSectionOptions,
 } from '../helpers/varies';
-import {AppSectionComponent} from './section';
+import {AppSectionComponent, FLEX_ROW_STYLES} from './section';
 
 @Component({
   components: [TiniBoxComponent, TiniIconComponent],
@@ -41,14 +39,20 @@ export class AppIconPageContentComponent extends TiniComponent {
   @Input({type: String}) src!: string;
   @Input({type: Boolean}) noVariants = false;
   @Input({type: Object}) preprocessCode?: AppSectionComponent['preprocessCode'];
+  @Input({type: Object}) codeBuilders?: AppSectionComponent['codeBuilders'];
   @Input({type: Object})
   codeBuildContext?: AppSectionComponent['codeBuildContext'];
 
-  private renderSectionOptions?: any;
-  willUpdate() {
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
     this.renderSectionOptions = {
       preprocessCode: this.preprocessCode,
+      codeBuilders: this.codeBuilders,
       codeBuildContext: this.codeBuildContext,
+      codePostFormat: true,
+      styleRecord: {
+        contrasts: FLEX_ROW_STYLES,
+      },
     };
   }
 
@@ -71,41 +75,18 @@ export class AppIconPageContentComponent extends TiniComponent {
         ? nothing
         : html`
             <!-- colors -->
-            ${renderBaseColorsSection(
-              baseName =>
-                html`<tini-icon
-                  .src=${this.src}
-                  scheme=${baseName}
-                ></tini-icon>`,
-              this.renderSectionOptions
-            )}
-
-            <!-- contrast colors -->
-            ${renderContrastColorsSection(
-              contrastName =>
-                html`<tini-icon
-                  .src=${this.src}
-                  scheme=${contrastName}
-                ></tini-icon>`,
+            ${renderColorsSection(
+              color =>
+                html`<tini-icon .src=${this.src} scheme=${color}></tini-icon>`,
               this.renderSectionOptions
             )}
 
             <!-- gradients -->
-            ${renderBaseGradientsSection(
-              baseName =>
+            ${renderGradientsSection(
+              gradient =>
                 html`<tini-icon
                   .src=${this.src}
-                  scheme=${baseName}
-                ></tini-icon>`,
-              this.renderSectionOptions
-            )}
-
-            <!-- contrast gradients -->
-            ${renderContrastGradientsSection(
-              contrastName =>
-                html`<tini-icon
-                  .src=${this.src}
-                  scheme=${contrastName}
+                  scheme=${gradient}
                 ></tini-icon>`,
               this.renderSectionOptions
             )}
@@ -118,65 +99,72 @@ export class AppIconPageContentComponent extends TiniComponent {
       )}
 
       <!-- transforms -->
-      ${renderTransformsSection(html`
-        <tini-icon transform="rotate(-45deg)" .src=${this.src}></tini-icon>
-        <tini-icon
-          transform="scale(2.5) translate(30px, 15px)"
-          .src=${this.src}
-        ></tini-icon>
-        <tini-icon
-          transform="translate(170px, 10px) scale(3.5) skew(20deg, 10deg)"
-          .src=${this.src}
-        ></tini-icon>
-      `)}
+      ${renderTransformsSection(
+        html`
+          <tini-icon
+            display="inline-block"
+            transform="rotate(-45deg)"
+            .src=${this.src}
+          ></tini-icon>
+          <tini-icon
+            display="inline-block"
+            transform="scale(2.5) translate(30px, 15px)"
+            .src=${this.src}
+          ></tini-icon>
+          <tini-icon
+            display="inline-block"
+            transform="translate(170px, 20px) scale(3.5) skew(20deg, 10deg)"
+            .src=${this.src}
+          ></tini-icon>
+        `,
+        this.renderSectionOptions
+      )}
 
       <!-- filters -->
-      ${renderFiltersSection(html`
-        <div class="group">
-          <tini-icon scheme="primary" scale="xxl" .src=${this.src}></tini-icon>
-          <tini-icon
-            scheme="primary"
-            scale="xxl"
-            filter="opacity(50%)"
-            .src=${this.src}
-          ></tini-icon>
-        </div>
-        <div class="group">
-          <tini-icon
-            scheme="gradient-disco-club"
-            scale="xxl"
-            .src=${this.src}
-          ></tini-icon>
-          <tini-icon
-            scheme="gradient-disco-club"
-            scale="xxl"
-            filter="blur(5px)"
-            .src=${this.src}
-          ></tini-icon>
-        </div>
-        <div class="group">
-          <tini-icon
-            scheme="gradient-mello-yellow"
-            scale="xxl"
-            .src=${this.src}
-          ></tini-icon>
-          <tini-icon
-            scheme="gradient-mello-yellow"
-            scale="xxl"
-            filter="grayscale(90%)"
-            .src=${this.src}
-          ></tini-icon>
-        </div>
-      `)}
+      ${renderFiltersSection(
+        html`
+          <div class="group">
+            <tini-icon
+              scheme="primary"
+              scale="xxl"
+              .src=${this.src}
+            ></tini-icon>
+            <tini-icon
+              scheme="primary"
+              scale="xxl"
+              filter="opacity(50%)"
+              .src=${this.src}
+            ></tini-icon>
+          </div>
+          <div class="group">
+            <tini-icon
+              scheme="gradient-disco-club"
+              scale="xxl"
+              .src=${this.src}
+            ></tini-icon>
+            <tini-icon
+              scheme="gradient-disco-club"
+              scale="xxl"
+              filter="blur(5px)"
+              .src=${this.src}
+            ></tini-icon>
+          </div>
+          <div class="group">
+            <tini-icon
+              scheme="gradient-mello-yellow"
+              scale="xxl"
+              .src=${this.src}
+            ></tini-icon>
+            <tini-icon
+              scheme="gradient-mello-yellow"
+              scale="xxl"
+              filter="grayscale(90%)"
+              .src=${this.src}
+            ></tini-icon>
+          </div>
+        `,
+        this.renderSectionOptions
+      )}
     `;
   }
-
-  static styles = css`
-    .contrasts [slot='code'],
-    .common-contrasts [slot='code'] {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-  `;
 }

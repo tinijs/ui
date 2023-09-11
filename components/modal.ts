@@ -11,6 +11,7 @@ export type ModalButton = DialogButton;
 export type ModalResult<Context> = DialogResult<Context>;
 
 /* UseBases(common) */
+/* ReactEvents(yes:onYes,no:onNo) */
 export class TiniModalComponent extends TiniElement {
   static readonly defaultTagName = 'tini-modal';
 

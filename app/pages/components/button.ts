@@ -16,19 +16,25 @@ import {IconHeartFillComponent} from '@tinijs/bootstrap-icons/heart-fill';
 import {
   renderSection,
   renderDefaultSection,
-  renderBaseColorsSection,
-  renderContrastColorsSection,
-  renderBaseGradientsSection,
-  renderContrastGradientsSection,
+  renderColorsSection,
+  renderGradientsSection,
   renderScalesSection,
   renderFontColorsSection,
   renderFontSizesSection,
   renderTransformsSection,
   renderFiltersSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {
+  AppSectionComponent,
+  BLOCK_STYLES,
+  FLEX_COLUMN_STYLES,
+  WIDE_XS_STYLES,
+} from '../../components/section';
 
 @Page({
   name: 'app-page-components-button',
@@ -54,8 +60,35 @@ import {AppSectionComponent} from '../../components/section';
 export class AppPageComponentsButton extends TiniComponent {
   private readonly PART_LIST = [['root', 'The root part']];
 
-  private readonly PREPROCESS_CODE_FONT_SIZE = (code: string) =>
-    code.replace(/fontsize=/g, 'fontSize=');
+  private readonly PREPROCESS_CODE: CodeBuilder = builder =>
+    builder.attrCasing(['font size', 'justify content']);
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniButtonComponent.defaultTagName],
+        [
+          /* scheme, */ ReactCommonProps.Scale,
+          ReactCommonProps.Color,
+          ReactCommonProps.FontSize,
+          ReactCommonProps.JustifyContent,
+        ]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        common: FLEX_COLUMN_STYLES,
+        contrastBoxes: WIDE_XS_STYLES,
+        scales: BLOCK_STYLES,
+        transforms: BLOCK_STYLES,
+      },
+    };
+  }
 
   protected render() {
     return html`
@@ -75,7 +108,8 @@ export class AppPageComponentsButton extends TiniComponent {
               <code>md</code>.
             </p>
           `,
-          html`<tini-button>Default</tini-button>`
+          html`<tini-button>Default</tini-button>`,
+          this.renderSectionOptions
         )}
 
         <!-- block -->
@@ -83,62 +117,47 @@ export class AppPageComponentsButton extends TiniComponent {
           'block',
           'Block',
           null,
-          html`<tini-button block>Block button</tini-button>`
+          html`<tini-button block>Block button</tini-button>`,
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName =>
-            html`<tini-button scheme=${baseName}
-              >Button ${baseName}</tini-button
-            >`
-        )}
-
-        <!-- contrast colors -->
-        ${renderContrastColorsSection(
-          contrastName => html`
-            <tini-button scheme=${contrastName}
-              >Button ${contrastName}</tini-button
-            >
-          `
+        ${renderColorsSection(
+          color =>
+            html`<tini-button scheme=${color}>Button ${color}</tini-button>`,
+          this.renderSectionOptions
         )}
 
         <!-- disabled colors -->
-        ${renderBaseColorsSection(
-          baseName =>
-            html`<tini-button disabled scheme=${baseName}
-              >Button ${baseName} disabled</tini-button
+        ${renderColorsSection(
+          color =>
+            html`<tini-button disabled scheme=${color}
+              >Button ${color} disabled</tini-button
             >`,
           {
+            ...this.renderSectionOptions,
             className: 'disabled',
             title: 'Disabled colors',
           }
         )}
 
         <!-- gradients -->
-        ${renderBaseGradientsSection(
-          baseName =>
-            html`<tini-button scheme=${baseName}
-              >Button ${baseName}</tini-button
-            >`
-        )}
-
-        <!-- contrast gradients -->
-        ${renderContrastGradientsSection(
-          contrastName => html`
-            <tini-button scheme=${contrastName}
-              >Button ${contrastName}</tini-button
-            >
-          `
+        ${renderGradientsSection(
+          gradient =>
+            html`<tini-button scheme=${gradient}
+              >Button ${gradient}</tini-button
+            >`,
+          this.renderSectionOptions
         )}
 
         <!-- disabled gradients -->
-        ${renderBaseGradientsSection(
-          baseName =>
-            html`<tini-button disabled scheme=${baseName}
-              >Button ${baseName} disabled</tini-button
+        ${renderGradientsSection(
+          gradient =>
+            html`<tini-button disabled scheme=${gradient}
+              >Button ${gradient} disabled</tini-button
             >`,
           {
+            ...this.renderSectionOptions,
             className: 'disabled',
             title: 'Disabled gradients',
           }
@@ -150,7 +169,8 @@ export class AppPageComponentsButton extends TiniComponent {
           scheme =>
             html`<tini-button scheme=${scheme} color="primary"
               >Button with ${scheme} scheme / primary text</tini-button
-            >`
+            >`,
+          this.renderSectionOptions
         )}
 
         <!-- scales -->
@@ -158,7 +178,8 @@ export class AppPageComponentsButton extends TiniComponent {
           scale =>
             html`<tini-button scale=${scale} scheme="primary"
               >${scale}</tini-button
-            > `
+            > `,
+          this.renderSectionOptions
         )}
 
         <!-- font sizes -->
@@ -168,9 +189,7 @@ export class AppPageComponentsButton extends TiniComponent {
             html`<tini-button scheme="primary" fontSize=${fontSize}
               >Button with ${fontSize} font size</tini-button
             >`,
-          {
-            preprocessCode: this.PREPROCESS_CODE_FONT_SIZE,
-          }
+          this.renderSectionOptions
         )}
 
         <!-- icons and justifications -->
@@ -248,61 +267,56 @@ export class AppPageComponentsButton extends TiniComponent {
                 scheme="primary-contrast"
               ></icon-chevron-right>
             </tini-button>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- transforms -->
-        ${renderTransformsSection(html`
-          <tini-button style="display: inline-flex;" transform="rotate(-45deg)"
-            >Transform me</tini-button
-          >
-          <tini-button
-            style="display: inline-flex;"
-            transform="translateX(300px) scale(2) skew(45deg, 10deg)"
-            >Transform me</tini-button
-          >
-        `)}
+        ${renderTransformsSection(
+          html`
+            <tini-button display="inline-block" transform="rotate(-45deg)"
+              >Transform me</tini-button
+            >
+            <tini-button
+              display="inline-block"
+              transform="translateX(300px) scale(2) skew(45deg, 10deg)"
+              >Transform me</tini-button
+            >
+          `,
+          this.renderSectionOptions
+        )}
 
         <!-- filters -->
-        ${renderFiltersSection(html`
-          <div class="group">
-            <tini-button scheme="primary">Button</tini-button>
-            <tini-button scheme="primary" filter="opacity(50%)"
-              >Filtered button</tini-button
-            >
-          </div>
-          <div class="group">
-            <tini-button scheme="gradient-disco-club">Button</tini-button>
-            <tini-button scheme="gradient-disco-club" filter="blur(1px)"
-              >Filtered button</tini-button
-            >
-          </div>
-          <div class="group">
-            <tini-button scheme="gradient-mello-yellow">Button</tini-button>
-            <tini-button scheme="gradient-mello-yellow" filter="grayscale(90%)"
-              >Filtered button</tini-button
-            >
-          </div>
-        `)}
+        ${renderFiltersSection(
+          html`
+            <div class="group">
+              <tini-button scheme="primary">Button</tini-button>
+              <tini-button scheme="primary" filter="opacity(50%)"
+                >Filtered button</tini-button
+              >
+            </div>
+            <div class="group">
+              <tini-button scheme="gradient-disco-club">Button</tini-button>
+              <tini-button scheme="gradient-disco-club" filter="blur(1px)"
+                >Filtered button</tini-button
+              >
+            </div>
+            <div class="group">
+              <tini-button scheme="gradient-mello-yellow">Button</tini-button>
+              <tini-button
+                scheme="gradient-mello-yellow"
+                filter="grayscale(90%)"
+                >Filtered button</tini-button
+              >
+            </div>
+          `,
+          this.renderSectionOptions
+        )}
       </app-component-page>
     `;
   }
 
   static styles = css`
-    app-section [slot='code'] {
-      display: flex;
-      flex-flow: column;
-      gap: var(--size-space);
-
-      tini-box {
-        width: 350px;
-      }
-    }
-
-    .scales [slot='code'] {
-      display: block;
-    }
-
     .icons-and-justifications [slot='code'] {
       tini-button::part(root) {
         width: var(--wide-xs);

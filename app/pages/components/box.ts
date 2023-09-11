@@ -13,19 +13,23 @@ import {TiniBoxComponent} from '@tinijs/ui/components/box';
 import {
   renderSection,
   renderDefaultSection,
-  renderBaseColorsSection,
-  renderContrastColorsSection,
-  renderBaseGradientsSection,
-  renderContrastGradientsSection,
+  renderColorsSection,
+  renderGradientsSection,
   renderFontColorsSection,
   renderFontSizesSection,
   renderSpacesSection,
   renderTransformsSection,
   renderFiltersSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {
+  AppSectionComponent,
+  FLEX_COLUMN_STYLES,
+} from '../../components/section';
 
 @Page({
   name: 'app-page-components-box',
@@ -47,8 +51,33 @@ import {AppSectionComponent} from '../../components/section';
 export class AppPageComponentsBox extends TiniComponent {
   private readonly PART_LIST = [['root', 'The root part']];
 
-  private readonly PREPROCESS_CODE_RADIUS = (code: string) =>
-    code.replace(/borderradius=/g, 'borderRadius=');
+  private readonly PREPROCESS_CODE: CodeBuilder = builder =>
+    builder.attrCasing(['font size', 'border radius']);
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [
+          /* tini-box, */
+        ],
+        [
+          /* scheme, */ ReactCommonProps.FontSize,
+          ReactCommonProps.Color,
+          ReactCommonProps.BorderRadius,
+        ]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        common: FLEX_COLUMN_STYLES,
+      },
+    };
+  }
 
   protected render() {
     return html`
@@ -68,41 +97,26 @@ export class AppPageComponentsBox extends TiniComponent {
               current <code>foreground</code>.
             </p>
           `,
-          html`<tini-box>Here is a default box</tini-box>`
+          html`<tini-box>Here is a default box</tini-box>`,
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName =>
-            html`<tini-box scheme=${baseName}
-              >Box with ${baseName} background</tini-box
-            >`
-        )}
-
-        <!-- contrast colors -->
-        ${renderContrastColorsSection(
-          contrastName => html`
-            <tini-box scheme=${contrastName}
-              >Box with ${contrastName} background</tini-box
-            >
-          `
+        ${renderColorsSection(
+          color =>
+            html`<tini-box scheme=${color}
+              >Box with ${color} background</tini-box
+            >`,
+          this.renderSectionOptions
         )}
 
         <!-- gradients -->
-        ${renderBaseGradientsSection(
-          baseName =>
-            html`<tini-box scheme=${baseName}
-              >Box with ${baseName} background</tini-box
-            >`
-        )}
-
-        <!-- contrast gradients -->
-        ${renderContrastGradientsSection(
-          contrastName => html`
-            <tini-box scheme=${contrastName}
-              >Box with ${contrastName} background</tini-box
-            >
-          `
+        ${renderGradientsSection(
+          gradient =>
+            html`<tini-box scheme=${gradient}
+              >Box with ${gradient} background</tini-box
+            >`,
+          this.renderSectionOptions
         )}
 
         <!-- text colors -->
@@ -111,7 +125,8 @@ export class AppPageComponentsBox extends TiniComponent {
           scheme =>
             html`<tini-box scheme=${scheme} color="primary"
               >Box with ${scheme} scheme / primary text</tini-box
-            >`
+            >`,
+          this.renderSectionOptions
         )}
 
         <!-- font sizes -->
@@ -120,7 +135,8 @@ export class AppPageComponentsBox extends TiniComponent {
           fontSize =>
             html`<tini-box fontSize=${fontSize}
               >Box with ${fontSize.replace('_', '.')} font size</tini-box
-            >`
+            >`,
+          this.renderSectionOptions
         )}
 
         <!-- borders -->
@@ -151,17 +167,16 @@ export class AppPageComponentsBox extends TiniComponent {
                 >`
             )}
           `,
-          {
-            preprocessCode: this.PREPROCESS_CODE_RADIUS,
-          }
+          this.renderSectionOptions
         )}
 
         <!-- paddings -->
         ${renderSpacesSection(
           'padding',
           padding => html`<tini-box border="solid" padding=${padding}
-              ><div>Box with <strong>${padding}</strong> padding</div></tini-box
-            ></app-section>`
+              ><div class="content">Box with <strong>${padding}</strong> padding</div></tini-box
+            ></app-section>`,
+          this.renderSectionOptions
         )}
 
         <!-- margins -->
@@ -172,43 +187,48 @@ export class AppPageComponentsBox extends TiniComponent {
               <tini-box scheme="primary" margin=${margin}
                 >Box with <strong>${margin}</strong> margin</tini-box
               >
-            </div>`
+            </div>`,
+          this.renderSectionOptions
         )}
 
         <!-- transforms -->
-        ${renderTransformsSection(html`
-          <tini-box scheme="primary" transform="rotate(-15deg)">Transform me</tini-box>
-          <tini-box scheme="primary" transform="translateX(100px) skew(45deg, 10deg)"
-            >Transform me</tini-box
-          >
-        `)}
+        ${renderTransformsSection(
+          html`
+            <tini-box scheme="primary" transform="rotate(-15deg)"
+              >Transform me</tini-box
+            >
+            <tini-box
+              scheme="primary"
+              transform="translateX(100px) skew(45deg, 10deg)"
+              >Transform me</tini-box
+            >
+          `,
+          this.renderSectionOptions
+        )}
 
         <!-- filters -->
-        ${renderFiltersSection(html`
-          <tini-box scheme="primary" filter="opacity(50%)"
-            >Filtered box</tini-box
-          >
-          <tini-box scheme="gradient-disco-club" filter="blur(1px)"
-            >Filtered box</tini-box
-          >
-          <tini-box scheme="gradient-mello-yellow" filter="grayscale(90%)"
-            >Filtered box</tini-box
-          >
-        `)}
+        ${renderFiltersSection(
+          html`
+            <tini-box scheme="primary" filter="opacity(50%)"
+              >Filtered box</tini-box
+            >
+            <tini-box scheme="gradient-disco-club" filter="blur(1px)"
+              >Filtered box</tini-box
+            >
+            <tini-box scheme="gradient-mello-yellow" filter="grayscale(90%)"
+              >Filtered box</tini-box
+            >
+          `,
+          this.renderSectionOptions
+        )}
       </app-component-page>
     `;
   }
 
   static styles = css`
-    app-section [slot='code'] {
-      display: flex;
-      flex-flow: column nowrap;
-      gap: var(--size-space);
-
-      .margin-container {
-        border: 1px solid var(--color-medium);
-        margin-top: var(--size-space);
-      }
+    .borders [slot='code'] .margin-container {
+      border: 1px solid var(--color-medium);
+      margin-top: var(--size-space);
     }
 
     .paddings [slot='code'] tini-box > div {

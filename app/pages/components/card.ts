@@ -10,7 +10,13 @@ import {
 import {TiniButtonComponent} from '@tinijs/ui/components/button';
 import {TiniCardComponent} from '@tinijs/ui/components/card';
 
-import {renderSection, renderDefaultSection} from '../../helpers/varies';
+import {
+  renderSection,
+  renderDefaultSection,
+  RenderSectionOptions,
+} from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
@@ -43,6 +49,26 @@ export class AppPageComponentsCard extends TiniComponent {
     ['foot-populated', 'The foot part, with content'],
   ];
 
+  private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniCardComponent.defaultTagName],
+        [
+          /* scheme, */
+        ]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+    };
+  }
+
   protected render() {
     return html`
       <app-component-page
@@ -65,7 +91,8 @@ export class AppPageComponentsCard extends TiniComponent {
               </p>
               <tini-button scheme="primary">Go somewhere</tini-button>
             </tini-card>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- fluid -->
@@ -82,7 +109,8 @@ export class AppPageComponentsCard extends TiniComponent {
               </p>
               <tini-button scheme="primary">Go somewhere</tini-button>
             </tini-card>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- head and foot -->
@@ -101,7 +129,8 @@ export class AppPageComponentsCard extends TiniComponent {
               <tini-button scheme="primary">Go somewhere</tini-button>
               <span slot="foot">Card foot</span>
             </tini-card>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- image -->
@@ -122,7 +151,8 @@ export class AppPageComponentsCard extends TiniComponent {
               </p>
               <tini-button scheme="primary">Go somewhere</tini-button>
             </tini-card>
-          `
+          `,
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;

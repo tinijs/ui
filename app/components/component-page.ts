@@ -110,6 +110,9 @@ export class AppComponentPageComponent extends TiniComponent {
   private nameVariants!: ReturnType<typeof this.buildNameVariants>;
   private importTiniCode!: ReturnType<typeof this.buildImportTiniCode>;
   private importSpecificCode!: ReturnType<typeof this.buildImportSpecificCode>;
+  private importSpecificCodeReact!: ReturnType<
+    typeof this.buildImportSpecificCodeReact
+  >;
   private standaloneCode!: string;
   private articleLink!: string;
   private componentLink!: string;
@@ -133,6 +136,7 @@ export class AppComponentPageComponent extends TiniComponent {
     this.nameVariants = this.buildNameVariants();
     this.importTiniCode = this.buildImportTiniCode();
     this.importSpecificCode = this.buildImportSpecificCode();
+    this.importSpecificCodeReact = this.buildImportSpecificCodeReact();
     this.standaloneCode = this.buildStandaloneCode();
     this.articleLink = this.buildArticleLink();
     this.componentLink = this.buildComponentLink();
@@ -214,14 +218,28 @@ export class MyPage extends TiniComponent {}`;
 import '${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}.include';
 
 /*
- * Option II: import as a shared bundle (if your bundler supports it)
+ * Option II: import and register
  */
 import {useComponents} from 'tinijs';
 
 // 1. import the component
-import {${nameClass}} from '${this.PACKAGE_PREFIX}-${this.activeSoulId}/${this.name}';
+import {${nameClass}} from '${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}';
 
 useComponents([
+  ${nameClass}, // 2. register the component
+]);
+`;
+  }
+
+  private buildImportSpecificCodeReact() {
+    const {nameClass} = this.nameVariants;
+    const reactTagName = nameClass.replace('Component', '');
+    return `import {importComponents} from 'tinijs';
+
+// 1. import the constructor and the React wrapper
+import {${nameClass}, ${reactTagName}} from '${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}';
+
+importComponents([
   ${nameClass}, // 2. register the component
 ]);
 `;
@@ -291,7 +309,7 @@ useComponents([
   private renderArticle() {
     return html`
       <div class="body article">
-        <app-section noUsageTabs>
+        <app-section noCodeSample>
           <h2 slot="title">Imports</h2>
           <div slot="content" class="imports">
             <p>
@@ -324,7 +342,16 @@ useComponents([
 
               <div data-tab=${ImportMethods.Specific}>
                 <p>The specific package only supports one soul at a time.</p>
+                <p><strong>Vue, Angular, Svelte, ...</strong></p>
                 <app-code .code=${this.importSpecificCode}></app-code>
+                <p><strong>React</strong></p>
+                <p>
+                  Enums for attribute values (<code>Colors</code>,
+                  <code>Scales</code>, ...) can be imported from the
+                  <code>tinijs</code> package also. Other enums are imported
+                  from the same endpoint as the constructor.
+                </p>
+                <app-code .code=${this.importSpecificCodeReact}></app-code>
               </div>
 
               <div data-tab=${ImportMethods.Standalone}>
@@ -346,7 +373,7 @@ useComponents([
 
         <slot></slot>
 
-        <app-section noUsageTabs>
+        <app-section noCodeSample>
           <h2 slot="title">API</h2>
           <div slot="content" class="api">
             <p>
@@ -389,7 +416,7 @@ useComponents([
           </div>
         </app-section>
 
-        <app-section noUsageTabs>
+        <app-section noCodeSample>
           <h2 slot="title">Variables & parts</h2>
           <div slot="content" class="styles">
             <p>

@@ -1,4 +1,4 @@
-import {html, css} from 'lit';
+import {html} from 'lit';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -7,21 +7,30 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
+import {TiniBoxComponent} from '@tinijs/ui/components/box';
 import {TiniPaginationComponent} from '@tinijs/ui/components/pagination';
 
 import {
   renderDefaultSection,
-  renderBaseColorsSection,
-  renderBaseGradientsSection,
+  renderColorsSection,
+  renderGradientsSection,
   renderScalesSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {
+  AppSectionComponent,
+  FLEX_COLUMN_STYLES,
+  WIDE_XS_STYLES,
+} from '../../components/section';
 
 @Page({
   name: 'app-page-components-pagination',
   components: [
+    TiniBoxComponent,
     TiniPaginationComponent,
     AppComponentPageComponent,
     AppSectionComponent,
@@ -47,6 +56,29 @@ export class AppPageComponentsPagination extends TiniComponent {
     ['item-active', 'An active item button'],
   ];
 
+  private readonly PREPROCESS_CODE: CodeBuilder = builder =>
+    builder.attrCasing(['total page', 'current page']);
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniPaginationComponent.defaultTagName],
+        [/* scheme, */ ReactCommonProps.Scale]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        common: FLEX_COLUMN_STYLES,
+        contrastBoxes: WIDE_XS_STYLES,
+      },
+    };
+  }
+
   protected render() {
     return html`
       <app-component-page
@@ -65,27 +97,30 @@ export class AppPageComponentsPagination extends TiniComponent {
               <code>primary</code>, default size is <code>md</code>.
             </p>
           `,
-          html`<tini-pagination totalPage="3"></tini-pagination>`
+          html`<tini-pagination totalPage="3"></tini-pagination>`,
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName =>
+        ${renderColorsSection(
+          color =>
             html`<tini-pagination
               totalPage="3"
               currentPage="2"
-              scheme=${baseName}
-            ></tini-pagination>`
+              scheme=${color}
+            ></tini-pagination>`,
+          this.renderSectionOptions
         )}
 
         <!-- gradients -->
-        ${renderBaseGradientsSection(
-          baseName =>
+        ${renderGradientsSection(
+          gradient =>
             html`<tini-pagination
               totalPage="3"
               currentPage="2"
-              scheme=${baseName}
-            ></tini-pagination>`
+              scheme=${gradient}
+            ></tini-pagination>`,
+          this.renderSectionOptions
         )}
 
         <!-- scales -->
@@ -95,17 +130,10 @@ export class AppPageComponentsPagination extends TiniComponent {
               totalPage="3"
               currentPage="2"
               scale=${scale}
-            ></tini-pagination>`
+            ></tini-pagination>`,
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;
   }
-
-  static styles = css`
-    app-section [slot='code'] {
-      display: flex;
-      flex-flow: column;
-      gap: var(--size-space);
-    }
-  `;
 }

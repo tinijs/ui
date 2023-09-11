@@ -1,4 +1,4 @@
-import {html, css} from 'lit';
+import {html} from 'lit';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -13,16 +13,17 @@ import {TiniBadgeComponent} from '@tinijs/ui/components/badge';
 import {
   renderSection,
   renderDefaultSection,
-  renderBaseColorsSection,
-  renderContrastColorsSection,
-  renderBaseGradientsSection,
-  renderContrastGradientsSection,
+  renderColorsSection,
+  renderGradientsSection,
   renderFontColorsSection,
   renderScalesSection,
+  RenderSectionOptions,
 } from '../../helpers/varies';
+import {ConsumerPlatforms} from '../../consts/main';
+import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {AppSectionComponent, FLEX_ROW_STYLES} from '../../components/section';
 
 @Page({
   name: 'app-page-components-badge',
@@ -44,6 +45,27 @@ import {AppSectionComponent} from '../../components/section';
 })
 export class AppPageComponentsBadge extends TiniComponent {
   private readonly PART_LIST = [['root', 'The root part']];
+
+  private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
+
+  private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
+    [ConsumerPlatforms.React]: builder =>
+      builder.reactConverter(
+        [/* tini-box, */ TiniBadgeComponent.defaultTagName],
+        [/* scheme, */ ReactCommonProps.Color, ReactCommonProps.Scale]
+      ),
+  };
+
+  private renderSectionOptions?: RenderSectionOptions;
+  onChanges() {
+    this.renderSectionOptions = {
+      preprocessCode: this.PREPROCESS_CODE,
+      codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        contrasts: FLEX_ROW_STYLES,
+      },
+    };
+  }
 
   protected render() {
     return html`
@@ -67,7 +89,8 @@ export class AppPageComponentsBadge extends TiniComponent {
             ${['0', '99+', '1000'].map(
               content => html`<tini-badge>${content}</tini-badge>`
             )}
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- pill-circle -->
@@ -105,52 +128,37 @@ export class AppPageComponentsBadge extends TiniComponent {
                   >`
               )}
             </div>
-          `
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- colors -->
-        ${renderBaseColorsSection(
-          baseName => html`<tini-badge scheme=${baseName}>99+</tini-badge>`
-        )}
-
-        <!-- contrasts -->
-        ${renderContrastColorsSection(
-          contrastName =>
-            html`<tini-badge scheme=${contrastName}>99+</tini-badge>`
+        ${renderColorsSection(
+          color => html`<tini-badge scheme=${color}>99+</tini-badge>`,
+          this.renderSectionOptions
         )}
 
         <!-- gradients -->
-        ${renderBaseGradientsSection(
-          baseName => html`<tini-badge scheme=${baseName}>99+</tini-badge>`
-        )}
-
-        <!-- contrast gradients -->
-        ${renderContrastGradientsSection(
-          contrastName =>
-            html`<tini-badge scheme=${contrastName}>99+</tini-badge>`
+        ${renderGradientsSection(
+          gradient => html`<tini-badge scheme=${gradient}>99+</tini-badge>`,
+          this.renderSectionOptions
         )}
 
         <!-- text colors -->
         ${renderFontColorsSection(
           ['medium', 'warning', 'gradient-danger'] as any,
           scheme =>
-            html`<tini-badge scheme=${scheme} color="primary">99+</tini-badge>`
+            html`<tini-badge scheme=${scheme} color="primary">99+</tini-badge>`,
+          this.renderSectionOptions
         )}
 
         <!-- scales -->
         ${renderScalesSection(
           scale =>
-            html`<tini-badge scale=${scale} scheme="primary">1000</tini-badge>`
+            html`<tini-badge scale=${scale} scheme="primary">1000</tini-badge>`,
+          this.renderSectionOptions
         )}
       </app-component-page>
     `;
   }
-
-  static styles = css`
-    .contrasts [slot='code'] {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-  `;
 }

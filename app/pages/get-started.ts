@@ -46,7 +46,7 @@ export class AppPageGetStarted extends TiniComponent {
         themes both at the build time and the run time.
       </p>
 
-      <app-section noUsageTabs>
+      <app-section noCodeSample>
         <h2 slot="title">Install and Usage</h2>
         <div slot="content">
           <h3>1. Use the official CLI</h3>
@@ -120,7 +120,7 @@ npm i @tinijs/ui-bootstrap"
         </div>
       </app-section>
 
-      <app-section noUsageTabs>
+      <app-section noCodeSample>
         <h2 slot="title">Packages</h2>
         <div slot="content">
           <h3>Bootstrap</h3>
