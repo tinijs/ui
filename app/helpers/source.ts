@@ -24,7 +24,7 @@ export async function extractCSSVariables(
   const code = await getText<string>(src);
   const processedCode = !scope
     ? ['', code]
-    : code.match(new RegExp(`${scope[0]}\([\\\s\\\S]*?\)${scope[1]}`));
+    : code.match(new RegExp(`${scope[0]}([\\s\\S]*?)${scope[1]}`));
   if (!processedCode) return new Map();
   const variableMatchingArr = processedCode[1]
     .replace(/(?:\r\n|\r|\n)/g, '\n')
@@ -92,7 +92,7 @@ export async function extractComponentProperties(src: string) {
     const isOptional = !!~rawName.indexOf('?');
     const name = (!isOptional ? rawName : rawName.replace(/\?/g, '')).trim();
     const defaultAssignMatching = code.match(
-      new RegExp(`this.${name} = \([\\\s\\\S]*?\);`)
+      new RegExp(`this.${name} = ([\\s\\S]*?);`)
     );
     const defaultValue = !defaultAssignMatching
       ? 'undefined'

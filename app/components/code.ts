@@ -20,6 +20,7 @@ export class AppCodeComponent extends TiniComponent {
 
   onRenders() {
     this.codeRef.value!.textContent = this.code!;
+    this.codeRef.value!.dataset.highlighted = '';
     hljs.highlightElement(this.codeRef.value!);
   }
 

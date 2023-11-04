@@ -40,7 +40,7 @@ export class AppPageComponentsIcon extends TiniComponent {
 
   private readonly PREPROCESS_CODE: CodeBuilder = builder =>
     builder.customModifier(code =>
-      code.replace(/src=\"([\s\S]*?)\"/g, 'src="URI/URL"')
+      code.replace(/src="([\s\S]*?)"/g, 'src="URI/URL"')
     );
 
   private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {

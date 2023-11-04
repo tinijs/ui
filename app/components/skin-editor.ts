@@ -340,7 +340,7 @@ export class AppSkinEditorComponent extends TiniComponent {
                                               .selected=${item.valueDirect ===
                                               font}
                                             >
-                                              ${font.replace(/\'|\"/g, '')}
+                                              ${font.replace(/'|"/g, '')}
                                             </option>
                                           `
                                         )}
@@ -355,7 +355,7 @@ export class AppSkinEditorComponent extends TiniComponent {
                                               .selected=${item.valueDirect ===
                                               font}
                                             >
-                                              ${font.replace(/\'|\"/g, '')}
+                                              ${font.replace(/'|"/g, '')}
                                             </option>
                                           `
                                         )}

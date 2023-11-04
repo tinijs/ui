@@ -271,7 +271,7 @@ export class AppSectionComponent extends TiniComponent {
         .replace(/<!--.*?-->/g, '')
         .replace(/( style )|( class )/g, ' ')
         .replace(/( style>)|( class>)/g, '>')
-        .replace(/style=\"([\s\S]*?)\"/g, '')
+        .replace(/style="([\s\S]*?)"/g, '')
     );
     this.originalCode = !this.preprocessCode
       ? code

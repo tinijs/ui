@@ -237,7 +237,7 @@ useComponents([
     return `import {importComponents} from 'tinijs';
 
 // 1. import the constructor and the React wrapper
-import {${nameClass}, ${reactTagName}} from '${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}';
+import {${nameClass}, ${reactTagName}} from '${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}.react';
 
 importComponents([
   ${nameClass}, // 2. register the component

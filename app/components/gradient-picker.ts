@@ -79,7 +79,9 @@ export class AppGradientPickerComponent extends TiniComponent {
       colors.forEach(({color, position}) => {
         this.grapickInstance.addHandler(position, color);
       });
-    } catch (err) {}
+    } catch (err: any) {
+      alert(err.message || 'Load gradient failed');
+    }
     this.grapickInstance.on('change', () =>
       this.valueChanged(this.grapickInstance.getSafeValue())
     );

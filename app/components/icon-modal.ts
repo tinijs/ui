@@ -56,7 +56,7 @@ export class AppIconModalComponent extends TiniComponent {
       (!context
         ? code
         : code.replace(/tini-icon/g, (context as any).nameTag)
-      ).replace(/src=\"([\s\S]*?)\"/g, '')
+      ).replace(/src="([\s\S]*?)"/g, '')
     );
 
   private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
@@ -132,7 +132,7 @@ useComponents([
     const othersCodeReact = `import {importComponents} from 'tinijs';
 
 // 1. import the constructor and the React wrapper
-import {${nameClass}, ${reactTagName}} from '${packName}/${iconName}';
+import {${nameClass}, ${reactTagName}} from '${packName}/${iconName}.react';
 
 importComponents([
   ${nameClass}, // 2. register the component
@@ -148,8 +148,8 @@ import {dataURI as ${nameVar}URI} from '${packName}/${iconName}.source';
 
 // 2. use it as background image or image src
 html\`
-  <i style="background-image: url(\$\{${nameVar}URI\})"></i>
-  <img src=\$\{${nameVar}URI\} />
+  <i style="background-image: url($\{${nameVar}URI})"></i>
+  <img src=$\{${nameVar}URI} />
 \`;
 `;
 
@@ -160,7 +160,7 @@ import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
 import {code as ${nameVar}Code} from '${packName}/${iconName}.source';
 
 // 2a. render
-html\`<div class="container">\$\{unsafeSVG(${nameVar}Code)\}</div>\`;
+html\`<div class="container">$\{unsafeSVG(${nameVar}Code)}</div>\`;
 
 // 2b. or inject
 containerEl.innerHTML = ${nameVar}Code;

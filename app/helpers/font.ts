@@ -13,10 +13,7 @@ export function buildGoogleFontUrl(
 ) {
   const content = fonts
     .map(({font, weights = ['400', '700']}) => {
-      const family = font
-        .split(',')[0]
-        .replace(/\'|\"/g, '')
-        .replace(/ /g, '+');
+      const family = font.split(',')[0].replace(/'|"/g, '').replace(/ /g, '+');
       return `family=${family}:wght@${weights.join(';')}`;
     })
     .join('&');

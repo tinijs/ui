@@ -122,11 +122,11 @@ export class CodeBuilderHelper {
     // tag names
     [TiniBoxComponent.defaultTagName, ...tagNames].forEach(tagName => {
       const openingTagRegex = new RegExp(`<${tagName}`, 'g');
-      const closingTagRegex = new RegExp(`<\/${tagName}`, 'g');
+      const closingTagRegex = new RegExp(`</${tagName}`, 'g');
       const reactTagName = tagName.split('-').map(this.capitalize).join('');
       this.result = this.result
         .replace(openingTagRegex, `<${reactTagName}`)
-        .replace(closingTagRegex, `<\/${reactTagName}`);
+        .replace(closingTagRegex, `</${reactTagName}`);
     });
     // props
     [ReactCommonProps.Scheme, ...props].forEach(prop => {
@@ -135,7 +135,7 @@ export class CodeBuilderHelper {
         enumName: prioritizedEnumName,
         builder,
       } = typeof prop === 'string' ? REACT_COMMON_PROPS[prop] : prop;
-      const regexpContent = `${name}=\"\([\\\s\\\S]*?\)\"`;
+      const regexpContent = `${name}="([\\s\\S]*?)"`;
       const matchingArr = this.result.match(new RegExp(regexpContent, 'g'));
       if (!matchingArr || (!prioritizedEnumName && !builder)) return;
       matchingArr.forEach(matching => {
