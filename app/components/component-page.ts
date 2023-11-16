@@ -212,15 +212,7 @@ export class MyPage extends TiniComponent {}`;
 
   private buildImportSpecificCode() {
     const {nameClass} = this.nameVariants;
-    return `/*
- * Option I: include in your component
- */
-import '${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}.include';
-
-/*
- * Option II: import and register
- */
-import {useComponents} from 'tinijs';
+    return `import {useComponents} from 'tinijs';
 
 // 1. import the component
 import {${nameClass}} from '${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}';
@@ -387,7 +379,7 @@ importComponents([
             <p>
               <strong>Please note</strong>: Events are not show up in the list,
               in the mean time, please see <strong>Component Source</strong> for
-              detail. <strong style="color: red;"><- TODO: show events</strong>
+              detail.
             </p>
             <table>
               <thead>

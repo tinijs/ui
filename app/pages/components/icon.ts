@@ -8,7 +8,6 @@ import {
   codeBases,
 } from '@tinijs/ui/bases';
 import {TiniIconComponent} from '@tinijs/ui/components/icon';
-import {dataURI as iconSRC} from '@tinijs/bootstrap-icons/heart-fill.source';
 
 import {ConsumerPlatforms} from '../../consts/main';
 import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
@@ -16,6 +15,9 @@ import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 import {AppIconPageContentComponent} from '../../components/icon-page-content';
+
+const iconSRC =
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9ImN1cnJlbnRDb2xvciIgY2xhc3M9ImJpIGJpLWhlYXJ0LWZpbGwiIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNOCAxLjMxNEMxMi40MzgtMy4yNDggMjMuNTM0IDQuNzM1IDggMTUtNy41MzQgNC43MzYgMy41NjItMy4yNDggOCAxLjMxNHoiLz48L3N2Zz4=';
 
 @Page({
   name: 'app-page-components-icon',

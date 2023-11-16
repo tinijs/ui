@@ -178,7 +178,6 @@ class AppSectionCodeComponent extends TiniComponent {
                   Vue, React, Angular & Svelte. Events and non-primitive props
                   are not reflected in the sample as well, in the mean time,
                   please see <strong>Component Source</strong> for detail.
-                  <strong style="color: red;"><- TODO: fix code samples</strong>
                 </p>
               </div>
             `;

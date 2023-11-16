@@ -179,14 +179,14 @@ export function renderColorsSection(
       ),
     },
     {
-      name: 'Commons',
+      name: 'Common Colors',
       code: codeWithWrapper(
         styleColors,
         html`${BASE_COMMON_COLORS.map(color => handler(color))}`
       ),
     },
     {
-      name: 'Shades',
+      name: 'Com. Shades',
       code: codeWithWrapper(
         styleColors,
         html`
@@ -197,7 +197,7 @@ export function renderColorsSection(
       ),
     },
     {
-      name: 'Tints',
+      name: 'Com. Tints',
       code: codeWithWrapper(
         styleColors,
         html`
@@ -208,7 +208,7 @@ export function renderColorsSection(
       ),
     },
     {
-      name: 'Contrasts',
+      name: 'Com. Contrasts',
       code: codeWithWrapper(
         styleColorContrasts,
         html`
@@ -255,7 +255,7 @@ export function renderGradientsSection(
     options.styleRecord?.['gradientContrastBoxes'] || styleContrastBoxes;
   const codeGroups: Array<null | SectionCodeGroup> = [
     {
-      name: 'Colors',
+      name: 'Gradients',
       code: codeWithWrapper(
         styleGradients,
         html`${BASE_GRADIENTS.map(gradient => handler(gradient))}`
@@ -301,14 +301,14 @@ export function renderGradientsSection(
       ),
     },
     {
-      name: 'Commons',
+      name: 'Common Gradients',
       code: codeWithWrapper(
         styleGradients,
         html`${BASE_COMMON_GRADIENTS.map(gradient => handler(gradient))}`
       ),
     },
     {
-      name: 'Shades',
+      name: 'Com. Shades',
       code: codeWithWrapper(
         styleGradients,
         html`
@@ -319,7 +319,7 @@ export function renderGradientsSection(
       ),
     },
     {
-      name: 'Tints',
+      name: 'Com. Tints',
       code: codeWithWrapper(
         styleGradients,
         html`
@@ -330,7 +330,7 @@ export function renderGradientsSection(
       ),
     },
     {
-      name: 'Contrasts',
+      name: 'Com. Contrasts',
       code: codeWithWrapper(
         styleGradientContrasts,
         html`

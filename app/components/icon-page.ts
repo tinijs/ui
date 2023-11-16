@@ -78,7 +78,7 @@ export class AppIconPageComponent extends TiniComponent {
   async onCreate() {
     this.data = await get(
       this.customIndexUrl ||
-        `https://unpkg.com/${this.packageName}@latest/index.json`
+        `https://cdn.jsdelivr.net/npm/${this.packageName}/index.json`
     );
     this.totalPages = Math.ceil(this.data.items.length / this.SIZE);
   }

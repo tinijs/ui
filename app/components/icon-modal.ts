@@ -45,10 +45,7 @@ export class AppIconModalComponent extends TiniComponent {
   private readonly ICONS_IMPORT_TAB_ITEMS: TabItem[] = [
     {name: IconsImportMethods.Tini},
     {name: IconsImportMethods.Others},
-    {name: IconsImportMethods.Standalone},
-    {name: IconsImportMethods.DataURI},
-    {name: IconsImportMethods.SVG},
-    {name: IconsImportMethods.URL},
+    {name: IconsImportMethods.Source},
   ];
 
   private readonly PREPROCESS_CODE: CodeBuilder = builder =>
@@ -84,11 +81,10 @@ export class AppIconModalComponent extends TiniComponent {
       .split('-')
       .map(item => item.charAt(0).toUpperCase() + item.slice(1))
       .join('');
-    const nameVar = `icon${nameCapitalized}`;
     const nameTag = `icon-${iconName}`;
     const nameClass = `Icon${nameCapitalized}Component`;
     const packName = this.packageName || '@tinijs/ui-icons';
-    const packageVersion = this.packageVersion || 'latest';
+    const reactTagName = nameClass.replace('Component', '');
     const mimeType = {
       svg: 'image/svg+xml',
       webp: 'image/webp',
@@ -110,15 +106,7 @@ import {${nameClass}} from '${packName}/${iconName}';
 });
 export class MyComponent extends TiniComponent {}`;
 
-    const othersCode = `/*
- * Option I: include in your component
- */
-import '${packName}/${iconName}.include';
-
-/*
- * Option II: import and register
- */
-import {useComponents} from 'tinijs';
+    const othersCode = `import {useComponents} from 'tinijs';
 
 // 1. import the component
 import {${nameClass}} from '${packName}/${iconName}';
@@ -127,8 +115,6 @@ useComponents([
   ${nameClass}, // 2. register the component
 ]);
 `;
-
-    const reactTagName = nameClass.replace('Component', '');
     const othersCodeReact = `import {importComponents} from 'tinijs';
 
 // 1. import the constructor and the React wrapper
@@ -139,46 +125,16 @@ importComponents([
 ]);
 `;
 
-    const standaloneCode = `<script src="https://unpkg.com/${packName}@${packageVersion}/${iconName}.bundle.js"></script>`;
-
-    const dataURICode = `import {html} from 'lit';
-
-// 1. import the data URI
-import {dataURI as ${nameVar}URI} from '${packName}/${iconName}.source';
-
-// 2. use it as background image or image src
-html\`
-  <i style="background-image: url($\{${nameVar}URI})"></i>
-  <img src=$\{${nameVar}URI} />
-\`;
-`;
-
-    const svgCode = `import {html} from 'lit';
-import {unsafeSVG} from 'lit/directives/unsafe-svg.js';
-
-// 1. import the code
-import {code as ${nameVar}Code} from '${packName}/${iconName}.source';
-
-// 2a. render
-html\`<div class="container">$\{unsafeSVG(${nameVar}Code)}</div>\`;
-
-// 2b. or inject
-containerEl.innerHTML = ${nameVar}Code;
-`;
-    const svgPreviewCode = window.atob(base64Content);
-
-    const urlCode = `<img ${'src'}="https://unpkg.com/${packName}@${packageVersion}/${iconName}.svg" />`;
+    const dataURICode = iconSRC;
+    const svgCode = ext !== 'svg' ? null : window.atob(base64Content);
 
     return {
       iconSRC,
       tiniJSCode,
       othersCode,
       othersCodeReact,
-      standaloneCode,
       dataURICode,
       svgCode,
-      svgPreviewCode,
-      urlCode,
       names: {
         nameTag,
       },
@@ -206,11 +162,8 @@ containerEl.innerHTML = ${nameVar}Code;
       tiniJSCode,
       othersCode,
       othersCodeReact,
-      standaloneCode,
       dataURICode,
       svgCode,
-      svgPreviewCode,
-      urlCode,
       names,
     } = this.contentValues;
     return html`
@@ -257,46 +210,16 @@ containerEl.innerHTML = ${nameVar}Code;
                         <app-code .code=${othersCodeReact}></app-code>
                       </div>
 
-                      <div data-tab=${IconsImportMethods.Standalone}>
-                        <p>
-                          Include the standalone version in any HTML page from a
-                          public CDN:
-                        </p>
-                        <app-code .code=${standaloneCode}></app-code>
-                        <p>
-                          <strong>Note that</strong>: this method is
-                          <em>not recommended</em> because the standalone
-                          component is usually bigger in size compares to the
-                          TS/ESM version.
-                        </p>
-                      </div>
-
-                      <div data-tab=${IconsImportMethods.DataURI}>
-                        <p>Use the data URI</p>
+                      <div data-tab=${IconsImportMethods.Source}>
+                        <p>Base64 data URI</p>
                         <app-code .code=${dataURICode}></app-code>
-                      </div>
 
-                      <div data-tab=${IconsImportMethods.SVG}>
-                        <p>Use the code (SVG icons only).</p>
-                        <p>
-                          SVG codes built using the
-                          <a
-                            href="https://github.com/tinijs/cli"
-                            target="_blank"
-                            >official CLI</a
-                          >
-                          are <strong>sanitized</strong> and
-                          <strong>optimized</strong>, please always review the
-                          code before inject into your HTML.
-                        </p>
-                        <app-code .code=${svgCode}></app-code>
-                        <p>For security review and direct copy.</p>
-                        <app-code .code=${svgPreviewCode}></app-code>
-                      </div>
-
-                      <div data-tab=${IconsImportMethods.URL}>
-                        <p>Use the direct link.</p>
-                        <app-code .code=${urlCode}></app-code>
+                        ${!svgCode
+                          ? nothing
+                          : html`
+                              <p>SVG code</p>
+                              <app-code .code=${svgCode}></app-code>
+                            `}
                       </div>
                     </app-tabs>
                   </div>

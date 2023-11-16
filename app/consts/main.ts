@@ -18,8 +18,5 @@ export enum ImportMethods {
 export enum IconsImportMethods {
   Tini = 'Tini Framework',
   Others = 'Other Frameworks',
-  Standalone = ImportMethods.Standalone,
-  DataURI = 'Base64 URI',
-  SVG = 'SVG Code',
-  URL = 'Direct URL',
+  Source = 'Base64 URI / SVG Code',
 }
