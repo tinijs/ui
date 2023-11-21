@@ -21,6 +21,7 @@ export type LinkTargets = '_blank' | '_self' | '_parent' | '_top';
 /* UseBases(common) */
 export class TiniLinkComponent extends TiniElement {
   static readonly defaultTagName = 'tini-link';
+  readonly componentName = 'link';
 
   private readonly ROUTER_CHANGE_EVENT = 'tini:router:change';
   private anchorRef: Ref<HTMLAnchorElement> = createRef();
@@ -43,14 +44,17 @@ export class TiniLinkComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      italic: !!this.italic,
-      underline: !!this.underline,
-      [`${VaryGroups.Color}-${this.color}`]: !!this.color,
-      [`${VaryGroups.FontType}-${this.fontType}`]: !!this.fontType,
-      [`${VaryGroups.FontSize}-${this.fontSize}`]: !!this.fontSize,
-      [`${VaryGroups.FontWeight}-${this.fontWeight}`]: !!this.fontWeight,
-      [`${VaryGroups.TextTransform}-${this.textTransform}`]:
-        !!this.textTransform,
+      info: {
+        italic: !!this.italic,
+        underline: !!this.underline,
+      },
+      overridable: {
+        [VaryGroups.Color]: this.color,
+        [VaryGroups.FontType]: this.fontType,
+        [VaryGroups.FontSize]: this.fontSize,
+        [VaryGroups.FontWeight]: this.fontWeight,
+        [VaryGroups.TextTransform]: this.textTransform,
+      },
     });
   }
 

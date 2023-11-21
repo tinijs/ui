@@ -21,6 +21,7 @@ export interface BreadcrumbItem {
 /* UseComponents(link) */
 export class TiniBreadcrumbComponent extends TiniElement {
   static readonly defaultTagName = 'tini-breadcrumb';
+  readonly componentName = 'breadcrumb';
 
   /* eslint-disable prettier/prettier */
   @property({type: String}) declare items?: BreadcrumbItem[];
@@ -31,7 +32,9 @@ export class TiniBreadcrumbComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      [`link-${VaryGroups.Color}-${this.linkColor}`]: !!this.linkColor,
+      overridable: {
+        [`link-${VaryGroups.Color}`]: this.linkColor,
+      },
     });
   }
 

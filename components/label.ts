@@ -7,6 +7,10 @@ import {TiniElement, partMap, VaryGroups, Colors, Scales} from 'tinijs';
 /* UseBases(common) */
 export class TiniLabelComponent extends TiniElement {
   static readonly defaultTagName = 'tini-label';
+  readonly componentName = 'label';
+  readonly componentMetas = {
+    colorOnlyScheme: true,
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare pill?: boolean;
@@ -19,10 +23,14 @@ export class TiniLabelComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      pill: !!this.pill,
-      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
-      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
-      [`${VaryGroups.Color}-${this.color}`]: !!this.color,
+      info: {
+        pill: !!this.pill,
+      },
+      overridable: {
+        [VaryGroups.Scheme]: this.scheme,
+        [VaryGroups.Scale]: this.scale,
+        [VaryGroups.Color]: this.color,
+      },
     });
   }
 

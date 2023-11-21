@@ -121,13 +121,19 @@ export const buttonStyle = css`
 
   ${generateColorVaries(
     ({name, fullName, color, contrast}) => `
-    .${fullName} {
+    .${fullName}-hover {
+      transition: none;
+    }
+
+    .${fullName},
+    .${fullName}-hover:hover {
       --button-background: ${color};
       --button-color: ${contrast};
       --button-focus-visible-shadow-color: ${color};
     }
 
-    .${VaryGroups.Color}-${name} {
+    .${VaryGroups.Color}-${name},
+    .${VaryGroups.Color}-${name}-hover:hover {
       --button-color: ${color} !important;
     }
   `
@@ -135,7 +141,12 @@ export const buttonStyle = css`
 
   ${generateGradientVaries(
     ({fullName, gradient, color, contrast}) => `
-    .${fullName} {
+    .${fullName}-hover {
+      transition: none;
+    }
+
+    .${fullName},
+    .${fullName}-hover:hover {
       --button-background: ${gradient};
       --button-color: ${contrast};
       --button-focus-visible-shadow-color: ${color};

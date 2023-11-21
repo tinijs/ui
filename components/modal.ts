@@ -14,6 +14,7 @@ export type ModalResult<Context> = DialogResult<Context>;
 /* ReactEvents(yes:onYes,no:onNo) */
 export class TiniModalComponent extends TiniElement {
   static readonly defaultTagName = 'tini-modal';
+  readonly componentName = 'modal';
 
   private readonly BACKDROP_CLOSED = 'backdrop-closed';
 
@@ -31,7 +32,9 @@ export class TiniModalComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      [this.BACKDROP_CLOSED]: !!this.backdropClosed,
+      info: {
+        [this.BACKDROP_CLOSED]: !!this.backdropClosed,
+      },
     });
   }
 

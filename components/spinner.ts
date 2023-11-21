@@ -7,6 +7,10 @@ import {TiniElement, partMap, VaryGroups, Colors, Scales} from 'tinijs';
 /* UseBases(common) */
 export class TiniSpinnerComponent extends TiniElement {
   static readonly defaultTagName = 'tini-spinner';
+  readonly componentName = 'spinner';
+  readonly componentMetas = {
+    colorOnlyScheme: true,
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare scheme?: Colors;
@@ -17,8 +21,10 @@ export class TiniSpinnerComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
-      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
+      overridable: {
+        [VaryGroups.Scheme]: this.scheme,
+        [VaryGroups.Scale]: this.scale,
+      },
     });
   }
 

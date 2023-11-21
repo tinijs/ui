@@ -271,6 +271,40 @@ export class AppPageComponentsButton extends TiniComponent {
           this.renderSectionOptions
         )}
 
+        <!-- pseudo -->
+        ${renderSection(
+          'pseudos',
+          'Pseudos',
+          html`<p>Change hover behavior.</p>`,
+          html`
+            <tini-button scheme="primary" .hoverMap=${{scheme: 'primary-shade'}}
+              >primary / primary-shade</tini-button
+            >
+            <tini-button scheme="secondary" .hoverMap=${{scheme: 'warning'}}
+              >secondary / warning</tini-button
+            >
+            <tini-button
+              scheme="tertiary"
+              .hoverMap=${{scheme: 'gradient-tertiary'}}
+              >tertiary / gradient-tertiary</tini-button
+            >
+            <tini-button
+              scheme="gradient-success"
+              .hoverMap=${{scheme: 'success'}}
+              >gradient-success / success</tini-button
+            >
+            <tini-button
+              scheme="gradient-warning"
+              .hoverMap=${{scheme: 'gradient-danger'}}
+              >gradient-warning / gradient-danger</tini-button
+            >
+            <tini-button scheme="danger" .hoverMap=${{color: 'dark'}}
+              >danger / dark (color)</tini-button
+            >
+          `,
+          this.renderSectionOptions
+        )}
+
         <!-- transforms -->
         ${renderTransformsSection(
           html`
@@ -309,6 +343,30 @@ export class AppPageComponentsButton extends TiniComponent {
                 >Filtered button</tini-button
               >
             </div>
+          `,
+          this.renderSectionOptions
+        )}
+
+        <!-- pseudo -->
+        ${renderSection(
+          'overrides',
+          'Overrides',
+          html`<p>
+            Refer different values for different themes (switch to
+            <strong>Bootstrap Dark</strong> to see the differences).
+          </p>`,
+          html`
+            <tini-button
+              scheme="primary"
+              fontSize="1x"
+              .refers=${{
+                'bootstrap/dark': {
+                  scheme: 'secondary',
+                  fontSize: '1_5x',
+                },
+              }}
+              >primary + 1x font / secondary + 1_5x font</tini-button
+            >
           `,
           this.renderSectionOptions
         )}

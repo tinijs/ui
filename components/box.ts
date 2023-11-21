@@ -17,6 +17,7 @@ import {
 /* UseBases(common) */
 export class TiniBoxComponent extends TiniElement {
   static readonly defaultTagName = 'tini-box';
+  readonly componentName = 'box';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare scheme?: Colors | Gradients;
@@ -34,12 +35,16 @@ export class TiniBoxComponent extends TiniElement {
     this.updateHostClasses();
     // root classes parts
     this.extendRootClassesParts({
-      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
-      [`${VaryGroups.FontSize}-${this.fontSize}`]: !!this.fontSize,
-      [`${VaryGroups.Color}-${this.color}`]: !!this.color,
-      [`${VaryGroups.BorderRadius}-${this.borderRadius}`]: !!this.borderRadius,
-      ...borderToClassInfo(this.border),
-      ...factorsToClassInfo(VaryGroups.Padding, this.padding),
+      info: {
+        ...borderToClassInfo(this.border),
+        ...factorsToClassInfo(VaryGroups.Padding, this.padding),
+      },
+      overridable: {
+        [VaryGroups.Scheme]: this.scheme,
+        [VaryGroups.FontSize]: this.fontSize,
+        [VaryGroups.Color]: this.color,
+        [VaryGroups.BorderRadius]: this.borderRadius,
+      },
     });
   }
 

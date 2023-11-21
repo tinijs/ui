@@ -14,6 +14,7 @@ import {
 /* UseBases(common) */
 export class TiniIconComponent extends TiniElement {
   static readonly defaultTagName = 'tini-icon';
+  readonly componentName = 'icon';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare src?: string;
@@ -25,9 +26,13 @@ export class TiniIconComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      scheme: !!this.scheme,
-      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
-      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
+      info: {
+        scheme: !!this.scheme,
+      },
+      overridable: {
+        [VaryGroups.Scale]: this.scale,
+        [VaryGroups.Scheme]: this.scheme,
+      },
     });
     // root styles
     this.extendRootStyles({

@@ -16,6 +16,7 @@ import {
 /* UseBases(common) */
 export class TiniButtonComponent extends TiniElement {
   static readonly defaultTagName = 'tini-button';
+  readonly componentName = 'button';
 
   /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare block?: boolean;
@@ -31,14 +32,21 @@ export class TiniButtonComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      block: !!this.block,
-      disabled: !!this.disabled,
-      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
-      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
-      [`${VaryGroups.Color}-${this.color}`]: !!this.color,
-      [`${VaryGroups.FontSize}-${this.fontSize}`]: !!this.fontSize,
-      [`${VaryGroups.JustifyContent}-${this.justifyContent}`]:
-        !!this.justifyContent,
+      info: {
+        block: !!this.block,
+        disabled: !!this.disabled,
+      },
+      hover: {
+        [VaryGroups.Scheme]: this.hoverMap?.scheme,
+        [VaryGroups.Color]: this.hoverMap?.color,
+      },
+      overridable: {
+        [VaryGroups.Scheme]: this.scheme,
+        [VaryGroups.Scale]: this.scale,
+        [VaryGroups.Color]: this.color,
+        [VaryGroups.FontSize]: this.fontSize,
+        [VaryGroups.JustifyContent]: this.justifyContent,
+      },
     });
   }
 

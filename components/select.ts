@@ -27,6 +27,10 @@ export type SelectEventDetail = InputEventDetail;
 /* UseBases(common) */
 export class TiniSelectComponent extends TiniElement {
   static readonly defaultTagName = 'tini-select';
+  readonly componentName = 'select';
+  readonly componentMetas = {
+    colorOnlyScheme: true,
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: String}) declare items?: SelectItem[];
@@ -42,10 +46,14 @@ export class TiniSelectComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      wrap: !!this.wrap,
-      disabled: !!this.disabled,
-      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
-      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
+      info: {
+        wrap: !!this.wrap,
+        disabled: !!this.disabled,
+      },
+      overridable: {
+        [VaryGroups.Scheme]: this.scheme,
+        [VaryGroups.Scale]: this.scale,
+      },
     });
   }
 

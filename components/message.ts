@@ -7,6 +7,10 @@ import {TiniElement, partMap, VaryGroups, Colors, Factors} from 'tinijs';
 /* UseBases(common) */
 export class TiniMessageComponent extends TiniElement {
   static readonly defaultTagName = 'tini-message';
+  readonly componentName = 'message';
+  readonly componentMetas = {
+    colorOnlyScheme: true,
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare scheme?: Colors;
@@ -18,9 +22,11 @@ export class TiniMessageComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
-      [`${VaryGroups.Color}-${this.color}`]: !!this.color,
-      [`${VaryGroups.FontSize}-${this.fontSize}`]: !!this.fontSize,
+      overridable: {
+        [VaryGroups.Scheme]: this.scheme,
+        [VaryGroups.Color]: this.color,
+        [VaryGroups.FontSize]: this.fontSize,
+      },
     });
   }
 

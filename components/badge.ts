@@ -14,6 +14,7 @@ import {
 /* UseBases(common) */
 export class TiniBadgeComponent extends TiniElement {
   static readonly defaultTagName = 'tini-badge';
+  readonly componentName = 'badge';
 
   /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare pill?: boolean;
@@ -27,11 +28,15 @@ export class TiniBadgeComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      pill: !!this.pill,
-      circle: !!this.circle,
-      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
-      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
-      [`${VaryGroups.Color}-${this.color}`]: !!this.color,
+      info: {
+        pill: !!this.pill,
+        circle: !!this.circle,
+      },
+      overridable: {
+        [VaryGroups.Scheme]: this.scheme,
+        [VaryGroups.Scale]: this.scale,
+        [VaryGroups.Color]: this.color,
+      },
     });
   }
 

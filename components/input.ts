@@ -24,6 +24,10 @@ export interface InputEventDetail {
 /* UseBases(common) */
 export class TiniInputComponent extends TiniElement {
   static readonly defaultTagName = 'tini-input';
+  readonly componentName = 'input';
+  readonly componentMetas = {
+    colorOnlyScheme: true,
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;
@@ -42,11 +46,15 @@ export class TiniInputComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      wrap: !!this.wrap,
-      disabled: !!this.disabled,
-      readonly: !!this.readonly,
-      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
-      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
+      info: {
+        wrap: !!this.wrap,
+        disabled: !!this.disabled,
+        readonly: !!this.readonly,
+      },
+      overridable: {
+        [VaryGroups.Scheme]: this.scheme,
+        [VaryGroups.Scale]: this.scale,
+      },
     });
   }
 

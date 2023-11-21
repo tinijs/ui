@@ -7,6 +7,7 @@ import {TiniElement, partMap, PartInfo} from 'tinijs';
 /* UseBases(common) */
 export class TiniCardComponent extends TiniElement {
   static readonly defaultTagName = 'tini-card';
+  readonly componentName = 'card';
 
   /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare fluid?: boolean;
@@ -26,7 +27,9 @@ export class TiniCardComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      fluid: !!this.fluid,
+      info: {
+        fluid: !!this.fluid,
+      },
     });
     // head classes parts
     this.headClassesParts = {

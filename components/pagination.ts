@@ -20,6 +20,7 @@ export interface PaginationItem {
 /* UseBases(common) */
 export class TiniPaginationComponent extends TiniElement {
   static readonly defaultTagName = 'tini-pagination';
+  readonly componentName = 'pagination';
 
   /* eslint-disable prettier/prettier */
   @property({type: Number, reflect: true}) declare totalPage: number;
@@ -50,8 +51,10 @@ export class TiniPaginationComponent extends TiniElement {
     this.validateProperties();
     // root classes parts
     this.extendRootClassesParts({
-      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
-      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
+      overridable: {
+        [VaryGroups.Scheme]: this.scheme,
+        [VaryGroups.Scale]: this.scale,
+      },
     });
     // previous classes parts
     this.previousClassesParts = {

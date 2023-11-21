@@ -26,6 +26,7 @@ export interface DialogResult<Context> {
 /* ReactEvents(yes:onYes,no:onNo) */
 export class TiniDialogComponent extends TiniElement {
   static readonly defaultTagName = 'tini-dialog';
+  readonly componentName = 'dialog';
 
   private readonly BACKDROP_CLOSED = 'backdrop-closed';
 
@@ -49,8 +50,10 @@ export class TiniDialogComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      [this.type]: true,
-      [this.BACKDROP_CLOSED]: !!this.backdropClosed,
+      info: {
+        [this.type]: true,
+        [this.BACKDROP_CLOSED]: !!this.backdropClosed,
+      },
     });
   }
 

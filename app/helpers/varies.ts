@@ -179,14 +179,14 @@ export function renderColorsSection(
       ),
     },
     {
-      name: 'Common Colors',
+      name: 'Commons',
       code: codeWithWrapper(
         styleColors,
         html`${BASE_COMMON_COLORS.map(color => handler(color))}`
       ),
     },
     {
-      name: 'Com. Shades',
+      name: 'Shades',
       code: codeWithWrapper(
         styleColors,
         html`
@@ -197,7 +197,7 @@ export function renderColorsSection(
       ),
     },
     {
-      name: 'Com. Tints',
+      name: 'Tints',
       code: codeWithWrapper(
         styleColors,
         html`
@@ -208,7 +208,7 @@ export function renderColorsSection(
       ),
     },
     {
-      name: 'Com. Contrasts',
+      name: 'Contrasts',
       code: codeWithWrapper(
         styleColorContrasts,
         html`
@@ -301,14 +301,14 @@ export function renderGradientsSection(
       ),
     },
     {
-      name: 'Common Gradients',
+      name: 'Commons',
       code: codeWithWrapper(
         styleGradients,
         html`${BASE_COMMON_GRADIENTS.map(gradient => handler(gradient))}`
       ),
     },
     {
-      name: 'Com. Shades',
+      name: 'Shades',
       code: codeWithWrapper(
         styleGradients,
         html`
@@ -319,7 +319,7 @@ export function renderGradientsSection(
       ),
     },
     {
-      name: 'Com. Tints',
+      name: 'Tints',
       code: codeWithWrapper(
         styleGradients,
         html`
@@ -330,7 +330,7 @@ export function renderGradientsSection(
       ),
     },
     {
-      name: 'Com. Contrasts',
+      name: 'Contrasts',
       code: codeWithWrapper(
         styleGradientContrasts,
         html`

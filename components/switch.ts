@@ -15,6 +15,7 @@ import {
 /* UseBases(common) */
 export class TiniSwitchComponent extends TiniElement {
   static readonly defaultTagName = 'tini-switch';
+  readonly componentName = 'switch';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;
@@ -30,10 +31,14 @@ export class TiniSwitchComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      checked: !!this.checked,
-      disabled: !!this.disabled,
-      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
-      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
+      info: {
+        checked: !!this.checked,
+        disabled: !!this.disabled,
+      },
+      overridable: {
+        [VaryGroups.Scheme]: this.scheme,
+        [VaryGroups.Scale]: this.scale,
+      },
     });
   }
 

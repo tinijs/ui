@@ -12,6 +12,10 @@ export type TextareaEventDetail = InputEventDetail;
 /* UseBases(common) */
 export class TiniTextareaComponent extends TiniElement {
   static readonly defaultTagName = 'tini-textarea';
+  readonly componentName = 'textarea';
+  readonly componentMetas = {
+    colorOnlyScheme: true,
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;
@@ -28,10 +32,14 @@ export class TiniTextareaComponent extends TiniElement {
     super.willUpdate(changedValues);
     // root classes parts
     this.extendRootClassesParts({
-      disabled: !!this.disabled,
-      readonly: !!this.readonly,
-      [`${VaryGroups.Scheme}-${this.scheme}`]: !!this.scheme,
-      [`${VaryGroups.Scale}-${this.scale}`]: !!this.scale,
+      info: {
+        disabled: !!this.disabled,
+        readonly: !!this.readonly,
+      },
+      overridable: {
+        [VaryGroups.Scheme]: this.scheme,
+        [VaryGroups.Scale]: this.scale,
+      },
     });
   }
 

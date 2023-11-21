@@ -31,6 +31,7 @@ export enum TextTypes {
 /* UseBases(common,headings) */
 export class TiniTextComponent extends TiniElement {
   static readonly defaultTagName = 'tini-text';
+  readonly componentName = 'text';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare type?: TextTypes;
@@ -50,14 +51,17 @@ export class TiniTextComponent extends TiniElement {
     this.tag = literal`${unsafeStatic(this.type || TextTypes.Span)}`;
     // root classes parts
     this.extendRootClassesParts({
-      italic: !!this.italic,
-      underline: !!this.underline,
-      [`${VaryGroups.Color}-${this.color}`]: !!this.color,
-      [`${VaryGroups.FontType}-${this.fontType}`]: !!this.fontType,
-      [`${VaryGroups.FontSize}-${this.fontSize}`]: !!this.fontSize,
-      [`${VaryGroups.FontWeight}-${this.fontWeight}`]: !!this.fontWeight,
-      [`${VaryGroups.TextTransform}-${this.textTransform}`]:
-        !!this.textTransform,
+      info: {
+        italic: !!this.italic,
+        underline: !!this.underline,
+      },
+      overridable: {
+        [VaryGroups.Color]: this.color,
+        [VaryGroups.FontType]: this.fontType,
+        [VaryGroups.FontSize]: this.fontSize,
+        [VaryGroups.FontWeight]: this.fontWeight,
+        [VaryGroups.TextTransform]: this.textTransform,
+      },
     });
   }
 
