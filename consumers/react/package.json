@@ -6,7 +6,8 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "@tinijs/ui-bootstrap": "file:../../build/@tinijs/ui-bootstrap/tinijs-ui-bootstrap-0.9.0.tgz",
+    "@tinijs/bootstrap-icons": "file:../../../icons/build/@tinijs/bootstrap-icons/tinijs-bootstrap-icons-0.12.0.tgz",
+    "@tinijs/ui-bootstrap": "file:../../build/@tinijs/ui-bootstrap/tinijs-ui-bootstrap-0.12.0.tgz",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.54",
     "@types/react": "^18.2.22",
@@ -14,7 +15,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
-    "tinijs": "file:../../../tinijs/tinijs-0.9.0.tgz",
+    "tinijs": "file:../../../tinijs/tinijs-0.12.0.tgz",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },

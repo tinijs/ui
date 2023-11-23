@@ -43,6 +43,6 @@ export async function http<Result>(
   return responseType === 'file'
     ? response.arrayBuffer()
     : responseType === 'text'
-    ? response.text()
-    : response.json();
+      ? response.text()
+      : response.json();
 }

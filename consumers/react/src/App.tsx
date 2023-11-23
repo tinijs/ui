@@ -1,16 +1,25 @@
-import {importComponents, Colors} from 'tinijs';
-
-import {TiniButtonComponent, TiniButton} from '@tinijs/ui-bootstrap/components/button.js';
+import {importComponents, Colors, Gradients, CommonGradients} from 'tinijs';
+import {TiniButtonComponent, TiniButton} from '@tinijs/ui-bootstrap/components/button.react';
+import {IconHeartFillComponent, IconHeartFill} from '@tinijs/bootstrap-icons/heart-fill.react';
 
 importComponents([
-  TiniButtonComponent
+  TiniButtonComponent,
+  IconHeartFillComponent
 ]);
 
 function App() {
   return (
     <div className="App">
       <h1>React</h1>
-      <TiniButton scheme={Colors.Primary}>A Button</TiniButton>
+
+      <div className="buttons">
+        <TiniButton scheme={Colors.Primary}>A Button</TiniButton>
+        <TiniButton scheme={Colors.Success} hoverMap={{scheme: Gradients.Success}}>A Button</TiniButton>
+      </div>
+
+      <div className="icons">
+        <IconHeartFill scheme={CommonGradients.DiscoClub}></IconHeartFill>
+      </div>
     </div>
   );
 }

@@ -363,27 +363,27 @@ export class AppSkinEditorComponent extends TiniComponent {
                                     </select>
                                   `
                                 : group.name === 'Colors'
-                                ? html`<input
-                                    type="color"
-                                    class="field"
-                                    name=${item.key}
-                                    .value=${item.valueDirect}
-                                    @input=${this.changeColor}
-                                  />`
-                                : group.name === 'Gradients'
-                                ? html`<app-gradient-picker
-                                    class="field"
-                                    name=${item.key}
-                                    .value=${item.valueDirect}
-                                    @change=${this.changeGradient}
-                                  ></app-gradient-picker>`
-                                : html`<input
-                                    type="text"
-                                    class="field"
-                                    name=${item.key}
-                                    .value=${item.valueDirect}
-                                    @input=${this.changeValue}
-                                  />`}
+                                  ? html`<input
+                                      type="color"
+                                      class="field"
+                                      name=${item.key}
+                                      .value=${item.valueDirect}
+                                      @input=${this.changeColor}
+                                    />`
+                                  : group.name === 'Gradients'
+                                    ? html`<app-gradient-picker
+                                        class="field"
+                                        name=${item.key}
+                                        .value=${item.valueDirect}
+                                        @change=${this.changeGradient}
+                                      ></app-gradient-picker>`
+                                    : html`<input
+                                        type="text"
+                                        class="field"
+                                        name=${item.key}
+                                        .value=${item.valueDirect}
+                                        @input=${this.changeValue}
+                                      />`}
                             </div>
                           </li>
                         `;

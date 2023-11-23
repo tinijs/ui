@@ -292,8 +292,8 @@ importComponents([
         this.contentMode === Modes.Component
           ? this.renderComponentSource()
           : this.contentMode === Modes.Soul
-          ? this.renderSoulSource()
-          : this.renderArticle()
+            ? this.renderSoulSource()
+            : this.renderArticle()
       )}
     `;
   }
