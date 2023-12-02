@@ -23,6 +23,7 @@ import {
   renderFontSizesSection,
   renderTransformsSection,
   renderFiltersSection,
+  renderBoxShadowsSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -33,6 +34,7 @@ import {
   AppSectionComponent,
   BLOCK_STYLES,
   FLEX_COLUMN_STYLES,
+  FLEX_ROW_GAP2X_STYLES,
   WIDE_XS_STYLES,
 } from '../../components/section';
 
@@ -86,6 +88,7 @@ export class AppPageComponentsButton extends TiniComponent {
         contrastBoxes: WIDE_XS_STYLES,
         scales: BLOCK_STYLES,
         transforms: BLOCK_STYLES,
+        shadows: FLEX_ROW_GAP2X_STYLES,
       },
     };
   }
@@ -324,36 +327,47 @@ export class AppPageComponentsButton extends TiniComponent {
         ${renderFiltersSection(
           html`
             <div class="group">
-              <tini-button scheme="primary">Button</tini-button>
+              <tini-button scheme="primary">Original</tini-button>
               <tini-button scheme="primary" filter="opacity(50%)"
-                >Filtered button</tini-button
+                >Filtered opacity(50%)</tini-button
               >
             </div>
             <div class="group">
-              <tini-button scheme="gradient-disco-club">Button</tini-button>
+              <tini-button scheme="gradient-disco-club">Original</tini-button>
               <tini-button scheme="gradient-disco-club" filter="blur(1px)"
-                >Filtered button</tini-button
+                >Filtered blur(1px)</tini-button
               >
             </div>
             <div class="group">
-              <tini-button scheme="gradient-mello-yellow">Button</tini-button>
+              <tini-button scheme="gradient-mello-yellow">Original</tini-button>
               <tini-button
                 scheme="gradient-mello-yellow"
                 filter="grayscale(90%)"
-                >Filtered button</tini-button
+                >Filtered grayscale(90%)</tini-button
               >
             </div>
           `,
           this.renderSectionOptions
         )}
 
-        <!-- pseudo -->
+        <!-- box shadows -->
+        ${renderBoxShadowsSection(
+          shadow =>
+            html`<tini-button scheme="background-tint" .shadow=${shadow}
+              >Shadow ${shadow}</tini-button
+            >`,
+          this.renderSectionOptions
+        )}
+
+        <!-- overrides -->
         ${renderSection(
           'overrides',
           'Overrides',
           html`<p>
             Refer different values for different themes (switch to
-            <strong>Bootstrap Dark</strong> to see the differences).
+            <strong>Bootstrap Dark</strong> to see the differences). Note that
+            you must implicitly specify the attributes to be able to override
+            them.
           </p>`,
           html`
             <tini-button

@@ -10,6 +10,7 @@ import {
   Gradients,
   Factors,
   BorderRadiuses,
+  BoxShadows,
   factorsToClassInfo,
   borderToClassInfo,
 } from 'tinijs';
@@ -27,6 +28,7 @@ export class TiniBoxComponent extends TiniElement {
   @property({type: String, reflect: true}) declare borderRadius?: BorderRadiuses;
   @property({type: String, reflect: true}) declare padding?: string;
   @property({type: String, reflect: true}) declare margin?: string;
+  @property({type: String, reflect: true}) declare shadow?: BoxShadows;
   /* eslint-enable prettier/prettier */
 
   willUpdate(changedValues: PropertyValues) {
@@ -44,6 +46,7 @@ export class TiniBoxComponent extends TiniElement {
         [VaryGroups.FontSize]: this.fontSize,
         [VaryGroups.Color]: this.color,
         [VaryGroups.BorderRadius]: this.borderRadius,
+        [VaryGroups.BoxShadow]: this.shadow,
       },
     });
   }

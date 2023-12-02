@@ -84,7 +84,8 @@ export class AppPageComponentsModal extends TiniComponent {
             <p>
               Use <code>yes</code> and <code>no</code> to capture events. For
               more on customizing button and head/foot slot. Please see the
-              <a href="/components/dialog">Dialog</a> component.
+              <a href="/components/dialog">Dialog</a> component. You can use the
+              <code>shadow</code> attribute to change the shadow of the dialog.
             </p>
           `,
           html`
@@ -108,12 +109,14 @@ export class AppPageComponentsModal extends TiniComponent {
               <tini-button
                 scheme="primary"
                 @click=${() => this.default2ModalRef.value?.show()}
-                >Open modal (close on clicking backdrop)</tini-button
+                >Open modal (excess shadow, close on clicking
+                backdrop)</tini-button
               >
               <tini-modal
                 ${ref(this.default2ModalRef)}
                 backdropClosed
                 titleText="Modal title"
+                shadow="excess"
                 @no=${() => this.default2ModalRef.value?.hide()}
                 @yes=${() => this.default2ModalRef.value?.hide()}
               >
@@ -129,7 +132,7 @@ export class AppPageComponentsModal extends TiniComponent {
 
   private get sampleContent() {
     return html`
-      <h3>Modal</h3>
+      <h3>Content</h3>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vitae
         enim felis. Pellentesque habitant morbi tristique senectus et netus et

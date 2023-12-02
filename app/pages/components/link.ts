@@ -196,31 +196,31 @@ export class AppPageComponentsLink extends TiniComponent {
         ${renderFiltersSection(
           html`
             <div class="group">
-              <tini-link color="primary" fontSize="1_5x">Link</tini-link>
+              <tini-link color="primary" fontSize="1_5x">Original</tini-link>
               <tini-link color="primary" fontSize="1_5x" filter="opacity(50%)"
-                >Filtered link</tini-link
+                >Filtered opacity(50%)</tini-link
               >
             </div>
             <div class="group">
               <tini-link color="gradient-disco-club" fontSize="1_5x"
-                >Link</tini-link
+                >Original</tini-link
               >
               <tini-link
                 color="gradient-disco-club"
                 fontSize="1_5x"
                 filter="blur(2px)"
-                >Filtered link</tini-link
+                >Filtered blur(2px)</tini-link
               >
             </div>
             <div class="group">
               <tini-link color="gradient-mello-yellow" fontSize="1_5x"
-                >Link</tini-link
+                >Original</tini-link
               >
               <tini-link
                 color="gradient-mello-yellow"
                 fontSize="1_5x"
                 filter="grayscale(90%)"
-                >Filtered link</tini-link
+                >Filtered grayscale(90%)</tini-link
               >
             </div>
           `,

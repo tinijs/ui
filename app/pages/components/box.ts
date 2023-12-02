@@ -20,6 +20,7 @@ import {
   renderSpacesSection,
   renderTransformsSection,
   renderFiltersSection,
+  renderBoxShadowsSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -29,6 +30,7 @@ import {AppComponentPageComponent} from '../../components/component-page';
 import {
   AppSectionComponent,
   FLEX_COLUMN_STYLES,
+  FLEX_COLUMN_GAP2X_STYLES,
 } from '../../components/section';
 
 @Page({
@@ -75,6 +77,7 @@ export class AppPageComponentsBox extends TiniComponent {
       codeBuilders: this.CODE_BUILDERS,
       styleRecord: {
         common: FLEX_COLUMN_STYLES,
+        shadows: FLEX_COLUMN_GAP2X_STYLES,
       },
     };
   }
@@ -210,15 +213,24 @@ export class AppPageComponentsBox extends TiniComponent {
         ${renderFiltersSection(
           html`
             <tini-box scheme="primary" filter="opacity(50%)"
-              >Filtered box</tini-box
+              >Filtered opacity(50%)</tini-box
             >
             <tini-box scheme="gradient-disco-club" filter="blur(1px)"
-              >Filtered box</tini-box
+              >Filtered blur(1px)</tini-box
             >
             <tini-box scheme="gradient-mello-yellow" filter="grayscale(90%)"
-              >Filtered box</tini-box
+              >Filtered grayscale(90%)</tini-box
             >
           `,
+          this.renderSectionOptions
+        )}
+
+        <!-- box shadows -->
+        ${renderBoxShadowsSection(
+          shadow =>
+            html`<tini-box scheme="background-tint" .shadow=${shadow}
+              >Shadow ${shadow}</tini-box
+            >`,
           this.renderSectionOptions
         )}
       </app-component-page>

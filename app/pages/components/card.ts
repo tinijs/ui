@@ -13,13 +13,17 @@ import {TiniCardComponent} from '@tinijs/ui/components/card';
 import {
   renderSection,
   renderDefaultSection,
+  renderBoxShadowsSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
 import {CodeBuilder} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {
+  AppSectionComponent,
+  FLEX_ROW_GAP2X_STYLES,
+} from '../../components/section';
 
 @Page({
   name: 'app-page-components-card',
@@ -66,6 +70,9 @@ export class AppPageComponentsCard extends TiniComponent {
     this.renderSectionOptions = {
       preprocessCode: this.PREPROCESS_CODE,
       codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        shadows: FLEX_ROW_GAP2X_STYLES,
+      },
     };
   }
 
@@ -152,6 +159,15 @@ export class AppPageComponentsCard extends TiniComponent {
               <tini-button scheme="primary">Go somewhere</tini-button>
             </tini-card>
           `,
+          this.renderSectionOptions
+        )}
+
+        <!-- box shadows -->
+        ${renderBoxShadowsSection(
+          shadow =>
+            html`<tini-card .shadow=${shadow}>
+              <p>Shadow ${shadow}</p>
+            </tini-card>`,
           this.renderSectionOptions
         )}
       </app-component-page>

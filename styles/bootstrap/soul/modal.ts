@@ -1,8 +1,10 @@
 import {css} from 'lit';
+import {generateBoxShadowVaries} from 'tinijs';
 
 export const modalStyle = css`
   :host {
     --modal-width: var(--wide-ml);
+    --modal-shadow: var(--shadow-none);
   }
 
   /*
@@ -16,7 +18,7 @@ export const modalStyle = css`
     max-width: var(--modal-width);
     border: none;
     border-radius: var(--size-radius);
-    box-shadow: var(--shadow-normal);
+    box-shadow: var(--modal-shadow);
     background: var(--color-background);
     color: var(--color-foreground);
   }
@@ -87,6 +89,18 @@ export const modalStyle = css`
     padding: var(--size-space);
     border-top: var(--size-border) solid var(--color-background-shade);
   }
+
+  /*
+   * [shadow]
+   */
+
+  ${generateBoxShadowVaries(
+    ({fullName, shadow}) => `
+    .${fullName} {
+      --modal-shadow: ${shadow};
+    }
+  `
+  )}
 `;
 
 export const modalScript = undefined;

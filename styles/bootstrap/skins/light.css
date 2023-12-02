@@ -135,11 +135,11 @@
   --wide-xxl: 2560px;
   --wide-xxxl: 3840px;
   /* shadows */
-  --shadow-normal: none;
-  --shadow-least: none;
-  --shadow-lesser: none;
-  --shadow-greater: none;
-  --shadow-greatest: none;
-  --shadow-scarcity: none;
-  --shadow-excess: none;
+  --shadow-normal: 0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-least: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-lesser: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-greater: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-greatest: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-scarcity: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  --shadow-excess: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px, rgba(0, 0, 0, 0.4) 0px 15px 40px;
 }

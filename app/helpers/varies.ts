@@ -10,6 +10,7 @@ import {
   FONT_TYPES,
   FONT_WEIGHTS,
   TEXT_TRANSFORMS,
+  BOX_SHADOWS,
   Colors,
   CommonColors,
   Gradients,
@@ -19,7 +20,8 @@ import {
   FontTypes,
   FontWeights,
   TextTransforms,
-} from '@tinijs/core';
+  BoxShadows,
+} from 'tinijs';
 import {
   AppSectionComponent,
   SectionCodeGroup,
@@ -561,6 +563,24 @@ export function renderFiltersSection(
       </p>
     `,
     codeWithWrapper(styleFilters, code),
+    options
+  );
+}
+
+export function renderBoxShadowsSection(
+  handler: (shadow: BoxShadows) => HTMLTemplateResult,
+  options: RenderSectionOptions = {}
+) {
+  const styleCommon = options.styleRecord?.['common'] || {};
+  const styleShadow = options.styleRecord?.['shadows'] || styleCommon;
+  return render(
+    'shadows',
+    'Shadows',
+    null,
+    codeWithWrapper(
+      styleShadow,
+      html`${BOX_SHADOWS.map(shadow => handler(shadow))}`
+    ),
     options
   );
 }

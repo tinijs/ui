@@ -8,6 +8,7 @@ import {
   generateBorderWidthVaries,
   generateBorderStyleVaries,
   generateBorderRadiusVaries,
+  generateBoxShadowVaries,
 } from 'tinijs';
 
 export const boxStyle = css`
@@ -19,6 +20,7 @@ export const boxStyle = css`
     --box-border-radius: var(--size-radius);
     --box-padding: var(--size-space);
     --box-margin: 0;
+    --box-shadow: var(--shadow-none);
   }
 
   /*
@@ -34,6 +36,7 @@ export const boxStyle = css`
     border-radius: var(--box-border-radius);
     padding: var(--box-padding);
     margin: var(--box-margin);
+    box-shadow: var(--box-shadow);
   }
 
   /*
@@ -150,6 +153,18 @@ export const boxStyle = css`
     }
     :host(.${VaryGroups.Margin}-left-${name}) {
       margin-left: ${space};
+    }
+  `
+  )}
+
+  /*
+   * [shadow]
+   */
+
+  ${generateBoxShadowVaries(
+    ({fullName, shadow}) => `
+    .${fullName} {
+      --box-shadow: ${shadow};
     }
   `
   )}

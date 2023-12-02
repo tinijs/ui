@@ -145,7 +145,7 @@ export class AppIconPageContentComponent extends TiniComponent {
             <tini-icon
               scheme="gradient-disco-club"
               scale="xxl"
-              filter="blur(5px)"
+              filter="blur(10px)"
               .src=${this.src}
             ></tini-icon>
           </div>

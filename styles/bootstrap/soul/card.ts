@@ -1,4 +1,5 @@
 import {css} from 'lit';
+import {generateBoxShadowVaries} from 'tinijs';
 
 export const cardStyle = css`
   :host {
@@ -6,6 +7,7 @@ export const cardStyle = css`
     --card-background: var(--color-background-tint);
     --card-border: var(--size-border) solid var(--color-background-shade);
     --card-radius: var(--size-radius);
+    --card-shadow: var(--shadow-none);
   }
 
   /*
@@ -19,7 +21,8 @@ export const cardStyle = css`
     border: var(--card-border);
     border-radius: var(--card-radius);
     overflow: hidden;
-    max-width: var(--card-width);
+    width: var(--card-width);
+    box-shadow: var(--card-shadow);
   }
 
   .head,
@@ -81,8 +84,20 @@ export const cardStyle = css`
    */
 
   .fluid {
-    max-width: none;
+    width: 100%;
   }
+
+  /*
+   * [shadow]
+   */
+
+  ${generateBoxShadowVaries(
+    ({fullName, shadow}) => `
+    .${fullName} {
+      --card-shadow: ${shadow};
+    }
+  `
+  )}
 `;
 
 export const cardScript = undefined;

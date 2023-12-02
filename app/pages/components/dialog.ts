@@ -95,7 +95,8 @@ export class AppPageComponentsDialog extends TiniComponent {
           html`
             <p>
               Default type is <code>alert</code>. Use <code>yes</code> and
-              <code>no</code> to capture events.
+              <code>no</code> to capture events. You can use the
+              <code>shadow</code> attribute to change the shadow of the dialog.
             </p>
           `,
           html`
@@ -119,12 +120,14 @@ export class AppPageComponentsDialog extends TiniComponent {
               <tini-button
                 scheme="primary"
                 @click=${() => this.alert2DialogRef.value?.show()}
-                >Open alert (close on clicking backdrop)</tini-button
+                >Open alert (excess shadow, close on clicking
+                backdrop)</tini-button
               >
               <tini-dialog
                 ${ref(this.alert2DialogRef)}
                 backdropClosed
                 titleText="An alert dialog"
+                shadow="excess"
                 @no=${() => this.alert2DialogRef.value?.hide()}
                 @yes=${() => this.alert2DialogRef.value?.hide()}
               >

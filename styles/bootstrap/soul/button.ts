@@ -6,6 +6,7 @@ import {
   generateScaleVaries,
   generateFontSizeVaries,
   generateJustifyContentVaries,
+  generateBoxShadowVaries,
 } from 'tinijs';
 
 export const buttonStyle = css`
@@ -14,6 +15,7 @@ export const buttonStyle = css`
     --button-scale: var(--scale-md) /* Base scale */;
     --button-color: var(--color-medium-contrast) /* Text color */;
     --button-border-radius: var(--size-radius) /* Border radius */;
+    --button-shadow: var(--shadow-none) /* Box shadow */;
     --button-hover-brightness: 1.1 /* Over brightness */;
     --button-active-brightness: 0.95 /* Click brightness */;
     --button-disabled-opacity: 0.5 /* Disabled opacity */;
@@ -46,6 +48,7 @@ export const buttonStyle = css`
     border: none;
     border-radius: var(--button-border-radius);
     outline: 0 !important;
+    box-shadow: var(--button-shadow);
     transition: all 0.15s ease-in-out;
   }
 
@@ -102,18 +105,6 @@ export const buttonStyle = css`
     display: flex;
     align-items: center;
   }
-
-  /*
-   * [justify]
-   */
-
-  ${generateJustifyContentVaries(
-    ({fullName, justify}) => `
-    .${fullName} {
-      justify-content: ${justify};
-    }
-  `
-  )}
 
   /*
    * [scheme] & [color]
@@ -175,6 +166,30 @@ export const buttonStyle = css`
     ({fullName, size}) => `
     .${fullName} {
       font-size: ${size} !important;
+    }
+  `
+  )}
+
+  /*
+   * [justifyContent]
+   */
+
+  ${generateJustifyContentVaries(
+    ({fullName, justify}) => `
+    .${fullName} {
+      justify-content: ${justify};
+    }
+  `
+  )}
+
+  /*
+   * [shadow]
+   */
+
+  ${generateBoxShadowVaries(
+    ({fullName, shadow}) => `
+    .${fullName} {
+      --button-shadow: ${shadow};
     }
   `
   )}

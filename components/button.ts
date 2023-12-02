@@ -11,7 +11,14 @@ import {
   Scales,
   Factors,
   JustifyContents,
+  BoxShadows,
 } from 'tinijs';
+
+export enum ButtonModes {
+  Filled = 'filled',
+  Outline = 'outline',
+  Text = 'text',
+}
 
 /* UseBases(common) */
 export class TiniButtonComponent extends TiniElement {
@@ -19,6 +26,7 @@ export class TiniButtonComponent extends TiniElement {
   readonly componentName = 'button';
 
   /* eslint-disable prettier/prettier */
+  @property({type: Boolean, reflect: true}) declare mode?: ButtonModes;
   @property({type: Boolean, reflect: true}) declare block?: boolean;
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
   @property({type: String, reflect: true}) declare scheme?: Colors | Gradients;
@@ -26,6 +34,7 @@ export class TiniButtonComponent extends TiniElement {
   @property({type: String, reflect: true}) declare color?: Colors;
   @property({type: String, reflect: true}) declare fontSize?: Factors;
   @property({type: String, reflect: true}) declare justifyContent?: JustifyContents;
+  @property({type: String, reflect: true}) declare shadow?: BoxShadows;
   /* eslint-enable prettier/prettier */
 
   willUpdate(changedValues: PropertyValues) {
@@ -46,6 +55,7 @@ export class TiniButtonComponent extends TiniElement {
         [VaryGroups.Color]: this.color,
         [VaryGroups.FontSize]: this.fontSize,
         [VaryGroups.JustifyContent]: this.justifyContent,
+        [VaryGroups.BoxShadow]: this.shadow,
       },
     });
   }

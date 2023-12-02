@@ -3,7 +3,14 @@ import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {styleMap} from 'lit/directives/style-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
-import {TiniElement, partMap, Colors, Gradients} from 'tinijs';
+import {
+  TiniElement,
+  partMap,
+  VaryGroups,
+  Colors,
+  Gradients,
+  BoxShadows,
+} from 'tinijs';
 
 export enum DialogTypes {
   Alert = 'alert',
@@ -34,6 +41,7 @@ export class TiniDialogComponent extends TiniElement {
   @property({type: String, reflect: true}) declare type: DialogTypes;
   @property({type: String, reflect: true}) declare titleText?: string;
   @property({type: Boolean, reflect: true}) declare backdropClosed?: boolean;
+  @property({type: String, reflect: true}) declare shadow?: BoxShadows;
   @property({type: Object}) declare noButton?: DialogButton;
   @property({type: Object}) declare yesButton?: DialogButton;
   /* eslint-enable prettier/prettier */
@@ -53,6 +61,9 @@ export class TiniDialogComponent extends TiniElement {
       info: {
         [this.type]: true,
         [this.BACKDROP_CLOSED]: !!this.backdropClosed,
+      },
+      overridable: {
+        [VaryGroups.BoxShadow]: this.shadow,
       },
     });
   }

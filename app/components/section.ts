@@ -42,10 +42,20 @@ export const FLEX_COLUMN_STYLES: StyleInfo = {
   gap: 'var(--size-space-0_5x)',
 };
 
+export const FLEX_COLUMN_GAP2X_STYLES: StyleInfo = {
+  ...FLEX_COLUMN_STYLES,
+  gap: 'var(--size-space-2x)',
+};
+
 export const FLEX_ROW_STYLES: StyleInfo = {
   display: 'flex',
   flexWrap: 'wrap',
   gap: 'var(--size-space-0_5x)',
+};
+
+export const FLEX_ROW_GAP2X_STYLES: StyleInfo = {
+  ...FLEX_ROW_STYLES,
+  gap: 'var(--size-space-2x)',
 };
 
 export const WIDE_XXXS_STYLES: StyleInfo = {

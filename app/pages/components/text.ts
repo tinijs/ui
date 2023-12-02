@@ -219,31 +219,31 @@ export class AppPageComponentsText extends TiniComponent {
         ${renderFiltersSection(
           html`
             <div class="group">
-              <tini-text color="primary" fontSize="1_5x">Text</tini-text>
+              <tini-text color="primary" fontSize="1_5x">Original</tini-text>
               <tini-text color="primary" fontSize="1_5x" filter="opacity(50%)"
-                >Filtered text</tini-text
+                >Filtered opacity(50%)</tini-text
               >
             </div>
             <div class="group">
               <tini-text color="gradient-disco-club" fontSize="1_5x"
-                >Text</tini-text
+                >Original</tini-text
               >
               <tini-text
                 color="gradient-disco-club"
                 fontSize="1_5x"
                 filter="blur(2px)"
-                >Filtered text</tini-text
+                >Filtered blur(2px)</tini-text
               >
             </div>
             <div class="group">
               <tini-text color="gradient-mello-yellow" fontSize="1_5x"
-                >Text</tini-text
+                >Original</tini-text
               >
               <tini-text
                 color="gradient-mello-yellow"
                 fontSize="1_5x"
                 filter="grayscale(90%)"
-                >Filtered text</tini-text
+                >Filtered grayscale(90%)</tini-text
               >
             </div>
           `,

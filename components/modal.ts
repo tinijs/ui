@@ -3,7 +3,7 @@ import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {styleMap} from 'lit/directives/style-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
-import {TiniElement, partMap} from 'tinijs';
+import {TiniElement, partMap, VaryGroups, BoxShadows} from 'tinijs';
 
 import {DialogButton, DialogResult} from './dialog';
 
@@ -21,6 +21,7 @@ export class TiniModalComponent extends TiniElement {
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare titleText?: string;
   @property({type: Boolean, reflect: true}) declare backdropClosed?: boolean;
+  @property({type: String, reflect: true}) declare shadow?: BoxShadows;
   @property({type: Object}) declare noButton?: ModalButton;
   @property({type: Object}) declare yesButton?: ModalButton;
   /* eslint-enable prettier/prettier */
@@ -34,6 +35,9 @@ export class TiniModalComponent extends TiniElement {
     this.extendRootClassesParts({
       info: {
         [this.BACKDROP_CLOSED]: !!this.backdropClosed,
+      },
+      overridable: {
+        [VaryGroups.BoxShadow]: this.shadow,
       },
     });
   }
