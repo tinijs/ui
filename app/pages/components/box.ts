@@ -97,7 +97,8 @@ export class AppPageComponentsBox extends TiniComponent {
           html`
             <p>
               Default background is <code>none</code>, default color is the
-              current <code>foreground</code>.
+              current <code>foreground</code>. You can use the
+              <code>tag</code> attribute to render different root tag.
             </p>
           `,
           html`<tini-box>Here is a default box</tini-box>`,
@@ -158,7 +159,7 @@ export class AppPageComponentsBox extends TiniComponent {
               ['solid'],
               ['primary'],
               ['big'],
-              ['big dashed primary', 'max'],
+              ['massive dashed primary', 'max'],
             ].map(
               ([border, radius]) =>
                 html`<tini-box
@@ -197,12 +198,12 @@ export class AppPageComponentsBox extends TiniComponent {
         <!-- transforms -->
         ${renderTransformsSection(
           html`
-            <tini-box scheme="primary" transform="rotate(-15deg)"
+            <tini-box scheme="primary" xTransform="rotate(-15deg)"
               >Transform me</tini-box
             >
             <tini-box
               scheme="primary"
-              transform="translateX(100px) skew(45deg, 10deg)"
+              xTransform="translateX(100px) skew(45deg, 10deg)"
               >Transform me</tini-box
             >
           `,
@@ -212,13 +213,13 @@ export class AppPageComponentsBox extends TiniComponent {
         <!-- filters -->
         ${renderFiltersSection(
           html`
-            <tini-box scheme="primary" filter="opacity(50%)"
+            <tini-box scheme="primary" xFilter="opacity(50%)"
               >Filtered opacity(50%)</tini-box
             >
-            <tini-box scheme="gradient-disco-club" filter="blur(1px)"
+            <tini-box scheme="gradient-disco-club" xFilter="blur(1px)"
               >Filtered blur(1px)</tini-box
             >
-            <tini-box scheme="gradient-mello-yellow" filter="grayscale(90%)"
+            <tini-box scheme="gradient-mello-yellow" xFilter="grayscale(90%)"
               >Filtered grayscale(90%)</tini-box
             >
           `,

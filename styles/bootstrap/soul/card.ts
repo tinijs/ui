@@ -95,6 +95,7 @@ export const cardStyle = css`
     ({fullName, shadow}) => `
     .${fullName} {
       --card-shadow: ${shadow};
+      --card-border: none;
     }
   `
   )}

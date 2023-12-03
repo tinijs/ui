@@ -7,7 +7,7 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
-import {TextTypes, TiniTextComponent} from '@tinijs/ui/components/text';
+import {TextTags, TiniTextComponent} from '@tinijs/ui/components/text';
 import {TiniBoxComponent} from '@tinijs/ui/components/box';
 
 import {
@@ -117,10 +117,10 @@ export class AppPageComponentsText extends TiniComponent {
           'Types',
           html`<p>Use different tag types.</p>`,
           html`
-            ${Object.values(TextTypes).map(
-              type =>
-                html`<tini-text type=${type}
-                  >Use the &lt;${type}&gt; tag</tini-text
+            ${Object.values(TextTags).map(
+              tag =>
+                html`<tini-text tag=${tag}
+                  >Use the &lt;${tag}&gt; tag</tini-text
                 >`
             )}
           `,
@@ -202,13 +202,13 @@ export class AppPageComponentsText extends TiniComponent {
           html`
             <tini-text
               fontSize="1_5x"
-              display="inline-block"
-              transform="rotate(-45deg)"
+              xDisplay="inline-block"
+              xTransform="rotate(-45deg)"
               >Transform me</tini-text
             >
             <tini-text
-              display="inline-block"
-              transform="translateX(300px) scale(5) skew(45deg, 10deg)"
+              xDisplay="inline-block"
+              xTransform="translateX(300px) scale(5) skew(45deg, 10deg)"
               >Transform me</tini-text
             >
           `,
@@ -220,7 +220,7 @@ export class AppPageComponentsText extends TiniComponent {
           html`
             <div class="group">
               <tini-text color="primary" fontSize="1_5x">Original</tini-text>
-              <tini-text color="primary" fontSize="1_5x" filter="opacity(50%)"
+              <tini-text color="primary" fontSize="1_5x" xFilter="opacity(50%)"
                 >Filtered opacity(50%)</tini-text
               >
             </div>
@@ -231,7 +231,7 @@ export class AppPageComponentsText extends TiniComponent {
               <tini-text
                 color="gradient-disco-club"
                 fontSize="1_5x"
-                filter="blur(2px)"
+                xFilter="blur(2px)"
                 >Filtered blur(2px)</tini-text
               >
             </div>
@@ -242,7 +242,7 @@ export class AppPageComponentsText extends TiniComponent {
               <tini-text
                 color="gradient-mello-yellow"
                 fontSize="1_5x"
-                filter="grayscale(90%)"
+                xFilter="grayscale(90%)"
                 >Filtered grayscale(90%)</tini-text
               >
             </div>

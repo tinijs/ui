@@ -43,9 +43,9 @@ export class TiniIconComponent extends TiniElement {
   protected render() {
     return html`
       <i
-        part=${partMap(this.rootClassesParts)}
-        class=${classMap(this.rootClassesParts)}
-        style=${styleMap(this.rootStyles)}
+        part=${partMap(this.activeRootClassesParts)}
+        class=${classMap(this.activeRootClassesParts)}
+        style=${styleMap(this.activeRootStyles)}
       ></i>
     `;
   }

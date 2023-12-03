@@ -43,9 +43,9 @@ export class TiniBadgeComponent extends TiniElement {
   protected render() {
     return html`
       <span
-        part=${partMap(this.rootClassesParts)}
-        class=${classMap(this.rootClassesParts)}
-        style=${styleMap(this.rootStyles)}
+        part=${partMap(this.activeRootClassesParts)}
+        class=${classMap(this.activeRootClassesParts)}
+        style=${styleMap(this.activeRootStyles)}
       >
         <slot></slot>
       </span>

@@ -54,9 +54,9 @@ export class TiniCardComponent extends TiniElement {
   protected render() {
     return html`
       <div
-        class=${classMap(this.rootClassesParts)}
-        part=${partMap(this.rootClassesParts)}
-        style=${styleMap(this.rootStyles)}
+        class=${classMap(this.activeRootClassesParts)}
+        part=${partMap(this.activeRootClassesParts)}
+        style=${styleMap(this.activeRootStyles)}
       >
         <div
           class=${classMap(this.headClassesParts)}

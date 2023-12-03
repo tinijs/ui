@@ -7,7 +7,7 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
-import {TiniXxxComponent} from '@tinijs/ui/bases/components/xxx';
+import {TiniXxxComponent} from '@tinijs/ui/components/xxx';
 
 import {
   renderSection,

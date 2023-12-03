@@ -68,9 +68,9 @@ export class TiniCheckboxesComponent extends TiniElement {
       ? nothing
       : html`
           <div
-            part=${partMap(this.rootClassesParts)}
-            class=${classMap(this.rootClassesParts)}
-            style=${styleMap(this.rootStyles)}
+            part=${partMap(this.activeRootClassesParts)}
+            class=${classMap(this.activeRootClassesParts)}
+            style=${styleMap(this.activeRootStyles)}
           >
             ${this.items.map(item => this.renderItem(item))}
           </div>

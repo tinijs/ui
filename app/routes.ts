@@ -50,6 +50,12 @@ export const componentsBasesRoute: Route = {
   action: () => import('./pages/components/bases'),
 };
 
+export const componentsComponentRoute: Route = {
+  path: 'components/component',
+  component: 'app-page-components-component',
+  action: () => import('./pages/components/component'),
+};
+
 export const componentsTextRoute: Route = {
   path: 'components/text',
   component: 'app-page-components-text',
@@ -172,6 +178,7 @@ export const componentsTextareaRoute: Route = {
 
 export const componentsRoutes = [
   componentsBasesRoute,
+  componentsComponentRoute,
   componentsTextRoute,
   componentsLinkRoute,
   componentsIconRoute,

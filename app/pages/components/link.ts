@@ -179,13 +179,13 @@ export class AppPageComponentsLink extends TiniComponent {
           html`
             <tini-link
               fontSize="1_5x"
-              display="inline-block"
-              transform="rotate(-45deg)"
+              xDisplay="inline-block"
+              xTransform="rotate(-45deg)"
               >Transform me</tini-link
             >
             <tini-link
-              display="inline-block"
-              transform="translateX(300px) scale(5) skew(45deg, 10deg)"
+              xDisplay="inline-block"
+              xTransform="translateX(300px) scale(5) skew(45deg, 10deg)"
               >Transform me</tini-link
             >
           `,
@@ -197,7 +197,7 @@ export class AppPageComponentsLink extends TiniComponent {
           html`
             <div class="group">
               <tini-link color="primary" fontSize="1_5x">Original</tini-link>
-              <tini-link color="primary" fontSize="1_5x" filter="opacity(50%)"
+              <tini-link color="primary" fontSize="1_5x" xFilter="opacity(50%)"
                 >Filtered opacity(50%)</tini-link
               >
             </div>
@@ -208,7 +208,7 @@ export class AppPageComponentsLink extends TiniComponent {
               <tini-link
                 color="gradient-disco-club"
                 fontSize="1_5x"
-                filter="blur(2px)"
+                xFilter="blur(2px)"
                 >Filtered blur(2px)</tini-link
               >
             </div>
@@ -219,7 +219,7 @@ export class AppPageComponentsLink extends TiniComponent {
               <tini-link
                 color="gradient-mello-yellow"
                 fontSize="1_5x"
-                filter="grayscale(90%)"
+                xFilter="grayscale(90%)"
                 >Filtered grayscale(90%)</tini-link
               >
             </div>

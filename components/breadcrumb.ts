@@ -41,9 +41,9 @@ export class TiniBreadcrumbComponent extends TiniElement {
   protected render() {
     return html`
       <ol
-        part=${partMap(this.rootClassesParts)}
-        class=${classMap(this.rootClassesParts)}
-        style=${styleMap(this.rootStyles)}
+        part=${partMap(this.activeRootClassesParts)}
+        class=${classMap(this.activeRootClassesParts)}
+        style=${styleMap(this.activeRootStyles)}
       >
         ${this.items?.map(item => this.renderItem(item))}
       </ol>

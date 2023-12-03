@@ -108,10 +108,14 @@ export class AppPageComponentsButton extends TiniComponent {
           html`
             <p>
               Default color is <code>medium</code>, default size is
-              <code>md</code>.
+              <code>md</code>, default mode is <code>filled</code>.
             </p>
           `,
-          html`<tini-button>Default</tini-button>`,
+          html`
+            <tini-button>Filled</tini-button>
+            <tini-button mode="outline">Outline</tini-button>
+            <tini-button mode="clear">Clear</tini-button>
+          `,
           this.renderSectionOptions
         )}
 
@@ -120,7 +124,11 @@ export class AppPageComponentsButton extends TiniComponent {
           'block',
           'Block',
           null,
-          html`<tini-button block>Block button</tini-button>`,
+          html`
+            <tini-button block>Filled</tini-button>
+            <tini-button block mode="outline">Outline</tini-button>
+            <tini-button block mode="clear">Clear</tini-button>
+          `,
           this.renderSectionOptions
         )}
 
@@ -131,16 +139,62 @@ export class AppPageComponentsButton extends TiniComponent {
           this.renderSectionOptions
         )}
 
-        <!-- disabled colors -->
+        <!-- outline colors -->
         ${renderColorsSection(
           color =>
-            html`<tini-button disabled scheme=${color}
-              >Button ${color} disabled</tini-button
+            html`<tini-button mode="outline" scheme=${color}
+              >Button ${color}</tini-button
             >`,
           {
             ...this.renderSectionOptions,
-            className: 'disabled',
-            title: 'Disabled colors',
+            className: 'outline-colors',
+            title: 'Outline (colors)',
+          }
+        )}
+
+        <!-- bordered -->
+        ${renderSection(
+          'bordered',
+          'Bordered',
+          html`<p>
+            Similar to <strong>outline</strong>, but with outside border, for
+            colors only and supports the <code>border</code> property.
+          </p>`,
+          html`
+            <tini-button mode="bordered" scheme="primary"
+              >Bordered button</tini-button
+            >
+            <tini-button mode="bordered" scheme="primary" border="dotted"
+              >Dotted border</tini-button
+            >
+            <tini-button
+              mode="bordered"
+              scheme="primary"
+              border="big dashed"
+              borderRadius="max"
+              >Big dashed border, max radius</tini-button
+            >
+            <tini-button
+              mode="bordered"
+              scheme="primary"
+              border="massive solid success"
+              borderRadius="zero"
+              >Massive solid success border, zero radius</tini-button
+            >
+          `,
+          this.renderSectionOptions
+        )}
+
+        <!-- Clear colors -->
+        ${renderColorsSection(
+          color =>
+            html`<tini-button mode="clear" scheme=${color}
+              >Button ${color}</tini-button
+            >`,
+          {
+            ...this.renderSectionOptions,
+            className: 'clear-colors',
+            title: 'Clear',
           }
         )}
 
@@ -153,26 +207,65 @@ export class AppPageComponentsButton extends TiniComponent {
           this.renderSectionOptions
         )}
 
-        <!-- disabled gradients -->
+        <!-- Outline gradients -->
         ${renderGradientsSection(
           gradient =>
-            html`<tini-button disabled scheme=${gradient}
-              >Button ${gradient} disabled</tini-button
+            html`<tini-button mode="outline" scheme=${gradient}
+              >Button ${gradient}</tini-button
             >`,
           {
             ...this.renderSectionOptions,
-            className: 'disabled',
-            title: 'Disabled gradients',
+            className: 'outline-gradients',
+            title: 'Outline (gradients)',
           }
+        )}
+
+        <!-- disabled -->
+        ${renderSection(
+          'disabled',
+          'Disabled',
+          null,
+          html`
+            <tini-button disabled scheme="primary">Filled button</tini-button>
+            <tini-button disabled mode="outline" scheme="primary"
+              >Outline button</tini-button
+            >
+            <tini-button disabled mode="clear" scheme="primary"
+              >Clear button</tini-button
+            >
+            <tini-button disabled scheme="gradient-primary"
+              >Gradient button</tini-button
+            >
+          `,
+          this.renderSectionOptions
         )}
 
         <!-- text colors -->
         ${renderFontColorsSection(
-          ['background', 'warning', 'gradient-danger'] as any,
-          scheme =>
-            html`<tini-button scheme=${scheme} color="primary"
-              >Button with ${scheme} scheme / primary text</tini-button
-            >`,
+          ['primary'] as any,
+          scheme => html`
+            <tini-button scheme=${scheme} color="warning"
+              >Filled button with scheme=${scheme} & color=warning</tini-button
+            >
+            <tini-button
+              scheme=${`gradient-${scheme}`}
+              mode="outline"
+              color="foreground"
+              borderRadius="big"
+              style="--button-border-size: 3px;"
+              >Outline button with scheme=gradient-${scheme} &
+              color=foreground</tini-button
+            >
+            <tini-button
+              scheme=${scheme}
+              mode="bordered"
+              border="massive"
+              borderRadius="zero"
+              color="foreground"
+              >Bordered button with scheme=${scheme} &
+              color=foreground</tini-button
+            >
+          `,
           this.renderSectionOptions
         )}
 
@@ -190,7 +283,7 @@ export class AppPageComponentsButton extends TiniComponent {
           false,
           fontSize =>
             html`<tini-button scheme="primary" fontSize=${fontSize}
-              >Button with ${fontSize} font size</tini-button
+              >Medium button with ${fontSize} font size</tini-button
             >`,
           this.renderSectionOptions
         )}
@@ -281,28 +374,28 @@ export class AppPageComponentsButton extends TiniComponent {
           html`<p>Change hover behavior.</p>`,
           html`
             <tini-button scheme="primary" .hoverMap=${{scheme: 'primary-shade'}}
-              >primary / primary-shade</tini-button
+              >primary <=hover=> primary-shade</tini-button
             >
             <tini-button scheme="secondary" .hoverMap=${{scheme: 'warning'}}
-              >secondary / warning</tini-button
+              >secondary <=hover=> warning</tini-button
             >
             <tini-button
               scheme="tertiary"
               .hoverMap=${{scheme: 'gradient-tertiary'}}
-              >tertiary / gradient-tertiary</tini-button
+              >tertiary <=hover=> gradient-tertiary</tini-button
             >
             <tini-button
               scheme="gradient-success"
               .hoverMap=${{scheme: 'success'}}
-              >gradient-success / success</tini-button
+              >gradient-success <=hover=> success</tini-button
             >
             <tini-button
               scheme="gradient-warning"
               .hoverMap=${{scheme: 'gradient-danger'}}
-              >gradient-warning / gradient-danger</tini-button
+              >gradient-warning <=hover=> gradient-danger</tini-button
             >
             <tini-button scheme="danger" .hoverMap=${{color: 'dark'}}
-              >danger / dark (color)</tini-button
+              >color danger <=hover=> color dark</tini-button
             >
           `,
           this.renderSectionOptions
@@ -311,12 +404,12 @@ export class AppPageComponentsButton extends TiniComponent {
         <!-- transforms -->
         ${renderTransformsSection(
           html`
-            <tini-button display="inline-block" transform="rotate(-45deg)"
+            <tini-button xDisplay="inline-block" xTransform="rotate(-45deg)"
               >Transform me</tini-button
             >
             <tini-button
-              display="inline-block"
-              transform="translateX(300px) scale(2) skew(45deg, 10deg)"
+              xDisplay="inline-block"
+              xTransform="translateX(300px) scale(2) skew(45deg, 10deg)"
               >Transform me</tini-button
             >
           `,
@@ -328,13 +421,13 @@ export class AppPageComponentsButton extends TiniComponent {
           html`
             <div class="group">
               <tini-button scheme="primary">Original</tini-button>
-              <tini-button scheme="primary" filter="opacity(50%)"
+              <tini-button scheme="primary" xFilter="opacity(50%)"
                 >Filtered opacity(50%)</tini-button
               >
             </div>
             <div class="group">
               <tini-button scheme="gradient-disco-club">Original</tini-button>
-              <tini-button scheme="gradient-disco-club" filter="blur(1px)"
+              <tini-button scheme="gradient-disco-club" xFilter="blur(1px)"
                 >Filtered blur(1px)</tini-button
               >
             </div>
@@ -342,7 +435,7 @@ export class AppPageComponentsButton extends TiniComponent {
               <tini-button scheme="gradient-mello-yellow">Original</tini-button>
               <tini-button
                 scheme="gradient-mello-yellow"
-                filter="grayscale(90%)"
+                xFilter="grayscale(90%)"
                 >Filtered grayscale(90%)</tini-button
               >
             </div>
@@ -372,14 +465,26 @@ export class AppPageComponentsButton extends TiniComponent {
           html`
             <tini-button
               scheme="primary"
+              mode="filled"
+              borderRadius="base"
+              .refers=${{
+                'bootstrap/dark': {
+                  mode: 'outline',
+                  borderRadius: 'max',
+                },
+              }}
+              >Filled, base radius <=> Outlined, max radius</tini-button
+            >
+            <tini-button
+              scheme="success"
               fontSize="1x"
               .refers=${{
                 'bootstrap/dark': {
-                  scheme: 'secondary',
+                  scheme: 'danger',
                   fontSize: '1_5x',
                 },
               }}
-              >primary + 1x font / secondary + 1_5x font</tini-button
+              >Success, 1x font <=> Danger, 1_5x font</tini-button
             >
           `,
           this.renderSectionOptions

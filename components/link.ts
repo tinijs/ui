@@ -122,9 +122,9 @@ export class TiniLinkComponent extends TiniElement {
       <a
         router-ignore
         ${ref(this.anchorRef)}
-        part=${partMap(this.rootClassesParts)}
-        class=${classMap(this.rootClassesParts)}
-        style=${styleMap(this.rootStyles)}
+        part=${partMap(this.activeRootClassesParts)}
+        class=${classMap(this.activeRootClassesParts)}
+        style=${styleMap(this.activeRootStyles)}
         href=${this.href || '/'}
         target=${ifDefined(this.target)}
         rel=${ifDefined(this.rel)}

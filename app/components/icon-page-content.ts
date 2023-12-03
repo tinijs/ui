@@ -102,18 +102,18 @@ export class AppIconPageContentComponent extends TiniComponent {
       ${renderTransformsSection(
         html`
           <tini-icon
-            display="inline-block"
-            transform="rotate(-45deg)"
+            xDisplay="inline-block"
+            xTransform="rotate(-45deg)"
             .src=${this.src}
           ></tini-icon>
           <tini-icon
-            display="inline-block"
-            transform="scale(2.5) translate(30px, 15px)"
+            xDisplay="inline-block"
+            xTransform="scale(2.5) translate(30px, 15px)"
             .src=${this.src}
           ></tini-icon>
           <tini-icon
-            display="inline-block"
-            transform="translate(170px, 20px) scale(3.5) skew(20deg, 10deg)"
+            xDisplay="inline-block"
+            xTransform="translate(170px, 20px) scale(3.5) skew(20deg, 10deg)"
             .src=${this.src}
           ></tini-icon>
         `,
@@ -132,7 +132,7 @@ export class AppIconPageContentComponent extends TiniComponent {
             <tini-icon
               scheme="primary"
               scale="xxl"
-              filter="opacity(50%)"
+              xFilter="opacity(50%)"
               .src=${this.src}
             ></tini-icon>
           </div>
@@ -145,7 +145,7 @@ export class AppIconPageContentComponent extends TiniComponent {
             <tini-icon
               scheme="gradient-disco-club"
               scale="xxl"
-              filter="blur(10px)"
+              xFilter="blur(10px)"
               .src=${this.src}
             ></tini-icon>
           </div>
@@ -158,7 +158,7 @@ export class AppIconPageContentComponent extends TiniComponent {
             <tini-icon
               scheme="gradient-mello-yellow"
               scale="xxl"
-              filter="grayscale(90%)"
+              xFilter="grayscale(90%)"
               .src=${this.src}
             ></tini-icon>
           </div>

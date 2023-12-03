@@ -82,9 +82,9 @@ export class TiniModalComponent extends TiniElement {
     return html`
       <dialog
         ${ref(this.dialogRef)}
-        part=${partMap(this.rootClassesParts)}
-        class=${classMap(this.rootClassesParts)}
-        style=${styleMap(this.rootStyles)}
+        part=${partMap(this.activeRootClassesParts)}
+        class=${classMap(this.activeRootClassesParts)}
+        style=${styleMap(this.activeRootStyles)}
         @click=${this.clickDialog}
       >
         <div part="head" class="head">

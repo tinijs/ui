@@ -15,7 +15,7 @@ import {
   TextTransforms,
 } from 'tinijs';
 
-export enum TextTypes {
+export enum TextTags {
   H1 = 'h1',
   H2 = 'h2',
   H3 = 'h3',
@@ -34,7 +34,7 @@ export class TiniTextComponent extends TiniElement {
   readonly componentName = 'text';
 
   /* eslint-disable prettier/prettier */
-  @property({type: String, reflect: true}) declare type?: TextTypes;
+  @property({type: String, reflect: true}) declare tag?: TextTags;
   @property({type: Boolean, reflect: true}) declare italic?: boolean;
   @property({type: Boolean, reflect: true}) declare underline?: boolean;
   @property({type: String, reflect: true}) declare color?: Colors | Gradients;
@@ -44,11 +44,11 @@ export class TiniTextComponent extends TiniElement {
   @property({type: String, reflect: true}) declare textTransform?: TextTransforms;
   /* eslint-enable prettier/prettier */
 
-  private tag!: StaticValue;
+  private rootTag!: StaticValue;
   willUpdate(changedValues: PropertyValues) {
     super.willUpdate(changedValues);
     // root tag
-    this.tag = literal`${unsafeStatic(this.type || TextTypes.Span)}`;
+    this.rootTag = literal`${unsafeStatic(this.tag || TextTags.Span)}`;
     // root classes parts
     this.extendRootClassesParts({
       info: {
@@ -67,13 +67,13 @@ export class TiniTextComponent extends TiniElement {
 
   protected render() {
     return html`
-      <${this.tag}
-        part=${partMap(this.rootClassesParts)}
-        class=${classMap(this.rootClassesParts)}
-        style=${styleMap(this.rootStyles)}
+      <${this.rootTag}
+        part=${partMap(this.activeRootClassesParts)}
+        class=${classMap(this.activeRootClassesParts)}
+        style=${styleMap(this.activeRootStyles)}
       >
         <slot></slot>
-      </${this.tag}>
+      </${this.rootTag}>
     `;
   }
 }

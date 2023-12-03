@@ -1,7 +1,8 @@
-import {html, PropertyValues} from 'lit';
+import {PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {styleMap} from 'lit/directives/style-map.js';
+import {html, literal, unsafeStatic, StaticValue} from 'lit/static-html.js';
 import {
   TiniElement,
   partMap,
@@ -21,6 +22,7 @@ export class TiniBoxComponent extends TiniElement {
   readonly componentName = 'box';
 
   /* eslint-disable prettier/prettier */
+  @property({type: String, reflect: true}) declare tag?: string;
   @property({type: String, reflect: true}) declare scheme?: Colors | Gradients;
   @property({type: String, reflect: true}) declare fontSize?: Factors;
   @property({type: String, reflect: true}) declare color?: Colors;
@@ -31,8 +33,11 @@ export class TiniBoxComponent extends TiniElement {
   @property({type: String, reflect: true}) declare shadow?: BoxShadows;
   /* eslint-enable prettier/prettier */
 
+  private rootTag!: StaticValue;
   willUpdate(changedValues: PropertyValues) {
     super.willUpdate(changedValues);
+    // root tag
+    this.rootTag = literal`${unsafeStatic(this.tag || 'div')}`;
     // host classes
     this.updateHostClasses();
     // root classes parts
@@ -66,13 +71,13 @@ export class TiniBoxComponent extends TiniElement {
 
   protected render() {
     return html`
-      <div
-        part=${partMap(this.rootClassesParts)}
-        class=${classMap(this.rootClassesParts)}
-        style=${styleMap(this.rootStyles)}
+      <${this.rootTag}
+        part=${partMap(this.activeRootClassesParts)}
+        class=${classMap(this.activeRootClassesParts)}
+        style=${styleMap(this.activeRootStyles)}
       >
         <slot></slot>
-      </div>
+      </${this.rootTag}>
     `;
   }
 }

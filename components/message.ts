@@ -33,9 +33,9 @@ export class TiniMessageComponent extends TiniElement {
   protected render() {
     return html`
       <div
-        part=${partMap(this.rootClassesParts)}
-        class=${classMap(this.rootClassesParts)}
-        style=${styleMap(this.rootStyles)}
+        part=${partMap(this.activeRootClassesParts)}
+        class=${classMap(this.activeRootClassesParts)}
+        style=${styleMap(this.activeRootStyles)}
       >
         <slot></slot>
       </div>

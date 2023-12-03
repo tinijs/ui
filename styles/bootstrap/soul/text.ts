@@ -42,49 +42,49 @@ export const textStyle = css`
    * :host(type) -> Correct margin for headings and paragraphs
    */
 
-  :host([type='h1']) {
+  :host([tag='h1']) {
     display: block;
     font-size: 2.5rem;
     margin-block-start: 0.67em;
     margin-block-end: 0.67em;
   }
 
-  :host([type='h2']) {
+  :host([tag='h2']) {
     display: block;
     font-size: 2rem;
     margin-block-start: 0.83em;
     margin-block-end: 0.83em;
   }
 
-  :host([type='h3']) {
+  :host([tag='h3']) {
     display: block;
     font-size: 1.75rem;
     margin-block-start: 1em;
     margin-block-end: 1em;
   }
 
-  :host([type='h4']) {
+  :host([tag='h4']) {
     display: block;
     font-size: 1.5rem;
     margin-block-start: 1.33em;
     margin-block-end: 1.33em;
   }
 
-  :host([type='h5']) {
+  :host([tag='h5']) {
     display: block;
     font-size: 1.25rem;
     margin-block-start: 1.67em;
     margin-block-end: 1.67em;
   }
 
-  :host([type='h6']) {
+  :host([tag='h6']) {
     display: block;
     font-size: 1rem;
     margin-block-start: 2.33em;
     margin-block-end: 2.33em;
   }
 
-  :host([type='p']) {
+  :host([tag='p']) {
     display: block;
     font-size: 1rem;
     margin-block-start: 1em;

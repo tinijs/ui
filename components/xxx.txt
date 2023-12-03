@@ -22,9 +22,9 @@ export class TiniXxxComponent extends TiniElement {
   protected render() {
     return html`
       <xxx
-        part=${partMap(this.rootClassesParts)}
-        class=${classMap(this.rootClassesParts)}
-        class=${styleMap(this.rootStyles)}
+        part=${partMap(this.activeRootClassesParts)}
+        class=${classMap(this.activeRootClassesParts)}
+        style=${styleMap(this.activeRootStyles)}
       ></xxx>
     `;
   }

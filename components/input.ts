@@ -89,9 +89,9 @@ export class TiniInputComponent extends TiniElement {
   protected render() {
     return html`
       <label
-        part=${partMap(this.rootClassesParts)}
-        class=${classMap(this.rootClassesParts)}
-        style=${styleMap(this.rootStyles)}
+        part=${partMap(this.activeRootClassesParts)}
+        class=${classMap(this.activeRootClassesParts)}
+        style=${styleMap(this.activeRootStyles)}
       >
         ${!this.label
           ? nothing
