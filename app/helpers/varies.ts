@@ -150,6 +150,13 @@ export function renderColorsSection(
       ),
     },
     {
+      name: 'Subtles',
+      code: codeWithWrapper(
+        styleColors,
+        html`${BASE_COLORS.map(color => handler(`${color}-subtle` as Colors))}`
+      ),
+    },
+    {
       name: 'Shades',
       code: codeWithWrapper(
         styleColors,
@@ -185,6 +192,17 @@ export function renderColorsSection(
       code: codeWithWrapper(
         styleColors,
         html`${BASE_COMMON_COLORS.map(color => handler(color))}`
+      ),
+    },
+    {
+      name: 'Subtles',
+      code: codeWithWrapper(
+        styleColors,
+        html`
+          ${BASE_COMMON_COLORS.map(color =>
+            handler(`${color}-subtle` as CommonColors)
+          )}
+        `
       ),
     },
     {
@@ -264,6 +282,17 @@ export function renderGradientsSection(
       ),
     },
     {
+      name: 'Subtles',
+      code: codeWithWrapper(
+        styleGradients,
+        html`
+          ${BASE_GRADIENTS.map(gradient =>
+            handler(`${gradient}-subtle` as Gradients)
+          )}
+        `
+      ),
+    },
+    {
       name: 'Shades',
       code: codeWithWrapper(
         styleGradients,
@@ -307,6 +336,17 @@ export function renderGradientsSection(
       code: codeWithWrapper(
         styleGradients,
         html`${BASE_COMMON_GRADIENTS.map(gradient => handler(gradient))}`
+      ),
+    },
+    {
+      name: 'Subtles',
+      code: codeWithWrapper(
+        styleGradients,
+        html`
+          ${BASE_COMMON_GRADIENTS.map(gradient =>
+            handler(`${gradient}-subtle` as CommonGradients)
+          )}
+        `
       ),
     },
     {
@@ -452,7 +492,9 @@ export function renderFontWeightsSection(
   return render(
     'font-weights',
     'Font weights',
-    html`<p>Please note that the active font the respective weights.</p>`,
+    html`<p>
+      Please note that the active font must support the respective weights.
+    </p>`,
     codeWithWrapper(
       styleFontWeights,
       html`${FONT_WEIGHTS.map(weight => handler(weight))}`

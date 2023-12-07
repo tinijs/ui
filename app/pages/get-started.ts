@@ -130,8 +130,10 @@ npm i @tinijs/ui-bootstrap"
           ></app-code>
           <p>Official skins:</p>
           <ul>
-            <li><code>light</code></li>
-            <li><code>dark</code></li>
+            <li>Light (<code>light</code>)</li>
+            <li>Dark (<code>dark</code>)</li>
+            <li>Retro Light (<code>retro-light</code>)</li>
+            <li>Retro Dark (<code>retro-dark</code>)</li>
           </ul>
 
           <h3>And more</h3>

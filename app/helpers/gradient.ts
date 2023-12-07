@@ -66,6 +66,14 @@ export function buildGradientVariants(baseGradient: string) {
     position,
   }));
   const base = constructGradient({...parsedResult, colors: baseColors});
+  // subtle
+  const subtleColors = parsedResult.colors.map(({color, position}) => ({
+    color: chroma(color as string)
+      .alpha(0.2)
+      .hex(),
+    position,
+  }));
+  const subtle = constructGradient({...parsedResult, colors: subtleColors});
   // contrast
   const allContrastColors = parsedResult.colors.map(({color, position}) => ({
     color: chroma(color as string).luminance() > 0.5 ? '#000000' : '#ffffff',
@@ -89,7 +97,7 @@ export function buildGradientVariants(baseGradient: string) {
   // shade
   const shadeColors = parsedResult.colors.map(({color, position}) => ({
     color: chroma(color as string)
-      .darken(1)
+      .darken(0.75)
       .hex(),
     position,
   }));
@@ -97,11 +105,11 @@ export function buildGradientVariants(baseGradient: string) {
   // tint
   const tintColors = parsedResult.colors.map(({color, position}) => ({
     color: chroma(color as string)
-      .brighten(1)
+      .brighten(0.75)
       .hex(),
     position,
   }));
   const tint = constructGradient({...parsedResult, colors: tintColors});
   // result
-  return {base, contrast, shade, tint};
+  return {base, subtle, contrast, shade, tint};
 }

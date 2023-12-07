@@ -22,6 +22,8 @@ export class Configurable {
         skins: [
           {id: 'light', name: 'Light'},
           {id: 'dark', name: 'Dark'},
+          {id: 'retro-light', name: 'Retro Light'},
+          {id: 'retro-dark', name: 'Retro Dark'},
         ],
       },
     ],

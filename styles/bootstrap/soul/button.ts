@@ -14,6 +14,7 @@ import {
 
 export const buttonStyle = css`
   :host {
+    --button-color-base: var(--color-medium);
     --button-color: var(--color-medium);
     --button-background: var(--color-medium) /* Background color */;
     --button-scale: var(--scale-md) /* Base scale */;
@@ -111,7 +112,7 @@ export const buttonStyle = css`
 
   button.mode-outline {
     background: none;
-    color: var(--button-text-color-superior, var(--button-color));
+    color: var(--button-text-color-superior, var(--button-color-base));
     border-radius: var(--button-border-radius);
   }
 
@@ -146,7 +147,7 @@ export const buttonStyle = css`
 
   button.mode-bordered {
     background: none;
-    color: var(--button-text-color-superior, var(--button-color));
+    color: var(--button-text-color-superior, var(--button-color-base));
     border: var(--button-border-size) solid var(--button-color);
   }
 
@@ -166,7 +167,7 @@ export const buttonStyle = css`
 
   button.mode-clear {
     background: transparent;
-    color: var(--button-text-color-superior, var(--button-color));
+    color: var(--button-text-color-superior, var(--button-color-base));
   }
 
   button.mode-clear:hover {
@@ -228,7 +229,7 @@ export const buttonStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, fullName, color, contrast}) => `
+    ({name, fullName, baseColor, color, contrast}) => `
     button.${fullName}-hover {
       transition: none;
     }
@@ -247,6 +248,7 @@ export const buttonStyle = css`
     button.${fullName}-hover:hover {
       --button-background: ${color};
       --button-text-color: ${contrast};
+      --button-color-base: ${baseColor};
       --button-color: ${color};
     }
 
@@ -265,7 +267,7 @@ export const buttonStyle = css`
   )}
 
   ${generateGradientVaries(
-    ({fullName, gradient, color, contrast}) => `
+    ({fullName, gradient, baseColor, color, contrast}) => `
     button.${fullName}.mode-outline,
     button.${fullName}-hover {
       opacity: 1;
@@ -280,6 +282,7 @@ export const buttonStyle = css`
     button.${fullName}-hover:hover {
       --button-background: ${gradient};
       --button-text-color: ${contrast};
+      --button-color-base: ${baseColor};
       --button-color: ${color};
     }
   `

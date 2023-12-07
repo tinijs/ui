@@ -87,6 +87,7 @@ export class AppSkinEditorComponent extends TiniComponent {
         result[0].items.push(def);
       } else if (key.startsWith('--color')) {
         if (
+          !~key.indexOf('-subtle') &&
           !~key.indexOf('-contrast') &&
           !~key.indexOf('-shade') &&
           !~key.indexOf('-tint')
@@ -95,6 +96,7 @@ export class AppSkinEditorComponent extends TiniComponent {
         }
       } else if (key.startsWith('--gradient')) {
         if (
+          !~key.indexOf('-subtle') &&
           !~key.indexOf('-contrast') &&
           !~key.indexOf('-shade') &&
           !~key.indexOf('-tint')
@@ -230,13 +232,11 @@ export class AppSkinEditorComponent extends TiniComponent {
     const key = input.name;
     const value = input.value;
     return debouncer('AppSkinEditorComponent:change_color', 100, () => {
-      const {base, baseRGB, contrast, contrastRGB, shade, tint} =
-        buildColorVariants(value);
+      const {base, contrast, subtle, shade, tint} = buildColorVariants(value);
       this.updateVariables([
         [key, base],
-        [`${key}-rgb`, baseRGB],
+        [`${key}-subtle`, subtle],
         [`${key}-contrast`, contrast],
-        [`${key}-contrast-rgb`, contrastRGB],
         [`${key}-shade`, shade],
         [`${key}-tint`, tint],
       ]);
@@ -248,9 +248,11 @@ export class AppSkinEditorComponent extends TiniComponent {
     const key = input.name;
     const value = e.detail;
     return debouncer('AppSkinEditorComponent:change_gradient', 100, () => {
-      const {base, contrast, shade, tint} = buildGradientVariants(value);
+      const {base, subtle, contrast, shade, tint} =
+        buildGradientVariants(value);
       this.updateVariables([
         [key, base],
+        [`${key}-subtle`, subtle],
         [`${key}-contrast`, contrast],
         [`${key}-shade`, shade],
         [`${key}-tint`, tint],
