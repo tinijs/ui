@@ -275,13 +275,17 @@ export class AppSectionComponent extends TiniComponent {
 
   private async handleCode(code?: string) {
     if (!code) return;
+    // format
     code = await formatHTML(
       code
         .replace(/<!--.*?-->/g, '')
         .replace(/( style )|( class )/g, ' ')
         .replace(/( style>)|( class>)/g, '>')
-        .replace(/style="([\s\S]*?)"/g, '')
+        .replace(/ style="--mode:internal;([\s\S]*?)"/g, '')
+        .replace(/ class="_([\s\S]*?)"/g, '')
+        .replace(/<style>([\s\S]*?)<\/style>/g, '')
     );
+    // custom preprocess
     this.originalCode = !this.preprocessCode
       ? code
       : this.preprocessCode(

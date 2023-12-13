@@ -10,7 +10,11 @@ import {
 } from '@tinijs/ui/bases';
 import {TiniModalComponent} from '@tinijs/ui/components/modal';
 
-import {renderDefaultSection, RenderSectionOptions} from '../../helpers/varies';
+import {
+  renderDefaultSection,
+  renderStyleDeepSection,
+  RenderSectionOptions,
+} from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
 import {CodeBuilder} from '../../helpers/code-builder';
 
@@ -40,8 +44,8 @@ export class AppPageComponentsModal extends TiniComponent {
     ['head', 'The head part'],
     ['body', 'The body part'],
     ['foot', 'The foot part'],
-    ['foot-left', 'The left part of the foot'],
-    ['foot-right', 'The right part of the foot'],
+    ['foot-first', 'The first child of the foot'],
+    ['foot-second', 'The second child of the foot'],
   ];
 
   private readonly PREPROCESS_CODE: CodeBuilder = builder =>
@@ -67,6 +71,7 @@ export class AppPageComponentsModal extends TiniComponent {
 
   private readonly default1ModalRef: Ref<TiniModalComponent> = createRef();
   private readonly default2ModalRef: Ref<TiniModalComponent> = createRef();
+  private readonly styleDeepModalRef: Ref<TiniModalComponent> = createRef();
 
   protected render() {
     return html`
@@ -123,6 +128,33 @@ export class AppPageComponentsModal extends TiniComponent {
                 ${this.sampleContent}
               </tini-modal>
             </div>
+          `,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-button
+              scheme="primary"
+              @click=${() => this.styleDeepModalRef.value?.show()}
+              >Open modal (blur backdrop)</tini-button
+            >
+            <tini-modal
+              ${ref(this.styleDeepModalRef)}
+              titleText="Modal title"
+              @no=${() => this.styleDeepModalRef.value?.hide()}
+              @yes=${() => this.styleDeepModalRef.value?.hide()}
+              styleDeep="
+    .root { background: color-mix(in oklab, var(--color-background), transparent 30%) }
+    .root::backdrop {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+  "
+            >
+              ${this.sampleContent}
+            </tini-modal>
           `,
           this.renderSectionOptions
         )}

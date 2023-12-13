@@ -17,6 +17,7 @@ import {
   renderScalesSection,
   renderTransformsSection,
   renderFiltersSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../helpers/varies';
 import {AppSectionComponent, FLEX_ROW_STYLES} from './section';
@@ -102,18 +103,24 @@ export class AppIconPageContentComponent extends TiniComponent {
       ${renderTransformsSection(
         html`
           <tini-icon
-            xDisplay="inline-block"
-            xTransform="rotate(-45deg)"
+            style="
+              display: inline-block;
+              transform: rotate(-45deg);
+            "
             .src=${this.src}
           ></tini-icon>
           <tini-icon
-            xDisplay="inline-block"
-            xTransform="scale(2.5) translate(30px, 15px)"
+            style="
+              display: inline-block;
+              transform: scale(2.5) translate(30px, 15px);
+            "
             .src=${this.src}
           ></tini-icon>
           <tini-icon
-            xDisplay="inline-block"
-            xTransform="translate(170px, 20px) scale(3.5) skew(20deg, 10deg)"
+            style="
+              display: inline-block;
+              transform: translate(170px, 20px) scale(3.5) skew(20deg, 10deg);
+            "
             .src=${this.src}
           ></tini-icon>
         `,
@@ -132,7 +139,7 @@ export class AppIconPageContentComponent extends TiniComponent {
             <tini-icon
               scheme="primary"
               scale="xxl"
-              xFilter="opacity(50%)"
+              style="filter: opacity(50%)"
               .src=${this.src}
             ></tini-icon>
           </div>
@@ -145,7 +152,7 @@ export class AppIconPageContentComponent extends TiniComponent {
             <tini-icon
               scheme="gradient-disco-club"
               scale="xxl"
-              xFilter="blur(10px)"
+              style="filter: blur(2px)"
               .src=${this.src}
             ></tini-icon>
           </div>
@@ -158,10 +165,27 @@ export class AppIconPageContentComponent extends TiniComponent {
             <tini-icon
               scheme="gradient-mello-yellow"
               scale="xxl"
-              xFilter="grayscale(90%)"
+              style="filter: grayscale(90%)"
               .src=${this.src}
             ></tini-icon>
           </div>
+        `,
+        this.renderSectionOptions
+      )}
+
+      <!-- styleDeep -->
+      ${renderStyleDeepSection(
+        html`
+          <tini-icon
+            scheme="gradient-ooey-gooey"
+            .src=${this.src}
+            styleDeep="
+    .root {
+      --icon-width: 10rem;
+      --icon-height: 10rem;
+    }
+  "
+          ></tini-icon>
         `,
         this.renderSectionOptions
       )}

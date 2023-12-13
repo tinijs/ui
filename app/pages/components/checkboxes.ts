@@ -19,6 +19,7 @@ import {
   renderDefaultSection,
   renderColorsSection,
   renderScalesSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -205,6 +206,17 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
                 },
               ]}
             ></tini-checkboxes>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-checkboxes
+              .items=${this.DEFAULT_LIST}
+              styleDeep="input[type=checkbox] { border-radius: 0 }"
+            ></tini-checkboxes>
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

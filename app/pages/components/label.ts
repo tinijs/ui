@@ -15,6 +15,7 @@ import {
   renderColorsSection,
   renderScalesSection,
   renderFontColorsSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -116,6 +117,23 @@ export class AppPageComponentsLabel extends TiniComponent {
             html`<tini-label scale=${scale} scheme="primary"
               >Label</tini-label
             >`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-label
+              styleDeep="
+    .root {
+      border-radius: 0;
+      background: darkmagenta;
+      color: white;
+    }
+  "
+              >Label</tini-label
+            >
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

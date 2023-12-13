@@ -15,6 +15,7 @@ import {
   renderColorsSection,
   renderFontColorsSection,
   renderFontSizesSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -121,6 +122,24 @@ export class AppPageComponentsMessage extends TiniComponent {
             html`<tini-message fontSize=${fontSize} scheme="primary"
               >Message with ${fontSize} font size</tini-message
             >`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-message
+              styleDeep="
+    .root {
+      border: none;
+      border-radius: 0;
+      background: darkmagenta;
+      color: white;
+    }
+  "
+              >Custom message</tini-message
+            >
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

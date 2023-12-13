@@ -27,6 +27,7 @@ export const radiosStyle = css`
   .item {
     --radio-size: var(--scale-md);
     --radio-background: var(--color-primary);
+    --radio-border-color: var(--color-medium);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -45,7 +46,7 @@ export const radiosStyle = css`
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    border: var(--size-border) solid var(--color-medium);
+    border: var(--size-border) solid var(--radio-border-color);
     border-radius: 100%;
     transition: all 0.15s ease-in-out;
   }
@@ -94,6 +95,7 @@ export const radiosStyle = css`
     ({fullName, color}) => `
     .${fullName} {
       --radio-background: ${color};
+      --radio-border-color: ${color};
     }
   `
   )}

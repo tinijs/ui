@@ -18,6 +18,7 @@ import {
   renderDefaultSection,
   renderColorsSection,
   renderScalesSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -162,7 +163,7 @@ export class AppPageComponentsInput extends TiniComponent {
           color =>
             html`<tini-input
               scheme="${color}"
-              placeholder="Focus on me to see"
+              placeholder="Placeholder"
             ></tini-input>`,
           this.renderSectionOptions
         )}
@@ -171,6 +172,22 @@ export class AppPageComponentsInput extends TiniComponent {
         ${renderScalesSection(
           scale =>
             html`<tini-input scale=${scale} placeholder=${scale}></tini-input>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-input
+              placeholder="Custom style"
+              styleDeep="
+    input {
+      border-width: 2px;
+      border-radius: 0;
+    }
+  "
+            ></tini-input>
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

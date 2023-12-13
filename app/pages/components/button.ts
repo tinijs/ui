@@ -24,6 +24,7 @@ import {
   renderTransformsSection,
   renderFiltersSection,
   renderBoxShadowsSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -367,35 +368,37 @@ export class AppPageComponentsButton extends TiniComponent {
           this.renderSectionOptions
         )}
 
-        <!-- pseudo -->
+        <!-- pseudo-classes -->
         ${renderSection(
-          'pseudos',
-          'Pseudos',
-          html`<p>Change hover behavior.</p>`,
+          'pseudo-classes',
+          'Pseudo Classes',
+          html`<p>Change pseudo-classes behavior.</p>`,
           html`
-            <tini-button scheme="primary" .hoverMap=${{scheme: 'primary-shade'}}
+            <tini-button scheme="primary" hover:scheme="primary-shade"
               >primary <=hover=> primary-shade</tini-button
             >
-            <tini-button scheme="secondary" .hoverMap=${{scheme: 'warning'}}
+            <tini-button scheme="secondary" hover:scheme="warning"
               >secondary <=hover=> warning</tini-button
             >
-            <tini-button
-              scheme="tertiary"
-              .hoverMap=${{scheme: 'gradient-tertiary'}}
+            <tini-button scheme="tertiary" hover:scheme="gradient-tertiary"
               >tertiary <=hover=> gradient-tertiary</tini-button
             >
-            <tini-button
-              scheme="gradient-success"
-              .hoverMap=${{scheme: 'success'}}
+            <tini-button scheme="gradient-success" hover:scheme="success"
               >gradient-success <=hover=> success</tini-button
             >
             <tini-button
               scheme="gradient-warning"
-              .hoverMap=${{scheme: 'gradient-danger'}}
+              hover:scheme="gradient-danger"
               >gradient-warning <=hover=> gradient-danger</tini-button
             >
-            <tini-button scheme="danger" .hoverMap=${{color: 'dark'}}
-              >color danger <=hover=> color dark</tini-button
+            <tini-button
+              scheme="gradient-mello-yellow"
+              styleDeep="
+    .root { filter: grayscale(90%) }
+    .root:hover { filter: none; opacity: 1 }
+    .root:active { opacity: 0.8 }
+  "
+              >Filter grayscale(90%) <=hover=> No filter</tini-button
             >
           `,
           this.renderSectionOptions
@@ -404,12 +407,18 @@ export class AppPageComponentsButton extends TiniComponent {
         <!-- transforms -->
         ${renderTransformsSection(
           html`
-            <tini-button xDisplay="inline-block" xTransform="rotate(-45deg)"
+            <tini-button
+              style="
+                display: inline-block;
+                transform: rotate(-45deg);
+              "
               >Transform me</tini-button
             >
             <tini-button
-              xDisplay="inline-block"
-              xTransform="translateX(300px) scale(2) skew(45deg, 10deg)"
+              style="
+                display: inline-block;
+                transform: translateX(300px) scale(2) skew(45deg, 10deg);
+              "
               >Transform me</tini-button
             >
           `,
@@ -421,13 +430,15 @@ export class AppPageComponentsButton extends TiniComponent {
           html`
             <div class="group">
               <tini-button scheme="primary">Original</tini-button>
-              <tini-button scheme="primary" xFilter="opacity(50%)"
+              <tini-button scheme="primary" style="filter: opacity(50%)"
                 >Filtered opacity(50%)</tini-button
               >
             </div>
             <div class="group">
               <tini-button scheme="gradient-disco-club">Original</tini-button>
-              <tini-button scheme="gradient-disco-club" xFilter="blur(1px)"
+              <tini-button
+                scheme="gradient-disco-club"
+                style="filter: blur(1px)"
                 >Filtered blur(1px)</tini-button
               >
             </div>
@@ -435,7 +446,7 @@ export class AppPageComponentsButton extends TiniComponent {
               <tini-button scheme="gradient-mello-yellow">Original</tini-button>
               <tini-button
                 scheme="gradient-mello-yellow"
-                xFilter="grayscale(90%)"
+                style="filter: grayscale(90%)"
                 >Filtered grayscale(90%)</tini-button
               >
             </div>
@@ -485,6 +496,20 @@ export class AppPageComponentsButton extends TiniComponent {
                 },
               }}
               >Success, 1x font <=> Danger, 1_5x font</tini-button
+            >
+          `,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-button
+              styleDeep="
+    .root { background: pink; color: black }
+    .root:hover { background: darkmagenta; color: white }
+  "
+              >Custom button</tini-button
             >
           `,
           this.renderSectionOptions

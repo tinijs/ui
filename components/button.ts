@@ -1,7 +1,6 @@
 import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
 import {
   TiniElement,
   partMap,
@@ -40,23 +39,25 @@ export class TiniButtonComponent extends TiniElement {
   @property({type: String, reflect: true}) declare border?: string;
   @property({type: String, reflect: true}) declare borderRadius?: BorderRadiuses;
   @property({type: String, reflect: true}) declare shadow?: BoxShadows;
+  @property({type: String, reflect: true, attribute: 'hover:scheme'}) declare hoverScheme?: TiniButtonComponent['scheme'];
   /* eslint-enable prettier/prettier */
 
-  willUpdate(changedValues: PropertyValues) {
-    super.willUpdate(changedValues);
+  willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
     // root classes parts
-    this.extendRootClassesParts({
-      info: {
+    this.extendRootClasses({
+      raw: {
         block: !!this.block,
         disabled: !!this.disabled,
         ...borderToClassInfo(this.border),
       },
-      hover: {
-        [VaryGroups.Scheme]: this.hoverMap?.scheme,
-        [VaryGroups.Color]: this.hoverMap?.color,
+      pseudo: {
+        hover: {
+          [VaryGroups.Scheme]: this.hoverScheme,
+        },
       },
       overridable: {
-        mode: this.mode,
+        [VaryGroups.Mode]: this.mode,
         [VaryGroups.Scheme]: this.scheme,
         [VaryGroups.Scale]: this.scale,
         [VaryGroups.Color]: this.color,
@@ -70,9 +71,8 @@ export class TiniButtonComponent extends TiniElement {
 
   protected render() {
     return html`<button
-      part=${partMap(this.activeRootClassesParts)}
-      class=${classMap(this.activeRootClassesParts)}
-      style=${styleMap(this.activeRootStyles)}
+      class=${classMap(this.rootClasses)}
+      part=${partMap(this.rootClasses)}
       ?disabled=${this.disabled}
     >
       <slot></slot>

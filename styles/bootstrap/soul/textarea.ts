@@ -4,8 +4,8 @@ import {generateColorVaries, generateScaleVaries} from 'tinijs';
 export const textareaStyle = css`
   :host {
     --textarea-color: var(--color-primary);
+    --textarea-border-color: var(--color-medium);
     --textarea-scale: var(--scale-md);
-    --textarea-border: var(--size-border) solid var(--color-medium);
     --textarea-radius: var(--size-radius);
   }
 
@@ -24,12 +24,17 @@ export const textareaStyle = css`
     width: 100%;
     background: var(--color-background-tint);
     color: var(--color-foreground);
-    border: var(--textarea-border);
+    border: var(--size-border) solid var(--textarea-border-color);
     border-radius: var(--textarea-radius);
     padding: calc(var(--textarea-scale) / 2) calc(var(--textarea-scale) / 1.5);
     font-family: var(--font-body);
     font-size: var(--textarea-scale);
     transition: all 0.15s ease-in-out;
+  }
+
+  textarea::placeholder {
+    color: var(--textarea-border-color);
+    opacity: 0.75;
   }
 
   textarea:focus {
@@ -57,6 +62,7 @@ export const textareaStyle = css`
     ({fullName, color}) => `
     .${fullName} {
       --textarea-color: ${color};
+      --textarea-border-color: ${color};
     }
   `
   )}

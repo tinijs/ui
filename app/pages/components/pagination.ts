@@ -15,6 +15,7 @@ import {
   renderColorsSection,
   renderGradientsSection,
   renderScalesSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -50,10 +51,16 @@ export class AppPageComponentsPagination extends TiniComponent {
     ['root', 'The root part'],
     ['previous', 'The previous button'],
     ['previous-disabled', 'The disabled previous button'],
+    ['previous-link', 'The previous link'],
+    ['previous-link-disabled', 'The disabled previous link'],
     ['next', 'The next button'],
     ['next-disabled', 'The disabled next button'],
+    ['next-link', 'The next link'],
+    ['next-link-disabled', 'The disabled next link'],
     ['item', 'An item button'],
     ['item-active', 'An active item button'],
+    ['item-link', 'An item link'],
+    ['item-link-active', 'An active item link'],
   ];
 
   private readonly PREPROCESS_CODE: CodeBuilder = builder =>
@@ -131,6 +138,24 @@ export class AppPageComponentsPagination extends TiniComponent {
               currentPage="2"
               scale=${scale}
             ></tini-pagination>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-pagination
+              totalPage="3"
+              currentPage="2"
+              styleDeep="
+    .root { gap: 0.5rem; }
+    .root li a {
+      border: 1px solid var(--color-primary);
+      border-radius: 0;
+    }
+  "
+            ></tini-pagination>
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

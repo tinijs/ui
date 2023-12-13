@@ -14,7 +14,7 @@ function App() {
 
       <div className="buttons">
         <TiniButton scheme={Colors.Primary}>A Button</TiniButton>
-        <TiniButton scheme={Colors.Success} hoverMap={{scheme: Gradients.Success}}>A Button</TiniButton>
+        <TiniButton scheme={Colors.Success} hoverScheme={Gradients.Success}>A Button</TiniButton>
       </div>
 
       <div className="icons">

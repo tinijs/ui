@@ -41,8 +41,18 @@ export interface RenderSectionOptions {
   styleRecord?: Record<string, StyleInfo>;
 }
 
+function internalStyleMap(styleInfo: StyleInfo) {
+  return styleMap({
+    '--mode': 'internal',
+    ...styleInfo,
+  });
+}
+
 function codeWithWrapper(styleInfo: StyleInfo, code: HTMLTemplateResult) {
-  return html`<div class=${WRAPPER_CLASS_NAME} style=${styleMap(styleInfo)}>
+  return html`<div
+    class=${WRAPPER_CLASS_NAME}
+    style=${internalStyleMap(styleInfo)}
+  >
     ${code}
   </div>`;
 }
@@ -150,13 +160,6 @@ export function renderColorsSection(
       ),
     },
     {
-      name: 'Subtles',
-      code: codeWithWrapper(
-        styleColors,
-        html`${BASE_COLORS.map(color => handler(`${color}-subtle` as Colors))}`
-      ),
-    },
-    {
       name: 'Shades',
       code: codeWithWrapper(
         styleColors,
@@ -171,6 +174,13 @@ export function renderColorsSection(
       ),
     },
     {
+      name: 'Subtles',
+      code: codeWithWrapper(
+        styleColors,
+        html`${BASE_COLORS.map(color => handler(`${color}-subtle` as Colors))}`
+      ),
+    },
+    {
       name: 'Contrasts',
       code: codeWithWrapper(
         styleColorContrasts,
@@ -178,7 +188,7 @@ export function renderColorsSection(
           ${BASE_COLORS.map(
             color =>
               html`<tini-box
-                style=${styleMap(styleColorContrastBoxes)}
+                style=${internalStyleMap(styleColorContrastBoxes)}
                 scheme=${color}
               >
                 ${handler(`${color}-contrast` as Colors)}
@@ -192,17 +202,6 @@ export function renderColorsSection(
       code: codeWithWrapper(
         styleColors,
         html`${BASE_COMMON_COLORS.map(color => handler(color))}`
-      ),
-    },
-    {
-      name: 'Subtles',
-      code: codeWithWrapper(
-        styleColors,
-        html`
-          ${BASE_COMMON_COLORS.map(color =>
-            handler(`${color}-subtle` as CommonColors)
-          )}
-        `
       ),
     },
     {
@@ -228,6 +227,17 @@ export function renderColorsSection(
       ),
     },
     {
+      name: 'Subtles',
+      code: codeWithWrapper(
+        styleColors,
+        html`
+          ${BASE_COMMON_COLORS.map(color =>
+            handler(`${color}-subtle` as CommonColors)
+          )}
+        `
+      ),
+    },
+    {
       name: 'Contrasts',
       code: codeWithWrapper(
         styleColorContrasts,
@@ -235,7 +245,7 @@ export function renderColorsSection(
           ${BASE_COMMON_COLORS.map(
             color =>
               html`<tini-box
-                style=${styleMap(styleColorContrastBoxes)}
+                style=${internalStyleMap(styleColorContrastBoxes)}
                 scheme=${color}
               >
                 ${handler(`${color}-contrast` as CommonColors)}
@@ -282,17 +292,6 @@ export function renderGradientsSection(
       ),
     },
     {
-      name: 'Subtles',
-      code: codeWithWrapper(
-        styleGradients,
-        html`
-          ${BASE_GRADIENTS.map(gradient =>
-            handler(`${gradient}-subtle` as Gradients)
-          )}
-        `
-      ),
-    },
-    {
       name: 'Shades',
       code: codeWithWrapper(
         styleGradients,
@@ -315,6 +314,17 @@ export function renderGradientsSection(
       ),
     },
     {
+      name: 'Subtles',
+      code: codeWithWrapper(
+        styleGradients,
+        html`
+          ${BASE_GRADIENTS.map(gradient =>
+            handler(`${gradient}-subtle` as Gradients)
+          )}
+        `
+      ),
+    },
+    {
       name: 'Contrasts',
       code: codeWithWrapper(
         styleGradientContrasts,
@@ -322,7 +332,7 @@ export function renderGradientsSection(
           ${BASE_GRADIENTS.map(
             gradient =>
               html`<tini-box
-                style=${styleMap(styleGradientContrastBoxes)}
+                style=${internalStyleMap(styleGradientContrastBoxes)}
                 scheme=${gradient}
               >
                 ${handler(`${gradient}-contrast` as Gradients)}
@@ -336,17 +346,6 @@ export function renderGradientsSection(
       code: codeWithWrapper(
         styleGradients,
         html`${BASE_COMMON_GRADIENTS.map(gradient => handler(gradient))}`
-      ),
-    },
-    {
-      name: 'Subtles',
-      code: codeWithWrapper(
-        styleGradients,
-        html`
-          ${BASE_COMMON_GRADIENTS.map(gradient =>
-            handler(`${gradient}-subtle` as CommonGradients)
-          )}
-        `
       ),
     },
     {
@@ -372,6 +371,17 @@ export function renderGradientsSection(
       ),
     },
     {
+      name: 'Subtles',
+      code: codeWithWrapper(
+        styleGradients,
+        html`
+          ${BASE_COMMON_GRADIENTS.map(gradient =>
+            handler(`${gradient}-subtle` as CommonGradients)
+          )}
+        `
+      ),
+    },
+    {
       name: 'Contrasts',
       code: codeWithWrapper(
         styleGradientContrasts,
@@ -379,7 +389,7 @@ export function renderGradientsSection(
           ${BASE_COMMON_GRADIENTS.map(
             gradient =>
               html`<tini-box
-                style=${styleMap(styleGradientContrastBoxes)}
+                style=${internalStyleMap(styleGradientContrastBoxes)}
                 scheme=${gradient}
               >
                 ${handler(`${gradient}-contrast` as CommonGradients)}
@@ -623,6 +633,24 @@ export function renderBoxShadowsSection(
       styleShadow,
       html`${BOX_SHADOWS.map(shadow => handler(shadow))}`
     ),
+    options
+  );
+}
+
+export function renderStyleDeepSection(
+  code: HTMLTemplateResult,
+  options: RenderSectionOptions = {}
+) {
+  const styleCommon = options.styleRecord?.['common'] || {};
+  const styleStyleDeep = options.styleRecord?.['styleDeep'] || styleCommon;
+  return render(
+    'style-deep',
+    'Style deep',
+    html`<p>
+      You can also provide custom styles via the
+      <code>styleDeep</code> attribute.
+    </p>`,
+    codeWithWrapper(styleStyleDeep, code),
     options
   );
 }

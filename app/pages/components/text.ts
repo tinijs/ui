@@ -22,6 +22,7 @@ import {
   renderItalicUnderlineSection,
   renderTransformsSection,
   renderFiltersSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -202,13 +203,17 @@ export class AppPageComponentsText extends TiniComponent {
           html`
             <tini-text
               fontSize="1_5x"
-              xDisplay="inline-block"
-              xTransform="rotate(-45deg)"
+              style="
+                display: inline-block;
+                transform: rotate(-45deg);
+              "
               >Transform me</tini-text
             >
             <tini-text
-              xDisplay="inline-block"
-              xTransform="translateX(300px) scale(5) skew(45deg, 10deg)"
+              style="
+                display: inline-block;
+                transform: translateX(300px) scale(5) skew(45deg, 10deg);
+              "
               >Transform me</tini-text
             >
           `,
@@ -220,7 +225,10 @@ export class AppPageComponentsText extends TiniComponent {
           html`
             <div class="group">
               <tini-text color="primary" fontSize="1_5x">Original</tini-text>
-              <tini-text color="primary" fontSize="1_5x" xFilter="opacity(50%)"
+              <tini-text
+                color="primary"
+                fontSize="1_5x"
+                style="filter: opacity(50%)"
                 >Filtered opacity(50%)</tini-text
               >
             </div>
@@ -231,7 +239,7 @@ export class AppPageComponentsText extends TiniComponent {
               <tini-text
                 color="gradient-disco-club"
                 fontSize="1_5x"
-                xFilter="blur(2px)"
+                style="filter: blur(2px)"
                 >Filtered blur(2px)</tini-text
               >
             </div>
@@ -242,10 +250,27 @@ export class AppPageComponentsText extends TiniComponent {
               <tini-text
                 color="gradient-mello-yellow"
                 fontSize="1_5x"
-                xFilter="grayscale(90%)"
+                style="filter: grayscale(90%)"
                 >Filtered grayscale(90%)</tini-text
               >
             </div>
+          `,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-text
+              styleDeep="
+    .root {
+      font-size: 2rem;
+      color: darkmagenta;
+      text-decoration: line-through;
+    }
+  "
+              >Custom style</tini-text
+            >
           `,
           this.renderSectionOptions
         )}

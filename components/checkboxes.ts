@@ -1,16 +1,8 @@
 import {html, nothing, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
-import {
-  TiniElement,
-  partMap,
-  PartInfo,
-  VaryGroups,
-  Colors,
-  Scales,
-} from 'tinijs';
+import {TiniElement, partMap, VaryGroups, Colors, Scales} from 'tinijs';
 
 import {InputEventDetail} from './input';
 
@@ -38,11 +30,11 @@ export class TiniCheckboxesComponent extends TiniElement {
   @property({type: Boolean, reflect: true}) declare wrap?: boolean;
   /* eslint-enable prettier/prettier */
 
-  willUpdate(changedValues: PropertyValues) {
-    super.willUpdate(changedValues);
+  willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
     // root classes parts
-    this.extendRootClassesParts({
-      info: {
+    this.extendRootClasses({
+      raw: {
         wrap: !!this.wrap,
       },
     });
@@ -68,9 +60,8 @@ export class TiniCheckboxesComponent extends TiniElement {
       ? nothing
       : html`
           <div
-            part=${partMap(this.activeRootClassesParts)}
-            class=${classMap(this.activeRootClassesParts)}
-            style=${styleMap(this.activeRootStyles)}
+            class=${classMap(this.rootClasses)}
+            part=${partMap(this.rootClasses)}
           >
             ${this.items.map(item => this.renderItem(item))}
           </div>
@@ -86,20 +77,17 @@ export class TiniCheckboxesComponent extends TiniElement {
     scheme,
     scale,
   }: CheckboxesItem) {
-    const itemClassesParts: ClassInfo | PartInfo = {
+    const itemClasses: ClassInfo = {
       item: true,
-      disabled: !!disabled,
+      'item-disabled': !!disabled,
       [`${VaryGroups.Scheme}-${scheme}`]: !!scheme,
       [`${VaryGroups.Scale}-${scale}`]: !!scale,
     };
     return html`
-      <label
-        class=${classMap(itemClassesParts)}
-        part=${partMap(itemClassesParts)}
-      >
+      <label class=${classMap(itemClasses)} part=${partMap(itemClasses)}>
         <input
-          part="input"
           class="input"
+          part="input"
           type="checkbox"
           name=${ifDefined(name)}
           value=${value}
@@ -109,7 +97,7 @@ export class TiniCheckboxesComponent extends TiniElement {
         />
         ${!label
           ? nothing
-          : html`<span part="label" class="label">${label}</span>`}
+          : html`<span class="label" part="label">${label}</span>`}
       </label>
     `;
   }

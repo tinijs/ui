@@ -19,6 +19,7 @@ import {
   renderDefaultSection,
   renderColorsSection,
   renderScalesSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -215,6 +216,21 @@ export class AppPageComponentsRadios extends TiniComponent {
                 },
               ]}
             ></tini-radios>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-radios
+              name="style-deep"
+              .items=${this.DEFAULT_LIST}
+              styleDeep="
+    .item { gap: .25rem }
+    input[type=radio] { border-radius: 0; transform: rotate(45deg) }
+  "
+            ></tini-radios>
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

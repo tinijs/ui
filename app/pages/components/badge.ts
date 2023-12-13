@@ -17,6 +17,7 @@ import {
   renderGradientsSection,
   renderFontColorsSection,
   renderScalesSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -156,6 +157,16 @@ export class AppPageComponentsBadge extends TiniComponent {
         ${renderScalesSection(
           scale =>
             html`<tini-badge scale=${scale} scheme="primary">1000</tini-badge>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-badge styleDeep=".root { background: darkmagenta }"
+              >1000</tini-badge
+            >
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

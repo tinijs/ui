@@ -14,6 +14,7 @@ import {
   renderDefaultSection,
   renderColorsSection,
   renderScalesSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -99,6 +100,21 @@ export class AppPageComponentsSpinner extends TiniComponent {
         ${renderScalesSection(
           scale =>
             html`<tini-spinner scale=${scale} scheme="primary"></tini-spinner>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-spinner
+              styleDeep="
+    .root {
+      --spinner-color: darkmagenta;
+      --spinner-scale: 7rem;
+    }
+  "
+            ></tini-spinner>
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

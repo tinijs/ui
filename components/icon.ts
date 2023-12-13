@@ -1,7 +1,7 @@
 import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
+import {styleMap, StyleInfo} from 'lit/directives/style-map.js';
 import {
   TiniElement,
   partMap,
@@ -22,11 +22,12 @@ export class TiniIconComponent extends TiniElement {
   @property({type: String, reflect: true}) declare scheme?: Colors | Gradients;
   /* eslint-enable prettier/prettier */
 
-  willUpdate(changedValues: PropertyValues) {
-    super.willUpdate(changedValues);
+  private rootStyles: StyleInfo = {};
+  willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
     // root classes parts
-    this.extendRootClassesParts({
-      info: {
+    this.extendRootClasses({
+      raw: {
         scheme: !!this.scheme,
       },
       overridable: {
@@ -35,17 +36,17 @@ export class TiniIconComponent extends TiniElement {
       },
     });
     // root styles
-    this.extendRootStyles({
+    this.rootStyles = {
       '--icon-image': `url(${this.src})`,
-    });
+    };
   }
 
   protected render() {
     return html`
       <i
-        part=${partMap(this.activeRootClassesParts)}
-        class=${classMap(this.activeRootClassesParts)}
-        style=${styleMap(this.activeRootStyles)}
+        class=${classMap(this.rootClasses)}
+        part=${partMap(this.rootClasses)}
+        style=${styleMap(this.rootStyles)}
       ></i>
     `;
   }

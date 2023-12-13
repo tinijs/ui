@@ -21,6 +21,7 @@ import {
   renderTransformsSection,
   renderFiltersSection,
   renderBoxShadowsSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -198,12 +199,12 @@ export class AppPageComponentsBox extends TiniComponent {
         <!-- transforms -->
         ${renderTransformsSection(
           html`
-            <tini-box scheme="primary" xTransform="rotate(-15deg)"
+            <tini-box scheme="primary" style="transform: rotate(-15deg)"
               >Transform me</tini-box
             >
             <tini-box
               scheme="primary"
-              xTransform="translateX(100px) skew(45deg, 10deg)"
+              style="transform: translateX(100px) skew(45deg, 10deg)"
               >Transform me</tini-box
             >
           `,
@@ -213,13 +214,15 @@ export class AppPageComponentsBox extends TiniComponent {
         <!-- filters -->
         ${renderFiltersSection(
           html`
-            <tini-box scheme="primary" xFilter="opacity(50%)"
+            <tini-box scheme="primary" style="filter: opacity(50%)"
               >Filtered opacity(50%)</tini-box
             >
-            <tini-box scheme="gradient-disco-club" xFilter="blur(1px)"
+            <tini-box scheme="gradient-disco-club" style="filter: blur(1px)"
               >Filtered blur(1px)</tini-box
             >
-            <tini-box scheme="gradient-mello-yellow" xFilter="grayscale(90%)"
+            <tini-box
+              scheme="gradient-mello-yellow"
+              style="filter: grayscale(90%)"
               >Filtered grayscale(90%)</tini-box
             >
           `,
@@ -232,6 +235,24 @@ export class AppPageComponentsBox extends TiniComponent {
             html`<tini-box scheme="background-tint" .shadow=${shadow}
               >Shadow ${shadow}</tini-box
             >`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-box
+              styleDeep="
+    .root {
+      background: #eee;
+      padding: 2rem;
+      font-size: 1.5rem;
+      border: 2px solid green;
+    }
+  "
+              >Custom styles</tini-box
+            >
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

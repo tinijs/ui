@@ -14,6 +14,7 @@ import {
   renderSection,
   renderDefaultSection,
   renderBoxShadowsSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -168,6 +169,22 @@ export class AppPageComponentsCard extends TiniComponent {
             html`<tini-card .shadow=${shadow}>
               <p>Shadow ${shadow}</p>
             </tini-card>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-card
+              styleDeep="
+    .root { border: none; box-shadow: 0px 0px 25px -10px darkmagenta }
+    .head { background: darkmagenta; color: white }
+  "
+            >
+              <span slot="head">Card head</span>
+              <p>Custom styles</p>
+            </tini-card>
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

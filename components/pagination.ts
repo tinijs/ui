@@ -1,11 +1,9 @@
 import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
 import {
   TiniElement,
   partMap,
-  PartInfo,
   VaryGroups,
   Colors,
   Gradients,
@@ -43,28 +41,40 @@ export class TiniPaginationComponent extends TiniElement {
     }
   }
 
-  private previousClassesParts: ClassInfo | PartInfo = {};
-  private nextClassesParts: ClassInfo | PartInfo = {};
-  willUpdate(changedValues: PropertyValues) {
-    super.willUpdate(changedValues);
+  private previousClasses: ClassInfo = {};
+  private previousLinkClasses: ClassInfo = {};
+  private nextClasses: ClassInfo = {};
+  private nextLinkClasses: ClassInfo = {};
+  willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
     // default and validations
     this.validateProperties();
     // root classes parts
-    this.extendRootClassesParts({
+    this.extendRootClasses({
       overridable: {
         [VaryGroups.Scheme]: this.scheme,
         [VaryGroups.Scale]: this.scale,
       },
     });
     // previous classes parts
-    this.previousClassesParts = {
+    this.previousClasses = {
       previous: true,
       'previous-disabled': this.currentPage === 1,
     };
+    // previous link classes parts
+    this.previousLinkClasses = {
+      'previous-link': true,
+      'previous-link-disabled': this.currentPage === 1,
+    };
     // next classes parts
-    this.nextClassesParts = {
+    this.nextClasses = {
       next: true,
       'next-disabled': this.currentPage === this.totalPage,
+    };
+    // next link classes parts
+    this.nextLinkClasses = {
+      'next-link': true,
+      'next-link-disabled': this.currentPage === this.totalPage,
     };
   }
 
@@ -91,11 +101,7 @@ export class TiniPaginationComponent extends TiniElement {
 
   protected render() {
     return html`
-      <ul
-        part=${partMap(this.activeRootClassesParts)}
-        class=${classMap(this.activeRootClassesParts)}
-        style=${styleMap(this.activeRootStyles)}
-      >
+      <ul class=${classMap(this.rootClasses)} part=${partMap(this.rootClasses)}>
         ${this.renderPrevious()} ${this.renderItems()} ${this.renderNext()}
       </ul>
     `;
@@ -103,18 +109,20 @@ export class TiniPaginationComponent extends TiniElement {
 
   private renderPrevious() {
     const prevPageNum = this.currentPage - 1;
-    const href = this.previousClassesParts.disabled
+    const href = this.previousClasses['previous-disabled']
       ? this.defaultHrefBuilder()
       : this.buildHref(prevPageNum);
     return html`
       <li
-        part=${partMap(this.previousClassesParts)}
-        class=${classMap(this.previousClassesParts)}
+        class=${classMap(this.previousClasses)}
+        part=${partMap(this.previousClasses)}
       >
         <a
+          class=${classMap(this.previousLinkClasses)}
+          part=${partMap(this.previousLinkClasses)}
           href=${href}
           @click=${(e: Event) =>
-            this.previousClassesParts.disabled
+            this.previousClasses['previous-disabled']
               ? e.preventDefault()
               : this.onChange(prevPageNum)}
         ></a>
@@ -124,18 +132,17 @@ export class TiniPaginationComponent extends TiniElement {
 
   private renderNext() {
     const nextPageNum = this.currentPage + 1;
-    const href = this.nextClassesParts.disabled
+    const href = this.nextClasses['next-disabled']
       ? this.defaultHrefBuilder()
       : this.buildHref(nextPageNum);
     return html`
-      <li
-        part=${partMap(this.nextClassesParts)}
-        class=${classMap(this.nextClassesParts)}
-      >
+      <li class=${classMap(this.nextClasses)} part=${partMap(this.nextClasses)}>
         <a
+          class=${classMap(this.nextLinkClasses)}
+          part=${partMap(this.nextLinkClasses)}
           href=${href}
           @click=${(e: Event) =>
-            this.nextClassesParts.disabled
+            this.nextClasses['next-disabled']
               ? e.preventDefault()
               : this.onChange(nextPageNum)}
         ></a>
@@ -146,24 +153,25 @@ export class TiniPaginationComponent extends TiniElement {
   private renderItems() {
     return Array.from({length: this.totalPage}).map((_, i) => {
       const pageNum = i + 1;
-      const itemClassesParts: ClassInfo | PartInfo = {
+      const itemClasses: ClassInfo = {
         item: true,
         'item-active': pageNum === this.currentPage,
       };
-      const href = itemClassesParts.active
+      const itemLinkClasses: ClassInfo = {
+        'item-link': true,
+        'item-link-active': pageNum === this.currentPage,
+      };
+      const href = itemClasses.active
         ? this.defaultHrefBuilder()
         : this.buildHref(pageNum);
       return html`
-        <li
-          part=${partMap(itemClassesParts)}
-          class=${classMap(itemClassesParts)}
-        >
+        <li class=${classMap(itemClasses)} part=${partMap(itemClasses)}>
           <a
+            class=${classMap(itemLinkClasses)}
+            part=${partMap(itemLinkClasses)}
             href=${href}
             @click=${(e: Event) =>
-              itemClassesParts.active
-                ? e.preventDefault()
-                : this.onChange(pageNum)}
+              itemClasses.active ? e.preventDefault() : this.onChange(pageNum)}
             >${pageNum}</a
           >
         </li>

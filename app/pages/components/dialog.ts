@@ -15,6 +15,7 @@ import {TiniDialogComponent} from '@tinijs/ui/components/dialog';
 import {
   renderSection,
   renderDefaultSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -48,8 +49,8 @@ export class AppPageComponentsDialog extends TiniComponent {
     ['head', 'The head part'],
     ['body', 'The body part'],
     ['foot', 'The foot part'],
-    ['foot-left', 'The left part of the foot'],
-    ['foot-right', 'The right part of the foot'],
+    ['foot-first', 'The first child of the foot'],
+    ['foot-second', 'The second child of the foot'],
   ];
 
   private readonly PREPROCESS_CODE: CodeBuilder = builder =>
@@ -79,6 +80,7 @@ export class AppPageComponentsDialog extends TiniComponent {
     createRef();
   private readonly customHeadFootDialogRef: Ref<TiniDialogComponent> =
     createRef();
+  private readonly styleDeepDialogRef: Ref<TiniDialogComponent> = createRef();
 
   protected render() {
     return html`
@@ -252,6 +254,33 @@ export class AppPageComponentsDialog extends TiniComponent {
                   >Close</tini-button
                 >
               </div>
+            </tini-dialog>
+          `,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-button
+              scheme="primary"
+              @click=${() => this.styleDeepDialogRef.value?.show()}
+              >Open alert (blur backdrop)</tini-button
+            >
+            <tini-dialog
+              ${ref(this.styleDeepDialogRef)}
+              titleText="An alert dialog"
+              @no=${() => this.styleDeepDialogRef.value?.hide()}
+              @yes=${() => this.styleDeepDialogRef.value?.hide()}
+              styleDeep="
+    .root { background: color-mix(in oklab, var(--color-background), transparent 30%) }
+    .root::backdrop {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+  "
+            >
+              <p>Alert dialog content.</p>
             </tini-dialog>
           `,
           this.renderSectionOptions

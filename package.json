@@ -37,7 +37,7 @@
     "url": "https://github.com/tinijs/ui/issues"
   },
   "dependencies": {
-    "@tinijs/bootstrap-icons": "file:../icons/build/@tinijs/bootstrap-icons/tinijs-bootstrap-icons-0.12.0.tgz",
+    "@tinijs/bootstrap-icons": "^0.13.0",
     "@tinijs/core": "^0.12.0",
     "@tinijs/router": "^0.12.0",
     "@tinijs/store": "^0.12.0",
@@ -47,12 +47,12 @@
     "highlight.js": "^11.9.0",
     "lit": "^3.1.0",
     "prettier": "^3.1.0",
-    "tinijs": "file:../tinijs/tinijs-0.12.0.tgz"
+    "tinijs": "^0.13.0"
   },
   "devDependencies": {
     "@lit/react": "^1.0.2",
     "@parcel/transformer-sass": "^2.10.3",
-    "@tinijs/cli": "file:../cli/tinijs-cli-0.12.0.tgz",
+    "@tinijs/cli": "^0.13.0",
     "@types/chroma-js": "^2.4.3",
     "@types/gradient-parser": "^0.1.5",
     "@types/node": "^20.9.4",

@@ -20,6 +20,7 @@ import {
   renderDefaultSection,
   renderColorsSection,
   renderScalesSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -213,6 +214,22 @@ export class AppPageComponentsSelect extends TiniComponent {
               scale=${scale}
               .items=${this.OPTIONS}
             ></tini-select>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-select
+              .items=${this.OPTIONS}
+              styleDeep="
+    select {
+      border-width: 2px;
+      border-radius: 0;
+    }
+  "
+            ></tini-select>
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

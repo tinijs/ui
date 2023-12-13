@@ -1,8 +1,7 @@
 import {html, nothing, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
-import {TiniElement, partMap, PartInfo, VaryGroups} from 'tinijs';
+import {TiniElement, partMap, VaryGroups} from 'tinijs';
 
 import {CheckboxesItem, CheckboxesEventDetail} from './checkboxes';
 
@@ -24,13 +23,13 @@ export class TiniRadiosComponent extends TiniElement {
     if (!this.name) throw new Error('Property "name" is required.');
   }
 
-  willUpdate(changedValues: PropertyValues) {
-    super.willUpdate(changedValues);
+  willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
     // default and validations
     this.validateProperties();
     // root classes parts
-    this.extendRootClassesParts({
-      info: {
+    this.extendRootClasses({
+      raw: {
         wrap: !!this.wrap,
       },
     });
@@ -55,9 +54,8 @@ export class TiniRadiosComponent extends TiniElement {
       ? nothing
       : html`
           <div
-            part=${partMap(this.activeRootClassesParts)}
-            class=${classMap(this.activeRootClassesParts)}
-            style=${styleMap(this.activeRootStyles)}
+            class=${classMap(this.rootClasses)}
+            part=${partMap(this.rootClasses)}
           >
             ${this.items.map(item => this.renderItem(item))}
           </div>
@@ -72,20 +70,17 @@ export class TiniRadiosComponent extends TiniElement {
     scheme,
     scale,
   }: RadiosItem) {
-    const itemClassesParts: ClassInfo | PartInfo = {
+    const itemClasses: ClassInfo = {
       item: true,
       disabled: !!disabled,
       [`${VaryGroups.Scheme}-${scheme}`]: !!scheme,
       [`${VaryGroups.Scale}-${scale}`]: !!scale,
     };
     return html`
-      <label
-        class=${classMap(itemClassesParts)}
-        part=${partMap(itemClassesParts)}
-      >
+      <label class=${classMap(itemClasses)} part=${partMap(itemClasses)}>
         <input
-          part="input"
           class="input"
+          part="input"
           type="radio"
           name=${this.name}
           value=${value}
@@ -95,7 +90,7 @@ export class TiniRadiosComponent extends TiniElement {
         />
         ${!label
           ? nothing
-          : html`<span part="label" class="label">${label}</span>`}
+          : html`<span class="label" part="label">${label}</span>`}
       </label>
     `;
   }

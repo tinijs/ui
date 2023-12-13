@@ -18,6 +18,7 @@ import {
   renderDefaultSection,
   renderColorsSection,
   renderScalesSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -144,7 +145,7 @@ export class AppPageComponentsTextarea extends TiniComponent {
           color =>
             html`<tini-textarea
               scheme=${color}
-              placeholder="Focus me to see"
+              placeholder="Placeholder"
             ></tini-textarea>`,
           this.renderSectionOptions
         )}
@@ -156,6 +157,22 @@ export class AppPageComponentsTextarea extends TiniComponent {
               scale=${scale}
               placeholder=${scale}
             ></tini-textarea>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-textarea
+              placeholder="Custom style"
+              styleDeep="
+    textarea {
+      border-width: 2px;
+      border-radius: 0;
+    }
+  "
+            ></tini-textarea>
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

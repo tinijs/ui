@@ -74,7 +74,7 @@ Include skins (and skin utils) in a global CSS file, for example:
 Then import use the components, for example:
 
 ```js
-import {TiniButtonComponent} from '@tinijs/ui-bootstrap/components/button.js';
+import {TiniButtonComponent} from '@tinijs/ui-bootstrap/components/button';
 ```
 
 ```html
@@ -92,6 +92,8 @@ Install: `npm i @tinijs/ui-bootstrap`
 Official skins:
   - `light`
   - `dark`
+  - `retro-light`
+  - `retro-dark`
 
 ### And more
 
@@ -102,7 +104,7 @@ Official skins:
 ### Development
 
 - Create a home for TiniJS: `mkdir TiniJS && cd TiniJS`
-- Fork the repo: `git clone https://github.com/tinijs/ui.git`
+- Fork the repo
 - Install dependencies: `cd ui && npm i`
 - Make changes & preview locally: `npm run dev`
 - Push changes & create a PR 👌

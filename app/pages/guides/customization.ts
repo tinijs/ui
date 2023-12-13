@@ -101,9 +101,12 @@ export class AppPageGuidesCustomization extends TiniComponent {
         <div slot="content">
           <p>
             To customize a component, you can edit its
-            <strong>variables</strong> or provide custom styles via its
-            <strong>parts</strong>. Please see the list of variables and parts
-            at the bottom of a component detail page.
+            <strong>variables</strong>, provide custom styles targeted its
+            <strong>parts</strong> or deep styling via the
+            <strong>styleDeep</strong> attribute. Please see the list of
+            <strong>variables, parts</strong> and internal
+            <strong>classes</strong> at the bottom of a component detail page or
+            in the soul source tab.
           </p>
 
           <p><strong>Using variables</strong></p>
@@ -118,7 +121,12 @@ export class AppPageGuidesCustomization extends TiniComponent {
           <p><strong>Using parts</strong></p>
           <app-code
             language="css"
-            .code=${'tini-button::part(root) {\n  background-color: aqua;\n}'}
+            .code=${'tini-button::part(root) {\n  background: aqua;\n}'}
+          ></app-code>
+
+          <p><strong>Via the styleDeep attribute</strong></p>
+          <app-code
+            .code=${'<tini-button styleDeep=".root { background: aqua }"></tini-button>'}
           ></app-code>
         </div>
       </app-section>

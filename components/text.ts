@@ -1,8 +1,7 @@
 import {PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
-import {html, literal, unsafeStatic, StaticValue} from 'lit/static-html.js';
+import {html, unsafeStatic, StaticValue} from 'lit/static-html.js';
 import {
   TiniElement,
   partMap,
@@ -45,13 +44,13 @@ export class TiniTextComponent extends TiniElement {
   /* eslint-enable prettier/prettier */
 
   private rootTag!: StaticValue;
-  willUpdate(changedValues: PropertyValues) {
-    super.willUpdate(changedValues);
+  willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
     // root tag
-    this.rootTag = literal`${unsafeStatic(this.tag || TextTags.Span)}`;
+    this.rootTag = unsafeStatic(this.tag || TextTags.Span);
     // root classes parts
-    this.extendRootClassesParts({
-      info: {
+    this.extendRootClasses({
+      raw: {
         italic: !!this.italic,
         underline: !!this.underline,
       },
@@ -68,9 +67,8 @@ export class TiniTextComponent extends TiniElement {
   protected render() {
     return html`
       <${this.rootTag}
-        part=${partMap(this.activeRootClassesParts)}
-        class=${classMap(this.activeRootClassesParts)}
-        style=${styleMap(this.activeRootStyles)}
+        class=${classMap(this.rootClasses)}
+        part=${partMap(this.rootClasses)}
       >
         <slot></slot>
       </${this.rootTag}>

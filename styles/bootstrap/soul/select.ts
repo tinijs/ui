@@ -4,8 +4,8 @@ import {generateColorVaries, generateScaleVaries} from 'tinijs';
 export const selectStyle = css`
   :host {
     --select-color: var(--color-primary);
+    --select-border-color: var(--color-medium);
     --select-scale: var(--scale-md);
-    --select-border: var(--size-border) solid var(--color-medium);
     --select-radius: var(--size-radius);
   }
 
@@ -32,7 +32,7 @@ export const selectStyle = css`
   select {
     background: var(--color-background-tint);
     color: var(--color-foreground);
-    border: var(--select-border);
+    border: var(--size-border) solid var(--select-border-color);
     border-radius: var(--select-radius);
     padding: calc(var(--select-scale) / 2) calc(var(--select-scale) / 1.5);
     font-size: var(--select-scale);
@@ -64,6 +64,7 @@ export const selectStyle = css`
     ({fullName, color}) => `
     .${fullName} {
       --select-color: ${color};
+      --select-border-color: ${color};
     }
   `
   )}

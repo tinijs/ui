@@ -1,7 +1,6 @@
 import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
 import {
@@ -40,11 +39,11 @@ export class TiniLinkComponent extends TiniElement {
   @property({type: String, reflect: true}) declare textTransform?: TextTransforms;
   /* eslint-enable prettier/prettier */
 
-  willUpdate(changedValues: PropertyValues) {
-    super.willUpdate(changedValues);
+  willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
     // root classes parts
-    this.extendRootClassesParts({
-      info: {
+    this.extendRootClasses({
+      raw: {
         italic: !!this.italic,
         underline: !!this.underline,
       },
@@ -122,9 +121,8 @@ export class TiniLinkComponent extends TiniElement {
       <a
         router-ignore
         ${ref(this.anchorRef)}
-        part=${partMap(this.activeRootClassesParts)}
-        class=${classMap(this.activeRootClassesParts)}
-        style=${styleMap(this.activeRootStyles)}
+        class=${classMap(this.rootClasses)}
+        part=${partMap(this.rootClasses)}
         href=${this.href || '/'}
         target=${ifDefined(this.target)}
         rel=${ifDefined(this.rel)}

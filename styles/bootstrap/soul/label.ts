@@ -5,7 +5,7 @@ export const labelStyle = css`
   :host {
     --label-background: var(--color-medium) /* Background color */;
     --label-scale: var(--scale-md);
-    --label-color: black /* Text color */;
+    --label-color: var(--color-medium) /* Text color */;
     --label-border: none;
     --label-radius: var(--size-radius);
   }
@@ -26,10 +26,11 @@ export const labelStyle = css`
     border: var(--label-border);
     border-radius: var(--label-radius);
     background: color-mix(in oklab, var(--label-background), transparent 50%);
-    color: var(--label-color);
+    color: color-mix(in oklab, var(--label-color), var(--color-foreground) 30%);
     font-size: var(--label-scale);
     font-weight: normal;
     line-height: 1;
+    text-transform: uppercase;
   }
 
   /*
@@ -48,6 +49,7 @@ export const labelStyle = css`
     ({name, fullName, color}) => `
     .${fullName} {
       --label-background: ${color};
+      --label-color: ${color};
     }
 
     .${VaryGroups.Color}-${name} {

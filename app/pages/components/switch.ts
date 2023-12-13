@@ -15,6 +15,7 @@ import {
   renderColorsSection,
   renderGradientsSection,
   renderScalesSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -120,6 +121,19 @@ export class AppPageComponentsSwitch extends TiniComponent {
         <!-- scales -->
         ${renderScalesSection(
           scale => html`<tini-switch checked scale=${scale}></tini-switch>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-switch
+              checked
+              scheme="primary"
+              scale="xxxl"
+              styleDeep=".slider, .slider::before { border-radius: 0 }"
+            ></tini-switch>
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

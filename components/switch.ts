@@ -1,7 +1,6 @@
 import {html, nothing, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {
   TiniElement,
@@ -27,11 +26,11 @@ export class TiniSwitchComponent extends TiniElement {
   @property({type: String, reflect: true}) declare scale?: Scales;
   /* eslint-enable prettier/prettier */
 
-  willUpdate(changedValues: PropertyValues) {
-    super.willUpdate(changedValues);
+  willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
     // root classes parts
-    this.extendRootClassesParts({
-      info: {
+    this.extendRootClasses({
+      raw: {
         checked: !!this.checked,
         disabled: !!this.disabled,
       },
@@ -60,14 +59,13 @@ export class TiniSwitchComponent extends TiniElement {
   protected render() {
     return html`
       <label
-        class=${classMap(this.activeRootClassesParts)}
-        part=${partMap(this.activeRootClassesParts)}
-        style=${styleMap(this.activeRootStyles)}
+        class=${classMap(this.rootClasses)}
+        part=${partMap(this.rootClasses)}
       >
         <div class="switch">
           <input
-            part="input"
             class="input"
+            part="input"
             type="checkbox"
             name=${ifDefined(this.name)}
             value=${ifDefined(this.value)}
@@ -75,11 +73,11 @@ export class TiniSwitchComponent extends TiniElement {
             ?disabled=${this.disabled}
             @change=${this.onChange}
           />
-          <span part="slider" class="slider"></span>
+          <span class="slider" part="slider"></span>
         </div>
         ${!this.label
           ? nothing
-          : html`<span part="label" class="label">${this.label}</span>`}
+          : html`<span class="label" part="label">${this.label}</span>`}
       </label>
     `;
   }

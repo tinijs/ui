@@ -21,6 +21,7 @@ import {
   renderItalicUnderlineSection,
   renderTransformsSection,
   renderFiltersSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -179,13 +180,17 @@ export class AppPageComponentsLink extends TiniComponent {
           html`
             <tini-link
               fontSize="1_5x"
-              xDisplay="inline-block"
-              xTransform="rotate(-45deg)"
+              style="
+                display: inline-block;
+                transform: rotate(-45deg);
+              "
               >Transform me</tini-link
             >
             <tini-link
-              xDisplay="inline-block"
-              xTransform="translateX(300px) scale(5) skew(45deg, 10deg)"
+              style="
+                display: inline-block;
+                transform: translateX(300px) scale(5) skew(45deg, 10deg);
+              "
               >Transform me</tini-link
             >
           `,
@@ -197,7 +202,10 @@ export class AppPageComponentsLink extends TiniComponent {
           html`
             <div class="group">
               <tini-link color="primary" fontSize="1_5x">Original</tini-link>
-              <tini-link color="primary" fontSize="1_5x" xFilter="opacity(50%)"
+              <tini-link
+                color="primary"
+                fontSize="1_5x"
+                style="filter: opacity(50%)"
                 >Filtered opacity(50%)</tini-link
               >
             </div>
@@ -208,7 +216,7 @@ export class AppPageComponentsLink extends TiniComponent {
               <tini-link
                 color="gradient-disco-club"
                 fontSize="1_5x"
-                xFilter="blur(2px)"
+                style="filter: blur(2px)"
                 >Filtered blur(2px)</tini-link
               >
             </div>
@@ -219,10 +227,45 @@ export class AppPageComponentsLink extends TiniComponent {
               <tini-link
                 color="gradient-mello-yellow"
                 fontSize="1_5x"
-                xFilter="grayscale(90%)"
+                style="filter: grayscale(90%)"
                 >Filtered grayscale(90%)</tini-link
               >
             </div>
+          `,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-link
+              styleDeep="
+    .root {
+      position: relative;
+      display: inline-block;
+      font-size: 2rem;
+      text-decoration: none !important;
+      color: var(--color-primary);
+    }
+    .root::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      bottom: 0;
+      left: 0;
+      background: var(--color-primary);
+      transition: transform 0.25s ease-out;
+      transform: scaleX(0);
+      transform-origin: bottom right;
+    }
+    .root:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+  "
+              >Custom style (hover me)</tini-link
+            >
           `,
           this.renderSectionOptions
         )}

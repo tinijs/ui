@@ -17,6 +17,7 @@ import {
   renderDefaultSection,
   renderColorsSection,
   renderGradientsSection,
+  renderStyleDeepSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -121,6 +122,17 @@ export class AppPageComponentsBreadcrumb extends TiniComponent {
               linkColor=${gradient}
               .items=${this.ITEMS}
             ></tini-breadcrumb>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- styleDeep -->
+        ${renderStyleDeepSection(
+          html`
+            <tini-breadcrumb
+              .items=${this.ITEMS}
+              styleDeep=".item::before { content: '>' }"
+            ></tini-breadcrumb>
+          `,
           this.renderSectionOptions
         )}
       </app-component-page>

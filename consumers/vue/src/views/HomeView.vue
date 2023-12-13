@@ -12,7 +12,7 @@ useComponents([TiniButtonComponent, IconHeartFillComponent]);
 
     <div class="buttons">
       <tini-button scheme="primary">A Button</tini-button>
-      <tini-button scheme="success" .hoverMap="{scheme: 'gradient-success'}">A Button</tini-button>
+      <tini-button scheme="success" hover:scheme="gradient-success">A Button</tini-button>
     </div>
 
     <div class="icons">

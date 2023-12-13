@@ -1,7 +1,6 @@
 import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
 import {TiniElement, partMap, VaryGroups, BoxShadows} from 'tinijs';
 
@@ -29,11 +28,11 @@ export class TiniModalComponent extends TiniElement {
   private dialogRef: Ref<HTMLDialogElement> = createRef();
   private context?: unknown;
 
-  willUpdate(changedValues: PropertyValues) {
-    super.willUpdate(changedValues);
+  willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
     // root classes parts
-    this.extendRootClassesParts({
-      info: {
+    this.extendRootClasses({
+      raw: {
         [this.BACKDROP_CLOSED]: !!this.backdropClosed,
       },
       overridable: {
@@ -82,23 +81,22 @@ export class TiniModalComponent extends TiniElement {
     return html`
       <dialog
         ${ref(this.dialogRef)}
-        part=${partMap(this.activeRootClassesParts)}
-        class=${classMap(this.activeRootClassesParts)}
-        style=${styleMap(this.activeRootStyles)}
+        class=${classMap(this.rootClasses)}
+        part=${partMap(this.rootClasses)}
         @click=${this.clickDialog}
       >
-        <div part="head" class="head">
+        <div class="head" part="head">
           <slot name="head">
             <strong>${this.titleText || 'Untitled'}</strong>
             <button @click=${this.clickNo}>✕</button>
           </slot>
         </div>
-        <div part="body" class="body">
+        <div class="body" part="body">
           <slot></slot>
         </div>
-        <div part="foot" class="foot">
+        <div class="foot" part="foot">
           <slot name="foot">
-            <div part="foot-left" class="foot-left">
+            <div class="foot-first" part="foot-first">
               <tini-button
                 scheme=${this.noButton?.scheme || 'medium'}
                 @click=${this.clickNo}
@@ -106,7 +104,7 @@ export class TiniModalComponent extends TiniElement {
                 ${this.noButton?.text || 'Cancel'}
               </tini-button>
             </div>
-            <div part="foot-right" class="foot-right">
+            <div class="foot-second" part="foot-second">
               <tini-button
                 scheme=${this.yesButton?.scheme || 'primary'}
                 @click=${this.clickYes}

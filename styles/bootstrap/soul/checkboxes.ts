@@ -27,6 +27,7 @@ export const checkboxesStyle = css`
   .item {
     --checkbox-scale: var(--scale-md);
     --checkbox-background: var(--color-primary);
+    --checkbox-border-color: var(--color-medium);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -44,7 +45,7 @@ export const checkboxesStyle = css`
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    border: var(--size-border) solid var(--color-medium);
+    border: var(--size-border) solid var(--checkbox-border-color);
     border-radius: var(--size-radius);
     transition: all 0.15s ease-in-out;
   }
@@ -79,7 +80,7 @@ export const checkboxesStyle = css`
    * [?disabled]
    */
 
-  .item.disabled {
+  .item-disabled {
     cursor: default;
     opacity: 0.5;
   }
@@ -97,6 +98,7 @@ export const checkboxesStyle = css`
     ({fullName, color}) => `
     .${fullName} {
       --checkbox-background: ${color};
+      --checkbox-border-color: ${color};
     }
   `
   )}

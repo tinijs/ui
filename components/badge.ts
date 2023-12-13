@@ -1,7 +1,6 @@
 import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
 import {
   TiniElement,
   partMap,
@@ -24,11 +23,11 @@ export class TiniBadgeComponent extends TiniElement {
   @property({type: String, reflect: true}) declare color?: Colors;
   /* eslint-enable prettier/prettier */
 
-  willUpdate(changedValues: PropertyValues) {
-    super.willUpdate(changedValues);
+  willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
     // root classes parts
-    this.extendRootClassesParts({
-      info: {
+    this.extendRootClasses({
+      raw: {
         pill: !!this.pill,
         circle: !!this.circle,
       },
@@ -43,9 +42,8 @@ export class TiniBadgeComponent extends TiniElement {
   protected render() {
     return html`
       <span
-        part=${partMap(this.activeRootClassesParts)}
-        class=${classMap(this.activeRootClassesParts)}
-        style=${styleMap(this.activeRootStyles)}
+        class=${classMap(this.rootClasses)}
+        part=${partMap(this.rootClasses)}
       >
         <slot></slot>
       </span>

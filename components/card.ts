@@ -1,8 +1,7 @@
 import {html, PropertyValues} from 'lit';
 import {property, state, queryAssignedElements} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
-import {TiniElement, partMap, PartInfo, VaryGroups, BoxShadows} from 'tinijs';
+import {TiniElement, partMap, VaryGroups, BoxShadows} from 'tinijs';
 
 /* UseBases(common) */
 export class TiniCardComponent extends TiniElement {
@@ -21,14 +20,14 @@ export class TiniCardComponent extends TiniElement {
   @state() private headSlotPopulated = false;
   @state() private footSlotPopulated = false;
 
-  private headClassesParts: ClassInfo | PartInfo = {};
-  private bodyClassesParts: ClassInfo | PartInfo = {};
-  private footClassesParts: ClassInfo | PartInfo = {};
-  willUpdate(changedValues: PropertyValues) {
-    super.willUpdate(changedValues);
+  private headClasses: ClassInfo = {};
+  private bodyClasses: ClassInfo = {};
+  private footClasses: ClassInfo = {};
+  willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
     // root classes parts
-    this.extendRootClassesParts({
-      info: {
+    this.extendRootClasses({
+      raw: {
         fluid: !!this.fluid,
       },
       overridable: {
@@ -36,16 +35,16 @@ export class TiniCardComponent extends TiniElement {
       },
     });
     // head classes parts
-    this.headClassesParts = {
+    this.headClasses = {
       head: true,
       'head-populated': this.headSlotPopulated,
     };
     // body classes parts
-    this.bodyClassesParts = {
+    this.bodyClasses = {
       body: true,
     };
     // foot classes parts
-    this.footClassesParts = {
+    this.footClasses = {
       foot: true,
       'foot-populated': this.footSlotPopulated,
     };
@@ -54,13 +53,12 @@ export class TiniCardComponent extends TiniElement {
   protected render() {
     return html`
       <div
-        class=${classMap(this.activeRootClassesParts)}
-        part=${partMap(this.activeRootClassesParts)}
-        style=${styleMap(this.activeRootStyles)}
+        class=${classMap(this.rootClasses)}
+        part=${partMap(this.rootClasses)}
       >
         <div
-          class=${classMap(this.headClassesParts)}
-          part=${partMap(this.headClassesParts)}
+          class=${classMap(this.headClasses)}
+          part=${partMap(this.headClasses)}
         >
           <slot
             name="head"
@@ -70,15 +68,15 @@ export class TiniCardComponent extends TiniElement {
         </div>
 
         <div
-          class=${classMap(this.bodyClassesParts)}
-          part=${partMap(this.bodyClassesParts)}
+          class=${classMap(this.bodyClasses)}
+          part=${partMap(this.bodyClasses)}
         >
           <slot></slot>
         </div>
 
         <div
-          class=${classMap(this.footClassesParts)}
-          part=${partMap(this.footClassesParts)}
+          class=${classMap(this.footClasses)}
+          part=${partMap(this.footClasses)}
         >
           <slot
             name="foot"

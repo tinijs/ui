@@ -19,7 +19,11 @@ export const messageStyle = css`
   .root {
     width: 100%;
     background: color-mix(in oklab, var(--message-background), transparent 50%);
-    color: var(--message-color);
+    color: color-mix(
+      in oklab,
+      var(--message-color),
+      var(--color-foreground) 30%
+    );
     font-size: var(--message-font-size);
     border: var(--message-border);
     border-radius: var(--message-radius);

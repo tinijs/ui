@@ -1,7 +1,6 @@
 import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {styleMap} from 'lit/directives/style-map.js';
 import {TiniElement, partMap, VaryGroups, Colors, Scales} from 'tinijs';
 
 /* UseBases(common) */
@@ -17,10 +16,10 @@ export class TiniSpinnerComponent extends TiniElement {
   @property({type: String, reflect: true}) declare scale?: Scales;
   /* eslint-enable prettier/prettier */
 
-  willUpdate(changedValues: PropertyValues) {
-    super.willUpdate(changedValues);
+  willUpdate(changedProperties: PropertyValues<this>) {
+    super.willUpdate(changedProperties);
     // root classes parts
-    this.extendRootClassesParts({
+    this.extendRootClasses({
       overridable: {
         [VaryGroups.Scheme]: this.scheme,
         [VaryGroups.Scale]: this.scale,
@@ -31,9 +30,8 @@ export class TiniSpinnerComponent extends TiniElement {
   protected render() {
     return html`
       <div
-        part=${partMap(this.activeRootClassesParts)}
-        class=${classMap(this.activeRootClassesParts)}
-        style=${styleMap(this.activeRootStyles)}
+        class=${classMap(this.rootClasses)}
+        part=${partMap(this.rootClasses)}
       ></div>
     `;
   }

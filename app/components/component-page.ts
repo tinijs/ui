@@ -113,7 +113,9 @@ export class AppComponentPageComponent extends TiniComponent {
   private importSpecificCodeReact!: ReturnType<
     typeof this.buildImportSpecificCodeReact
   >;
-  private standaloneCode!: string;
+  private standaloneSkinCode!: string;
+  private standaloneScriptCode!: string;
+  private standaloneImportCode!: string;
   private articleLink!: string;
   private componentLink!: string;
   private componentUrl!: string;
@@ -137,7 +139,9 @@ export class AppComponentPageComponent extends TiniComponent {
     this.importTiniCode = this.buildImportTiniCode();
     this.importSpecificCode = this.buildImportSpecificCode();
     this.importSpecificCodeReact = this.buildImportSpecificCodeReact();
-    this.standaloneCode = this.buildStandaloneCode();
+    this.standaloneSkinCode = this.buildStandaloneSkinCode();
+    this.standaloneScriptCode = this.buildStandaloneScriptCode();
+    this.standaloneImportCode = this.buildStandaloneImportCode();
     this.articleLink = this.buildArticleLink();
     this.componentLink = this.buildComponentLink();
     this.componentUrl = this.buildComponentUrl();
@@ -161,8 +165,23 @@ export class AppComponentPageComponent extends TiniComponent {
     return {nameCapitalized, nameConst, nameTag, nameClass};
   }
 
-  private buildStandaloneCode() {
-    return `<script src="https://cdn.jsdelivr.net/npm/${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}.bundle.js"></script>`;
+  private get jsdelivrUrl() {
+    return `https://cdn.jsdelivr.net/npm/${this.PACKAGE_PREFIX}-${this.activeSoulId}`;
+  }
+
+  private buildStandaloneSkinCode() {
+    return `@import url('${this.jsdelivrUrl}/styles/skins/light.css');\n@import url('${this.jsdelivrUrl}/utilities.css');`;
+  }
+
+  private buildStandaloneScriptCode() {
+    return `<script src="${this.buildStandaloneImportCode().replace(
+      /(import ')|(';)/,
+      ''
+    )}"></script>`;
+  }
+
+  private buildStandaloneImportCode() {
+    return `import '${this.jsdelivrUrl}/components/${this.name}.bundle.js';`;
   }
 
   private buildArticleLink() {
@@ -348,15 +367,27 @@ importComponents([
 
               <div data-tab=${ImportMethods.Standalone}>
                 <p>
-                  Include the standalone version in any HTML page from a public
-                  CDN:
+                  First, you need to import a skin and set the default theme
+                  <code
+                    >&lt;body
+                    data-theme=&quot;${this.activeSoulId}/light&quot;&gt;</code
+                  >. See the <a href="/get-started">Get Started</a> for the list
+                  of available skins.
                 </p>
-                <app-code .code=${this.standaloneCode}></app-code>
+                <app-code .code=${this.standaloneSkinCode}></app-code>
                 <p>
-                  <strong>Note that</strong>: this method is
-                  <em>not recommended</em> because the standalone component has
+                  Then, include the standalone script in any HTML page from a
+                  public CDN:
+                </p>
+                <app-code .code=${this.standaloneScriptCode}></app-code>
+                <p>Or, using ES6 import:</p>
+                <app-code .code=${this.standaloneImportCode}></app-code>
+                <p>
+                  <strong>Note that</strong>: this method is quite convenient
+                  because it can be used right away without any setup. But, it
+                  is <u>not recommended</u> because the standalone component has
                   the soul baked in and is usually bigger in size compares to
-                  the TS/ESM version.
+                  the ESM version.
                 </p>
               </div>
             </app-tabs>
@@ -458,7 +489,8 @@ importComponents([
                       <tr>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Template</th>
+                        <th>styleDeep template</th>
+                        <th>Part template</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -467,6 +499,11 @@ importComponents([
                           <tr>
                             <td><code>${name}</code></td>
                             <td>${description}</td>
+                            <td>
+                              <code>.${name} {}</code>${name !== 'root'
+                                ? nothing
+                                : html` or <code>& {}</code>`}
+                            </td>
                             <td>
                               <code
                                 >${this.nameVariants.nameTag}::part(${name})

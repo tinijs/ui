@@ -14,7 +14,7 @@ import {
 
 export const buttonStyle = css`
   :host {
-    --button-color-base: var(--color-medium);
+    --button-base-color: var(--color-medium);
     --button-color: var(--color-medium);
     --button-background: var(--color-medium) /* Background color */;
     --button-scale: var(--scale-md) /* Base scale */;
@@ -112,7 +112,10 @@ export const buttonStyle = css`
 
   button.mode-outline {
     background: none;
-    color: var(--button-text-color-superior, var(--button-color-base));
+    color: var(
+      --button-text-color-specific,
+      var(--button-text-color-contrast, var(--button-base-color))
+    );
     border-radius: var(--button-border-radius);
   }
 
@@ -147,7 +150,10 @@ export const buttonStyle = css`
 
   button.mode-bordered {
     background: none;
-    color: var(--button-text-color-superior, var(--button-color-base));
+    color: var(
+      --button-text-color-specific,
+      var(--button-text-color-contrast, var(--button-base-color))
+    );
     border: var(--button-border-size) solid var(--button-color);
   }
 
@@ -167,7 +173,10 @@ export const buttonStyle = css`
 
   button.mode-clear {
     background: transparent;
-    color: var(--button-text-color-superior, var(--button-color-base));
+    color: var(
+      --button-text-color-specific,
+      var(--button-text-color-contrast, var(--button-base-color))
+    );
   }
 
   button.mode-clear:hover {
@@ -229,18 +238,21 @@ export const buttonStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, fullName, baseColor, color, contrast}) => `
+    ({
+      name,
+      fullName,
+      isContrast,
+      baseColor,
+      color,
+      baseContrast,
+      contrast,
+    }) => `
     button.${fullName}-hover {
       transition: none;
-    }
-
-    button.${fullName}-hover,
-    button.${VaryGroups.Color}-${name}-hover {
       opacity: 1;
     }
 
-    button.${fullName}-hover:active,
-    button.${VaryGroups.Color}-${name}-hover:active {
+    button.${fullName}-hover:active {
       opacity: 0.9;
     }
 
@@ -248,14 +260,14 @@ export const buttonStyle = css`
     button.${fullName}-hover:hover {
       --button-background: ${color};
       --button-text-color: ${contrast};
-      --button-color-base: ${baseColor};
       --button-color: ${color};
+      --button-base-color: ${baseColor};
+      ${!isContrast ? '' : `--button-text-color-contrast: ${baseContrast};`}
     }
 
-    button.${VaryGroups.Color}-${name},
-    button.${VaryGroups.Color}-${name}-hover:hover {
+    button.${VaryGroups.Color}-${name} {
       --button-text-color: ${color} !important;
-      --button-text-color-superior: ${color} !important;
+      --button-text-color-specific: ${color} !important;
     }
 
     button.${VaryGroups.BorderColor}-${name} {
@@ -267,7 +279,15 @@ export const buttonStyle = css`
   )}
 
   ${generateGradientVaries(
-    ({fullName, gradient, baseColor, color, contrast}) => `
+    ({
+      fullName,
+      isContrast,
+      gradient,
+      baseColor,
+      color,
+      baseContrast,
+      contrast,
+    }) => `
     button.${fullName}.mode-outline,
     button.${fullName}-hover {
       opacity: 1;
@@ -282,8 +302,9 @@ export const buttonStyle = css`
     button.${fullName}-hover:hover {
       --button-background: ${gradient};
       --button-text-color: ${contrast};
-      --button-color-base: ${baseColor};
       --button-color: ${color};
+      --button-base-color: ${baseColor};
+      ${!isContrast ? '' : `--button-text-color-contrast: ${baseContrast};`}
     }
   `
   )}
