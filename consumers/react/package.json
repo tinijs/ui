@@ -7,7 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@tinijs/bootstrap-icons": "^0.13.0",
-    "@tinijs/ui-bootstrap": "file:../../build/@tinijs/ui-bootstrap/tinijs-ui-bootstrap-0.12.0.tgz",
+    "@tinijs/ui-bootstrap": "file:../../build/@tinijs/ui-bootstrap/tinijs-ui-bootstrap-0.13.1.tgz",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.54",
     "@types/react": "^18.2.22",

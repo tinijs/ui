@@ -7,7 +7,7 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
-import {TiniComponentComponent} from '@tinijs/ui/components/component';
+import {TiniGenericComponent} from '@tinijs/ui/components/generic';
 
 import {renderSection, RenderSectionOptions} from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -17,9 +17,9 @@ import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
 @Page({
-  name: 'app-page-components-component',
+  name: 'app-page-components-generic',
   components: [
-    TiniComponentComponent,
+    TiniGenericComponent,
     AppComponentPageComponent,
     AppSectionComponent,
   ],
@@ -33,7 +33,7 @@ import {AppSectionComponent} from '../../components/section';
     ]),
   },
 })
-export class AppPageComponentsComponent extends TiniComponent {
+export class AppPageComponentsGeneric extends TiniComponent {
   private readonly PART_LIST = [['root', 'The root part']];
 
   private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
@@ -53,9 +53,9 @@ export class AppPageComponentsComponent extends TiniComponent {
   protected render() {
     return html`
       <app-component-page
-        titleText="Component"
-        name="component"
-        path="components/component"
+        titleText="Generic"
+        name="generic"
+        path="components/generic"
         .partList=${this.PART_LIST}
       >
         <div slot="description">Generic component.</div>
@@ -64,14 +64,13 @@ export class AppPageComponentsComponent extends TiniComponent {
         <app-section noCodeSample>
           <h2 slot="title">Overview</h2>
           <div slot="content" class="overview">
+            <p>Use <code>tini-generic</code> to create any custom component.</p>
             <p>
-              Use <code>tini-component</code> to create any custom component.
-            </p>
-            <p>
-              Default is an inline element. You can also render as a scoped
-              component using the <code>scoped</code> atrribute, user custom
-              native tag via <code>tag</code> attribute, passing attributes
-              using <code>-attr</code> suffixed attributes.
+              Default is a scoped component, choose a different native root tag
+              via <code>tag</code> attribute, passing attributes using
+              <code>-attr</code> suffixed attributes. You can also using the
+              <code>unscoped</code> atrribute (not supports React) to render a
+              regular inline element.
             </p>
             <p>
               Style a component by providing <strong>inline styles</strong> or
@@ -107,16 +106,58 @@ export class AppPageComponentsComponent extends TiniComponent {
           </div>
         </app-section>
 
-        <!-- inline styles -->
+        <!-- usage -->
         ${renderSection(
-          'inline-styles',
-          'Inline styles',
+          'usage',
+          'Usage',
+          html`<p>Provide any CSS key-value pairs as attributes.</p>`,
+          html`
+            <tini-generic
+              display="flex"
+              align-items="center"
+              justify-content="space-between"
+              padding="1rem"
+              border="2px solid blue"
+              border-radius="0.5rem"
+              background="#ccc"
+            >
+              <p>Left</p>
+              <p>Right</p>
+            </tini-generic>
+          `,
+          this.renderSectionOptions
+        )}
+
+        <!-- custom tag & attributes -->
+        ${renderSection(
+          'tag-attributes',
+          'Tag & attributes',
           html`<p>
-            Use <code>tini-component</code> as any native HTML element, it can
-            be styled using the the inline <code>style</code> attribute.
+            Choose a different native root tag via <code>tag</code> attribute,
+            passing attributes using <code>-attr</code> suffixed attributes.
           </p>`,
           html`
-            <tini-component
+            <tini-generic
+              tag="input"
+              type-attr="email"
+              placeholder-attr="Enter your email"
+            ></tini-generic>
+          `,
+          this.renderSectionOptions
+        )}
+
+        <!-- unscoped  -->
+        ${renderSection(
+          'unscoped',
+          'Unscoped',
+          html`<p>
+            To create an inline element, use the <code>unscoped</code> attribute
+            (not supports React), it can be styled using the the inline
+            <code>style</code> attribute.
+          </p>`,
+          html`
+            <tini-generic
+              unscoped
               style="
     display: block;
     padding: 1rem;
@@ -124,51 +165,8 @@ export class AppPageComponentsComponent extends TiniComponent {
     border: 2px solid blue;
     border-radius: 0.5rem;
   "
-              >An inline element.</tini-component
+              >Unscoped element</tini-generic
             >
-          `,
-          this.renderSectionOptions
-        )}
-
-        <!-- shadow-dom -->
-        ${renderSection(
-          'shadow-dom',
-          'Shadow DOM',
-          html`<p>Scoped element, custom tag and attributes.</p>`,
-          html`
-            <tini-component
-              scoped
-              tag="input"
-              type-attr="email"
-              placeholder-attr="Enter your email"
-            ></tini-component>
-          `,
-          this.renderSectionOptions
-        )}
-
-        <!-- attribute styles -->
-        ${renderSection(
-          'attribute-styles',
-          'Attribute styles',
-          html`<p>Provide any CSS key-value pairs as attributes.</p>`,
-          html`
-            <tini-component
-              scoped
-              display="block"
-              padding="1rem"
-              border="2px solid blue"
-              border-radius="0.5rem"
-              background="#ccc"
-            >
-              <tini-component
-                display="flex"
-                align-items="center"
-                justify-content="space-between"
-              >
-                <p>Flex left</p>
-                <p>Flex right</p>
-              </tini-component>
-            </tini-component>
           `,
           this.renderSectionOptions
         )}
@@ -182,27 +180,7 @@ export class AppPageComponentsComponent extends TiniComponent {
             pseudo-classes, pseudo-elements, media queries, ...
           </p>`,
           html`
-            <tini-component
-              styleDeep="
-    .root {
-      display: block;
-      padding: 1rem;
-      background: #ccc;
-      border: 2px solid green;
-      border-radius: 0.5rem;
-    }
-
-    @media (min-width: 768px) {
-      .root {
-        border-color: blue;
-      }
-    }
-  "
-              >Light DOM</tini-component
-            >
-
-            <tini-component
-              scoped
+            <tini-generic
               margin-top="1rem"
               display="flex"
               justify-content="center"
@@ -232,7 +210,7 @@ export class AppPageComponentsComponent extends TiniComponent {
       }
     }
   "
-            ></tini-component>
+            ></tini-generic>
           `,
           this.renderSectionOptions
         )}
@@ -246,8 +224,7 @@ export class AppPageComponentsComponent extends TiniComponent {
             theme to <strong>Bootstrap Dark</strong> to see the defferent.
           </p>`,
           html`
-            <tini-component
-              scoped
+            <tini-generic
               display="block"
               padding="1rem"
               border="2px solid blue"
@@ -261,7 +238,7 @@ export class AppPageComponentsComponent extends TiniComponent {
                 `,
               }}
               >Default background=#ccc / Bootstrap Dark
-              background=#a69836</tini-component
+              background=#a69836</tini-generic
             >
           `,
           this.renderSectionOptions
@@ -274,7 +251,7 @@ export class AppPageComponentsComponent extends TiniComponent {
           html`
             <p>
               Here are 2 examples inspired by Tailwind if you like to compare
-              <code>tini-component</code> to
+              <code>tini-generic</code> to
               <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a
               >.
             </p>
@@ -297,14 +274,14 @@ export class AppPageComponentsComponent extends TiniComponent {
               </li>
             </ol>
             <p>
-              In conclusion, <code>tini-component</code> doesn't require a build
+              In conclusion, <code>tini-generic</code> doesn't require a build
               step, but the size of code is bigger than Tailwind about
               <strong>20%</strong> on average. It's recommended to extract
               repeatitive code intro reusable components.
             </p>
           `,
           html`
-            <tini-component
+            <tini-generic
               display="flex"
               align-items="center"
               gap="1rem"
@@ -323,18 +300,17 @@ export class AppPageComponentsComponent extends TiniComponent {
                 />
               </div>
               <div>
-                <tini-component
-                  scoped
+                <tini-generic
                   color="black"
                   font-size="1.25rem"
                   font-weight="500"
-                  >ChitChat</tini-component
+                  >ChitChat</tini-generic
                 >
                 <p style="margin: 0; color: #64748b">You have a new message!</p>
               </div>
-            </tini-component>
+            </tini-generic>
 
-            <tini-component
+            <tini-generic
               margin-top="2rem"
               display="flex"
               align-items="center"
@@ -355,16 +331,14 @@ export class AppPageComponentsComponent extends TiniComponent {
     "
               />
               <div>
-                <tini-component
-                  scoped
+                <tini-generic
                   color="black"
                   font-size="1.25rem"
                   font-weight="500"
-                  >Erin Lindford</tini-component
+                  >Erin Lindford</tini-generic
                 >
                 <p style="margin: 0; color: #64748b">Product Engineer</p>
-                <tini-component
-                  scoped
+                <tini-generic
                   tag="button"
                   background="none"
                   margin-top=".5rem"
@@ -386,10 +360,10 @@ export class AppPageComponentsComponent extends TiniComponent {
           outline-offset: 2px;
         }
       "
-                  >Message</tini-component
+                  >Message</tini-generic
                 >
               </div>
-            </tini-component>
+            </tini-generic>
           `,
           this.renderSectionOptions
         )}

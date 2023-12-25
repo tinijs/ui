@@ -19,7 +19,7 @@
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
     "@tinijs/bootstrap-icons": "^0.13.0",
-    "@tinijs/ui-bootstrap": "file:../../build/@tinijs/ui-bootstrap/tinijs-ui-bootstrap-0.12.0.tgz",
+    "@tinijs/ui-bootstrap": "file:../../build/@tinijs/ui-bootstrap/tinijs-ui-bootstrap-0.13.1.tgz",
     "rxjs": "~7.8.0",
     "tinijs": "^0.13.0",
     "tslib": "^2.3.0",

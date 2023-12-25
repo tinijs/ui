@@ -1,26 +1,113 @@
 <script>
 import { useComponents } from 'tinijs';
 
+import {TiniGenericComponent} from '@tinijs/ui-bootstrap/components/generic';
+import {TiniBoxComponent} from '@tinijs/ui-bootstrap/components/box';
 import {TiniButtonComponent} from '@tinijs/ui-bootstrap/components/button';
 import {IconHeartFillComponent} from '@tinijs/bootstrap-icons/heart-fill';
 
 useComponents([
+  TiniGenericComponent,
+  TiniBoxComponent,
   TiniButtonComponent,
-  IconHeartFillComponent
+  IconHeartFillComponent,
 ]);
-
 </script>
 
 <main>
+
   <h1>Svelte</h1>
   
-  <div class="buttons">
-    <tini-button scheme="primary">A Button</tini-button>
-    <tini-button scheme="success" hover:scheme="gradient-success">A Button</tini-button>
-  </div>
+  <section class="buttons">
+    <tini-button scheme="primary">Primary button</tini-button>
+    <tini-button scheme="success" hoverScheme="gradient-success">Success button (gradient on hover)</tini-button>
+  </section>
 
-  <div class="icons">
-    <icon-heart-fill scheme="gradient-disco-club"></icon-heart-fill>
-  </div>
+  <section class="icons">
+    <icon-heart-fill scheme="gradient-disco-club" scale="xxxl"></icon-heart-fill>
+  </section>
+
+  <section class="style-deep">
+    <tini-box
+      styledeep={`
+        .root {
+          background: #eee;
+          padding: 2rem;
+          font-size: 1.5rem;
+          border: 2px solid green;
+        }
+      `}
+    >
+      Style deep
+    </tini-box>
+  </section>
+
+  <section class="components">
+    <tini-generic
+      display="flex"
+      align-items="center"
+      gap="1.5rem"
+      width="var(--wide-ss)"
+      padding="1rem 1.5rem"
+      background="#fff"
+      border-radius=".75rem"
+      box-shadow="rgba(0, 0, 0, 0.2) 0px 5px 15px"
+    >
+      <img
+        src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&amp;w=250&amp;h=250&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="Erin Lindford"
+        style="
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+        "
+      />
+      <div>
+        <tini-generic color="black" font-size="1.25rem" font-weight="500">
+          Erin Lindford
+        </tini-generic>
+        <p style="margin: 0; color: #64748b">Product Engineer</p>
+        <tini-generic
+          tag="button"
+          background="none"
+          margin-top=".5rem"
+          padding=".25rem 1rem"
+          font-size=".875rem"
+          font-weight="600"
+          line-height="1.25rem"
+          color="#9333ea"
+          border="1px solid #e9d5ff"
+          border-radius="9999px"
+          cursor="pointer"
+          styledeep={`
+            .root:hover {
+              background: #9333ea;
+              color: #fff;
+            }
+            .root:focus {
+              outline: 2px solid #9333ea;
+              outline-offset: 2px;
+            }
+          `}
+        >
+          Message
+        </tini-generic>
+      </div>
+    </tini-generic>
+  </section>
 
 </main>
+
+<style>
+main {
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+section {
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid #ccc;
+}
+</style>

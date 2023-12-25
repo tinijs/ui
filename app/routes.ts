@@ -50,10 +50,16 @@ export const componentsBasesRoute: Route = {
   action: () => import('./pages/components/bases'),
 };
 
-export const componentsComponentRoute: Route = {
-  path: 'components/component',
-  component: 'app-page-components-component',
-  action: () => import('./pages/components/component'),
+export const componentsGenericRoute: Route = {
+  path: 'components/generic',
+  component: 'app-page-components-generic',
+  action: () => import('./pages/components/generic'),
+};
+
+export const componentsBoxRoute: Route = {
+  path: 'components/box',
+  component: 'app-page-components-box',
+  action: () => import('./pages/components/box'),
 };
 
 export const componentsTextRoute: Route = {
@@ -72,12 +78,6 @@ export const componentsIconRoute: Route = {
   path: 'components/icon',
   component: 'app-page-components-icon',
   action: () => import('./pages/components/icon'),
-};
-
-export const componentsBoxRoute: Route = {
-  path: 'components/box',
-  component: 'app-page-components-box',
-  action: () => import('./pages/components/box'),
 };
 
 export const componentsButtonRoute: Route = {
@@ -178,11 +178,11 @@ export const componentsTextareaRoute: Route = {
 
 export const componentsRoutes = [
   componentsBasesRoute,
-  componentsComponentRoute,
+  componentsGenericRoute,
+  componentsBoxRoute,
   componentsTextRoute,
   componentsLinkRoute,
   componentsIconRoute,
-  componentsBoxRoute,
   componentsButtonRoute,
   componentsBadgeRoute,
   componentsLabelRoute,

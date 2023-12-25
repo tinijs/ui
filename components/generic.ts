@@ -13,7 +13,7 @@ import {html, unsafeStatic, StaticValue} from 'lit/static-html.js';
 import {CHANGE_THEME_EVENT, randomClassName, getTheme} from 'tinijs';
 
 /* Raw(LitElement,react-any-props) */
-export class TiniComponentComponent extends LitElement {
+export class TiniGenericComponent extends LitElement {
   static readonly SELF_CLOSING_TAGS = [
     'area',
     'base',
@@ -30,8 +30,8 @@ export class TiniComponentComponent extends LitElement {
     'track',
     'wbr',
   ];
-  static readonly defaultTagName = 'tini-component';
-  readonly componentName = 'component';
+  static readonly defaultTagName = 'tini-generic';
+  readonly componentName = 'generic';
 
   readonly internalClassName = randomClassName(7, true);
   private currentTheme = getTheme();
@@ -39,16 +39,20 @@ export class TiniComponentComponent extends LitElement {
   private forwardAttributes?: Record<string, string>;
 
   /* eslint-disable prettier/prettier */
-  @property({type: Boolean, reflect: true}) declare scoped?: boolean;
+  @property({type: Boolean, reflect: true}) declare unscoped?: boolean;
   @property({type: String, reflect: true}) declare tag?: string;
   @property({type: String, reflect: true}) declare name?: string;
   @property() declare styleDeep?: string | CSSResultOrNative;
   @property({type: Object}) declare theming?: Record<string, string>;
   /* eslint-enable prettier/prettier */
 
-  constructor() {
-    super();
-    this.processAttributes();
+  protected createRenderRoot() {
+    return this.unscoped
+      ? this
+      : this.shadowRoot ??
+          this.attachShadow(
+            (this.constructor as typeof ReactiveElement).shadowRootOptions
+          );
   }
 
   private onThemeChange = (e: Event) => {
@@ -58,8 +62,11 @@ export class TiniComponentComponent extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    // adopt styles
+    this.processAttributes();
+    this.customAdoptStyles(this.renderRoot || this);
     // assign internal class
-    if (!this.scoped) this.classList.add(this.internalClassName);
+    if (this.unscoped) this.classList.add(this.internalClassName);
     // on theme change
     window.addEventListener(CHANGE_THEME_EVENT, this.onThemeChange);
   }
@@ -93,22 +100,11 @@ export class TiniComponentComponent extends LitElement {
     );
   }
 
-  protected createRenderRoot() {
-    const renderRoot = !this.scoped
-      ? this
-      : this.shadowRoot ??
-        this.attachShadow(
-          (this.constructor as typeof ReactiveElement).shadowRootOptions
-        );
-    this.customAdoptStyles(renderRoot);
-    return renderRoot;
-  }
-
   private customAdoptStyles(renderRoot: HTMLElement | DocumentFragment) {
     const attributeStyleText = this.buildStyleTextFromAttributes();
     const themingStyleText = this.buildStyleTextFromTheming();
     // adopt styles
-    if (this.scoped) {
+    if (!this.unscoped) {
       const styles: CSSResultOrNative[] = [];
       // attribute styles
       if (attributeStyleText) {
@@ -172,7 +168,12 @@ export class TiniComponentComponent extends LitElement {
     let forwardAttributes: undefined | Record<string, string>;
     for (let i = 0; i < this.attributes.length; i++) {
       const {name, value} = this.attributes[i];
-      if (name in HTMLElement.prototype || ~componentProps.indexOf(name))
+      if (
+        name in HTMLElement.prototype ||
+        ~componentProps.indexOf(name) ||
+        name.startsWith('data-') ||
+        name.startsWith('aria-')
+      )
         continue;
       if (name.substring(name.length - 5) !== '-attr') {
         if (!styleAttributes) styleAttributes = {};
@@ -189,7 +190,7 @@ export class TiniComponentComponent extends LitElement {
 
   private postprocessStyleText(styleText: string) {
     styleText = styleText.replace(/&/g, '.root');
-    return this.scoped
+    return !this.unscoped
       ? styleText
       : styleText.replace(/\.root/g, `.${this.internalClassName}`);
   }
@@ -198,7 +199,7 @@ export class TiniComponentComponent extends LitElement {
     return !this.styleAttributes
       ? ''
       : `
-      .${this.scoped ? 'root' : this.internalClassName} {
+      .${!this.unscoped ? 'root' : this.internalClassName} {
         ${Object.entries(this.styleAttributes)
           .map(([name, value]) => `${name}: ${value};`)
           .join('\n')}
@@ -220,7 +221,7 @@ export class TiniComponentComponent extends LitElement {
   }
 
   protected render() {
-    return !this.scoped
+    return this.unscoped
       ? nothing
       : this.tag &&
           ~(this.constructor as any).SELF_CLOSING_TAGS.indexOf(this.tag)
