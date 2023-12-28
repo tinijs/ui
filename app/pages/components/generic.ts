@@ -61,7 +61,8 @@ export class AppPageComponentsGeneric extends TiniComponent {
         .partList=${this.PART_LIST}
       >
         <div slot="description">
-          Use <code>tini-generic</code> and <code>tini-generic-unscoped</code> to build custom components.
+          Use <code>tini-generic</code> and
+          <code>tini-generic-unscoped</code> to build custom components.
         </div>
 
         <!-- overview -->
@@ -259,7 +260,8 @@ export class AppPageComponentsGeneric extends TiniComponent {
             <p>
               Here are 2 examples inspired by Tailwind if you like to compare
               <code>tini-generic</code> to
-              <a href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a
+              <a href="https://tailwindcss.com/" target="_blank" rel="noopener"
+                >Tailwind CSS</a
               >.
             </p>
             <ol>
@@ -268,6 +270,7 @@ export class AppPageComponentsGeneric extends TiniComponent {
                 <a
                   href="https://tailwindcss.com/docs/utility-first"
                   target="_blank"
+                  rel="noopener"
                   >https://tailwindcss.com/docs/utility-first</a
                 >
               </li>
@@ -276,6 +279,7 @@ export class AppPageComponentsGeneric extends TiniComponent {
                 <a
                   href="https://tailwindcss.com/docs/utility-first#why-not-just-use-inline-styles"
                   target="_blank"
+                  rel="noopener"
                   >https://tailwindcss.com/docs/utility-first#why-not-just-use-inline-styles</a
                 >
               </li>

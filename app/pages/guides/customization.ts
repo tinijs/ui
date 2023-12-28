@@ -58,6 +58,7 @@ export class AppPageGuidesCustomization extends TiniComponent {
             <a
               href="https://raw.githubusercontent.com/tinijs/ui/main/styles/bootstrap/skins/light.css"
               target="_blank"
+              rel="noopener"
               >Bootstrap light skin</a
             >.
           </p>
@@ -74,13 +75,19 @@ export class AppPageGuidesCustomization extends TiniComponent {
           <p>
             You can create a public soul and share it with the community by
             contributing to the
-            <a href="https://github.com/tinijs/ui" target="_blank"
+            <a
+              href="https://github.com/tinijs/ui"
+              target="_blank"
+              rel="noopener"
               >Tini UI repo</a
             >.
           </p>
           <p>
             Or, create a private soul by cloning the
-            <a href="https://github.com/tinijs/ui-skeleton" target="_blank"
+            <a
+              href="https://github.com/tinijs/ui-skeleton"
+              target="_blank"
+              rel="noopener"
               >UI skeleton</a
             >.
           </p>
@@ -89,6 +96,7 @@ export class AppPageGuidesCustomization extends TiniComponent {
             <a
               href="https://github.com/tinijs/ui/tree/main/styles/bootstrap"
               target="_blank"
+              rel="noopener"
               >the structure</a
             >
             of an official for more detail.
@@ -139,12 +147,14 @@ export class AppPageGuidesCustomization extends TiniComponent {
             <a
               href="https://raw.githubusercontent.com/tinijs/ui/main/styles/bootstrap/skins/light.css"
               target="_blank"
+              rel="noopener"
               >main CSS variables</a
             >
             and
             <a
               href="https://cdn.jsdelivr.net/npm/@tinijs/ui/utilities.css"
               target="_blank"
+              rel="noopener"
               >skin utilities</a
             >.
           </p>

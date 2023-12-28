@@ -277,7 +277,12 @@ importComponents([
         <div class="title-bar">
           <h1 class="title">
             <span>${this.titleText || 'Untitled page'}</span>
-            <a class="github-link" href=${this.articleLink} target="_blank">
+            <a
+              class="github-link"
+              href=${this.articleLink}
+              target="_blank"
+              rel="noopener"
+            >
               <icon-github scheme="foreground" scale="sm"></icon-github>
             </a>
           </h1>
@@ -342,6 +347,7 @@ importComponents([
                   <tini-link
                     href="https://github.com/tinijs/cli"
                     target="_blank"
+                    rel="noopener"
                     >CLI</tini-link
                   >
                   provides the <code>tini ui use</code> command. It helps you to
@@ -367,7 +373,8 @@ importComponents([
 
               <div data-tab=${ImportMethods.Standalone}>
                 <p>
-                  First, you need to import a skin and set the default theme
+                  First, you need to import a skin or multiple skins and set the
+                  default theme
                   <code
                     >&lt;body
                     data-theme=&quot;${this.activeSoulId}/light&quot;&gt;</code
@@ -551,7 +558,7 @@ importComponents([
           : html`
               <p>
                 View on Github:
-                <a href=${this.componentLink} target="_blank"
+                <a href=${this.componentLink} target="_blank" rel="noopener"
                   >${this.componentLink}</a
                 >
               </p>
@@ -569,7 +576,9 @@ importComponents([
           : html`
               <p>
                 View on Github:
-                <a href=${this.soulLink} target="_blank">${this.soulLink}</a>
+                <a href=${this.soulLink} target="_blank" rel="noopener"
+                  >${this.soulLink}</a
+                >
               </p>
               <app-code .code=${this.soulSourceCode}></app-code>
             `}

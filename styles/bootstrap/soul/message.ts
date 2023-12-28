@@ -4,7 +4,7 @@ import {VaryGroups, generateColorVaries, generateFontSizeVaries} from 'tinijs';
 export const messageStyle = css`
   :host {
     --message-background: var(--color-medium);
-    --message-color: var(--color-medium);
+    --message-text-color: var(--color-medium);
     --message-font-size: var(--size-text);
     --message-border: var(--size-border) solid var(--color-medium);
     --message-radius: var(--size-radius);
@@ -21,7 +21,7 @@ export const messageStyle = css`
     background: color-mix(in oklab, var(--message-background), transparent 50%);
     color: color-mix(
       in oklab,
-      var(--message-color),
+      var(--message-text-color),
       var(--color-foreground) 30%
     );
     font-size: var(--message-font-size);
@@ -48,15 +48,15 @@ export const messageStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, fullName, color}) => `
+    ({name, fullName, isContrast, isSubtle, color, baseColor}) => `
     .${fullName} {
       --message-background: ${color};
-      --message-color: ${color};
+      --message-text-color: ${isContrast || isSubtle ? baseColor : color};
       border-color: ${color};
     }
 
     .${VaryGroups.Color}-${name} {
-      --message-color: ${color} !important;
+      --message-text-color: ${color} !important;
     }
   `
   )}

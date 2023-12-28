@@ -5,7 +5,7 @@ export const labelStyle = css`
   :host {
     --label-background: var(--color-medium) /* Background color */;
     --label-scale: var(--scale-md);
-    --label-color: var(--color-medium) /* Text color */;
+    --label-text-color: var(--color-medium) /* Text color */;
     --label-border: none;
     --label-radius: var(--size-radius);
   }
@@ -26,7 +26,11 @@ export const labelStyle = css`
     border: var(--label-border);
     border-radius: var(--label-radius);
     background: color-mix(in oklab, var(--label-background), transparent 50%);
-    color: color-mix(in oklab, var(--label-color), var(--color-foreground) 30%);
+    color: color-mix(
+      in oklab,
+      var(--label-text-color),
+      var(--color-foreground) 30%
+    );
     font-size: var(--label-scale);
     font-weight: normal;
     line-height: 1;
@@ -46,14 +50,14 @@ export const labelStyle = css`
    */
 
   ${generateColorVaries(
-    ({name, fullName, color}) => `
+    ({name, fullName, isContrast, isSubtle, color, baseColor}) => `
     .${fullName} {
       --label-background: ${color};
-      --label-color: ${color};
+      --label-text-color: ${isContrast || isSubtle ? baseColor : color};
     }
 
     .${VaryGroups.Color}-${name} {
-      --label-color: ${color} !important;
+      --label-text-color: ${color} !important;
     }
   `
   )}

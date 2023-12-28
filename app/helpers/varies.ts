@@ -586,6 +586,7 @@ export function renderTransformsSection(
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform"
           target="_blank"
+          rel="noopener"
           >CSS tranforms</a
         >.
       </p>
@@ -610,6 +611,7 @@ export function renderFiltersSection(
         <a
           href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter"
           target="_blank"
+          rel="noopener"
           >CSS filters</a
         >.
       </p>

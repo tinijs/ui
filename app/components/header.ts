@@ -86,7 +86,7 @@ export class AppHeaderComponent extends TiniComponent {
             <icon-palette scheme="primary-contrast" scale="sm"></icon-palette>
             <span>Skin Editor</span>
           </button>
-          <a href=${this.REPO_URL} target="_blank">
+          <a href=${this.REPO_URL} target="_blank" rel="noopener">
             <icon-github scheme="primary-contrast" scale="sm"></icon-github>
           </a>
         </div>

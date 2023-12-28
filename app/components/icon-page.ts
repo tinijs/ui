@@ -127,16 +127,22 @@ export class AppIconPageComponent extends TiniComponent {
           </li>
           <li>Version: <code>${this.data?.version || '?'}</code></li>
           <li>
-            <a href=${this.ICONS_REPO_URL} target="_blank">Icons Repo</a>
+            <a href=${this.ICONS_REPO_URL} target="_blank" rel="noopener"
+              >Icons Repo</a
+            >
           </li>
           <li>
-            <a href=${this.changelogsUrl} target="_blank">Changelogs</a>
+            <a href=${this.changelogsUrl} target="_blank" rel="noopener"
+              >Changelogs</a
+            >
           </li>
           ${!this.homepage
             ? nothing
             : html`
                 <li>
-                  <a href=${this.homepage} target="_blank">Homepage</a>
+                  <a href=${this.homepage} target="_blank" rel="noopener"
+                    >Homepage</a
+                  >
                 </li>
               `}
         </ul>
