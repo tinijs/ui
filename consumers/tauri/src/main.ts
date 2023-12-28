@@ -1,7 +1,4 @@
-import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {RouterOutlet} from '@angular/router';
-
+// import { invoke } from "@tauri-apps/api/tauri";
 import {useComponents} from 'tinijs';
 
 import {TiniGenericComponent} from '@tinijs/ui-bootstrap/components/generic';
@@ -17,13 +14,3 @@ useComponents([
   TiniButtonComponent,
   IconHeartFillComponent,
 ]);
-
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
-})
-export class AppComponent {}

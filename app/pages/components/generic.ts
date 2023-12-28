@@ -8,6 +8,7 @@ import {
   codeBases,
 } from '@tinijs/ui/bases';
 import {TiniGenericComponent} from '@tinijs/ui/components/generic';
+import {TiniGenericUnscopedComponent} from '@tinijs/ui/components/generic-unscoped';
 
 import {renderSection, RenderSectionOptions} from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
@@ -20,6 +21,7 @@ import {AppSectionComponent} from '../../components/section';
   name: 'app-page-components-generic',
   components: [
     TiniGenericComponent,
+    TiniGenericUnscopedComponent,
     AppComponentPageComponent,
     AppSectionComponent,
   ],
@@ -58,7 +60,9 @@ export class AppPageComponentsGeneric extends TiniComponent {
         path="components/generic"
         .partList=${this.PART_LIST}
       >
-        <div slot="description">Generic component.</div>
+        <div slot="description">
+          Use <code>tini-generic</code> and <code>tini-generic-unscoped</code> to build custom components.
+        </div>
 
         <!-- overview -->
         <app-section noCodeSample>
@@ -68,15 +72,13 @@ export class AppPageComponentsGeneric extends TiniComponent {
             <p>
               Default is a scoped component, choose a different native root tag
               via <code>tag</code> attribute, passing attributes using
-              <code>-attr</code> suffixed attributes. You can also using the
-              <code>unscoped</code> atrribute (not supports React) to render a
-              regular inline element.
+              <code>-attr</code> suffixed attributes.
             </p>
             <p>
-              Style a component by providing <strong>inline styles</strong> or
-              <strong>CSS key-value pairs</strong> as attributes. There are
-              several utils if needed (import from the
-              <code>tinijs</code> package):
+              Style a component by providing
+              <strong>CSS key-value pairs</strong> as attributes or
+              <strong>inline styles</strong>. There are some utils if needed
+              (import from the <code>tinijs</code> package):
             </p>
             <ul>
               <li><strong>mix</strong>('red', 'blue'): Mix 2 colors</li>
@@ -151,21 +153,25 @@ export class AppPageComponentsGeneric extends TiniComponent {
           'unscoped',
           'Unscoped',
           html`<p>
-            To create an inline element, use the <code>unscoped</code> attribute
-            (not supports React), it can be styled using the the inline
-            <code>style</code> attribute.
+            <strong>Not recommended!</strong> To create an unscoped element,
+            import and use the <code>tini-generic-unscoped</code> instead, it
+            can be styled using the same methods as scoped components and/or
+            using the the inline <code>style</code> attribute (please note that
+            the inline styles have the highest specificity over CSS key-value
+            pairs, <code>styleDeep</code> attribute (or
+            <code>styledeep</code> in case of React) and <code>.theming</code>).
           </p>`,
           html`
-            <tini-generic
-              unscoped
+            <tini-generic-unscoped
+              name="my-component"
+              display="block"
+              padding="1rem"
               style="
-    display: block;
-    padding: 1rem;
     background: #ccc;
     border: 2px solid blue;
     border-radius: 0.5rem;
   "
-              >Unscoped element</tini-generic
+              >Unscoped element</tini-generic-unscoped
             >
           `,
           this.renderSectionOptions
@@ -176,8 +182,9 @@ export class AppPageComponentsGeneric extends TiniComponent {
           'advanced',
           'Advanced',
           html`<p>
-            More control using the <code>styleDeep</code> attribute; style
-            pseudo-classes, pseudo-elements, media queries, ...
+            Using the <code>styleDeep</code> attribute (or
+            <code>styledeep</code> in case of React) to style pseudo-classes,
+            pseudo-elements, media queries, ...
           </p>`,
           html`
             <tini-generic

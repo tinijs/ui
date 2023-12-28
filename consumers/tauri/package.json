@@ -1,0 +1,23 @@
+{
+  "name": "tauri",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^1.5.2",
+    "@tinijs/bootstrap-icons": "^0.13.0",
+    "@tinijs/ui-bootstrap": "file:../../build/@tinijs/ui-bootstrap/tinijs-ui-bootstrap-0.13.2.tgz",
+    "tinijs": "file:../../../tinijs/tinijs-0.13.2.tgz"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.5.8",
+    "typescript": "^5.0.2",
+    "vite": "^5.0.0"
+  }
+}

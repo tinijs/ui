@@ -1,0 +1,14 @@
+@import '../node_modules/@tinijs/ui-bootstrap/styles/skins/light.css';
+@import '../node_modules/@tinijs/ui-bootstrap/utilities.css';
+
+main {
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+section {
+  padding-top: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid #ccc;
+}

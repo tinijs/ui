@@ -35,7 +35,7 @@
 	"type": "module",
 	"dependencies": {
 		"@tinijs/bootstrap-icons": "^0.13.0",
-		"@tinijs/ui-bootstrap": "file:../../build/@tinijs/ui-bootstrap",
-		"tinijs": "^0.13.0"
+		"@tinijs/ui-bootstrap": "file:../../build/@tinijs/ui-bootstrap/tinijs-ui-bootstrap-0.13.2.tgz",
+		"tinijs": "file:../../../tinijs/tinijs-0.13.2.tgz"
 	}
 }

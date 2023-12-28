@@ -1,36 +1,29 @@
-import './App.css';
-import {importComponents, Colors, Gradients, CommonGradients, Scales} from 'tinijs';
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+    <script type="module" src="/src/main.ts" defer></script>
+  </head>
 
-import {TiniGenericComponent, TiniGeneric} from '@tinijs/ui-bootstrap/components/generic.react';
-import {TiniGenericUnscopedComponent, TiniGenericUnscoped} from '@tinijs/ui-bootstrap/components/generic-unscoped.react';
-import {TiniBoxComponent, TiniBox} from '@tinijs/ui-bootstrap/components/box.react';
-import {TiniButtonComponent, TiniButton} from '@tinijs/ui-bootstrap/components/button.react';
-import {IconHeartFillComponent, IconHeartFill} from '@tinijs/bootstrap-icons/heart-fill.react';
-
-importComponents([
-  TiniGenericComponent,
-  TiniGenericUnscopedComponent,
-  TiniBoxComponent,
-  TiniButtonComponent,
-  IconHeartFillComponent,
-]);
-
-function App() {
-  return (
+  <body data-theme="bootstrap/light">
     <main>
-      <h1>React</h1>
-
-      <section className="buttons">
-        <TiniButton scheme={Colors.Primary}>Primary button</TiniButton>
-        <TiniButton scheme={Colors.Success} hoverScheme={Gradients.Success}>Success button (gradient on hover)</TiniButton>
+      
+      <h1>Tauri</h1>
+      
+      <section class="buttons">
+        <tini-button scheme="primary">Primary button</tini-button>
+        <tini-button scheme="success" hover:scheme="gradient-success">Success button (gradient on hover)</tini-button>
       </section>
-
-      <section className="icons">
-        <IconHeartFill scheme={CommonGradients.DiscoClub} scale={Scales.XXXL}></IconHeartFill>
+  
+      <section class="icons">
+        <icon-heart-fill scheme="gradient-disco-club" scale="xxxl"></icon-heart-fill>
       </section>
-
-      <section className="style-deep">
-        <TiniBox
+    
+      <section class="style-deep">
+        <tini-box
           styledeep="
             .root {
               background: #eee;
@@ -41,22 +34,22 @@ function App() {
           "
         >
           Style deep
-        </TiniBox>
+        </tini-box>
       </section>
-
-      <section className="components">
-        <TiniGenericUnscoped
+  
+      <section class="components">
+        <tini-generic-unscoped
           name="my-component"
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            padding: '1rem'
-          }}
+          style="
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+          "
           margin-bottom="2rem"
           background="#ccc"
           border="2px solid green"
           border-radius=".5rem"
-          styledeep="
+          styleDeep="
             .root:hover {
               background: #a69836;
             }
@@ -78,9 +71,9 @@ function App() {
               }
             }
           "
-        ></TiniGenericUnscoped>
+        ></tini-generic-unscoped>
 
-        <TiniGeneric
+        <tini-generic
           display="flex"
           align-items="center"
           gap="1.5rem"
@@ -93,18 +86,18 @@ function App() {
           <img
             src="https://images.unsplash.com/photo-1554151228-14d9def656e4?q=80&amp;w=250&amp;h=250&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Erin Lindford"
-            style={{
-              width: '100px',
-              height: '100px',
-              borderRadius: '50%',
-            }}
+            style="
+              width: 100px;
+              height: 100px;
+              border-radius: 50%;
+            "
           />
           <div>
-            <TiniGeneric color="black" font-size="1.25rem" font-weight="500">
+            <tini-generic color="black" font-size="1.25rem" font-weight="500">
               Erin Lindford
-            </TiniGeneric>
-            <p style={{margin: 0, color: '#64748b'}}>Product Engineer</p>
-            <TiniGeneric
+            </tini-generic>
+            <p style="margin: 0; color: #64748b">Product Engineer</p>
+            <tini-generic
               tag="button"
               background="none"
               margin-top=".5rem"
@@ -128,13 +121,11 @@ function App() {
               "
             >
               Message
-            </TiniGeneric>
+            </tini-generic>
           </div>
-        </TiniGeneric>
+        </tini-generic>
       </section>
 
     </main>
-  );
-}
-
-export default App;
+  </body>
+</html>

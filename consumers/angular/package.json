@@ -19,9 +19,9 @@
     "@angular/platform-browser-dynamic": "^17.0.0",
     "@angular/router": "^17.0.0",
     "@tinijs/bootstrap-icons": "^0.13.0",
-    "@tinijs/ui-bootstrap": "file:../../build/@tinijs/ui-bootstrap/tinijs-ui-bootstrap-0.13.1.tgz",
+    "@tinijs/ui-bootstrap": "file:../../build/@tinijs/ui-bootstrap/tinijs-ui-bootstrap-0.13.2.tgz",
     "rxjs": "~7.8.0",
-    "tinijs": "^0.13.0",
+    "tinijs": "file:../../../tinijs/tinijs-0.13.2.tgz",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
   },

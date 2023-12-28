@@ -26,6 +26,41 @@
   </section>
 
   <section class="components">
+    <tini-generic-unscoped
+      name="my-component"
+      style="
+        display: flex;
+        justify-content: center;
+        padding: 1rem;
+      "
+      margin-bottom="2rem"
+      background="#ccc"
+      border="2px solid green"
+      border-radius=".5rem"
+      styleDeep="
+        .root:hover {
+          background: #a69836;
+        }
+        .root::before {
+          content: 'Unscoped';
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-sizing: border-box;
+          width: 100px;
+          height: 100px;
+          background: #333;
+          color: #fff;
+          border-radius: 50%;
+        }
+        @media (min-width: 768px) {
+          .root {
+            border-color: blue;
+          }
+        }
+      "
+    ></tini-generic-unscoped>
+
     <tini-generic
       display="flex"
       align-items="center"
