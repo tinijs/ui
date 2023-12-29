@@ -30,7 +30,7 @@ export enum TextTags {
 /* UseBases(common,headings) */
 export class TiniTextComponent extends TiniElement {
   static readonly defaultTagName = 'tini-text';
-  readonly componentName = 'text';
+  static readonly componentName = 'text';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare tag?: TextTags;

@@ -200,6 +200,7 @@ export class AppSkinEditorComponent extends TiniComponent {
           <code>&lt;body data-theme=&quot;${themeId}&quot;&gt;</code>
         </p>
         <app-code .code=${skinCode}></app-code>
+        <div style="width: 100%; height: 2rem"></div>
       `,
       this.modalContentRef.value!
     );

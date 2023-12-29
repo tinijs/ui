@@ -20,7 +20,7 @@ export type LinkTargets = '_blank' | '_self' | '_parent' | '_top';
 /* UseBases(common) */
 export class TiniLinkComponent extends TiniElement {
   static readonly defaultTagName = 'tini-link';
-  readonly componentName = 'link';
+  static readonly componentName = 'link';
 
   private readonly ROUTER_CHANGE_EVENT = 'tini:router:change';
   private anchorRef: Ref<HTMLAnchorElement> = createRef();

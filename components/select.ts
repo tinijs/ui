@@ -26,8 +26,8 @@ export type SelectEventDetail = InputEventDetail;
 /* UseBases(common) */
 export class TiniSelectComponent extends TiniElement {
   static readonly defaultTagName = 'tini-select';
-  readonly componentName = 'select';
-  readonly componentMetas = {
+  static readonly componentName = 'select';
+  static readonly componentMetas = {
     colorOnlyScheme: true,
   };
 

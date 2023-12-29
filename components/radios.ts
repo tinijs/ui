@@ -11,7 +11,7 @@ export type RadiosEventDetail = Omit<CheckboxesEventDetail, 'name'>;
 /* UseBases(common) */
 export class TiniRadiosComponent extends TiniElement {
   static readonly defaultTagName = 'tini-radios';
-  readonly componentName = 'radios';
+  static readonly componentName = 'radios';
 
   /* eslint-disable prettier/prettier */
   @property({type: Array}) declare items?: RadiosItem[];

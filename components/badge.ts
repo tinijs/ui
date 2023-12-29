@@ -13,7 +13,7 @@ import {
 /* UseBases(common) */
 export class TiniBadgeComponent extends TiniElement {
   static readonly defaultTagName = 'tini-badge';
-  readonly componentName = 'badge';
+  static readonly componentName = 'badge';
 
   /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare pill?: boolean;

@@ -1,7 +1,6 @@
 import {
   LitElement,
   PropertyValues,
-  CSSResultOrNative,
   unsafeCSS,
   getCompatibleStyle,
   adoptStyles,
@@ -9,11 +8,17 @@ import {
 import {property} from 'lit/decorators.js';
 import {html, unsafeStatic, StaticValue} from 'lit/static-html.js';
 import {
-  CHANGE_THEME_EVENT,
+  GLOBAL_TINI,
+  THEME_CHANGE_EVENT,
+  ActiveTheme,
+  GenericThemingOptions,
   getTheme,
-  extractGenericAttributes,
-  buildStyleTextFromAttributes,
-  buildStyleTextFromTheming,
+  adoptScripts,
+  processComponentStyles,
+  genericComponentProcessAttributes,
+  genericComponentBuildStyleTextFromAttributes,
+  genericComponentBuildStyleTextFromStyling,
+  genericComponentBuildAndCacheStyles,
 } from 'tinijs';
 
 /* Raw(LitElement,react-any-props) */
@@ -35,46 +40,41 @@ export class TiniGenericComponent extends LitElement {
     'wbr',
   ];
   static readonly defaultTagName = 'tini-generic';
-  readonly componentName = 'generic';
+  static readonly componentName = 'generic';
 
-  private currentTheme = getTheme();
-  private styleAttributes?: Record<string, string>;
-  private forwardAttributes?: Record<string, string>;
+  private activeTheme = getTheme();
+
+  styleAttributes?: Map<string, string>;
+  forwardAttributes?: Map<string, string>;
 
   /* eslint-disable prettier/prettier */
-  @property({type: String, reflect: true}) declare tag?: string;
   @property({type: String, reflect: true}) declare name?: string;
-  @property({type: Object}) declare theming?: Record<string, string>;
-  @property() declare styleDeep?: string | CSSResultOrNative;
+  @property({type: String, reflect: true}) declare tag?: string;
+  @property({type: String, reflect: true}) declare styleDeep?: string;
+  @property({type: String, reflect: true}) declare precomputed?: string;
+  @property({type: Object}) declare theming?: GenericThemingOptions;
   /* eslint-enable prettier/prettier */
 
-  private postprocessStyleText = (styleText: string) => {
-    return styleText.replace(/&/g, '.root');
-  };
-
   private onThemeChange = (e: Event) => {
-    this.currentTheme = (e as CustomEvent).detail.theme;
+    this.activeTheme = (e as CustomEvent<ActiveTheme>).detail;
     this.customAdoptStyles(this.renderRoot || this);
+    this.customAdoptScripts();
   };
 
   connectedCallback() {
     super.connectedCallback();
-    // extract attributes & adopt styles
-    const {styleAttributes, forwardAttributes} = extractGenericAttributes(
-      this.attributes,
-      (this.constructor as any).observedAttributes || []
-    );
-    this.styleAttributes = styleAttributes;
-    this.forwardAttributes = forwardAttributes;
+    // process attributes
+    genericComponentProcessAttributes(this);
+    // adopt styles
     this.customAdoptStyles(this.renderRoot || this);
     // on theme change
-    window.addEventListener(CHANGE_THEME_EVENT, this.onThemeChange);
+    window.addEventListener(THEME_CHANGE_EVENT, this.onThemeChange);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     // off theme change
-    window.removeEventListener(CHANGE_THEME_EVENT, this.onThemeChange);
+    window.removeEventListener(THEME_CHANGE_EVENT, this.onThemeChange);
   }
 
   private rootTag!: StaticValue;
@@ -85,11 +85,13 @@ export class TiniGenericComponent extends LitElement {
     this.rootTag = unsafeStatic(this.tag || 'span');
     // root attributes
     this.rootAttributes = unsafeStatic(
-      Object.entries({
-        class: 'root',
-        part: 'root',
-        ...this.forwardAttributes,
-      })
+      [
+        ['class', 'root'],
+        ['part', 'root'],
+      ]
+        .concat(
+          !this.forwardAttributes ? [] : Array.from(this.forwardAttributes)
+        )
         .map(([name, value]) => {
           if (~['class', 'part'].indexOf(name) && value !== 'root') {
             value = `${value} root`;
@@ -100,38 +102,51 @@ export class TiniGenericComponent extends LitElement {
     );
   }
 
-  private customAdoptStyles(renderRoot: HTMLElement | DocumentFragment) {
-    const attributeStyleText = buildStyleTextFromAttributes(
+  protected firstUpdated() {
+    this.customAdoptScripts();
+  }
+
+  private buildStyles() {
+    const attributeStyleText = genericComponentBuildStyleTextFromAttributes(
       'root',
       this.styleAttributes
     );
-    const themingStyleText = buildStyleTextFromTheming(
-      this.theming,
-      this.currentTheme,
-      this.postprocessStyleText
+    const themingStyleText = genericComponentBuildStyleTextFromStyling(
+      this.theming?.styling,
+      this.activeTheme.themeId
     );
-    // build styles
-    const styles: CSSResultOrNative[] = [];
-    if (attributeStyleText) {
-      // attribute
-      styles.push(getCompatibleStyle(unsafeCSS(attributeStyleText)));
-    }
-    if (this.styleDeep) {
-      // deep
-      styles.push(
-        getCompatibleStyle(
-          typeof this.styleDeep === 'string'
-            ? unsafeCSS(this.postprocessStyleText(this.styleDeep))
-            : this.styleDeep
-        )
-      );
-    }
-    if (themingStyleText) {
-      // theming
-      styles.push(getCompatibleStyle(unsafeCSS(themingStyleText)));
-    }
+    // build style text
+    const allStyles: string[] = [];
+    if (attributeStyleText) allStyles.push(attributeStyleText); // from attributes
+    if (this.styleDeep) allStyles.push(this.styleDeep); // from styleDeep
+    if (themingStyleText) allStyles.push(themingStyleText); // from theming
+    const styleText = processComponentStyles(allStyles, this.activeTheme);
+    // result
+    return [getCompatibleStyle(unsafeCSS(styleText))];
+  }
+
+  private customAdoptStyles(renderRoot: HTMLElement | DocumentFragment) {
+    const styles = genericComponentBuildAndCacheStyles(
+      this.precomputed,
+      this.activeTheme,
+      (GLOBAL_TINI.cachedGenericStyles ||= {}),
+      () => this.buildStyles()
+    );
     // apply styles
     adoptStyles(renderRoot as unknown as ShadowRoot, styles);
+  }
+
+  private customAdoptScripts() {
+    adoptScripts(this, this.activeTheme, this.theming?.scripting);
+  }
+
+  protected createRenderRoot() {
+    return (
+      this.shadowRoot ??
+      this.attachShadow(
+        (this.constructor as typeof LitElement).shadowRootOptions
+      )
+    );
   }
 
   protected render() {

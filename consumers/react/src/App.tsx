@@ -1,5 +1,5 @@
 import './App.css';
-import {importComponents, Colors, Gradients, CommonGradients, Scales} from 'tinijs';
+import {registerComponents, Colors, Gradients, CommonGradients, Scales} from 'tinijs';
 
 import {TiniGenericComponent, TiniGeneric} from '@tinijs/ui-bootstrap/components/generic.react';
 import {TiniGenericUnscopedComponent, TiniGenericUnscoped} from '@tinijs/ui-bootstrap/components/generic-unscoped.react';
@@ -7,7 +7,7 @@ import {TiniBoxComponent, TiniBox} from '@tinijs/ui-bootstrap/components/box.rea
 import {TiniButtonComponent, TiniButton} from '@tinijs/ui-bootstrap/components/button.react';
 import {IconHeartFillComponent, IconHeartFill} from '@tinijs/bootstrap-icons/heart-fill.react';
 
-importComponents([
+registerComponents([
   TiniGenericComponent,
   TiniGenericUnscopedComponent,
   TiniBoxComponent,
@@ -72,7 +72,7 @@ function App() {
               color: #fff;
               border-radius: 50%;
             }
-            @media (min-width: 768px) {
+            @media (min-width: md) {
               .root {
                 border-color: blue;
               }

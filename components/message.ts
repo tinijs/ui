@@ -6,8 +6,8 @@ import {TiniElement, partMap, VaryGroups, Colors, Factors} from 'tinijs';
 /* UseBases(common) */
 export class TiniMessageComponent extends TiniElement {
   static readonly defaultTagName = 'tini-message';
-  readonly componentName = 'message';
-  readonly componentMetas = {
+  static readonly componentName = 'message';
+  static readonly componentMetas = {
     colorOnlyScheme: true,
   };
 

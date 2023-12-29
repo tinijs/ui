@@ -106,21 +106,21 @@ import {${nameClass}} from '${packName}/${iconName}';
 });
 export class MyComponent extends TiniComponent {}`;
 
-    const othersCode = `import {useComponents} from 'tinijs';
+    const othersCode = `import {registerComponents} from 'tinijs';
 
 // 1. import the component
 import {${nameClass}} from '${packName}/${iconName}';
 
-useComponents([
+registerComponents([
   ${nameClass}, // 2. register the component
 ]);
 `;
-    const othersCodeReact = `import {importComponents} from 'tinijs';
+    const othersCodeReact = `import {registerComponents} from 'tinijs';
 
 // 1. import the constructor and the React wrapper
 import {${nameClass}, ${reactTagName}} from '${packName}/${iconName}.react';
 
-importComponents([
+registerComponents([
   ${nameClass}, // 2. register the component
 ]);
 `;

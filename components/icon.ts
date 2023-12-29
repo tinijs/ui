@@ -14,7 +14,7 @@ import {
 /* UseBases(common) */
 export class TiniIconComponent extends TiniElement {
   static readonly defaultTagName = 'tini-icon';
-  readonly componentName = 'icon';
+  static readonly componentName = 'icon';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare src?: string;

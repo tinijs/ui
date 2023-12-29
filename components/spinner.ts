@@ -6,8 +6,8 @@ import {TiniElement, partMap, VaryGroups, Colors, Scales} from 'tinijs';
 /* UseBases(common) */
 export class TiniSpinnerComponent extends TiniElement {
   static readonly defaultTagName = 'tini-spinner';
-  readonly componentName = 'spinner';
-  readonly componentMetas = {
+  static readonly componentName = 'spinner';
+  static readonly componentMetas = {
     colorOnlyScheme: true,
   };
 

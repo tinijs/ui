@@ -60,13 +60,13 @@ export async function extractCSSVariables(
     {} as Record<string, VariableDef>
   );
   // process direct values
-  const mapItems = Object.keys(itemsRecord).map(key => {
+  const mapItems = Object.entries(itemsRecord).map(([key, item]) => {
     // replace direct values
-    const varMatchingArr = itemsRecord[key].value.match(/var\(([\s\S]*?)\)/g);
+    const varMatchingArr = item.value.match(/var\(([\s\S]*?)\)/g);
     varMatchingArr?.forEach(varMatching => {
       const varKey = varMatching.replace(/var\(|\)/g, '');
       const varDef = itemsRecord[varKey];
-      itemsRecord[key].valueDirect = itemsRecord[key].valueDirect.replace(
+      item.valueDirect = item.valueDirect.replace(
         varMatching,
         !varDef?.valueDirect || ~varDef.valueDirect.indexOf('var(')
           ? 'transparent'
@@ -74,7 +74,7 @@ export async function extractCSSVariables(
       );
     });
     // map item
-    return [key, itemsRecord[key]];
+    return [key, item];
   }) as Array<[string, VariableDef]>;
   // result
   return new Map(mapItems);

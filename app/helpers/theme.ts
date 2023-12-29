@@ -1,4 +1,4 @@
-import {changeTheme as applyTheme} from '@tinijs/core';
+import {setTheme} from 'tinijs';
 
 import {Configurable} from '../configurable';
 import {mainStore} from '../stores/main';
@@ -10,7 +10,7 @@ function getKey() {
 function commitTheme(soulId: string, skinId: string) {
   mainStore.commit('activeSoulId', soulId);
   mainStore.commit('activeSkinId', skinId);
-  return applyTheme({soulId, skinId});
+  return setTheme({soulId, skinId});
 }
 
 export function initTheme() {

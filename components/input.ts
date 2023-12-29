@@ -23,8 +23,8 @@ export interface InputEventDetail {
 /* UseBases(common) */
 export class TiniInputComponent extends TiniElement {
   static readonly defaultTagName = 'tini-input';
-  readonly componentName = 'input';
-  readonly componentMetas = {
+  static readonly componentName = 'input';
+  static readonly componentMetas = {
     colorOnlyScheme: true,
   };
 

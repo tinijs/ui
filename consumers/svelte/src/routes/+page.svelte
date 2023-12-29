@@ -1,5 +1,5 @@
 <script>
-import { useComponents } from 'tinijs';
+import { registerComponents } from 'tinijs';
 
 import {TiniGenericComponent} from '@tinijs/ui-bootstrap/components/generic';
 import {TiniGenericUnscopedComponent} from '@tinijs/ui-bootstrap/components/generic-unscoped';
@@ -7,7 +7,7 @@ import {TiniBoxComponent} from '@tinijs/ui-bootstrap/components/box';
 import {TiniButtonComponent} from '@tinijs/ui-bootstrap/components/button';
 import {IconHeartFillComponent} from '@tinijs/bootstrap-icons/heart-fill';
 
-useComponents([
+registerComponents([
   TiniGenericComponent,
   TiniGenericUnscopedComponent,
   TiniBoxComponent,
@@ -31,7 +31,7 @@ useComponents([
 
   <section class="style-deep">
     <tini-box
-      styledeep={`
+      styleDeep={`
         .root {
           background: #eee;
           padding: 2rem;
@@ -72,7 +72,7 @@ useComponents([
           color: #fff;
           border-radius: 50%;
         }
-        @media (min-width: 768px) {
+        @media (min-width: md) {
           .root {
             border-color: blue;
           }
@@ -116,7 +116,7 @@ useComponents([
           border="1px solid #e9d5ff"
           border-radius="9999px"
           cursor="pointer"
-          styledeep={`
+          styleDeep={`
             .root:hover {
               background: #9333ea;
               color: #fff;

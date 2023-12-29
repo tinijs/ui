@@ -6,7 +6,7 @@ import {TiniElement, partMap, VaryGroups, BoxShadows} from 'tinijs';
 /* UseBases(common) */
 export class TiniCardComponent extends TiniElement {
   static readonly defaultTagName = 'tini-card';
-  readonly componentName = 'card';
+  static readonly componentName = 'card';
 
   /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare fluid?: boolean;

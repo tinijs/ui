@@ -231,12 +231,12 @@ export class MyPage extends TiniComponent {}`;
 
   private buildImportSpecificCode() {
     const {nameClass} = this.nameVariants;
-    return `import {useComponents} from 'tinijs';
+    return `import {registerComponents} from 'tinijs';
 
 // 1. import the component
 import {${nameClass}} from '${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}';
 
-useComponents([
+registerComponents([
   ${nameClass}, // 2. register the component
 ]);
 `;
@@ -245,12 +245,12 @@ useComponents([
   private buildImportSpecificCodeReact() {
     const {nameClass} = this.nameVariants;
     const reactTagName = nameClass.replace('Component', '');
-    return `import {importComponents} from 'tinijs';
+    return `import {registerComponents} from 'tinijs';
 
 // 1. import the constructor and the React wrapper
 import {${nameClass}, ${reactTagName}} from '${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}.react';
 
-importComponents([
+registerComponents([
   ${nameClass}, // 2. register the component
 ]);
 `;
@@ -462,31 +462,33 @@ importComponents([
                 >soul source code</a
               >.
             </p>
-            <h3>Variables</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th>Variable</th>
-                  <th>Description</th>
-                  <th>Default</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${!this.soulVariablesMap?.size
-                  ? nothing
-                  : repeat(
-                      this.soulVariablesMap,
-                      ([key]) => key,
-                      ([, variable]) => html`
-                        <tr>
-                          <td><code>${variable.key}</code></td>
-                          <td>${variable.description}</td>
-                          <td><code>${variable.value}</code></td>
-                        </tr>
-                      `
-                    )}
-              </tbody>
-            </table>
+            ${!this.soulVariablesMap?.size
+              ? nothing
+              : html`
+                  <h3>Variables</h3>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Variable</th>
+                        <th>Description</th>
+                        <th>Default</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${repeat(
+                        this.soulVariablesMap,
+                        ([key]) => key,
+                        ([, variable]) => html`
+                          <tr>
+                            <td><code>${variable.key}</code></td>
+                            <td>${variable.description}</td>
+                            <td><code>${variable.value}</code></td>
+                          </tr>
+                        `
+                      )}
+                    </tbody>
+                  </table>
+                `}
             ${!this.partList
               ? nothing
               : html`
@@ -507,9 +509,7 @@ importComponents([
                             <td><code>${name}</code></td>
                             <td>${description}</td>
                             <td>
-                              <code>.${name} {}</code>${name !== 'root'
-                                ? nothing
-                                : html` or <code>& {}</code>`}
+                              <code>.${name} {}</code>
                             </td>
                             <td>
                               <code

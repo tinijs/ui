@@ -14,7 +14,7 @@ import {
 /* UseBases(common) */
 export class TiniSwitchComponent extends TiniElement {
   static readonly defaultTagName = 'tini-switch';
-  readonly componentName = 'switch';
+  static readonly componentName = 'switch';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;

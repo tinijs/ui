@@ -23,7 +23,7 @@ export interface CheckboxesEventDetail extends InputEventDetail {
 /* UseBases(common) */
 export class TiniCheckboxesComponent extends TiniElement {
   static readonly defaultTagName = 'tini-checkboxes';
-  readonly componentName = 'checkboxes';
+  static readonly componentName = 'checkboxes';
 
   /* eslint-disable prettier/prettier */
   @property({type: Array}) declare items?: CheckboxesItem[];

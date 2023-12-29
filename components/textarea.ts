@@ -11,8 +11,8 @@ export type TextareaEventDetail = InputEventDetail;
 /* UseBases(common) */
 export class TiniTextareaComponent extends TiniElement {
   static readonly defaultTagName = 'tini-textarea';
-  readonly componentName = 'textarea';
-  readonly componentMetas = {
+  static readonly componentName = 'textarea';
+  static readonly componentMetas = {
     colorOnlyScheme: true,
   };
 

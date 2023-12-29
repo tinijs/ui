@@ -13,7 +13,7 @@ export interface BreadcrumbItem {
 /* UseComponents(link) */
 export class TiniBreadcrumbComponent extends TiniElement {
   static readonly defaultTagName = 'tini-breadcrumb';
-  readonly componentName = 'breadcrumb';
+  static readonly componentName = 'breadcrumb';
 
   /* eslint-disable prettier/prettier */
   @property({type: String}) declare items?: BreadcrumbItem[];

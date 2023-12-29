@@ -32,7 +32,7 @@ export interface DialogResult<Context> {
 /* ReactEvents(yes:onYes,no:onNo) */
 export class TiniDialogComponent extends TiniElement {
   static readonly defaultTagName = 'tini-dialog';
-  readonly componentName = 'dialog';
+  static readonly componentName = 'dialog';
 
   private readonly BACKDROP_CLOSED = 'backdrop-closed';
 

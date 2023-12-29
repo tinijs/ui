@@ -13,7 +13,7 @@ export type ModalResult<Context> = DialogResult<Context>;
 /* ReactEvents(yes:onYes,no:onNo) */
 export class TiniModalComponent extends TiniElement {
   static readonly defaultTagName = 'tini-modal';
-  readonly componentName = 'modal';
+  static readonly componentName = 'modal';
 
   private readonly BACKDROP_CLOSED = 'backdrop-closed';
 

@@ -6,8 +6,8 @@ import {TiniElement, partMap, VaryGroups, Colors, Scales} from 'tinijs';
 /* UseBases(common) */
 export class TiniLabelComponent extends TiniElement {
   static readonly defaultTagName = 'tini-label';
-  readonly componentName = 'label';
-  readonly componentMetas = {
+  static readonly componentName = 'label';
+  static readonly componentMetas = {
     colorOnlyScheme: true,
   };
 

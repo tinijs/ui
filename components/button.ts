@@ -25,7 +25,7 @@ export enum ButtonModes {
 /* UseBases(common) */
 export class TiniButtonComponent extends TiniElement {
   static readonly defaultTagName = 'tini-button';
-  readonly componentName = 'button';
+  static readonly componentName = 'button';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare mode?: ButtonModes;

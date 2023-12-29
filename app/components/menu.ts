@@ -78,8 +78,7 @@ export class AppMenuComponent extends TiniComponent {
     return html`
       <h4>Documentation</h4>
       <ul>
-        ${Object.keys(this.groups).map(groupName => {
-          const {title, items} = this.groups[groupName];
+        ${Object.entries(this.groups).map(([groupName, {title, items}]) => {
           return !title
             ? html`
                 ${items.map(

@@ -18,7 +18,7 @@ import {
 /* UseBases(common) */
 export class TiniBoxComponent extends TiniElement {
   static readonly defaultTagName = 'tini-box';
-  readonly componentName = 'box';
+  static readonly componentName = 'box';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare tag?: string;

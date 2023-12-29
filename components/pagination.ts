@@ -18,7 +18,7 @@ export interface PaginationItem {
 /* UseBases(common) */
 export class TiniPaginationComponent extends TiniElement {
   static readonly defaultTagName = 'tini-pagination';
-  readonly componentName = 'pagination';
+  static readonly componentName = 'pagination';
 
   /* eslint-disable prettier/prettier */
   @property({type: Number, reflect: true}) declare totalPage: number;

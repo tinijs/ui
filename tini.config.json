@@ -1,3 +1,4 @@
 {
-  "outDir": "www"
+  "outDir": "www",
+  "precompileGeneric": "none"
 }

@@ -16,6 +16,7 @@ import {CodeBuilder} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
+import {AppCodeComponent} from '../../components/code';
 
 @Page({
   name: 'app-page-components-generic',
@@ -24,6 +25,7 @@ import {AppSectionComponent} from '../../components/section';
     TiniGenericUnscopedComponent,
     AppComponentPageComponent,
     AppSectionComponent,
+    AppCodeComponent,
   ],
   theming: {
     styling: stylingWithBases([
@@ -104,7 +106,7 @@ export class AppPageComponentsGeneric extends TiniComponent {
             </p>
             <p>
               Theme-based styling can be provided via
-              <code>.theming</code> property.
+              <code>theming</code> property.
             </p>
           </div>
         </app-section>
@@ -159,8 +161,8 @@ export class AppPageComponentsGeneric extends TiniComponent {
             can be styled using the same methods as scoped components and/or
             using the the inline <code>style</code> attribute (please note that
             the inline styles have the highest specificity over CSS key-value
-            pairs, <code>styleDeep</code> attribute (or
-            <code>styledeep</code> in case of React) and <code>.theming</code>).
+            pairs, <code>styleDeep</code> attribute and
+            <code>theming</code> property).
           </p>`,
           html`
             <tini-generic-unscoped
@@ -183,8 +185,7 @@ export class AppPageComponentsGeneric extends TiniComponent {
           'advanced',
           'Advanced',
           html`<p>
-            Using the <code>styleDeep</code> attribute (or
-            <code>styledeep</code> in case of React) to style pseudo-classes,
+            Using the <code>styleDeep</code> attribute to style pseudo-classes,
             pseudo-elements, media queries, ...
           </p>`,
           html`
@@ -212,7 +213,7 @@ export class AppPageComponentsGeneric extends TiniComponent {
       color: #fff;
       border-radius: 50%;
     }
-    @media (min-width: 768px) {
+    @media (min-width: md) {
       .root {
         border-color: blue;
       }
@@ -227,11 +228,28 @@ export class AppPageComponentsGeneric extends TiniComponent {
         ${renderSection(
           'theming',
           'Theming',
-          html`<p>
-            Theme-based styling using the <code>.theming</code> property. Change
-            theme to <strong>Bootstrap Dark</strong> to see the defferent.
-          </p>`,
           html`
+            <p>
+              Theme-based styling using the <code>theming</code> property,
+              styles can be be provided in parts for overriding any attribute
+              styles or in whole. Key syntax:
+            </p>
+            <ul>
+              <li>
+                <code>bootstrap</code>: soul id only, applied to all themes in
+                the same family
+              </li>
+              <li>
+                <code>bootstrap/light</code>: applied to the specific theme
+              </li>
+            </ul>
+            <p>
+              Change theme to <strong>Bootstrap Dark</strong> and
+              <strong>Bootstrap Retro Light</strong> to see the defferent.
+            </p>
+          `,
+          html`
+            <p><strong>Override attribute styles</strong></p>
             <tini-generic
               display="block"
               padding="1rem"
@@ -239,14 +257,52 @@ export class AppPageComponentsGeneric extends TiniComponent {
               border-radius="0.5rem"
               background="#ccc"
               .theming=${{
-                'bootstrap/dark': `
-                  .root {
-                    background: #a69836;
-                  }
-                `,
+                styling: {
+                  'bootstrap/dark': '.root { background: #a69836 }',
+                  'bootstrap/retro-light': '.root { background: aquamarine }',
+                },
               }}
-              >Default background=#ccc / Bootstrap Dark
-              background=#a69836</tini-generic
+              >Default (background = #ccc) / Bootstrap Dark (background =
+              #a69836) / Bootstrap Retro Light (background =
+              aquamarine)</tini-generic
+            >
+            <p>
+              <strong>Use <code>theming</code> exclusively</strong>
+            </p>
+            <tini-generic
+              .theming=${{
+                styling: {
+                  bootstrap: `
+                    .root {
+                      display: block;
+                      padding: 1rem;
+                      border: 2px solid blue;
+                      border-radius: 0.5rem;
+                      background: #ccc;
+                    }
+                  `,
+                  'bootstrap/dark': `
+                    .root {
+                      display: block;
+                      padding: 1rem;
+                      border: 2px solid red;
+                      border-radius: 2rem;
+                      background: pink;
+                    }
+                  `,
+                  'bootstrap/retro-light': `
+                    .root {
+                      display: block;
+                      padding: 1rem;
+                      border: 2px solid green;
+                      background: tomato;
+                      transform: skewX(-15deg);
+                    }
+                  `,
+                },
+              }}
+              >Styles are provided exclusively via the
+              <code>theme</code> property.</tini-generic
             >
           `,
           this.renderSectionOptions
@@ -288,7 +344,8 @@ export class AppPageComponentsGeneric extends TiniComponent {
               In conclusion, <code>tini-generic</code> doesn't require a build
               step, but the size of code is bigger than Tailwind about
               <strong>20%</strong> on average. It's recommended to extract
-              repeatitive code intro reusable components.
+              repeatitive code intro reusable components, please see below for
+              more detail.
             </p>
           `,
           html`
@@ -378,7 +435,101 @@ export class AppPageComponentsGeneric extends TiniComponent {
           `,
           this.renderSectionOptions
         )}
+
+        <!-- reusable-with-frameworks -->
+        <app-section noCodeSample>
+          <h2 slot="title">Reusable with JS frameworks</h2>
+          <div slot="content" class="reusable-with-frameworks">
+            <p>
+              Using Tini UI with your framework of choice, you can register
+              <code>tini-generic</code> locally in a component or globally in an
+              app, then create components those can be reused across the app.
+            </p>
+
+            <p>For example, create a Vue component:</p>
+            <app-code .code=${this.vueCode}></app-code>
+          </div>
+        </app-section>
+
+        <!-- reusable-without-frameworks -->
+        ${renderSection(
+          'reusable-without-frameworks',
+          'Reusable without frameworks',
+          html`
+            <p>
+              Use the <code>precomputed</code> attribute to create reusable
+              components in plain HTML. First, you define components at the very
+              <strong>TOP</strong> of the app with
+              <strong>unique names</strong>. Later, use them without re-define
+              the styles. You can also extend a previously defined component to
+              create a different component.
+            </p>
+            <p>
+              Please note that, the name (the
+              <code>precomputed</code> attribute) of a component
+              <strong>must be UNIQUE</strong> across the app, not just the
+              current page.
+            </p>
+          `,
+          html`
+            <div title="Define reusable components" style="display: none;">
+              <tini-generic
+                precomputed="component-1"
+                display="block"
+                padding="1rem"
+                background="#ccc"
+                border="2px solid blue"
+                border-radius="0.5rem"
+              ></tini-generic>
+
+              <tini-generic
+                precomputed="component-1/component-2"
+                border="4px solid green"
+                font-size="1.5rem"
+              ></tini-generic>
+            </div>
+
+            <main
+              title="Use the defined components"
+              style="display: flex; flex-flow: column; gap: 1rem;"
+            >
+              <tini-generic precomputed="component-1">Component 1</tini-generic>
+              <tini-generic precomputed="component-1" tag="div"
+                >Also component 1</tini-generic
+              >
+
+              <tini-generic precomputed="component-1/component-2"
+                >Component 2 (extended from the component 1)</tini-generic
+              >
+              <tini-generic precomputed="component-1/component-2" tag="div"
+                >Also component 2</tini-generic
+              >
+            </main>
+          `,
+          this.renderSectionOptions
+        )}
       </app-component-page>
     `;
+  }
+
+  private get vueCode() {
+    return `<template>
+  <tini-generic
+    :precomputed="componentName"
+    display="flex"
+    align-items="center"
+    .theming="{
+      styling: {
+        'soul-id': \`...\`,
+        'soul-id/skin-id': \`...\`,
+      }
+    }"
+  ></tini-generic>
+</template>
+
+<script lang="ts" setup>
+  // optional 'precomputed' attribute (for caching purpose)
+  const componentName = 'my-component';
+</script>`;
   }
 }

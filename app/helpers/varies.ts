@@ -650,8 +650,7 @@ export function renderStyleDeepSection(
     'Style deep',
     html`<p>
       You can also provide custom styles via the
-      <code>styleDeep</code> attribute (or <code>styledeep</code> in case of
-      React).
+      <code>styleDeep</code> attribute.
     </p>`,
     codeWithWrapper(styleStyleDeep, code),
     options

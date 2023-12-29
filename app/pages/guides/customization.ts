@@ -136,6 +136,39 @@ export class AppPageGuidesCustomization extends TiniComponent {
           <app-code
             .code=${'<tini-button styleDeep=".root { background: aqua }"></tini-button>'}
           ></app-code>
+
+          <p><strong>Global options</strong></p>
+          <p>Set global options in an TiniJS app.</p>
+          <app-code
+            .code=${`@App({
+  uiOptions: {
+    'bootstrap/dark': {
+      referGradientScheme: true,
+      perComponent: {
+        [TiniButtonComponent.componentName]: {
+          referGradientSchemeOnHover: true
+        }
+      }
+    }
+  }
+})
+export class MyApp extends TiniComponent {}`}
+          ></app-code>
+          <p>Set global options in other apps.</p>
+          <app-code
+            .code=${`import {setUiOptions} from 'tinijs';
+
+setUiOptions({
+  'bootstrap/dark': {
+    referGradientScheme: true,
+    perComponent: {
+      [TiniButtonComponent.componentName]: {
+        referGradientSchemeOnHover: true
+      }
+    }
+  }
+})`}
+          ></app-code>
         </div>
       </app-section>
 

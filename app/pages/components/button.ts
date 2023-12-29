@@ -514,6 +514,31 @@ export class AppPageComponentsButton extends TiniComponent {
           `,
           this.renderSectionOptions
         )}
+
+        <!-- global options -->
+        <app-section noCodeSample>
+          <h2 slot="title">Global options</h2>
+          <div slot="content" class="global-options">
+            <p>Shared global options:</p>
+            <ul>
+              <li>
+                <code>referGradientScheme</code>: Use gradients in place of
+                colors.
+              </li>
+            </ul>
+
+            <p>
+              Per-component global options, via the
+              <code>${TiniButtonComponent.componentName}</code> key:
+            </p>
+            <ul>
+              <li>
+                <code>referGradientSchemeOnHover</code>: Use gradients for
+                hover.
+              </li>
+            </ul>
+          </div>
+        </app-section>
       </app-component-page>
     `;
   }

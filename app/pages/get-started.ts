@@ -111,10 +111,10 @@ export class MyComponent extends TiniComponent {}"
             ...):
           </p>
           <app-code
-            code="import {useComponents} from 'tinijs';
+            code="import {registerComponents} from 'tinijs';
 import {TiniButtonComponent} from '@tinijs/ui/components/button';
 
-useComponents([TiniButtonComponent]); // register components"
+registerComponents([TiniButtonComponent]); // register components"
           ></app-code>
           <p>Finally, use the components:</p>
           <app-code
@@ -149,10 +149,10 @@ npm i @tinijs/ui-bootstrap"
           </p>
           <p>Import and register components:</p>
           <app-code
-            code="import {useComponents} from 'tinijs';
+            code="import {registerComponents} from 'tinijs';
 import {TiniButtonComponent} from '@tinijs/ui-bootstrap/components/button';
 
-useComponents([TiniButtonComponent]); // register the component"
+registerComponents([TiniButtonComponent]); // register the component"
           ></app-code>
           <p>Finally, use the registered components:</p>
           <app-code
