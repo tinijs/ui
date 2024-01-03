@@ -32,6 +32,12 @@ export class TiniGenericUnscopedComponent extends LitElement {
   @property({type: Object}) declare theming?: GenericThemingOptions;
   /* eslint-enable prettier/prettier */
 
+  private get rootClass() {
+    return !this.precomputed
+      ? this.internalClassName
+      : `_${this.precomputed.slice(1, 7)}`;
+  }
+
   private onThemeChange = (e: Event) => {
     this.activeTheme = (e as CustomEvent<ActiveTheme>).detail;
     this.customAdoptStyles(this.renderRoot || this);
@@ -45,7 +51,7 @@ export class TiniGenericUnscopedComponent extends LitElement {
     // adopt styles
     this.customAdoptStyles(this.renderRoot || this);
     // assign internal class
-    this.classList.add(this.internalClassName);
+    this.classList.add(this.rootClass);
     // on theme change
     window.addEventListener(THEME_CHANGE_EVENT, this.onThemeChange);
   }
@@ -62,7 +68,7 @@ export class TiniGenericUnscopedComponent extends LitElement {
 
   private buildStyles() {
     const attributeStyleText = genericComponentBuildStyleTextFromAttributes(
-      this.internalClassName,
+      this.rootClass,
       this.styleAttributes
     );
     const themingStyleText = genericComponentBuildStyleTextFromStyling(
@@ -77,7 +83,7 @@ export class TiniGenericUnscopedComponent extends LitElement {
     const styleText = processComponentStyles(
       allStyles,
       this.activeTheme,
-      content => content.replace(/\.root/g, `.${this.internalClassName}`)
+      content => content.replace(/\.root/g, `.${this.rootClass}`)
     );
     // result
     return [styleText];
