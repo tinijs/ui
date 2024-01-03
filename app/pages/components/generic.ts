@@ -156,13 +156,13 @@ export class AppPageComponentsGeneric extends TiniComponent {
           'unscoped',
           'Unscoped',
           html`<p>
-            <strong>Not recommended!</strong> To create an unscoped element,
-            import and use the <code>tini-generic-unscoped</code> instead, it
-            can be styled using the same methods as scoped components and/or
-            using the the inline <code>style</code> attribute (please note that
-            the inline styles have the highest specificity over CSS key-value
-            pairs, <code>styleDeep</code> attribute and
-            <code>theming</code> property).
+            To create an unscoped element (flat structure, it is useful when
+            requires an access to the outside context), import and use the
+            <code>tini-generic-unscoped</code> instead, it can be styled using
+            the same methods as scoped components and/or using the the inline
+            <code>style</code> attribute (please note that the inline styles
+            have the highest specificity over CSS key-value pairs,
+            <code>styleDeep</code> attribute and <code>theming</code> property).
           </p>`,
           html`
             <tini-generic-unscoped
@@ -307,6 +307,37 @@ export class AppPageComponentsGeneric extends TiniComponent {
           `,
           this.renderSectionOptions
         )}
+
+        <!-- which-to-choose -->
+        <app-section noCodeSample>
+          <h2 slot="title">Which to choose?</h2>
+          <div slot="content" class="which-to-choose">
+            <p><strong>Inline vs attributes?</strong></p>
+            <p>Use <em>inline styles</em> first in anywhere posible.</p>
+            <p>
+              Use <em>attribute styles</em> (with <code>tini-generic</code> or
+              <code>tini-generic-unscoped</code>) for complex and reusable
+              elements.
+            </p>
+            <p><strong>Scoped vs unscoped?</strong></p>
+            <p>
+              Use <em>scoped</em> (<code>tini-generic</code>) first for any
+              component posible.
+            </p>
+            <p>
+              Use <em>unscoped</em> (<code>tini-generic-unscoped</code>) if you
+              need a flat DOM structure, for example, when it is required to
+              access the ascendants.
+            </p>
+            <p>
+              Please keep in mind that the inline <code>style</code> attribute
+              behaves differently between scoped and unscoped components. For
+              scoped components, the styles are applied to the host, not the
+              main node (root) of the shadow tree. For unscoped components,
+              there is no shadow tree, the styles are applied to the same tag.
+            </p>
+          </div>
+        </app-section>
 
         <!-- tailwind-comparison -->
         ${renderSection(

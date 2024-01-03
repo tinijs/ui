@@ -1,6 +1,6 @@
 {
   "name": "@tinijs/ui",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "The UI system of the TiniJS Framework.",
   "author": "Lam Nhan",
   "homepage": "https://tinijs.dev",
@@ -46,13 +46,14 @@
     "grapick": "^0.1.13",
     "highlight.js": "^11.9.0",
     "lit": "^3.1.0",
+    "nanoid": "^5.0.4",
     "prettier": "^3.1.0",
-    "tinijs": "^0.14.0"
+    "tinijs": "^0.14.1"
   },
   "devDependencies": {
     "@lit/react": "^1.0.2",
     "@parcel/transformer-sass": "^2.10.3",
-    "@tinijs/cli": "^0.14.0",
+    "@tinijs/cli": "^0.14.1",
     "@types/chroma-js": "^2.4.3",
     "@types/gradient-parser": "^0.1.5",
     "@types/node": "^20.9.4",

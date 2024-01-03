@@ -19,6 +19,7 @@ export const switchStyle = css`
 
   :host {
     display: inline;
+    line-height: 1;
   }
 
   /*

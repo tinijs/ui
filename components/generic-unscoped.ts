@@ -1,11 +1,11 @@
 import {LitElement} from 'lit';
 import {property} from 'lit/decorators.js';
+import {nanoid} from 'nanoid';
 import {
   GLOBAL_TINI,
   THEME_CHANGE_EVENT,
   ActiveTheme,
   GenericThemingOptions,
-  simpleRandom,
   getTheme,
   adoptScripts,
   processComponentStyles,
@@ -20,7 +20,7 @@ export class TiniGenericUnscopedComponent extends LitElement {
   static readonly defaultTagName = 'tini-generic-unscoped';
   static readonly componentName = 'generic-unscoped';
 
-  readonly internalClassName = simpleRandom(7, true);
+  readonly internalClassName = `_${nanoid(6)}`;
   private activeTheme = getTheme();
 
   styleAttributes?: Map<string, string>;
