@@ -122,8 +122,9 @@ export class AppPageComponentsTextarea extends TiniComponent {
           'Events',
           html`
             <p>
-              Use the <code>input</code> and <code>change</code> event to
-              capture changes (open the console to see the event log).
+              Use the <code>input</code>, <code>change</code>,
+              <code>focus</code> and <code>blur</code> event to capture changes
+              (open the console to see the event log).
             </p>
           `,
           html`
@@ -135,6 +136,10 @@ export class AppPageComponentsTextarea extends TiniComponent {
                 console.log('Textarea "input" event: ', detail)}
               @change=${({detail}: CustomEvent<TextareaEventDetail>) =>
                 console.log('Textarea "change" event: ', detail)}
+              @focus=${({detail}: CustomEvent<TextareaEventDetail>) =>
+                console.log('Textarea "focus" event: ', detail)}
+              @blur=${({detail}: CustomEvent<TextareaEventDetail>) =>
+                console.log('Textarea "blur" event: ', detail)}
             ></tini-textarea>
           `,
           this.renderSectionOptions
@@ -157,6 +162,25 @@ export class AppPageComponentsTextarea extends TiniComponent {
               scale=${scale}
               placeholder=${scale}
             ></tini-textarea>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- pseudo -->
+        ${renderSection(
+          'pseudo',
+          'Pseudo',
+          html` <p>Focus scheme.</p> `,
+          html`
+            <tini-textarea
+              focus:scheme="success"
+              placeholder="Default / focus success"
+            ></tini-textarea>
+            <tini-textarea
+              scheme="warning"
+              focus:scheme="danger"
+              placeholder="Warning / focus danger"
+            ></tini-textarea>
+          `,
           this.renderSectionOptions
         )}
 

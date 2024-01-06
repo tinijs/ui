@@ -23,12 +23,6 @@ export const selectStyle = css`
     gap: var(--size-space-0_5x);
   }
 
-  .wrap {
-    flex-flow: column;
-    align-items: flex-start;
-    gap: var(--size-space-0_5x);
-  }
-
   select {
     background: var(--color-background-tint);
     color: var(--color-foreground);
@@ -57,12 +51,23 @@ export const selectStyle = css`
   }
 
   /*
+   * [wrap]
+   */
+
+  .wrap {
+    flex-flow: column;
+    align-items: flex-start;
+    gap: var(--size-space-0_5x);
+  }
+
+  /*
    * [scheme]
    */
 
   ${generateColorVaries(
     ({fullName, color}) => `
-    .${fullName} {
+    .${fullName},
+    .${fullName}-focus select:focus {
       --select-color: ${color};
       --select-border-color: ${color};
     }

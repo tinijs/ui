@@ -15,6 +15,10 @@ export const radiosStyle = css`
     gap: var(--size-space);
   }
 
+  /*
+   * [wrap]
+   */
+
   .wrap {
     flex-flow: column;
     align-items: flex-start;
@@ -93,7 +97,9 @@ export const radiosStyle = css`
 
   ${generateColorVaries(
     ({fullName, color}) => `
-    .${fullName} {
+    .${fullName},
+    .${fullName}-checked input:focus,
+    .${fullName}-checked input:checked {
       --radio-background: ${color};
       --radio-border-color: ${color};
     }

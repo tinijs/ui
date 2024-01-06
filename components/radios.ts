@@ -69,11 +69,13 @@ export class TiniRadiosComponent extends TiniElement {
     disabled,
     scheme,
     scale,
+    'checked:scheme': checkedScheme,
   }: RadiosItem) {
     const itemClasses: ClassInfo = {
       item: true,
       disabled: !!disabled,
       [`${VaryGroups.Scheme}-${scheme}`]: !!scheme,
+      [`${VaryGroups.Scheme}-${checkedScheme}-checked`]: !!checkedScheme,
       [`${VaryGroups.Scale}-${scale}`]: !!scale,
     };
     return html`

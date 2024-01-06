@@ -65,7 +65,6 @@ export class AppPageComponentsInput extends TiniComponent {
         [
           /* scheme, */ ReactCommonProps.SchemeButColorsOnly,
           ReactCommonProps.Scale,
-          {name: 'type', enumName: 'InputTypes'},
         ]
       ),
   };
@@ -126,6 +125,27 @@ export class AppPageComponentsInput extends TiniComponent {
           this.renderSectionOptions
         )}
 
+        <!-- block -->
+        ${renderSection(
+          'block',
+          'Block',
+          null,
+          html`
+            <tini-input
+              block
+              label="Name"
+              placeholder="Enter your name"
+            ></tini-input>
+            <tini-input
+              wrap
+              block
+              label="Name"
+              placeholder="Enter your name"
+            ></tini-input>
+          `,
+          this.renderSectionOptions
+        )}
+
         <!-- disabled -->
         ${renderSection(
           'disabled',
@@ -141,8 +161,9 @@ export class AppPageComponentsInput extends TiniComponent {
           'Events',
           html`
             <p>
-              Use the <code>input</code> and <code>change</code> event to
-              capture changes (open the console to see the event log).
+              Use the <code>input</code>, <code>change</code>,
+              <code>focus</code> and <code>blur</code> event to capture changes
+              (open the console to see the event log).
             </p>
           `,
           html`
@@ -153,6 +174,10 @@ export class AppPageComponentsInput extends TiniComponent {
                 console.log('Input "input" event: ', detail)}
               @change=${({detail}: CustomEvent<InputEventDetail>) =>
                 console.log('Input "change" event: ', detail)}
+              @focus=${({detail}: CustomEvent<InputEventDetail>) =>
+                console.log('Input "focus" event: ', detail)}
+              @blur=${({detail}: CustomEvent<InputEventDetail>) =>
+                console.log('Input "blur" event: ', detail)}
             ></tini-input>
           `,
           this.renderSectionOptions
@@ -172,6 +197,25 @@ export class AppPageComponentsInput extends TiniComponent {
         ${renderScalesSection(
           scale =>
             html`<tini-input scale=${scale} placeholder=${scale}></tini-input>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- pseudo -->
+        ${renderSection(
+          'pseudo',
+          'Pseudo',
+          html` <p>Focus scheme.</p> `,
+          html`
+            <tini-input
+              focus:scheme="success"
+              placeholder="Default / focus success"
+            ></tini-input>
+            <tini-input
+              scheme="warning"
+              focus:scheme="danger"
+              placeholder="Warning / focus danger"
+            ></tini-input>
+          `,
           this.renderSectionOptions
         )}
 

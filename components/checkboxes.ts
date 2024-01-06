@@ -14,6 +14,7 @@ export interface CheckboxesItem {
   disabled?: boolean;
   scheme?: Colors;
   scale?: Scales;
+  'checked:scheme'?: Colors;
 }
 
 export interface CheckboxesEventDetail extends InputEventDetail {
@@ -76,11 +77,13 @@ export class TiniCheckboxesComponent extends TiniElement {
     disabled,
     scheme,
     scale,
+    'checked:scheme': checkedScheme,
   }: CheckboxesItem) {
     const itemClasses: ClassInfo = {
       item: true,
       'item-disabled': !!disabled,
       [`${VaryGroups.Scheme}-${scheme}`]: !!scheme,
+      [`${VaryGroups.Scheme}-${checkedScheme}-checked`]: !!checkedScheme,
       [`${VaryGroups.Scale}-${scale}`]: !!scale,
     };
     return html`

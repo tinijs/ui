@@ -1,5 +1,6 @@
 import {html} from 'lit';
-import {Page, TiniComponent, stylingWithBases, Colors} from '@tinijs/core';
+import {Colors} from 'tinijs';
+import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
   headingsBases,
@@ -206,6 +207,28 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
                 },
               ]}
             ></tini-checkboxes>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- pseudo -->
+        ${renderSection(
+          'pseudo',
+          'Pseudo',
+          html`<p>Checked scheme.</p>`,
+          html`
+            <tini-checkboxes
+              .items=${this.buildCustomList(
+                item => (item['checked:scheme'] = Colors.Success) && item
+              )}
+            ></tini-checkboxes>
+            <tini-checkboxes
+              .items=${this.buildCustomList(item => {
+                item.scheme = Colors.Warning;
+                item['checked:scheme'] = Colors.Danger;
+                return item;
+              })}
+            ></tini-checkboxes>
+          `,
           this.renderSectionOptions
         )}
 

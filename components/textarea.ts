@@ -21,10 +21,12 @@ export class TiniTextareaComponent extends TiniElement {
   @property({type: String, reflect: true}) declare placeholder?: string;
   @property({type: String, reflect: true}) declare name?: string;
   @property({type: String, reflect: true}) declare value?: string;
+  @property({type: String, reflect: true}) declare autocomplete?: string;
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
   @property({type: Boolean, reflect: true}) declare readonly?: boolean;
   @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare scale?: Scales;
+  @property({type: String, reflect: true, attribute: 'focus:scheme'}) declare focusScheme?: TiniTextareaComponent['scheme'];
   /* eslint-enable prettier/prettier */
 
   willUpdate(changedProperties: PropertyValues<this>) {
@@ -35,6 +37,11 @@ export class TiniTextareaComponent extends TiniElement {
         disabled: !!this.disabled,
         readonly: !!this.readonly,
       },
+      pseudo: {
+        focus: {
+          [VaryGroups.Scheme]: this.focusScheme,
+        },
+      },
       overridable: {
         [VaryGroups.Scheme]: this.scheme,
         [VaryGroups.Scale]: this.scale,
@@ -42,7 +49,7 @@ export class TiniTextareaComponent extends TiniElement {
     });
   }
 
-  private buildEventDetail(e: InputEvent) {
+  private buildEventDetail(e: InputEvent | FocusEvent) {
     const target = e.target as HTMLInputElement;
     const {name, value} = target;
     return {
@@ -70,6 +77,24 @@ export class TiniTextareaComponent extends TiniElement {
     );
   }
 
+  private onFocus(e: FocusEvent) {
+    e.stopPropagation();
+    return this.dispatchEvent(
+      new CustomEvent('focus', {
+        detail: this.buildEventDetail(e),
+      })
+    );
+  }
+
+  private onBlur(e: FocusEvent) {
+    e.stopPropagation();
+    return this.dispatchEvent(
+      new CustomEvent('blur', {
+        detail: this.buildEventDetail(e),
+      })
+    );
+  }
+
   protected render() {
     return html`
       <label
@@ -83,12 +108,15 @@ export class TiniTextareaComponent extends TiniElement {
           class="textarea"
           part="textarea"
           name=${ifDefined(this.name)}
+          autocomplete=${ifDefined(this.autocomplete) as any}
           placeholder=${ifDefined(this.placeholder)}
           .value=${this.value || ''}
           ?disabled=${this.disabled}
           ?readonly=${this.readonly}
           @change=${this.onChange}
           @input=${this.onInput}
+          @focus=${this.onFocus}
+          @blur=${this.onBlur}
         ></textarea>
       </label>
     `;

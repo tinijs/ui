@@ -15,6 +15,10 @@ export const checkboxesStyle = css`
     gap: var(--size-space);
   }
 
+  /*
+   * [wrap]
+   */
+
   .wrap {
     flex-flow: column;
     align-items: flex-start;
@@ -96,7 +100,9 @@ export const checkboxesStyle = css`
 
   ${generateColorVaries(
     ({fullName, color}) => `
-    .${fullName} {
+    .${fullName},
+    .${fullName}-checked input:focus,
+    .${fullName}-checked input:checked {
       --checkbox-background: ${color};
       --checkbox-border-color: ${color};
     }

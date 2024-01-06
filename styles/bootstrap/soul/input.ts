@@ -23,12 +23,6 @@ export const inputStyle = css`
     gap: var(--size-space-0_5x);
   }
 
-  .wrap {
-    flex-flow: column;
-    align-items: flex-start;
-    gap: var(--size-space-0_5x);
-  }
-
   input {
     background: var(--color-background-tint);
     color: var(--color-foreground);
@@ -40,7 +34,7 @@ export const inputStyle = css`
   }
 
   input::placeholder {
-    color: var(--input-border-color);
+    color: var(--color-medium);
     opacity: 0.75;
   }
 
@@ -62,12 +56,44 @@ export const inputStyle = css`
   }
 
   /*
+   * [wrap]
+   */
+
+  .wrap {
+    flex-flow: column;
+    align-items: flex-start;
+    gap: var(--size-space-0_5x);
+  }
+
+  /*
+   * [block]
+   */
+
+  :host(.block) {
+    display: block;
+    width: 100%;
+  }
+
+  :host(.block) .root {
+    display: flex;
+  }
+
+  :host(.block) input {
+    flex: 1;
+  }
+
+  :host(.block) .wrap input {
+    width: 100%;
+  }
+
+  /*
    * [scheme]
    */
 
   ${generateColorVaries(
     ({fullName, color}) => `
-    .${fullName} {
+    .${fullName},
+    .${fullName}-focus input:focus {
       --input-color: ${color};
       --input-border-color: ${color};
     }

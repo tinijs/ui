@@ -35,10 +35,12 @@ export class TiniSelectComponent extends TiniElement {
   @property({type: String}) declare items?: SelectItem[];
   @property({type: String, reflect: true}) declare label?: string;
   @property({type: String, reflect: true}) declare name?: string;
-  @property({type: Boolean, reflect: true}) declare wrap?: boolean;
+  @property({type: String, reflect: true}) declare autocomplete?: string;
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
+  @property({type: Boolean, reflect: true}) declare wrap?: boolean;
   @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare scale?: Scales;
+  @property({type: String, reflect: true, attribute: 'focus:scheme'}) declare focusScheme?: TiniSelectComponent['scheme'];
   /* eslint-enable prettier/prettier */
 
   willUpdate(changedProperties: PropertyValues<this>) {
@@ -48,6 +50,11 @@ export class TiniSelectComponent extends TiniElement {
       raw: {
         wrap: !!this.wrap,
         disabled: !!this.disabled,
+      },
+      pseudo: {
+        focus: {
+          [VaryGroups.Scheme]: this.focusScheme,
+        },
       },
       overridable: {
         [VaryGroups.Scheme]: this.scheme,
@@ -83,6 +90,7 @@ export class TiniSelectComponent extends TiniElement {
           class="select"
           part="select"
           name=${ifDefined(this.name)}
+          autocomplete=${ifDefined(this.autocomplete) as any}
           ?disabled=${this.disabled}
           @change=${this.onChange}
         >

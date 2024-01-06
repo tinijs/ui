@@ -217,6 +217,27 @@ export class AppPageComponentsSelect extends TiniComponent {
           this.renderSectionOptions
         )}
 
+        <!-- pseudo -->
+        ${renderSection(
+          'pseudo',
+          'Pseudo',
+          null,
+          html`
+            <tini-select
+              focus:scheme="success"
+              label="Default / focus success"
+              .items=${this.OPTIONS}
+            ></tini-select>
+            <tini-select
+              scheme="warning"
+              focus:scheme="danger"
+              label="Warning / focus danger"
+              .items=${this.OPTIONS}
+            ></tini-select>
+          `,
+          this.renderSectionOptions
+        )}
+
         <!-- styleDeep -->
         ${renderStyleDeepSection(
           html`

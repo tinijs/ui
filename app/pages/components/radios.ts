@@ -1,4 +1,5 @@
 import {html} from 'lit';
+import {Colors} from 'tinijs';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -216,6 +217,30 @@ export class AppPageComponentsRadios extends TiniComponent {
                 },
               ]}
             ></tini-radios>`,
+          this.renderSectionOptions
+        )}
+
+        <!-- pseudo -->
+        ${renderSection(
+          'pseudo',
+          'Pseudo',
+          html`<p>Checked scheme.</p>`,
+          html`
+            <tini-radios
+              name="pseudo-1"
+              .items=${this.buildCustomList(
+                item => (item['checked:scheme'] = Colors.Success) && item
+              )}
+            ></tini-radios>
+            <tini-radios
+              name="pseudo-2"
+              .items=${this.buildCustomList(item => {
+                item.scheme = Colors.Warning;
+                item['checked:scheme'] = Colors.Danger;
+                return item;
+              })}
+            ></tini-radios>
+          `,
           this.renderSectionOptions
         )}
 

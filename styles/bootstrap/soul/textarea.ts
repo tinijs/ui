@@ -33,7 +33,7 @@ export const textareaStyle = css`
   }
 
   textarea::placeholder {
-    color: var(--textarea-border-color);
+    color: var(--color-medium);
     opacity: 0.75;
   }
 
@@ -60,7 +60,8 @@ export const textareaStyle = css`
 
   ${generateColorVaries(
     ({fullName, color}) => `
-    .${fullName} {
+    .${fullName},
+    .${fullName}-focus textarea:focus {
       --textarea-color: ${color};
       --textarea-border-color: ${color};
     }
