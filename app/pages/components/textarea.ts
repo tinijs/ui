@@ -8,10 +8,7 @@ import {
   codeBases,
 } from '@tinijs/ui/bases';
 import {TiniBoxComponent} from '@tinijs/ui/components/box';
-import {
-  TiniTextareaComponent,
-  TextareaEventDetail,
-} from '@tinijs/ui/components/textarea';
+import {TiniTextareaComponent} from '@tinijs/ui/components/textarea';
 
 import {
   renderSection,
@@ -122,9 +119,9 @@ export class AppPageComponentsTextarea extends TiniComponent {
           'Events',
           html`
             <p>
-              Use the <code>input</code>, <code>change</code>,
-              <code>focus</code> and <code>blur</code> event to capture changes
-              (open the console to see the event log).
+              Enable event forwarding (via the <code>events</code> attribute)
+              and add the respected events to capture changes (open the console
+              to see the event log).
             </p>
           `,
           html`
@@ -132,13 +129,14 @@ export class AppPageComponentsTextarea extends TiniComponent {
               label="Event"
               name="textarea-with-event"
               placeholder="Change my content"
-              @input=${({detail}: CustomEvent<TextareaEventDetail>) =>
+              events="input,change,focus,blur"
+              @input=${({detail}: CustomEvent<InputEvent>) =>
                 console.log('Textarea "input" event: ', detail)}
-              @change=${({detail}: CustomEvent<TextareaEventDetail>) =>
+              @change=${({detail}: CustomEvent<InputEvent>) =>
                 console.log('Textarea "change" event: ', detail)}
-              @focus=${({detail}: CustomEvent<TextareaEventDetail>) =>
+              @focus=${({detail}: CustomEvent<InputEvent>) =>
                 console.log('Textarea "focus" event: ', detail)}
-              @blur=${({detail}: CustomEvent<TextareaEventDetail>) =>
+              @blur=${({detail}: CustomEvent<InputEvent>) =>
                 console.log('Textarea "blur" event: ', detail)}
             ></tini-textarea>
           `,

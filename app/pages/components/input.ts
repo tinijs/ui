@@ -8,10 +8,7 @@ import {
   codeBases,
 } from '@tinijs/ui/bases';
 import {TiniBoxComponent} from '@tinijs/ui/components/box';
-import {
-  TiniInputComponent,
-  InputEventDetail,
-} from '@tinijs/ui/components/input';
+import {TiniInputComponent} from '@tinijs/ui/components/input';
 
 import {
   renderSection,
@@ -161,22 +158,23 @@ export class AppPageComponentsInput extends TiniComponent {
           'Events',
           html`
             <p>
-              Use the <code>input</code>, <code>change</code>,
-              <code>focus</code> and <code>blur</code> event to capture changes
-              (open the console to see the event log).
+              Enable event forwarding (via the <code>events</code> attribute)
+              and add the respected events to capture changes (open the console
+              to see the event log).
             </p>
           `,
           html`
             <tini-input
               label="Event"
               name="input-with-event"
-              @input=${({detail}: CustomEvent<InputEventDetail>) =>
+              events="input,change,focus,blur"
+              @input=${({detail}: CustomEvent<InputEvent>) =>
                 console.log('Input "input" event: ', detail)}
-              @change=${({detail}: CustomEvent<InputEventDetail>) =>
+              @change=${({detail}: CustomEvent<InputEvent>) =>
                 console.log('Input "change" event: ', detail)}
-              @focus=${({detail}: CustomEvent<InputEventDetail>) =>
+              @focus=${({detail}: CustomEvent<InputEvent>) =>
                 console.log('Input "focus" event: ', detail)}
-              @blur=${({detail}: CustomEvent<InputEventDetail>) =>
+              @blur=${({detail}: CustomEvent<InputEvent>) =>
                 console.log('Input "blur" event: ', detail)}
             ></tini-input>
           `,

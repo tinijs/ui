@@ -11,6 +11,12 @@ import {
   Scales,
 } from 'tinijs';
 
+export interface SwitchEventDetail {
+  target: HTMLInputElement;
+  name?: string;
+  checked?: boolean;
+}
+
 /* UseBases(common) */
 export class TiniSwitchComponent extends TiniElement {
   static readonly defaultTagName = 'tini-switch';
@@ -19,7 +25,6 @@ export class TiniSwitchComponent extends TiniElement {
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;
   @property({type: String, reflect: true}) declare name?: string;
-  @property({type: String, reflect: true}) declare value?: string;
   @property({type: Boolean, reflect: true}) declare checked?: boolean;
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
   @property({type: String, reflect: true}) declare scheme?: Colors | Gradients;
@@ -49,9 +54,8 @@ export class TiniSwitchComponent extends TiniElement {
         detail: {
           target,
           name: target.name,
-          value: target.value,
           checked: target.checked,
-        },
+        } as SwitchEventDetail,
       })
     );
   }
@@ -68,7 +72,6 @@ export class TiniSwitchComponent extends TiniElement {
             part="input"
             type="checkbox"
             name=${ifDefined(this.name)}
-            value=${ifDefined(this.value)}
             ?checked=${this.checked}
             ?disabled=${this.disabled}
             @change=${this.onChange}

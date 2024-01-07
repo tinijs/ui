@@ -116,7 +116,13 @@ export class AppPageComponentsText extends TiniComponent {
         ${renderSection(
           'types',
           'Types',
-          html`<p>Use different tag types.</p>`,
+          html`
+            <p>Use different tag types.</p>
+            <p>
+              IMPORTANT! Please <strong>DON'T use user input</strong> for the
+              <code>tag</code> attribute to avoid XSS attacks.
+            </p>
+          `,
           html`
             ${Object.values(TextTags).map(
               tag =>

@@ -12,7 +12,6 @@ import {TiniBoxComponent} from '@tinijs/ui/components/box';
 import {
   TiniCheckboxesComponent,
   CheckboxesItem,
-  CheckboxesEventDetail,
 } from '@tinijs/ui/components/checkboxes';
 
 import {
@@ -59,8 +58,8 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
   ];
 
   private DEFAULT_LIST: CheckboxesItem[] = [
-    {value: '', label: 'Default checkbox'},
-    {value: '', label: 'Default checkbox (checked)', checked: true},
+    {label: 'Default checkbox'},
+    {label: 'Default checkbox (checked)', checked: true},
   ];
 
   private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
@@ -156,19 +155,20 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
           'Events',
           html`
             <p>
-              Use the <code>change</code> event to capture changes (open the
-              console to see the event log).
+              Enable event forwarding (via the <code>events</code> attribute)
+              and add the respected events to capture changes (open the console
+              to see the event log).
             </p>
           `,
           html`<tini-checkboxes
+            events="change"
             .items=${this.buildCustomList((item, i) => {
               const no = i + 1;
-              item.value = `value-${no}`;
               item.name = `checkbox-${no}`;
               item.label = `Checkbox ${no}`;
               return item;
             })}
-            @change=${({detail}: CustomEvent<CheckboxesEventDetail>) =>
+            @change=${({detail}: CustomEvent<InputEvent>) =>
               console.log('Checkboxes "change" event: ', detail)}
           ></tini-checkboxes>`,
           this.renderSectionOptions
@@ -181,7 +181,6 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
               wrap
               .items=${[
                 {
-                  value: '',
                   label: `Checkbox ${color}`,
                   checked: true,
                   scheme: color as Colors,
@@ -201,7 +200,6 @@ export class AppPageComponentsCheckboxes extends TiniComponent {
               wrap
               .items=${[
                 {
-                  value: '',
                   label: `Checkbox scale ${scale}`,
                   scale,
                 },

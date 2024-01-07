@@ -1,6 +1,6 @@
 {
   "name": "@tinijs/ui",
-  "version": "0.14.4",
+  "version": "0.14.5",
   "description": "The UI system of the TiniJS Framework.",
   "author": "Lam Nhan",
   "homepage": "https://tinijs.dev",
@@ -48,7 +48,7 @@
     "lit": "^3.1.0",
     "nanoid": "^5.0.4",
     "prettier": "^3.1.0",
-    "tinijs": "^0.14.1"
+    "tinijs": "^0.14.2"
   },
   "devDependencies": {
     "@lit/react": "^1.0.2",

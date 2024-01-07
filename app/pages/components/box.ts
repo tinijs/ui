@@ -101,6 +101,10 @@ export class AppPageComponentsBox extends TiniComponent {
               current <code>foreground</code>. You can use the
               <code>tag</code> attribute to render different root tag.
             </p>
+            <p>
+              IMPORTANT! Please <strong>DON'T use user input</strong> for the
+              <code>tag</code> attribute to avoid XSS attacks.
+            </p>
           `,
           html`<tini-box>Here is a default box</tini-box>`,
           this.renderSectionOptions

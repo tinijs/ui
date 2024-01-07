@@ -12,7 +12,6 @@ import {
   TiniSelectComponent,
   SelectOption,
   SelectOptgroup,
-  SelectEventDetail,
 } from '@tinijs/ui/components/select';
 
 import {
@@ -181,16 +180,18 @@ export class AppPageComponentsSelect extends TiniComponent {
           'Events',
           html`
             <p>
-              Use the <code>change</code> event to capture changes (open the
-              console to see the event log).
+              Enable event forwarding (via the <code>events</code> attribute)
+              and add the respected events to capture changes (open the console
+              to see the event log).
             </p>
           `,
           html`
             <tini-select
               label="Event"
               name="input-with-event"
+              events="change"
               .items=${this.OPTIONS}
-              @change=${({detail}: CustomEvent<SelectEventDetail>) =>
+              @change=${({detail}: CustomEvent<InputEvent>) =>
                 console.log('Select "change" event: ', detail)}
             ></tini-select>
           `,
@@ -201,7 +202,7 @@ export class AppPageComponentsSelect extends TiniComponent {
         ${renderColorsSection(
           color =>
             html`<tini-select
-              scheme="${color}"
+              scheme="${color as any}"
               .items=${this.OPTIONS}
             ></tini-select>`,
           this.renderSectionOptions

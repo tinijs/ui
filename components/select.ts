@@ -4,8 +4,6 @@ import {classMap} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {TiniElement, partMap, VaryGroups, Colors, Scales} from 'tinijs';
 
-import {InputEventDetail} from './input';
-
 export interface SelectItem extends SelectOption {
   children?: SelectOption[];
 }
@@ -21,8 +19,6 @@ export type SelectOptgroup = SelectOption & {
   children: SelectOption[];
 };
 
-export type SelectEventDetail = InputEventDetail;
-
 /* UseBases(common) */
 export class TiniSelectComponent extends TiniElement {
   static readonly defaultTagName = 'tini-select';
@@ -30,6 +26,7 @@ export class TiniSelectComponent extends TiniElement {
   static readonly componentMetas = {
     colorOnlyScheme: true,
   };
+  static readonly mainNonRootSelector = '.select';
 
   /* eslint-disable prettier/prettier */
   @property({type: String}) declare items?: SelectItem[];
@@ -63,20 +60,6 @@ export class TiniSelectComponent extends TiniElement {
     });
   }
 
-  private onChange(e: InputEvent) {
-    e.stopPropagation();
-    const target = e.target as HTMLInputElement;
-    return this.dispatchEvent(
-      new CustomEvent('change', {
-        detail: {
-          target,
-          name: target.name,
-          value: target.value,
-        },
-      })
-    );
-  }
-
   protected render() {
     return html`
       <label
@@ -92,7 +75,6 @@ export class TiniSelectComponent extends TiniElement {
           name=${ifDefined(this.name)}
           autocomplete=${ifDefined(this.autocomplete) as any}
           ?disabled=${this.disabled}
-          @change=${this.onChange}
         >
           ${!this.items?.length
             ? nothing

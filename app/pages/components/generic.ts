@@ -115,7 +115,13 @@ export class AppPageComponentsGeneric extends TiniComponent {
         ${renderSection(
           'usage',
           'Usage',
-          html`<p>Provide any CSS key-value pairs as attributes.</p>`,
+          html`
+            <p>Provide any CSS key-value pairs as attributes.</p>
+            <p>
+              IMPORTANT! Please <strong>DON'T use user input</strong> for
+              neither the keys nor the values to avoid XSS attacks.
+            </p>
+          `,
           html`
             <tini-generic
               display="flex"
@@ -137,15 +143,38 @@ export class AppPageComponentsGeneric extends TiniComponent {
         ${renderSection(
           'tag-attributes',
           'Tag & attributes',
-          html`<p>
-            Choose a different native root tag via <code>tag</code> attribute,
-            passing attributes using <code>-attr</code> suffixed attributes.
-          </p>`,
+          html`
+            <p>
+              Choose a different native root tag via <code>tag</code> attribute,
+              passing attributes using <code>-attr</code> suffixed attributes.
+            </p>
+            <p>
+              Use the <code>events</code> attribute/property to forward events
+              to the host.
+            </p>
+            <p>
+              IMPORTANT! Please <strong>DON'T use user input</strong> for
+              neither the <code>-attr</code> suffixed keys nor the values to
+              avoid XSS attacks.
+            </p>
+          `,
           html`
             <tini-generic
               tag="input"
               type-attr="email"
               placeholder-attr="Enter your email"
+              events="input,change,focus,blur:customName"
+              @input=${(e: CustomEvent<InputEvent>) =>
+                console.log('Input "input" event: ', e.detail)}
+              @change=${(e: CustomEvent<InputEvent>) =>
+                console.log('Input "change" event: ', e.detail)}
+              @focus=${(e: CustomEvent<InputEvent>) =>
+                console.log('Input "focus" event: ', e.detail)}
+              @customName=${(e: CustomEvent<InputEvent>) =>
+                console.log(
+                  'Input "blur" (renamed to "customName") event: ',
+                  e.detail
+                )}
             ></tini-generic>
           `,
           this.renderSectionOptions
@@ -155,15 +184,23 @@ export class AppPageComponentsGeneric extends TiniComponent {
         ${renderSection(
           'unscoped',
           'Unscoped',
-          html`<p>
-            To create an unscoped element (flat structure, it is useful when
-            requires an access to the outside context), import and use the
-            <code>tini-generic-unscoped</code> instead, it can be styled using
-            the same methods as scoped components and/or using the the inline
-            <code>style</code> attribute (please note that the inline styles
-            have the highest specificity over CSS key-value pairs,
-            <code>styleDeep</code> attribute and <code>theming</code> property).
-          </p>`,
+          html`
+            <p>
+              To create an unscoped element (flat structure, it is useful when
+              requires an access to the outside context), import and use the
+              <code>tini-generic-unscoped</code> instead, it can be styled using
+              the same methods as scoped components and/or using the the inline
+              <code>style</code> attribute (please note that the inline styles
+              have the highest specificity over CSS key-value pairs,
+              <code>styleDeep</code> attribute and
+              <code>theming</code> property).
+            </p>
+            <p>
+              IMPORTANT! Please <strong>DON'T use user input</strong> for
+              attribute styles neither the keys nor the values to avoid XSS
+              attacks.
+            </p>
+          `,
           html`
             <tini-generic-unscoped
               name="my-component"
@@ -184,10 +221,16 @@ export class AppPageComponentsGeneric extends TiniComponent {
         ${renderSection(
           'advanced',
           'Advanced',
-          html`<p>
-            Using the <code>styleDeep</code> attribute to style pseudo-classes,
-            pseudo-elements, media queries, ...
-          </p>`,
+          html`
+            <p>
+              Using the <code>styleDeep</code> attribute to style
+              pseudo-classes, pseudo-elements, media queries, ...
+            </p>
+            <p>
+              IMPORTANT! Please <strong>DON'T use user input</strong> for the
+              <code>styleDeep</code> attribute to avoid XSS attacks.
+            </p>
+          `,
           html`
             <tini-generic
               margin-top="1rem"
@@ -246,6 +289,10 @@ export class AppPageComponentsGeneric extends TiniComponent {
             <p>
               Change theme to <strong>Bootstrap Dark</strong> and
               <strong>Bootstrap Retro Light</strong> to see the defferent.
+            </p>
+            <p>
+              IMPORTANT! Please <strong>DON'T use user input</strong> for the
+              style content to avoid XSS attacks.
             </p>
           `,
           html`

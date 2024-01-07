@@ -3,15 +3,15 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {TiniElement, partMap, VaryGroups} from 'tinijs';
 
-import {CheckboxesItem, CheckboxesEventDetail} from './checkboxes';
+import {CheckboxesItem} from './checkboxes';
 
 export type RadiosItem = Omit<CheckboxesItem, 'name'>;
-export type RadiosEventDetail = Omit<CheckboxesEventDetail, 'name'>;
 
 /* UseBases(common) */
 export class TiniRadiosComponent extends TiniElement {
   static readonly defaultTagName = 'tini-radios';
   static readonly componentName = 'radios';
+  static readonly mainNonRootSelector = '.input';
 
   /* eslint-disable prettier/prettier */
   @property({type: Array}) declare items?: RadiosItem[];
@@ -35,20 +35,6 @@ export class TiniRadiosComponent extends TiniElement {
     });
   }
 
-  private onChange(e: InputEvent) {
-    e.stopPropagation();
-    const target = e.target as HTMLInputElement;
-    return this.dispatchEvent(
-      new CustomEvent('change', {
-        detail: {
-          target,
-          value: target.value,
-          checked: target.checked,
-        },
-      })
-    );
-  }
-
   protected render() {
     return !this.items?.length
       ? nothing
@@ -63,7 +49,6 @@ export class TiniRadiosComponent extends TiniElement {
   }
 
   private renderItem({
-    value,
     label,
     checked,
     disabled,
@@ -85,10 +70,8 @@ export class TiniRadiosComponent extends TiniElement {
           part="input"
           type="radio"
           name=${this.name}
-          value=${value}
           ?checked=${checked}
           ?disabled=${disabled}
-          @change=${this.onChange}
         />
         ${!label
           ? nothing

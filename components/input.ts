@@ -4,12 +4,6 @@ import {classMap} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {TiniElement, partMap, VaryGroups, Colors, Scales} from 'tinijs';
 
-export interface InputEventDetail {
-  target: HTMLInputElement;
-  name: string;
-  value: string;
-}
-
 /* UseBases(common) */
 export class TiniInputComponent extends TiniElement {
   static readonly defaultTagName = 'tini-input';
@@ -17,6 +11,7 @@ export class TiniInputComponent extends TiniElement {
   static readonly componentMetas = {
     colorOnlyScheme: true,
   };
+  static readonly mainNonRootSelector = '.input';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;
@@ -64,52 +59,6 @@ export class TiniInputComponent extends TiniElement {
     });
   }
 
-  private buildEventDetail(e: InputEvent | FocusEvent) {
-    const target = e.target as HTMLInputElement;
-    const {name, value} = target;
-    return {
-      target,
-      name,
-      value,
-    } as InputEventDetail;
-  }
-
-  private onChange(e: InputEvent) {
-    e.stopPropagation();
-    return this.dispatchEvent(
-      new CustomEvent('change', {
-        detail: this.buildEventDetail(e),
-      })
-    );
-  }
-
-  private onInput(e: InputEvent) {
-    e.stopPropagation();
-    return this.dispatchEvent(
-      new CustomEvent('input', {
-        detail: this.buildEventDetail(e),
-      })
-    );
-  }
-
-  private onFocus(e: FocusEvent) {
-    e.stopPropagation();
-    return this.dispatchEvent(
-      new CustomEvent('focus', {
-        detail: this.buildEventDetail(e),
-      })
-    );
-  }
-
-  private onBlur(e: FocusEvent) {
-    e.stopPropagation();
-    return this.dispatchEvent(
-      new CustomEvent('blur', {
-        detail: this.buildEventDetail(e),
-      })
-    );
-  }
-
   protected render() {
     return html`
       <label
@@ -122,18 +71,14 @@ export class TiniInputComponent extends TiniElement {
         <input
           class="input"
           part="input"
+          placeholder=${ifDefined(this.placeholder)}
           type=${ifDefined(this.type) as any}
           name=${ifDefined(this.name)}
+          .value=${this.value || ''}
           inputmode=${ifDefined(this.inputmode)}
           autocomplete=${ifDefined(this.autocomplete) as any}
-          placeholder=${ifDefined(this.placeholder)}
-          .value=${this.value || ''}
           ?disabled=${this.disabled}
           ?readonly=${this.readonly}
-          @change=${this.onChange}
-          @input=${this.onInput}
-          @focus=${this.onFocus}
-          @blur=${this.onBlur}
         />
       </label>
     `;

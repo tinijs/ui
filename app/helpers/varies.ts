@@ -648,10 +648,16 @@ export function renderStyleDeepSection(
   return render(
     'style-deep',
     'Style deep',
-    html`<p>
-      You can also provide custom styles via the
-      <code>styleDeep</code> attribute.
-    </p>`,
+    html`
+      <p>
+        You can also provide custom styles via the
+        <code>styleDeep</code> attribute.
+      </p>
+      <p>
+        IMPORTANT! Please <strong>DON'T use user input</strong> to avoid XSS
+        attacks.
+      </p>
+    `,
     codeWithWrapper(styleStyleDeep, code),
     options
   );

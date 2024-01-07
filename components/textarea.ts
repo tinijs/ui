@@ -4,10 +4,6 @@ import {classMap} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {TiniElement, partMap, VaryGroups, Colors, Scales} from 'tinijs';
 
-import {InputEventDetail} from './input';
-
-export type TextareaEventDetail = InputEventDetail;
-
 /* UseBases(common) */
 export class TiniTextareaComponent extends TiniElement {
   static readonly defaultTagName = 'tini-textarea';
@@ -15,6 +11,7 @@ export class TiniTextareaComponent extends TiniElement {
   static readonly componentMetas = {
     colorOnlyScheme: true,
   };
+  static readonly mainNonRootSelector = '.textarea';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;
@@ -49,52 +46,6 @@ export class TiniTextareaComponent extends TiniElement {
     });
   }
 
-  private buildEventDetail(e: InputEvent | FocusEvent) {
-    const target = e.target as HTMLInputElement;
-    const {name, value} = target;
-    return {
-      target,
-      name,
-      value,
-    } as TextareaEventDetail;
-  }
-
-  private onChange(e: InputEvent) {
-    e.stopPropagation();
-    return this.dispatchEvent(
-      new CustomEvent('change', {
-        detail: this.buildEventDetail(e),
-      })
-    );
-  }
-
-  private onInput(e: InputEvent) {
-    e.stopPropagation();
-    return this.dispatchEvent(
-      new CustomEvent('input', {
-        detail: this.buildEventDetail(e),
-      })
-    );
-  }
-
-  private onFocus(e: FocusEvent) {
-    e.stopPropagation();
-    return this.dispatchEvent(
-      new CustomEvent('focus', {
-        detail: this.buildEventDetail(e),
-      })
-    );
-  }
-
-  private onBlur(e: FocusEvent) {
-    e.stopPropagation();
-    return this.dispatchEvent(
-      new CustomEvent('blur', {
-        detail: this.buildEventDetail(e),
-      })
-    );
-  }
-
   protected render() {
     return html`
       <label
@@ -107,16 +58,12 @@ export class TiniTextareaComponent extends TiniElement {
         <textarea
           class="textarea"
           part="textarea"
-          name=${ifDefined(this.name)}
-          autocomplete=${ifDefined(this.autocomplete) as any}
           placeholder=${ifDefined(this.placeholder)}
+          name=${ifDefined(this.name)}
           .value=${this.value || ''}
+          autocomplete=${ifDefined(this.autocomplete) as any}
           ?disabled=${this.disabled}
           ?readonly=${this.readonly}
-          @change=${this.onChange}
-          @input=${this.onInput}
-          @focus=${this.onFocus}
-          @blur=${this.onBlur}
         ></textarea>
       </label>
     `;

@@ -10,8 +10,10 @@ import {html, unsafeStatic, StaticValue} from 'lit/static-html.js';
 import {
   GLOBAL_TINI,
   THEME_CHANGE_EVENT,
+  EventForwarding,
   ActiveTheme,
   GenericThemingOptions,
+  forwardEvents,
   getTheme,
   adoptScripts,
   processComponentStyles,
@@ -53,6 +55,7 @@ export class TiniGenericComponent extends LitElement {
   @property({type: String, reflect: true}) declare styleDeep?: string;
   @property({type: String, reflect: true}) declare precomputed?: string;
   @property({type: Object}) declare theming?: GenericThemingOptions;
+  @property() declare events?: string | Array<string | Omit<EventForwarding, 'target'>>;
   /* eslint-enable prettier/prettier */
 
   private onThemeChange = (e: Event) => {
@@ -104,6 +107,7 @@ export class TiniGenericComponent extends LitElement {
 
   protected firstUpdated() {
     this.customAdoptScripts();
+    if (this.events) forwardEvents(this, this.events);
   }
 
   private buildStyles() {
