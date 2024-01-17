@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@tinijs/bootstrap-icons": "^0.15.0",
-    "@tinijs/core": "^0.15.0",
+    "@tinijs/core": "^0.15.3",
     "@tinijs/router": "^0.15.0",
     "@tinijs/store": "^0.15.0",
     "chroma-js": "^2.4.2",
@@ -53,7 +53,7 @@
   "devDependencies": {
     "@lit/react": "^1.0.2",
     "@parcel/transformer-sass": "^2.10.3",
-    "@tinijs/cli": "^0.15.0",
+    "@tinijs/cli": "^0.15.1",
     "@types/chroma-js": "^2.4.3",
     "@types/gradient-parser": "^0.1.5",
     "@types/node": "^20.9.4",
