@@ -3,7 +3,7 @@ import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {
   TiniElement,
-  partMap,
+  partAttrMap,
   VaryGroups,
   Colors,
   Gradients,
@@ -43,7 +43,7 @@ export class TiniBadgeComponent extends TiniElement {
     return html`
       <span
         class=${classMap(this.rootClasses)}
-        part=${partMap(this.rootClasses)}
+        part=${partAttrMap(this.rootClasses)}
       >
         <slot></slot>
       </span>

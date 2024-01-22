@@ -1,7 +1,7 @@
 import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {TiniElement, partMap, Colors, Scales} from 'tinijs';
+import {TiniElement, partAttrMap, Colors, Scales} from 'tinijs';
 
 /* UseBases(common) */
 export class TiniXxxComponent extends TiniElement {
@@ -22,7 +22,7 @@ export class TiniXxxComponent extends TiniElement {
     return html`
       <xxx
         class=${classMap(this.rootClasses)}
-        part=${partMap(this.rootClasses)}
+        part=${partAttrMap(this.rootClasses)}
       ></xxx>
     `;
   }

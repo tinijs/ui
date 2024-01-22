@@ -4,7 +4,7 @@ import {classMap} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 import {
   TiniElement,
-  partMap,
+  partAttrMap,
   VaryGroups,
   Colors,
   Gradients,
@@ -64,7 +64,7 @@ export class TiniSwitchComponent extends TiniElement {
     return html`
       <label
         class=${classMap(this.rootClasses)}
-        part=${partMap(this.rootClasses)}
+        part=${partAttrMap(this.rootClasses)}
       >
         <div class="switch">
           <input

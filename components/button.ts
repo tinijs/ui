@@ -3,7 +3,7 @@ import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {
   TiniElement,
-  partMap,
+  partAttrMap,
   borderToClassInfo,
   VaryGroups,
   Colors,
@@ -72,7 +72,7 @@ export class TiniButtonComponent extends TiniElement {
   protected render() {
     return html`<button
       class=${classMap(this.rootClasses)}
-      part=${partMap(this.rootClasses)}
+      part=${partAttrMap(this.rootClasses)}
       ?disabled=${this.disabled}
     >
       <slot></slot>

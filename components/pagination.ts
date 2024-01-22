@@ -3,7 +3,7 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {
   TiniElement,
-  partMap,
+  partAttrMap,
   VaryGroups,
   Colors,
   Gradients,
@@ -101,7 +101,10 @@ export class TiniPaginationComponent extends TiniElement {
 
   protected render() {
     return html`
-      <ul class=${classMap(this.rootClasses)} part=${partMap(this.rootClasses)}>
+      <ul
+        class=${classMap(this.rootClasses)}
+        part=${partAttrMap(this.rootClasses)}
+      >
         ${this.renderPrevious()} ${this.renderItems()} ${this.renderNext()}
       </ul>
     `;
@@ -115,11 +118,11 @@ export class TiniPaginationComponent extends TiniElement {
     return html`
       <li
         class=${classMap(this.previousClasses)}
-        part=${partMap(this.previousClasses)}
+        part=${partAttrMap(this.previousClasses)}
       >
         <a
           class=${classMap(this.previousLinkClasses)}
-          part=${partMap(this.previousLinkClasses)}
+          part=${partAttrMap(this.previousLinkClasses)}
           href=${href}
           @click=${(e: Event) =>
             this.previousClasses['previous-disabled']
@@ -136,10 +139,13 @@ export class TiniPaginationComponent extends TiniElement {
       ? this.defaultHrefBuilder()
       : this.buildHref(nextPageNum);
     return html`
-      <li class=${classMap(this.nextClasses)} part=${partMap(this.nextClasses)}>
+      <li
+        class=${classMap(this.nextClasses)}
+        part=${partAttrMap(this.nextClasses)}
+      >
         <a
           class=${classMap(this.nextLinkClasses)}
-          part=${partMap(this.nextLinkClasses)}
+          part=${partAttrMap(this.nextLinkClasses)}
           href=${href}
           @click=${(e: Event) =>
             this.nextClasses['next-disabled']
@@ -165,10 +171,10 @@ export class TiniPaginationComponent extends TiniElement {
         ? this.defaultHrefBuilder()
         : this.buildHref(pageNum);
       return html`
-        <li class=${classMap(itemClasses)} part=${partMap(itemClasses)}>
+        <li class=${classMap(itemClasses)} part=${partAttrMap(itemClasses)}>
           <a
             class=${classMap(itemLinkClasses)}
-            part=${partMap(itemLinkClasses)}
+            part=${partAttrMap(itemLinkClasses)}
             href=${href}
             @click=${(e: Event) =>
               itemClasses.active ? e.preventDefault() : this.onChange(pageNum)}

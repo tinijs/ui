@@ -2,7 +2,7 @@ import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
-import {TiniElement, partMap, VaryGroups, Colors, Gradients} from 'tinijs';
+import {TiniElement, partAttrMap, VaryGroups, Colors, Gradients} from 'tinijs';
 
 export interface BreadcrumbItem {
   label: string;
@@ -32,7 +32,10 @@ export class TiniBreadcrumbComponent extends TiniElement {
 
   protected render() {
     return html`
-      <ol class=${classMap(this.rootClasses)} part=${partMap(this.rootClasses)}>
+      <ol
+        class=${classMap(this.rootClasses)}
+        part=${partAttrMap(this.rootClasses)}
+      >
         ${this.items?.map(item => this.renderItem(item))}
       </ol>
     `;
@@ -44,7 +47,7 @@ export class TiniBreadcrumbComponent extends TiniElement {
       'item-active': !item.href,
     };
     return html`
-      <li class=${classMap(itemClasses)} part=${partMap(itemClasses)}>
+      <li class=${classMap(itemClasses)} part=${partAttrMap(itemClasses)}>
         ${!item.href
           ? html`${item.label}`
           : html`

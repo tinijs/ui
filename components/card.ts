@@ -1,7 +1,7 @@
 import {html, PropertyValues} from 'lit';
 import {property, state, queryAssignedElements} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {TiniElement, partMap, VaryGroups, BoxShadows} from 'tinijs';
+import {TiniElement, partAttrMap, VaryGroups, BoxShadows} from 'tinijs';
 
 /* UseBases(common) */
 export class TiniCardComponent extends TiniElement {
@@ -54,11 +54,11 @@ export class TiniCardComponent extends TiniElement {
     return html`
       <div
         class=${classMap(this.rootClasses)}
-        part=${partMap(this.rootClasses)}
+        part=${partAttrMap(this.rootClasses)}
       >
         <div
           class=${classMap(this.headClasses)}
-          part=${partMap(this.headClasses)}
+          part=${partAttrMap(this.headClasses)}
         >
           <slot
             name="head"
@@ -69,14 +69,14 @@ export class TiniCardComponent extends TiniElement {
 
         <div
           class=${classMap(this.bodyClasses)}
-          part=${partMap(this.bodyClasses)}
+          part=${partAttrMap(this.bodyClasses)}
         >
           <slot></slot>
         </div>
 
         <div
           class=${classMap(this.footClasses)}
-          part=${partMap(this.footClasses)}
+          part=${partAttrMap(this.footClasses)}
         >
           <slot
             name="foot"

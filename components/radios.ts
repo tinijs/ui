@@ -1,7 +1,7 @@
 import {html, nothing, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {TiniElement, partMap, VaryGroups} from 'tinijs';
+import {TiniElement, partAttrMap, VaryGroups} from 'tinijs';
 
 import {CheckboxesItem} from './checkboxes';
 
@@ -41,7 +41,7 @@ export class TiniRadiosComponent extends TiniElement {
       : html`
           <div
             class=${classMap(this.rootClasses)}
-            part=${partMap(this.rootClasses)}
+            part=${partAttrMap(this.rootClasses)}
           >
             ${this.items.map(item => this.renderItem(item))}
           </div>
@@ -64,7 +64,7 @@ export class TiniRadiosComponent extends TiniElement {
       [`${VaryGroups.Scale}-${scale}`]: !!scale,
     };
     return html`
-      <label class=${classMap(itemClasses)} part=${partMap(itemClasses)}>
+      <label class=${classMap(itemClasses)} part=${partAttrMap(itemClasses)}>
         <input
           class="input"
           part="input"

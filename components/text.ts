@@ -4,7 +4,7 @@ import {classMap} from 'lit/directives/class-map.js';
 import {html, unsafeStatic, StaticValue} from 'lit/static-html.js';
 import {
   TiniElement,
-  partMap,
+  partAttrMap,
   VaryGroups,
   Colors,
   Gradients,
@@ -68,7 +68,7 @@ export class TiniTextComponent extends TiniElement {
     return html`
       <${this.rootTag}
         class=${classMap(this.rootClasses)}
-        part=${partMap(this.rootClasses)}
+        part=${partAttrMap(this.rootClasses)}
       >
         <slot></slot>
       </${this.rootTag}>

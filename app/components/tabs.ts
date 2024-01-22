@@ -1,7 +1,7 @@
 import {html, css, nothing} from 'lit';
 import {queryAssignedElements} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {partMap} from 'tinijs';
+import {partAttrMap} from 'tinijs';
 import {
   Component,
   TiniComponent,
@@ -71,7 +71,7 @@ export class AppTabsComponent extends TiniComponent {
     return html`
       <div
         class="head"
-        part=${partMap({head: true, 'head-expanded': !!this.activeName})}
+        part=${partAttrMap({head: true, 'head-expanded': !!this.activeName})}
       >
         <div
           part="title"

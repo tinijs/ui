@@ -4,7 +4,7 @@ import {classMap} from 'lit/directives/class-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
 import {
   TiniElement,
-  partMap,
+  partAttrMap,
   VaryGroups,
   Colors,
   Gradients,
@@ -108,7 +108,7 @@ export class TiniDialogComponent extends TiniElement {
       <dialog
         ${ref(this.dialogRef)}
         class=${classMap(this.rootClasses)}
-        part=${partMap(this.rootClasses)}
+        part=${partAttrMap(this.rootClasses)}
         @click=${this.clickDialog}
       >
         <div class="head" part="head">

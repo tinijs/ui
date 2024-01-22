@@ -4,7 +4,7 @@ import {classMap} from 'lit/directives/class-map.js';
 import {styleMap, StyleInfo} from 'lit/directives/style-map.js';
 import {
   TiniElement,
-  partMap,
+  partAttrMap,
   VaryGroups,
   Colors,
   Gradients,
@@ -45,7 +45,7 @@ export class TiniIconComponent extends TiniElement {
     return html`
       <i
         class=${classMap(this.rootClasses)}
-        part=${partMap(this.rootClasses)}
+        part=${partAttrMap(this.rootClasses)}
         style=${styleMap(this.rootStyles)}
       ></i>
     `;

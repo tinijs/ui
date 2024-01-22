@@ -5,7 +5,7 @@ import {ifDefined} from 'lit/directives/if-defined.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
 import {
   TiniElement,
-  partMap,
+  partAttrMap,
   VaryGroups,
   Colors,
   Gradients,
@@ -122,7 +122,7 @@ export class TiniLinkComponent extends TiniElement {
         router-ignore
         ${ref(this.anchorRef)}
         class=${classMap(this.rootClasses)}
-        part=${partMap(this.rootClasses)}
+        part=${partAttrMap(this.rootClasses)}
         href=${this.href || '/'}
         target=${ifDefined(this.target)}
         rel=${ifDefined(this.rel)}

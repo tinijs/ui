@@ -1,7 +1,7 @@
 import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {TiniElement, partMap, VaryGroups, Colors, Scales} from 'tinijs';
+import {TiniElement, partAttrMap, VaryGroups, Colors, Scales} from 'tinijs';
 
 /* UseBases(common) */
 export class TiniLabelComponent extends TiniElement {
@@ -37,7 +37,7 @@ export class TiniLabelComponent extends TiniElement {
     return html`
       <span
         class=${classMap(this.rootClasses)}
-        part=${partMap(this.rootClasses)}
+        part=${partAttrMap(this.rootClasses)}
       >
         <slot></slot>
       </span>
