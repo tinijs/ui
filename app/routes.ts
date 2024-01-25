@@ -56,6 +56,12 @@ export const componentsGenericRoute: Route = {
   action: () => import('./pages/components/generic'),
 };
 
+export const componentsSkeletonRoute: Route = {
+  path: 'components/skeleton',
+  component: 'app-page-components-skeleton',
+  action: () => import('./pages/components/skeleton'),
+};
+
 export const componentsBoxRoute: Route = {
   path: 'components/box',
   component: 'app-page-components-box',
@@ -179,6 +185,7 @@ export const componentsTextareaRoute: Route = {
 export const componentsRoutes = [
   componentsBasesRoute,
   componentsGenericRoute,
+  componentsSkeletonRoute,
   componentsBoxRoute,
   componentsTextRoute,
   componentsLinkRoute,

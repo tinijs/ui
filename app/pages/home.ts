@@ -23,16 +23,18 @@ export class AppPageHome extends TiniComponent {
     return html`
       <h1>Tini UI</h1>
       <p>
-        The UI system of the TiniJS Framework. All components can be used inside
-        a TiniJS app or with other frameworks like Vue, React, Angular, Svelte,
-        ... or without any framework at all.
+        The UI system of the TiniJS Framework, built using the
+        <a href="https://lit.dev/" target="_blank" rel="noopener">Lit</a>
+        library. All components can be used inside a TiniJS app or with other
+        frameworks like Vue, React, Angular, Svelte, ... or without any
+        framework at all.
       </p>
 
       <h2>Components</h2>
       <p>
         Tini UI components are web custom elements, each component is built with
-        rich functionality and accessibility. Please see detail page of each
-        component for detail usage.
+        rich functionality and accessibility (todo). Please see detail page of
+        each component for detail usage.
       </p>
 
       <h2>Styles</h2>

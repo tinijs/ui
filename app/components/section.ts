@@ -74,6 +74,10 @@ export const WIDE_SS_STYLES: StyleInfo = {
   width: 'var(--wide-ss)',
 };
 
+export const WIDE_MD_STYLES: StyleInfo = {
+  width: 'var(--wide-md)',
+};
+
 export interface SectionCodeGroup {
   name: string;
   code: HTMLTemplateResult;
