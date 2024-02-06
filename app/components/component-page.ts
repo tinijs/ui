@@ -175,7 +175,7 @@ export class AppComponentPageComponent extends TiniComponent {
 
   private buildStandaloneScriptCode() {
     return `<script src="${this.buildStandaloneImportCode().replace(
-      /(import ')|(';)/,
+      /(import ')|(';)/g,
       ''
     )}"></script>`;
   }

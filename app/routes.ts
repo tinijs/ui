@@ -128,6 +128,12 @@ export const componentsInputRoute: Route = {
   action: () => import('./pages/components/input'),
 };
 
+export const componentsTextareaRoute: Route = {
+  path: 'components/textarea',
+  component: 'app-page-components-textarea',
+  action: () => import('./pages/components/textarea'),
+};
+
 export const componentsLabelRoute: Route = {
   path: 'components/label',
   component: 'app-page-components-label',
@@ -176,10 +182,10 @@ export const componentsSwitchRoute: Route = {
   action: () => import('./pages/components/switch'),
 };
 
-export const componentsTextareaRoute: Route = {
-  path: 'components/textarea',
-  component: 'app-page-components-textarea',
-  action: () => import('./pages/components/textarea'),
+export const componentsEmbedRoute: Route = {
+  path: 'components/embed',
+  component: 'app-page-components-embed',
+  action: () => import('./pages/components/embed'),
 };
 
 export const componentsRoutes = [
@@ -206,6 +212,7 @@ export const componentsRoutes = [
   componentsCheckboxesRoute,
   componentsRadiosRoute,
   componentsSwitchRoute,
+  componentsEmbedRoute,
 ];
 
 /*
