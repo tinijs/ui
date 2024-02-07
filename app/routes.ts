@@ -74,10 +74,22 @@ export const componentsTextRoute: Route = {
   action: () => import('./pages/components/text'),
 };
 
+export const componentsHeadingRoute: Route = {
+  path: 'components/heading',
+  component: 'app-page-components-heading',
+  action: () => import('./pages/components/heading'),
+};
+
 export const componentsLinkRoute: Route = {
   path: 'components/link',
   component: 'app-page-components-link',
   action: () => import('./pages/components/link'),
+};
+
+export const componentsImageRoute: Route = {
+  path: 'components/image',
+  component: 'app-page-components-image',
+  action: () => import('./pages/components/image'),
 };
 
 export const componentsIconRoute: Route = {
@@ -194,7 +206,9 @@ export const componentsRoutes = [
   componentsSkeletonRoute,
   componentsBoxRoute,
   componentsTextRoute,
+  componentsHeadingRoute,
   componentsLinkRoute,
+  componentsImageRoute,
   componentsIconRoute,
   componentsButtonRoute,
   componentsBadgeRoute,

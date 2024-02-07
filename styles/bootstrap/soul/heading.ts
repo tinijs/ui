@@ -9,17 +9,13 @@ import {
   generateTextTransformVaries,
 } from 'tinijs';
 
-export const textStyle = css`
+export const headingStyle = css`
   :host {
-    --text-color: var(--color-foreground);
-    --text-font-size: var(--size-text);
-    --text-font: var(--font-body);
-    --text-weight: normal;
-    --text-transform: none;
-  }
-
-  :host {
-    display: inline;
+    --heading-color: var(--color-foreground);
+    --heading-font-size: var(--size-text);
+    --heading-font: var(--font-body);
+    --heading-weight: normal;
+    --heading-transform: none;
   }
 
   /*
@@ -28,26 +24,51 @@ export const textStyle = css`
 
   .root {
     margin: 0;
-    color: var(--text-color);
-    text-transform: var(--text-transform);
+    color: var(--heading-color);
+    text-transform: var(--heading-transform);
     display: inline;
   }
 
-  span {
-    font-family: var(--text-font);
-    font-size: var(--text-font-size);
-    font-weight: var(--text-weight);
-  }
-
   /*
-   * Correct margin for paragraphs
+   * Correct margin
    */
 
-  :host([tag='p']) {
+  :host,
+  :host([level='1']) {
     display: block;
-    font-size: 1rem;
+    font-size: 2.5rem;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+  }
+
+  :host([level='2']) {
+    font-size: 2rem;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+  }
+
+  :host([level='3']) {
+    font-size: 1.75rem;
     margin-block-start: 1em;
     margin-block-end: 1em;
+  }
+
+  :host([level='4']) {
+    font-size: 1.5rem;
+    margin-block-start: 1.33em;
+    margin-block-end: 1.33em;
+  }
+
+  :host([level='5']) {
+    font-size: 1.25rem;
+    margin-block-start: 1.67em;
+    margin-block-end: 1.67em;
+  }
+
+  :host([level='6']) {
+    font-size: 1rem;
+    margin-block-start: 2.33em;
+    margin-block-end: 2.33em;
   }
 
   /*
@@ -73,7 +94,7 @@ export const textStyle = css`
   ${generateColorVaries(
     ({name, color}) => `
     .${VaryGroups.Color}-${name} {
-      --text-color: ${color};
+      --heading-color: ${color};
     }
   `
   )}
@@ -88,7 +109,7 @@ export const textStyle = css`
     }
 
     .${VaryGroups.Color}-${name}.underline::after {
-      --underline-height: calc(var(--text-font-size) / 13);
+      --underline-height: calc(var(--heading-font-size) / 13);
       content: '';
       position: absolute;
       left: 0;
@@ -107,8 +128,8 @@ export const textStyle = css`
   ${generateFontTypeVaries(
     ({fullName, type}) => `
     .${fullName} {
-      --text-font: ${type} !important;
-      font-family: var(--text-font);
+      --heading-font: ${type} !important;
+      font-family: var(--heading-font);
     }
   `
   )}
@@ -120,8 +141,8 @@ export const textStyle = css`
   ${generateFontSizeVaries(
     ({fullName, size}) => `
     .${fullName} {
-      --text-font-size: ${size} !important;
-      font-size: var(--text-font-size);
+      --heading-font-size: ${size} !important;
+      font-size: var(--heading-font-size);
     }
   `
   )}
@@ -133,8 +154,8 @@ export const textStyle = css`
   ${generateFontWeightVaries(
     ({fullName, weight}) => `
     .${fullName} {
-      --text-weight: ${weight} !important;
-      font-weight: var(--text-weight);
+      --heading-weight: ${weight} !important;
+      font-weight: var(--heading-weight);
     }
   `
   )}
@@ -146,11 +167,11 @@ export const textStyle = css`
   ${generateTextTransformVaries(
     ({fullName, transform}) => `
     .${fullName} {
-      --text-transform: ${transform};
+      --heading-transform: ${transform};
     }
   `
   )}
 `;
 
-export const textScript = undefined;
-export const textUnscript = undefined;
+export const headingScript = undefined;
+export const headingUnscript = undefined;

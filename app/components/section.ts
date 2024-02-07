@@ -74,6 +74,10 @@ export const WIDE_SS_STYLES: StyleInfo = {
   width: 'var(--wide-ss)',
 };
 
+export const WIDE_SM_STYLES: StyleInfo = {
+  width: 'var(--wide-sm)',
+};
+
 export const WIDE_MD_STYLES: StyleInfo = {
   width: 'var(--wide-md)',
 };
