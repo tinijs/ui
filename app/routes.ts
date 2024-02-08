@@ -50,34 +50,10 @@ export const componentsBasesRoute: Route = {
   action: () => import('./pages/components/bases'),
 };
 
-export const componentsGenericRoute: Route = {
-  path: 'components/generic',
-  component: 'app-page-components-generic',
-  action: () => import('./pages/components/generic'),
-};
-
-export const componentsSkeletonRoute: Route = {
-  path: 'components/skeleton',
-  component: 'app-page-components-skeleton',
-  action: () => import('./pages/components/skeleton'),
-};
-
-export const componentsBoxRoute: Route = {
-  path: 'components/box',
-  component: 'app-page-components-box',
-  action: () => import('./pages/components/box'),
-};
-
 export const componentsTextRoute: Route = {
   path: 'components/text',
   component: 'app-page-components-text',
   action: () => import('./pages/components/text'),
-};
-
-export const componentsHeadingRoute: Route = {
-  path: 'components/heading',
-  component: 'app-page-components-heading',
-  action: () => import('./pages/components/heading'),
 };
 
 export const componentsLinkRoute: Route = {
@@ -86,10 +62,58 @@ export const componentsLinkRoute: Route = {
   action: () => import('./pages/components/link'),
 };
 
+export const componentsHeadingRoute: Route = {
+  path: 'components/heading',
+  component: 'app-page-components-heading',
+  action: () => import('./pages/components/heading'),
+};
+
 export const componentsImageRoute: Route = {
   path: 'components/image',
   component: 'app-page-components-image',
   action: () => import('./pages/components/image'),
+};
+
+export const componentsFigureRoute: Route = {
+  path: 'components/figure',
+  component: 'app-page-components-figure',
+  action: () => import('./pages/components/figure'),
+};
+
+export const componentsEmbedRoute: Route = {
+  path: 'components/embed',
+  component: 'app-page-components-embed',
+  action: () => import('./pages/components/embed'),
+};
+
+export const componentsTableRoute: Route = {
+  path: 'components/table',
+  component: 'app-page-components-table',
+  action: () => import('./pages/components/table'),
+};
+
+export const componentsCodeRoute: Route = {
+  path: 'components/code',
+  component: 'app-page-components-code',
+  action: () => import('./pages/components/code'),
+};
+
+export const componentsGenericRoute: Route = {
+  path: 'components/generic',
+  component: 'app-page-components-generic',
+  action: () => import('./pages/components/generic'),
+};
+
+export const componentsBoxRoute: Route = {
+  path: 'components/box',
+  component: 'app-page-components-box',
+  action: () => import('./pages/components/box'),
+};
+
+export const componentsSkeletonRoute: Route = {
+  path: 'components/skeleton',
+  component: 'app-page-components-skeleton',
+  action: () => import('./pages/components/skeleton'),
 };
 
 export const componentsIconRoute: Route = {
@@ -194,21 +218,19 @@ export const componentsSwitchRoute: Route = {
   action: () => import('./pages/components/switch'),
 };
 
-export const componentsEmbedRoute: Route = {
-  path: 'components/embed',
-  component: 'app-page-components-embed',
-  action: () => import('./pages/components/embed'),
-};
-
 export const componentsRoutes = [
   componentsBasesRoute,
-  componentsGenericRoute,
-  componentsSkeletonRoute,
-  componentsBoxRoute,
   componentsTextRoute,
-  componentsHeadingRoute,
   componentsLinkRoute,
+  componentsHeadingRoute,
   componentsImageRoute,
+  componentsFigureRoute,
+  componentsEmbedRoute,
+  componentsTableRoute,
+  componentsCodeRoute,
+  componentsGenericRoute,
+  componentsBoxRoute,
+  componentsSkeletonRoute,
   componentsIconRoute,
   componentsButtonRoute,
   componentsBadgeRoute,
@@ -226,7 +248,6 @@ export const componentsRoutes = [
   componentsCheckboxesRoute,
   componentsRadiosRoute,
   componentsSwitchRoute,
-  componentsEmbedRoute,
 ];
 
 /*

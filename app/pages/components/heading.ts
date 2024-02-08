@@ -216,7 +216,9 @@ export class AppPageComponentsHeading extends TiniComponent {
         <!-- transforms -->
         ${renderTransformsSection(
           html`
-            <tini-heading level="3" style="transform: rotate(-45deg); display: inline-block"
+            <tini-heading
+              level="3"
+              style="transform: rotate(-45deg); display: inline-block"
               >Transform me</tini-heading
             >
             <tini-heading

@@ -51,6 +51,8 @@ export class TiniImageComponent extends TiniElement {
   private bodyClasses: ClassInfo = {};
   willUpdate(changedProperties: PropertyValues<this>) {
     super.willUpdate(changedProperties);
+    // set role
+    this.setAttribute('role', 'img');
     // root classes parts
     this.extendRootClasses({
       overridable: {

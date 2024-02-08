@@ -7,8 +7,7 @@ import {
   textBases,
   codeBases,
 } from '@tinijs/ui/bases';
-import {TiniBoxComponent} from '@tinijs/ui/components/box';
-import {TiniImageComponent} from '@tinijs/ui/components/image';
+import {TiniCodeComponent} from '@tinijs/ui/components/code';
 
 import {
   renderSection,
@@ -22,10 +21,9 @@ import {AppComponentPageComponent} from '../../components/component-page';
 import {AppSectionComponent} from '../../components/section';
 
 @Page({
-  name: 'app-page-components-image',
+  name: 'app-page-components-code',
   components: [
-    TiniBoxComponent,
-    TiniImageComponent,
+    TiniCodeComponent,
     AppComponentPageComponent,
     AppSectionComponent,
   ],
@@ -39,7 +37,7 @@ import {AppSectionComponent} from '../../components/section';
     ]),
   },
 })
-export class AppPageComponentsImage extends TiniComponent {
+export class AppPageComponentsCode extends TiniComponent {
   private readonly PART_LIST = [['root', 'The root part']];
 
   private readonly PREPROCESS_CODE: CodeBuilder = builder => builder;
@@ -47,9 +45,6 @@ export class AppPageComponentsImage extends TiniComponent {
   private readonly CODE_BUILDERS: Record<string, CodeBuilder> = {
     [ConsumerPlatforms.React]: builder => builder,
   };
-
-  private readonly SRC =
-    'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1920&q=80';
 
   private renderSectionOptions?: RenderSectionOptions;
   onChanges() {
@@ -62,53 +57,47 @@ export class AppPageComponentsImage extends TiniComponent {
   protected render() {
     return html`
       <app-component-page
-        titleText="Image"
-        name="image"
-        path="components/image"
+        titleText="Code"
+        name="code"
+        path="components/code"
         .partList=${this.PART_LIST}
       >
-        <div slot="description">Image description.</div>
+        <div slot="description">Code description.</div>
 
         <!-- default -->
         ${renderDefaultSection(
-          html` <p>Minimum usage.</p> `,
-          html` <tini-image src=${this.SRC}></tini-image> `,
-          this.renderSectionOptions
-        )}
-
-        <!-- captions -->
-        ${renderSection(
-          'captions',
-          'Captions',
-          html`<p>Image with captions (top, bottom or both).</p>`,
+          html` <p>Lorem ipsum.</p> `,
           html`
-            <tini-image
-              src=${this.SRC}
-              captionBottom="Bottom caption"
-            ></tini-image>
-            <tini-image src=${this.SRC} captionTop="Top caption"></tini-image>
-            <tini-image
-              src=${this.SRC}
-              captionTop="Top caption"
-              captionBottom="Bottom caption"
-            ></tini-image>
+            <tini-code
+              content=${`
+<div>Lorem ipsum ...</div>
+            `}
+            ></tini-code>
           `,
           this.renderSectionOptions
         )}
 
-        <!-- slots -->
+        <!-- slot -->
         ${renderSection(
-          'slots',
-          'Slots',
-          html`<p>Use slots instead of attributes.</p>`,
+          'slot',
+          'Slot',
+          html` <p>Slot.</p> `,
           html`
-            <tini-image>
-              <figcaption slot="caption-top">
-                <strong>Top caption</strong>
-              </figcaption>
-              <img src=${this.SRC} alt="Image alt" />
-              <figcaption slot="caption-bottom">Bottom caption</figcaption>
-            </tini-image>
+            <tini-code>
+              <pre>
+function NavigatorExample() {
+  var txt;
+  txt = "Browser CodeName: " + navigator.appCodeName + "; ";
+  txt+= "Browser Name: " + navigator.appName + "; ";
+  txt+= "Browser Version: " + navigator.appVersion  + "; ";
+  txt+= "Cookies Enabled: " + navigator.cookieEnabled  + "; ";
+  txt+= "Platform: " + navigator.platform  + "; ";
+  txt+= "User-agent header: " + navigator.userAgent  + "; ";
+  console.log("NavigatorExample", txt);
+}
+              </pre
+              >
+            </tini-code>
           `,
           this.renderSectionOptions
         )}

@@ -34,6 +34,8 @@ export class TiniHeadingComponent extends TiniElement {
   private rootTag!: StaticValue;
   willUpdate(changedProperties: PropertyValues<this>) {
     super.willUpdate(changedProperties);
+    // set role
+    this.setAttribute('role', 'heading');
     // root tag
     this.rootTag = unsafeStatic(`h${this.level || 1}`);
     // root classes parts
