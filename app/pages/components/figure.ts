@@ -8,6 +8,8 @@ import {
   codeBases,
 } from '@tinijs/ui/bases';
 import {TiniBoxComponent} from '@tinijs/ui/components/box';
+import {TiniImageComponent} from '@tinijs/ui/components/image';
+import {TiniCodeComponent} from '@tinijs/ui/components/code';
 import {TiniFigureComponent} from '@tinijs/ui/components/figure';
 
 import {
@@ -25,6 +27,8 @@ import {AppSectionComponent} from '../../components/section';
   name: 'app-page-components-figure',
   components: [
     TiniBoxComponent,
+    TiniImageComponent,
+    TiniCodeComponent,
     TiniFigureComponent,
     AppComponentPageComponent,
     AppSectionComponent,
@@ -71,10 +75,11 @@ export class AppPageComponentsFigure extends TiniComponent {
           html` <p>Lorem ipsum.</p> `,
           html`
             <tini-figure>
-              <img
+              <tini-image
+                fluid
                 src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1920&q=80"
-              />
-              <figcaption>An elephant at sunset</figcaption>
+              ></tini-image>
+              <span slot="caption-bottom">An caption for the above image.</span>
             </tini-figure>
           `,
           this.renderSectionOptions
@@ -87,22 +92,23 @@ export class AppPageComponentsFigure extends TiniComponent {
           html` <p>Codes.</p> `,
           html`
             <tini-figure>
-              <figcaption>
+              <span slot="caption-top">
                 Get browser details using <code>navigator</code>.
-              </figcaption>
-              <pre>
-  function NavigatorExample() {
-    var txt;
-    txt = "Browser CodeName: " + navigator.appCodeName + "; ";
-    txt+= "Browser Name: " + navigator.appName + "; ";
-    txt+= "Browser Version: " + navigator.appVersion  + "; ";
-    txt+= "Cookies Enabled: " + navigator.cookieEnabled  + "; ";
-    txt+= "Platform: " + navigator.platform  + "; ";
-    txt+= "User-agent header: " + navigator.userAgent  + "; ";
-    console.log("NavigatorExample", txt);
-  }
-              </pre
-              >
+              </span>
+              <tini-code
+                content=${`
+function NavigatorExample() {
+  var txt;
+  txt = "Browser CodeName: " + navigator.appCodeName + "; ";
+  txt+= "Browser Name: " + navigator.appName + "; ";
+  txt+= "Browser Version: " + navigator.appVersion  + "; ";
+  txt+= "Cookies Enabled: " + navigator.cookieEnabled  + "; ";
+  txt+= "Platform: " + navigator.platform  + "; ";
+  txt+= "User-agent header: " + navigator.userAgent  + "; ";
+  console.log("NavigatorExample", txt);
+}
+              `}
+              ></tini-code>
             </tini-figure>
           `,
           this.renderSectionOptions
@@ -115,7 +121,7 @@ export class AppPageComponentsFigure extends TiniComponent {
           html` <p>Quotations.</p> `,
           html`
             <tini-figure>
-              <figcaption><b>Edsger Dijkstra:</b></figcaption>
+              <strong slot="caption-top">Edsger Dijkstra:</strong>
               <blockquote>
                 If debugging is the process of removing software bugs, then
                 programming must be the process of putting them in.
@@ -132,16 +138,16 @@ export class AppPageComponentsFigure extends TiniComponent {
           html` <p>Poems.</p> `,
           html`
             <tini-figure>
-              <p style="white-space:pre">
+              <p style="white-space: pre">
                 Bid me discourse, I will enchant thine ear, Or like a fairy trip
                 upon the green, Or, like a nymph, with long dishevelled hair,
                 Dance on the sands, and yet no footing seen: Love is a spirit
                 all compact of fire, Not gross to sink, but light, and will
                 aspire.
               </p>
-              <figcaption>
+              <span slot="caption-bottom">
                 <cite>Venus and Adonis</cite>, by William Shakespeare
-              </figcaption>
+              </span>
             </tini-figure>
           `,
           this.renderSectionOptions
