@@ -1,9 +1,16 @@
-import {html, nothing, PropertyValues} from 'lit';
+import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
-import {classMap, ClassInfo} from 'lit/directives/class-map.js';
+import {classMap} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 
-import {TiniElement, partAttrMap} from 'tinijs';
+import {
+  TiniElement,
+  partAttrMap,
+  VaryGroups,
+  BoxShadows,
+  BorderRadiuses,
+  borderToClassInfo,
+} from 'tinijs';
 
 export interface Source {
   srcset: string;
@@ -14,19 +21,13 @@ export interface Source {
   height?: number;
 }
 
-export enum CaptionAlign {
-  Start = 'start',
-  Center = 'center',
-  End = 'end',
-}
-
 /* UseBases(common) */
 export class TiniImageComponent extends TiniElement {
   static readonly defaultTagName = 'tini-image';
   static readonly componentName = 'image';
 
   /* eslint-disable prettier/prettier */
-  @property({type: String, reflect: true}) declare src?: string;
+  @property({type: String, reflect: true}) declare src: string;
   @property({type: String, reflect: true}) declare alt?: string;
   @property({type: Number, reflect: true}) declare width?: number;
   @property({type: Number, reflect: true}) declare height?: number;
@@ -40,115 +41,77 @@ export class TiniImageComponent extends TiniElement {
 
   @property({type: Array}) declare sources?: Source[];
 
-  @property({type: String, reflect: true}) declare captionTop?: string;
-  @property({type: String, reflect: true}) declare captionTopAlign?: CaptionAlign;
-  @property({type: String, reflect: true}) declare captionBottom?: string;
-  @property({type: String, reflect: true}) declare captionBottomAlign?: CaptionAlign;
+  @property({type: Boolean, reflect: true}) declare fluid?: boolean;
+  @property({type: String, reflect: true}) declare border?: string;
+  @property({type: String, reflect: true}) declare borderRadius?: BorderRadiuses;
+  @property({type: String, reflect: true}) declare shadow?: BoxShadows;
   /* eslint-enable prettier/prettier */
 
-  private captionTopClasses: ClassInfo = {};
-  private captionBottomClasses: ClassInfo = {};
-  private bodyClasses: ClassInfo = {};
+  private validateProperties() {
+    if (!this.src) throw new Error('Property "src" is required.');
+  }
+
   willUpdate(changedProperties: PropertyValues<this>) {
     super.willUpdate(changedProperties);
+    // default and validations
+    this.validateProperties();
     // set role
     this.setAttribute('role', 'img');
     // root classes parts
     this.extendRootClasses({
+      raw: {
+        fluid: !!this.fluid,
+        ...borderToClassInfo(this.border),
+      },
       overridable: {
-        'caption-top-align': this.captionTopAlign,
-        'caption-bottom-align': this.captionBottomAlign,
+        [VaryGroups.BorderRadius]: this.borderRadius,
+        [VaryGroups.BoxShadow]: this.shadow,
       },
     });
-    // caption top classes parts
-    this.captionTopClasses = {
-      'caption-top': true,
-    };
-    // caption bottom classes parts
-    this.captionBottomClasses = {
-      'caption-bottom': true,
-    };
-    // body classes parts
-    this.bodyClasses = {
-      body: true,
-    };
   }
 
   protected render() {
-    return html`
-      <figure
-        class=${classMap(this.rootClasses)}
-        part=${partAttrMap(this.rootClasses)}
-      >
-        ${!this.captionTop
-          ? html`<slot name="caption-top"></slot>`
-          : html`
-              <figcaption
-                class=${classMap(this.captionTopClasses)}
-                part=${partAttrMap(this.captionTopClasses)}
-              >
-                ${this.captionTop}
-              </figcaption>
-            `}
-        ${!this.src && !this.sources
-          ? html`<slot></slot>`
-          : html`
-              <div
-                class=${classMap(this.bodyClasses)}
-                part=${partAttrMap(this.bodyClasses)}
-              >
-                ${!this.sources
-                  ? this.imgTemplate
-                  : html`
-                      <picture>
-                        ${this.sources.map(
-                          source => html`
-                            <source
-                              srcset=${source.srcset}
-                              type=${ifDefined(source.type)}
-                              sizes=${ifDefined(source.sizes)}
-                              media=${ifDefined(source.media)}
-                              width=${ifDefined(source.width)}
-                              height=${ifDefined(source.height)}
-                            />
-                          `
-                        )}
-                        ${this.imgTemplate}
-                      </picture>
-                    `}
-              </div>
-            `}
-        ${!this.captionBottom
-          ? html`<slot name="caption-bottom"></slot>`
-          : html`
-              <figcaption
-                class=${classMap(this.captionBottomClasses)}
-                part=${partAttrMap(this.captionBottomClasses)}
-              >
-                ${this.captionBottom}
-              </figcaption>
-            `}
-      </figure>
-    `;
+    return !this.sources
+      ? this.getImgTemplate()
+      : html`
+          <picture
+            class=${classMap(this.rootClasses)}
+            part=${partAttrMap(this.rootClasses)}
+          >
+            ${this.sources.map(
+              source => html`
+                <source
+                  srcset=${source.srcset}
+                  type=${ifDefined(source.type)}
+                  sizes=${ifDefined(source.sizes)}
+                  media=${ifDefined(source.media)}
+                  width=${ifDefined(source.width)}
+                  height=${ifDefined(source.height)}
+                />
+              `
+            )}
+            ${this.getImgTemplate(true)}
+          </picture>
+        `;
   }
 
-  private get imgTemplate() {
-    return !this.src
-      ? nothing
-      : html`
-          <img
-            src=${this.src}
-            alt=${ifDefined(this.alt)}
-            width=${ifDefined(this.width)}
-            height=${ifDefined(this.height)}
-            srcset=${ifDefined(this.srcset)}
-            sizes=${ifDefined(this.sizes)}
-            loading=${ifDefined(this.loading as any)}
-            decoding=${ifDefined(this.decoding as any)}
-            fetchpriority=${ifDefined(this.fetchpriority)}
-            crossorigin=${ifDefined(this.crossorigin as any)}
-            referrerpolicy=${ifDefined(this.referrerpolicy as any)}
-          />
-        `;
+  private getImgTemplate(asChild = false) {
+    return html`
+      <img
+        class=${classMap(asChild ? {} : this.rootClasses)}
+        part=${partAttrMap(asChild ? {} : this.rootClasses)}
+        src=${this.src}
+        alt=${ifDefined(this.alt)}
+        width=${ifDefined(this.width)}
+        height=${ifDefined(this.height)}
+        srcset=${ifDefined(this.srcset)}
+        sizes=${ifDefined(this.sizes)}
+        loading=${ifDefined(this.loading as any)}
+        decoding=${ifDefined(this.decoding as any)}
+        fetchpriority=${ifDefined(this.fetchpriority)}
+        crossorigin=${ifDefined(this.crossorigin as any)}
+        referrerpolicy=${ifDefined(this.referrerpolicy as any)}
+      />
+    `;
   }
 }

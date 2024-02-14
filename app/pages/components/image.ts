@@ -1,4 +1,5 @@
 import {html} from 'lit';
+import {ifDefined} from 'lit/directives/if-defined.js';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,
@@ -13,13 +14,17 @@ import {TiniImageComponent} from '@tinijs/ui/components/image';
 import {
   renderSection,
   renderDefaultSection,
+  renderBoxShadowsSection,
   RenderSectionOptions,
 } from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
 import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
 import {AppComponentPageComponent} from '../../components/component-page';
-import {AppSectionComponent} from '../../components/section';
+import {
+  AppSectionComponent,
+  FLEX_ROW_GAP2X_STYLES,
+} from '../../components/section';
 
 @Page({
   name: 'app-page-components-image',
@@ -56,6 +61,10 @@ export class AppPageComponentsImage extends TiniComponent {
     this.renderSectionOptions = {
       preprocessCode: this.PREPROCESS_CODE,
       codeBuilders: this.CODE_BUILDERS,
+      styleRecord: {
+        borders: FLEX_ROW_GAP2X_STYLES,
+        shadows: FLEX_ROW_GAP2X_STYLES,
+      },
     };
   }
 
@@ -71,45 +80,80 @@ export class AppPageComponentsImage extends TiniComponent {
 
         <!-- default -->
         ${renderDefaultSection(
-          html` <p>Minimum usage.</p> `,
-          html` <tini-image src=${this.SRC}></tini-image> `,
+          html`<p>
+            Accept the same attributes as the <code>img</code> element. Default
+            border radius is <code>radius</code>.
+          </p>`,
+          html` <tini-image src=${this.SRC} width="500"></tini-image> `,
           this.renderSectionOptions
         )}
 
-        <!-- captions -->
+        <!-- fluid -->
         ${renderSection(
-          'captions',
-          'Captions',
-          html`<p>Image with captions (top, bottom or both).</p>`,
+          'fluid',
+          'Fluid',
+          html`<p>100% width image.</p>`,
+          html` <tini-image fluid src=${this.SRC}></tini-image> `,
+          this.renderSectionOptions
+        )}
+
+        <!-- sources -->
+        ${renderSection(
+          'sources',
+          'Sources',
+          html`<p>With multiple sources.</p>`,
           html`
             <tini-image
               src=${this.SRC}
-              captionBottom="Bottom caption"
-            ></tini-image>
-            <tini-image src=${this.SRC} captionTop="Top caption"></tini-image>
-            <tini-image
-              src=${this.SRC}
-              captionTop="Top caption"
-              captionBottom="Bottom caption"
+              width="500"
+              height="500"
+              .sources=${[
+                {srcset: this.SRC, type: 'image/png'},
+                {srcset: this.SRC, type: 'image/jpeg'},
+              ]}
             ></tini-image>
           `,
           this.renderSectionOptions
         )}
 
-        <!-- slots -->
+        <!-- borders -->
         ${renderSection(
-          'slots',
-          'Slots',
-          html`<p>Use slots instead of attributes.</p>`,
+          'borders',
+          'Borders',
           html`
-            <tini-image>
-              <figcaption slot="caption-top">
-                <strong>Top caption</strong>
-              </figcaption>
-              <img src=${this.SRC} alt="Image alt" />
-              <figcaption slot="caption-bottom">Bottom caption</figcaption>
-            </tini-image>
+            <p>
+              Default style is <code>solid</code>, default color is
+              <code>medium</code>, default size is <code>border</code>, default
+              border radius is <code>radius</code>.
+            </p>
           `,
+          html`
+            ${[
+              ['solid'],
+              ['primary'],
+              ['big'],
+              ['massive dashed primary', 'max'],
+            ].map(
+              ([border, radius]) =>
+                html`<tini-image
+                  src=${this.SRC}
+                  width="200"
+                  border=${border}
+                  borderRadius=${ifDefined(radius as any)}
+                ></tini-image>`
+            )}
+          `,
+          this.renderSectionOptions
+        )}
+
+        <!-- box shadows -->
+        ${renderBoxShadowsSection(
+          shadow =>
+            html`<tini-image
+              src=${this.SRC}
+              width="200"
+              shadow=${shadow}
+            ></tini-image>`,
           this.renderSectionOptions
         )}
       </app-component-page>
