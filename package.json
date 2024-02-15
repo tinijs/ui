@@ -48,7 +48,8 @@
     "lit": "^3.1.0",
     "nanoid": "^5.0.4",
     "prettier": "^3.1.0",
-    "tinijs": "^0.16.0"
+    "prismjs": "^1.29.0",
+    "tinijs": "file:../tinijs/tinijs-0.16.0.tgz"
   },
   "devDependencies": {
     "@lit/react": "^1.0.2",
@@ -57,6 +58,7 @@
     "@types/chroma-js": "^2.4.3",
     "@types/gradient-parser": "^0.1.5",
     "@types/node": "^20.9.4",
+    "@types/prismjs": "^1.26.3",
     "gts": "^5.2.0",
     "parcel": "^2.10.3",
     "process": "^0.11.10",

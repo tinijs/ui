@@ -9,11 +9,7 @@ import {
 } from '@tinijs/ui/bases';
 import {TiniCodeComponent} from '@tinijs/ui/components/code';
 
-import {
-  renderSection,
-  renderDefaultSection,
-  RenderSectionOptions,
-} from '../../helpers/varies';
+import {renderSection, RenderSectionOptions} from '../../helpers/varies';
 import {ConsumerPlatforms} from '../../consts/main';
 import {CodeBuilder, ReactCommonProps} from '../../helpers/code-builder';
 
@@ -64,28 +60,54 @@ export class AppPageComponentsCode extends TiniComponent {
       >
         <div slot="description">Code description.</div>
 
-        <!-- default -->
-        ${renderDefaultSection(
-          html` <p>Lorem ipsum.</p> `,
-          html`
-            <tini-code
-              content=${`
-<div>Lorem ipsum ...</div>
-            `}
-            ></tini-code>
-          `,
-          this.renderSectionOptions
-        )}
+        <!-- setup -->
+        <app-section noCodeSample>
+          <h2 slot="title">Setup</h2>
+          <div slot="content" class="setup">
+            <p>
+              To use the <code>tini-code</code> component, you need to setup an
+              engine first. Here are two common code highlight engines, but you
+              can use your own as well.
+            </p>
 
-        <!-- slot -->
+            <p><strong>PrismJS</strong></p>
+            <p>Install: <code>npm i prismjs</code></p>
+
+            <p><strong>Highlight.js</strong></p>
+            <p>Install: <code>npm i highlight.js</code></p>
+          </div>
+        </app-section>
+
+        <!-- usage -->
         ${renderSection(
-          'slot',
-          'Slot',
-          html` <p>Slot.</p> `,
+          'usage',
+          'Usage',
+          html` <p>Usage.</p> `,
           html`
-            <tini-code>
-              <pre>
-function NavigatorExample() {
+            <p><strong>HTML</strong></p>
+            <tini-code
+              language="html"
+              content=${`<!DOCTYPE html>
+<html>
+<body>
+  <h1>This is heading 1</h1>
+  <p>This is a paragraph.</p>
+  <a href="https://www.example.com">This is a link</a>
+  <img src=\"example.jpg" alt="Example.com" width="104" height="142">
+  <ul>
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+  </ul>
+</body>
+</html>
+`}
+            ></tini-code>
+
+            <p><strong>Javascript</strong></p>
+            <tini-code
+              language="js"
+              content=${`function NavigatorExample() {
   var txt;
   txt = "Browser CodeName: " + navigator.appCodeName + "; ";
   txt+= "Browser Name: " + navigator.appName + "; ";
@@ -94,10 +116,28 @@ function NavigatorExample() {
   txt+= "Platform: " + navigator.platform  + "; ";
   txt+= "User-agent header: " + navigator.userAgent  + "; ";
   console.log("NavigatorExample", txt);
+}`}
+            ></tini-code>
+
+            <p><strong>CSS</strong></p>
+            <tini-code
+              language="js"
+              content=${`pre code.highlight {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  font-size: 0.9rem;
 }
-              </pre
-              >
-            </tini-code>
+
+code.highlight {
+  padding: 3px 5px;
+}
+
+.highlight {
+  color: #adbac7;
+  background: #22272e;
+}`}
+            ></tini-code>
           `,
           this.renderSectionOptions
         )}

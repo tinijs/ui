@@ -1,40 +1,15 @@
 import {css} from 'lit';
-import {generateColorVaries, generateScaleVaries} from 'tinijs';
 
 export const codeStyle = css`
-  :host {
-  }
+  /* :host {} */
 
   /*
    * Root
    */
 
   .root {
+    margin-bottom: 0;
   }
-
-  /*
-   * [scheme]
-   */
-
-  ${generateColorVaries(
-    ({fullName, color}) => `
-    .${fullName} {
-      
-    }
-  `
-  )}
-
-  /*
-   * [scale]
-   */
-
-  ${generateScaleVaries(
-    ({fullName, scale}) => `
-    .${fullName} {
-      
-    }
-  `
-  )}
 `;
 
 export const codeScript = undefined;

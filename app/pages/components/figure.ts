@@ -96,6 +96,7 @@ export class AppPageComponentsFigure extends TiniComponent {
                 Get browser details using <code>navigator</code>.
               </span>
               <tini-code
+                language="js"
                 content=${`
 function NavigatorExample() {
   var txt;
