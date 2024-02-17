@@ -2,6 +2,7 @@ import {PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {html, unsafeStatic, StaticValue} from 'lit/static-html.js';
+
 import {
   TiniElement,
   partAttrMap,
@@ -14,20 +15,13 @@ import {
   TextTransforms,
 } from 'tinijs';
 
-export enum TextTags {
-  P = 'p',
-  Strong = 'strong',
-  Em = 'em',
-  Span = 'span',
-}
-
-/* UseBases(common) */
-export class TiniTextComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-text';
-  static readonly componentName = 'text';
+/* UseBases(common,headings) */
+export class TiniHeadingComponent extends TiniElement {
+  static readonly defaultTagName = 'tini-heading';
+  static readonly componentName = 'heading';
 
   /* eslint-disable prettier/prettier */
-  @property({type: String, reflect: true}) declare tag?: TextTags;
+  @property({type: Number, reflect: true}) declare level?: number;
   @property({type: Boolean, reflect: true}) declare italic?: boolean;
   @property({type: Boolean, reflect: true}) declare underline?: boolean;
   @property({type: String, reflect: true}) declare color?: Colors | Gradients;
@@ -40,8 +34,10 @@ export class TiniTextComponent extends TiniElement {
   private rootTag!: StaticValue;
   willUpdate(changedProperties: PropertyValues<this>) {
     super.willUpdate(changedProperties);
+    // set role
+    this.setAttribute('role', 'heading');
     // root tag
-    this.rootTag = unsafeStatic(this.tag || TextTags.Span);
+    this.rootTag = unsafeStatic(`h${this.level || 1}`);
     // root classes parts
     this.extendRootClasses({
       raw: {
