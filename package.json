@@ -6,6 +6,9 @@
   "homepage": "https://tinijs.dev",
   "license": "MIT",
   "browserslist": "> 0.5%, last 2 versions, not dead",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "publishConfig": {
     "access": "public"
   },

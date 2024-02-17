@@ -70,9 +70,11 @@ export class AppPageComponentsFigure extends TiniComponent {
       >
         <div slot="description">Figure description.</div>
 
-        <!-- default -->
-        ${renderDefaultSection(
-          html` <p>Lorem ipsum.</p> `,
+        <!-- images -->
+        ${renderSection(
+          'images',
+          'Images',
+          html` <p>Images.</p> `,
           html`
             <tini-figure>
               <tini-image
@@ -92,13 +94,12 @@ export class AppPageComponentsFigure extends TiniComponent {
           html` <p>Codes.</p> `,
           html`
             <tini-figure>
-              <span slot="caption-top">
+              <p slot="caption-top">
                 Get browser details using <code>navigator</code>.
-              </span>
+              </p>
               <tini-code
                 language="js"
-                content=${`
-function NavigatorExample() {
+                content=${`function NavigatorExample() {
   var txt;
   txt = "Browser CodeName: " + navigator.appCodeName + "; ";
   txt+= "Browser Name: " + navigator.appName + "; ";
@@ -107,8 +108,7 @@ function NavigatorExample() {
   txt+= "Platform: " + navigator.platform  + "; ";
   txt+= "User-agent header: " + navigator.userAgent  + "; ";
   console.log("NavigatorExample", txt);
-}
-              `}
+}`}
               ></tini-code>
             </tini-figure>
           `,

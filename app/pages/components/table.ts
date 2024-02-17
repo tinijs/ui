@@ -68,74 +68,16 @@ export class AppPageComponentsTable extends TiniComponent {
 
         <!-- default -->
         ${renderDefaultSection(
-          html` <p>Lorem ipsum.</p> `,
+          html` <p>Default usage.</p> `,
           html`
-            <tini-table>
-              <table>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Age</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>1</th>
-                    <td>Alex</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <th>2</th>
-                    <td>Bob</td>
-                    <td>7</td>
-                  </tr>
-                  <tr>
-                    <th>3</th>
-                    <td>Chris</td>
-                    <td>12</td>
-                  </tr>
-                </tbody>
-              </table>
-            </tini-table>
-          `,
-          this.renderSectionOptions
-        )}
-
-        <!-- slots -->
-        ${renderSection(
-          'slots',
-          'Slots',
-          html` <p>Use slots instead of attributes.</p> `,
-          html`
-            <tini-table>
-              <table>
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Age</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th>1</th>
-                    <td>Alex</td>
-                    <td>10</td>
-                  </tr>
-                  <tr>
-                    <th>2</th>
-                    <td>Bob</td>
-                    <td>7</td>
-                  </tr>
-                  <tr>
-                    <th>3</th>
-                    <td>Chris</td>
-                    <td>12</td>
-                  </tr>
-                </tbody>
-              </table>
-            </tini-table>
+            <tini-table
+              .head=${['#', 'Name', 'Age']}
+              .body=${[
+                [1, 'Alex', 25],
+                [2, 'Bob', 22],
+                [3, 'Chris', 30],
+              ]}
+            ></tini-table>
           `,
           this.renderSectionOptions
         )}
