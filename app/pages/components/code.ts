@@ -56,6 +56,7 @@ export class AppPageComponentsCode extends TiniComponent {
         titleText="Code"
         name="code"
         path="components/code"
+        .component=${TiniCodeComponent}
         .partList=${this.PART_LIST}
       >
         <div slot="description">Code description.</div>

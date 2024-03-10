@@ -61,6 +61,7 @@ export class AppPageComponentsXxx extends TiniComponent {
         titleText="Xxx"
         name="xxx"
         path="components/xxx"
+        .component=${TiniXxxComponent}
         .partList=${this.PART_LIST}
       >
         <div slot="description">Xxx description.</div>

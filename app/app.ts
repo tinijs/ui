@@ -13,44 +13,43 @@ import {
 
 @App({
   uiOptions: {
+    // '*': {
+    //   [TiniCodeComponent.componentName]: {
+    //     engine: 'hljs',
+    //     highlight: hljsHighlight,
+    //     theme: hljsThemeLight,
+    //   },
+    // },
     'bootstrap/light': {
-      perComponent: {
-        [TiniCodeComponent.componentName]: {
-          engine: 'hljs',
-          highlight: hljsHighlight,
-          theme: hljsThemeLight,
-        },
+      [TiniCodeComponent.componentName]: {
+        engine: 'hljs',
+        highlight: hljsHighlight,
+        theme: hljsThemeLight,
       },
     },
     'bootstrap/dark': {
       // referGradientScheme: true,
-      perComponent: {
-        // [TiniButtonComponent.componentName]: {
-        //   referGradientSchemeOnHover: true,
-        // },
-        [TiniCodeComponent.componentName]: {
-          engine: 'hljs',
-          highlight: hljsHighlight,
-          theme: hljsThemeDark,
-        },
+      // [TiniButtonComponent.componentName]: {
+      //   referGradientSchemeOnHover: true,
+      // },
+      [TiniCodeComponent.componentName]: {
+        engine: 'hljs',
+        highlight: hljsHighlight,
+        theme: hljsThemeDark,
       },
     },
     'bootstrap/retro-light': {
-      perComponent: {
-        [TiniCodeComponent.componentName]: {
-          engine: 'prism',
-          highlight: prismHighlight,
-          theme: prismThemeLight,
-        },
+      [TiniCodeComponent.componentName]: {
+        engine: 'prism',
+        highlight: prismHighlight,
+        theme: prismThemeLight,
       },
     },
     'bootstrap/retro-dark': {
-      perComponent: {
-        [TiniCodeComponent.componentName]: {
-          engine: 'prism',
-          highlight: prismHighlight,
-          theme: prismThemeDark,
-        },
+      [TiniCodeComponent.componentName]: {
+        engine: 'prism',
+        highlight: prismHighlight,
+        theme: prismThemeDark,
       },
     },
   },

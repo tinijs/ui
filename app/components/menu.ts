@@ -1,4 +1,5 @@
-import {html, css} from 'lit';
+import {html, css, nothing} from 'lit';
+import {UnstableStates} from 'tinijs';
 import {Component, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {Route} from '@tinijs/router';
 import {
@@ -7,14 +8,21 @@ import {
   linkBases,
   textBases,
 } from '@tinijs/ui/bases';
+import {TiniIconComponent} from '@tinijs/ui/components/icon';
 import {TiniLinkComponent} from '@tinijs/ui/components/link';
 
 import {Configurable} from '../configurable';
 
-type NavItem = {title: string; href: string};
+import {ICON_EXPERIMENTAL} from '../consts/icons';
+
+interface NavItem {
+  title: string;
+  href: string;
+  unstable?: UnstableStates;
+}
 
 @Component({
-  components: [TiniLinkComponent],
+  components: [TiniIconComponent, TiniLinkComponent],
   theming: {
     styling: stylingWithBases([
       commonBases,
@@ -33,7 +41,7 @@ export class AppMenuComponent extends TiniComponent {
   private groups: Record<string, {title?: string; items: NavItem[]}> = {};
 
   private buildMenu() {
-    const processRoute = ({path, title}: Route) => {
+    const processRoute = ({path, title, data}: Route) => {
       const pathSegments = path.split('/').filter(Boolean);
       const linkTitle =
         title ||
@@ -56,6 +64,7 @@ export class AppMenuComponent extends TiniComponent {
           this.groups[groupName]?.items.push({
             title: linkTitle,
             href: !path ? '/' : `/${path}`,
+            unstable: data?.component?.componentMetas?.unstable,
           });
           break;
         }
@@ -80,35 +89,32 @@ export class AppMenuComponent extends TiniComponent {
       <ul>
         ${Object.entries(this.groups).map(([groupName, {title, items}]) => {
           return !title
-            ? html`
-                ${items.map(
-                  ({title, href}) => html`
-                    <li>
-                      <tini-link href=${href} active="active"
-                        >${title}</tini-link
-                      >
-                    </li>
-                  `
-                )}
-              `
+            ? html` ${items.map(item => this.renderItem(item))} `
             : html`
                 <li>
                   <strong class="title">${title}</strong>
                   <ul>
-                    ${items.map(
-                      ({title, href}) => html`
-                        <li>
-                          <tini-link href=${href} active="active"
-                            >${title}</tini-link
-                          >
-                        </li>
-                      `
-                    )}
+                    ${items.map(item => this.renderItem(item))}
                   </ul>
                 </li>
               `;
         })}
       </ul>
+    `;
+  }
+
+  private renderItem({title, href, unstable}: NavItem) {
+    return html`
+      <li>
+        <tini-link href=${href} active="active">${title}</tini-link>
+        ${!unstable
+          ? nothing
+          : html`<tini-icon
+              src=${unstable === UnstableStates.Deprecated
+                ? ''
+                : ICON_EXPERIMENTAL}
+            ></tini-icon>`}
+      </li>
     `;
   }
 

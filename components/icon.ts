@@ -9,6 +9,7 @@ import {
   Colors,
   Gradients,
   Scales,
+  UIIconOptions,
 } from 'tinijs';
 
 /* UseBases(common) */
@@ -17,7 +18,10 @@ export class TiniIconComponent extends TiniElement {
   static readonly componentName = 'icon';
 
   /* eslint-disable prettier/prettier */
+  static readonly prebuiltSrc?: string;
   @property({type: String, reflect: true}) declare src?: string;
+  @property({type: String, reflect: true}) declare icon?: string;
+  @property({type: String, reflect: true}) declare provider?: string;
   @property({type: String, reflect: true}) declare scale?: Scales;
   @property({type: String, reflect: true}) declare scheme?: Colors | Gradients;
   /* eslint-enable prettier/prettier */
@@ -36,9 +40,26 @@ export class TiniIconComponent extends TiniElement {
       },
     });
     // root styles
-    this.rootStyles = {
-      '--icon-image': `url(${this.src})`,
-    };
+    if (changedProperties.has('src') || changedProperties.has('icon')) {
+      const src =
+        (this.constructor as typeof TiniIconComponent).prebuiltSrc ||
+        this.src ||
+        this.buildCustomSrc();
+      this.rootStyles = {
+        '--icon-image': `url(${src})`,
+      };
+    }
+  }
+
+  private buildCustomSrc() {
+    if (!this.icon)
+      throw new Error(
+        'The "icon" attribute is required when "src" is not provided.'
+      );
+    const {componentOptions} = this.getGlobalOptions<UIIconOptions>();
+    return !componentOptions?.resolve
+      ? `/icons/${this.icon}`
+      : componentOptions.resolve(this.icon, this.provider);
   }
 
   protected render() {

@@ -1,5 +1,8 @@
 import {Route} from '@tinijs/router';
 
+import {TiniTableComponent} from '@tinijs/ui/components/table';
+import {TiniCodeComponent} from '@tinijs/ui/components/code';
+
 /*
  * Layouts
  */
@@ -90,12 +93,18 @@ export const componentsTableRoute: Route = {
   path: 'components/table',
   component: 'app-page-components-table',
   action: () => import('./pages/components/table'),
+  data: {
+    component: TiniTableComponent,
+  },
 };
 
 export const componentsCodeRoute: Route = {
   path: 'components/code',
   component: 'app-page-components-code',
   action: () => import('./pages/components/code'),
+  data: {
+    component: TiniCodeComponent,
+  },
 };
 
 export const componentsGenericRoute: Route = {

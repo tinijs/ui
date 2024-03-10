@@ -144,7 +144,7 @@ export class AppPageGuidesCustomization extends TiniComponent {
   uiOptions: {
     'bootstrap/dark': {
       referGradientScheme: true,
-      perComponent: {
+      componentSpecifics: {
         [TiniButtonComponent.componentName]: {
           referGradientSchemeOnHover: true
         }
@@ -161,7 +161,7 @@ export class MyApp extends TiniComponent {}`}
 setUiOptions({
   'bootstrap/dark': {
     referGradientScheme: true,
-    perComponent: {
+    componentSpecifics: {
       [TiniButtonComponent.componentName]: {
         referGradientSchemeOnHover: true
       }

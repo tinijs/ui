@@ -311,7 +311,6 @@ export class AppIconPageComponent extends TiniComponent {
 
     .icon:hover {
       border-color: var(--color-medium);
-      background-color: var(--color-background-tint-2);
     }
 
     .icon img {

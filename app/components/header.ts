@@ -8,17 +8,20 @@ import {
 } from '@tinijs/core';
 import {Subscribe} from '@tinijs/store';
 import {commonBases, linkBases, buttonBases, formBases} from '@tinijs/ui/bases';
+import {TiniIconComponent} from '@tinijs/ui/components/icon';
 import {IconGithubComponent} from '@tinijs/bootstrap-icons/github';
 import {IconPaletteComponent} from '@tinijs/bootstrap-icons/palette';
 
 import {Configurable} from '../configurable';
 import {changeTheme} from '../helpers/theme';
 import {mainStore} from '../stores/main';
+import {ICON_EXPERIMENTAL} from '../consts/icons';
 
 import {AppSkinEditorComponent} from './skin-editor';
 
 @Component({
   components: [
+    TiniIconComponent,
     IconGithubComponent,
     IconPaletteComponent,
     AppSkinEditorComponent,
@@ -60,7 +63,10 @@ export class AppHeaderComponent extends TiniComponent {
         <div class="brand">
           <a href="/">
             <img src=${this.LOGO_URL} alt=${this.APP_NAME} />
-            <h1>${this.APP_NAME}<sup>α</sup></h1>
+            <h1>
+              <span>${this.APP_NAME}</span>
+              <tini-icon src=${ICON_EXPERIMENTAL}></tini-icon>
+            </h1>
           </a>
         </div>
         <div class="menu">

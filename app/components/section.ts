@@ -16,13 +16,13 @@ import {IconCodeComponent} from '@tinijs/bootstrap-icons/code';
 
 import {ConsumerPlatforms} from '../consts/main';
 import {
-  TINI_ICON,
-  VUE_ICON,
-  REACT_ICON,
-  ANGULAR_ICON,
-  SVELTE_ICON,
-  HTML_ICON,
-} from '../consts/platform-icons';
+  ICON_TINI,
+  ICON_VUE,
+  ICON_REACT,
+  ICON_ANGULAR,
+  ICON_SVELTE,
+  ICON_HTML,
+} from '../consts/icons';
 import {mainStore} from '../stores/main';
 import {formatHTML} from '../helpers/format';
 import {CodeBuilder, CodeBuilderHelper} from '../helpers/code-builder';
@@ -147,12 +147,12 @@ class AppSectionCodeComponent extends TiniComponent {
   static readonly defaultTagName = 'app-section-code';
 
   private readonly CODE_TAB_ITEMS: TabItem[] = [
-    {name: ConsumerPlatforms.Tini, icon: TINI_ICON},
-    {name: ConsumerPlatforms.Vue, icon: VUE_ICON},
-    {name: ConsumerPlatforms.React, icon: REACT_ICON},
-    {name: ConsumerPlatforms.Angular, icon: ANGULAR_ICON},
-    {name: ConsumerPlatforms.Svelte, icon: SVELTE_ICON},
-    {name: ConsumerPlatforms.HTML, icon: HTML_ICON},
+    {name: ConsumerPlatforms.Tini, icon: ICON_TINI},
+    {name: ConsumerPlatforms.Vue, icon: ICON_VUE},
+    {name: ConsumerPlatforms.React, icon: ICON_REACT},
+    {name: ConsumerPlatforms.Angular, icon: ICON_ANGULAR},
+    {name: ConsumerPlatforms.Svelte, icon: ICON_SVELTE},
+    {name: ConsumerPlatforms.HTML, icon: ICON_HTML},
   ];
 
   @Input({type: String}) originalCode!: string;

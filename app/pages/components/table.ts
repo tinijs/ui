@@ -62,6 +62,7 @@ export class AppPageComponentsTable extends TiniComponent {
         titleText="Table"
         name="table"
         path="components/table"
+        .component=${TiniTableComponent}
         .partList=${this.PART_LIST}
       >
         <div slot="description">Table description.</div>

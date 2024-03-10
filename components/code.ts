@@ -3,12 +3,15 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
 
-import {TiniElement, partAttrMap, UICodeOptions} from 'tinijs';
+import {TiniElement, partAttrMap, UICodeOptions, UnstableStates} from 'tinijs';
 
 /* UseBases(common,code) */
 export class TiniCodeComponent extends TiniElement {
   static readonly defaultTagName = 'tini-code';
   static readonly componentName = 'code';
+  static readonly componentMetas = {
+    unstable: UnstableStates.Experimental,
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare language: string;

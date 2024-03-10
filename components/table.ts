@@ -3,12 +3,15 @@ import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
 
-import {TiniElement, partAttrMap, Colors, Scales} from 'tinijs';
+import {TiniElement, partAttrMap, Colors, Scales, UnstableStates} from 'tinijs';
 
 /* UseBases(common) */
 export class TiniTableComponent extends TiniElement {
   static readonly defaultTagName = 'tini-table';
   static readonly componentName = 'table';
+  static readonly componentMetas = {
+    unstable: UnstableStates.Experimental,
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: Object}) declare head: any[];

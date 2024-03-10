@@ -2,6 +2,7 @@ import {html, css, nothing} from 'lit';
 import {classMap} from 'lit/directives/class-map.js';
 import {cache} from 'lit/directives/cache.js';
 import {repeat} from 'lit/directives/repeat.js';
+import {UnstableStates} from 'tinijs';
 import {
   Component,
   TiniComponent,
@@ -22,6 +23,7 @@ import {IconGithubComponent} from '@tinijs/bootstrap-icons/github';
 
 import {Configurable} from '../configurable';
 import {OFFICIAL_REPO_URL, ImportMethods} from '../consts/main';
+import {ICON_EXPERIMENTAL, ICON_DEPRECATED} from '../consts/icons';
 import {buildGithubRawUrl} from '../helpers/github';
 import {
   extractCSSVariables,
@@ -81,6 +83,7 @@ export class AppComponentPageComponent extends TiniComponent {
     {name: ImportMethods.Standalone},
   ];
 
+  @Input({type: Object}) component!: any;
   @Input({type: String}) name!: string;
   @Input({type: String}) path!: string;
   @Input({type: String}) titleText?: string;
@@ -163,6 +166,17 @@ export class AppComponentPageComponent extends TiniComponent {
     const nameTag = `${prefix}-${this.name}`;
     const nameClass = `${prefixCapitalized}${nameCapitalized}Component`;
     return {nameCapitalized, nameConst, nameTag, nameClass};
+  }
+
+  private get isUnstable() {
+    return !!this.component?.componentMetas?.unstable;
+  }
+
+  private get unstableIcon() {
+    return this.component?.componentMetas?.unstable ===
+      UnstableStates.Deprecated
+      ? ICON_DEPRECATED
+      : ICON_EXPERIMENTAL;
   }
 
   private get jsdelivrUrl() {
@@ -277,6 +291,9 @@ registerComponents([
         <div class="title-bar">
           <h1 class="title">
             <span>${this.titleText || 'Untitled page'}</span>
+            ${!this.isUnstable
+              ? nothing
+              : html`<tini-icon src=${this.unstableIcon}></tini-icon>`}
             <a
               class="github-link"
               href=${this.articleLink}
