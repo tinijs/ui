@@ -2,7 +2,7 @@ import {Component, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
 
-import {registerComponents} from 'tinijs';
+import {registerComponents} from '@tinijs/core';
 
 import {TiniGenericComponent} from '@tinijs/ui-bootstrap/components/generic';
 import {TiniGenericUnscopedComponent} from '@tinijs/ui-bootstrap/components/generic-unscoped';

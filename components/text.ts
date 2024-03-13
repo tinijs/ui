@@ -12,7 +12,7 @@ import {
   FontTypes,
   FontWeights,
   TextTransforms,
-} from 'tinijs';
+} from '@tinijs/core';
 
 export enum TextTags {
   P = 'p',

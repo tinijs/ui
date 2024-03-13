@@ -9,7 +9,7 @@ import {
   generateBorderStyleVaries,
   generateBorderRadiusVaries,
   generateBoxShadowVaries,
-} from 'tinijs';
+} from '@tinijs/core';
 
 export const boxStyle = css`
   :host {

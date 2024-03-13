@@ -3,7 +3,7 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
 
-import {TiniElement, partAttrMap, UICodeOptions, UnstableStates} from 'tinijs';
+import {TiniElement, partAttrMap, UICodeOptions, UnstableStates} from '@tinijs/core';
 
 /* UseBases(common,code) */
 export class TiniCodeComponent extends TiniElement {

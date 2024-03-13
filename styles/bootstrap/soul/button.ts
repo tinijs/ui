@@ -10,7 +10,7 @@ import {
   generateBorderStyleVaries,
   generateBorderRadiusVaries,
   generateBoxShadowVaries,
-} from 'tinijs';
+} from '@tinijs/core';
 
 export const buttonStyle = css`
   :host {

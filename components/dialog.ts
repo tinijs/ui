@@ -9,7 +9,7 @@ import {
   Colors,
   Gradients,
   BoxShadows,
-} from 'tinijs';
+} from '@tinijs/core';
 
 export enum DialogTypes {
   Alert = 'alert',

@@ -13,7 +13,7 @@ import {
   JustifyContents,
   BorderRadiuses,
   BoxShadows,
-} from 'tinijs';
+} from '@tinijs/core';
 
 export enum ButtonModes {
   Filled = 'filled',

@@ -8,7 +8,7 @@ import {
   generateBorderStyleVaries,
   generateBorderRadiusVaries,
   generateBoxShadowVaries,
-} from 'tinijs';
+} from '@tinijs/core';
 
 export const figureStyle = css`
   :host {

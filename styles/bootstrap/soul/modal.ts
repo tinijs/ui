@@ -1,5 +1,5 @@
 import {css} from 'lit';
-import {generateBoxShadowVaries} from 'tinijs';
+import {generateBoxShadowVaries} from '@tinijs/core';
 
 export const modalStyle = css`
   :host {

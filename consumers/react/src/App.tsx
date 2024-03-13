@@ -1,5 +1,5 @@
 import './App.css';
-import {registerComponents, Colors, Gradients, CommonGradients, Scales} from 'tinijs';
+import {registerComponents, Colors, Gradients, CommonGradients, Scales} from '@tinijs/core';
 
 import {TiniGenericComponent, TiniGeneric} from '@tinijs/ui-bootstrap/components/generic.react';
 import {TiniGenericUnscopedComponent, TiniGenericUnscoped} from '@tinijs/ui-bootstrap/components/generic-unscoped.react';

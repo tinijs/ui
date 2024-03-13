@@ -1,5 +1,5 @@
 import {css} from 'lit';
-import {generateColorVaries, generateScaleVaries} from 'tinijs';
+import {generateColorVaries, generateScaleVaries} from '@tinijs/core';
 
 export const selectStyle = css`
   :host {

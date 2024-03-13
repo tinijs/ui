@@ -1,7 +1,7 @@
 import {html, nothing, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {TiniElement, partAttrMap, VaryGroups} from 'tinijs';
+import {TiniElement, partAttrMap, VaryGroups} from '@tinijs/core';
 
 import {CheckboxesItem} from './checkboxes';
 

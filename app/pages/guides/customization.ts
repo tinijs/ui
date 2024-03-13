@@ -156,7 +156,7 @@ export class MyApp extends TiniComponent {}`}
           ></app-code>
           <p>Set global options in other apps.</p>
           <app-code
-            .code=${`import {setUiOptions} from 'tinijs';
+            .code=${`import {setUiOptions} from '@tinijs/core';
 
 setUiOptions({
   'bootstrap/dark': {

@@ -1,7 +1,7 @@
 import {html, PropertyValues} from 'lit';
 import {property, state, queryAssignedElements} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
-import {TiniElement, partAttrMap, VaryGroups, BoxShadows} from 'tinijs';
+import {TiniElement, partAttrMap, VaryGroups, BoxShadows} from '@tinijs/core';
 
 /* UseBases(common) */
 export class TiniCardComponent extends TiniElement {

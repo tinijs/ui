@@ -2,7 +2,7 @@ import {html, css, nothing} from 'lit';
 import {classMap} from 'lit/directives/class-map.js';
 import {cache} from 'lit/directives/cache.js';
 import {repeat} from 'lit/directives/repeat.js';
-import {UnstableStates} from 'tinijs';
+import {UnstableStates} from '@tinijs/core';
 import {
   Component,
   TiniComponent,
@@ -245,7 +245,7 @@ export class MyPage extends TiniComponent {}`;
 
   private buildImportSpecificCode() {
     const {nameClass} = this.nameVariants;
-    return `import {registerComponents} from 'tinijs';
+    return `import {registerComponents} from '@tinijs/core';
 
 // 1. import the component
 import {${nameClass}} from '${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}';
@@ -259,7 +259,7 @@ registerComponents([
   private buildImportSpecificCodeReact() {
     const {nameClass} = this.nameVariants;
     const reactTagName = nameClass.replace('Component', '');
-    return `import {registerComponents} from 'tinijs';
+    return `import {registerComponents} from '@tinijs/core';
 
 // 1. import the constructor and the React wrapper
 import {${nameClass}, ${reactTagName}} from '${this.PACKAGE_PREFIX}-${this.activeSoulId}/components/${this.name}.react';

@@ -2,3 +2,6 @@
 build/
 docs/
 www/
+**/*.js
+**/*.d.ts
+**/*.map

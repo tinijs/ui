@@ -1,5 +1,5 @@
 import {html} from 'lit';
-import {Colors} from 'tinijs';
+import {Colors} from '@tinijs/core';
 import {Page, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,

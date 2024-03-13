@@ -3,7 +3,7 @@ import {
   generateColorVaries,
   generateGradientVaries,
   generateScaleVaries,
-} from 'tinijs';
+} from '@tinijs/core';
 
 export const paginationStyle = css`
   :host {

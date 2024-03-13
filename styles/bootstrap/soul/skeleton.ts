@@ -1,5 +1,5 @@
 import {css} from 'lit';
-import {generateColorVaries, generateBorderRadiusVaries} from 'tinijs';
+import {generateColorVaries, generateBorderRadiusVaries} from '@tinijs/core';
 
 export const skeletonStyle = css`
   :host {

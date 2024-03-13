@@ -1,5 +1,5 @@
 import {html, css, nothing} from 'lit';
-import {UnstableStates} from 'tinijs';
+import {UnstableStates} from '@tinijs/core';
 import {Component, TiniComponent, stylingWithBases} from '@tinijs/core';
 import {Route} from '@tinijs/router';
 import {

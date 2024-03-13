@@ -7,7 +7,7 @@ import {
   generateFontSizeVaries,
   generateFontWeightVaries,
   generateTextTransformVaries,
-} from 'tinijs';
+} from '@tinijs/core';
 
 export const textStyle = css`
   :host {

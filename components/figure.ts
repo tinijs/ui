@@ -12,7 +12,7 @@ import {
   BoxShadows,
   borderToClassInfo,
   factorsToClassInfo,
-} from 'tinijs';
+} from '@tinijs/core';
 
 /* UseBases(common) */
 export class TiniFigureComponent extends TiniElement {

@@ -111,7 +111,7 @@ export class MyComponent extends TiniComponent {}"
             ...):
           </p>
           <app-code
-            code="import {registerComponents} from 'tinijs';
+            code="import {registerComponents} from '@tinijs/core';
 import {TiniButtonComponent} from '@tinijs/ui/components/button';
 
 registerComponents([TiniButtonComponent]); // register components"
@@ -149,7 +149,7 @@ npm i @tinijs/ui-bootstrap"
           </p>
           <p>Import and register components:</p>
           <app-code
-            code="import {registerComponents} from 'tinijs';
+            code="import {registerComponents} from '@tinijs/core';
 import {TiniButtonComponent} from '@tinijs/ui-bootstrap/components/button';
 
 registerComponents([TiniButtonComponent]); // register the component"

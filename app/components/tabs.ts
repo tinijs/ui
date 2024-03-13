@@ -1,7 +1,7 @@
 import {html, css, nothing} from 'lit';
 import {queryAssignedElements} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {partAttrMap} from 'tinijs';
+import {partAttrMap} from '@tinijs/core';
 import {
   Component,
   TiniComponent,

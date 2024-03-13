@@ -1,7 +1,7 @@
 import {html, css, nothing} from 'lit';
 import {classMap} from 'lit/directives/class-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
-import {Colors} from 'tinijs';
+import {Colors} from '@tinijs/core';
 import {Component, TiniComponent, Input, stylingWithBases} from '@tinijs/core';
 import {
   commonBases,

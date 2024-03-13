@@ -1,0 +1,12 @@
+{
+  "files.exclude": {
+    ".vscode/": true,
+    ".parcel-cache/": true,
+    ".tini/": true,
+    "build/": true,
+    "www/": true,
+    "**/*.js": true,
+    "**/*.d.ts": true,
+    "**/*.map": true
+  }
+}

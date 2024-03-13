@@ -1,4 +1,4 @@
-import {setTheme} from 'tinijs';
+import {setTheme} from '@tinijs/core';
 
 import {Configurable} from '../configurable';
 import {mainStore} from '../stores/main';

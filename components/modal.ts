@@ -2,7 +2,7 @@ import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
-import {TiniElement, partAttrMap, VaryGroups, BoxShadows} from 'tinijs';
+import {TiniElement, partAttrMap, VaryGroups, BoxShadows} from '@tinijs/core';
 
 import {DialogButton, DialogResult} from './dialog';
 

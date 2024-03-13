@@ -8,7 +8,7 @@ import {
   partAttrMap,
   Colors,
   BorderRadiuses,
-} from 'tinijs';
+} from '@tinijs/core';
 
 /* UseBases(common) */
 export class TiniSkeletonComponent extends TiniElement {

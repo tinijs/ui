@@ -2,7 +2,7 @@ import {html, nothing, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
-import {TiniElement, partAttrMap, VaryGroups, Colors, Scales} from 'tinijs';
+import {TiniElement, partAttrMap, VaryGroups, Colors, Scales} from '@tinijs/core';
 
 /* UseBases(common) */
 export class TiniInputComponent extends TiniElement {

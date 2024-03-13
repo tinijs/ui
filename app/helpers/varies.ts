@@ -21,7 +21,7 @@ import {
   FontWeights,
   TextTransforms,
   BoxShadows,
-} from 'tinijs';
+} from '@tinijs/core';
 import {
   AppSectionComponent,
   SectionCodeGroup,

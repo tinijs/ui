@@ -10,7 +10,7 @@ import {
   BoxShadows,
   BorderRadiuses,
   borderToClassInfo,
-} from 'tinijs';
+} from '@tinijs/core';
 
 export interface Source {
   srcset: string;

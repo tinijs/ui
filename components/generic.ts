@@ -21,7 +21,7 @@ import {
   genericComponentBuildStyleTextFromAttributes,
   genericComponentBuildStyleTextFromStyling,
   genericComponentBuildAndCacheStyles,
-} from 'tinijs';
+} from '@tinijs/core';
 
 /* Raw(LitElement,react-any-props) */
 export class TiniGenericComponent extends LitElement {

@@ -1,5 +1,5 @@
 import {css} from 'lit';
-import {VaryGroups, generateColorVaries, generateScaleVaries} from 'tinijs';
+import {VaryGroups, generateColorVaries, generateScaleVaries} from '@tinijs/core';
 
 export const labelStyle = css`
   :host {

@@ -13,7 +13,7 @@ import {
   FontTypes,
   FontWeights,
   TextTransforms,
-} from 'tinijs';
+} from '@tinijs/core';
 
 export type LinkTargets = '_blank' | '_self' | '_parent' | '_top';
 

@@ -8,7 +8,7 @@ import {
   Colors,
   Gradients,
   Scales,
-} from 'tinijs';
+} from '@tinijs/core';
 
 export interface PaginationItem {
   text: string;

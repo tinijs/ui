@@ -1,5 +1,5 @@
 // import { invoke } from "@tauri-apps/api/tauri";
-import {registerComponents} from 'tinijs';
+import {registerComponents} from '@tinijs/core';
 
 import {TiniGenericComponent} from '@tinijs/ui-bootstrap/components/generic';
 import {TiniGenericUnscopedComponent} from '@tinijs/ui-bootstrap/components/generic-unscoped';

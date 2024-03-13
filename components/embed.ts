@@ -2,7 +2,7 @@ import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {styleMap, StyleInfo} from 'lit/directives/style-map.js';
-import {TiniElement, partAttrMap} from 'tinijs';
+import {TiniElement, partAttrMap} from '@tinijs/core';
 
 /* UseBases(common) */
 export class TiniEmbedComponent extends TiniElement {

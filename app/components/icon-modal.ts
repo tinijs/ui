@@ -106,7 +106,7 @@ import {${nameClass}} from '${packName}/${iconName}';
 });
 export class MyComponent extends TiniComponent {}`;
 
-    const othersCode = `import {registerComponents} from 'tinijs';
+    const othersCode = `import {registerComponents} from '@tinijs/core';
 
 // 1. import the component
 import {${nameClass}} from '${packName}/${iconName}';
@@ -115,7 +115,7 @@ registerComponents([
   ${nameClass}, // 2. register the component
 ]);
 `;
-    const othersCodeReact = `import {registerComponents} from 'tinijs';
+    const othersCodeReact = `import {registerComponents} from '@tinijs/core';
 
 // 1. import the constructor and the React wrapper
 import {${nameClass}, ${reactTagName}} from '${packName}/${iconName}.react';

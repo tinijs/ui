@@ -10,7 +10,7 @@ import {
   Gradients,
   Scales,
   UIIconOptions,
-} from 'tinijs';
+} from '@tinijs/core';
 
 /* UseBases(common) */
 export class TiniIconComponent extends TiniElement {

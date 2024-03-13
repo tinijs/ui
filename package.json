@@ -6,17 +6,35 @@
   "homepage": "https://tinijs.dev",
   "license": "MIT",
   "browserslist": "> 0.5%, last 2 versions, not dead",
+  "type": "module",
   "engines": {
     "node": ">=18.0.0"
   },
   "publishConfig": {
     "access": "public"
   },
+  "exports": "./public-api.js",
+  "types": "./public-api.d.ts",
+  "files": [
+    "cli",
+    "public-api.*",
+    "!**/*.ts",
+    "**/*.d.ts",
+    "app",
+    "components",
+    "blocks",
+    "styles",
+    "!build",
+    "!consumers",
+    "!www",
+    "!test"
+  ],
   "scripts": {
+    "compile": "tsc",
     "dev": "tini ui dev && tini dev",
     "preview": "tini preview",
-    "build": "npm run build:0:app && npm run build:1:bare && npm run build:2:common && npm run build:3:bootstrap",
     "publish": "npm run publish:1:bare && npm run publish:2:common && npm run publish:3:bootstrap",
+    "build": "npm run compile",
     "build:0:app": "tini ui dev && tini build",
     "build:1:bare": "tini ui build",
     "publish:1:bare": "cd build/@tinijs/ui && npm publish --access public",
@@ -40,10 +58,9 @@
     "url": "https://github.com/tinijs/ui/issues"
   },
   "dependencies": {
-    "@tinijs/bootstrap-icons": "^0.16.0",
     "@tinijs/core": "file:../core/tinijs-core-0.16.0.tgz",
     "@tinijs/router": "file:../router/tinijs-router-0.16.0.tgz",
-    "@tinijs/store": "^0.16.0",
+    "@tinijs/store": "file:../store/tinijs-store-0.16.0.tgz",
     "chroma-js": "^2.4.2",
     "gradient-parser": "^1.0.2",
     "grapick": "^0.1.13",
@@ -51,13 +68,13 @@
     "lit": "^3.1.0",
     "nanoid": "^5.0.4",
     "prettier": "^3.1.0",
-    "prismjs": "^1.29.0",
-    "tinijs": "file:../tinijs/tinijs-0.16.0.tgz"
+    "prismjs": "^1.29.0"
   },
   "devDependencies": {
     "@lit/react": "^1.0.2",
-    "@parcel/transformer-sass": "^2.10.3",
     "@tinijs/cli": "file:../cli/tinijs-cli-0.16.0.tgz",
+    "@tinijs/default-prebuilder": "file:../builders/prebuild/tinijs-default-prebuilder-0.0.1.tgz",
+    "@tinijs/parcel-builder": "file:../builders/parcel/tinijs-parcel-builder-0.0.1.tgz",
     "@types/chroma-js": "^2.4.3",
     "@types/gradient-parser": "^0.1.5",
     "@types/node": "^20.9.4",

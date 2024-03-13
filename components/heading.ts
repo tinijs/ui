@@ -13,7 +13,7 @@ import {
   FontTypes,
   FontWeights,
   TextTransforms,
-} from 'tinijs';
+} from '@tinijs/core';
 
 /* UseBases(common,headings) */
 export class TiniHeadingComponent extends TiniElement {

@@ -9,7 +9,7 @@ import {
   Colors,
   Gradients,
   Scales,
-} from 'tinijs';
+} from '@tinijs/core';
 
 export interface SwitchEventDetail {
   target: HTMLInputElement;

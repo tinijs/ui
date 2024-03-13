@@ -1,7 +1,7 @@
 import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {TiniElement, partAttrMap, VaryGroups, Colors, Scales} from 'tinijs';
+import {TiniElement, partAttrMap, VaryGroups, Colors, Scales} from '@tinijs/core';
 
 /* UseBases(common) */
 export class TiniSpinnerComponent extends TiniElement {
