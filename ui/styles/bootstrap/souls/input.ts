@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {generateColorVaries, generateScaleVaries} from '@tinijs/core';
 
-export const inputStyle = css`
+export const styles = css`
   :host {
     --input-color: var(--color-primary);
     --input-border-color: var(--color-medium);
@@ -113,5 +113,6 @@ export const inputStyle = css`
   )}
 `;
 
-export const inputScript = undefined;
-export const inputUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

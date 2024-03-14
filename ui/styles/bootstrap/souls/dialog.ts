@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {generateBoxShadowVaries} from '@tinijs/core';
 
-export const dialogStyle = css`
+export const styles = css`
   :host {
     --dialog-width: var(--wide-ss);
     --dialog-shadow: var(--shadow-none);
@@ -103,5 +103,6 @@ export const dialogStyle = css`
   )}
 `;
 
-export const dialogScript = undefined;
-export const dialogUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

@@ -10,14 +10,12 @@ import {
   Scales,
 } from '@tinijs/core';
 
-/* UseBases(common) */
-export class TiniTextareaComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-textarea';
-  static readonly componentName = 'textarea';
-  static readonly componentMetas = {
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
     colorOnlyScheme: true,
+    mainNonRootSelector: '.textarea',
   };
-  static readonly mainNonRootSelector = '.textarea';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;
@@ -29,7 +27,7 @@ export class TiniTextareaComponent extends TiniElement {
   @property({type: Boolean, reflect: true}) declare readonly?: boolean;
   @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare scale?: Scales;
-  @property({type: String, reflect: true, attribute: 'focus:scheme'}) declare focusScheme?: TiniTextareaComponent['scheme'];
+  @property({type: String, reflect: true, attribute: 'focus:scheme'}) declare focusScheme?: this['scheme'];
   /* eslint-enable prettier/prettier */
 
   willUpdate(changedProperties: PropertyValues<this>) {

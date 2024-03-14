@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {generateColorVaries, generateScaleVaries} from '@tinijs/core';
 
-export const textareaStyle = css`
+export const styles = css`
   :host {
     --textarea-color: var(--color-primary);
     --textarea-border-color: var(--color-medium);
@@ -81,5 +81,6 @@ export const textareaStyle = css`
   )}
 `;
 
-export const textareaScript = undefined;
-export const textareaUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

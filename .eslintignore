@@ -1,5 +1,5 @@
+.parcel-cache/
 .tini*/
+consumers/
+dist/
 www/
-**/*.js
-**/*.d.ts
-**/*.map

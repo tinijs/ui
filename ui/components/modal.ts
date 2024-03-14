@@ -4,16 +4,23 @@ import {classMap} from 'lit/directives/class-map.js';
 import {ref, Ref, createRef} from 'lit/directives/ref.js';
 import {TiniElement, partAttrMap, VaryGroups, BoxShadows} from '@tinijs/core';
 
-import {DialogButton, DialogResult} from './dialog';
+import {DialogButton, DialogResult} from './dialog.js';
 
 export type ModalButton = DialogButton;
 export type ModalResult<Context> = DialogResult<Context>;
 
-/* UseBases(common) */
-/* ReactEvents(yes:onYes,no:onNo) */
-export class TiniModalComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-modal';
-  static readonly componentName = 'modal';
+/***
+{
+  "reactEvents": {
+    "yes": "onYes",
+    "no": "onNo"
+  }
+}
+***/
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   private readonly BACKDROP_CLOSED = 'backdrop-closed';
 

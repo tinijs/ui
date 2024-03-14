@@ -21,10 +21,10 @@ export interface Source {
   height?: number;
 }
 
-/* UseBases(common) */
-export class TiniImageComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-image';
-  static readonly componentName = 'image';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare src: string;

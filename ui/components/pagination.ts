@@ -15,10 +15,10 @@ export interface PaginationItem {
   href?: string;
 }
 
-/* UseBases(common) */
-export class TiniPaginationComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-pagination';
-  static readonly componentName = 'pagination';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: Number, reflect: true}) declare totalPage: number;

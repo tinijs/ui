@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {generateColorVaries, generateScaleVaries} from '@tinijs/core';
 
-export const spinnerStyle = css`
+export const styles = css`
   :host {
     --spinner-color: var(--color-foreground);
     --spinner-scale: var(--scale-md);
@@ -59,5 +59,6 @@ export const spinnerStyle = css`
   )}
 `;
 
-export const spinnerScript = undefined;
-export const spinnerUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

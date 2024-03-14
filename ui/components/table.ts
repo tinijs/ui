@@ -11,11 +11,9 @@ import {
   UnstableStates,
 } from '@tinijs/core';
 
-/* UseBases(common) */
-export class TiniTableComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-table';
-  static readonly componentName = 'table';
-  static readonly componentMetas = {
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
     unstable: UnstableStates.Experimental,
   };
 

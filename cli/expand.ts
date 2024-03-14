@@ -1,7 +1,12 @@
-import {resolveCommand} from '@tinijs/cli';
+import {defineCliExpansion, resolveCommand} from '@tinijs/cli';
 
-export default function () {
-  return {
-    ui: import('./commands/ui.js').then(resolveCommand),
-  };
-}
+export default defineCliExpansion({
+  meta: {
+    name: '@tinijs/ui',
+  },
+  setup() {
+    return {
+      ui: () => import('./commands/ui.js').then(resolveCommand),
+    };
+  },
+});

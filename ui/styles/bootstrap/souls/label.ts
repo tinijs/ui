@@ -5,7 +5,7 @@ import {
   generateScaleVaries,
 } from '@tinijs/core';
 
-export const labelStyle = css`
+export const styles = css`
   :host {
     --label-background: var(--color-medium) /* Background color */;
     --label-scale: var(--scale-md);
@@ -79,5 +79,6 @@ export const labelStyle = css`
   )}
 `;
 
-export const labelScript = undefined;
-export const labelUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

@@ -15,11 +15,13 @@ import {
   genericComponentBuildAndCacheStyles,
 } from '@tinijs/core';
 
-/* Raw(LitElement,react-any-props) */
-export class TiniGenericUnscopedComponent extends LitElement {
-  static readonly defaultTagName = 'tini-generic-unscoped';
-  static readonly componentName = 'generic-unscoped';
-
+/***
+{
+  "raw": true,
+  "reactAnyProp": true
+}
+***/
+export default class extends LitElement {
   readonly internalClassName = `_${nanoid(6)}`;
   private activeTheme = getTheme();
 

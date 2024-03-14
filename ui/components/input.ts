@@ -10,14 +10,12 @@ import {
   Scales,
 } from '@tinijs/core';
 
-/* UseBases(common) */
-export class TiniInputComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-input';
-  static readonly componentName = 'input';
-  static readonly componentMetas = {
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
     colorOnlyScheme: true,
+    mainNonRootSelector: '.input',
   };
-  static readonly mainNonRootSelector = '.input';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;
@@ -33,7 +31,7 @@ export class TiniInputComponent extends TiniElement {
   @property({type: Boolean, reflect: true}) declare block?: boolean;
   @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare scale?: Scales;
-  @property({type: String, reflect: true, attribute: 'focus:scheme'}) declare focusScheme?: TiniInputComponent['scheme'];
+  @property({type: String, reflect: true, attribute: 'focus:scheme'}) declare focusScheme?: this['scheme'];
   /* eslint-enable prettier/prettier */
 
   willUpdate(changedProperties: PropertyValues<this>) {

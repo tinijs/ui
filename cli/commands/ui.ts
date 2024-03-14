@@ -1,12 +1,12 @@
-import {defineTiniCommand, resolveCommand} from '@tinijs/cli';
+import {defineCliCommand, resolveCommand} from '@tinijs/cli';
 
-export const uiCommand = defineTiniCommand({
+export const uiCommand = defineCliCommand({
   meta: {
     name: 'ui',
     description: 'Tools for the Tini UI.',
   },
   subCommands: {
-    build: import('./ui-build.js').then(resolveCommand),
+    build: () => import('./ui-build.js').then(resolveCommand),
   },
 });
 

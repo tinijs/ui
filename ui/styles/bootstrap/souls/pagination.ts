@@ -5,7 +5,7 @@ import {
   generateScaleVaries,
 } from '@tinijs/core';
 
-export const paginationStyle = css`
+export const styles = css`
   :host {
     --pagination-background: none;
     --pagination-scale: var(--scale-md);
@@ -123,5 +123,6 @@ export const paginationStyle = css`
   )}
 `;
 
-export const paginationScript = undefined;
-export const paginationUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

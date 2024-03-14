@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {generateBoxShadowVaries} from '@tinijs/core';
 
-export const cardStyle = css`
+const styles = css`
   :host {
     --card-width: var(--wide-xs);
     --card-background: var(--color-background-tint);
@@ -101,5 +101,6 @@ export const cardStyle = css`
   )}
 `;
 
-export const cardScript = undefined;
-export const cardUnscript = undefined;
+const scripts = undefined;
+
+export default {styles, scripts};

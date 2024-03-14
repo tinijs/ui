@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {generateColorVaries, generateScaleVaries} from '@tinijs/core';
 
-export const selectStyle = css`
+export const styles = css`
   :host {
     --select-color: var(--color-primary);
     --select-border-color: var(--color-medium);
@@ -87,5 +87,6 @@ export const selectStyle = css`
   )}
 `;
 
-export const selectScript = undefined;
-export const selectUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

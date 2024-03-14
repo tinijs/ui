@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {generateColorVaries, generateScaleVaries} from '@tinijs/core';
 
-export const checkboxesStyle = css`
+export const styles = css`
   /* :host {} */
 
   /*
@@ -122,5 +122,6 @@ export const checkboxesStyle = css`
   )}
 `;
 
-export const checkboxesScript = undefined;
-export const checkboxesUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

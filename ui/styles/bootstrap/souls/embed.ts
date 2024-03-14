@@ -1,6 +1,6 @@
 import {css} from 'lit';
 
-export const embedStyle = css`
+export const styles = css`
   :host {
     display: block;
   }
@@ -24,5 +24,6 @@ export const embedStyle = css`
   }
 `;
 
-export const embedScript = undefined;
-export const embedUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {generateColorVaries, generateScaleVaries} from '@tinijs/core';
 
-export const xxxStyle = css`
+export const styles = css`
   :host {
     
   }
@@ -39,5 +39,6 @@ export const xxxStyle = css`
   )}
 `;
 
-export const xxxScript = undefined;
-export const xxxUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

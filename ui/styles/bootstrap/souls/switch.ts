@@ -5,7 +5,7 @@ import {
   generateScaleVaries,
 } from '@tinijs/core';
 
-export const switchStyle = css`
+export const styles = css`
   :host {
     --switch-scale: var(--scale-md);
     --switch-background: var(--color-medium);
@@ -139,5 +139,6 @@ export const switchStyle = css`
   )}
 `;
 
-export const switchScript = undefined;
-export const switchUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

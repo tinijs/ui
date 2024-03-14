@@ -1,6 +1,6 @@
 import {css} from 'lit';
 
-export const codeStyle = css`
+export const styles = css`
   /* :host {} */
 
   /*
@@ -12,5 +12,6 @@ export const codeStyle = css`
   }
 `;
 
-export const codeScript = undefined;
-export const codeUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

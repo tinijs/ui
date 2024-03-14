@@ -15,11 +15,15 @@ export interface BreadcrumbItem {
   href?: string;
 }
 
-/* UseBases(common) */
-/* UseComponents(link) */
-export class TiniBreadcrumbComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-breadcrumb';
-  static readonly componentName = 'breadcrumb';
+/***
+{
+  "components": ["link"]
+}
+***/
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: String}) declare items?: BreadcrumbItem[];

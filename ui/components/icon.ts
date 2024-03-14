@@ -12,10 +12,10 @@ import {
   UIIconOptions,
 } from '@tinijs/core';
 
-/* UseBases(common) */
-export class TiniIconComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-icon';
-  static readonly componentName = 'icon';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   /* eslint-disable prettier/prettier */
   static readonly prebuiltSrc?: string;
@@ -42,7 +42,7 @@ export class TiniIconComponent extends TiniElement {
     // root styles
     if (changedProperties.has('src') || changedProperties.has('icon')) {
       const src =
-        (this.constructor as typeof TiniIconComponent).prebuiltSrc ||
+        (this.constructor as any).prebuiltSrc ||
         this.src ||
         this.buildCustomSrc();
       this.rootStyles = {

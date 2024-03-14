@@ -10,11 +10,9 @@ import {
   UnstableStates,
 } from '@tinijs/core';
 
-/* UseBases(common,code) */
-export class TiniCodeComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-code';
-  static readonly componentName = 'code';
-  static readonly componentMetas = {
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common', 'code'],
     unstable: UnstableStates.Experimental,
   };
 
@@ -43,7 +41,8 @@ export class TiniCodeComponent extends TiniElement {
     // root classes parts
     this.extendRootClasses({});
     // code classes parts
-    this.componentOptions = this.getGlobalOptions().componentOptions;
+    this.componentOptions = this.getGlobalOptions()
+      .componentOptions as UICodeOptions;
     this.codeClasses = {
       code: true,
       [this.componentOptions.engine]: true,

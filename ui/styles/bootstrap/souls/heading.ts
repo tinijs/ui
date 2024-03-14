@@ -9,7 +9,7 @@ import {
   generateTextTransformVaries,
 } from '@tinijs/core';
 
-export const headingStyle = css`
+export const styles = css`
   :host {
     --heading-color: var(--color-foreground);
     --heading-font-size: var(--size-text);
@@ -173,5 +173,6 @@ export const headingStyle = css`
   )}
 `;
 
-export const headingScript = undefined;
-export const headingUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

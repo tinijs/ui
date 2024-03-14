@@ -10,11 +10,9 @@ import {
   BorderRadiuses,
 } from '@tinijs/core';
 
-/* UseBases(common) */
-export class TiniSkeletonComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-skeleton';
-  static readonly componentName = 'skeleton';
-  static readonly componentMetas = {
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
     colorOnlyScheme: true,
   };
 

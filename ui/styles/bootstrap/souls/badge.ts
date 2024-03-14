@@ -6,7 +6,7 @@ import {
   generateScaleVaries,
 } from '@tinijs/core';
 
-export const badgeStyle = css`
+const styles = css`
   :host {
     --badge-background: var(--color-medium) /* Background color */;
     --badge-scale: var(--scale-md) /* Base scale */;
@@ -97,5 +97,6 @@ export const badgeStyle = css`
   )}
 `;
 
-export const badgeScript = undefined;
-export const badgeUnscript = undefined;
+const scripts = undefined;
+
+export default {styles, scripts};

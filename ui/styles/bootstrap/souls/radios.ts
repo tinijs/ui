@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {generateColorVaries, generateScaleVaries} from '@tinijs/core';
 
-export const radiosStyle = css`
+export const styles = css`
   /* :host {} */
 
   /*
@@ -119,5 +119,6 @@ export const radiosStyle = css`
   )}
 `;
 
-export const radiosScript = undefined;
-export const radiosUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

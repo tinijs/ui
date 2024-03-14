@@ -12,7 +12,7 @@ import {
   generateBoxShadowVaries,
 } from '@tinijs/core';
 
-export const buttonStyle = css`
+export const styles = css`
   :host {
     --button-base-color: var(--color-medium);
     --button-color: var(--color-medium);
@@ -359,5 +359,6 @@ export const buttonStyle = css`
   )}
 `;
 
-export const buttonScript = undefined;
-export const buttonUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

@@ -17,10 +17,10 @@ import {
 
 export type LinkTargets = '_blank' | '_self' | '_parent' | '_top';
 
-/* UseBases(common) */
-export class TiniLinkComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-link';
-  static readonly componentName = 'link';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   private readonly ROUTER_CHANGE_EVENT = 'tini:router:change';
   private anchorRef: Ref<HTMLAnchorElement> = createRef();

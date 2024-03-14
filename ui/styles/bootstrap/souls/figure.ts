@@ -10,7 +10,7 @@ import {
   generateBoxShadowVaries,
 } from '@tinijs/core';
 
-export const figureStyle = css`
+export const styles = css`
   :host {
     --figure-background: none;
     --figure-border: none;
@@ -159,5 +159,6 @@ export const figureStyle = css`
   )}
 `;
 
-export const figureScript = undefined;
-export const figureUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

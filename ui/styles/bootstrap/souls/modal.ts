@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {generateBoxShadowVaries} from '@tinijs/core';
 
-export const modalStyle = css`
+export const styles = css`
   :host {
     --modal-width: var(--wide-ml);
     --modal-shadow: var(--shadow-none);
@@ -103,5 +103,6 @@ export const modalStyle = css`
   )}
 `;
 
-export const modalScript = undefined;
-export const modalUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

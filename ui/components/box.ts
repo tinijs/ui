@@ -15,10 +15,10 @@ import {
   borderToClassInfo,
 } from '@tinijs/core';
 
-/* UseBases(common) */
-export class TiniBoxComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-box';
-  static readonly componentName = 'box';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare tag?: string;

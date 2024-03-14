@@ -6,32 +6,26 @@
   "homepage": "https://tinijs.dev",
   "license": "MIT",
   "browserslist": "> 0.5%, last 2 versions, not dead",
-  "type": "module",
   "engines": {
     "node": ">=18.0.0"
   },
   "publishConfig": {
     "access": "public"
   },
-  "exports": "./public-api.js",
-  "types": "./public-api.d.ts",
+  "type": "module",
+  "exports": {
+    ".": "./dist/public-api.js",
+    "./app/*": "./dist/app/*"
+  },
   "files": [
-    "cli",
-    "public-api.*",
-    "!**/*.ts",
-    "**/*.d.ts",
-    "app",
-    "ui",
-    "!consumers",
-    "!www",
-    "!test"
+    "dist",
+    "!**/*.spec.*"
   ],
   "scripts": {
-    "compile": "tsc",
     "dev": "tini ui dev && tini dev",
     "preview": "tini preview",
+    "build": "rimraf ./dist && tsc",
     "publish": "npm run publish:1:bare && npm run publish:2:common && npm run publish:3:bootstrap",
-    "build": "npm run compile",
     "build:0:app": "tini ui dev && tini build",
     "build:1:bare": "tini ui build",
     "publish:1:bare": "cd build/@tinijs/ui && npm publish --access public",
@@ -59,13 +53,17 @@
     "@tinijs/router": "file:../router/tinijs-router-0.16.0.tgz",
     "@tinijs/store": "file:../store/tinijs-store-0.16.0.tgz",
     "chroma-js": "^2.4.2",
+    "consola": "^3.2.3",
+    "destr": "^2.0.3",
     "fs-extra": "^11.2.0",
     "gradient-parser": "^1.0.2",
     "grapick": "^0.1.13",
     "highlight.js": "^11.9.0",
+    "knitwork": "^1.0.0",
     "lit": "^3.1.0",
     "magicast": "^0.3.3",
     "nanoid": "^5.0.4",
+    "pathe": "^1.1.2",
     "prettier": "^3.1.0",
     "prismjs": "^1.29.0"
   },
@@ -83,6 +81,7 @@
     "parcel": "^2.10.3",
     "process": "^0.11.10",
     "react": "^18.2.0",
+    "rimraf": "^5.0.5",
     "typescript": "~5.3.2"
   }
 }

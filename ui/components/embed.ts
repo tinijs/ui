@@ -4,10 +4,10 @@ import {classMap} from 'lit/directives/class-map.js';
 import {styleMap, StyleInfo} from 'lit/directives/style-map.js';
 import {TiniElement, partAttrMap} from '@tinijs/core';
 
-/* UseBases(common) */
-export class TiniEmbedComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-embed';
-  static readonly componentName = 'embed';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare ratio?: string;

@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {generateColorVaries, generateScaleVaries} from '@tinijs/core';
 
-export const tableStyle = css`
+export const styles = css`
   :host {
   }
 
@@ -61,5 +61,6 @@ export const tableStyle = css`
   )}
 `;
 
-export const tableScript = undefined;
-export const tableUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

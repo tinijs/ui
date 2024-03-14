@@ -20,11 +20,11 @@ export interface CheckboxesItem {
   'checked:scheme'?: Colors;
 }
 
-/* UseBases(common) */
-export class TiniCheckboxesComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-checkboxes';
-  static readonly componentName = 'checkboxes';
-  static readonly mainNonRootSelector = '.input';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+    mainNonRootSelector: '.input',
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: Array}) declare items?: CheckboxesItem[];

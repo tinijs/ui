@@ -9,11 +9,9 @@ import {
   Factors,
 } from '@tinijs/core';
 
-/* UseBases(common) */
-export class TiniMessageComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-message';
-  static readonly componentName = 'message';
-  static readonly componentMetas = {
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
     colorOnlyScheme: true,
   };
 

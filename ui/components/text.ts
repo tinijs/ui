@@ -21,10 +21,10 @@ export enum TextTags {
   Span = 'span',
 }
 
-/* UseBases(common) */
-export class TiniTextComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-text';
-  static readonly componentName = 'text';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare tag?: TextTags;

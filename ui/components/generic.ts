@@ -23,8 +23,13 @@ import {
   genericComponentBuildAndCacheStyles,
 } from '@tinijs/core';
 
-/* Raw(LitElement,react-any-props) */
-export class TiniGenericComponent extends LitElement {
+/***
+{
+  "raw": true,
+  "reactAnyProp": true
+}
+***/
+export default class extends LitElement {
   static readonly SELF_CLOSING_TAGS = [
     'area',
     'base',
@@ -41,8 +46,6 @@ export class TiniGenericComponent extends LitElement {
     'track',
     'wbr',
   ];
-  static readonly defaultTagName = 'tini-generic';
-  static readonly componentName = 'generic';
 
   private activeTheme = getTheme();
 

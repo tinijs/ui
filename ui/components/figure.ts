@@ -14,10 +14,10 @@ import {
   factorsToClassInfo,
 } from '@tinijs/core';
 
-/* UseBases(common) */
-export class TiniFigureComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-figure';
-  static readonly componentName = 'figure';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare scheme?: Colors | Gradients;

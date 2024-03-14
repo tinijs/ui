@@ -1,14 +1,22 @@
 {
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
     "target": "ESNext",
+    "module": "NodeNext",
     "lib": ["ESNext", "DOM"],
+    "outDir": "dist",
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
-  "include": ["cli/**/*.ts"]
+  "include": [
+    "**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "consumers",
+    "dist",
+    "www"
+  ]
 }

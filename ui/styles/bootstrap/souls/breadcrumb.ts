@@ -1,6 +1,6 @@
 import {css} from 'lit';
 
-export const breadcrumbStyle = css`
+const styles = css`
   /* :host {} */
 
   /*
@@ -30,5 +30,6 @@ export const breadcrumbStyle = css`
   }
 `;
 
-export const breadcrumbScript = undefined;
-export const breadcrumbUnscript = undefined;
+const scripts = undefined;
+
+export default {styles, scripts};

@@ -1,7 +1,7 @@
 import {css} from 'lit';
 import {generateColorVaries, generateBorderRadiusVaries} from '@tinijs/core';
 
-export const skeletonStyle = css`
+export const styles = css`
   :host {
     --skeleton-width: 100%;
     --skeleton-height: 1rem;
@@ -74,5 +74,6 @@ export const skeletonStyle = css`
   )}
 `;
 
-export const skeletonScript = undefined;
-export const skeletonUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

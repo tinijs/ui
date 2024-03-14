@@ -10,10 +10,10 @@ import {
   Scales,
 } from '@tinijs/core';
 
-/* UseBases(common) */
-export class TiniBadgeComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-badge';
-  static readonly componentName = 'badge';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare pill?: boolean;

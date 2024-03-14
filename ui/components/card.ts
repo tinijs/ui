@@ -3,10 +3,10 @@ import {property, state, queryAssignedElements} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {TiniElement, partAttrMap, VaryGroups, BoxShadows} from '@tinijs/core';
 
-/* UseBases(common) */
-export class TiniCardComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-card';
-  static readonly componentName = 'card';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: Boolean, reflect: true}) declare fluid?: boolean;

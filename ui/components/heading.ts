@@ -15,10 +15,10 @@ import {
   TextTransforms,
 } from '@tinijs/core';
 
-/* UseBases(common,headings) */
-export class TiniHeadingComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-heading';
-  static readonly componentName = 'heading';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common', 'headings'],
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: Number, reflect: true}) declare level?: number;

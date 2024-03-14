@@ -9,11 +9,9 @@ import {
   Scales,
 } from '@tinijs/core';
 
-/* UseBases(common) */
-export class TiniSpinnerComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-spinner';
-  static readonly componentName = 'spinner';
-  static readonly componentMetas = {
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
     colorOnlyScheme: true,
   };
 

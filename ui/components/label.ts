@@ -9,11 +9,9 @@ import {
   Scales,
 } from '@tinijs/core';
 
-/* UseBases(common) */
-export class TiniLabelComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-label';
-  static readonly componentName = 'label';
-  static readonly componentMetas = {
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
     colorOnlyScheme: true,
   };
 

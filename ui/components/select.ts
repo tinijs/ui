@@ -25,14 +25,12 @@ export type SelectOptgroup = SelectOption & {
   children: SelectOption[];
 };
 
-/* UseBases(common) */
-export class TiniSelectComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-select';
-  static readonly componentName = 'select';
-  static readonly componentMetas = {
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
     colorOnlyScheme: true,
+    mainNonRootSelector: '.select',
   };
-  static readonly mainNonRootSelector = '.select';
 
   /* eslint-disable prettier/prettier */
   @property({type: String}) declare items?: SelectItem[];
@@ -43,7 +41,7 @@ export class TiniSelectComponent extends TiniElement {
   @property({type: Boolean, reflect: true}) declare wrap?: boolean;
   @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare scale?: Scales;
-  @property({type: String, reflect: true, attribute: 'focus:scheme'}) declare focusScheme?: TiniSelectComponent['scheme'];
+  @property({type: String, reflect: true, attribute: 'focus:scheme'}) declare focusScheme?: this['scheme'];
   /* eslint-enable prettier/prettier */
 
   willUpdate(changedProperties: PropertyValues<this>) {

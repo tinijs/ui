@@ -9,7 +9,7 @@ import {
   generateTextTransformVaries,
 } from '@tinijs/core';
 
-export const linkStyle = css`
+export const styles = css`
   :host {
     --link-color: var(--color-primary);
     --link-font-size: var(--size-text);
@@ -153,5 +153,6 @@ export const linkStyle = css`
   )}
 `;
 
-export const linkScript = undefined;
-export const linkUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

@@ -5,7 +5,7 @@ import {
   generateFontSizeVaries,
 } from '@tinijs/core';
 
-export const messageStyle = css`
+export const styles = css`
   :host {
     --message-background: var(--color-medium);
     --message-text-color: var(--color-medium);
@@ -66,5 +66,6 @@ export const messageStyle = css`
   )}
 `;
 
-export const messageScript = undefined;
-export const messageUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

@@ -3,15 +3,15 @@ import {property} from 'lit/decorators.js';
 import {classMap, ClassInfo} from 'lit/directives/class-map.js';
 import {TiniElement, partAttrMap, VaryGroups} from '@tinijs/core';
 
-import {CheckboxesItem} from './checkboxes';
+import {CheckboxesItem} from './checkboxes.js';
 
 export type RadiosItem = Omit<CheckboxesItem, 'name'>;
 
-/* UseBases(common) */
-export class TiniRadiosComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-radios';
-  static readonly componentName = 'radios';
-  static readonly mainNonRootSelector = '.input';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+    mainNonRootSelector: '.input',
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: Array}) declare items?: RadiosItem[];

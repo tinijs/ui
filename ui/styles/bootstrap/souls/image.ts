@@ -8,7 +8,7 @@ import {
   generateBoxShadowVaries,
 } from '@tinijs/core';
 
-export const imageStyle = css`
+export const styles = css`
   :host {
     --image-border: none;
     --image-border-radius: var(--size-radius);
@@ -111,5 +111,6 @@ export const imageStyle = css`
   )}
 `;
 
-export const imageScript = undefined;
-export const imageUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

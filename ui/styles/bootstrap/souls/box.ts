@@ -11,7 +11,7 @@ import {
   generateBoxShadowVaries,
 } from '@tinijs/core';
 
-export const boxStyle = css`
+const styles = css`
   :host {
     --box-background: none;
     --box-font-size: var(--size-text);
@@ -170,5 +170,6 @@ export const boxStyle = css`
   )}
 `;
 
-export const boxScript = undefined;
-export const boxUnscript = undefined;
+const scripts = undefined;
+
+export default {styles, scripts};

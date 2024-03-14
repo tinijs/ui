@@ -17,10 +17,10 @@ export interface SwitchEventDetail {
   checked?: boolean;
 }
 
-/* UseBases(common) */
-export class TiniSwitchComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-switch';
-  static readonly componentName = 'switch';
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;

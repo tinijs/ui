@@ -9,7 +9,7 @@ import {
   generateTextTransformVaries,
 } from '@tinijs/core';
 
-export const textStyle = css`
+export const styles = css`
   :host {
     --text-color: var(--color-foreground);
     --text-font-size: var(--size-text);
@@ -152,5 +152,6 @@ export const textStyle = css`
   )}
 `;
 
-export const textScript = undefined;
-export const textUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

@@ -5,7 +5,7 @@ import {
   generateScaleVaries,
 } from '@tinijs/core';
 
-export const iconStyle = css`
+export const styles = css`
   :host {
     --icon-width: var(--scale-md-2x);
     --icon-height: var(--scale-md-2x);
@@ -79,5 +79,6 @@ export const iconStyle = css`
   )}
 `;
 
-export const iconScript = undefined;
-export const iconUnscript = undefined;
+export const scripts = undefined;
+
+export default {styles, scripts};

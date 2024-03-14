@@ -27,12 +27,19 @@ export interface DialogResult<Context> {
   dialog: HTMLDialogElement;
 }
 
-/* UseBases(common) */
-/* UseComponents(button) */
-/* ReactEvents(yes:onYes,no:onNo) */
-export class TiniDialogComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-dialog';
-  static readonly componentName = 'dialog';
+/***
+{
+  "components": ["button"],
+  "reactEvents": {
+    "yes": "onYes",
+    "no": "onNo"
+  }
+}
+***/
+export default class extends TiniElement {
+  static readonly componentMetadata = {
+    warnAboutMissingBases: ['common'],
+  };
 
   private readonly BACKDROP_CLOSED = 'backdrop-closed';
 
