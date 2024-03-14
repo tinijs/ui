@@ -2,48 +2,41 @@ import {html, nothing, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
 import {ifDefined} from 'lit/directives/if-defined.js';
-import {TiniElement, partAttrMap, VaryGroups, Colors, Scales} from '@tinijs/core';
+import {
+  TiniElement,
+  partAttrMap,
+  VaryGroups,
+  Colors,
+  Scales,
+} from '@tinijs/core';
 
 /* UseBases(common) */
-export class TiniInputComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-input';
-  static readonly componentName = 'input';
+export class TiniTextareaComponent extends TiniElement {
+  static readonly defaultTagName = 'tini-textarea';
+  static readonly componentName = 'textarea';
   static readonly componentMetas = {
     colorOnlyScheme: true,
   };
-  static readonly mainNonRootSelector = '.input';
+  static readonly mainNonRootSelector = '.textarea';
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare label?: string;
   @property({type: String, reflect: true}) declare placeholder?: string;
-  @property({type: String, reflect: true}) declare type?: string;
   @property({type: String, reflect: true}) declare name?: string;
   @property({type: String, reflect: true}) declare value?: string;
-  @property({type: String, reflect: true}) declare inputmode?: string;
   @property({type: String, reflect: true}) declare autocomplete?: string;
   @property({type: Boolean, reflect: true}) declare disabled?: boolean;
   @property({type: Boolean, reflect: true}) declare readonly?: boolean;
-  @property({type: Boolean, reflect: true}) declare wrap?: boolean;
-  @property({type: Boolean, reflect: true}) declare block?: boolean;
   @property({type: String, reflect: true}) declare scheme?: Colors;
   @property({type: String, reflect: true}) declare scale?: Scales;
-  @property({type: String, reflect: true, attribute: 'focus:scheme'}) declare focusScheme?: TiniInputComponent['scheme'];
+  @property({type: String, reflect: true, attribute: 'focus:scheme'}) declare focusScheme?: TiniTextareaComponent['scheme'];
   /* eslint-enable prettier/prettier */
 
   willUpdate(changedProperties: PropertyValues<this>) {
     super.willUpdate(changedProperties);
-    // host block
-    if (changedProperties.has('block')) {
-      if (this.block) {
-        this.classList.add('block');
-      } else {
-        this.classList.remove('block');
-      }
-    }
     // root classes parts
     this.extendRootClasses({
       raw: {
-        wrap: !!this.wrap,
         disabled: !!this.disabled,
         readonly: !!this.readonly,
       },
@@ -68,18 +61,16 @@ export class TiniInputComponent extends TiniElement {
         ${!this.label
           ? nothing
           : html`<span class="label" part="label">${this.label}</span>`}
-        <input
-          class="input"
-          part="input"
+        <textarea
+          class="textarea"
+          part="textarea"
           placeholder=${ifDefined(this.placeholder)}
-          type=${ifDefined(this.type) as any}
           name=${ifDefined(this.name)}
           .value=${this.value || ''}
-          inputmode=${ifDefined(this.inputmode)}
           autocomplete=${ifDefined(this.autocomplete) as any}
           ?disabled=${this.disabled}
           ?readonly=${this.readonly}
-        />
+        ></textarea>
       </label>
     `;
   }

@@ -1,6 +1,4 @@
-.tini-*/
-build/
-docs/
+.tini*/
 www/
 **/*.js
 **/*.d.ts

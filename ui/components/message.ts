@@ -1,19 +1,26 @@
 import {html, PropertyValues} from 'lit';
 import {property} from 'lit/decorators.js';
 import {classMap} from 'lit/directives/class-map.js';
-import {TiniElement, partAttrMap, VaryGroups, Colors, Scales} from '@tinijs/core';
+import {
+  TiniElement,
+  partAttrMap,
+  VaryGroups,
+  Colors,
+  Factors,
+} from '@tinijs/core';
 
 /* UseBases(common) */
-export class TiniSpinnerComponent extends TiniElement {
-  static readonly defaultTagName = 'tini-spinner';
-  static readonly componentName = 'spinner';
+export class TiniMessageComponent extends TiniElement {
+  static readonly defaultTagName = 'tini-message';
+  static readonly componentName = 'message';
   static readonly componentMetas = {
     colorOnlyScheme: true,
   };
 
   /* eslint-disable prettier/prettier */
   @property({type: String, reflect: true}) declare scheme?: Colors;
-  @property({type: String, reflect: true}) declare scale?: Scales;
+  @property({type: String, reflect: true}) declare color?: Colors;
+  @property({type: String, reflect: true}) declare fontSize?: Factors;
   /* eslint-enable prettier/prettier */
 
   willUpdate(changedProperties: PropertyValues<this>) {
@@ -22,7 +29,8 @@ export class TiniSpinnerComponent extends TiniElement {
     this.extendRootClasses({
       overridable: {
         [VaryGroups.Scheme]: this.scheme,
-        [VaryGroups.Scale]: this.scale,
+        [VaryGroups.Color]: this.color,
+        [VaryGroups.FontSize]: this.fontSize,
       },
     });
   }
@@ -32,7 +40,9 @@ export class TiniSpinnerComponent extends TiniElement {
       <div
         class=${classMap(this.rootClasses)}
         part=${partAttrMap(this.rootClasses)}
-      ></div>
+      >
+        <slot></slot>
+      </div>
     `;
   }
 }

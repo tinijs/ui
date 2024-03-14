@@ -1,5 +1,9 @@
 import {css} from 'lit';
-import {VaryGroups, generateColorVaries, generateFontSizeVaries} from '@tinijs/core';
+import {
+  VaryGroups,
+  generateColorVaries,
+  generateFontSizeVaries,
+} from '@tinijs/core';
 
 export const messageStyle = css`
   :host {

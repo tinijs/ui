@@ -8,11 +8,7 @@
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
-    "paths": {
-      "@tinijs/ui": ["./.tini-ui"],
-      "@tinijs/ui/*": ["./.tini-ui/*"]
-    }
+    "skipLibCheck": true
   },
   "include": ["cli/**/*.ts"]
 }
