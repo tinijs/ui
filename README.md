@@ -1,5 +1,10 @@
 # Tini UI 
 
+> [!IMPORTANT]
+> This previously experiment is wrapped up, moving forward the development will happen at <https://github.com/tinijs/tinijs/tree/main/packages/ui>.
+>
+> If you want to use the experimental version still, please use the version `0.16.0`.
+
 The UI system of the TiniJS Framework.
 
 It is a collection of UI components, themes and icons packages that are used to build UIs for TiniJS applications.

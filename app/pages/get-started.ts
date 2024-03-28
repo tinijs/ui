@@ -70,7 +70,7 @@ export class AppPageGetStarted extends TiniComponent {
           <p>To create a new TiniJS app, run:</p>
           <app-code
             language="bash"
-            code="npx @tinijs/cli new my-app --latest"
+            code="npx @tinijs/cli@0.16.0 new my-app --latest"
           ></app-code>
           <p>
             The skeleton app comes with a default theme
@@ -84,7 +84,7 @@ export class AppPageGetStarted extends TiniComponent {
 
           <h5>Add Tini UI to an existing project</h5>
           <p>Install the CLI as a dev dependency:</p>
-          <app-code language="bash" code="npm i -D @tinijs/cli"></app-code>
+          <app-code language="bash" code="npm i -D @tinijs/cli@0.16.0"></app-code>
           <p>Then run <code>tini ui use</code>:</p>
           <app-code
             language="bash"
@@ -130,10 +130,10 @@ registerComponents([TiniButtonComponent]); // register components"
           </p>
           <app-code
             language="bash"
-            code="npm i @tinijs/ui-PACKAGE-ID
+            code="npm i @tinijs/ui-PACKAGE-ID@0.16.0
     
 # For example:
-npm i @tinijs/ui-bootstrap"
+npm i @tinijs/ui-bootstrap@0.16.0"
           ></app-code>
           <p>
             Import a skin or multiple skins (and skin utils) in a global CSS
@@ -168,8 +168,8 @@ registerComponents([TiniButtonComponent]); // register the component"
             file:
           </p>
           <app-code
-            code="@import url('https://cdn.jsdelivr.net/npm/@tinijs/ui-bootstrap/styles/skins/light.css');
-@import url('https://cdn.jsdelivr.net/npm/@tinijs/ui-bootstrap/utilities.css');"
+            code="@import url('https://cdn.jsdelivr.net/npm/@tinijs/ui-bootstrap@0.16.0/styles/skins/light.css');
+@import url('https://cdn.jsdelivr.net/npm/@tinijs/ui-bootstrap@0.16.0/utilities.css');"
           ></app-code>
           <p>
             Set the default theme:
@@ -177,10 +177,10 @@ registerComponents([TiniButtonComponent]); // register the component"
           </p>
           <p>Include the bundled script in HTML or use ES6 import in JS:</p>
           <app-code
-            code='&lt;script src="https://cdn.jsdelivr.net/npm/@tinijs/ui-bootstrap/components/button.bundle.js&apos;;"&gt;&lt;/script&gt;'
+            code='&lt;script src="https://cdn.jsdelivr.net/npm/@tinijs/ui-bootstrap@0.16.0/components/button.bundle.js&apos;;"&gt;&lt;/script&gt;'
           ></app-code>
           <app-code
-            code="import 'https://cdn.jsdelivr.net/npm/@tinijs/ui-bootstrap/components/button.bundle.js';"
+            code="import 'https://cdn.jsdelivr.net/npm/@tinijs/ui-bootstrap@0.16.0/components/button.bundle.js';"
           ></app-code>
           <p>Finally, use the components:</p>
           <app-code
@@ -268,10 +268,10 @@ registerComponents([TiniButtonComponent]); // register the component"
               >https://github.com/tinijs/ui/tree/main/styles/bootstrap</a
             >
           </p>
-          <p>Install: <code>npm i @tinijs/ui-bootstrap</code></p>
+          <p>Install: <code>npm i @tinijs/ui-bootstrap@0.16.0</code></p>
           <p>
             CDN url:
-            <code>https://cdn.jsdelivr.net/npm/@tinijs/ui-bootstrap</code>
+            <code>https://cdn.jsdelivr.net/npm/@tinijs/ui-bootstrap@0.16.0/</code>
           </p>
           <p>Official skins:</p>
           <ul>

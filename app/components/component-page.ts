@@ -166,7 +166,7 @@ export class AppComponentPageComponent extends TiniComponent {
   }
 
   private get jsdelivrUrl() {
-    return `https://cdn.jsdelivr.net/npm/${this.PACKAGE_PREFIX}-${this.activeSoulId}`;
+    return `https://cdn.jsdelivr.net/npm/${this.PACKAGE_PREFIX}-${this.activeSoulId}@0.16.0`;
   }
 
   private buildStandaloneSkinCode() {

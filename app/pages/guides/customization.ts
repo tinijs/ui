@@ -185,7 +185,7 @@ setUiOptions({
             >
             and
             <a
-              href="https://cdn.jsdelivr.net/npm/@tinijs/ui/utilities.css"
+              href="https://cdn.jsdelivr.net/npm/@tinijs/ui@0.16.0/utilities.css"
               target="_blank"
               rel="noopener"
               >skin utilities</a
